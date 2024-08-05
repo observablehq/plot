@@ -16,6 +16,7 @@ import {
 } from "d3";
 import {ascendingDefined} from "../defined.js";
 import {
+  arrayify,
   column,
   identity,
   isObject,
@@ -444,6 +445,7 @@ export function find(test) {
   if (typeof test !== "function") throw new Error(`invalid test function: ${test}`);
   return {
     reduceIndex(I, V, {data}) {
+      data = arrayify(data);
       return V[I.find((i) => test(data[i], i, data))];
     }
   };

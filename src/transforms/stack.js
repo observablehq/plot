@@ -2,7 +2,7 @@ import {InternMap, cumsum, greatest, group, groupSort, max, min, rollup, sum} fr
 import {ascendingDefined, descendingDefined} from "../defined.js";
 import {withTip} from "../mark.js";
 import {maybeApplyInterval, maybeColumn, maybeZ, maybeZero} from "../options.js";
-import {column, field, lengthof, mid, one, range, valueof} from "../options.js";
+import {arrayify, column, field, lengthof, mid, one, range, valueof} from "../options.js";
 import {basic} from "./basic.js";
 import {exclusiveFacets} from "./exclusiveFacets.js";
 
@@ -327,7 +327,10 @@ function orderAccessor(f) {
 }
 
 function orderComparator(f) {
-  return (data) => (i, j) => f(data[i], data[j]);
+  return (data) => {
+    data = arrayify(data);
+    return (i, j) => f(data[i], data[j]);
+  };
 }
 
 function orderGiven(domain) {
