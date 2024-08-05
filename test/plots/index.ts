@@ -11,6 +11,8 @@ export * from "./aapl-volume.js";
 export * from "./anscombe-quartet.js";
 export * from "./arc.js";
 export * from "./armadillo.js";
+export * from "./arrow.js";
+export * from "./arrow-dates.js";
 export * from "./aspectRatio.js";
 export * from "./athletes-bins-colors.js";
 export * from "./athletes-birthdays.js";

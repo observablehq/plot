@@ -7,6 +7,26 @@ import {timeInterval, utcInterval} from "./time.js";
 export const TypedArray = Object.getPrototypeOf(Uint8Array);
 const objectToString = Object.prototype.toString;
 
+export function isArray(value) {
+  return value instanceof Array || value instanceof TypedArray;
+}
+
+function isNumberArray(value) {
+  return value instanceof TypedArray && !isBigIntArray(value);
+}
+
+function isNumberType(type) {
+  return type?.prototype instanceof TypedArray && !isBigIntType(type);
+}
+
+function isBigIntArray(value) {
+  return value instanceof BigInt64Array || value instanceof BigUint64Array;
+}
+
+function isBigIntType(type) {
+  return type === BigInt64Array || type === BigUint64Array;
+}
+
 // If a reindex is attached to the data, channel values expressed as arrays will
 // be reindexed when the channels are instantiated. See exclusiveFacets.
 export const reindex = Symbol("reindex");
@@ -14,7 +34,9 @@ export const reindex = Symbol("reindex");
 export function valueof(data, value, type) {
   const valueType = typeof value;
   return valueType === "string"
-    ? maybeTypedMap(data, field(value), type)
+    ? isArrowTable(data)
+      ? maybeTypedArrowify(data.getChild(value), type)
+      : maybeTypedMap(data, field(value), type)
     : valueType === "function"
     ? maybeTypedMap(data, value, type)
     : valueType === "number" || value instanceof Date || valueType === "boolean"
@@ -29,21 +51,25 @@ function maybeTake(values, index) {
 }
 
 function maybeTypedMap(data, f, type) {
-  return map(data, type?.prototype instanceof TypedArray ? floater(f) : f, type);
+  return map(data, isNumberType(type) ? (d, i) => coerceNumber(f(d, i)) : f, type); // allow conversion from BigInt
 }
 
 function maybeTypedArrayify(data, type) {
   return type === undefined
     ? arrayify(data) // preserve undefined type
+    : isArrowVector(data)
+    ? maybeTypedArrowify(data, type)
     : data instanceof type
     ? data
-    : type.prototype instanceof TypedArray && !(data instanceof TypedArray)
-    ? type.from(data, coerceNumber)
-    : type.from(data);
+    : type.from(data, isNumberType(type) && !isNumberArray(data) ? coerceNumber : undefined);
 }
 
-function floater(f) {
-  return (d, i) => coerceNumber(f(d, i));
+function maybeTypedArrowify(vector, type) {
+  return vector == null
+    ? vector
+    : (type === undefined || type === Array) && isArrowDateType(vector.type)
+    ? coerceDates(vector.toArray())
+    : maybeTypedArrayify(vector.toArray(), type);
 }
 
 export const singleton = [null]; // for data-less decoration marks, e.g. frame
@@ -70,7 +96,7 @@ export function percentile(reduce) {
 
 // If the values are specified as a typed array, no coercion is required.
 export function coerceNumbers(values) {
-  return values instanceof TypedArray ? values : map(values, coerceNumber, Float64Array);
+  return isNumberArray(values) ? values : map(values, coerceNumber, Float64Array);
 }
 
 // Unlike Mark’s number, here we want to convert null and undefined to NaN since
@@ -95,7 +121,7 @@ export function coerceDate(x) {
     ? x
     : typeof x === "string"
     ? isoParse(x)
-    : x == null || isNaN((x = +x))
+    : x == null || isNaN((x = Number(x))) // allow conversion from BigInt
     ? undefined
     : new Date(x);
 }
@@ -130,9 +156,15 @@ export function keyword(input, name, allowed) {
   return i;
 }
 
+// Like arrayify, but also allows data to be an Apache Arrow Table.
+export function dataify(data) {
+  return isArrowTable(data) ? data : arrayify(data);
+}
+
 // Promotes the specified data to an array as needed.
 export function arrayify(values) {
-  if (values == null || values instanceof Array || values instanceof TypedArray) return values;
+  if (values == null || isArray(values)) return values;
+  if (isArrowVector(values)) return maybeTypedArrowify(values);
   switch (values.type) {
     case "FeatureCollection":
       return values.features;
@@ -233,22 +265,21 @@ export function maybeZ({z, fill, stroke} = {}) {
   return z;
 }
 
+export function lengthof(data) {
+  return isArray(data) ? data.length : data?.numRows;
+}
+
 // Returns a Uint32Array with elements [0, 1, 2, … data.length - 1].
 export function range(data) {
-  const n = data.length;
+  const n = lengthof(data);
   const r = new Uint32Array(n);
   for (let i = 0; i < n; ++i) r[i] = i;
   return r;
 }
 
-// Returns a filtered range of data given the test function.
-export function where(data, test) {
-  return range(data).filter((i) => test(data[i], i, data));
-}
-
 // Returns an array [values[index[0]], values[index[1]], …].
 export function take(values, index) {
-  return map(index, (i) => values[i], values.constructor);
+  return isArray(values) ? map(index, (i) => values[i], values.constructor) : map(index, (i) => values.at(i));
 }
 
 // If f does not take exactly one argument, wraps it in a function that uses take.
@@ -574,4 +605,31 @@ export function maybeClip(clip) {
   else if (clip === false) clip = null;
   else if (clip != null) clip = keyword(clip, "clip", ["frame", "sphere"]);
   return clip;
+}
+
+// https://github.com/observablehq/stdlib/blob/746ca2e69135df6178e4f3a17244def35d8d6b20/src/arrow.js#L4C1-L17C1
+function isArrowTable(value) {
+  return (
+    value &&
+    typeof value.getChild === "function" &&
+    typeof value.toArray === "function" &&
+    value.schema &&
+    Array.isArray(value.schema.fields)
+  );
+}
+
+function isArrowVector(value) {
+  return value && typeof value.toArray === "function" && value.type;
+}
+
+// Apache Arrow now represents dates as numbers. We currently only support
+// implicit coercion to JavaScript Date objects when the numbers represent
+// milliseconds since Unix epoch.
+function isArrowDateType(type) {
+  return (
+    type &&
+    (type.typeId === 8 || // date
+      type.typeId === 10) && // timestamp
+    type.unit === 1 // millisecond
+  );
 }

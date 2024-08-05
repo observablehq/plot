@@ -10,7 +10,7 @@ import {axisFx, axisFy, axisX, axisY, gridFx, gridFy, gridX, gridY} from "./mark
 import {frame} from "./marks/frame.js";
 import {tip} from "./marks/tip.js";
 import {isColor, isIterable, isNone, isScaleOptions} from "./options.js";
-import {arrayify, map, yes, maybeIntervalTransform, subarray} from "./options.js";
+import {dataify, lengthof, map, yes, maybeIntervalTransform, subarray} from "./options.js";
 import {createProjection, getGeometryChannels, hasProjection} from "./projection.js";
 import {createScales, createScaleFunctions, autoScaleRange, exposeScales} from "./scales.js";
 import {innerDimensions, outerDimensions} from "./scales.js";
@@ -459,7 +459,7 @@ function maybeTopFacet(facet, options) {
   if (facet == null) return;
   const {x, y} = facet;
   if (x == null && y == null) return;
-  const data = arrayify(facet.data);
+  const data = dataify(facet.data);
   if (data == null) throw new Error("missing facet data");
   const channels = {};
   if (x != null) channels.fx = createChannel(data, {value: x, scale: "fx"});
@@ -478,7 +478,7 @@ function maybeMarkFacet(mark, topFacetState, options) {
   // here with maybeTopFacet that we could reduce.
   const {fx, fy} = mark;
   if (fx != null || fy != null) {
-    const data = arrayify(mark.data ?? fx ?? fy);
+    const data = dataify(mark.data ?? fx ?? fy);
     if (data === undefined) throw new Error(`missing facet data in ${mark.ariaLabel}`);
     if (data === null) return; // ignore channel definitions if no data is provided TODO this right?
     const channels = {};
@@ -500,7 +500,7 @@ function maybeMarkFacet(mark, topFacetState, options) {
   if (
     data.length > 0 &&
     (groups.size > 1 || (groups.size === 1 && channels.fx && channels.fy && [...groups][0][1].size > 1)) &&
-    arrayify(mark.data)?.length === data.length
+    lengthof(dataify(mark.data)) === lengthof(data)
   ) {
     warn(
       `Warning: the ${mark.ariaLabel} mark appears to use faceted data, but isn’t faceted. The mark data has the same length as the facet data and the mark facet option is "auto", but the mark data and facet data are distinct. If this mark should be faceted, set the mark facet option to true; otherwise, suppress this warning by setting the mark facet option to false.`
