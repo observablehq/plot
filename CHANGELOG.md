@@ -8,7 +8,7 @@ Year: **Current (2024)** · [2023](./CHANGELOG-2023.md) · [2022](./CHANGELOG-20
 
 Add waffle mark. 🧇
 
-[<img src="./img/waffle.png" alt="a waffle chart of Olympic athletes by weight">](https://observablehq.com/plot/marks/waffle)
+[<img src="./img/waffle.png" width="708" alt="a waffle chart of Olympic athletes by weight">](https://observablehq.com/plot/marks/waffle)
 
 ```js
 Plot.plot({
@@ -26,7 +26,7 @@ Plot.dot(gistemp, {x: "Date", y: "Anomaly"}).plot() // gistemp is an Arrow Table
 
 Add support for GeoJSON data and GeoJSON property shorthand to all marks. Add support for the tip option to the geo mark (via an implicit centroid transform)
 
-[<img src="./img/geo-tip.png" alt="a choropleth map of unemployment by U.S. county">](https://observablehq.com/plot/marks/geo)
+[<img src="./img/geo-tip.png" width="708" alt="a choropleth map of unemployment by U.S. county">](https://observablehq.com/plot/marks/geo)
 
 ```js
 Plot.plot({
@@ -50,7 +50,7 @@ Plot.plot({
 
 Add per-side and per-corner rounding options (r, rx1, ry1, etc.) to rect-like marks.
 
-[<img src="./img/rect-rounded.png" alt="a histogram of Olympic athletes by weight">](https://observablehq.com/plot/marks/rect)
+[<img src="./img/rect-rounded.png" width="708" alt="a histogram of Olympic athletes by weight">](https://observablehq.com/plot/marks/rect)
 
 ```js
 Plot.plot({
@@ -64,7 +64,7 @@ Plot.plot({
 
 Improve the default plot height when a projection domain is set. For example previously the map below would use a default square aspect ratio, regardless of the specified **domain**; but now the map is perfectly sized for North Carolina.
 
-<img src="./img/geo-nc.png" alt="an unlabeled map showing the outline and counties of North Carolina">
+<img src="./img/geo-nc.png" width="659" alt="an unlabeled map showing the outline and counties of North Carolina">
 
 ```js
 Plot.plot({
@@ -83,7 +83,7 @@ Plot.plot({
 
 Fix marker options on lines with variable aesthetics.
 
-<img src="./img/group-marker.png" alt="several spiraling lines emanate from the center of the image, with rainbow color and increasing thickness, each capped with a pointed arrow at the end">
+<img src="./img/group-marker.png" width="659" alt="several spiraling lines emanate from the center of the image, with rainbow color and increasing thickness, each capped with a pointed arrow at the end">
 
 ```js
 Plot.plot({
