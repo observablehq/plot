@@ -124,12 +124,21 @@ Plot.waffleX([apples], {y: ["apples"]}).plot({height: 240})
 The number of rows in the waffle above is guaranteed to be an integer, but it might not be a multiple or factor of the *x*-axis tick interval. For example, the waffle might have 15 rows while the *x*-axis shows ticks every 100 units.
 :::
 :::tip
-While you can’t control the number of rows (or columns) directly, you can affect it via the **padding** option on the corresponding band scale. Padding defaults to 0.1; a higher value may produce more rows, while a lower (or zero) value may produce fewer rows.
+To set the number of rows (or columns) directly, use the **multiple** option, though note that manually setting the multiple may result in non-square cells if there isn’t enough room. Alternatively, you can bias the automatic multiple while preserving square cells by setting the **padding** option on the corresponding band scale: padding defaults to 0.1; a higher value may produce more rows, while a lower (or zero) value may produce fewer rows.
 :::
 
 ## Waffle options
 
 For required channels, see the [bar mark](./bar.md). The waffle mark supports the [standard mark options](../features/marks.md), including [insets](../features/marks.md#insets) and [rounded corners](../features/marks.md#rounded-corners). The **stroke** defaults to *none*. The **fill** defaults to *currentColor* if the stroke is *none*, and to *none* otherwise.
+
+The waffle mark supports a few additional options to control the rendering of cells:
+
+* **unit** - the quantity each cell represents; defaults to 1
+* **multiple** - the number of cells per row (or column); defaults to undefine
+* **gap** - the separation between adjacent cells, in pixels; defaults to 1
+* **round** - whether to round values to avoid partial cells; defaults to false
+
+If **multiple** is undefined (the default), the waffle mark will use as many cells per row (or column) that fits within the available bandwidth while ensuring that the cells are square, or one cell per row if square cells are not possible. You can change the rounding behavior by specifying **round** as a function, such as Math.floor or Math.ceil; true is equivalent to Math.round.
 
 ## waffleX(*data*, *options*) {#waffleX}
 

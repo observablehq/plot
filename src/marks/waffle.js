@@ -14,20 +14,22 @@ const waffleDefaults = {
 };
 
 export class WaffleX extends BarX {
-  constructor(data, {unit = 1, gap = 1, round, render, ...options} = {}) {
+  constructor(data, {unit = 1, gap = 1, round, render, multiple, ...options} = {}) {
     super(data, {...options, render: composeRender(render, waffleRender("x"))}, waffleDefaults);
     this.unit = Math.max(0, unit);
     this.gap = +gap;
     this.round = maybeRound(round);
+    this.multiple = maybeMultiple(multiple);
   }
 }
 
 export class WaffleY extends BarY {
-  constructor(data, {unit = 1, gap = 1, round, render, ...options} = {}) {
+  constructor(data, {unit = 1, gap = 1, round, render, multiple, ...options} = {}) {
     super(data, {...options, render: composeRender(render, waffleRender("y"))}, waffleDefaults);
     this.unit = Math.max(0, unit);
     this.gap = +gap;
     this.round = maybeRound(round);
+    this.multiple = maybeMultiple(multiple);
   }
 }
 
@@ -45,16 +47,16 @@ function waffleRender(y) {
     // The length of a unit along y in pixels.
     const scale = unit * scaleof(scales.scales[y]);
 
-    // The number of cells on each row of the waffle.
-    const columns = Math.max(1, Math.floor(Math.sqrt(barwidth / scale)));
+    // The number of cells on each row (or column) of the waffle.
+    const {multiple = Math.max(1, Math.floor(Math.sqrt(barwidth / scale)))} = this;
 
     // The outer size of each square cell, in pixels, including the gap.
-    const cx = Math.min(barwidth, scale * columns);
-    const cy = scale * columns;
+    const cx = Math.min(barwidth / multiple, scale * multiple);
+    const cy = scale * multiple;
 
     // TODO insets?
     const transform = y === "y" ? ([x, y]) => [x * cx, -y * cy] : ([x, y]) => [y * cy, x * cx];
-    const tx = (barwidth - columns * cx) / 2;
+    const tx = (barwidth - multiple * cx) / 2;
     const x0 = typeof barx === "function" ? (i) => barx(i) + tx : barx + tx;
     const y0 = scales[y](0);
 
@@ -96,7 +98,7 @@ function waffleRender(y) {
           .attr(
             "d",
             (i) =>
-              `M${wafflePoints(round(Y1[i] / unit), round(Y2[i] / unit), columns)
+              `M${wafflePoints(round(Y1[i] / unit), round(Y2[i] / unit), multiple)
                 .map(transform)
                 .join("L")}Z`
           )
@@ -181,6 +183,10 @@ function maybeRound(round) {
   if (round === true) return Math.round;
   if (typeof round !== "function") throw new Error(`invalid round: ${round}`);
   return round;
+}
+
+function maybeMultiple(multiple) {
+  return multiple === undefined ? undefined : Math.max(1, Math.floor(multiple));
 }
 
 function scaleof({domain, range}) {
