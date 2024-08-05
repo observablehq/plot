@@ -34,15 +34,16 @@ export function treeNode({
       const treeData = [];
       const treeFacets = [];
       const rootof = stratify().path((i) => P[i]);
+      const setData = isArray(data)
+        ? (node) => (node.data = data[node.data])
+        : (node) => (node.data = data.get(node.data));
       const layout = treeLayout();
       if (layout.nodeSize) layout.nodeSize([1, 1]);
       if (layout.separation && treeSeparation !== undefined) layout.separation(treeSeparation ?? one);
       for (const o of outputs) o[output_values] = o[output_setValues]([]);
       for (const facet of facets) {
         const treeFacet = [];
-        const root = rootof(facet.filter((i) => P[i] != null)).each(
-          isArray(data) ? (node) => (node.data = data[node.data]) : (node) => (node.data = data.get(node.data))
-        );
+        const root = rootof(facet.filter((i) => P[i] != null)).each(setData);
         if (treeSort != null) root.sort(treeSort);
         layout(root);
         for (const node of root.descendants()) {
