@@ -311,53 +311,25 @@ export function maybeClip(clip) {
   return clip;
 }
 
-function clipDefs({ownerSVGElement}) {
-  const svg = select(ownerSVGElement);
-  const defs = svg.select("defs.clip");
-  return defs.size() ? defs : svg.insert("defs", ":first-child").attr("class", "clip");
-}
-
 // Note: may mutate selection.node!
 function applyClip(selection, mark, dimensions, context) {
   let clipUrl;
   const {clip = context.clip} = mark;
   switch (clip) {
     case "frame": {
-      const clips = context.clips ?? (context.clips = new Map());
-      if (!clips.has("frame")) {
-        const {width, height, marginLeft, marginRight, marginTop, marginBottom} = dimensions;
-        const id = getClipId();
-        clips.set("frame", id);
-        clipDefs(context)
-          .append("clipPath")
-          .attr("id", id)
-          .append("rect")
-          .attr("x", marginLeft)
-          .attr("y", marginTop)
-          .attr("width", width - marginRight - marginLeft)
-          .attr("height", height - marginTop - marginBottom);
-      }
+      // Wrap the G element with another (untransformed) G element, applying the
+      // clip to the parent G element so that the clip path is not affected by
+      // the mark’s transform. To simplify the adoption of this fix, mutate the
+      // passed-in selection.node to return the parent G element.
       selection = create("svg:g", context).each(function () {
         this.appendChild(selection.node());
         selection.node = () => this; // Note: mutation!
       });
-      clipUrl = `url(#${clips.get("frame")})`;
+      clipUrl = getFrameClip(context, dimensions);
       break;
     }
     case "sphere": {
-      const clips = context.clips ?? (context.clips = new Map());
-      const {projection} = context;
-      if (!projection) throw new Error(`the "sphere" clip option requires a projection`);
-      if (!clips.has("projection")) {
-        const id = getClipId();
-        clips.set("projection", id);
-        clipDefs(context)
-          .append("clipPath")
-          .attr("id", id)
-          .append("path")
-          .attr("d", geoPath(projection)({type: "Sphere"}));
-      }
-      clipUrl = `url(#${clips.get("projection")})`;
+      clipUrl = getProjectionClip(context);
       break;
     }
   }
@@ -369,6 +341,35 @@ function applyClip(selection, mark, dimensions, context) {
   applyAttr(selection, "aria-hidden", mark.ariaHidden);
   applyAttr(selection, "clip-path", clipUrl);
 }
+
+function memoizeClip(clip) {
+  const cache = new WeakMap();
+  return (context, dimensions) => {
+    let url = cache.get(context);
+    if (!url) {
+      const id = getClipId();
+      select(context.ownerSVGElement).append("clipPath").attr("id", id).call(clip, context, dimensions);
+      cache.set(context, (url = `url(#${id})`));
+    }
+    return url;
+  };
+}
+
+const getFrameClip = memoizeClip((clipPath, context, dimensions) => {
+  const {width, height, marginLeft, marginRight, marginTop, marginBottom} = dimensions;
+  clipPath
+    .append("rect")
+    .attr("x", marginLeft)
+    .attr("y", marginTop)
+    .attr("width", width - marginRight - marginLeft)
+    .attr("height", height - marginTop - marginBottom);
+});
+
+const getProjectionClip = memoizeClip((clipPath, context) => {
+  const {projection} = context;
+  if (!projection) throw new Error(`the "sphere" clip option requires a projection`);
+  clipPath.append("path").attr("d", geoPath(projection)({type: "Sphere"}));
+});
 
 // Note: may mutate selection.node!
 export function applyIndirectStyles(selection, mark, dimensions, context) {
