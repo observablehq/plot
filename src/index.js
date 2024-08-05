@@ -38,6 +38,7 @@ export {TickX, TickY, tickX, tickY} from "./marks/tick.js";
 export {Tip, tip} from "./marks/tip.js";
 export {tree, cluster} from "./marks/tree.js";
 export {Vector, vector, vectorX, vectorY, spike} from "./marks/vector.js";
+export {WaffleX, WaffleY, waffleX, waffleY} from "./marks/waffle.js";
 export {valueof, column, identity, indexOf} from "./options.js";
 export {filter, reverse, sort, shuffle, basic as transform, initializer} from "./transforms/basic.js";
 export {bin, binX, binY} from "./transforms/bin.js";

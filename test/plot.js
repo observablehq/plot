@@ -18,6 +18,7 @@ for (const [name, plot] of Object.entries(plots)) {
     reindexStyle(root);
     reindexMarker(root);
     reindexClip(root);
+    reindexPattern(root);
     let expected;
     let actual = beautify.html(root.outerHTML.replaceAll("&nbsp;", "\xa0"), {
       indent_size: 2,
@@ -101,6 +102,23 @@ function reindexClip(root) {
     node.setAttribute("id", id);
   }
   for (const key of ["clip-path"]) {
+    for (const node of root.querySelectorAll(`[${key}]`)) {
+      let id = node.getAttribute(key).slice(5, -1);
+      if (map.has(id)) node.setAttribute(key, `url(#${map.get(id)})`);
+    }
+  }
+}
+
+function reindexPattern(root) {
+  let index = 0;
+  const map = new Map();
+  for (const node of root.querySelectorAll("[id^=plot-pattern-]")) {
+    let id = node.getAttribute("id");
+    if (map.has(id)) id = map.get(id);
+    else map.set(id, (id = `plot-pattern-${++index}`));
+    node.setAttribute("id", id);
+  }
+  for (const key of ["fill", "stroke"]) {
     for (const node of root.querySelectorAll(`[${key}]`)) {
       let id = node.getAttribute(key).slice(5, -1);
       if (map.has(id)) node.setAttribute(key, `url(#${map.get(id)})`);

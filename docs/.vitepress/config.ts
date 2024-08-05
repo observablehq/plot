@@ -8,6 +8,7 @@ import plot from "./markdown-it-plot.js";
 export default defineConfig({
   title: "Observable Plot",
   description: "The JavaScript library for exploratory data visualization",
+  appearance: "force-auto",
   base: "/plot/",
   cleanUrls: true,
   vite: {
@@ -106,7 +107,8 @@ export default defineConfig({
           {text: "Tick", link: "/marks/tick"},
           {text: "Tip", link: "/marks/tip"},
           {text: "Tree", link: "/marks/tree"},
-          {text: "Vector", link: "/marks/vector"}
+          {text: "Vector", link: "/marks/vector"},
+          {text: "Waffle", link: "/marks/waffle"}
         ]
       },
       {

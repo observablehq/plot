@@ -213,7 +213,11 @@ Plot.plot({x: {type: "pow", exponent: 1 / 3, domain: [0, 100], grid: true}})
 ```
 :::
 
-Continuous scales also support a **clamp** option, which if true, clamps input values to the scale’s domain before scaling. This is useful for preventing marks from escaping the chart area.
+Continuous scales also support a **clamp** option which, if true, clamps input values to the scale’s domain before scaling. This is useful for preventing marks from escaping the chart area.
+
+Continuous scales support an **interpolate** option specified either as a function that takes a single argument *t* in [0, 1] and returns the corresponding value from the **range**, or as a two-argument function that takes a pair of values [*start*, *end*] from the range and returns the corresponding interpolator from [0, 1], typically mapping 0 to *start*, and 1 to *end*.
+
+Continuous scales support a piecewise **domain** specified as an array of _n_ domain values (with _n_ greater than or equal to two), with a corresponding **range** having the same number of values; each segment of the domain is mapped to the matching segment of the range using the scale’s interpolator. When the domain has *n*&nbsp;&gt;&nbsp;2 elements and the range has two elements (for example, when using the default range on a *x* or *y* scale), the latter is automatically split into _n_&nbsp;&minus;&nbsp;1 segments of equal size. Note that in addition to the domain, you must specify the scale’s continuous **type** since a scale specified with a domain having more than two elements otherwise defaults to an ordinal scale. (You will often have to specify the **ticks** manually, too.) For an example, see the [Polylinear axis](https://observablehq.com/@observablehq/polylinear-axis) notebook.
 
 ## Discrete scales
 
@@ -601,7 +605,7 @@ Plot.plot({
 [Mark transforms](./transforms.md) typically consume values *before* they are passed through scales (_e.g._, when binning). In this case the mark transforms will see the values prior to the scale transform as input, and the scale transform will apply to the *output* of the mark transform.
 :::
 
-The **interval** scale option<a id="interval" class="header-anchor" href="#interval" aria-label="Permalink to &quot;interval&quot;"></a> <VersionBadge version="0.5.1" /> sets an ordinal scale’s **domain** to the start of every interval within the extent of the data. In addition, it implicitly sets the **transform** of the scale to *interval*.floor, rounding values down to the start of each interval. For example, below we generate a time-series bar chart; when an **interval** is specified, missing days are visible.
+The **interval** scale option<a id="interval" href="#interval" aria-label="Permalink to &quot;interval&quot;"></a> <VersionBadge version="0.5.1" /> sets an ordinal scale’s **domain** to the start of every interval within the extent of the data. In addition, it implicitly sets the **transform** of the scale to *interval*.floor, rounding values down to the start of each interval. For example, below we generate a time-series bar chart; when an **interval** is specified, missing days are visible.
 
 <p>
   <label class="label-input">

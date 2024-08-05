@@ -1,0 +1,54 @@
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="80" viewBox="0 0 640 80" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style>
+    :where(.plot) {
+      --plot-background: white;
+      display: block;
+      height: auto;
+      height: intrinsic;
+      max-width: 100%;
+    }
+
+    :where(.plot text),
+    :where(.plot tspan) {
+      white-space: pre;
+    }
+  </style>
+  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,12.5)">
+    <path transform="translate(40,23)" d="M0,0L-6,0"></path>
+  </g>
+  <g aria-label="y-axis tick label" text-anchor="end" transform="translate(-8.5,12.5)">
+    <text y="0.32em" transform="translate(40,23)">0</text>
+  </g>
+  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+    <path transform="translate(40,50)" d="M0,0L0,6"></path>
+    <path transform="translate(98,50)" d="M0,0L0,6"></path>
+    <path transform="translate(156,50)" d="M0,0L0,6"></path>
+    <path transform="translate(214,50)" d="M0,0L0,6"></path>
+    <path transform="translate(272,50)" d="M0,0L0,6"></path>
+    <path transform="translate(330,50)" d="M0,0L0,6"></path>
+    <path transform="translate(388,50)" d="M0,0L0,6"></path>
+    <path transform="translate(446,50)" d="M0,0L0,6"></path>
+    <path transform="translate(504,50)" d="M0,0L0,6"></path>
+    <path transform="translate(562,50)" d="M0,0L0,6"></path>
+    <path transform="translate(620,50)" d="M0,0L0,6"></path>
+  </g>
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+    <text y="0.71em" transform="translate(40,50)">0</text>
+    <text y="0.71em" transform="translate(98,50)">1</text>
+    <text y="0.71em" transform="translate(156,50)">2</text>
+    <text y="0.71em" transform="translate(214,50)">3</text>
+    <text y="0.71em" transform="translate(272,50)">4</text>
+    <text y="0.71em" transform="translate(330,50)">5</text>
+    <text y="0.71em" transform="translate(388,50)">6</text>
+    <text y="0.71em" transform="translate(446,50)">7</text>
+    <text y="0.71em" transform="translate(504,50)">8</text>
+    <text y="0.71em" transform="translate(562,50)">9</text>
+    <text y="0.71em" transform="translate(620,50)">10</text>
+  </g>
+  <g aria-label="waffle">
+    <pattern width="58" height="24" patternUnits="userSpaceOnUse" id="plot-pattern-1">
+      <rect x="0.5" y="0.5" width="57" height="23"></rect>
+    </pattern>
+    <path transform="translate(40,23)" d="M0,0L0,0L0,0L0,0L0,0L0,24L580,24L580,0L580,0L580,0Z" fill="url(#plot-pattern-1)"></path>
+  </g>
+</svg>
