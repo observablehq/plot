@@ -7,7 +7,7 @@ import {timeInterval, utcInterval} from "./time.js";
 export const TypedArray = Object.getPrototypeOf(Uint8Array);
 const objectToString = Object.prototype.toString;
 
-function isArray(value) {
+export function isArray(value) {
   return value instanceof Array || value instanceof TypedArray;
 }
 
@@ -608,7 +608,7 @@ export function maybeClip(clip) {
 }
 
 // https://github.com/observablehq/stdlib/blob/746ca2e69135df6178e4f3a17244def35d8d6b20/src/arrow.js#L4C1-L17C1
-export function isArrowTable(value) {
+function isArrowTable(value) {
   return (
     value &&
     typeof value.getChild === "function" &&

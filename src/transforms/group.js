@@ -1,38 +1,9 @@
-import {
-  InternSet,
-  deviation,
-  group as grouper,
-  max,
-  maxIndex,
-  mean,
-  median,
-  min,
-  minIndex,
-  mode,
-  rollup,
-  sort,
-  sum,
-  variance
-} from "d3";
+import {InternSet, group as grouper, rollup, sort} from "d3";
+import {deviation, max, maxIndex, mean, median, min, minIndex, mode, sum, variance} from "d3";
 import {ascendingDefined} from "../defined.js";
-import {
-  arrayify,
-  column,
-  identity,
-  isObject,
-  isTemporal,
-  labelof,
-  maybeApplyInterval,
-  maybeColorChannel,
-  maybeColumn,
-  maybeInput,
-  maybeTuple,
-  percentile,
-  range,
-  second,
-  take,
-  valueof
-} from "../options.js";
+import {maybeApplyInterval, maybeColorChannel, maybeColumn, maybeInput, maybeTuple} from "../options.js";
+import {isArray, isObject, isTemporal} from "../options.js";
+import {column, identity, labelof, percentile, range, second, take, valueof} from "../options.js";
 import {basic} from "./basic.js";
 
 // Group on {z, fill, stroke}.
@@ -445,8 +416,7 @@ export function find(test) {
   if (typeof test !== "function") throw new Error(`invalid test function: ${test}`);
   return {
     reduceIndex(I, V, {data}) {
-      data = arrayify(data);
-      return V[I.find((i) => test(data[i], i, data))];
+      return V[I.find(isArray(data) ? (i) => test(data[i], i, data) : (i) => test(data.get(i), i, data))];
     }
   };
 }

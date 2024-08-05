@@ -2,7 +2,7 @@ import {InternMap, cumsum, greatest, group, groupSort, max, min, rollup, sum} fr
 import {ascendingDefined, descendingDefined} from "../defined.js";
 import {withTip} from "../mark.js";
 import {maybeApplyInterval, maybeColumn, maybeZ, maybeZero} from "../options.js";
-import {arrayify, column, field, lengthof, mid, one, range, valueof} from "../options.js";
+import {column, field, isArray, lengthof, mid, one, range, valueof} from "../options.js";
 import {basic} from "./basic.js";
 import {exclusiveFacets} from "./exclusiveFacets.js";
 
@@ -252,7 +252,7 @@ function maybeOrder(order, offset, ky) {
     return orderAccessor(field(order));
   }
   if (typeof order === "function") return (order.length === 1 ? orderAccessor : orderComparator)(order);
-  if (Array.isArray(order)) return orderGiven(order);
+  if (isArray(order)) return orderGiven(order);
   throw new Error(`invalid order: ${order}`);
 }
 
@@ -328,8 +328,7 @@ function orderAccessor(f) {
 
 function orderComparator(f) {
   return (data) => {
-    data = arrayify(data);
-    return (i, j) => f(data[i], data[j]);
+    return isArray(data) ? (i, j) => f(data[i], data[j]) : (i, j) => f(data.get(i), data.get(j));
   };
 }
 

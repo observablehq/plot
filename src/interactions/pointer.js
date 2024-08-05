@@ -1,5 +1,6 @@
 import {pointer as pointof} from "d3";
 import {composeRender} from "../mark.js";
+import {isArray} from "../options.js";
 import {applyFrameAnchor} from "../style.js";
 
 const states = new WeakMap();
@@ -126,7 +127,11 @@ function pointerK(kx, ky, {x, y, px, py, maxRadius = 40, channels, render, ...op
 
         // Dispatch the value. When simultaneously exiting this facet and
         // entering a new one, prioritize the entering facet.
-        if (!(i == null && facetState?.size > 1)) context.dispatchValue(i == null ? null : data[i]);
+        if (!(i == null && facetState?.size > 1)) {
+          const value = i == null ? null : isArray(data) ? data[i] : data.get(i);
+          context.dispatchValue(value);
+        }
+
         return r;
       }
 
