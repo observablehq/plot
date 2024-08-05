@@ -3,6 +3,8 @@ import type {BarXOptions, BarYOptions} from "./bar.js";
 
 /** Options for the waffleX and waffleY mark. */
 interface WaffleOptions {
+  /** The number of cells per row or column; defaults to undefined for automatic. */
+  multiple?: number;
   /** The quantity each cell represents; defaults to 1. */
   unit?: number;
   /** The gap in pixels between cells; defaults to 1. */

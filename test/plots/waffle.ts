@@ -15,6 +15,16 @@ export function waffleSquished() {
   return Plot.waffleX([10]).plot();
 }
 
+export function waffleMultiple() {
+  return Plot.plot({
+    y: {inset: 12},
+    marks: [
+      Plot.waffleY([4, 9, 24, 46, 66, 7], {multiple: 10, fill: "currentColor"}),
+      Plot.waffleY([-4, -9, -24, -46, -66, -7], {multiple: 10, fill: "red"})
+    ]
+  });
+}
+
 export function waffleShorthand() {
   return Plot.plot({
     y: {inset: 12},
