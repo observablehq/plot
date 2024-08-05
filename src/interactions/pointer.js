@@ -1,18 +1,21 @@
-import {pointer as pointof} from "d3";
+import {group, pointer as pointof} from "d3";
 import {composeRender} from "../mark.js";
+import {initializer} from "../transforms/basic.js";
 import {applyFrameAnchor} from "../style.js";
+import {valueof, take} from "../options.js";
 
 const states = new WeakMap();
 
 function pointerK(kx, ky, {x, y, px, py, maxRadius = 40, channels, render, ...options} = {}) {
   maxRadius = +maxRadius;
+
   // When px or py is used, register an extra channel that the pointer
   // interaction can use to control which point is focused; this allows pointing
   // to function independently of where the downstream mark (e.g., a tip) is
   // displayed. Also default x or y to null to disable maybeTuple etc.
   if (px != null) (x ??= null), (channels = {...channels, px: {value: px, scale: "x"}});
   if (py != null) (y ??= null), (channels = {...channels, py: {value: py, scale: "y"}});
-  return {
+  options = {
     x,
     y,
     channels,
@@ -72,6 +75,10 @@ function pointerK(kx, ky, {x, y, px, py, maxRadius = 40, channels, render, ...op
       let s; // currently rendered stickiness
       let f; // current animation frame
 
+      // If the z channel is specified, use it to group the points.
+      const Z = values.channels.z?.value;
+      const G = Z && group(index, (i) => Z[i]);
+
       // When faceting, if more than one pointer would be visible, only show
       // this one if it is the closest. We defer rendering using an animation
       // frame to allow all pointer events to be received before deciding which
@@ -102,7 +109,7 @@ function pointerK(kx, ky, {x, y, px, py, maxRadius = 40, channels, render, ...op
         if (i === ii && s === state.sticky) return; // the tooltip hasn’t moved
         i = ii;
         s = context.pointerSticky = state.sticky;
-        const I = i == null ? [] : [i];
+        const I = i == null ? [] : G ? G.get(Z[i]) : [i];
         if (faceted) (I.fx = index.fx), (I.fy = index.fy), (I.fi = index.fi);
         const r = next(I, scales, values, dimensions, context);
         if (g) {
@@ -126,7 +133,7 @@ function pointerK(kx, ky, {x, y, px, py, maxRadius = 40, channels, render, ...op
 
         // Dispatch the value. When simultaneously exiting this facet and
         // entering a new one, prioritize the entering facet.
-        if (!(i == null && facetState?.size > 1)) context.dispatchValue(i == null ? null : data[i]);
+        if (!(i == null && facetState?.size > 1)) context.dispatchValue(i == null ? null : G ? take(data, I) : data[i]);
         return r;
       }
 
@@ -182,6 +189,10 @@ function pointerK(kx, ky, {x, y, px, py, maxRadius = 40, channels, render, ...op
       return render(null);
     }, render)
   };
+  return initializer(options, (data, facets, values) => {
+    const Z = values.z === undefined && options.z != null && valueof(data, options.z);
+    return {data, facets, ...(Z && {channels: {z: {value: Z}}})};
+  });
 }
 
 export function pointer(options) {

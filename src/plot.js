@@ -509,8 +509,10 @@ function maybeMarkFacet(mark, topFacetState, options) {
 }
 
 function derive(mark, options = {}) {
-  return initializer({...options, x: null, y: null}, (data, facets, channels, scales, dimensions, context) => {
-    return context.getMarkState(mark);
+  return initializer({...options, x: null, y: null}, (data, facets, values, scales, dimensions, context) => {
+    const state = context.getMarkState(mark);
+    const {z, ...channels} = state.channels; // ignore z in the derived channels
+    return {...state, channels};
   });
 }
 
