@@ -25,7 +25,7 @@ onMounted(() => {
 
 </script>
 
-# Waffle mark <VersionBadge pr="2040" />
+# Waffle mark <VersionBadge version="0.6.16" pr="2040" />
 
 The **waffle mark** is similar to the [bar mark](./bar.md) in that it displays a quantity (or quantitative extent) for a given category; but unlike a bar, a waffle is subdivided into square cells that allow easier counting. Waffles are useful for reading exact quantities. How quickly can you count the pears 🍐 below? How many more apples 🍎 are there than bananas 🍌?
 
