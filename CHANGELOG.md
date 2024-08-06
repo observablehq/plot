@@ -6,7 +6,7 @@ Year: **Current (2024)** · [2023](./CHANGELOG-2023.md) · [2022](./CHANGELOG-20
 
 [Released August TK, 2024.](https://github.com/observablehq/plot/releases/tag/v0.6.16)
 
-The new [waffle mark](https://observablehq.com/plot/marks/waffle) 🧇 displays a quantity (or quantitative extent) for a given category; unlike a [bar](https://observablehq.com/plot/marks/bar), a waffle is subdivided into cells that allow easier counting. Waffles are useful for reading or comparing exact quantities.
+The new [waffle mark](https://observablehq.com/plot/marks/waffle) 🧇 displays a quantity (or quantitative extent) for a given category; unlike a [bar](https://observablehq.com/plot/marks/bar), a waffle is subdivided into cells that allow easier counting, making waffles useful for reading and comparing exact quantities.
 
 [<img src="./img/waffle.png" width="708" alt="a waffle chart of Olympic athletes by weight">](https://observablehq.com/plot/marks/waffle)
 
@@ -18,9 +18,9 @@ Plot.plot({
 })
 ```
 
-Plot’s waffle mark is highly configurable. It supports stacking, positive and negative values, rounded corners, partial cells for fractional counts, automatic row or column size determination (with optional override), and more.
+Plot’s waffle mark is highly configurable: it supports stacking, positive and negative values, rounded corners, partial cells for fractional counts, automatic row or column size determination (with optional override), and more!
 
-All marks now support GeoJSON data and GeoJSON property shorthand, making it easier to work with GeoJSON. For example, below `counties` is a GeoJSON FeatureCollection, and `unemployment` refers to a property on each feature; the **fill** option is thus shorthand for `(d) => d.properties.unemployment`.
+All marks now support GeoJSON data and GeoJSON property shorthand, making it easier to work with GeoJSON. For example, below the data `counties` is a GeoJSON FeatureCollection, and `unemployment` refers to a property on each feature; the **fill** option is thus shorthand for `(d) => d.properties.unemployment`. The [geo mark](https://observablehq.com/plot/marks/geo) now also supports the **tip** option (via an implicit [centroid transform](https://observablehq.com/plot/transforms/centroid)), making it easier to use Plot’s [interactive tooltips](https://observablehq.com/plot/interactions/pointer).
 
 [<img src="./img/geo-tip.png" width="708" alt="a choropleth map of unemployment by U.S. county">](https://observablehq.com/plot/marks/geo)
 
@@ -44,15 +44,13 @@ Plot.plot({
 })
 ```
 
-As shown above, the [geo mark](https://observablehq.com/plot/marks/geo) now also supports the **tip** option (via an implicit [centroid transform](https://observablehq.com/plot/transforms/centroid)), making it easier to use Plot’s [interactive tooltips](https://observablehq.com/plot/interactions/pointer).
-
-All marks now also support column name shorthand for channels when using Apache Arrow tables as data. This makes it easier to switch from an array-of-objects data representation to Arrow’s columnar representation without needing to change your plot code. We’ve also added detection of date-type columns with Arrow data (which Arrow represents using BigInt rather than Date).
+All marks now also support column name channel shorthand when using Apache Arrow tables as data, and we’ve added detection of Arrow date-type columns. (Arrow represents temporal data using BigInt rather than Date.)
 
 ```js
 Plot.dot(gistemp, {x: "Date", y: "Anomaly"}).plot() // gistemp is an Arrow Table!
 ```
 
-The rect-like marks ([rect](https://observablehq.com/plot/marks/rect), [bar](https://observablehq.com/plot/marks/bar), [cell](https://observablehq.com/plot/marks/cell), and [frame](https://observablehq.com/plot/marks/frame)) now support individual rounding options for each side (**rx1**, **ry1**, *etc.*) and corner (**rx1y1**, **rx2y1**, *etc.*). This allows you to round just the top side of rects, as in the stacked histogram below.
+The rect-like marks ([rect](https://observablehq.com/plot/marks/rect), [bar](https://observablehq.com/plot/marks/bar), [cell](https://observablehq.com/plot/marks/cell), and [frame](https://observablehq.com/plot/marks/frame)) now support individual rounding options for each side (**rx1**, **ry1**, *etc.*) and corner (**rx1y1**, **rx2y1**, *etc.*). This allows you to round just the top side of rects. You can even use a negative corner radius on the bottom side for seamless stacking, as in the histogram of Olympic athletes below.
 
 [<img src="./img/rect-rounded.png" width="708" alt="a histogram of Olympic athletes by weight">](https://observablehq.com/plot/marks/rect)
 
@@ -66,7 +64,7 @@ Plot.plot({
 })
 ```
 
-Plot now respects the projection **domain** when determining the default plot height. Previously, the map below would use a default square aspect ratio for the *conic-conformal* projection regardless of the specified **domain**, but now the map is perfectly sized to fit North Carolina.
+Plot now respects the projection **domain** when determining the default plot height. Previously, the map below would use a default square aspect ratio for the *conic-conformal* projection regardless of the specified **domain**, but now the map is perfectly sized to fit North Carolina. (Plot also now chooses a smarter default plot height when the ordinal *y* scale domain is empty.)
 
 <img src="./img/geo-nc.png" width="659" alt="an unlabeled map showing the outline and counties of North Carolina">
 
@@ -85,9 +83,7 @@ Plot.plot({
 })
 ```
 
-(Plot also now chooses a smarter default plot height when the ordinal *y* scale domain is empty.)
-
-The [marker options](https://observablehq.com/plot/features/markers) now behave as intended on marks with varying aesthetics, such as the spiraling lines with varying thickness and color below.
+The [marker options](https://observablehq.com/plot/features/markers) now render as intended on marks with varying aesthetics, such as the spiraling arrows of varying thickness and color below.
 
 <img src="./img/group-marker.png" width="659" alt="several spiraling lines emanate from the center of the image, with rainbow color and increasing thickness, each capped with a pointed arrow at the end">
 
