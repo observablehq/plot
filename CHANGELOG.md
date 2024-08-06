@@ -105,7 +105,7 @@ Plot.plot({
 
 This release includes a few more new features, bug fixes, and improvements:
 
-The new **className** [mark option](https://observablehq.com/plot/features/marks#mark-options) specifies an optional `class` attribute for rendered marks, allowing styling of marks via external stylesheets or easier selection via JavaScript; thanks, @RLesser! Plot now reuses `clipPath` elements, when possible, when then **clip** mark option is set to *frame* or *projection*.
+The new **className** [mark option](https://observablehq.com/plot/features/marks#mark-options) specifies an optional `class` attribute for rendered marks, allowing styling of marks via external stylesheets or easier selection via JavaScript; thanks, @RLesser! Plot now reuses `clipPath` elements, when possible, when the **clip** mark option is set to *frame* or *projection*.
 
 The [difference mark](https://observablehq.com/plot/marks/difference) now supports a horizontal orientation via [differenceX](https://observablehq.com/plot/marks/difference#differenceX), and the [shift transform](https://observablehq.com/plot/transforms/shift) now likewise supports [shiftY](https://observablehq.com/plot/transforms/shift#shiftY). The [Voronoi mark](https://observablehq.com/plot/marks/delaunay) is now compatible with the pointer transform: only the pointed Voronoi cell is rendered; the Voronoi mark now also renders as intended with non-exclusive facets (as when using the *exclude* facet mode). The [tip mark](https://observablehq.com/plot/marks/tip) no longer displays channels containing literal color values by default.
 
