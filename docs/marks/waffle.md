@@ -29,7 +29,7 @@ onMounted(() => {
 
 The **waffle mark** is similar to the [bar mark](./bar.md) in that it displays a quantity (or quantitative extent) for a given category; but unlike a bar, a waffle is subdivided into square cells that allow easier counting. Waffles are useful for reading exact quantities. How quickly can you count the pears 🍐 below? How many more apples 🍎 are there than bananas 🍌?
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-simple-waffle
 ```js
 Plot.waffleY([212, 207, 315, 11], {x: ["apples", "bananas", "oranges", "pears"]}).plot({height: 420})
 ```
@@ -37,7 +37,7 @@ Plot.waffleY([212, 207, 315, 11], {x: ["apples", "bananas", "oranges", "pears"]}
 
 The waffle mark is often used with the [group transform](../transforms/group.md) to compute counts. The chart below compares the number of female and male athletes in the 2012 Olympics.
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-waffle-group
 ```js
 Plot.waffleY(olympians, Plot.groupX({y: "count"}, {x: "sex"})).plot({x: {label: null}})
 ```
@@ -62,7 +62,7 @@ The **unit** option determines the quantity each waffle cell represents; it defa
   </span>
 </p>
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-waffle-unit
 ```js
 Plot.waffleY(olympians, Plot.groupZ({y: "count"}, {fx: "date_of_birth", unit})).plot({fx: {interval: "5 years", label: null}})
 ```
@@ -76,7 +76,7 @@ While waffles typically represent integer quantities, say to count people or day
 
 Like bars, waffles can be [stacked](../transforms/stack.md), and implicitly apply the stack transform when only a single quantitative channel is supplied.
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-stacked-waffles
 ```js
 Plot.waffleY(olympians, Plot.groupZ({y: "count"}, {fill: "sex", sort: "sex", fx: "weight", unit: 10})).plot({fx: {interval: 10}, color: {legend: true}})
 ```
@@ -84,7 +84,7 @@ Plot.waffleY(olympians, Plot.groupZ({y: "count"}, {fill: "sex", sort: "sex", fx:
 
 Waffles can also be used to highlight a proportion of the whole. The chart below recreates a graphic of survey responses from [“Teens in Syria”](https://www.economist.com/graphic-detail/2015/08/19/teens-in-syria) by _The Economist_ (August 19, 2015); positive responses are in orange, while negative responses are in gray. The **rx** option is used to produce circles instead of squares.
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-survey-waffle
 ```js
 Plot.plot({
   axis: null,

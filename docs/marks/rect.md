@@ -196,7 +196,7 @@ To round corners, use the **r** option. If the combined corner radii exceed the 
   </label>
 </p>
 
-:::plot hidden defer
+:::plot hidden defer https://observablehq.com/@observablehq/plot-rounded-rects
 ```js
 Plot.plot({
   marks: [
@@ -218,7 +218,7 @@ Plot.plot({
 
 To round corners on a specific side, use the **rx1**, **ry1**, **rx2**, or **ry2** options. When stacking rounded rects vertically, use a positive **ry2** and a corresponding negative **ry1**; likewise for stacking rounded rects horizontally, use a positive **rx2** and a negative **rx1**. Use the **clip** option to hide the “wings” below zero.
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-rounded-rects
 ```js
 Plot.plot({
   color: {legend: true},
@@ -232,7 +232,7 @@ Plot.plot({
 
 You can even round specific corners using the **rx1y1**, **rx2y1**, **rx2y2**, and **rx1y2** options.
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-rounded-rects
 ```js
 Plot.plot({
   color: {legend: true},
