@@ -1,4 +1,4 @@
-import {geoPath, group, namespaces} from "d3";
+import {geoPath, group, namespaces, select} from "d3";
 import {create} from "./context.js";
 import {defined, nonempty} from "./defined.js";
 import {formatDefault} from "./format.js";
@@ -9,9 +9,14 @@ import {warn} from "./warnings.js";
 export const offset = (typeof window !== "undefined" ? window.devicePixelRatio > 1 : typeof it === "undefined") ? 0 : 0.5; // prettier-ignore
 
 let nextClipId = 0;
+let nextPatternId = 0;
 
 export function getClipId() {
   return `plot-clip-${++nextClipId}`;
+}
+
+export function getPatternId() {
+  return `plot-pattern-${++nextPatternId}`;
 }
 
 export function styles(
@@ -303,36 +308,19 @@ function applyClip(selection, mark, dimensions, context) {
   const {clip = context.clip} = mark;
   switch (clip) {
     case "frame": {
-      const {width, height, marginLeft, marginRight, marginTop, marginBottom} = dimensions;
-      const id = getClipId();
-      clipUrl = `url(#${id})`;
-      selection = create("svg:g", context)
-        .call((g) =>
-          g
-            .append("svg:clipPath")
-            .attr("id", id)
-            .append("rect")
-            .attr("x", marginLeft)
-            .attr("y", marginTop)
-            .attr("width", width - marginRight - marginLeft)
-            .attr("height", height - marginTop - marginBottom)
-        )
-        .each(function () {
-          this.appendChild(selection.node());
-          selection.node = () => this; // Note: mutation!
-        });
+      // Wrap the G element with another (untransformed) G element, applying the
+      // clip to the parent G element so that the clip path is not affected by
+      // the mark’s transform. To simplify the adoption of this fix, mutate the
+      // passed-in selection.node to return the parent G element.
+      selection = create("svg:g", context).each(function () {
+        this.appendChild(selection.node());
+        selection.node = () => this; // Note: mutation!
+      });
+      clipUrl = getFrameClip(context, dimensions);
       break;
     }
     case "sphere": {
-      const {projection} = context;
-      if (!projection) throw new Error(`the "sphere" clip option requires a projection`);
-      const id = getClipId();
-      clipUrl = `url(#${id})`;
-      selection
-        .append("clipPath")
-        .attr("id", id)
-        .append("path")
-        .attr("d", geoPath(projection)({type: "Sphere"}));
+      clipUrl = getProjectionClip(context);
       break;
     }
   }
@@ -344,6 +332,35 @@ function applyClip(selection, mark, dimensions, context) {
   applyAttr(selection, "aria-hidden", mark.ariaHidden);
   applyAttr(selection, "clip-path", clipUrl);
 }
+
+function memoizeClip(clip) {
+  const cache = new WeakMap();
+  return (context, dimensions) => {
+    let url = cache.get(context);
+    if (!url) {
+      const id = getClipId();
+      select(context.ownerSVGElement).append("clipPath").attr("id", id).call(clip, context, dimensions);
+      cache.set(context, (url = `url(#${id})`));
+    }
+    return url;
+  };
+}
+
+const getFrameClip = memoizeClip((clipPath, context, dimensions) => {
+  const {width, height, marginLeft, marginRight, marginTop, marginBottom} = dimensions;
+  clipPath
+    .append("rect")
+    .attr("x", marginLeft)
+    .attr("y", marginTop)
+    .attr("width", width - marginRight - marginLeft)
+    .attr("height", height - marginTop - marginBottom);
+});
+
+const getProjectionClip = memoizeClip((clipPath, context) => {
+  const {projection} = context;
+  if (!projection) throw new Error(`the "sphere" clip option requires a projection`);
+  clipPath.append("path").attr("d", geoPath(projection)({type: "Sphere"}));
+});
 
 // Note: may mutate selection.node!
 export function applyIndirectStyles(selection, mark, dimensions, context) {

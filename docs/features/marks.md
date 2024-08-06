@@ -219,6 +219,10 @@ linedata = [
 ]
 ```
 
+:::tip
+For larger datasets, you can more efficiently pass data using an [Apache Arrow](https://arrow.apache.org/docs/js/) table as a columnar data representation. <VersionBadge version="0.6.16" pr="2115" />
+:::
+
 Then you can pass the data to the line mark, and extract named columns from the data for the desired options:
 
 :::plot https://observablehq.com/@observablehq/plot-accessors
@@ -239,7 +243,7 @@ Plot.lineY(linedata, {
 ```
 :::
 
-For greater efficiency, Plot also supports columnar data: you can pass parallel arrays of values to each channel.
+For greater efficiency, Plot also supports columnar data: you can use an [Apache Arrow](https://arrow.apache.org/docs/js/) table as data instead of an array of objects. <VersionBadge version="0.6.16" pr="2115" /> You can even pass parallel arrays of values, or Apache Arrow vectors, to each channel.
 
 ```js
 Plot.lineY({length: linedata.length}, {
@@ -482,7 +486,7 @@ All marks support the following style options:
 * **dx** - horizontal offset (in pixels; defaults to 0)
 * **dy** - vertical offset (in pixels; defaults to 0)
 * **target** - link target (e.g., “_blank” for a new window); for use with the **href** channel
-* **className** - the [class attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class), if any (defaults to null) <VersionBadge pr="1098" />
+* **className** - the [class attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class), if any (defaults to null) <VersionBadge version="0.6.16" pr="1098" />
 * **ariaDescription** - a textual description of the mark’s contents
 * **ariaHidden** - if true, hide this content from the accessibility tree
 * **pointerEvents** - the [pointer events](https://developer.mozilla.org/en-US/docs/Web/CSS/pointer-events) (*e.g.*, *none*)
@@ -557,7 +561,7 @@ Insets default to zero. Insets are commonly used to create a one-pixel gap betwe
 
 ### Rounded corners
 
-Rect-like marks support rounded corners. Each corner (or side) is individually addressable <VersionBadge pr="2099" /> using the following options:
+Rect-like marks support rounded corners. Each corner (or side) is individually addressable <VersionBadge version="0.6.16" pr="2099" /> using the following options:
 
 * **r** - the radius for all four corners
 * **rx1** - the radius for the **x1**-**y1** and **x1**-**y2** corners

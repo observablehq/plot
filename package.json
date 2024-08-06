@@ -1,7 +1,7 @@
 {
   "name": "@observablehq/plot",
   "description": "A JavaScript library for exploratory data visualization.",
-  "version": "0.6.15",
+  "version": "0.6.16",
   "author": {
     "name": "Observable, Inc.",
     "url": "https://observablehq.com"
@@ -56,6 +56,7 @@
     "@types/node": "^20.5.0",
     "@typescript-eslint/eslint-plugin": "^7.2.0",
     "@typescript-eslint/parser": "^7.2.0",
+    "apache-arrow": "^16.0.2",
     "c8": "^9.1.0",
     "canvas": "^2.0.0",
     "d3-geo-projection": "^4.0.0",

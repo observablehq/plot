@@ -2,7 +2,7 @@ import {channelDomain, createChannels, valueObject} from "./channel.js";
 import {defined} from "./defined.js";
 import {maybeFacetAnchor} from "./facet.js";
 import {maybeClip, maybeNamed, maybeValue} from "./options.js";
-import {arrayify, isDomainSort, isObject, isOptions, keyword, range, singleton} from "./options.js";
+import {dataify, isDomainSort, isObject, isOptions, keyword, range, singleton} from "./options.js";
 import {project} from "./projection.js";
 import {maybeClassName, styles} from "./style.js";
 import {basic, initializer} from "./transforms/basic.js";
@@ -89,10 +89,10 @@ export class Mark {
     }
   }
   initialize(facets, facetChannels, plotOptions) {
-    let data = arrayify(this.data);
+    let data = dataify(this.data);
     if (facets === undefined && data != null) facets = [range(data)];
     const originalFacets = facets;
-    if (this.transform != null) ({facets, data} = this.transform(data, facets, plotOptions)), (data = arrayify(data));
+    if (this.transform != null) ({facets, data} = this.transform(data, facets, plotOptions)), (data = dataify(data));
     if (facets !== undefined) facets.original = originalFacets; // needed to read facetChannels
     const channels = createChannels(this.channels, data);
     if (this.sort != null) channelDomain(data, facets, channels, facetChannels, this.sort); // mutates facetChannels!

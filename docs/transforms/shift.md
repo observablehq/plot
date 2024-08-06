@@ -47,7 +47,7 @@ Derives an **x1** channel from the input **x** channel by shifting values by the
 
 The shiftX transform also aliases the **x** channel to **x2** and applies a domain hint to the **x2** channel such that by default the plot shows only the intersection of **x1** and **x2**. For example, if the interval is *+1 year*, the first year of the data is not shown.
 
-## shiftY(*interval*, *options*) <VersionBadge pr="1922" /> {#shiftY}
+## shiftY(*interval*, *options*) <VersionBadge version="0.6.16" pr="1922" /> {#shiftY}
 
 ```js
 Plot.shiftY("7 days", {y: "Date", x: "Close"})
