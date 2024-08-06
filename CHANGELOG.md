@@ -6,7 +6,7 @@ Year: **Current (2024)** · [2023](./CHANGELOG-2023.md) · [2022](./CHANGELOG-20
 
 [Released August TK, 2024.](https://github.com/observablehq/plot/releases/tag/v0.6.16)
 
-The new [waffle mark](https://observablehq.com/plot/marks/waffle) 🧇 displays a quantity (or quantitative extent) for a given category; unlike a [bar](https://observablehq.com/plot/marks/bar), a waffle is subdivided into cells that allow easier counting, making waffles useful for reading and comparing exact quantities.
+The new [waffle mark](https://observablehq.com/plot/marks/waffle) 🧇 displays a quantity (or quantitative extent) for a given category; unlike a [bar](https://observablehq.com/plot/marks/bar), a waffle is subdivided into cells that allow easier counting, making waffles useful for reading and comparing exact quantities. Plot’s waffle mark is highly configurable: it supports stacking, positive and negative values, rounded corners, partial cells for fractional counts, automatic row or column size determination (with optional override), and more!
 
 [<img src="./img/waffle.png" width="708" alt="a waffle chart of Olympic athletes by weight">](https://observablehq.com/plot/marks/waffle)
 
@@ -18,7 +18,6 @@ Plot.plot({
 })
 ```
 
-Plot’s waffle mark is highly configurable: it supports stacking, positive and negative values, rounded corners, partial cells for fractional counts, automatic row or column size determination (with optional override), and more!
 
 All marks now support GeoJSON data and GeoJSON property shorthand, making it easier to work with GeoJSON. For example, below the data `counties` is a GeoJSON FeatureCollection, and `unemployment` refers to a property on each feature; the **fill** option is thus shorthand for `(d) => d.properties.unemployment`. The [geo mark](https://observablehq.com/plot/marks/geo) now also supports the **tip** option (via an implicit [centroid transform](https://observablehq.com/plot/transforms/centroid)), making it easier to use Plot’s [interactive tooltips](https://observablehq.com/plot/interactions/pointer).
 
