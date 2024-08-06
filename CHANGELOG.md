@@ -6,7 +6,7 @@ Year: **Current (2024)** · [2023](./CHANGELOG-2023.md) · [2022](./CHANGELOG-20
 
 [Released August TK, 2024.](https://github.com/observablehq/plot/releases/tag/v0.6.16)
 
-Add waffle mark. 🧇
+The new [waffle mark](https://observablehq.com/plot/marks/waffle) 🧇 displays a quantity (or quantitative extent) for a given category; unlike a [bar](https://observablehq.com/plot/marks/bar), a waffle is subdivided into cells that allow easier counting. Waffles are useful for reading or comparing exact quantities.
 
 [<img src="./img/waffle.png" width="708" alt="a waffle chart of Olympic athletes by weight">](https://observablehq.com/plot/marks/waffle)
 
@@ -18,13 +18,9 @@ Plot.plot({
 })
 ```
 
-Add support for Apache Arrow as native data, improving performance and shorthand. Fix detection of date columns with Apache Arrow data.
+Plot’s waffle mark is highly configurable. It supports stacking, positive and negative values, rounded corners, partial cells for fractional counts, automatic row or column size determination (with optional override), and more.
 
-```js
-Plot.dot(gistemp, {x: "Date", y: "Anomaly"}).plot() // gistemp is an Arrow Table!
-```
-
-Add support for GeoJSON data and GeoJSON property shorthand to all marks. Add support for the tip option to the geo mark (via an implicit centroid transform)
+All marks now support GeoJSON data and GeoJSON property shorthand, making it easier to work with GeoJSON. For example, below `counties` is a GeoJSON FeatureCollection, and `unemployment` refers to a property on each feature; the **fill** option is thus shorthand for `(d) => d.properties.unemployment`.
 
 [<img src="./img/geo-tip.png" width="708" alt="a choropleth map of unemployment by U.S. county">](https://observablehq.com/plot/marks/geo)
 
@@ -48,7 +44,15 @@ Plot.plot({
 })
 ```
 
-Add per-side and per-corner rounding options (r, rx1, ry1, etc.) to rect-like marks.
+As shown above, the [geo mark](https://observablehq.com/plot/marks/geo) now also supports the **tip** option (via an implicit [centroid transform](https://observablehq.com/plot/transforms/centroid)), making it easier to use Plot’s [interactive tooltips](https://observablehq.com/plot/interactions/pointer).
+
+All marks now also support column name shorthand for channels when using Apache Arrow tables as data. This makes it easier to switch from an array-of-objects data representation to Arrow’s columnar representation without needing to change your plot code. We’ve also added detection of date-type columns with Arrow data (which Arrow represents using BigInt rather than Date).
+
+```js
+Plot.dot(gistemp, {x: "Date", y: "Anomaly"}).plot() // gistemp is an Arrow Table!
+```
+
+The rect-like marks ([rect](https://observablehq.com/plot/marks/rect), [bar](https://observablehq.com/plot/marks/bar), [cell](https://observablehq.com/plot/marks/cell), and [frame](https://observablehq.com/plot/marks/frame)) now support individual rounding options for each side (**rx1**, **ry1**, *etc.*) and corner (**rx1y1**, **rx2y1**, *etc.*). This allows you to round just the top side of rects, as in the stacked histogram below.
 
 [<img src="./img/rect-rounded.png" width="708" alt="a histogram of Olympic athletes by weight">](https://observablehq.com/plot/marks/rect)
 
@@ -62,7 +66,7 @@ Plot.plot({
 })
 ```
 
-Improve the default plot height when a projection domain is set. For example previously the map below would use a default square aspect ratio, regardless of the specified **domain**; but now the map is perfectly sized for North Carolina.
+Plot now respects the projection **domain** when determining the default plot height. Previously, the map below would use a default square aspect ratio for the *conic-conformal* projection regardless of the specified **domain**, but now the map is perfectly sized to fit North Carolina.
 
 <img src="./img/geo-nc.png" width="659" alt="an unlabeled map showing the outline and counties of North Carolina">
 
@@ -81,7 +85,9 @@ Plot.plot({
 })
 ```
 
-Fix marker options on lines with variable aesthetics.
+(Plot also now chooses a smarter default plot height when the ordinal *y* scale domain is empty.)
+
+The [marker options](https://observablehq.com/plot/features/markers) now behave as intended on marks with varying aesthetics, such as the spiraling lines with varying thickness and color below.
 
 <img src="./img/group-marker.png" width="659" alt="several spiraling lines emanate from the center of the image, with rainbow color and increasing thickness, each capped with a pointed arrow at the end">
 
@@ -101,6 +107,12 @@ Plot.plot({
   ]
 })
 ```
+
+This release includes a few more new features, bug fixes, and improvements:
+
+The new **className** [mark option](https://observablehq.com/plot/features/marks#mark-options) specifies an optional `class` attribute for rendered marks, allowing styling of marks via external stylesheets or easier selection via JavaScript; thanks, @RLesser! Plot now reuses `clipPath` elements, when possible, when then **clip** mark option is set to *frame* or *projection*.
+
+The [difference mark](https://observablehq.com/plot/marks/difference) now supports a horizontal orientation via [differenceX](https://observablehq.com/plot/marks/difference#differenceX), and the [shift transform](https://observablehq.com/plot/transforms/shift) now likewise supports [shiftY](https://observablehq.com/plot/transforms/shift#shiftY). The [Voronoi mark](https://observablehq.com/plot/marks/delaunay) is now compatible with the pointer transform: only the pointed Voronoi cell is rendered; the Voronoi mark now also renders as intended with non-exclusive facets (as when using the *exclude* facet mode). The [tip mark](https://observablehq.com/plot/marks/tip) no longer displays channels containing literal color values by default.
 
 ## 0.6.15
 
