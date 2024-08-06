@@ -4,7 +4,7 @@ Year: **Current (2024)** · [2023](./CHANGELOG-2023.md) · [2022](./CHANGELOG-20
 
 ## 0.6.16
 
-[Released August TK, 2024.](https://github.com/observablehq/plot/releases/tag/v0.6.16)
+[Released August 6, 2024.](https://github.com/observablehq/plot/releases/tag/v0.6.16)
 
 The new [waffle mark](https://observablehq.com/plot/marks/waffle) 🧇 displays a quantity (or quantitative extent) for a given category; unlike a [bar](https://observablehq.com/plot/marks/bar), a waffle is subdivided into cells that allow easier counting, making waffles useful for reading and comparing exact quantities. Plot’s waffle mark is highly configurable: it supports stacking, positive and negative values, rounded corners, partial cells for fractional counts, automatic row or column size determination (with optional override), and more!
 
