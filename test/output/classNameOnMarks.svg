@@ -54,7 +54,7 @@
   <g aria-label="x-axis label" text-anchor="end" transform="translate(17.5,27.5)">
     <text transform="translate(620,110)">units →</text>
   </g>
-  <g aria-label="bar" class="fruitbars">
+  <g aria-label="bar" class="fruit units">
     <rect x="50" width="570" y="87" height="19"></rect>
     <rect x="50" width="256.5" y="45" height="19"></rect>
     <rect x="50" width="285" y="66" height="19"></rect>
