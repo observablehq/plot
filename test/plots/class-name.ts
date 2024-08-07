@@ -12,7 +12,7 @@ export async function classNameOnMarks() {
     marks: [
       Plot.barX(
         sales,
-        Plot.groupY({x: "sum"}, {x: "units", y: "fruit", sort: {y: "x", reverse: true}, className: "fruitbars"})
+        Plot.groupY({x: "sum"}, {x: "units", y: "fruit", sort: {y: "x", reverse: true}, className: "fruit units"})
       ),
       Plot.ruleX([0])
     ]
