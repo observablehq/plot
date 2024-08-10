@@ -431,6 +431,8 @@ function* formatChannels(i, index, channels, scales, values) {
 function formatPair(formatValue, c1, c2, i) {
   return c2.hint?.length // e.g., stackY’s y1 and y2
     ? `${formatValue(c2.value[i] - c1.value[i], i)}`
+    : c2.hint?.single // e.g., waffleY’s y1 and y2
+    ? `${formatValue(c2.value[i], i)}`
     : `${formatValue(c1.value[i], i)}–${formatValue(c2.value[i], i)}`;
 }
 

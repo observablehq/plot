@@ -246,3 +246,36 @@ export async function waffleYGrouped() {
     marks: [Plot.waffleY(athletes, Plot.groupX({y: "count"}, {x: "sport", unit: 10})), Plot.ruleY([0])]
   });
 }
+
+export function waffleTip() {
+  return Plot.plot({
+    color: {type: "sqrt", scheme: "spectral"},
+    y: {inset: 12},
+    marks: [Plot.waffleY([1, 4, 9, 24, 46, 66, 7], {x: null, fill: Plot.identity, tip: true})]
+  });
+}
+
+export function waffleTipUnit() {
+  return Plot.plot({
+    y: {inset: 12},
+    marks: [Plot.waffleY({length: 100}, {x: (d, i) => i % 3, y: 1, fill: d3.randomLcg(42), tip: true})]
+  });
+}
+
+export function waffleTipX() {
+  return Plot.plot({
+    style: {overflow: "visible"},
+    color: {type: "sqrt", scheme: "spectral"},
+    x: {label: "quantity"},
+    y: {inset: 12},
+    marks: [Plot.waffleX([1, 4, 9, 24, 46, 66, 7], {y: null, fill: Plot.identity, tip: true})]
+  });
+}
+
+export function waffleTipUnitX() {
+  return Plot.plot({
+    height: 300,
+    y: {inset: 12},
+    marks: [Plot.waffleX({length: 100}, {multiple: 5, y: (d, i) => i % 3, x: 1, fill: d3.randomLcg(42), tip: true})]
+  });
+}

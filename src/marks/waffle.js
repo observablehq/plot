@@ -1,9 +1,11 @@
-import {extent, namespaces} from "d3";
+import {extent, namespaces, polygonCentroid} from "d3";
+import {valueObject} from "../channel.js";
 import {create} from "../context.js";
 import {composeRender} from "../mark.js";
 import {hasXY, identity, indexOf} from "../options.js";
 import {applyChannelStyles, applyDirectStyles, applyIndirectStyles, getPatternId} from "../style.js";
 import {template} from "../template.js";
+import {initializer} from "../transforms/basic.js";
 import {maybeIdentityX, maybeIdentityY} from "../transforms/identity.js";
 import {maybeIntervalX, maybeIntervalY} from "../transforms/interval.js";
 import {maybeStackX, maybeStackY} from "../transforms/stack.js";
@@ -14,8 +16,10 @@ const waffleDefaults = {
 };
 
 export class WaffleX extends BarX {
-  constructor(data, {unit = 1, gap = 1, round, render, multiple, ...options} = {}) {
-    super(data, {...options, render: composeRender(render, waffleRender("x"))}, waffleDefaults);
+  constructor(data, {unit = 1, gap = 1, round, render, multiple, tip, ...options} = {}) {
+    options = initializer({...options, render: composeRender(render, waffleRender("x"))}, waffleInitializer("x"));
+    if (tip) options = initializer({...options, tip}, waffleTipInitializer("x"));
+    super(data, options, waffleDefaults);
     this.unit = Math.max(0, unit);
     this.gap = +gap;
     this.round = maybeRound(round);
@@ -24,8 +28,10 @@ export class WaffleX extends BarX {
 }
 
 export class WaffleY extends BarY {
-  constructor(data, {unit = 1, gap = 1, round, render, multiple, ...options} = {}) {
-    super(data, {...options, render: composeRender(render, waffleRender("y"))}, waffleDefaults);
+  constructor(data, {unit = 1, gap = 1, round, render, multiple, tip, ...options} = {}) {
+    options = initializer({...options, render: composeRender(render, waffleRender("y"))}, waffleInitializer("y"));
+    if (tip) options = initializer({...options, tip}, waffleTipInitializer("y"));
+    super(data, options, waffleDefaults);
     this.unit = Math.max(0, unit);
     this.gap = +gap;
     this.round = maybeRound(round);
@@ -33,10 +39,11 @@ export class WaffleY extends BarY {
   }
 }
 
-function waffleRender(y) {
-  return function (index, scales, values, dimensions, context) {
-    const {unit, gap, rx, ry, round} = this;
-    const {document} = context;
+function waffleInitializer(y) {
+  return function (data, facets, channels, scales, dimensions) {
+    const {round, unit} = this;
+
+    const values = valueObject(channels, scales);
     const Y1 = values.channels[`${y}1`].value;
     const Y2 = values.channels[`${y}2`].value;
 
@@ -56,9 +63,65 @@ function waffleRender(y) {
 
     // TODO insets?
     const transform = y === "y" ? ([x, y]) => [x * cx, -y * cy] : ([x, y]) => [y * cy, x * cx];
+    const P = Array.from(Y1, (_, i) => wafflePoints(round(Y1[i] / unit), round(Y2[i] / unit), multiple).map(transform));
+
     const tx = (barwidth - multiple * cx) / 2;
-    const x0 = typeof barx === "function" ? (i) => barx(i) + tx : barx + tx;
-    const y0 = scales[y](0);
+    this.x0 = typeof barx === "function" ? (i) => barx(i) + tx : barx + tx;
+    this.y0 = scales[y](0);
+    this.cx = cx;
+    this.cy = cy;
+    this.barwidth = barwidth;
+    this.barx = barx;
+    this.multiple = multiple;
+
+    return {channels: {polygon: {value: P, source: null}}};
+  };
+}
+
+function waffleTipInitializer(y) {
+  return function (data, facets, channels) {
+    const {x0, y0, barwidth} = this;
+    const P = channels.polygon.value;
+    const n = P.length;
+    const tx = typeof x0 === "function" ? (i) => x0(i) - barwidth / 2 : () => x0;
+    const ty = typeof y0 === "function" ? y0 : () => y0;
+
+    const X = new Float64Array(n);
+    const Y = new Float64Array(n);
+
+    const [ix, iy] = y === "y" ? [0, 1] : [1, 0];
+    for (let i = 0; i < n; ++i) {
+      const c = polygonCentroid(P[i]);
+      X[i] = c[ix] + tx(i);
+      Y[i] = c[iy] + ty(i);
+    }
+
+    // restore the tip value for y
+    const source = channels[`${y}2`].hint?.length
+      ? {
+          ...channels[`${y}1`],
+          value: Array.from(channels[`${y}1`].value, (d, i) => channels[`${y}2`].value[i] - d),
+          hint: {single: true}
+        }
+      : null;
+
+    const x = y === "y" ? "x" : "y";
+    return {
+      channels: {
+        [`${x}1`]: {value: X, scale: null, source: null},
+        [`${x}2`]: {value: X, scale: null, source: null},
+        [`${y}1`]: {value: Y, scale: null, source},
+        [`${y}2`]: {value: Y, scale: null, source}
+      }
+    };
+  };
+}
+
+function waffleRender(y) {
+  return function (index, scales, values, dimensions, context) {
+    const {gap, cx, cy, rx, ry, x0, y0} = this;
+    const {document} = context;
+    const polygon = values.channels.polygon.value;
 
     // Create a base pattern with shared attributes for cloning.
     const patternId = getPatternId();
@@ -95,13 +158,7 @@ function waffleRender(y) {
           .enter()
           .append("path")
           .attr("transform", y === "y" ? template`translate(${x0},${y0})` : template`translate(${y0},${x0})`)
-          .attr(
-            "d",
-            (i) =>
-              `M${wafflePoints(round(Y1[i] / unit), round(Y2[i] / unit), multiple)
-                .map(transform)
-                .join("L")}Z`
-          )
+          .attr("d", (i) => `M${polygon[i].join("L")}Z`)
           .attr("fill", (i) => `url(#${patternId}-${i})`)
           .attr("stroke", this.stroke == null ? null : (i) => `url(#${patternId}-${i})`)
       )
@@ -198,12 +255,12 @@ function spread(domain) {
   return max - min;
 }
 
-export function waffleX(data, options = {}) {
+export function waffleX(data, {tip, ...options} = {}) {
   if (!hasXY(options)) options = {...options, y: indexOf, x2: identity};
-  return new WaffleX(data, maybeStackX(maybeIntervalX(maybeIdentityX(options))));
+  return new WaffleX(data, {tip, ...maybeStackX(maybeIntervalX(maybeIdentityX(options)))});
 }
 
-export function waffleY(data, options = {}) {
+export function waffleY(data, {tip, ...options} = {}) {
   if (!hasXY(options)) options = {...options, x: indexOf, y2: identity};
-  return new WaffleY(data, maybeStackY(maybeIntervalY(maybeIdentityY(options))));
+  return new WaffleY(data, {tip, ...maybeStackY(maybeIntervalY(maybeIdentityY(options)))});
 }
