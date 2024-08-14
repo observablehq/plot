@@ -262,6 +262,14 @@ export function waffleTipUnit() {
   });
 }
 
+export function waffleTipFacet() {
+  return Plot.plot({
+    marks: [
+      Plot.waffleY({length: 500}, {x: (d, i) => i % 3, fx: (d, i) => i % 2, y: 1, fill: d3.randomLcg(42), tip: true})
+    ]
+  });
+}
+
 export function waffleTipX() {
   return Plot.plot({
     style: {overflow: "visible"},
@@ -277,5 +285,23 @@ export function waffleTipUnitX() {
     height: 300,
     y: {inset: 12},
     marks: [Plot.waffleX({length: 100}, {multiple: 5, y: (d, i) => i % 3, x: 1, fill: d3.randomLcg(42), tip: true})]
+  });
+}
+
+export function waffleTipFacetX() {
+  return Plot.plot({
+    height: 500,
+    marks: [
+      Plot.waffleX({length: 500}, {y: (d, i) => i % 3, fx: (d, i) => i % 2, x: 1, fill: d3.randomLcg(42), tip: true})
+    ]
+  });
+}
+
+export function waffleTipFacetXY() {
+  return Plot.plot({
+    height: 600,
+    marks: [
+      Plot.waffleX({length: 500}, {fx: (d, i) => i % 3, fy: (d, i) => i % 2, x: 1, fill: d3.randomLcg(42), tip: true})
+    ]
   });
 }
