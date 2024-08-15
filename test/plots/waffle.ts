@@ -247,6 +247,18 @@ export async function waffleYGrouped() {
   });
 }
 
+export function wafflePointer() {
+  const random = d3.randomLcg(42);
+  const data = Array.from({length: 100}, (_, i) => ({x: i % 3, fill: random()}));
+  return Plot.plot({
+    y: {inset: 12},
+    marks: [
+      Plot.waffleY(data, {x: "x", y: 1, fill: "#888"}),
+      Plot.waffleY(data, Plot.pointer({x: "x", y: 1, fill: "fill"}))
+    ]
+  });
+}
+
 export function waffleTip() {
   return Plot.plot({
     color: {type: "sqrt", scheme: "spectral"},

@@ -18,7 +18,6 @@ const waffleDefaults = {
 export class WaffleX extends BarX {
   constructor(data, {unit = 1, gap = 1, round, render, multiple, ...options} = {}) {
     options = initializer({...options, render: composeRender(render, waffleRender("x"))}, waffleInitializer("x"));
-    if (options.tip) options = initializer(options, waffleTipInitializer("x"));
     super(data, options, waffleDefaults);
     this.unit = Math.max(0, unit);
     this.gap = +gap;
@@ -30,7 +29,6 @@ export class WaffleX extends BarX {
 export class WaffleY extends BarY {
   constructor(data, {unit = 1, gap = 1, round, render, multiple, ...options} = {}) {
     options = initializer({...options, render: composeRender(render, waffleRender("y"))}, waffleInitializer("y"));
-    if (options.tip) options = initializer(options, waffleTipInitializer("y"));
     super(data, options, waffleDefaults);
     this.unit = Math.max(0, unit);
     this.gap = +gap;
@@ -61,42 +59,34 @@ function waffleInitializer(y) {
     const cx = Math.min(barwidth / multiple, scale * multiple);
     const cy = scale * multiple;
 
+    // The reference position.
+    const tx = (barwidth - multiple * cx) / 2;
+    const x0 = typeof barx === "function" ? (i) => barx(i) + tx : barx + tx;
+    const y0 = scales[y](0);
+
     // TODO insets?
     const transform = y === "y" ? ([x, y]) => [x * cx, -y * cy] : ([x, y]) => [y * cy, x * cx];
-    const P = Array.from(Y1, (_, i) => wafflePoints(round(Y1[i] / unit), round(Y2[i] / unit), multiple).map(transform));
+    const mx = typeof x0 === "function" ? (i) => x0(i) - barwidth / 2 : () => x0;
+    const [ix, iy] = y === "y" ? [0, 1] : [1, 0];
 
-    const tx = (barwidth - multiple * cx) / 2;
-    this.x0 = typeof barx === "function" ? (i) => barx(i) + tx : barx + tx;
-    this.y0 = scales[y](0);
-    this.cx = cx;
-    this.cy = cy;
-    this.barwidth = barwidth;
-    this.barx = barx;
-    this.multiple = multiple;
-
-    return {channels: {polygon: {value: P, source: null}}};
-  };
-}
-
-function waffleTipInitializer(y) {
-  return function (data, facets, channels) {
-    const {x0, y0, barwidth} = this;
-    const P = channels.polygon.value;
-    const n = P.length;
-    const tx = typeof x0 === "function" ? (i) => x0(i) - barwidth / 2 : () => x0;
-    const ty = typeof y0 === "function" ? y0 : () => y0;
-
+    const n = Y2.length;
+    const P = new Array(n);
     const X = new Float64Array(n);
     const Y = new Float64Array(n);
 
-    const [ix, iy] = y === "y" ? [0, 1] : [1, 0];
     for (let i = 0; i < n; ++i) {
+      P[i] = wafflePoints(round(Y1[i] / unit), round(Y2[i] / unit), multiple).map(transform);
       const c = polygonCentroid(P[i]);
-      X[i] = c[ix] + tx(i);
-      Y[i] = c[iy] + ty(i);
+      X[i] = c[ix] + mx(i);
+      Y[i] = c[iy] + y0;
     }
 
-    // restore the tip value for y
+    this.cx = cx;
+    this.cy = cy;
+    this.x0 = x0;
+    this.y0 = y0;
+
+    // Restore the tip value for y.
     const source = channels[`${y}2`].hint?.length
       ? {
           ...channels[`${y}1`],
@@ -105,10 +95,10 @@ function waffleTipInitializer(y) {
         }
       : null;
 
-    const x = y === "y" ? "x" : "y";
     return {
       channels: {
-        [x]: {value: X, scale: null, source: null},
+        polygon: {value: P, source: null},
+        [y === "y" ? "x" : "y"]: {value: X, scale: null, source: null},
         [`${y}1`]: {value: Y, scale: null, source},
         [`${y}2`]: {value: Y, scale: null, source}
       }
