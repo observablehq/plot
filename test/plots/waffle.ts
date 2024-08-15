@@ -284,7 +284,12 @@ export function waffleTipUnitX() {
   return Plot.plot({
     height: 300,
     y: {inset: 12},
-    marks: [Plot.waffleX({length: 100}, {multiple: 5, y: (d, i) => i % 3, x: 1, fill: d3.randomLcg(42), tip: true})]
+    marks: [
+      Plot.waffleX(
+        {length: 100},
+        {multiple: 5, y: (d, i) => i % 3, x: 1, fill: d3.randomLcg(42), tip: {format: {x: false}}}
+      )
+    ]
   });
 }
 

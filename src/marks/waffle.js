@@ -16,9 +16,9 @@ const waffleDefaults = {
 };
 
 export class WaffleX extends BarX {
-  constructor(data, {unit = 1, gap = 1, round, render, multiple, tip, ...options} = {}) {
+  constructor(data, {unit = 1, gap = 1, round, render, multiple, ...options} = {}) {
     options = initializer({...options, render: composeRender(render, waffleRender("x"))}, waffleInitializer("x"));
-    if (tip) options = initializer({...options, tip}, waffleTipInitializer("x"));
+    if (options.tip) options = initializer(options, waffleTipInitializer("x"));
     super(data, options, waffleDefaults);
     this.unit = Math.max(0, unit);
     this.gap = +gap;
@@ -28,9 +28,9 @@ export class WaffleX extends BarX {
 }
 
 export class WaffleY extends BarY {
-  constructor(data, {unit = 1, gap = 1, round, render, multiple, tip, ...options} = {}) {
+  constructor(data, {unit = 1, gap = 1, round, render, multiple, ...options} = {}) {
     options = initializer({...options, render: composeRender(render, waffleRender("y"))}, waffleInitializer("y"));
-    if (tip) options = initializer({...options, tip}, waffleTipInitializer("y"));
+    if (options.tip) options = initializer(options, waffleTipInitializer("y"));
     super(data, options, waffleDefaults);
     this.unit = Math.max(0, unit);
     this.gap = +gap;
@@ -108,8 +108,7 @@ function waffleTipInitializer(y) {
     const x = y === "y" ? "x" : "y";
     return {
       channels: {
-        [`${x}1`]: {value: X, scale: null, source: null},
-        [`${x}2`]: {value: X, scale: null, source: null},
+        [x]: {value: X, scale: null, source: null},
         [`${y}1`]: {value: Y, scale: null, source},
         [`${y}2`]: {value: Y, scale: null, source}
       }
