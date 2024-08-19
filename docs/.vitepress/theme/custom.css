@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Spline+Sans+Mono:ital,wght@0,300..700;1,300..700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Spline+Sans+Mono:ital,wght@0,300..700;1,300..700&display=swap");
 
 :root {
   --vp-c-purple-1: #7135be;
@@ -27,16 +27,17 @@
   --vp-font-family-base: -apple-system, BlinkMacSystemFont, "avenir next", avenir, helvetica, "helvetica neue", ubuntu, roboto, noto, "segoe ui", arial, sans-serif;
 }
 
-.vp-doc h1 {
-  font-family: "Spline-Sans Mono", monospace;
-  font-weight: medium;
-}
-
-.vp-doc p {
+.vp-doc {
+  font-family: "Inter", sans-serif;
   font-weight: 500;
 }
+.vp-doc h1 {
+  font-family: "Spline-Sans Mono", monospace;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
 
-:root.dark .vp-doc a {
+.vp-doc a {
   color: var(--vp-c-text-1);
 }
 
