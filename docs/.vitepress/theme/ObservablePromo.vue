@@ -70,7 +70,7 @@ a.button {
   font-weight: 600;
   white-space: nowrap;
   background-color: var(--vp-c-neutral);
-  color: var(--vp-c-neutral-inverse);
+  color: var(--vp-c-neutral-inverse) !important;
   border-radius: 20px;
   padding: 0 20px;
   line-height: 38px;
