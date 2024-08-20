@@ -22,13 +22,14 @@
   --vp-c-brand-2: var(--vp-c-purple-2);
   --vp-c-brand-3: var(--vp-c-purple-3);
   --vp-c-brand-soft: var(--vp-c-purple-soft);
-  --vp-font-family-base: -apple-system, BlinkMacSystemFont, "avenir next", avenir, helvetica, "helvetica neue", ubuntu, roboto, noto, "segoe ui", arial, sans-serif;
+  --vp-font-family-base: Inter, -apple-system, BlinkMacSystemFont, "avenir next", avenir, helvetica, "helvetica neue",
+    ubuntu, roboto, noto, "segoe ui", arial, sans-serif;
 }
 
 .vp-doc {
-  font-family: "Inter", sans-serif;
   font-weight: 500;
 }
+
 .vp-doc h1 {
   font-family: "Spline-Sans Mono", monospace;
   font-weight: 500;
