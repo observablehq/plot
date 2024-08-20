@@ -3,17 +3,6 @@
   --vp-c-purple-2: #7f42cd;
   --vp-c-purple-3: #9555e2;
   --vp-c-purple-soft: rgba(155, 91, 233, 0.14);
-}
-
-.dark {
-  --vp-c-purple-1: #db96ff;
-  --vp-c-purple-2: #9a5ae8;
-  --vp-c-purple-3: #884ad6;
-  --vp-c-purple-soft: rgba(155, 91, 233, 0.16);
-  --vp-c-text-1: #f5f5f5;
-}
-
-:root {
   --vp-c-red: #f43f5e;
   --vp-c-green: #10b981;
   --vp-c-blue: #0092ff;
@@ -26,6 +15,14 @@
     roboto, noto, "segoe ui", arial, sans-serif;
   --sans-text: Inter, var(--vp-font-family-base);
   --mono-heading: "Spline Sans Mono", monospace;
+}
+
+.dark {
+  --vp-c-purple-1: #db96ff;
+  --vp-c-purple-2: #9a5ae8;
+  --vp-c-purple-3: #884ad6;
+  --vp-c-purple-soft: rgba(155, 91, 233, 0.16);
+  --vp-c-text-1: #f5f5f5;
 }
 
 .vp-doc {
