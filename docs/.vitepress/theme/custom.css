@@ -24,6 +24,7 @@
   --vp-c-brand-soft: var(--vp-c-purple-soft);
   --vp-font-family-base: Inter, -apple-system, BlinkMacSystemFont, "avenir next", avenir, helvetica, "helvetica neue",
     ubuntu, roboto, noto, "segoe ui", arial, sans-serif;
+  --vp-font-family-brand-heading: "Spline Sans Mono", monospace;
 }
 
 .vp-doc {
@@ -31,9 +32,8 @@
 }
 
 .vp-doc h1 {
-  font-family: "Spline-Sans Mono", monospace;
+  font-family: var(--vp-font-family-brand-heading);
   font-weight: 500;
-  margin-bottom: 8px;
 }
 
 .vp-doc a {
