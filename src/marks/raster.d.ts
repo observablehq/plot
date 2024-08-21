@@ -146,6 +146,14 @@ export interface RasterOptions extends Omit<MarkOptions, "fill" | "fillOpacity">
   imageRendering?: string;
 
   /**
+   * The [color space][1] of the backing canvas. Defaults to *srgb*; set to
+   * *display-p3* for the Display P3 color space.
+   *
+   * [1]: https://developer.mozilla.org/en-US/docs/Web/API/ImageData/colorSpace
+   */
+  colorSpace?: "srgb" | "display-p3" | string;
+
+  /**
    * The fill, typically bound to the *color* scale. Can be specified as a
    * constant, a channel based on the sample *data*, or as a function *f*(*x*,
    * *y*) to be evaluated at each pixel if the *data* is not provided.
