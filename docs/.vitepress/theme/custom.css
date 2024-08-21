@@ -10,6 +10,9 @@
   --vp-c-brand-3: rgb(243, 139, 233);  /* home page alt color */
   --vp-c-brand-soft: var(--theme-phosphate-soft);
   --mono-heading: "Spline Sans Mono", monospace;
+  --vp-font-family-mono: var(--mono-heading);
+  --vp-code-font-size: 14px;
+  --vp-code-line-height: 1.5;
 }
 
 .dark {
@@ -23,6 +26,10 @@
 .vp-doc h1 {
   font-family: var(--mono-heading);
   font-weight: 500;
+}
+
+.vp-doc p {
+  line-height: 1.5;
 }
 
 .vp-doc a {
