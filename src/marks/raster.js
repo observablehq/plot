@@ -127,6 +127,9 @@ export class Raster extends AbstractRaster {
     // function, offset into the dense grid based on the current facet index.
     else if (this.data == null && index) offset = index.fi * n;
 
+    // Color space conversion
+    const colorBytes = this.colorSpace === "srgb" ? rgb : converter(this.colorSpace);
+
     // Render the raster grid to the canvas, blurring if needed.
     const canvas = document.createElement("canvas");
     canvas.width = w;
@@ -134,7 +137,7 @@ export class Raster extends AbstractRaster {
     const context2d = canvas.getContext("2d", {colorSpace: this.colorSpace});
     const image = context2d.createImageData(w, h);
     const imageData = image.data;
-    let {r, g, b} = rgb(this.fill) ?? {r: 0, g: 0, b: 0};
+    let {r, g, b} = colorBytes(this.fill) ?? {r: 0, g: 0, b: 0};
     let a = (this.fillOpacity ?? 1) * 255;
     for (let i = 0; i < n; ++i) {
       const j = i << 2;
@@ -144,7 +147,7 @@ export class Raster extends AbstractRaster {
           imageData[j + 3] = 0;
           continue;
         }
-        ({r, g, b} = rgb(fi));
+        ({r, g, b} = colorBytes(fi));
       }
       if (FO) a = FO[i + offset] * 255;
       imageData[j + 0] = r;
@@ -502,5 +505,19 @@ function denseY(y1, y2, width, height) {
       for (let i = 0; i < n; ++i) Y[i] = (Math.floor(i / width) % height) * ky + y0;
       return Y;
     }
+  };
+}
+
+// Color space conversion
+export function converter(colorSpace) {
+  const canvas = document.createElement("canvas");
+  canvas.width = 1;
+  canvas.height = 1;
+  const context = canvas.getContext("2d", {colorSpace, willReadFrequently: true});
+  return function (c) {
+    context.fillStyle = c;
+    context.fillRect(0, 0, 1, 1);
+    const [r, g, b] = context.getImageData(0, 0, 1, 1).data;
+    return {r, g, b};
   };
 }

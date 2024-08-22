@@ -61,6 +61,24 @@ export async function contourVapor() {
   });
 }
 
+export async function rasterVaporP3() {
+  return Plot.plot({
+    x: {transform: (x) => x - 180},
+    y: {transform: (y) => 90 - y},
+    color: {
+      type: "sqrt",
+      interpolate: (t: number) => `oklch(50% 0.25 ${220 + t * 140}deg)`
+    },
+    marks: [
+      Plot.raster(await vapor(), {
+        width: 360,
+        height: 180,
+        colorSpace: "display-p3"
+      })
+    ]
+  });
+}
+
 export async function rasterVaporPeters() {
   const radians = Math.PI / 180;
   const sin = (y) => Math.sin(y * radians);
