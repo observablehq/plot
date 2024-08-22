@@ -7,7 +7,7 @@
   --theme-phosphate-soft: #d7fbf7;
   --vp-c-brand-1: var(--theme-phosphate); /* link and brand color */
   --vp-c-brand-2: var(--theme-phosphate);
-  --vp-c-brand-3: rgb(243, 139, 233);  /* home page alt color */
+  --vp-c-brand-3: rgb(243, 139, 233); /* home page alt color */
   --vp-c-brand-soft: var(--theme-phosphate-soft);
   --mono-heading: "Spline Sans Mono", monospace;
   --vp-font-family-mono: var(--mono-heading);
@@ -17,11 +17,10 @@
 
 .dark {
   --theme-phosphate: #37d5be;
-  --vp-c-brand-3: rgb(183, 41, 169);  /* home page alt color */
+  --vp-c-brand-3: rgb(183, 41, 169);
   --theme-phosphate-soft: #033a32;
   --vp-c-text-1: #f5f5f5;
 }
-
 
 .vp-doc h1 {
   font-family: var(--mono-heading);
