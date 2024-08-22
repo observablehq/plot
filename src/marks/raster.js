@@ -127,8 +127,8 @@ export class Raster extends AbstractRaster {
     // function, offset into the dense grid based on the current facet index.
     else if (this.data == null && index) offset = index.fi * n;
 
-    // Color space conversion
-    const colorBytes = this.colorSpace === "srgb" ? rgb : converter(this.colorSpace);
+    // Color space and CSS4 color conversion
+    const colorBytes = converter(this.colorSpace);
 
     // Render the raster grid to the canvas, blurring if needed.
     const canvas = document.createElement("canvas");
@@ -508,16 +508,22 @@ function denseY(y1, y2, width, height) {
   };
 }
 
-// Color space conversion
+// Color space and CSS4 conversions
 export function converter(colorSpace) {
   const canvas = document.createElement("canvas");
   canvas.width = 1;
   canvas.height = 1;
   const context = canvas.getContext("2d", {colorSpace, willReadFrequently: true});
-  return function (c) {
+  const mem = new Map();
+  const canvasConverter = (c) => {
+    if (mem.has((c = String(c)))) return mem.get(c);
     context.fillStyle = c;
+    context.clearRect(0, 0, 1, 1);
     context.fillRect(0, 0, 1, 1);
     const [r, g, b] = context.getImageData(0, 0, 1, 1).data;
+    if (mem.size < 256) mem.set(c, {r, g, b});
     return {r, g, b};
   };
+  let p;
+  return colorSpace === "srgb" ? (c) => (isNaN((p = rgb(c)).opacity) ? canvasConverter(c) : p) : canvasConverter;
 }
