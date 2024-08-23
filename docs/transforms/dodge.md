@@ -48,7 +48,7 @@ Plot.plot({
 ```
 :::
 
-The dodge transform works with Plot’s [faceting system](../features/facets.md), allowing independent beeswarm plots on discrete partitions of the data. Below, penguins are grouped by species and colored by sex, while vertical↕︎ position (**y**) encodes body mass.
+The dodge transform works with Plot’s [faceting system](../features/facets.md), allowing independent beeswarm plots on discrete partitions of the data. Below, penguins are grouped by species and colored by sex, while <span class="emoji-vertical">vertical</span> position (**y**) encodes body mass.
 
 :::plot defer https://observablehq.com/@observablehq/plot-dodge-penguins
 ```js

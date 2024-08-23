@@ -37,7 +37,7 @@ Plot.dot(olympians, {
 ```
 :::
 
-The [crosshair mark](../interactions/crosshair.md) uses the pointer transform internally to display a [rule](../marks/rule.md) and a [text](../marks/text.md) showing the **x** (horizontal↔︎ position) and **y** (vertical↕︎ position) value of the nearest data.
+The [crosshair mark](../interactions/crosshair.md) uses the pointer transform internally to display a [rule](../marks/rule.md) and a [text](../marks/text.md) showing the **x** (<span class="emoji-horizontal">horizontal</span> position) and **y** (<span class="emoji-vertical">vertical</span> position) value of the nearest data.
 
 :::plot defer https://observablehq.com/@observablehq/plot-crosshair
 ```js

@@ -23,9 +23,9 @@ onMounted(() => {
 
 # Facets
 
-Faceting partitions data by ordinal or categorical value and then repeats a plot for each partition (each **facet**), producing [small multiples](https://en.wikipedia.org/wiki/Small_multiple) for comparison. Faceting is typically enabled by declaring the horizontal↔︎ facet channel **fx**, the vertical↕︎ facet channel **fy**, or both for two-dimensional faceting.
+Faceting partitions data by ordinal or categorical value and then repeats a plot for each partition (each **facet**), producing [small multiples](https://en.wikipedia.org/wiki/Small_multiple) for comparison. Faceting is typically enabled by declaring the <span class="emoji-horizontal">horizontal</span> facet channel **fx**, the <span class="emoji-vertical">vertical</span> facet channel **fy**, or both for two-dimensional faceting.
 
-For example, below we recreate the Trellis display (“reminiscent of garden trelliswork”) of [Becker *et al.*](https://hci.stanford.edu/courses/cs448b/papers/becker-trellis-jcgs.pdf) using the dot’s **fy** channel to declare vertical↕︎ facets, showing the yields of several varieties of barley across several sites for the years <span :style="{borderBottom: `solid 2px ${scheme[0]}`}">1931</span> and <span :style="{borderBottom: `solid 2px ${scheme[1]}`}">1932</span>.
+For example, below we recreate the Trellis display (“reminiscent of garden trelliswork”) of [Becker *et al.*](https://hci.stanford.edu/courses/cs448b/papers/becker-trellis-jcgs.pdf) using the dot’s **fy** channel to declare <span class="emoji-vertical">vertical</span> facets, showing the yields of several varieties of barley across several sites for the years <span :style="{borderBottom: `solid 2px ${scheme[0]}`}">1931</span> and <span :style="{borderBottom: `solid 2px ${scheme[1]}`}">1932</span>.
 
 :::plot https://observablehq.com/@observablehq/plot-trellis
 ```js
@@ -116,7 +116,7 @@ Plot.plot({
 If you are interested in automatic faceting for quantitative data, please upvote [#14](https://github.com/observablehq/plot/issues/14).
 :::
 
-When both **fx** and **fy** channels are specified, two-dimensional faceting results, as in the faceted scatterplot of penguin culmen measurements below. The horizontal↔︎ facet shows sex (with the rightmost column representing penguins whose *sex* field is null, indicating missing data), while the vertical↕︎ facet shows species.
+When both **fx** and **fy** channels are specified, two-dimensional faceting results, as in the faceted scatterplot of penguin culmen measurements below. The <span class="emoji-horizontal">horizontal</span> facet shows sex (with the rightmost column representing penguins whose *sex* field is null, indicating missing data), while the <span class="emoji-vertical">vertical</span> facet shows species.
 
 :::plot defer https://observablehq.com/@observablehq/plot-two-dimensional-faceting
 ```js
@@ -293,8 +293,8 @@ Plot.plot({
 For top-level faceting, these **facet** options determine the facets:
 
 * **data** - the data to be faceted
-* **x** - the horizontal↔︎ position; bound to the *fx* scale
-* **y** - the vertical↕︎ position; bound to the *fy* scale
+* **x** - the <span class="emoji-horizontal">horizontal</span> position; bound to the *fx* scale
+* **y** - the <span class="emoji-vertical">vertical</span> position; bound to the *fy* scale
 
 With top-level faceting, any mark that uses the specified facet data will be faceted by default, whereas marks that use different data will be repeated across all facets. Use the mark **facet** option to change the behavior.
 
@@ -302,7 +302,7 @@ With top-level faceting, any mark that uses the specified facet data will be fac
 
 When faceting, two additional [band scales](./scales.md#discrete-scales) may be configured:
 
-* *fx* - the horizontal↔︎ position, a *band* scale
-* *fy* - the vertical↕︎ position, a *band* scale
+* *fx* - the <span class="emoji-horizontal">horizontal</span> position, a *band* scale
+* *fy* - the <span class="emoji-vertical">vertical</span> position, a *band* scale
 
 You can adjust the space between facets using the **padding**, **round**, and **align** scale options.

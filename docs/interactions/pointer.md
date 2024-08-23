@@ -167,14 +167,14 @@ plot.addEventListener("input", (event) => {
 
 The following options control the pointer transform:
 
-- **px** - the horizontal↔︎ target position; bound to the *x* scale
-- **py** - the vertical↕︎ target position; bound to the *y* scale
-- **x** - the fallback horizontal↔︎ target position; bound to the *x* scale
-- **y** - the fallback vertical↕︎ target position; bound to the *y* scale
-- **x1** - the starting horizontal↔︎ target position; bound to the *x* scale
-- **y1** - the starting vertical↕︎ target position; bound to the *y* scale
-- **x2** - the ending horizontal↔︎ target position; bound to the *x* scale
-- **y2** - the ending vertical↕︎ target position; bound to the *y* scale
+- **px** - the <span class="emoji-horizontal">horizontal</span> target position; bound to the *x* scale
+- **py** - the <span class="emoji-vertical">vertical</span> target position; bound to the *y* scale
+- **x** - the fallback <span class="emoji-horizontal">horizontal</span> target position; bound to the *x* scale
+- **y** - the fallback <span class="emoji-vertical">vertical</span> target position; bound to the *y* scale
+- **x1** - the starting <span class="emoji-horizontal">horizontal</span> target position; bound to the *x* scale
+- **y1** - the starting <span class="emoji-vertical">vertical</span> target position; bound to the *y* scale
+- **x2** - the ending <span class="emoji-horizontal">horizontal</span> target position; bound to the *x* scale
+- **y2** - the ending <span class="emoji-vertical">vertical</span> target position; bound to the *y* scale
 - **maxRadius** - the reach, or maximum distance, in pixels; defaults to 40
 - **frameAnchor** - how to position the target within the frame; defaults to *middle*
 
@@ -202,7 +202,7 @@ Applies the pointer render transform to the specified *options* to filter the ma
 Plot.tip(aapl, Plot.pointerX({x: "Date", y: "Close"}))
 ```
 
-Like [pointer](#pointer), except the determination of the closest point considers mostly the *x* (horizontal↔︎) position; this should be used for plots where *x* is the dominant dimension, such as time in a time-series chart, the binned quantitative dimension in a histogram, or the categorical dimension of a bar chart.
+Like [pointer](#pointer), except the determination of the closest point considers mostly the *x* (<span class="emoji-horizontal">horizontal</span>) position; this should be used for plots where *x* is the dominant dimension, such as time in a time-series chart, the binned quantitative dimension in a histogram, or the categorical dimension of a bar chart.
 
 ## pointerY(*options*) {#pointerY}
 
@@ -210,4 +210,4 @@ Like [pointer](#pointer), except the determination of the closest point consider
 Plot.tip(alphabet, Plot.pointerY({x: "frequency", y: "letter"}))
 ```
 
-Like [pointer](#pointer), except the determination of the closest point considers mostly the *y* (vertical↕︎) position; this should be used for plots where *y* is the dominant dimension, such as time in a time-series chart, the binned quantitative dimension in a histogram, or the categorical dimension of a bar chart.
+Like [pointer](#pointer), except the determination of the closest point considers mostly the *y* (<span class="emoji-vertical">vertical</span>) position; this should be used for plots where *y* is the dominant dimension, such as time in a time-series chart, the binned quantitative dimension in a histogram, or the categorical dimension of a bar chart.

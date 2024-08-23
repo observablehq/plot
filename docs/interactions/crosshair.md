@@ -10,7 +10,7 @@ import penguins from "../data/penguins.ts";
 
 # Crosshair mark <VersionBadge version="0.6.7" />
 
-The **crosshair mark** shows the *x* (horizontal↔︎ position) and *y* (vertical↕︎ position) value of the point closest to the [pointer](./pointer.md) on the bottom and left sides of the frame, respectively.
+The **crosshair mark** shows the *x* (<span class="emoji-horizontal">horizontal</span> position) and *y* (<span class="emoji-vertical">vertical</span> position) value of the point closest to the [pointer](./pointer.md) on the bottom and left sides of the frame, respectively.
 
 :::plot defer https://observablehq.com/@observablehq/plot-crosshair
 ```js

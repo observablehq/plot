@@ -23,7 +23,7 @@ onMounted(() => {
 The tick mark is one of two marks in Plot for drawing horizontal or vertical lines; it should be used when the secondary position dimension, if any, is ordinal. When it is quantitative, use a [rule](./rule.md).
 :::
 
-The **tick mark** comes in two orientations: [tickY](#tickY) draws a horizontal↔︎ line with a given *y* value, while [tickX](#tickX) draws a vertical↕︎ line with a given *x* value. Ticks have an optional secondary position dimension (**x** for tickY and **y** for tickX); this second dimension is ordinal, unlike a [rule](./rule.md), and requires a corresponding [band scale](../features/scales.md).
+The **tick mark** comes in two orientations: [tickY](#tickY) draws a <span class="emoji-horizontal">horizontal</span> line with a given *y* value, while [tickX](#tickX) draws a <span class="emoji-vertical">vertical</span> line with a given *x* value. Ticks have an optional secondary position dimension (**x** for tickY and **y** for tickX); this second dimension is ordinal, unlike a [rule](./rule.md), and requires a corresponding [band scale](../features/scales.md).
 
 Ticks are often used to show one-dimensional distributions, as in the “barcode” plot below showing the proportion of the population in each age bracket across U.S. states.
 
@@ -94,7 +94,7 @@ For the required channels, see [tickX](#tickX) and [tickY](#tickY). The tick mar
 Plot.tickX(stateage, {x: "population", y: "age"})
 ```
 
-Returns a new vertical↕︎ tick with the given *data* and *options*. The following channels are required:
+Returns a new <span class="emoji-vertical">vertical</span> tick with the given *data* and *options*. The following channels are required:
 
 * **x** - the horizontal position; bound to the *x* scale
 
@@ -110,7 +110,7 @@ If the **y** channel is not specified, the tick will span the full vertical exte
 Plot.tickY(stateage, {y: "population", x: "age"})
 ```
 
-Returns a new horizontal↔︎ tick with the given *data* and *options*. The following channels are required:
+Returns a new <span class="emoji-horizontal">horizontal</span> tick with the given *data* and *options*. The following channels are required:
 
 * **y** - the vertical position; bound to the *y* scale
 

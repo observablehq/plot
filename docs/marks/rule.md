@@ -22,7 +22,7 @@ onMounted(() => {
 The rule mark is one of two marks in Plot for drawing horizontal or vertical lines; it should be used when the secondary position dimension, if any, is quantitative. When it is ordinal, use a [tick](./tick.md).
 :::
 
-The **rule mark** comes in two orientations: [ruleY](#ruleY) draws a horizontal↔︎ line with a given *y* value, while [ruleX](#ruleX) draws a vertical↕︎ line with a given *x* value. Rules are often used as annotations, say to mark the *y* = 0 baseline (in red below for emphasis) in a line chart.
+The **rule mark** comes in two orientations: [ruleY](#ruleY) draws a <span class="emoji-horizontal">horizontal</span> line with a given *y* value, while [ruleX](#ruleX) draws a <span class="emoji-vertical">vertical</span> line with a given *x* value. Rules are often used as annotations, say to mark the *y* = 0 baseline (in red below for emphasis) in a line chart.
 
 :::plot https://observablehq.com/@observablehq/plot-rule-zero
 ```js
@@ -165,7 +165,7 @@ Plot.ruleX([0]) // as annotation
 Plot.ruleX(alphabet, {x: "letter", y: "frequency"}) // like barY
 ```
 
-Returns a new vertical↕︎ rule with the given *data* and *options*. The following channels are optional:
+Returns a new <span class="emoji-vertical">vertical</span> rule with the given *data* and *options*. The following channels are optional:
 
 * **x** - the horizontal position; bound to the *x* scale
 * **y1** - the starting vertical position; bound to the *y* scale
@@ -186,7 +186,7 @@ Plot.ruleY([0]) // as annotation
 Plot.ruleY(alphabet, {y: "letter", x: "frequency"}) // like barX
 ```
 
-Returns a new horizontal↔︎ rule with the given *data* and *options*. The following channels are optional:
+Returns a new <span class="emoji-horizontal">horizontal</span> rule with the given *data* and *options*. The following channels are optional:
 
 * **y** - the vertical position; bound to the *y* scale
 * **x1** - the starting horizontal position; bound to the *x* scale

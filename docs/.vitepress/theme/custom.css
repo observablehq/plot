@@ -18,6 +18,16 @@
   --vp-code-line-height: 1.5;
 }
 
+.emoji-horizontal::after {
+  content: "↔︎";
+  font-family: var(--vp-font-family-mono);
+}
+
+.emoji-vertical::after {
+  content: "↕︎";
+  font-family: var(--vp-font-family-mono);
+}
+
 .dark {
   --theme-phosphate: #37d5be;
   --theme-phosphate-2: #28b39e;

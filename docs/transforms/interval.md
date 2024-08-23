@@ -60,7 +60,7 @@ Plot.plot({
 The interval transform is not a standalone transform, but an option on marks and scales.
 :::
 
-The meaning of the **interval** mark option depends on the associated mark, such as line, bar, rect, or dot. For example, for the [barY mark](../marks/bar.md), the **interval** option affects converts a singular *y* value into an interval [*y1*, *y2*]. In the contrived example below, notice that the vertical↕︎ extent of each bar spans an interval of 5 million, rather than extending to *y* = 0.
+The meaning of the **interval** mark option depends on the associated mark, such as line, bar, rect, or dot. For example, for the [barY mark](../marks/bar.md), the **interval** option affects converts a singular *y* value into an interval [*y1*, *y2*]. In the contrived example below, notice that the <span class="emoji-vertical">vertical</span> extent of each bar spans an interval of 5 million, rather than extending to *y* = 0.
 
 :::plot https://observablehq.com/@observablehq/plot-interval-bars
 ```js

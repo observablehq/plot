@@ -208,8 +208,8 @@ When multiple tips are visible simultaneously, some may collide; consider using 
 
 The following position options are supported:
 
-- **x**, **x1**, or **x2** - the horizontal↔︎ position channel
-- **y**, **y1**, or **y2** - the vertical↕︎ position channel
+- **x**, **x1**, or **x2** - the <span class="emoji-horizontal">horizontal</span> position channel
+- **y**, **y1**, or **y2** - the <span class="emoji-vertical">vertical</span> position channel
 - **frameAnchor** - fallback position if *x* or *y* are otherwise unspecified
 
 To resolve the anchor position, the tip mark applies the following order of precedence:

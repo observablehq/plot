@@ -39,7 +39,7 @@ onMounted(() => {
 | 1880-05-01 | -0.14   |
 | 1880-06-01 | -0.29   |
 
-When visualizing this data with a [line](../marks/line.md), the *x* scale is responsible for mapping dates to horizontal↔︎ positions. For example, 1880-01-01 might be mapped to *x* = 40 (on the left) and 2016-12-01 might be mapped to *x* = 620 (on the right). Likewise, the *y* scale maps temperature anomalies to vertical↕︎ positions.
+When visualizing this data with a [line](../marks/line.md), the *x* scale is responsible for mapping dates to <span class="emoji-horizontal">horizontal</span> positions. For example, 1880-01-01 might be mapped to *x* = 40 (on the left) and 2016-12-01 might be mapped to *x* = 620 (on the right). Likewise, the *y* scale maps temperature anomalies to <span class="emoji-vertical">vertical</span> positions.
 
 :::plot https://observablehq.com/@observablehq/plot-scales-intro
 ```js
