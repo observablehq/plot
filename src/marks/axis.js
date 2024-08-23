@@ -1,4 +1,4 @@
-import {InternSet, extent, format, utcFormat} from "d3";
+import {InternSet, extent, format, scaleIdentity, utcFormat} from "d3";
 import {formatDefault} from "../format.js";
 import {marks} from "../mark.js";
 import {radians} from "../math.js";
@@ -130,32 +130,35 @@ function axisKy(
         })
       : null,
     !isNoneish(fill) && label !== null
-      ? text(
-          [],
-          labelOptions({fill, fillOpacity, ...options}, function (data, facets, channels, scales, dimensions) {
-            const scale = scales[k];
-            const {marginTop, marginRight, marginBottom, marginLeft} = (k === "y" && dimensions.inset) || dimensions;
-            const cla = labelAnchor ?? (scale.bandwidth ? "center" : "top");
-            const clo = labelOffset ?? (anchor === "right" ? marginRight : marginLeft) - 3;
-            if (cla === "center") {
-              this.textAnchor = undefined; // middle
-              this.lineAnchor = anchor === "right" ? "bottom" : "top";
-              this.frameAnchor = anchor;
-              this.rotate = -90;
-            } else {
-              this.textAnchor = anchor === "right" ? "end" : "start";
-              this.lineAnchor = cla;
-              this.frameAnchor = `${cla}-${anchor}`;
-              this.rotate = 0;
-            }
-            this.dy = cla === "top" ? 3 - marginTop : cla === "bottom" ? marginBottom - 3 : 0;
-            this.dx = anchor === "right" ? clo : -clo;
-            this.ariaLabel = `${k}-axis label`;
-            return {
-              facets: [[0]],
-              channels: {text: {value: [formatAxisLabel(k, scale, {anchor, label, labelAnchor: cla, labelArrow})]}}
-            };
-          })
+      ? Object.assign(
+          text(
+            [],
+            labelOptions({fill, fillOpacity, ...options}, function (data, facets, channels, scales, dimensions) {
+              const scale = scales[k];
+              const {marginTop, marginRight, marginBottom, marginLeft} = (k === "y" && dimensions.inset) || dimensions;
+              const cla = labelAnchor ?? (scale.bandwidth ? "center" : "top");
+              const clo = labelOffset ?? (anchor === "right" ? marginRight : marginLeft) - 3;
+              if (cla === "center") {
+                this.textAnchor = undefined; // middle
+                this.lineAnchor = anchor === "right" ? "bottom" : "top";
+                this.frameAnchor = anchor;
+                this.rotate = -90;
+              } else {
+                this.textAnchor = anchor === "right" ? "end" : "start";
+                this.lineAnchor = cla;
+                this.frameAnchor = `${cla}-${anchor}`;
+                this.rotate = 0;
+              }
+              this.dy = cla === "top" ? 3 - marginTop : cla === "bottom" ? marginBottom - 3 : 0;
+              this.dx = anchor === "right" ? clo : -clo;
+              this.ariaLabel = `${k}-axis label`;
+              return {
+                facets: [[0]],
+                channels: {text: {value: [formatAxisLabel(k, scale, {anchor, label, labelAnchor: cla, labelArrow})]}}
+              };
+            })
+          ),
+          {zoom: null}
         )
       : null
   );
@@ -231,29 +234,32 @@ function axisKx(
         })
       : null,
     !isNoneish(fill) && label !== null
-      ? text(
-          [],
-          labelOptions({fill, fillOpacity, ...options}, function (data, facets, channels, scales, dimensions) {
-            const scale = scales[k];
-            const {marginTop, marginRight, marginBottom, marginLeft} = (k === "x" && dimensions.inset) || dimensions;
-            const cla = labelAnchor ?? (scale.bandwidth ? "center" : "right");
-            const clo = labelOffset ?? (anchor === "top" ? marginTop : marginBottom) - 3;
-            if (cla === "center") {
-              this.frameAnchor = anchor;
-              this.textAnchor = undefined; // middle
-            } else {
-              this.frameAnchor = `${anchor}-${cla}`;
-              this.textAnchor = cla === "right" ? "end" : "start";
-            }
-            this.lineAnchor = anchor;
-            this.dy = anchor === "top" ? -clo : clo;
-            this.dx = cla === "right" ? marginRight - 3 : cla === "left" ? 3 - marginLeft : 0;
-            this.ariaLabel = `${k}-axis label`;
-            return {
-              facets: [[0]],
-              channels: {text: {value: [formatAxisLabel(k, scale, {anchor, label, labelAnchor: cla, labelArrow})]}}
-            };
-          })
+      ? Object.assign(
+          text(
+            [],
+            labelOptions({fill, fillOpacity, ...options}, function (data, facets, channels, scales, dimensions) {
+              const scale = scales[k];
+              const {marginTop, marginRight, marginBottom, marginLeft} = (k === "x" && dimensions.inset) || dimensions;
+              const cla = labelAnchor ?? (scale.bandwidth ? "center" : "right");
+              const clo = labelOffset ?? (anchor === "top" ? marginTop : marginBottom) - 3;
+              if (cla === "center") {
+                this.frameAnchor = anchor;
+                this.textAnchor = undefined; // middle
+              } else {
+                this.frameAnchor = `${anchor}-${cla}`;
+                this.textAnchor = cla === "right" ? "end" : "start";
+              }
+              this.lineAnchor = anchor;
+              this.dy = anchor === "top" ? -clo : clo;
+              this.dx = cla === "right" ? marginRight - 3 : cla === "left" ? 3 - marginLeft : 0;
+              this.ariaLabel = `${k}-axis label`;
+              return {
+                facets: [[0]],
+                channels: {text: {value: [formatAxisLabel(k, scale, {anchor, label, labelAnchor: cla, labelArrow})]}}
+              };
+            })
+          ),
+          {zoom: null}
         )
       : null
   );
@@ -538,8 +544,10 @@ function labelOptions(
 
 function axisMark(mark, k, data, properties, options, initialize) {
   let channels;
+  let u;
 
   function axisInitializer(data, facets, _channels, scales, dimensions, context) {
+    u = arguments;
     const initializeFacets = data == null && (k === "fx" || k === "fy");
     const {[k]: scale} = scales;
     if (!scale) throw new Error(`missing scale: ${k}`);
@@ -633,6 +641,24 @@ function axisMark(mark, k, data, properties, options, initialize) {
   }
   if (properties !== undefined) Object.assign(m, properties);
   if (m.clip === undefined) m.clip = false; // don’t clip axes by default
+  m.zoom = function (g, transform) {
+    if (!(k === "x" || k === "y")) return g;
+    const [, , , {[k]: scale}, dimensions, context] = [...u];
+    if (scale.bandwidth) return g; // TODO ordinal scales?
+    const scale2 = transform[k === "x" ? "rescaleX" : "rescaleY"](scale ?? scaleIdentity());
+    const ticks = scale2.ticks();
+    g.replaceWith(
+      (g = m.render.call(
+        m,
+        ticks.map((d, i) => i),
+        {[k]: scale2},
+        {[k]: ticks.map(scale2), text: ticks},
+        dimensions,
+        context
+      ))
+    );
+    return g;
+  };
   return m;
 }
 
