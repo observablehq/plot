@@ -14,6 +14,7 @@
   --vp-c-brand-soft: var(--theme-phosphate-soft);
   --mono-heading: "Spline Sans Mono", monospace;
   --vp-font-family-mono: var(--mono-heading);
+  --vp-font-family-base: Inter, -apple-system, BlinkMacSystemFont, "avenir next", avenir, helvetica, "helvetica neue", ubuntu, roboto, noto, "segoe ui", arial, sans-serif;
   --vp-code-font-size: 14px;
   --vp-code-line-height: 1.5;
 }
