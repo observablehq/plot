@@ -1,38 +1,40 @@
 :root {
-  --vp-c-purple-1: #7135be;
-  --vp-c-purple-2: #7f42cd;
-  --vp-c-purple-3: #9555e2;
-  --vp-c-purple-soft: rgba(155, 91, 233, 0.14);
   --vp-c-red: #f43f5e;
   --vp-c-green: #10b981;
   --vp-c-blue: #0092ff;
   --vp-c-purple: #a463f2;
-  --vp-c-brand-1: var(--vp-c-purple-1);
-  --vp-c-brand-2: var(--vp-c-purple-2);
-  --vp-c-brand-3: var(--vp-c-purple-3);
-  --vp-c-brand-soft: var(--vp-c-purple-soft);
-  --vp-font-family-base: -apple-system, BlinkMacSystemFont, "avenir next", avenir, helvetica, "helvetica neue", ubuntu,
-    roboto, noto, "segoe ui", arial, sans-serif;
-  --sans-text: Inter, var(--vp-font-family-base);
+  --theme-phosphate: #148576;
+  --theme-phosphate-2: #1da492;
+  --theme-phosphate-3: #26c1ad;
+  --theme-phosphate-soft: #d7fbf7;
+  --vp-c-brand-1: var(--theme-phosphate); /* link and brand color */
+  --vp-c-brand-2: var(--theme-phosphate-2); 
+  --vp-c-brand-3: var(--theme-phosphate-3);
+  --hero-brand-contrast: rgb(243, 139, 233); /* home page alt color */
+  --vp-c-brand-soft: var(--theme-phosphate-soft);
   --mono-heading: "Spline Sans Mono", monospace;
+  --vp-font-family-mono: var(--mono-heading);
+  --vp-font-family-base: Inter, -apple-system, BlinkMacSystemFont, "avenir next", avenir, helvetica, "helvetica neue", ubuntu, roboto, noto, "segoe ui", arial, sans-serif;
+  --vp-code-font-size: 14px;
+  --vp-code-line-height: 1.5;
 }
 
 .dark {
-  --vp-c-purple-1: #db96ff;
-  --vp-c-purple-2: #9a5ae8;
-  --vp-c-purple-3: #884ad6;
-  --vp-c-purple-soft: rgba(155, 91, 233, 0.16);
+  --theme-phosphate: #37d5be;
+  --theme-phosphate-2: #28b39e;
+  --theme-phosphate-3: #1b9583;
+  --hero-brand-contrast: rgb(183, 41, 169);
+  --theme-phosphate-soft: #033a32;
   --vp-c-text-1: #f5f5f5;
-}
-
-.vp-doc {
-  font-family: var(--sans-text);
-  font-weight: 500;
 }
 
 .vp-doc h1 {
   font-family: var(--mono-heading);
   font-weight: 500;
+}
+
+.vp-doc p {
+  line-height: 1.5;
 }
 
 .vp-doc a {
