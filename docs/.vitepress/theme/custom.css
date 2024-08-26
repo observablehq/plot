@@ -8,13 +8,14 @@
   --theme-phosphate-3: #26c1ad;
   --theme-phosphate-soft: #d7fbf7;
   --vp-c-brand-1: var(--theme-phosphate); /* link and brand color */
-  --vp-c-brand-2: var(--theme-phosphate-2); 
+  --vp-c-brand-2: var(--theme-phosphate-2);
   --vp-c-brand-3: var(--theme-phosphate-3);
   --hero-brand-contrast: rgb(243, 139, 233); /* home page alt color */
   --vp-c-brand-soft: var(--theme-phosphate-soft);
   --mono-heading: "Spline Sans Mono", monospace;
   --vp-font-family-mono: var(--mono-heading);
   --vp-font-family-base: Inter, -apple-system, BlinkMacSystemFont, "avenir next", avenir, helvetica, "helvetica neue", ubuntu, roboto, noto, "segoe ui", arial, sans-serif;
+  --vp-code-color: inherit;
   --vp-code-font-size: 14px;
   --vp-code-line-height: 1.5;
 }
