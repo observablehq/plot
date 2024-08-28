@@ -1,6 +1,6 @@
 import {extent, deviation, max, mean, median, min, sum} from "d3";
 import {defined} from "../defined.js";
-import {percentile, taker} from "../options.js";
+import {maybeTypedArrayify, percentile, taker} from "../options.js";
 import {mapX, mapY} from "./map.js";
 
 export function normalizeX(basis, options) {
@@ -43,7 +43,8 @@ export function normalize(basis) {
 function normalizeBasis(basis) {
   return {
     mapIndex(I, S, T) {
-      const b = +basis(I, S);
+      S = maybeTypedArrayify(S, Float64Array);
+      const b = basis(I, S);
       for (const i of I) {
         T[i] = S[i] === null ? NaN : S[i] / b;
       }
