@@ -50,7 +50,7 @@ export async function walmartsAdditions() {
     )
   ]);
   return Plot.plot({
-    width: 200,
+    width: 220,
     projection: "albers-usa",
     fy: {interval: "5 years", axis: "right", tickFormat: "%Y—", reverse: true},
     marks: [

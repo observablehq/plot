@@ -1,5 +1,6 @@
 import * as Plot from "@observablehq/plot";
 import assert from "assert";
+import {JSDOM} from "jsdom";
 
 it("cell() has the expected defaults", () => {
   const cell = Plot.cell();
@@ -121,8 +122,9 @@ it("cellY() defaults y to identity and x to null", () => {
 });
 
 it("cell() is incompatible with a projection", () => {
+  const {window} = new JSDOM("");
   assert.throws(
-    () => Plot.cell([]).plot({projection: "equal-earth"}),
+    () => Plot.cell([]).plot({projection: "equal-earth", document: window.document}),
     /scale incompatible with channel: projection !== band/
   );
 });
