@@ -1,5 +1,6 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
+import {svg} from "htl";
 
 const demographics = d3.csvParse(
   `group,label,freq
@@ -259,6 +260,41 @@ export function wafflePointer() {
   });
 }
 
+export function wafflePointerFractional() {
+  const values = [0.51, 0.99, 0.5, 6, 0.3, 1.6, 9.1, 2, 18, 6, 0.5, 2.5, 46, 34, 20, 7, 0.5, 0.1, 0, 2.5, 1, 0.1, 0.8];
+  const multiple = 16;
+  return Plot.plot({
+    axis: null,
+    y: {insetTop: 12},
+    color: {scheme: "Dark2"},
+    marks: [
+      Plot.waffleY(values, {
+        x: null,
+        multiple,
+        fill: (d, i) => i % 7,
+        tip: true
+      }),
+      Plot.waffleY(values, {
+        x: null,
+        multiple,
+        // eslint-disable-next-line
+        render: (index, scales, values, dimensions, context, next) => {
+          const format = (d: number) => +d.toFixed(2);
+          const labels = (values.channels.y1 as any).source.value;
+          return svg`<g stroke="black" fill="white" paint-order="stroke" stroke-width="3">${Array.from(
+            index,
+            (i) =>
+              svg`<text ${{
+                dy: "0.38em",
+                x: values.x[i],
+                y: values.y1[i]
+              }}>${format(labels[i])}</text>`
+          )}</g>`;
+        }
+      })
+    ]
+  });
+}
 export function waffleTip() {
   return Plot.plot({
     color: {type: "sqrt", scheme: "spectral"},

@@ -1,4 +1,4 @@
-import {extent, namespaces, polygonCentroid} from "d3";
+import {extent, namespaces} from "d3";
 import {valueObject} from "../channel.js";
 import {create} from "../context.js";
 import {composeRender} from "../mark.js";
@@ -76,7 +76,7 @@ function waffleInitializer(y) {
 
     for (let i = 0; i < n; ++i) {
       P[i] = wafflePoints(round(Y1[i] / unit), round(Y2[i] / unit), multiple).map(transform);
-      const c = polygonCentroid(P[i]);
+      const c = P[i].pop();
       X[i] = c[ix] + mx(i);
       Y[i] = c[iy] + y0;
     }
@@ -192,6 +192,8 @@ function waffleRender(y) {
 // Waffles can also represent fractional intervals (e.g., 2.4–10.1). These
 // require additional corner cuts, so the implementation below generates a few
 // more points.
+//
+// The last point describes the centroid (used for pointing)
 function wafflePoints(i1, i2, columns) {
   if (i1 < 0 || i2 < 0) {
     const k = Math.ceil(-Math.min(i1, i2) / columns); // shift negative to positive
@@ -220,8 +222,41 @@ function wafflePoints(i1, i2, columns) {
       : [
           [Math.floor(i2 % columns), Math.ceil(i2 / columns)],
           [0, Math.ceil(i2 / columns)]
-        ])
+        ]),
+    centroid(i1, i2, columns)
   ];
+}
+
+function singleRowCentroid(i, j, columns) {
+  const c = Math.floor(j) - Math.floor(i);
+  return c === 0 // Single cell
+    ? [Math.floor(i % columns) + 0.5, Math.floor(i / columns) + (((i + j) / 2) % 1)]
+    : c === 1 // Two incomplete cells, use the overlap if it is large enough, otherwise use the largest
+    ? (j % 1) - (i % 1) > 0.5
+      ? [Math.ceil(i % columns), Math.floor(j / columns) + ((i % 1) + (j % 1)) / 2]
+      : j % 1 > 1 - (i % 1)
+      ? [Math.floor(j % columns) + 0.5, Math.floor(j / columns) + (j % 1) / 2]
+      : [Math.floor(i % columns) + 0.5, Math.floor(i / columns) + (1 + (i % 1)) / 2]
+    : // At least one full cell, take their midpoint
+      [
+        Math.ceil(i % columns) + Math.ceil(Math.floor(j) - Math.ceil(i)) / 2,
+        Math.floor(i / columns) + (j >= 1 + i ? 0.5 : ((i + j) / 2) % 1)
+      ];
+}
+
+function centroid(i1, i2, columns) {
+  const r = Math.floor(i2 / columns) - Math.floor(i1 / columns);
+  return r === 0 // Single row
+    ? singleRowCentroid(i1, i2, columns)
+    : // Two incomplete rows, use the midpoint of their overlap if they do, otherwise use the largest
+    r === 1
+    ? Math.floor(i2 % columns) > Math.ceil(i1 % columns)
+      ? [(Math.floor(i2 % columns) + Math.ceil(i1 % columns)) / 2, Math.floor(i2 / columns)]
+      : i2 % columns > columns - (i1 % columns)
+      ? singleRowCentroid(i2 - (i2 % columns), i2, columns)
+      : singleRowCentroid(i1, columns * Math.ceil(i1 / columns), columns)
+    : // At least one full row, take the midpoint of all the rows that include the middle
+      [columns / 2, (Math.round(i1 / columns) + Math.round(i2 / columns)) / 2];
 }
 
 function maybeRound(round) {
