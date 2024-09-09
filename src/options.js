@@ -69,6 +69,8 @@ function maybeTypedArrowify(vector, type) {
     ? vector
     : (type === undefined || type === Array) && isArrowDateType(vector.type)
     ? coerceDates(vector.toArray())
+    : (type === undefined || type === Array) && isArrowBigIntType(vector.type)
+    ? (type ?? Float64Array).from(vector.toArray(), Number)
     : maybeTypedArrayify(vector.toArray(), type);
 }
 
@@ -625,11 +627,21 @@ function isArrowVector(value) {
 // Apache Arrow now represents dates as numbers. We currently only support
 // implicit coercion to JavaScript Date objects when the numbers represent
 // milliseconds since Unix epoch.
+// https://github.com/apache/arrow/blob/cd50c324882ab1419d1728e9adad20d47b185508/js/src/enum.ts#L52-L72
 function isArrowDateType(type) {
   return (
     type &&
     (type.typeId === 8 || // date
       type.typeId === 10) && // timestamp
     type.unit === 1 // millisecond
+  );
+}
+
+// https://github.com/apache/arrow/blob/cd50c324882ab1419d1728e9adad20d47b185508/js/src/enum.ts#L52-L72
+function isArrowBigIntType(type) {
+  return (
+    type &&
+    type.typeId === 2 && // int
+    type.bitWidth >= 64
   );
 }
