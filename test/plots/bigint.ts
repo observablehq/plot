@@ -28,11 +28,13 @@ export async function bigintStack() {
 }
 
 export async function bigintNormalize() {
-  const table = await Arrow.tableFromIPC(fetch("data/height_frequency.arrow"));
+  const heights = await d3.csv("data/athletes.csv").then((data) => data.map((d) => d.height));
+  const table = Arrow.tableFromJSON(
+    d3.groups(heights, (d) => (d ? +d : NaN)).map(([height, {length}]) => ({height, frequency: BigInt(length)}))
+  );
   return Plot.plot({
     height: 500,
     x: {percent: true, grid: true},
-    y: {domain: [1.3, 2.21]},
     marks: [
       Plot.ruleX([0]),
       Plot.ruleY(
