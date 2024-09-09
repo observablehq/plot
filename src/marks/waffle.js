@@ -86,21 +86,12 @@ function waffleInitializer(y) {
     this.x0 = x0;
     this.y0 = y0;
 
-    // Restore the tip value for y.
-    const source = channels[`${y}2`].hint?.length
-      ? {
-          ...channels[`${y}1`],
-          value: Array.from(channels[`${y}1`].value, (d, i) => channels[`${y}2`].value[i] - d),
-          hint: {single: true}
-        }
-      : null;
-
     return {
       channels: {
         polygon: {value: P, source: null},
         [y === "y" ? "x" : "y"]: {value: X, scale: null, source: null},
-        [`${y}1`]: {value: Y, scale: null, source},
-        [`${y}2`]: {value: Y, scale: null, source}
+        [`${y}1`]: {value: Y, scale: null, source: channels[`${y}1`]},
+        [`${y}2`]: {value: Y, scale: null, source: channels[`${y}2`]}
       }
     };
   };

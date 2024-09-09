@@ -280,7 +280,8 @@ export function wafflePointerFractional() {
         // eslint-disable-next-line
         render: (index, scales, values, dimensions, context, next) => {
           const format = (d: number) => +d.toFixed(2);
-          const labels = (values.channels.y1 as any).source.value;
+          const y1 = (values.channels.y1 as any).source.value;
+          const y2 = (values.channels.y2 as any).source.value;
           return svg`<g stroke="black" fill="white" paint-order="stroke" stroke-width="3">${Array.from(
             index,
             (i) =>
@@ -288,7 +289,7 @@ export function wafflePointerFractional() {
                 dy: "0.38em",
                 x: values.x[i],
                 y: values.y1[i]
-              }}>${format(labels[i])}</text>`
+              }}>${format(y2[i] - y1[i])}</text>`
           )}</g>`;
         }
       })
