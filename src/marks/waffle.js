@@ -218,23 +218,6 @@ function wafflePoints(i1, i2, columns) {
   ];
 }
 
-function singleRowCentroid(i, j, columns) {
-  const c = Math.floor(j) - Math.floor(i);
-  return c === 0 // Single cell
-    ? [Math.floor(i % columns) + 0.5, Math.floor(i / columns) + (((i + j) / 2) % 1)]
-    : c === 1 // Two incomplete cells, use the overlap if it is large enough, otherwise use the largest
-    ? (j % 1) - (i % 1) > 0.5
-      ? [Math.ceil(i % columns), Math.floor(j / columns) + ((i % 1) + (j % 1)) / 2]
-      : j % 1 > 1 - (i % 1)
-      ? [Math.floor(j % columns) + 0.5, Math.floor(j / columns) + (j % 1) / 2]
-      : [Math.floor(i % columns) + 0.5, Math.floor(i / columns) + (1 + (i % 1)) / 2]
-    : // At least one full cell, take their midpoint
-      [
-        Math.ceil(i % columns) + Math.ceil(Math.floor(j) - Math.ceil(i)) / 2,
-        Math.floor(i / columns) + (j >= 1 + i ? 0.5 : ((i + j) / 2) % 1)
-      ];
-}
-
 function centroid(i1, i2, columns) {
   const r = Math.floor(i2 / columns) - Math.floor(i1 / columns);
   return r === 0 // Single row
@@ -248,6 +231,23 @@ function centroid(i1, i2, columns) {
       : singleRowCentroid(i1, columns * Math.ceil(i1 / columns), columns)
     : // At least one full row, take the midpoint of all the rows that include the middle
       [columns / 2, (Math.round(i1 / columns) + Math.round(i2 / columns)) / 2];
+}
+
+function singleRowCentroid(i1, i2, columns) {
+  const c = Math.floor(i2) - Math.floor(i1);
+  return c === 0 // Single cell
+    ? [Math.floor(i1 % columns) + 0.5, Math.floor(i1 / columns) + (((i1 + i2) / 2) % 1)]
+    : c === 1 // Two incomplete cells, use the overlap if it is large enough, otherwise use the largest
+    ? (i2 % 1) - (i1 % 1) > 0.5
+      ? [Math.ceil(i1 % columns), Math.floor(i2 / columns) + ((i1 % 1) + (i2 % 1)) / 2]
+      : i2 % 1 > 1 - (i1 % 1)
+      ? [Math.floor(i2 % columns) + 0.5, Math.floor(i2 / columns) + (i2 % 1) / 2]
+      : [Math.floor(i1 % columns) + 0.5, Math.floor(i1 / columns) + (1 + (i1 % 1)) / 2]
+    : // At least one full cell, take their midpoint
+      [
+        Math.ceil(i1 % columns) + Math.ceil(Math.floor(i2) - Math.ceil(i1)) / 2,
+        Math.floor(i1 / columns) + (i2 >= 1 + i1 ? 0.5 : ((i1 + i2) / 2) % 1)
+      ];
 }
 
 function maybeRound(round) {
