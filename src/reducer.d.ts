@@ -13,6 +13,7 @@ export type ReducerPercentile =
  * - *first* - the first value, in input order
  * - *last* - the last value, in input order
  * - *count* - the number of elements (frequency)
+ * - *density* – the count or sum normalized by series (*z*)
  * - *distinct* - the number of distinct values
  * - *sum* - the sum of values
  * - *proportion* - the sum proportional to the overall total (weighted frequency)
@@ -36,6 +37,7 @@ export type ReducerName =
   | "last"
   | "identity"
   | "count"
+  | "density"
   | "distinct"
   | "sum"
   | "proportion"
