@@ -175,7 +175,8 @@ export function plot(options = {}) {
   context.dispatchValue = (value) => {
     if (figure.value === value) return;
     figure.value = value;
-    figure.dispatchEvent(new Event("input", {bubbles: true}));
+    const Event = context.document.defaultView?.Event;
+    if (Event) figure.dispatchEvent(new Event("input", {bubbles: true}));
   };
 
   // Reinitialize; for deriving channels dependent on other channels.
