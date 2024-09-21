@@ -49,7 +49,7 @@ onUnmounted(() => {
 <template>
   <div :class="$style.examples" ref="container" :style="`transform: translate(${60 - x * 10}vw, 33%);`">
     <div v-for="(d, i) in sample" :style="`--delay: ${((i % xn) / xn + (d3.randomLcg(1 / i)()) - 0.4) * 1}s;`">
-      <a :href="`https://observablehq.com/${d.path}${d.path.includes('?') ? '&' : '?'}intent=fork`" :title="[d.title, d.author].filter(Boolean).join('\n')" target="_blank" :style="`--x: ${(i % xn) - xn / 2 + (Math.floor(i / xn) % 2) * 0.5}; --y: ${Math.floor(i / xn) - yn / 2};`">
+      <a :href="`https://observablehq.com/${d.path}`" :title="[d.title, d.author].filter(Boolean).join('\n')" target="_blank" :style="`--x: ${(i % xn) - xn / 2 + (Math.floor(i / xn) % 2) * 0.5}; --y: ${Math.floor(i / xn) - yn / 2};`">
         <img :src="`https://static.observableusercontent.com/thumbnail/${d.thumbnail}.jpg`" width="640" height="400" />
       </a>
     </div>
