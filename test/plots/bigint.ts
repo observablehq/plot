@@ -25,3 +25,28 @@ export async function bigintOrdinal() {
 export async function bigintStack() {
   return Plot.barY(integers, {x: (d, i) => i % 5, y: "big1"}).plot();
 }
+
+async function olympiansByWeight() {
+  const olympians = await d3.csv<any>("data/athletes.csv", d3.autoType);
+  return d3
+    .bin()(olympians.map((d) => d.height))
+    .map((bin) => ({weightclass: bin.x0, count: BigInt(bin.length)}));
+}
+
+export async function bigintNormalize() {
+  return Plot.rectY(
+    d3.sort(await olympiansByWeight(), (d) => -d.count),
+    Plot.normalizeY({x: "weightclass", y: "count"})
+  ).plot();
+}
+
+export async function bigintNormalizeMean() {
+  return Plot.plot({
+    x: {interval: 0.05},
+    y: {label: "relative to mean"},
+    marks: [
+      Plot.barY(await olympiansByWeight(), Plot.normalizeY("mean", {x: "weightclass", y: "count"})),
+      Plot.ruleY([1], {stroke: "red"})
+    ]
+  });
+}
