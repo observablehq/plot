@@ -258,6 +258,7 @@ export * from "./raster-vapor.js";
 export * from "./raster-walmart.js";
 export * from "./rect-band.js";
 export * from "./reducer-scale-override.js";
+export * from "./ridgeline.js";
 export * from "./rounded-rect.js";
 export * from "./seattle-precipitation-density.js";
 export * from "./seattle-precipitation-rule.js";
