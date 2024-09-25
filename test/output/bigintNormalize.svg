@@ -1,0 +1,173 @@
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="500" viewBox="0 0 640 500" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style>
+    :where(.plot) {
+      --plot-background: white;
+      display: block;
+      height: auto;
+      height: intrinsic;
+      max-width: 100%;
+    }
+
+    :where(.plot text),
+    :where(.plot tspan) {
+      white-space: pre;
+    }
+  </style>
+  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+    <path transform="translate(40,429.5)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,384.50000000000006)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,339.5)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,294.49999999999994)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,249.50000000000003)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,204.49999999999997)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,159.50000000000003)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,114.49999999999999)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,69.49999999999994)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,24.499999999999904)" d="M0,0L-6,0"></path>
+  </g>
+  <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
+    <text y="0.32em" transform="translate(40,429.5)">1.3</text>
+    <text y="0.32em" transform="translate(40,384.50000000000006)">1.4</text>
+    <text y="0.32em" transform="translate(40,339.5)">1.5</text>
+    <text y="0.32em" transform="translate(40,294.49999999999994)">1.6</text>
+    <text y="0.32em" transform="translate(40,249.50000000000003)">1.7</text>
+    <text y="0.32em" transform="translate(40,204.49999999999997)">1.8</text>
+    <text y="0.32em" transform="translate(40,159.50000000000003)">1.9</text>
+    <text y="0.32em" transform="translate(40,114.49999999999999)">2.0</text>
+    <text y="0.32em" transform="translate(40,69.49999999999994)">2.1</text>
+    <text y="0.32em" transform="translate(40,24.499999999999904)">2.2</text>
+  </g>
+  <g aria-label="y-axis label" text-anchor="start" transform="translate(-36.5,-16.5)">
+    <text y="0.71em" transform="translate(40,20)">↑ height</text>
+  </g>
+  <g aria-label="x-grid" aria-hidden="true" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+    <line x1="40" x2="40" y1="20" y2="470"></line>
+    <line x1="97.69" x2="97.69" y1="20" y2="470"></line>
+    <line x1="155.38" x2="155.38" y1="20" y2="470"></line>
+    <line x1="213.07" x2="213.07" y1="20" y2="470"></line>
+    <line x1="270.76000000000005" x2="270.76000000000005" y1="20" y2="470"></line>
+    <line x1="328.45000000000005" x2="328.45000000000005" y1="20" y2="470"></line>
+    <line x1="386.14" x2="386.14" y1="20" y2="470"></line>
+    <line x1="443.83000000000004" x2="443.83000000000004" y1="20" y2="470"></line>
+    <line x1="501.52000000000004" x2="501.52000000000004" y1="20" y2="470"></line>
+    <line x1="559.21" x2="559.21" y1="20" y2="470"></line>
+    <line x1="616.9000000000001" x2="616.9000000000001" y1="20" y2="470"></line>
+  </g>
+  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+    <path transform="translate(40,470)" d="M0,0L0,6"></path>
+    <path transform="translate(97.69,470)" d="M0,0L0,6"></path>
+    <path transform="translate(155.38,470)" d="M0,0L0,6"></path>
+    <path transform="translate(213.07,470)" d="M0,0L0,6"></path>
+    <path transform="translate(270.76000000000005,470)" d="M0,0L0,6"></path>
+    <path transform="translate(328.45000000000005,470)" d="M0,0L0,6"></path>
+    <path transform="translate(386.14,470)" d="M0,0L0,6"></path>
+    <path transform="translate(443.83000000000004,470)" d="M0,0L0,6"></path>
+    <path transform="translate(501.52000000000004,470)" d="M0,0L0,6"></path>
+    <path transform="translate(559.21,470)" d="M0,0L0,6"></path>
+    <path transform="translate(616.9000000000001,470)" d="M0,0L0,6"></path>
+  </g>
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+    <text y="0.71em" transform="translate(40,470)">0.0</text>
+    <text y="0.71em" transform="translate(97.69,470)">0.5</text>
+    <text y="0.71em" transform="translate(155.38,470)">1.0</text>
+    <text y="0.71em" transform="translate(213.07,470)">1.5</text>
+    <text y="0.71em" transform="translate(270.76000000000005,470)">2.0</text>
+    <text y="0.71em" transform="translate(328.45000000000005,470)">2.5</text>
+    <text y="0.71em" transform="translate(386.14,470)">3.0</text>
+    <text y="0.71em" transform="translate(443.83000000000004,470)">3.5</text>
+    <text y="0.71em" transform="translate(501.52000000000004,470)">4.0</text>
+    <text y="0.71em" transform="translate(559.21,470)">4.5</text>
+    <text y="0.71em" transform="translate(616.9000000000001,470)">5.0</text>
+  </g>
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(17.5,27.5)">
+    <text transform="translate(620,470)">frequency (%) →</text>
+  </g>
+  <g aria-label="rule" stroke="currentColor" transform="translate(0.5,0)">
+    <line x1="40" x2="40" y1="20" y2="470"></line>
+  </g>
+  <g aria-label="rule" stroke="currentColor" stroke-width="2" transform="translate(0,0.5)">
+    <line x1="40" x2="424.00000000000006" y1="240.49999999999997" y2="240.49999999999997"></line>
+    <line x1="40" x2="453" y1="258.5" y2="258.5"></line>
+    <line x1="40" x2="130" y1="123.5" y2="123.5"></line>
+    <line x1="40" x2="435.00000000000006" y1="190.99999999999994" y2="190.99999999999994"></line>
+    <line x1="40" x2="293.00000000000006" y1="199.99999999999997" y2="199.99999999999997"></line>
+    <line x1="40" x2="620" y1="204.49999999999997" y2="204.49999999999997"></line>
+    <line x1="40" x2="60" y1="92.00000000000007" y2="92.00000000000007"></line>
+    <line x1="40" x2="168.00000000000006" y1="146.00000000000003" y2="146.00000000000003"></line>
+    <line x1="40" x2="420" y1="272.00000000000006" y2="272.00000000000006"></line>
+    <line x1="40" x2="619.0000000000001" y1="249.50000000000003" y2="249.50000000000003"></line>
+    <line x1="40" x2="524.0000000000001" y1="227" y2="227"></line>
+    <line x1="40" x2="158" y1="289.99999999999994" y2="289.99999999999994"></line>
+    <line x1="40" x2="493.00000000000006" y1="213.49999999999997" y2="213.49999999999997"></line>
+    <line x1="40" x2="378" y1="222.49999999999997" y2="222.49999999999997"></line>
+    <line x1="40" x2="55" y1="69.49999999999994" y2="69.49999999999994"></line>
+    <line x1="40" x2="464" y1="236" y2="236"></line>
+    <line x1="40" x2="374" y1="181.99999999999994" y2="181.99999999999994"></line>
+    <line x1="40" x2="329.00000000000006" y1="217.99999999999997" y2="217.99999999999997"></line>
+    <line x1="40" x2="301" y1="159.50000000000003" y2="159.50000000000003"></line>
+    <line x1="40" x2="357" y1="177.49999999999994" y2="177.49999999999994"></line>
+    <line x1="40" x2="319" y1="231.49999999999997" y2="231.49999999999997"></line>
+    <line x1="40" x2="276.00000000000006" y1="294.49999999999994" y2="294.49999999999994"></line>
+    <line x1="40" x2="54" y1="83.00000000000006" y2="83.00000000000006"></line>
+    <line x1="40" x2="296.0000000000001" y1="168.50000000000003" y2="168.50000000000003"></line>
+    <line x1="40" x2="245" y1="267.5" y2="267.5"></line>
+    <line x1="40" x2="198" y1="285.49999999999994" y2="285.49999999999994"></line>
+    <line x1="40" x2="221" y1="172.99999999999994" y2="172.99999999999994"></line>
+    <line x1="40" x2="72.00000000000001" y1="101.00000000000009" y2="101.00000000000009"></line>
+    <line x1="40" x2="278.00000000000006" y1="254" y2="254"></line>
+    <line x1="40" x2="317" y1="195.49999999999994" y2="195.49999999999994"></line>
+    <line x1="40" x2="179.00000000000006" y1="164.00000000000003" y2="164.00000000000003"></line>
+    <line x1="40" x2="157.00000000000003" y1="141.5" y2="141.5"></line>
+    <line x1="40" x2="158" y1="137" y2="137"></line>
+    <line x1="40" x2="295" y1="245" y2="245"></line>
+    <line x1="40" x2="284" y1="186.49999999999994" y2="186.49999999999994"></line>
+    <line x1="40" x2="204.00000000000003" y1="155.00000000000003" y2="155.00000000000003"></line>
+    <line x1="40" x2="318.0000000000001" y1="263" y2="263"></line>
+    <line x1="40" x2="77" y1="105.49999999999997" y2="105.49999999999997"></line>
+    <line x1="40" x2="160" y1="303.49999999999994" y2="303.49999999999994"></line>
+    <line x1="40" x2="275" y1="281" y2="281"></line>
+    <line x1="40" x2="235" y1="208.99999999999997" y2="208.99999999999997"></line>
+    <line x1="40" x2="111" y1="128" y2="128"></line>
+    <line x1="40" x2="90" y1="312.49999999999994" y2="312.49999999999994"></line>
+    <line x1="40" x2="106" y1="317" y2="317"></line>
+    <line x1="40" x2="109.00000000000001" y1="307.99999999999994" y2="307.99999999999994"></line>
+    <line x1="40" x2="42" y1="357.5" y2="357.5"></line>
+    <line x1="40" x2="190.00000000000003" y1="150.5" y2="150.5"></line>
+    <line x1="40" x2="233" y1="276.50000000000006" y2="276.50000000000006"></line>
+    <line x1="40" x2="78" y1="325.99999999999994" y2="325.99999999999994"></line>
+    <line x1="40" x2="78" y1="119" y2="119"></line>
+    <line x1="40" x2="151" y1="132.5" y2="132.5"></line>
+    <line x1="40" x2="98" y1="114.49999999999999" y2="114.49999999999999"></line>
+    <line x1="40" x2="63.00000000000001" y1="96.49999999999997" y2="96.49999999999997"></line>
+    <line x1="40" x2="45" y1="353" y2="353"></line>
+    <line x1="40" x2="80" y1="330.49999999999994" y2="330.49999999999994"></line>
+    <line x1="40" x2="73" y1="110.00000000000009" y2="110.00000000000009"></line>
+    <line x1="40" x2="54" y1="335" y2="335"></line>
+    <line x1="40" x2="113" y1="298.99999999999994" y2="298.99999999999994"></line>
+    <line x1="40" x2="54" y1="78.49999999999996" y2="78.49999999999996"></line>
+    <line x1="40" x2="42" y1="397.99999999999994" y2="397.99999999999994"></line>
+    <line x1="40" x2="65" y1="339.5" y2="339.5"></line>
+    <line x1="40" x2="50" y1="362" y2="362"></line>
+    <line x1="40" x2="55" y1="87.49999999999996" y2="87.49999999999996"></line>
+    <line x1="40" x2="67" y1="321.5" y2="321.5"></line>
+    <line x1="40" x2="48.00000000000001" y1="65.00000000000004" y2="65.00000000000004"></line>
+    <line x1="40" x2="43" y1="371" y2="371"></line>
+    <line x1="40" x2="48.00000000000001" y1="344" y2="344"></line>
+    <line x1="40" x2="42" y1="415.99999999999994" y2="415.99999999999994"></line>
+    <line x1="40" x2="45" y1="348.49999999999994" y2="348.49999999999994"></line>
+    <line x1="40" x2="41" y1="366.50000000000006" y2="366.50000000000006"></line>
+    <line x1="40" x2="43" y1="56.000000000000036" y2="56.000000000000036"></line>
+    <line x1="40" x2="47.00000000000001" y1="74.00000000000004" y2="74.00000000000004"></line>
+    <line x1="40" x2="41" y1="20" y2="20"></line>
+    <line x1="40" x2="41" y1="33.499999999999915" y2="33.499999999999915"></line>
+    <line x1="40" x2="41" y1="470" y2="470"></line>
+    <line x1="40" x2="41" y1="393.5" y2="393.5"></line>
+    <line x1="40" x2="41" y1="411.49999999999994" y2="411.49999999999994"></line>
+    <line x1="40" x2="42" y1="47.00000000000002" y2="47.00000000000002"></line>
+    <line x1="40" x2="41" y1="38.000000000000014" y2="38.000000000000014"></line>
+    <line x1="40" x2="41" y1="375.5" y2="375.5"></line>
+    <line x1="40" x2="41" y1="384.50000000000006" y2="384.50000000000006"></line>
+    <line x1="40" x2="41" y1="51.49999999999993" y2="51.49999999999993"></line>
+  </g>
+  <g aria-label="tip" fill="var(--plot-background)" stroke="currentColor" pointer-events="none" text-anchor="start" transform="translate(0.5,0.5)"></g>
+</svg>

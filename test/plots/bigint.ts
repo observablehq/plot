@@ -1,5 +1,6 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
+import * as Arrow from "apache-arrow";
 
 const integers = d3.range(40).map((int) => ({
   big1: BigInt(int),
@@ -24,4 +25,22 @@ export async function bigintOrdinal() {
 
 export async function bigintStack() {
   return Plot.barY(integers, {x: (d, i) => i % 5, y: "big1"}).plot();
+}
+
+export async function bigintNormalize() {
+  const heights = await d3.csv("data/athletes.csv").then((data) => data.map((d) => d.height));
+  const table = Arrow.tableFromJSON(
+    d3.groups(heights, (d) => (d ? +d : NaN)).map(([height, {length}]) => ({height, frequency: BigInt(length)}))
+  );
+  return Plot.plot({
+    height: 500,
+    x: {percent: true, grid: true},
+    marks: [
+      Plot.ruleX([0]),
+      Plot.ruleY(
+        table,
+        Plot.normalizeX("sum", {strokeWidth: 2, y: "height", x: "frequency", tip: {format: {y: ".2f"}}})
+      )
+    ]
+  });
 }
