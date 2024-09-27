@@ -8,3 +8,13 @@ export async function shorthandAreaY() {
   ];
   return Plot.areaY(numbers).plot();
 }
+
+export async function shorthandAreaYNaN() {
+  const numbers = [57.5, 37.6, 48.5, 42.4, NaN, NaN, NaN, NaN, 66.5, 67.7, 49.2, 58.7, 41.4, 54.4, 41.7, 49.8, 60.2, 44.5, 47.4, 33.5]; // prettier-ignore
+  return Plot.areaY(numbers).plot();
+}
+
+export async function shorthandAreaYNull() {
+  const numbers = [57.5, 37.6, 48.5, 42.4, null, null, null, null, 66.5, 67.7, 49.2, 58.7, 41.4, 54.4, 41.7, 49.8, 60.2, 44.5, 47.4, 33.5]; // prettier-ignore
+  return Plot.areaY(numbers).plot();
+}
