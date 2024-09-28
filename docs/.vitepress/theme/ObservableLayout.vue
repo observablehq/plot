@@ -46,4 +46,13 @@ const {Layout} = DefaultTheme;
 .VPNavBarHamburger {
   display: none !important;
 }
+
+/* rounded corners for search field */
+@media (min-width: 768px) {
+  .DocSearch-Button {
+    border-radius: 1000px;
+    padding-right: 1rem;
+    height: 2rem;
+  }
+}
 </style>
