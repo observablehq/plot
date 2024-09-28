@@ -2,6 +2,7 @@ import {fileURLToPath, URL} from "node:url";
 import path from "node:path";
 import {defineConfig} from "vitepress";
 import plot from "./markdown-it-plot.js";
+import {getStargazersCount} from "./theme/stargazers.data.js";
 
 // https://vitepress.dev/reference/site-config
 // prettier-ignore
@@ -17,6 +18,9 @@ export default defineConfig({
         {find: "@observablehq/plot", replacement: path.resolve("./src/index.js")},
         {find: /^.*\/VPFooter\.vue$/, replacement: fileURLToPath(new URL("./theme/CustomFooter.vue", import.meta.url))}
       ]
+    },
+    define: {
+        '__APP_VERSION__': JSON.stringify(process.env.npm_package_version),
     }
   },
   markdown: {
@@ -43,12 +47,6 @@ export default defineConfig({
       light: "/observable-light.svg",
       dark: "/observable-dark.svg"
     },
-    nav: [
-      {text: "Home", link: "/"},
-      {text: "Examples", link: "https://observablehq.com/@observablehq/plot-gallery"},
-      {text: "Community", link: "/community"},
-      {text: "D3", link: "https://d3js.org"}
-    ],
     sidebar: [
       {
         text: "Introduction",
@@ -148,13 +146,6 @@ export default defineConfig({
     search: {
       provider: "local"
     },
-    socialLinks: [
-      {icon: "github", link: "https://github.com/observablehq/plot"},
-      {icon: "x", link: "https://twitter.com/observablehq"},
-      {icon: "slack", link: "https://observablehq.com/slack/join"},
-      {icon: "linkedin", link: "https://www.linkedin.com/company/observable"},
-      {icon: "youtube", link: "https://www.youtube.com/c/Observablehq"}
-    ],
     footer: {
       message: "Library released under <a style='text-decoration:underline;' href='https://github.com/observablehq/plot/blob/main/LICENSE'>ISC License</a>.",
       copyright: `Copyright 2020–${new Date().getUTCFullYear()} Observable, Inc.`

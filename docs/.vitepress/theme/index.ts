@@ -4,11 +4,12 @@ import {watch} from "vue";
 import PlotRender from "../../components/PlotRender.js";
 import CustomLayout from "./CustomLayout.vue";
 import VersionBadge from "./VersionBadge.vue";
+import ObservableLayout from "./ObservableLayout.vue";
 import "./custom.css";
 
 export default {
   extends: DefaultTheme,
-  Layout: CustomLayout,
+  Layout: ObservableLayout,
   enhanceApp({app, router}) {
     Object.defineProperty(app.config.globalProperties, "$dark", {get: () => useData().isDark.value});
     app.component("PlotRender", PlotRender);

@@ -1,11 +1,11 @@
 <script setup>
-
 import DefaultTheme from "vitepress/theme-without-fonts";
 import ExamplesGrid from "./ExamplesGrid.vue";
 import ObservablePromo from "./ObservablePromo.vue";
+import MadeByObservable from "./MadeByObservable.vue";
+import GitHub from "./GitHub.vue";
 
 const {Layout} = DefaultTheme;
-
 </script>
 
 <template>
@@ -16,11 +16,16 @@ const {Layout} = DefaultTheme;
     <template #home-features-after>
       <ObservablePromo />
     </template>
+    <template #nav-bar-content-after>
+      <div style="display: flex; gap: 1rem">
+        <GitHub />
+        <MadeByObservable />
+      </div>
+    </template>
   </Layout>
 </template>
 
 <style>
-
 .VPHome {
   overflow-x: hidden; /* iOS */
 }
@@ -35,4 +40,10 @@ const {Layout} = DefaultTheme;
   background-color: rgba(37, 37, 41, 0.5);
 }
 
+/* Hide the dark mode toggle */
+.VPNavBarAppearance,
+.VPNavBarExtra,
+.VPNavBarHamburger {
+  display: none !important;
+}
 </style>
