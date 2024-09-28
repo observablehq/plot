@@ -52,9 +52,11 @@ a[target="_blank"]:hover span {
 
 a[target="_blank"]::after {
   content: "\2197";
+  color: var(--vp-c-text-2);
+  font-weight: 400;
 }
 
 a[target="_blank"]:not(:hover, :focus)::after {
-  color: var(--vp-c-text-2);
+  color: var(--vp-c-text-3);
 }
 </style>
