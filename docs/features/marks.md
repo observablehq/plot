@@ -593,29 +593,31 @@ A convenience method for composing a mark from a series of other marks. Returns 
 
 ## Rendering
 
-A mark’s render method is called for each facet, unless its data for that facet is empty. The render method is responsible for drawing the mark by producing an SVG element.
+To draw the visual representation of a mark, Plot calls its render function and inserts the returned SVG element (if any) in the chart. This function is called for each non-empty facet. It may also be called repeatedly by interactions, for example when the [pointer](../interactions/pointer.md) transform needs to draw the highlighted data point after a mouse move.
 
 :::warning
-We do not recommend using this low-level interface when a more high-level option exists such as a [data transform](https://observablehq.com/plot/features/transforms). It is meant for use by extension developers more than by users.
+This is a low-level interface. We recommend using higher-level options, such as [data transforms](./transforms.md), when possible.
 :::
 
-The mark’s render function is called with the following five arguments:
+After all the marks have been initialized, the scales computed and applied to the channels, Plot calls the mark’s render function with the following five arguments, for each facet:
 
-* *index*: the index of the facet
+* *index*: the index of data to draw on this facet
 * *scales*: the scale functions and descriptors
 * *values*: the scaled and raw channels
 * *dimensions*: the dimensions of the facet
 * *context*: the context
 
-The function is expected to return a single SVG node, or null or undefined if no output is desired for the current facet. Typically, it returns a [G element](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/g), with a child node (say, a [circle element](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/circle)) for each valid data point.
+The render function must return a single SVG node—or a nullish value if there is no output. For a typical mark, like dot, it might return a [G element](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/g), with common properties reflecting, say, a constant stroke or fill color; this group will have children [circle](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/circle) elements for each data point, with individual properties reflecting, say, a variable radius.
 
-You can extend or replace this method by specifying a render transform with the mark’s **render** option. The render transform will be called with the five arguments described above and a sixth argument:
+You can override or extend this function by specifying a function as the mark’s **render** option. Plot calls that function with the mark as *this* and, in addition to the five arguments listed above, a sixth argument:
 
 * *next*: the next render method in the chain
 
-The *index* is an array of indices in the channels, that represent the points to be drawn in the current facet. The *scales* object contains the scale functions, indexed by name, and an additional scales property with the scales descriptors, also indexed by name.
+The first argument, *index*, is an array of indices representing the valid points to be drawn in the current facet.
 
-For example, the following code will log the color associated with the Torgersen category ("#e15759") and the [instantiated color scale object](./plots.md#plot_scale), and will not render anything to the chart.
+The *scales* object contains the scale functions, indexed by name, and an additional scales property with the scales descriptors, also indexed by name.
+
+For example, the following code will log the color associated with the Torgersen category ("#e15759") and the [instantiated color scale object](./plots.md#plot_scale); as it returns undefined, it will not render anything to the chart.
 
 ```js
 Plot.dot(penguins, {
@@ -644,7 +646,7 @@ Plot.dot(penguins, {
 }).plot()
 ```
 
-will output the following three lines to the console, with each line containing the index of the first penguin of the current facet, its fill color, and the underlying (unscaled) category:
+will output the following three lines to the console, with each line containing the index of the first penguin in the current facet, its fill color, and the underlying (unscaled) category:
 
 ```js
 0 '#e15759' 'Torgersen'
@@ -674,13 +676,16 @@ The *context* contains several useful globals:
 * document - the [document object](https://developer.mozilla.org/en-US/docs/Web/API/Document)
 * ownerSVGElement - the chart’s bare svg element
 * className - the [class name](./plots.md#other-options) of the chart (*e.g.*, "plot-d6a7b5")
+* clip - the top-level [clip](./plots.md#other-options) option (to use when the mark’s clip option is undefined)
 * projection - the [projection](./projections.md) stream, if any
+* dispatchValue - a function that sets the chart’s value and dispatches an input event if the value has changed; useful for interactive marks
+* getMarkState - a function that returns a mark’s state
 
 :::tip
-When you write a plugin, using *context*.document allows your code to run in different contexts such as a server-side rendering environment.
+When you write a custom mark, use *context*.document to allow your code to run in different environments, such as a server-side rendering with jsdom.
 :::
 
-Render transforms are called with a sixth argument, *next*, a function that can be called to continue the render chain. For example, if you wish to animate a mark to fade in, you can render it as usual, immediately set its opacity to 0, then bring it to life with D3:
+The sixth argument, *next*, is a function that can be called to continue the render chain. For example, if you wish to animate a mark to fade in, you can set the render option to a function that calls next to render the mark as usual, then immediately sets its opacity to 0, and brings it to life with a [D3 transition](https://d3js.org/d3-transition):
 
 ```js
 Plot.dot(penguins, {
@@ -691,17 +696,17 @@ Plot.dot(penguins, {
     const g = next(index, scales, values, dimensions, context);
     d3.select(g)
       .selectAll("circle")
-      .style("opacity", 0)
+        .style("opacity", 0)
       .transition()
       .delay(() => Math.random() * 5000)
-      .style("opacity", 1);
+        .style("opacity", 1);
     return g;
   }
 }).plot()
 ```
 
 :::info
-Note that Plot’s marks usually set the attributes of the nodes. As styles have precedence over attributes, the output can be customized with [CSS](https://developer.mozilla.org/en-US/docs/Web/CSS).
+Note that Plot’s marks usually set the attributes of the nodes. As styles have precedence over attributes, it is much simpler to customize the output with [CSS](https://developer.mozilla.org/en-US/docs/Web/CSS), when possible, than with a custom render function.
 :::
 
 Here is another example, where we render the dots one by one:
@@ -723,7 +728,3 @@ Plot.dot(penguins, {
   }
 }).plot()
 ```
-
-:::info
-A similar technique is used by Plot’s [pointer](../interactions/pointer.md) transform to render the point closest to the pointer.
-:::
