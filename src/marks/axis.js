@@ -632,7 +632,7 @@ function axisMark(mark, k, data, properties, options, initialize) {
         return [name, {...channel, value: valueof(data, channel.value)}];
       })
     );
-    if (initializeFacets) facets = context.filterFacets(data, initializedChannels);
+    if (initializeFacets) facets = context._filterFacets(data, initializedChannels);
     return {data, facets, channels: initializedChannels};
   }
 

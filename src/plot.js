@@ -160,7 +160,7 @@ export function plot(options = {}) {
   context.projection = createProjection(options, subdimensions);
 
   // Allows e.g. the axis mark to determine faceting lazily.
-  context.filterFacets = (data, channels) => {
+  context._filterFacets = (data, channels) => {
     return facetFilter(facets, {channels, groups: facetGroups(data, channels)});
   };
 
