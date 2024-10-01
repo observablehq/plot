@@ -678,8 +678,9 @@ The *context* contains several useful globals:
 * className - the [class name](./plots.md#other-options) of the chart (*e.g.*, "plot-d6a7b5")
 * clip - the top-level [clip](./plots.md#other-options) option (to use when the mark’s clip option is undefined)
 * projection - the [projection](./projections.md) stream, if any
-* dispatchValue - a function that sets the chart’s value and dispatches an input event if the value has changed; useful for interactive marks
-* getMarkState - a function that returns a mark’s state
+* dispatchValue - sets the chart’s value and dispatches an input event if the value has changed; useful for interactive marks
+* getMarkState - read a mark’s index and channels
+* filterFacets - compute the facets for arbitrary data (for use in an [initializer](./transforms#initializer))
 
 :::tip
 When you write a custom mark, use *context*.document to allow your code to run in different environments, such as a server-side rendering with jsdom.
@@ -709,7 +710,7 @@ Plot.dot(penguins, {
 Note that Plot’s marks usually set the attributes of the nodes. As styles have precedence over attributes, it is much simpler to customize the output with [CSS](https://developer.mozilla.org/en-US/docs/Web/CSS), when possible, than with a custom render function.
 :::
 
-Here is another example, where we render the dots one by one:
+In this chart, we render the dots one by one:
 ```js
 Plot.dot(penguins, {
   x: "culmen_length_mm",
@@ -722,7 +723,9 @@ Plot.dot(penguins, {
       const newNode = next(index.slice(0, ++k), scales, values, dimensions, context);
       node.replaceWith(newNode);
       node = newNode;
-      if (node.isConnected && k < index.length) requestAnimationFrame(draw);
+      if (node.isConnected && k < index.length) {
+        requestAnimationFrame(draw);
+      }
     });
     return node;
   }
