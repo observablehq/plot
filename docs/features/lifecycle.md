@@ -1,3 +1,21 @@
+<script setup>
+
+import * as Plot from "@observablehq/plot";
+import * as d3 from "d3";
+import {ref, shallowRef, onMounted} from "vue";
+
+import penguins from "../data/penguins.ts";
+const bls = shallowRef([]);
+
+onMounted(() => {
+  d3.csv("../data/bls-metro-unemployment.csv", d3.autoType).then((data) => (bls.value = data));
+});
+
+const replay1 = ref("replay");
+const replay2 = ref("replay");
+
+</script>
+
 # The lifecycle of a chart
 
 :::warning
@@ -117,6 +135,7 @@ will output the following three lines to the console, with each line containing 
 
 The *dimensions* object contains the marginTop, marginRight, marginLeft,marginBottom, and width and height of the chart. For example, to draw an ellipse that extends to the edges:
 
+:::plot
 ```js
 Plot.plot({
   marks: [
@@ -132,6 +151,7 @@ Plot.plot({
   ]
 })
 ```
+:::
 
 The *context* contains several useful globals:
 * document - the [document object](https://developer.mozilla.org/en-US/docs/Web/API/Document)
@@ -147,51 +167,107 @@ The *context* contains several useful globals:
 When you write a custom mark, use *context*.document to allow your code to run in different environments, such as a server-side rendering with jsdom.
 :::
 
-The sixth argument, *next*, is a function that can be called to continue the render chain. For example, if you wish to animate a mark to fade in, you can set the render option to a function that calls next to render the mark as usual, then immediately sets its opacity to 0, and brings it to life with a [D3 transition](https://d3js.org/d3-transition):
+The sixth argument, *next*, is a function that can be called to continue the render chain. For example, if you wish to animate a mark to fade in, you can set the render option to a function that calls next to render the mark, sets its opacity to 0.1, then brings it to life with a [D3 transition](https://d3js.org/d3-transition):
 
-```js
+<p>
+  <label class="label-input">
+    <input type="button" v-model="replay1" @click="(replay1='update', replay1='replay')">
+  </label>
+</p>
+
+:::plot defer
+```js-vue
 Plot.dot(penguins, {
-  x: "culmen_length_mm",
+  x: "{{($replay1, "culmen_length_mm")}}",
   y: "culmen_depth_mm",
   fill: "island",
   render(index, scales, values, dimensions, context, next) {
     const g = next(index, scales, values, dimensions, context);
     d3.select(g)
       .selectAll("circle")
-        .style("opacity", 0)
+        .style("opacity", 0.1)
       .transition()
       .delay(() => Math.random() * 5000)
+      .duration(2000)
         .style("opacity", 1);
     return g;
   }
 }).plot()
 ```
+:::
 
 :::info
 Note that Plot’s marks usually set the attributes of the nodes. As styles have precedence over attributes, it is much simpler to customize the output with [CSS](https://developer.mozilla.org/en-US/docs/Web/CSS), when possible, than with a custom render function.
 :::
 
 In this chart, we render the dots one by one:
-```js
+<p>
+  <label class="label-input">
+    <input type="button" v-model="replay2" @click="(replay2='update', replay2='replay')">
+  </label>
+</p>
+
+:::plot defer
+```js-vue
 Plot.dot(penguins, {
-  x: "culmen_length_mm",
+  x: "{{($replay2, "culmen_length_mm")}}",
   y: "culmen_depth_mm",
   fill: "island",
   render(index, scales, values, dimensions, context, next) {
     let node = next(index, scales, values, dimensions, context);
     let k = 0;
-    requestAnimationFrame(function draw() {
+    const i = d3.interval(function draw() {
       const newNode = next(index.slice(0, ++k), scales, values, dimensions, context);
       node.replaceWith(newNode);
       node = newNode;
-      if (node.isConnected && k < index.length) {
-        requestAnimationFrame(draw);
-      }
+      if (!node.isConnected || k >= index.length) i.stop();
     });
     return node;
   }
 }).plot()
 ```
+:::
+
+In the following example, we tweak the **render** option of the implicit tip mark of a line chart to make it do much more than display a tip. Note that it takes advantage of the current implementation of the line mark: since it binds the data indices with the SVG elements, we can filter the paths we want to highlight.
+
+:::plot defer
+```js-vue
+Plot.plot({
+  y: {
+    grid: true,
+    label: "↑ Unemployment (%)"
+  },
+  marks: [
+    Plot.ruleY([0]),
+    Plot.lineY(bls, {
+      x: "date",
+      y: "unemployment",
+      z: "division",
+      stroke: "steelblue",
+      mixBlendMode: "{{$dark ? "screen" : "multiply"}}",
+      tip: {
+        render(index, scales, values, dimensions, context, next) {
+          // Filter and highlight the paths with the same *z* as the hovered point.
+          const path = d3.select(context.ownerSVGElement).selectAll("[aria-label=line] path");
+          if (index.length) {
+            const z = values.z[index[0]];
+            path.style("stroke", "currentColor")
+                .style("stroke-opacity", 0.1)
+              .filter(([i]) => values.z[i] === z)
+                .style("stroke", null)
+                .style("stroke-opacity", null)
+                .raise();
+          }
+          else path.style("stroke", null);
+          // Render the tip (optional).
+          return next(index, scales, values, dimensions, context);
+        }
+      }
+    })
+  ]
+})
+```
+:::
 
 :::tip
 If you have any question about this documentation, please open a [GitHub discussion](https://github.com/observablehq/framework/discussions/categories/q-a).
