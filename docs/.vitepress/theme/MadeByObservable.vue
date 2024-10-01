@@ -1,6 +1,6 @@
 <template>
   <div class="made-by-observable">
-    <div class="button">
+    <div class="button" v-on:click="onMadeByObservableClick()">
       Made by Observable
       <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path
@@ -44,6 +44,23 @@
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  methods: {
+    onMadeByObservableClick(popupRef) {
+      function is_touch_enabled() {
+        return "ontouchstart" in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0;
+      }
+      if (!is_touch_enabled()) {
+        return;
+      }
+      const popup = document.querySelector(".made-by-observable > .popup");
+      popup.style.display = (!popup.style.display || popup.style.display === "none") ? "block" : "none";
+    }
+  }
+};
+</script>
 
 <style>
 :root {
@@ -128,6 +145,7 @@
   .made-by-observable > .popup > div {
     flex-direction: column;
     padding: 1rem;
+    margin: 4rem;
   }
   .made-by-observable > .popup a.section {
     width: 100%;
