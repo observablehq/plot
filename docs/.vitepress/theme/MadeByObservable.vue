@@ -1,6 +1,7 @@
 <script setup>
-const buttonContent = `Made by Observable
-<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+import { onMounted } from "vue";
+
+const iconDownCaret = `<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
   <path
     fill-rule="evenodd"
     clip-rule="evenodd"
@@ -8,7 +9,7 @@ const buttonContent = `Made by Observable
     fill="currentColor"
   />
 </svg>`;
-const closeContent = `<svg
+const iconClose = `<svg
     width="16"
     height="16"
     viewBox="0 0 10 16"
@@ -22,30 +23,50 @@ function is_touch_enabled() {
   return "ontouchstart" in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0;
 }
 
+const isMobile = window.matchMedia("(max-width: 640px)");
+
+isMobile.addEventListener("change", (e) => {
+  renderButton(false, e.matches);
+});
+
+function renderButton(open, isMobile) {
+  const buttonText = document.querySelector(".made-by-observable > .button > div.button-text");
+  const buttonIcon = document.querySelector(".made-by-observable > .button > div.icon");
+  if (!buttonText || !buttonIcon) {
+    return;
+  }
+  if (open) {
+    buttonText.style.display = "none";
+    buttonIcon.innerHTML = iconClose;
+  } else {
+    buttonText.style.display = "block";
+    buttonText.innerHTML = isMobile ? "Observable" : "Made by Observable";
+    buttonIcon.innerHTML = iconDownCaret;
+  }
+}
+
+onMounted(() => {
+  renderButton(false, isMobile.matches);
+});
+
 function onClick() {
   if (!is_touch_enabled()) {
     return;
   }
-  console.log("here");
   const popup = document.querySelector(".made-by-observable > .popup");
-  const button = document.querySelector(".made-by-observable > .button");
   if (!popup.style.display || popup.style.display === "none") {
     popup.style.display = "block";
-    button.innerHTML = closeContent;
-    button.style.padding = "unset";
-    button.style.width = "2rem";
+    renderButton(true, isMobile.matches);
   } else {
     popup.style.display = "none";
-    button.innerHTML = buttonContent;
-    button.style.width = "fit-content";
-    button.style.padding = "0.5rem 1rem";
+    renderButton(false, isMobile.matches);
   }
 }
 </script>
 
 <template>
   <div class="made-by-observable">
-    <div class="button" @click="onClick()" v-html="buttonContent"></div>
+    <div class="button" @click="onClick()"><div class="button-text" /><div class="icon" /></div>
     <div class="popup">
       <div class="popup-wrapper">
         <div class="popup-header">Observable platform</div>
@@ -78,11 +99,16 @@ function onClick() {
           </div>
         </div>
         <div class="popup-footer">
-          <a href="https://observablehq.com/platform">Discover the Observable Platform</a> </div>
+          <a href="https://observablehq.com/platform">Discover the Observable Platform</a>
+        </div>
       </div>
     </div>
   </div>
 </template>
+
+<script>
+  //renderButton(false, isMobile.matches);
+</script>
 
 <style>
 :root {
@@ -97,21 +123,25 @@ function onClick() {
 .made-by-observable > .button {
   background-color: var(--made-by-background);
   color: var(--made-by-color);
-  padding: 4px 16px;
   font-weight: 600;
   border-radius: 9999px;
   font-size: 14px;
   text-decoration: none;
   cursor: pointer;
+  width: fit-content;
+  padding: 4px 8px;
+  height: 32px;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 4px;
   text-wrap: nowrap;
   overflow: hidden;
-  width: fit-content;
-  height: 32px;
 }
+
+.made-by-observable > .button > div.button-text {
+  padding: 4px 8px;
+}
+
 
 .made-by-observable > .button:hover ~ .popup,
 .made-by-observable > .popup:hover {
@@ -119,8 +149,8 @@ function onClick() {
 }
 
 .made-by-observable > .popup {
-  _display: none;
-  display: block;
+  display: none;
+  _display: block;
   padding-top: 0.5rem;
   position: absolute;
   right: 0rem;
@@ -165,7 +195,6 @@ function onClick() {
   text-wrap: wrap;
   width: 260px;
   margin-top: 20px;
-  _padding: 1rem;
   border-radius: 8px;
   font-size: 14px;
   line-height: 21px;
@@ -176,12 +205,12 @@ function onClick() {
   text-decoration: underline;
 }
 
-.made-by-observable .popup a.section:hover h2 { 
+.made-by-observable .popup a.section:hover h2 {
   color: var(--vp-c-brand-1);
   text-decoration: underline;
 }
 
-.made-by-observable .popup a.section:hover { 
+.made-by-observable .popup a.section:hover {
   color: var(--vp-c-brand-2);
   text-decoration: none;
 }
@@ -194,14 +223,13 @@ function onClick() {
   line-height: 24px;
 }
 
-@media screen and (max-width: 768px) {
-  .made-by-observable > .popup > div {
-    _flex-direction: column;
-    padding: 1rem;
-    margin: 4rem;
-  }
-  .made-by-observable > .popup a.section {
-    width: 100%;
+/* Mobile */
+@media screen and (max-width: 640px) {
+  .made-by-observable .popup-content {
+    flex-direction: column;
+    gap: 0px;
   }
 }
+
+
 </style>
