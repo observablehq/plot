@@ -1,66 +1,88 @@
+<script setup>
+const buttonContent = `Made by Observable
+<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path
+    fill-rule="evenodd"
+    clip-rule="evenodd"
+    d="M4.41435 6.53148C4.6731 6.20803 5.14507 6.15559 5.46852 6.41435L8.125 8.53953L10.7815 6.41435C11.1049 6.15559 11.5769 6.20803 11.8356 6.53148C12.0944 6.85492 12.042 7.32689 11.7185 7.58565L8.125 10.4605L4.53148 7.58565C4.20803 7.32689 4.15559 6.85492 4.41435 6.53148Z"
+    fill="currentColor"
+  />
+</svg>`;
+const closeContent = `<svg
+    width="16"
+    height="16"
+    viewBox="0 0 10 16"
+    stroke="currentColor"
+    strokeWidth="2"
+  >
+    <path d="M1 4L9 12M9 4L1 12" />
+</svg>`;
+
+function is_touch_enabled() {
+  return "ontouchstart" in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0;
+}
+
+function onClick() {
+  if (!is_touch_enabled()) {
+    return;
+  }
+  console.log("here");
+  const popup = document.querySelector(".made-by-observable > .popup");
+  const button = document.querySelector(".made-by-observable > .button");
+  if (!popup.style.display || popup.style.display === "none") {
+    popup.style.display = "block";
+    button.innerHTML = closeContent;
+    button.style.padding = "unset";
+    button.style.width = "2rem";
+  } else {
+    popup.style.display = "none";
+    button.innerHTML = buttonContent;
+    button.style.width = "fit-content";
+    button.style.padding = "0.5rem 1rem";
+  }
+}
+</script>
+
 <template>
   <div class="made-by-observable">
-    <div class="button" v-on:click="onMadeByObservableClick()">
-      Made by Observable
-      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path
-          fill-rule="evenodd"
-          clip-rule="evenodd"
-          d="M4.41435 6.53148C4.6731 6.20803 5.14507 6.15559 5.46852 6.41435L8.125 8.53953L10.7815 6.41435C11.1049 6.15559 11.5769 6.20803 11.8356 6.53148C12.0944 6.85492 12.042 7.32689 11.7185 7.58565L8.125 10.4605L4.53148 7.58565C4.20803 7.32689 4.15559 6.85492 4.41435 6.53148Z"
-          fill="currentColor"
-        />
-      </svg>
-    </div>
+    <div class="button" @click="onClick()" v-html="buttonContent"></div>
     <div class="popup">
-      <div>
-        <div>
-          <h1>Cloud platform</h1>
-          <a class="section" href="/">
-            <h2>observablehq.com</h2>
-            The modern platform for developing and hosting powerful, performant, polyglot data apps built on open source
-          </a>
-          <a class="section" href="/">
-            <h2>Observable Platform docs</h2>
-            Get the most out of Observable's cloud platform by reading the docs
-          </a>
+      <div class="popup-wrapper">
+        <div class="popup-header">Observable platform</div>
+        <div class="popup-content">
+          <div>
+            <a class="section" href="https://observablehq.com/documentation/data-apps/">
+              <h2>Observable Cloud</h2>
+              The only development and hosting environment made exclusively for Observable Framework apps
+            </a>
+            <a class="section" href="https://observablehq.com/documentation/notebooks/">
+              <h2>Observable Notebooks</h2>
+              Experiment and prototype by building visualizations in live JavaScript notebooks
+            </a>
+          </div>
+          <div>
+            <a class="section" href="https://observablehq.com/framework/">
+              <h2>Observable Framework</h2>
+              Use Observable Framework to build data apps locally. With data loaders, you can build in any language or
+              library, including Python, SQL, and R
+            </a>
+            <a class="section" href="https://observablehq.com/plot/">
+              <h2>Observable Plot</h2>
+              An open-source JavaScript library, Observable Plot allows you to create expressive charts with concise
+              code
+            </a>
+            <a class="section" href="https://d3js.org">
+              <h2>D3</h2>
+              With over 256M downloads, D3 is the leading way to create bespoke visualizations with JavaScript
+            </a>
+          </div>
         </div>
-        <div>
-          <h1>Documentation hub</h1>
-          <a class="section" href="/">
-            <h2>Observable Framework</h2>
-            A static-site generator for data apps
-          </a>
-          <a class="section" href="/">
-            <h2>Observable Plot</h2>
-            A JavaScript library for visualizing tabular data, focused on accelerating exploratory data analysis
-          </a>
-          <a class="section" href="/">
-            <h2>D3</h2>
-            A JavaScript library for visualizing data, offering flexible, dynamic graphics with a low-level,
-            web-standards based approach
-          </a>
-        </div>
+        <div class="popup-footer">
+          <a href="https://observablehq.com/platform">Discover the Observable Platform</a> </div>
       </div>
     </div>
   </div>
 </template>
-
-<script>
-export default {
-  methods: {
-    onMadeByObservableClick(popupRef) {
-      function is_touch_enabled() {
-        return "ontouchstart" in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0;
-      }
-      if (!is_touch_enabled()) {
-        return;
-      }
-      const popup = document.querySelector(".made-by-observable > .popup");
-      popup.style.display = (!popup.style.display || popup.style.display === "none") ? "block" : "none";
-    }
-  }
-};
-</script>
 
 <style>
 :root {
@@ -83,10 +105,12 @@ export default {
   cursor: pointer;
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 4px;
   text-wrap: nowrap;
   overflow: hidden;
   width: fit-content;
+  height: 32px;
 }
 
 .made-by-observable > .button:hover ~ .popup,
@@ -95,55 +119,84 @@ export default {
 }
 
 .made-by-observable > .popup {
-  display: none;
-  _display: block;
+  _display: none;
+  display: block;
   padding-top: 0.5rem;
   position: absolute;
   right: 0rem;
 }
 
-.made-by-observable > .popup > div {
-  display: flex;
-  gap: 1rem;
-  background-color: white;
-  padding: 2rem;
-  border-radius: 0.5rem;
+.made-by-observable .popup-wrapper {
+  gap: 20px;
+  background-color: var(--vp-c-bg);
+  padding: 20px;
+  border-radius: 10px;
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
   border: 1px solid #cccccc;
   font-size: normal;
+  color: var(--vp-c-text-1);
 }
 
-.made-by-observable > .popup h1 {
+.made-by-observable .popup-header {
+  font-size: 16px;
+  line-height: 24px;
   font-weight: 600;
-  border-bottom: 1px solid #cccccc;
-  margin: 0.5rem 1rem;
-  padding-bottom: 0.25rem;
-  color: var(--vp-c-brand-2);
+  border-bottom: 1px solid #e2e2e3;
+  padding-bottom: 1rem;
 }
 
-.made-by-observable > .popup a.section {
+.made-by-observable .popup-footer {
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 600;
+  border-top: 1px solid #e2e2e3;
+  padding-top: 1rem;
+}
+
+.made-by-observable .popup-content {
+  display: flex;
+  flex-direction: row;
+  gap: 40px;
+  margin-bottom: 20px;
+}
+
+.made-by-observable .popup a.section {
   display: block;
   text-wrap: wrap;
-  width: 300px;
-  margin-top: 0.5rem;
-  padding: 1rem;
+  width: 260px;
+  margin-top: 20px;
+  _padding: 1rem;
   border-radius: 8px;
+  font-size: 14px;
+  line-height: 21px;
+  color: var(--vp-c-text-2);
 }
 
-.made-by-observable > .popup a.section:hover {
-  background-color: #fafafa;
+.made-by-observable .popup a:hover {
+  text-decoration: underline;
 }
 
-.made-by-observable > .popup h2 {
+.made-by-observable .popup a.section:hover h2 { 
+  color: var(--vp-c-brand-1);
+  text-decoration: underline;
+}
+
+.made-by-observable .popup a.section:hover { 
+  color: var(--vp-c-brand-2);
+  text-decoration: none;
+}
+
+.made-by-observable .popup h2 {
   font-weight: 600;
   margin-bottom: 0.25rem;
-  color: var(--vp-c-brand-dark);
-  font-size: large;
+  color: var(--vp-c-text-1);
+  font-size: 15px;
+  line-height: 24px;
 }
 
 @media screen and (max-width: 768px) {
   .made-by-observable > .popup > div {
-    flex-direction: column;
+    _flex-direction: column;
     padding: 1rem;
     margin: 4rem;
   }

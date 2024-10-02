@@ -6,7 +6,7 @@ import plot from "./markdown-it-plot.js";
 // https://vitepress.dev/reference/site-config
 // prettier-ignore
 export default defineConfig({
-  title: "Observable Plot",
+  title: "Plot",
   description: "The JavaScript library for exploratory data visualization",
   appearance: "force-auto",
   base: "/plot/",

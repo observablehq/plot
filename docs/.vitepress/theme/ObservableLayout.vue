@@ -51,7 +51,7 @@ const {Layout} = DefaultTheme;
 @media (min-width: 768px) {
   .DocSearch-Button {
     border-radius: 1000px;
-    padding-right: 1rem;
+    padding-right: 0.75rem;
     height: 2rem;
   }
 }
