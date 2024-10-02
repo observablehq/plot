@@ -1,5 +1,5 @@
 <script setup>
-import { onMounted } from "vue";
+import {onMounted} from "vue";
 
 const iconDownCaret = `<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
   <path
@@ -38,10 +38,12 @@ function renderButton(open, isMobile) {
   if (open) {
     buttonText.style.display = "none";
     buttonIcon.innerHTML = iconClose;
+    buttonIcon.style.paddingRight = "0px";
   } else {
     buttonText.style.display = "block";
     buttonText.innerHTML = isMobile ? "Observable" : "Made by Observable";
     buttonIcon.innerHTML = iconDownCaret;
+    buttonIcon.style.paddingRight = "8px";
   }
 }
 
@@ -66,13 +68,16 @@ function onClick() {
 
 <template>
   <div class="made-by-observable">
-    <div class="button" @click="onClick()"><div class="button-text" /><div class="icon" /></div>
+    <div class="button" @click="onClick()">
+      <div class="button-text" />
+      <div class="icon" />
+    </div>
     <div class="popup">
       <div class="popup-wrapper">
         <div class="popup-header">Observable platform</div>
         <div class="popup-content">
           <div>
-            <a class="section" href="https://observablehq.com/documentation/data-apps/">
+            <a class="section" href="https://observablehq.com/cloud/">
               <h2>Observable Cloud</h2>
               The only development and hosting environment made exclusively for Observable Framework apps
             </a>
@@ -99,24 +104,19 @@ function onClick() {
           </div>
         </div>
         <div class="popup-footer">
-          <a href="https://observablehq.com/platform">Discover the Observable Platform</a>
+          <a href="https://observablehq.com/platform">Discover the Observable Platform &rarr;</a>
         </div>
       </div>
     </div>
   </div>
 </template>
 
-<script>
-  //renderButton(false, isMobile.matches);
-</script>
-
 <style>
 :root {
-  --made-by-background: black;
+  --made-by-background: var(--vp-c-text-1);
   --made-by-color: white;
 }
 .dark {
-  --made-by-background: white;
   --made-by-color: black;
 }
 
@@ -136,12 +136,16 @@ function onClick() {
   justify-content: center;
   text-wrap: nowrap;
   overflow: hidden;
+  gap: 4px;
+}
+
+.made-by-observable > .button > div:first-child {
+  padding-left: 8px;
 }
 
 .made-by-observable > .button > div.button-text {
-  padding: 4px 8px;
+  _padding-right: 4px;
 }
-
 
 .made-by-observable > .button:hover ~ .popup,
 .made-by-observable > .popup:hover {
@@ -150,7 +154,6 @@ function onClick() {
 
 .made-by-observable > .popup {
   display: none;
-  _display: block;
   padding-top: 0.5rem;
   position: absolute;
   right: 0rem;
@@ -158,29 +161,32 @@ function onClick() {
 
 .made-by-observable .popup-wrapper {
   gap: 20px;
-  background-color: var(--vp-c-bg);
   padding: 20px;
   border-radius: 10px;
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
-  border: 1px solid #cccccc;
-  font-size: normal;
+  box-shadow: var(--vp-shadow-3);
+  border: 1px solid var(--vp-c-divider);
   color: var(--vp-c-text-1);
+  background-color: var(--vp-c-bg-elv);
 }
 
 .made-by-observable .popup-header {
-  font-size: 16px;
-  line-height: 24px;
+  font-size: 18px;
+  line-height: 27px;
   font-weight: 600;
-  border-bottom: 1px solid #e2e2e3;
+  border-bottom: 1px solid var(--vp-c-divider);
   padding-bottom: 1rem;
 }
 
 .made-by-observable .popup-footer {
-  font-size: 16px;
-  line-height: 24px;
+  font-size: 14px;
+  line-height: 21px;
   font-weight: 600;
-  border-top: 1px solid #e2e2e3;
+  border-top: 1px solid var(--vp-c-divider);
   padding-top: 1rem;
+}
+
+.made-by-observable .popup-footer a:hover {
+  color: var(--vp-c-brand-1);
 }
 
 .made-by-observable .popup-content {
@@ -201,25 +207,15 @@ function onClick() {
   color: var(--vp-c-text-2);
 }
 
-.made-by-observable .popup a:hover {
-  text-decoration: underline;
-}
-
 .made-by-observable .popup a.section:hover h2 {
   color: var(--vp-c-brand-1);
-  text-decoration: underline;
-}
-
-.made-by-observable .popup a.section:hover {
-  color: var(--vp-c-brand-2);
-  text-decoration: none;
 }
 
 .made-by-observable .popup h2 {
   font-weight: 600;
-  margin-bottom: 0.25rem;
+  margin-bottom: 4px;
   color: var(--vp-c-text-1);
-  font-size: 15px;
+  font-size: 16px;
   line-height: 24px;
 }
 
@@ -229,7 +225,8 @@ function onClick() {
     flex-direction: column;
     gap: 0px;
   }
+  .made-by-observable .popup a.section {
+    width: 75vw;
 }
-
-
+}
 </style>
