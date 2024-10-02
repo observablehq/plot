@@ -178,7 +178,7 @@ The sixth argument, *next*, is a function that can be called to continue the ren
 :::plot defer
 ```js-vue
 Plot.dot(penguins, {
-  x: "{{($replay1, "culmen_length_mm")}}",
+  x: "culmen_length_mm",
   y: "culmen_depth_mm",
   fill: "island",
   render(index, scales, values, dimensions, context, next) {
@@ -210,7 +210,7 @@ In this chart, we render the dots one by one:
 :::plot defer
 ```js-vue
 Plot.dot(penguins, {
-  x: "{{($replay2, "culmen_length_mm")}}",
+  x: "culmen_length_mm",
   y: "culmen_depth_mm",
   fill: "island",
   render(index, scales, values, dimensions, context, next) {
