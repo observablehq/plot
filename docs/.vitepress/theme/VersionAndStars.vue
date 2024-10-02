@@ -48,13 +48,14 @@ a[target="_blank"] {
   text-decoration: none;
 }
 
-a[target="_blank"]:hover span {
+a[target="_blank"]:hover span,
+a[target="_blank"][data-decoration]::after {
   color: var(--vp-c-brand);
+  transition: color 0.25s;
 }
 
 a[target="_blank"][data-decoration]::after {
   content: attr(data-decoration);
-  color: var(--vp-c-brand);
 }
 
 a[target="_blank"]:not(:hover, :focus)::after {

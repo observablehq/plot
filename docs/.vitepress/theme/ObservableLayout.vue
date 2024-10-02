@@ -17,7 +17,7 @@ const {Layout} = DefaultTheme;
       <ObservablePromo />
     </template>
     <template #nav-bar-content-after>
-      <div style="display: flex; gap: 1rem">
+      <div style="display: flex; gap: 1rem;">
         <VersionAndStars />
         <MadeByObservable />
       </div>

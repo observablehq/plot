@@ -41,9 +41,11 @@ function renderButton(open, isMobile) {
     buttonIcon.style.paddingRight = "0px";
   } else {
     buttonText.style.display = "block";
+    buttonText.style.paddingLeft = isMobile ? "4px" : "8px";
     buttonText.innerHTML = isMobile ? "Observable" : "Made by Observable";
     buttonIcon.innerHTML = iconDownCaret;
-    buttonIcon.style.paddingRight = "8px";
+    buttonIcon.style.paddingLeft = isMobile ? "2px" : "4px";
+    buttonIcon.style.paddingRight = isMobile ? "4px" : "8px";
   }
 }
 
@@ -136,7 +138,6 @@ function onClick() {
   justify-content: center;
   text-wrap: nowrap;
   overflow: hidden;
-  gap: 4px;
 }
 
 .made-by-observable > .button > div:first-child {
@@ -219,6 +220,11 @@ function onClick() {
   line-height: 24px;
 }
 
+.made-by-observable a:hover,
+.made-by-observable a:hover h2 {
+  transition: color 0.25s;
+}
+
 /* Mobile */
 @media screen and (max-width: 640px) {
   .made-by-observable .popup-content {
@@ -227,6 +233,6 @@ function onClick() {
   }
   .made-by-observable .popup a.section {
     width: 75vw;
-}
+  }
 }
 </style>
