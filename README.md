@@ -9,7 +9,7 @@
   <img alt="Daily downloads of Observable Plot" src="https://observablehq.observablehq.cloud/oss-analytics/@observablehq/plot/downloads.svg">
 </picture>
 
-<sub>Daily downloads of Observable Plot · [oss-analytics](https://github.com/observablehq/oss-analytics/)</sub>
+<sub>Daily downloads of Observable Plot · [oss-analytics](https://observablehq.observablehq.cloud/oss-analytics/)</sub>
 
 ## Documentation 📚
 
