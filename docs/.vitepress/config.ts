@@ -2,7 +2,6 @@ import {fileURLToPath, URL} from "node:url";
 import path from "node:path";
 import {defineConfig} from "vitepress";
 import plot from "./markdown-it-plot.js";
-import vue from '@vitejs/plugin-vue'
 
 // https://vitepress.dev/reference/site-config
 // prettier-ignore

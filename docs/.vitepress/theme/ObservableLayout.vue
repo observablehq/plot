@@ -2,7 +2,6 @@
 import DefaultTheme from "vitepress/theme-without-fonts";
 import ExamplesGrid from "./ExamplesGrid.vue";
 import ObservablePromo from "./ObservablePromo.vue";
-//import MadeByObservable from "./MadeByObservable.vue";
 import VersionAndStars from "./VersionAndStars.vue";
 
 const {Layout} = DefaultTheme;
