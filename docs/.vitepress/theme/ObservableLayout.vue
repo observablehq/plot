@@ -2,7 +2,7 @@
 import DefaultTheme from "vitepress/theme-without-fonts";
 import ExamplesGrid from "./ExamplesGrid.vue";
 import ObservablePromo from "./ObservablePromo.vue";
-import MadeByObservable from "./MadeByObservable.vue";
+//import MadeByObservable from "./MadeByObservable.vue";
 import VersionAndStars from "./VersionAndStars.vue";
 
 const {Layout} = DefaultTheme;
@@ -19,7 +19,7 @@ const {Layout} = DefaultTheme;
     <template #nav-bar-content-after>
       <div style="display: flex; gap: 1rem;">
         <VersionAndStars />
-        <MadeByObservable />
+        <made-by-observable />
       </div>
     </template>
   </Layout>
@@ -56,3 +56,4 @@ const {Layout} = DefaultTheme;
   }
 }
 </style>
+

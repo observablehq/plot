@@ -88,6 +88,7 @@
     ]
   },
   "dependencies": {
+    "@vueuse/core": "^11.1.0",
     "d3": "^7.9.0",
     "interval-tree-1d": "^1.0.0",
     "isoformat": "^0.2.0"

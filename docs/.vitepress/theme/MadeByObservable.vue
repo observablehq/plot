@@ -38,7 +38,7 @@ function renderButton(open, isMobile) {
   if (open) {
     buttonText.style.display = "none";
     buttonIcon.innerHTML = iconClose;
-    buttonIcon.style.paddingRight = "0px";
+    buttonIcon.style.padding = "0px";
   } else {
     buttonText.style.display = "block";
     buttonText.style.paddingLeft = isMobile ? "4px" : "8px";
@@ -76,7 +76,7 @@ function onClick() {
     </div>
     <div class="popup">
       <div class="popup-wrapper">
-        <div class="popup-header">Observable platform</div>
+        <div class="popup-header">Observable Platform</div>
         <div class="popup-content">
           <div>
             <a class="section" href="https://observablehq.com/cloud/">
@@ -142,10 +142,6 @@ function onClick() {
 
 .made-by-observable > .button > div:first-child {
   padding-left: 8px;
-}
-
-.made-by-observable > .button > div.button-text {
-  _padding-right: 4px;
 }
 
 .made-by-observable > .button:hover ~ .popup,
