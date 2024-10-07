@@ -22,6 +22,13 @@ export default defineConfig({
         '__APP_VERSION__': JSON.stringify(process.env.npm_package_version),
     }
   },
+  vue: {
+    template: {
+      compilerOptions: {
+        isCustomElement: (tag) => tag === "made-by-observable",
+      },
+    },
+  },
   markdown: {
     config: (md) => {
       plot(md);
