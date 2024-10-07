@@ -1,9 +1,11 @@
 import {extent, namespaces} from "d3";
+import {valueObject} from "../channel.js";
 import {create} from "../context.js";
 import {composeRender} from "../mark.js";
 import {hasXY, identity, indexOf} from "../options.js";
 import {applyChannelStyles, applyDirectStyles, applyIndirectStyles, getPatternId} from "../style.js";
 import {template} from "../template.js";
+import {initializer} from "../transforms/basic.js";
 import {maybeIdentityX, maybeIdentityY} from "../transforms/identity.js";
 import {maybeIntervalX, maybeIntervalY} from "../transforms/interval.js";
 import {maybeStackX, maybeStackY} from "../transforms/stack.js";
@@ -15,7 +17,8 @@ const waffleDefaults = {
 
 export class WaffleX extends BarX {
   constructor(data, {unit = 1, gap = 1, round, render, multiple, ...options} = {}) {
-    super(data, {...options, render: composeRender(render, waffleRender("x"))}, waffleDefaults);
+    options = initializer({...options, render: composeRender(render, waffleRender("x"))}, waffleInitializer("x"));
+    super(data, options, waffleDefaults);
     this.unit = Math.max(0, unit);
     this.gap = +gap;
     this.round = maybeRound(round);
@@ -25,7 +28,8 @@ export class WaffleX extends BarX {
 
 export class WaffleY extends BarY {
   constructor(data, {unit = 1, gap = 1, round, render, multiple, ...options} = {}) {
-    super(data, {...options, render: composeRender(render, waffleRender("y"))}, waffleDefaults);
+    options = initializer({...options, render: composeRender(render, waffleRender("y"))}, waffleInitializer("y"));
+    super(data, options, waffleDefaults);
     this.unit = Math.max(0, unit);
     this.gap = +gap;
     this.round = maybeRound(round);
@@ -33,10 +37,11 @@ export class WaffleY extends BarY {
   }
 }
 
-function waffleRender(y) {
-  return function (index, scales, values, dimensions, context) {
-    const {unit, gap, rx, ry, round} = this;
-    const {document} = context;
+function waffleInitializer(y) {
+  return function (data, facets, channels, scales, dimensions) {
+    const {round, unit} = this;
+
+    const values = valueObject(channels, scales);
     const Y1 = values.channels[`${y}1`].value;
     const Y2 = values.channels[`${y}2`].value;
 
@@ -54,11 +59,49 @@ function waffleRender(y) {
     const cx = Math.min(barwidth / multiple, scale * multiple);
     const cy = scale * multiple;
 
-    // TODO insets?
-    const transform = y === "y" ? ([x, y]) => [x * cx, -y * cy] : ([x, y]) => [y * cy, x * cx];
+    // The reference position.
     const tx = (barwidth - multiple * cx) / 2;
     const x0 = typeof barx === "function" ? (i) => barx(i) + tx : barx + tx;
     const y0 = scales[y](0);
+
+    // TODO insets?
+    const transform = y === "y" ? ([x, y]) => [x * cx, -y * cy] : ([x, y]) => [y * cy, x * cx];
+    const mx = typeof x0 === "function" ? (i) => x0(i) - barwidth / 2 : () => x0;
+    const [ix, iy] = y === "y" ? [0, 1] : [1, 0];
+
+    const n = Y2.length;
+    const P = new Array(n);
+    const X = new Float64Array(n);
+    const Y = new Float64Array(n);
+
+    for (let i = 0; i < n; ++i) {
+      P[i] = wafflePoints(round(Y1[i] / unit), round(Y2[i] / unit), multiple).map(transform);
+      const c = P[i].pop();
+      X[i] = c[ix] + mx(i);
+      Y[i] = c[iy] + y0;
+    }
+
+    this.cx = cx;
+    this.cy = cy;
+    this.x0 = x0;
+    this.y0 = y0;
+
+    return {
+      channels: {
+        polygon: {value: P, source: null},
+        [y === "y" ? "x" : "y"]: {value: X, scale: null, source: null},
+        [`${y}1`]: {value: Y, scale: null, source: channels[`${y}1`]},
+        [`${y}2`]: {value: Y, scale: null, source: channels[`${y}2`]}
+      }
+    };
+  };
+}
+
+function waffleRender(y) {
+  return function (index, scales, values, dimensions, context) {
+    const {gap, cx, cy, rx, ry, x0, y0} = this;
+    const {document} = context;
+    const polygon = values.channels.polygon.value;
 
     // Create a base pattern with shared attributes for cloning.
     const patternId = getPatternId();
@@ -95,13 +138,7 @@ function waffleRender(y) {
           .enter()
           .append("path")
           .attr("transform", y === "y" ? template`translate(${x0},${y0})` : template`translate(${y0},${x0})`)
-          .attr(
-            "d",
-            (i) =>
-              `M${wafflePoints(round(Y1[i] / unit), round(Y2[i] / unit), multiple)
-                .map(transform)
-                .join("L")}Z`
-          )
+          .attr("d", (i) => `M${polygon[i].join("L")}Z`)
           .attr("fill", (i) => `url(#${patternId}-${i})`)
           .attr("stroke", this.stroke == null ? null : (i) => `url(#${patternId}-${i})`)
       )
@@ -146,6 +183,8 @@ function waffleRender(y) {
 // Waffles can also represent fractional intervals (e.g., 2.4–10.1). These
 // require additional corner cuts, so the implementation below generates a few
 // more points.
+//
+// The last point describes the centroid (used for pointing)
 function wafflePoints(i1, i2, columns) {
   if (i1 < 0 || i2 < 0) {
     const k = Math.ceil(-Math.min(i1, i2) / columns); // shift negative to positive
@@ -174,8 +213,41 @@ function wafflePoints(i1, i2, columns) {
       : [
           [Math.floor(i2 % columns), Math.ceil(i2 / columns)],
           [0, Math.ceil(i2 / columns)]
-        ])
+        ]),
+    centroid(i1, i2, columns)
   ];
+}
+
+function centroid(i1, i2, columns) {
+  const r = Math.floor(i2 / columns) - Math.floor(i1 / columns);
+  return r === 0 // Single row
+    ? singleRowCentroid(i1, i2, columns)
+    : // Two incomplete rows, use the midpoint of their overlap if they do, otherwise use the largest
+    r === 1
+    ? Math.floor(i2 % columns) > Math.ceil(i1 % columns)
+      ? [(Math.floor(i2 % columns) + Math.ceil(i1 % columns)) / 2, Math.floor(i2 / columns)]
+      : i2 % columns > columns - (i1 % columns)
+      ? singleRowCentroid(i2 - (i2 % columns), i2, columns)
+      : singleRowCentroid(i1, columns * Math.ceil(i1 / columns), columns)
+    : // At least one full row, take the midpoint of all the rows that include the middle
+      [columns / 2, (Math.round(i1 / columns) + Math.round(i2 / columns)) / 2];
+}
+
+function singleRowCentroid(i1, i2, columns) {
+  const c = Math.floor(i2) - Math.floor(i1);
+  return c === 0 // Single cell
+    ? [Math.floor(i1 % columns) + 0.5, Math.floor(i1 / columns) + (((i1 + i2) / 2) % 1)]
+    : c === 1 // Two incomplete cells, use the overlap if it is large enough, otherwise use the largest
+    ? (i2 % 1) - (i1 % 1) > 0.5
+      ? [Math.ceil(i1 % columns), Math.floor(i2 / columns) + ((i1 % 1) + (i2 % 1)) / 2]
+      : i2 % 1 > 1 - (i1 % 1)
+      ? [Math.floor(i2 % columns) + 0.5, Math.floor(i2 / columns) + (i2 % 1) / 2]
+      : [Math.floor(i1 % columns) + 0.5, Math.floor(i1 / columns) + (1 + (i1 % 1)) / 2]
+    : // At least one full cell, take their midpoint
+      [
+        Math.ceil(i1 % columns) + Math.ceil(Math.floor(i2) - Math.ceil(i1)) / 2,
+        Math.floor(i1 / columns) + (i2 >= 1 + i1 ? 0.5 : ((i1 + i2) / 2) % 1)
+      ];
 }
 
 function maybeRound(round) {
@@ -198,12 +270,12 @@ function spread(domain) {
   return max - min;
 }
 
-export function waffleX(data, options = {}) {
+export function waffleX(data, {tip, ...options} = {}) {
   if (!hasXY(options)) options = {...options, y: indexOf, x2: identity};
-  return new WaffleX(data, maybeStackX(maybeIntervalX(maybeIdentityX(options))));
+  return new WaffleX(data, {tip, ...maybeStackX(maybeIntervalX(maybeIdentityX(options)))});
 }
 
-export function waffleY(data, options = {}) {
+export function waffleY(data, {tip, ...options} = {}) {
   if (!hasXY(options)) options = {...options, x: indexOf, y2: identity};
-  return new WaffleY(data, maybeStackY(maybeIntervalY(maybeIdentityY(options))));
+  return new WaffleY(data, {tip, ...maybeStackY(maybeIntervalY(maybeIdentityY(options)))});
 }
