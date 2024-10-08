@@ -25,7 +25,7 @@ export default defineConfig({
   vue: {
     template: {
       compilerOptions: {
-        isCustomElement: (tag) => tag === "made-by-observable",
+        isCustomElement: (tag) => tag.startsWith("observable-"),
       },
     },
   },
@@ -42,7 +42,8 @@ export default defineConfig({
     ["link", {rel: "icon", type: "image/png", href: "https://static.observablehq.com/favicon-512.0667824687f99c942a02e06e2db1a060911da0bf3606671676a255b1cf97b4fe.png", sizes: "512x512"}],
     ["script", {async: "", src: "https://www.googletagmanager.com/gtag/js?id=G-9B88TP6PKQ"}],
     ["script", {}, "window.dataLayer=window.dataLayer||[];\nfunction gtag(){dataLayer.push(arguments);}\ngtag('js',new Date());\ngtag('config','G-9B88TP6PKQ');"],
-    ["script", { src: "https://observablehq.com/documentation/made-by-observable.js" }]],
+    ["script", {async: "", defer: "", src: "https://static.observablehq.com/assets/components/observable-made-by.js"}],
+  ],
   sitemap: {
     hostname: 'https://observablehq.com/plot/'
   },
