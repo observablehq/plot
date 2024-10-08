@@ -18,7 +18,7 @@ const {Layout} = DefaultTheme;
     <template #nav-bar-content-after>
       <div style="display: flex; gap: 1rem;">
         <VersionAndStars />
-        <made-by-observable />
+        <observable-made-by />
       </div>
     </template>
   </Layout>
