@@ -1,8 +1,10 @@
 <script setup>
+
 import {formatPrefix} from "d3-format";
 import {data} from "./stargazers.data";
 const formattedStarCount = data ? formatPrefix(".1s", 1000)(data) : "";
 const version = __APP_VERSION__;
+
 </script>
 
 <template>
@@ -33,6 +35,7 @@ const version = __APP_VERSION__;
 </template>
 
 <style scoped>
+
 a {
   font-size: 14px;
   font-weight: 500;
@@ -74,4 +77,5 @@ a.mobile {
     display: flex;
   }
 }
+
 </style>

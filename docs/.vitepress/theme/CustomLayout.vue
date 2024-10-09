@@ -1,10 +1,12 @@
 <script setup>
+
 import DefaultTheme from "vitepress/theme-without-fonts";
 import ExamplesGrid from "./ExamplesGrid.vue";
 import ObservablePromo from "./ObservablePromo.vue";
 import VersionAndStars from "./VersionAndStars.vue";
 
 const {Layout} = DefaultTheme;
+
 </script>
 
 <template>
@@ -25,6 +27,7 @@ const {Layout} = DefaultTheme;
 </template>
 
 <style>
+
 .VPHome {
   overflow-x: hidden; /* iOS */
 }
@@ -54,5 +57,5 @@ const {Layout} = DefaultTheme;
     height: 2rem;
   }
 }
-</style>
 
+</style>
