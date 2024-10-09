@@ -42,7 +42,7 @@ const {Layout} = DefaultTheme;
   background-color: rgba(37, 37, 41, 0.5);
 }
 
-/* Hide the dark mode toggle */
+/* Remove unnecessary elements that are empty in our implementation */
 .VPNavBarExtra,
 .VPNavBarHamburger {
   display: none !important;
