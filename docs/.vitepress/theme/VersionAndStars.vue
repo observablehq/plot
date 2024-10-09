@@ -2,6 +2,7 @@
 
 import {formatPrefix} from "d3-format";
 import {data} from "./stargazers.data";
+
 const formattedStarCount = data ? formatPrefix(".1s", 1000)(data) : "";
 const version = __APP_VERSION__;
 
