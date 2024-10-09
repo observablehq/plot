@@ -19,15 +19,15 @@ export default defineConfig({
       ]
     },
     define: {
-        '__APP_VERSION__': JSON.stringify(process.env.npm_package_version),
+      __APP_VERSION__: JSON.stringify(process.env.npm_package_version)
     }
   },
   vue: {
     template: {
       compilerOptions: {
-        isCustomElement: (tag) => tag.startsWith("observable-"),
-      },
-    },
+        isCustomElement: (tag) => tag.startsWith("observable-")
+      }
+    }
   },
   markdown: {
     config: (md) => {
@@ -45,7 +45,7 @@ export default defineConfig({
     ["script", {async: "", defer: "", src: "https://static.observablehq.com/assets/components/observable-made-by.js"}],
   ],
   sitemap: {
-    hostname: 'https://observablehq.com/plot/'
+    hostname: "https://observablehq.com/plot/"
   },
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
