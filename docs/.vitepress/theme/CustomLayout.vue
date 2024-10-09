@@ -43,7 +43,6 @@ const {Layout} = DefaultTheme;
 }
 
 /* Hide the dark mode toggle */
-.VPNavBarAppearance,
 .VPNavBarExtra,
 .VPNavBarHamburger {
   display: none !important;
