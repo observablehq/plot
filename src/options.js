@@ -68,8 +68,17 @@ function maybeTypedArrowify(vector, type) {
   return vector == null
     ? vector
     : (type === undefined || type === Array) && isArrowDateType(vector.type)
-    ? coerceDates(vector.toArray())
-    : maybeTypedArrayify(vector.toArray(), type);
+    ? coerceDates(vectorToArray(vector))
+    : maybeTypedArrayify(vectorToArray(vector), type);
+}
+
+function vectorToArray(vector) {
+  const values = vector.toArray();
+  if (values.nullCount) {
+    const NULL = vector.type?.typeId === 5 /* Utf8 */ ? null : undefined;
+    for (let i = 0; i < values.length; ++i) if (!values.isValid(i)) values[i] = NULL;
+  }
+  return values;
 }
 
 export const singleton = [null]; // for data-less decoration marks, e.g. frame
