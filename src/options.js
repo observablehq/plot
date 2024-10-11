@@ -73,12 +73,7 @@ function maybeTypedArrowify(vector, type) {
 }
 
 function vectorToArray(vector) {
-  const values = vector.toArray();
-  if (values.nullCount) {
-    const NULL = vector.type?.typeId === 5 /* Utf8 */ ? null : undefined;
-    for (let i = 0; i < values.length; ++i) if (!values.isValid(i)) values[i] = NULL;
-  }
-  return values;
+  return vector.nullCount ? vector.toJSON() : vector.toArray();
 }
 
 export const singleton = [null]; // for data-less decoration marks, e.g. frame
