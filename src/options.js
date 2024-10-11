@@ -68,8 +68,12 @@ function maybeTypedArrowify(vector, type) {
   return vector == null
     ? vector
     : (type === undefined || type === Array) && isArrowDateType(vector.type)
-    ? coerceDates(vector.toArray())
-    : maybeTypedArrayify(vector.toArray(), type);
+    ? coerceDates(vectorToArray(vector))
+    : maybeTypedArrayify(vectorToArray(vector), type);
+}
+
+function vectorToArray(vector) {
+  return vector.nullCount ? vector.toJSON() : vector.toArray();
 }
 
 export const singleton = [null]; // for data-less decoration marks, e.g. frame
