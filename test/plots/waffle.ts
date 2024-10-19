@@ -257,6 +257,7 @@ export function waffleHref() {
           y: 1,
           fill: (d, i) => i % 7,
           href: (d, i) => `/?${i}`,
+          title: (d, i) => `waffle ${i}`,
           target: "_blank"
         }
       )
