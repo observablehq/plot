@@ -34,8 +34,8 @@ export class WaffleY extends BarY {
 }
 
 function waffleRender(y) {
-    const {unit, gap, rx, ry, round} = this;
   return function (index, scales, {href, ...values}, dimensions, context) {
+    const {unit, gap, rx, ry, round} = this;
     const {document} = context;
     const Y1 = values.channels[`${y}1`].value;
     const Y2 = values.channels[`${y}2`].value;
