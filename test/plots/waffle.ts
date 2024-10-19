@@ -246,3 +246,20 @@ export async function waffleYGrouped() {
     marks: [Plot.waffleY(athletes, Plot.groupX({y: "count"}, {x: "sport", unit: 10})), Plot.ruleY([0])]
   });
 }
+
+export function waffleHref() {
+  return Plot.plot({
+    inset: 10,
+    marks: [
+      Plot.waffleY(
+        {length: 77},
+        {
+          y: 1,
+          fill: (d, i) => i % 7,
+          href: (d, i) => `/?${i}`,
+          target: "_blank"
+        }
+      )
+    ]
+  });
+}

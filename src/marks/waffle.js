@@ -34,8 +34,8 @@ export class WaffleY extends BarY {
 }
 
 function waffleRender(y) {
-  return function (index, scales, values, dimensions, context) {
     const {unit, gap, rx, ry, round} = this;
+  return function (index, scales, {href, ...values}, dimensions, context) {
     const {document} = context;
     const Y1 = values.channels[`${y}1`].value;
     const Y2 = values.channels[`${y}2`].value;
@@ -104,6 +104,7 @@ function waffleRender(y) {
           )
           .attr("fill", (i) => `url(#${patternId}-${i})`)
           .attr("stroke", this.stroke == null ? null : (i) => `url(#${patternId}-${i})`)
+          .call(applyChannelStyles, this, {href})
       )
       .node();
   };
