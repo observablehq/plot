@@ -104,7 +104,7 @@ function waffleRender(y) {
                 .join("L")}Z`
           )
           .attr("fill", (i) => `url(#${patternId}-${i})`)
-          .attr("stroke", this.stroke == null ? null : (i) => `url(#${patternId}-${i})`)
+          .attr("stroke", this.stroke == null ? null : "none")
           .call(applyChannelStyles, this, {ariaLabel, href, title})
       )
       .node();
