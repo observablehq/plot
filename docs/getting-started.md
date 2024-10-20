@@ -87,6 +87,16 @@ If you’d prefer to run Plot locally (or entirely offline), you can download th
 
 Then, create an `index.html` file as shown above in the **UMD + local** tab. If you prefer smaller minified files, you can download <a href="./d3.min.js" download>d3.min.js</a> and <a href="./plot.min.js" download>plot.min.js</a>, and then update the `src` attributes above accordingly.
 
+## Using in Observable
+
+On Observable, Plot is available by default as `Plot`. In your Observable notebook or in your Observable Framework page, just type:
+
+```js
+Plot.rectY(alphabet, {x: "letter", y: "frequency"}).plot()
+```
+
+For details, see [Observable Plot in Framework](https://observablehq.com/framework/lib/plot).
+
 ## Installing from npm
 
 If you’re developing a web application using Node, you can install Plot via yarn, npm, pnpm, or your preferred package manager.
