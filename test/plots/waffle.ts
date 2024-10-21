@@ -278,3 +278,41 @@ export function waffleStrokeWidthConst() {
     marks: [Plot.waffleY({length: 77}, {y: 1, stroke: "black", gap: 15, strokeWidth: 15, strokeOpacity: 0.8})]
   });
 }
+
+export function waffleShapes() {
+  const k = 10;
+  let offset = 0;
+  const waffle = (y1, y2) => {
+    y1 += offset;
+    y2 += offset;
+    offset = Math.ceil(y2 / k) * k;
+    return Plot.waffleY({length: 1}, {y1, y2, multiple: k, fill: y1, stroke: "black"});
+  };
+  return Plot.plot({
+    height: 1200,
+    color: {type: "categorical"},
+    y: {domain: [0, 300]},
+    marks: [
+      Plot.waffleY({length: 1}, {y1: 0, y2: 300, multiple: 10, stroke: "currentColor", strokeOpacity: 0.2, gap: 0}),
+      waffle(0, 1),
+      waffle(0, 0.5),
+      waffle(0.2, 0.8),
+      waffle(0.6, 1.4),
+      waffle(9.6, 10.4),
+      waffle(0.6, 2),
+      waffle(1, 2.4),
+      waffle(0.6, 2.4),
+      waffle(1, 3),
+      waffle(9, 11),
+      waffle(0.6, 3),
+      waffle(1, 3.4),
+      waffle(0.6, 3.4),
+      waffle(7, 20),
+      waffle(7.6, 20),
+      waffle(0, 13),
+      waffle(0, 12.4),
+      waffle(7, 23),
+      waffle(7.6, 22.4)
+    ]
+  });
+}

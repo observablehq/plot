@@ -156,28 +156,28 @@ function wafflePoints(i1, i2, columns) {
   if (i2 < i1) {
     return wafflePoints(i2, i1, columns);
   }
-  return [
-    [0, Math.ceil(i1 / columns)],
-    [Math.floor(i1 % columns), Math.ceil(i1 / columns)],
-    [Math.floor(i1 % columns), Math.floor(i1 / columns) + (i1 % 1)],
-    [Math.ceil(i1 % columns), Math.floor(i1 / columns) + (i1 % 1)],
-    ...(i1 % columns > columns - 1
-      ? []
-      : [
-          [Math.ceil(i1 % columns), Math.floor(i1 / columns)],
-          [columns, Math.floor(i1 / columns)]
-        ]),
-    [columns, Math.floor(i2 / columns)],
-    [Math.ceil(i2 % columns), Math.floor(i2 / columns)],
-    [Math.ceil(i2 % columns), Math.floor(i2 / columns) + (i2 % 1)],
-    [Math.floor(i2 % columns), Math.floor(i2 / columns) + (i2 % 1)],
-    ...(i2 % columns < 1
-      ? []
-      : [
-          [Math.floor(i2 % columns), Math.ceil(i2 / columns)],
-          [0, Math.ceil(i2 / columns)]
-        ])
-  ];
+  const x1f = Math.floor(i1 % columns);
+  const x1c = Math.ceil(i1 % columns);
+  const x2f = Math.floor(i2 % columns);
+  const x2c = Math.ceil(i2 % columns);
+  const y1f = Math.floor(i1 / columns);
+  const y1c = Math.ceil(i1 / columns);
+  const y2f = Math.floor(i2 / columns);
+  const y2c = Math.ceil(i2 / columns);
+  const points = [];
+  if (y2c > y1c) points.push([0, y1c]);
+  points.push([x1f, y1c], [x1f, y1f + (i1 % 1)], [x1c, y1f + (i1 % 1)]);
+  if (!(i1 % columns > columns - 1)) {
+    points.push([x1c, y1f]);
+    if (y2f > y1f) points.push([columns, y1f]);
+  }
+  if (y2f > y1f) points.push([columns, y2f]);
+  points.push([x2c, y2f], [x2c, y2f + (i2 % 1)], [x2f, y2f + (i2 % 1)]);
+  if (!(i2 % columns < 1)) {
+    points.push([x2f, y2c]);
+    if (y2c > y1c) points.push([0, y2c]);
+  }
+  return points;
 }
 
 function maybeRound(round) {
