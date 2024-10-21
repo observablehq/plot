@@ -298,6 +298,9 @@ export interface PlotOptions extends ScaleDefaults {
    */
   projection?: ProjectionOptions | ProjectionName | ProjectionFactory | ProjectionImplementation | null;
 
+  /** TODO */
+  zoom?: boolean;
+
   /**
    * Options for the horizontal facet position *fx* scale. If present, the *fx*
    * scale is always a *band* scale.
