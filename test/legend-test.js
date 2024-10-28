@@ -6,6 +6,11 @@ it(`Plot.legend({color: {type: "identity"}}) returns undefined`, () => {
   assert.strictEqual(Plot.legend({color: {type: "identity"}}), undefined);
 });
 
+it(`Plot.legend({color: {domain: [x?]}}) returns undefined`, () => {
+  assert.strictEqual(Plot.legend({color: {domain: []}}), undefined);
+  assert.strictEqual(Plot.legend({color: {domain: [1]}}), undefined);
+});
+
 it(`Plot.legend({legend: "swatches", color: {type: "<not-ordinal>"}}) throws an error`, () => {
   assert.throws(() => Plot.legend({legend: "swatches", color: {type: "linear"}}), /swatches legend requires ordinal/);
   assert.throws(() => Plot.legend({legend: "swatches", color: {type: "linear"}}), /\(not linear\)/);

@@ -50,6 +50,7 @@ function legendColor(color, {legend = true, ...options}) {
     case "swatches":
       return legendSwatches(color, options);
     case "ramp":
+      if (color.domain.length < 2) return;
       return legendRamp(color, options);
     default:
       throw new Error(`unknown legend type: ${legend}`);
