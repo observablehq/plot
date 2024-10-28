@@ -80,6 +80,7 @@ export function createScaleQ(
     reverse
   }
 ) {
+  domain = maybeRepeat(domain);
   interval = maybeRangeInterval(interval, type);
   if (type === "cyclical" || type === "sequential") type = "linear"; // shorthand for color schemes
   if (typeof interpolate !== "function") interpolate = maybeInterpolator(interpolate); // named interpolator
@@ -88,8 +89,8 @@ export function createScaleQ(
   // If an explicit range is specified, and it has a different length than the
   // domain, then redistribute the range using a piecewise interpolator.
   if (range !== undefined) {
-    const n = (domain = arrayify(domain)).length;
-    const m = (range = arrayify(range)).length;
+    const n = domain.length;
+    const m = (range = maybeRepeat(range)).length;
     if (n !== m) {
       if (interpolate.length === 1) throw new Error("invalid piecewise interpolator"); // e.g., turbo
       interpolate = piecewise(interpolate, range);
@@ -135,6 +136,11 @@ export function createScaleQ(
   if (range !== undefined) scale.range(range);
   if (clamp) scale.clamp(clamp);
   return {type, domain, range, scale, interpolate, interval};
+}
+
+function maybeRepeat(values) {
+  values = arrayify(values);
+  return values.length >= 2 ? values : [values[0], values[0]];
 }
 
 function maybeNice(nice, type) {
