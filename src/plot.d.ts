@@ -4,6 +4,8 @@ import type {Data, MarkOptions, Markish} from "./mark.js";
 import type {ProjectionFactory, ProjectionImplementation, ProjectionName, ProjectionOptions} from "./projection.js";
 import type {Scale, ScaleDefaults, ScaleName, ScaleOptions} from "./scales.js";
 
+type ScaleLegendOptions = ScaleOptions & Omit<LegendOptions, "legend">;
+
 export interface PlotOptions extends ScaleDefaults {
   // dimensions
 
@@ -199,7 +201,7 @@ export interface PlotOptions extends ScaleDefaults {
    * If the *x* scale is present, and an *x*-axis mark is not included in marks,
    * an implicit *x*-axis will be rendered below other marks.
    */
-  x?: ScaleOptions;
+  x?: ScaleLegendOptions;
 
   /**
    * Options for the vertical position *y* scale. The *y* scale defaults to the
@@ -211,7 +213,7 @@ export interface PlotOptions extends ScaleDefaults {
    * If the *y* scale is present, and a *y*-axis mark is not included in marks,
    * an implicit *y*-axis will be rendered below other marks.
    */
-  y?: ScaleOptions;
+  y?: ScaleLegendOptions;
 
   /**
    * Options for the radius (size) *r* scale for dots or Point geos. The *r*
@@ -228,7 +230,7 @@ export interface PlotOptions extends ScaleDefaults {
    *
    * [1]: https://github.com/observablehq/plot/issues/236
    */
-  r?: ScaleOptions;
+  r?: ScaleLegendOptions;
 
   /**
    * Options for the *color* scale for fill or stroke. The *color* scale
@@ -244,7 +246,7 @@ export interface PlotOptions extends ScaleDefaults {
    * scale associated with a channel by specifying the value as a {value, scale}
    * object.
    */
-  color?: ScaleOptions;
+  color?: ScaleLegendOptions;
 
   /**
    * Options for the *opacity* scale for fill or stroke opacity. The *opacity*
@@ -257,7 +259,7 @@ export interface PlotOptions extends ScaleDefaults {
    * override the scale associated with a channel by specifying the value as a
    * {value, scale} object.
    */
-  opacity?: ScaleOptions;
+  opacity?: ScaleLegendOptions;
 
   /**
    * Options for the categorical *symbol* scale for dots. The *symbol* scale
@@ -270,7 +272,7 @@ export interface PlotOptions extends ScaleDefaults {
    * override the scale associated with a channel by specifying the value as a
    * {value, scale} object.
    */
-  symbol?: ScaleOptions;
+  symbol?: ScaleLegendOptions;
 
   /**
    * Options for the *length* scale for vectors. The *length* scale defaults to
@@ -279,7 +281,7 @@ export interface PlotOptions extends ScaleDefaults {
    * range is chosen such that the median of values has a length of 12 pixels,
    * but no value has a length greater than 60 pixels.
    */
-  length?: ScaleOptions;
+  length?: ScaleLegendOptions;
 
   /**
    * Options for projection; one of:
@@ -302,13 +304,13 @@ export interface PlotOptions extends ScaleDefaults {
    * Options for the horizontal facet position *fx* scale. If present, the *fx*
    * scale is always a *band* scale.
    */
-  fx?: ScaleOptions;
+  fx?: ScaleLegendOptions;
 
   /**
    * Options for the vertical facet position *fy* scale. If present, the *fy*
    * scale is always a *band* scale.
    */
-  fy?: ScaleOptions;
+  fy?: ScaleLegendOptions;
 
   /**
    * Options for faceting, including shorthand options for the *fx* and *fy*
@@ -385,12 +387,12 @@ export interface PlotFacetOptions {
   /**
    * Default axis grid for fx and fy scales; typically set to true to enable.
    */
-  grid?: ScaleOptions["grid"];
+  grid?: ScaleLegendOptions["grid"];
 
   /**
    * Default axis label for fx and fy scales; typically set to null to disable.
    */
-  label?: ScaleOptions["label"];
+  label?: ScaleLegendOptions["label"];
 }
 
 /**
