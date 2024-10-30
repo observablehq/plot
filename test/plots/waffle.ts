@@ -296,6 +296,7 @@ export function wafflePointerFractional() {
     ]
   });
 }
+
 export function waffleTip() {
   return Plot.plot({
     color: {type: "sqrt", scheme: "spectral"},
@@ -342,6 +343,24 @@ export function waffleTipUnitX() {
   });
 }
 
+export function waffleHref() {
+  return Plot.plot({
+    inset: 10,
+    marks: [
+      Plot.waffleY(
+        {length: 77},
+        {
+          y: 1,
+          fill: (d, i) => i % 7,
+          href: (d, i) => `/?${i}`,
+          title: (d, i) => `waffle ${i}`,
+          target: "_blank"
+        }
+      )
+    ]
+  });
+}
+
 export function waffleTipFacetX() {
   return Plot.plot({
     height: 500,
@@ -356,6 +375,44 @@ export function waffleTipFacetXY() {
     height: 600,
     marks: [
       Plot.waffleX({length: 500}, {fx: (d, i) => i % 3, fy: (d, i) => i % 2, x: 1, fill: d3.randomLcg(42), tip: true})
+    ]
+  });
+}
+
+export function waffleShapes() {
+  const k = 10;
+  let offset = 0;
+  const waffle = (y1, y2) => {
+    y1 += offset;
+    y2 += offset;
+    offset = Math.ceil(y2 / k) * k;
+    return Plot.waffleY({length: 1}, {y1, y2, multiple: k, fill: y1, stroke: "black"});
+  };
+  return Plot.plot({
+    height: 1200,
+    color: {type: "categorical"},
+    y: {domain: [0, 300]},
+    marks: [
+      Plot.waffleY({length: 1}, {y1: 0, y2: 300, multiple: 10, stroke: "currentColor", strokeOpacity: 0.2, gap: 0}),
+      waffle(0, 1),
+      waffle(0, 0.5),
+      waffle(0.2, 0.8),
+      waffle(0.6, 1.4),
+      waffle(9.6, 10.4),
+      waffle(0.6, 2),
+      waffle(1, 2.4),
+      waffle(0.6, 2.4),
+      waffle(1, 3),
+      waffle(9, 11),
+      waffle(0.6, 3),
+      waffle(1, 3.4),
+      waffle(0.6, 3.4),
+      waffle(7, 20),
+      waffle(7.6, 20),
+      waffle(0, 13),
+      waffle(0, 12.4),
+      waffle(7, 23),
+      waffle(7.6, 22.4)
     ]
   });
 }

@@ -50,3 +50,25 @@ export async function crosshairLine() {
     marks: [Plot.lineY(aapl, {x: "Date", y: "Close"}), Plot.crosshairX(aapl, {x: "Date", y: "Close"})]
   });
 }
+
+export async function crosshairContinuousX() {
+  const aapl = await d3.csv<any>("data/aapl.csv", d3.autoType);
+  return Plot.plot({
+    height: 270,
+    x: {nice: true},
+    marks: [
+      Plot.lineY(aapl, {x: "Date", y: "Close"}),
+      Plot.gridX(Plot.pointerX({ticks: 1000, ariaLabel: `crosshair-x tick`})),
+      Plot.axisX(
+        Plot.pointerX({
+          ticks: 1000,
+          ariaLabel: `crosshair-x label`,
+          tickFormat: `%Y\n%b`,
+          textStroke: "var(--plot-background)",
+          textStrokeWidth: 5,
+          tickSize: 0
+        })
+      )
+    ]
+  });
+}

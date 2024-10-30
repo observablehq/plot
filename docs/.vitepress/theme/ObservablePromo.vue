@@ -62,7 +62,7 @@ h1 {
   opacity: 0.7;
 }
 
-a.button {
+.promo a.button {
   display: inline-block;
   border: 1px solid transparent;
   text-align: center;

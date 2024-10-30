@@ -14,18 +14,13 @@ There’s also an [**interval** scale option](../features/scales.md#scale-transf
 
 The **interval transform** turns a quantitative or temporal *value* into a continuous extent [*start*, *stop*]. For example, if *value* is an instant in time, the interval transform could return a *start* of UTC midnight and a *stop* of the UTC midnight the following day.
 
-The interval transform is often used for time-series bar charts. For example, consider the chart below of the daily trade volume of Apple stock. Because of the [barY mark](../marks/bar.md), the *x* scale is ordinal (*band*). And because the regularity of the data is not specified (*i.e.*, because Plot has no way of knowing that this is daily data), every distinct value must have its own label, leading to crowding. If a day were missing data, it would be difficult to spot! 👓
+The interval transform is often used for time-series bar charts. For example, consider the chart below of the daily trade volume of Apple stock. Because of the [barY mark](../marks/bar.md), the *x* scale is ordinal (*band*). And because the regularity of the data is not specified (*i.e.*, because Plot has no way of knowing that this is daily data), every distinct value must have its own label, leading to crowding. If a day were missing data, it would be difficult to spot! 👓
 
 :::plot https://observablehq.com/@observablehq/plot-band-scale-interval
 ```js
 Plot.plot({
   marginBottom: 80,
-  x: {
-    type: "band", // ⚠️ not utc
-    tickRotate: -90,
-    fontVariant: "tabular-nums",
-    label: null
-  },
+  x: {type: "band"}, // ⚠️ not utc
   y: {
     transform: (d) => d / 1e6,
     label: "Daily trade volume (millions)"
@@ -66,12 +61,7 @@ The meaning of the **interval** mark option depends on the associated mark, such
 ```js
 Plot.plot({
   marginBottom: 80,
-  x: {
-    type: "band", // ⚠️ not utc
-    tickRotate: -90,
-    label: null,
-    fontVariant: "tabular-nums"
-  },
+  x: {type: "band"}, // ⚠️ not utc
   y: {
     grid: true,
     transform: (d) => d / 1e6,
