@@ -1,6 +1,6 @@
 import {creator, select} from "d3";
 import {createChannel, inferChannelScale} from "./channel.js";
-import {createContext} from "./context.js";
+import {create, createContext} from "./context.js";
 import {createDimensions} from "./dimensions.js";
 import {createFacets, recreateFacets, facetExclude, facetGroups, facetTranslator, facetFilter} from "./facet.js";
 import {pointer, pointerX, pointerY} from "./interactions/pointer.js";
@@ -284,7 +284,7 @@ export function plot(options = {}) {
         index = mark.filter(index, channels, values);
         if (index.length === 0) continue;
       }
-      const node = mark.render(index, scales, values, superdimensions, context);
+      const node = maybeWrapSVGElement(mark.render(index, scales, values, superdimensions, context), context);
       if (node == null) continue;
       svg.appendChild(node);
     }
@@ -303,7 +303,7 @@ export function plot(options = {}) {
           if (!faceted && index === indexes[0]) index = subarray(index); // copy before assigning fx, fy, fi
           (index.fx = f.x), (index.fy = f.y), (index.fi = f.i);
         }
-        const node = mark.render(index, scales, values, subdimensions, context);
+        const node = maybeWrapSVGElement(mark.render(index, scales, values, subdimensions, context), context);
         if (node == null) continue;
         // Lazily construct the shared group (to drop empty marks).
         (g ??= select(svg).append("g")).append(() => node).datum(f);
@@ -737,4 +737,18 @@ function outerRange(scale) {
   let x2 = scale(domain[domain.length - 1]);
   if (x2 < x1) [x1, x2] = [x2, x1];
   return [x1, x2 + scale.bandwidth()];
+}
+
+// Wrap any SVGSVGElement in a SVGGElement, in order to support the transform
+// attribute required for faceting.
+function maybeWrapSVGElement(node, context) {
+  if (!node) return null;
+  if (node.nodeType === 1 && node.namespaceURI === "http://www.w3.org/2000/svg") {
+    if (node.tagName === "svg")
+      return create("svg:g", context)
+        .append(() => node)
+        .node().parentElement;
+    return node;
+  }
+  throw new Error(`Unsupported render ${node.tagName}`);
 }
