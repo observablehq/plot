@@ -1,6 +1,7 @@
 import {InternMap, cross, rollup, sum} from "d3";
 import {keyof, map, range} from "./options.js";
 import {createScales} from "./scales.js";
+import {template} from "./template.js";
 
 // Returns an array of {x?, y?, i} objects representing the facet domain.
 export function createFacets(channelsByScale, options) {
@@ -63,11 +64,15 @@ export function facetGroups(data, {fx, fy}) {
 }
 
 export function facetTranslator(fx, fy, {marginTop, marginLeft}) {
-  return fx && fy
-    ? ({x, y}) => `translate(${fx(x) - marginLeft},${fy(y) - marginTop})`
-    : fx
-    ? ({x}) => `translate(${fx(x) - marginLeft},0)`
-    : ({y}) => `translate(0,${fy(y) - marginTop})`;
+  const x = fx ? ({x}) => fx(x) - marginLeft : () => 0;
+  const y = fy ? ({y}) => fy(y) - marginTop : () => 0;
+  const t = template`translate(${fx ? x : 0},${fy ? y : 0})`;
+  return function (d) {
+    if (this.tagName === "svg") {
+      this.setAttribute("x", x(d));
+      this.setAttribute("y", y(d));
+    } else this.setAttribute("transform", t(d));
+  };
 }
 
 // Returns an index that for each facet lists all the elements present in other
