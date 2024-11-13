@@ -473,6 +473,16 @@ export interface MarkOptions {
 /** The abstract base class for Mark implementations. */
 export class Mark {
   /**
+   * Constructs a new Mark object
+   */
+  constructor(
+    data: any,
+    channels?: Record<string, Channel | ChannelValue>,
+    options?: MarkOptions,
+    defaults?: Record<string, any>
+  );
+
+  /**
    * Renders a new plot, prepending this mark as the first element of **marks**
    * of the specified *options*, and returns the corresponding SVG element, or
    * an HTML figure element if a caption or legend is requested.
