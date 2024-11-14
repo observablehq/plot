@@ -308,6 +308,7 @@ export * from "./style-overrides.js";
 export * from "./symbol-set.js";
 export * from "./text-overflow.js";
 export * from "./this-is-just-to-say.js";
+export * from "./tick-format.js";
 export * from "./time-axis.js";
 export * from "./tip-format.js";
 export * from "./tip.js";
