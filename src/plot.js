@@ -317,7 +317,7 @@ export function plot(options = {}) {
           }
         }
       }
-      g?.selectChildren().attr("transform", facetTranslate);
+      g?.selectChildren().each(facetTranslate);
     }
   }
 

@@ -114,7 +114,7 @@ Plot.plot({
 ```
 :::
 
-Marks may also be a function which returns an SVG element, if you wish to insert arbitrary content. (Here we use [Hypertext Literal](https://github.com/observablehq/htl) to generate an SVG gradient.)
+Marks may also be a function which returns an [SVG element](https://developer.mozilla.org/en-US/docs/Web/SVG/Element), if you wish to insert arbitrary content. (Here we use [Hypertext Literal](https://github.com/observablehq/htl) to generate an SVG gradient.)
 
 :::plot defer https://observablehq.com/@observablehq/plot-gradient-bars
 ```js
