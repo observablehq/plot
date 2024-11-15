@@ -21,9 +21,9 @@
     <path transform="translate(40,230)" d="M0,0L-6,0"></path>
     <path transform="translate(40,195)" d="M0,0L-6,0"></path>
     <path transform="translate(40,160)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,125.00000000000001)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,89.99999999999999)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,54.99999999999999)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,125)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,90)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,55)" d="M0,0L-6,0"></path>
     <path transform="translate(40,20)" d="M0,0L-6,0"></path>
   </g>
   <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
@@ -34,9 +34,9 @@
     <text y="0.32em" transform="translate(40,230)">0.4</text>
     <text y="0.32em" transform="translate(40,195)">0.5</text>
     <text y="0.32em" transform="translate(40,160)">0.6</text>
-    <text y="0.32em" transform="translate(40,125.00000000000001)">0.7</text>
-    <text y="0.32em" transform="translate(40,89.99999999999999)">0.8</text>
-    <text y="0.32em" transform="translate(40,54.99999999999999)">0.9</text>
+    <text y="0.32em" transform="translate(40,125)">0.7</text>
+    <text y="0.32em" transform="translate(40,90)">0.8</text>
+    <text y="0.32em" transform="translate(40,55)">0.9</text>
     <text y="0.32em" transform="translate(40,20)">1.0</text>
   </g>
   <g aria-label="y-axis label" text-anchor="start" transform="translate(-36.5,-16.5)">

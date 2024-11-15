@@ -40,11 +40,11 @@
     <text transform="translate(330,90)">island</text>
   </g>
   <g aria-label="dot" fill="none" stroke="currentColor" stroke-width="1.5" transform="translate(0.5,0.5)">
-    <circle cx="137" cy="78" r="4.632659976896477"></circle>
-    <circle cx="330" cy="55" r="3.4306312493811943"></circle>
-    <circle cx="330" cy="32" r="3.1132471299766253"></circle>
-    <circle cx="523" cy="32" r="3.0000000000000004"></circle>
-    <circle cx="137" cy="32" r="2.7595986330234"></circle>
+    <circle cx="137" cy="78" r="4.633"></circle>
+    <circle cx="330" cy="55" r="3.431"></circle>
+    <circle cx="330" cy="32" r="3.113"></circle>
+    <circle cx="523" cy="32" r="3"></circle>
+    <circle cx="137" cy="32" r="2.76"></circle>
   </g>
   <g aria-label="tip" fill="var(--plot-background)" stroke="currentColor" pointer-events="none" text-anchor="start" transform="translate(0.5,0.5)"></g>
 </svg>

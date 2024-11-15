@@ -15,33 +15,33 @@
   </style>
   <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,0.5)">
     <path transform="translate(40,370)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,342.00000000000006)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,342)" d="M0,0L-6,0"></path>
     <path transform="translate(40,314)" d="M0,0L-6,0"></path>
     <path transform="translate(40,286)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,257.99999999999994)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,258)" d="M0,0L-6,0"></path>
     <path transform="translate(40,230)" d="M0,0L-6,0"></path>
     <path transform="translate(40,202)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,173.99999999999997)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,174)" d="M0,0L-6,0"></path>
     <path transform="translate(40,146)" d="M0,0L-6,0"></path>
     <path transform="translate(40,118)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,89.99999999999999)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,90)" d="M0,0L-6,0"></path>
     <path transform="translate(40,62)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,34.000000000000014)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,34)" d="M0,0L-6,0"></path>
   </g>
   <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
     <text y="0.32em" transform="translate(40,370)">0.00</text>
-    <text y="0.32em" transform="translate(40,342.00000000000006)">0.02</text>
+    <text y="0.32em" transform="translate(40,342)">0.02</text>
     <text y="0.32em" transform="translate(40,314)">0.04</text>
     <text y="0.32em" transform="translate(40,286)">0.06</text>
-    <text y="0.32em" transform="translate(40,257.99999999999994)">0.08</text>
+    <text y="0.32em" transform="translate(40,258)">0.08</text>
     <text y="0.32em" transform="translate(40,230)">0.10</text>
     <text y="0.32em" transform="translate(40,202)">0.12</text>
-    <text y="0.32em" transform="translate(40,173.99999999999997)">0.14</text>
+    <text y="0.32em" transform="translate(40,174)">0.14</text>
     <text y="0.32em" transform="translate(40,146)">0.16</text>
     <text y="0.32em" transform="translate(40,118)">0.18</text>
-    <text y="0.32em" transform="translate(40,89.99999999999999)">0.20</text>
+    <text y="0.32em" transform="translate(40,90)">0.20</text>
     <text y="0.32em" transform="translate(40,62)">0.22</text>
-    <text y="0.32em" transform="translate(40,34.000000000000014)">0.24</text>
+    <text y="0.32em" transform="translate(40,34)">0.24</text>
   </g>
   <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,0)">
     <path transform="translate(40,370)" d="M0,0L0,6"></path>

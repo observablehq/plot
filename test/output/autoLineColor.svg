@@ -14,53 +14,53 @@
     }
   </style>
   <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,0.5)">
-    <path transform="translate(40,360.2007425920208)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,334.03950290385654)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,307.8782632156922)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,281.71702352752783)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,255.55578383936358)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,229.3945441511993)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,203.23330446303498)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,177.07206477487065)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,150.91082508670638)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,124.74958539854207)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,98.58834571037775)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,72.42710602221348)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,46.26586633404916)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,20.104626645884842)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,360.201)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,334.04)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,307.878)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,281.717)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,255.556)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,229.395)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,203.233)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,177.072)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,150.911)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,124.75)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,98.588)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,72.427)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,46.266)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,20.105)" d="M0,0L-6,0"></path>
   </g>
   <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
-    <text y="0.32em" transform="translate(40,360.2007425920208)">60</text>
-    <text y="0.32em" transform="translate(40,334.03950290385654)">70</text>
-    <text y="0.32em" transform="translate(40,307.8782632156922)">80</text>
-    <text y="0.32em" transform="translate(40,281.71702352752783)">90</text>
-    <text y="0.32em" transform="translate(40,255.55578383936358)">100</text>
-    <text y="0.32em" transform="translate(40,229.3945441511993)">110</text>
-    <text y="0.32em" transform="translate(40,203.23330446303498)">120</text>
-    <text y="0.32em" transform="translate(40,177.07206477487065)">130</text>
-    <text y="0.32em" transform="translate(40,150.91082508670638)">140</text>
-    <text y="0.32em" transform="translate(40,124.74958539854207)">150</text>
-    <text y="0.32em" transform="translate(40,98.58834571037775)">160</text>
-    <text y="0.32em" transform="translate(40,72.42710602221348)">170</text>
-    <text y="0.32em" transform="translate(40,46.26586633404916)">180</text>
-    <text y="0.32em" transform="translate(40,20.104626645884842)">190</text>
+    <text y="0.32em" transform="translate(40,360.201)">60</text>
+    <text y="0.32em" transform="translate(40,334.04)">70</text>
+    <text y="0.32em" transform="translate(40,307.878)">80</text>
+    <text y="0.32em" transform="translate(40,281.717)">90</text>
+    <text y="0.32em" transform="translate(40,255.556)">100</text>
+    <text y="0.32em" transform="translate(40,229.395)">110</text>
+    <text y="0.32em" transform="translate(40,203.233)">120</text>
+    <text y="0.32em" transform="translate(40,177.072)">130</text>
+    <text y="0.32em" transform="translate(40,150.911)">140</text>
+    <text y="0.32em" transform="translate(40,124.75)">150</text>
+    <text y="0.32em" transform="translate(40,98.588)">160</text>
+    <text y="0.32em" transform="translate(40,72.427)">170</text>
+    <text y="0.32em" transform="translate(40,46.266)">180</text>
+    <text y="0.32em" transform="translate(40,20.105)">190</text>
   </g>
   <g aria-label="y-axis label" text-anchor="start" transform="translate(-36.5,-16.5)">
     <text y="0.71em" transform="translate(40,20)">↑ Close</text>
   </g>
   <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,0)">
-    <path transform="translate(114.08991228070175,370)" d="M0,0L0,6"></path>
-    <path transform="translate(230.15350877192984,370)" d="M0,0L0,6"></path>
-    <path transform="translate(346.2171052631579,370)" d="M0,0L0,6"></path>
-    <path transform="translate(462.5986842105263,370)" d="M0,0L0,6"></path>
-    <path transform="translate(578.6622807017544,370)" d="M0,0L0,6"></path>
+    <path transform="translate(114.09,370)" d="M0,0L0,6"></path>
+    <path transform="translate(230.154,370)" d="M0,0L0,6"></path>
+    <path transform="translate(346.217,370)" d="M0,0L0,6"></path>
+    <path transform="translate(462.599,370)" d="M0,0L0,6"></path>
+    <path transform="translate(578.662,370)" d="M0,0L0,6"></path>
   </g>
   <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
-    <text y="0.71em" transform="translate(114.08991228070175,370)">2014</text>
-    <text y="0.71em" transform="translate(230.15350877192984,370)">2015</text>
-    <text y="0.71em" transform="translate(346.2171052631579,370)">2016</text>
-    <text y="0.71em" transform="translate(462.5986842105263,370)">2017</text>
-    <text y="0.71em" transform="translate(578.6622807017544,370)">2018</text>
+    <text y="0.71em" transform="translate(114.09,370)">2014</text>
+    <text y="0.71em" transform="translate(230.154,370)">2015</text>
+    <text y="0.71em" transform="translate(346.217,370)">2016</text>
+    <text y="0.71em" transform="translate(462.599,370)">2017</text>
+    <text y="0.71em" transform="translate(578.662,370)">2018</text>
   </g>
   <g aria-label="line" fill="none" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" transform="translate(0.5,0.5)">
     <path stroke="rgb(74, 64, 179)" d="M40,347.217L40.318,351.283"></path>

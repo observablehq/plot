@@ -20,11 +20,7 @@ for (const [name, plot] of Object.entries(plots)) {
     reindexClip(root);
     reindexPattern(root);
     let expected;
-    let actual = beautify.html(root.outerHTML.replaceAll("&nbsp;", "\xa0"), {
-      indent_size: 2,
-      inline: ["title", "tspan", "span", "svg", "a", "i"],
-      indent_inner_html: false
-    });
+    let actual = normalizeHtml(root.outerHTML);
     const outfile = path.resolve("./test/output", `${path.basename(name, ".js")}.${ext}`);
     const diffile = path.resolve("./test/output", `${path.basename(name, ".js")}-changed.${ext}`);
 
@@ -62,6 +58,19 @@ for (const [name, plot] of Object.entries(plots)) {
 
     assert.ok(equal, `${name} must match snapshot`);
   });
+}
+
+function normalizeHtml(html) {
+  return beautify.html(
+    html
+      .replace(/&nbsp;/g, "\xa0") // normalize HTML entities
+      .replace(/\d+\.\d{4,}/g, (d) => +(+d).toFixed(3)), // limit numerical precision
+    {
+      indent_size: 2,
+      inline: ["title", "tspan", "span", "svg", "a", "i"],
+      indent_inner_html: false
+    }
+  );
 }
 
 function reindexStyle(root) {

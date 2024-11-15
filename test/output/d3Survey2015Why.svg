@@ -93,21 +93,21 @@
     <text y="0.71em" transform="translate(940,30)">Frequency (%) →</text>
   </g>
   <g aria-label="bar" fill="steelblue">
-    <rect x="300" width="446.2385321100917" y="51" height="19"></rect>
-    <rect x="300" width="518.6544342507646" y="31" height="19"></rect>
-    <rect x="300" width="309.2354740061162" y="71" height="19"></rect>
-    <rect x="300" width="205.5045871559633" y="91" height="19"></rect>
-    <rect x="300" width="45.01529051987768" y="111" height="19"></rect>
-    <rect x="300" width="1.9571865443425054" y="311" height="19"></rect>
-    <rect x="300" width="1.9571865443425054" y="271" height="19"></rect>
-    <rect x="300" width="1.9571865443425054" y="211" height="19"></rect>
-    <rect x="300" width="1.9571865443425054" y="171" height="19"></rect>
-    <rect x="300" width="1.9571865443425054" y="251" height="19"></rect>
-    <rect x="300" width="1.9571865443425054" y="191" height="19"></rect>
-    <rect x="300" width="1.9571865443425054" y="131" height="19"></rect>
-    <rect x="300" width="1.9571865443425054" y="291" height="19"></rect>
-    <rect x="300" width="1.9571865443425054" y="231" height="19"></rect>
-    <rect x="300" width="1.9571865443425054" y="151" height="19"></rect>
+    <rect x="300" width="446.239" y="51" height="19"></rect>
+    <rect x="300" width="518.654" y="31" height="19"></rect>
+    <rect x="300" width="309.235" y="71" height="19"></rect>
+    <rect x="300" width="205.505" y="91" height="19"></rect>
+    <rect x="300" width="45.015" y="111" height="19"></rect>
+    <rect x="300" width="1.957" y="311" height="19"></rect>
+    <rect x="300" width="1.957" y="271" height="19"></rect>
+    <rect x="300" width="1.957" y="211" height="19"></rect>
+    <rect x="300" width="1.957" y="171" height="19"></rect>
+    <rect x="300" width="1.957" y="251" height="19"></rect>
+    <rect x="300" width="1.957" y="191" height="19"></rect>
+    <rect x="300" width="1.957" y="131" height="19"></rect>
+    <rect x="300" width="1.957" y="291" height="19"></rect>
+    <rect x="300" width="1.957" y="231" height="19"></rect>
+    <rect x="300" width="1.957" y="151" height="19"></rect>
   </g>
   <g aria-label="rule" stroke="currentColor" transform="translate(0.5,0)">
     <line x1="300" x2="300" y1="30" y2="330"></line>
