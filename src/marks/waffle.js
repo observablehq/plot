@@ -16,9 +16,8 @@ const waffleDefaults = {
 };
 
 export class WaffleX extends BarX {
-  constructor(data, {unit = 1, gap = 1, round, render, multiple, ...options} = {}) {
-    options = initializer({...options, render: composeRender(render, waffleRender("x"))}, waffleInitializer("x"));
-    super(data, options, waffleDefaults);
+  constructor(data, {unit = 1, gap = 1, round, multiple, ...options} = {}) {
+    super(data, wafflePolygon("x", options), waffleDefaults);
     this.unit = Math.max(0, unit);
     this.gap = +gap;
     this.round = maybeRound(round);
@@ -27,9 +26,8 @@ export class WaffleX extends BarX {
 }
 
 export class WaffleY extends BarY {
-  constructor(data, {unit = 1, gap = 1, round, render, multiple, ...options} = {}) {
-    options = initializer({...options, render: composeRender(render, waffleRender("y"))}, waffleInitializer("y"));
-    super(data, options, waffleDefaults);
+  constructor(data, {unit = 1, gap = 1, round, multiple, ...options} = {}) {
+    super(data, wafflePolygon("y", options), waffleDefaults);
     this.unit = Math.max(0, unit);
     this.gap = +gap;
     this.round = maybeRound(round);
@@ -37,8 +35,8 @@ export class WaffleY extends BarY {
   }
 }
 
-function waffleInitializer(y) {
-  return function (data, facets, channels, scales, dimensions) {
+function wafflePolygon(y, options) {
+  return initializer(waffleRender(y, options), function (data, facets, channels, scales, dimensions) {
     const {round, unit} = this;
 
     const values = valueObject(channels, scales);
@@ -94,57 +92,60 @@ function waffleInitializer(y) {
         [`${y}2`]: {value: Y, scale: null, source: channels[`${y}2`]}
       }
     };
-  };
+  });
 }
 
-function waffleRender(y) {
-  return function (index, scales, values, dimensions, context) {
-    const {gap, cx, cy, rx, ry, x0, y0} = this;
-    const {ariaLabel, href, title, ...visualValues} = values;
-    const {document} = context;
-    const polygon = values.channels.polygon.value;
+function waffleRender(y, {render, ...options}) {
+  return {
+    ...options,
+    render: composeRender(render, function (index, scales, values, dimensions, context) {
+      const {gap, cx, cy, rx, ry, x0, y0} = this;
+      const {ariaLabel, href, title, ...visualValues} = values;
+      const {document} = context;
+      const polygon = values.channels.polygon.value;
 
-    // Create a base pattern with shared attributes for cloning.
-    const patternId = getPatternId();
-    const basePattern = document.createElementNS(namespaces.svg, "pattern");
-    basePattern.setAttribute("width", y === "y" ? cx : cy);
-    basePattern.setAttribute("height", y === "y" ? cy : cx);
-    basePattern.setAttribute("patternUnits", "userSpaceOnUse");
-    const basePatternRect = basePattern.appendChild(document.createElementNS(namespaces.svg, "rect"));
-    basePatternRect.setAttribute("x", gap / 2);
-    basePatternRect.setAttribute("y", gap / 2);
-    basePatternRect.setAttribute("width", (y === "y" ? cx : cy) - gap);
-    basePatternRect.setAttribute("height", (y === "y" ? cy : cx) - gap);
-    if (rx != null) basePatternRect.setAttribute("rx", rx);
-    if (ry != null) basePatternRect.setAttribute("ry", ry);
+      // Create a base pattern with shared attributes for cloning.
+      const patternId = getPatternId();
+      const basePattern = document.createElementNS(namespaces.svg, "pattern");
+      basePattern.setAttribute("width", y === "y" ? cx : cy);
+      basePattern.setAttribute("height", y === "y" ? cy : cx);
+      basePattern.setAttribute("patternUnits", "userSpaceOnUse");
+      const basePatternRect = basePattern.appendChild(document.createElementNS(namespaces.svg, "rect"));
+      basePatternRect.setAttribute("x", gap / 2);
+      basePatternRect.setAttribute("y", gap / 2);
+      basePatternRect.setAttribute("width", (y === "y" ? cx : cy) - gap);
+      basePatternRect.setAttribute("height", (y === "y" ? cy : cx) - gap);
+      if (rx != null) basePatternRect.setAttribute("rx", rx);
+      if (ry != null) basePatternRect.setAttribute("ry", ry);
 
-    return create("svg:g", context)
-      .call(applyIndirectStyles, this, dimensions, context)
-      .call(this._transform, this, scales)
-      .call((g) =>
-        g
-          .selectAll()
-          .data(index)
-          .enter()
-          .append(() => basePattern.cloneNode(true))
-          .attr("id", (i) => `${patternId}-${i}`)
-          .select("rect")
-          .call(applyDirectStyles, this)
-          .call(applyChannelStyles, this, visualValues)
-      )
-      .call((g) =>
-        g
-          .selectAll()
-          .data(index)
-          .enter()
-          .append("path")
-          .attr("transform", y === "y" ? template`translate(${x0},${y0})` : template`translate(${y0},${x0})`)
-          .attr("d", (i) => `M${polygon[i].join("L")}Z`)
-          .attr("fill", (i) => `url(#${patternId}-${i})`)
-          .attr("stroke", this.stroke == null ? null : (i) => `url(#${patternId}-${i})`)
-          .call(applyChannelStyles, this, {ariaLabel, href, title})
-      )
-      .node();
+      return create("svg:g", context)
+        .call(applyIndirectStyles, this, dimensions, context)
+        .call(this._transform, this, scales)
+        .call((g) =>
+          g
+            .selectAll()
+            .data(index)
+            .enter()
+            .append(() => basePattern.cloneNode(true))
+            .attr("id", (i) => `${patternId}-${i}`)
+            .select("rect")
+            .call(applyDirectStyles, this)
+            .call(applyChannelStyles, this, visualValues)
+        )
+        .call((g) =>
+          g
+            .selectAll()
+            .data(index)
+            .enter()
+            .append("path")
+            .attr("transform", y === "y" ? template`translate(${x0},${y0})` : template`translate(${y0},${x0})`)
+            .attr("d", (i) => `M${polygon[i].join("L")}Z`)
+            .attr("fill", (i) => `url(#${patternId}-${i})`)
+            .attr("stroke", this.stroke == null ? null : (i) => `url(#${patternId}-${i})`)
+            .call(applyChannelStyles, this, {ariaLabel, href, title})
+        )
+        .node();
+    })
   };
 }
 
@@ -216,26 +217,26 @@ function wafflePoints(i1, i2, columns) {
     points.push([x2f, y2c]);
     if (y2c > y1c) points.push([0, y2c]);
   }
-  points.push(centroid(i1, i2, columns));
+  points.push(waffleCentroid(i1, i2, columns));
   return points;
 }
 
-function centroid(i1, i2, columns) {
+function waffleCentroid(i1, i2, columns) {
   const r = Math.floor(i2 / columns) - Math.floor(i1 / columns);
   return r === 0 // Single row
-    ? singleRowCentroid(i1, i2, columns)
+    ? waffleRowCentroid(i1, i2, columns)
     : // Two incomplete rows, use the midpoint of their overlap if they do, otherwise use the largest
     r === 1
     ? Math.floor(i2 % columns) > Math.ceil(i1 % columns)
       ? [(Math.floor(i2 % columns) + Math.ceil(i1 % columns)) / 2, Math.floor(i2 / columns)]
       : i2 % columns > columns - (i1 % columns)
-      ? singleRowCentroid(i2 - (i2 % columns), i2, columns)
-      : singleRowCentroid(i1, columns * Math.ceil(i1 / columns), columns)
+      ? waffleRowCentroid(i2 - (i2 % columns), i2, columns)
+      : waffleRowCentroid(i1, columns * Math.ceil(i1 / columns), columns)
     : // At least one full row, take the midpoint of all the rows that include the middle
       [columns / 2, (Math.round(i1 / columns) + Math.round(i2 / columns)) / 2];
 }
 
-function singleRowCentroid(i1, i2, columns) {
+function waffleRowCentroid(i1, i2, columns) {
   const c = Math.floor(i2) - Math.floor(i1);
   return c === 0 // Single cell
     ? [Math.floor(i1 % columns) + 0.5, Math.floor(i1 / columns) + (((i1 + i2) / 2) % 1)]
