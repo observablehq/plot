@@ -74,7 +74,7 @@ function wafflePolygon(y, options) {
 
     for (let i = 0; i < n; ++i) {
       P[i] = wafflePoints(round(Y1[i] / unit), round(Y2[i] / unit), multiple).map(transform);
-      const c = P[i].pop(); // TODO call waffleCentroid here instead?
+      const c = P[i].pop(); // extract the transformed centroid
       X[i] = c[ix] + mx(i);
       Y[i] = c[iy] + y0;
     }
@@ -188,13 +188,8 @@ function waffleRender({render, ...options}) {
 //
 // The last point describes the centroid (used for pointing)
 function wafflePoints(i1, i2, columns) {
-  if (i1 < 0 || i2 < 0) {
-    const k = Math.ceil(-Math.min(i1, i2) / columns); // shift negative to positive
-    return wafflePoints(i1 + k * columns, i2 + k * columns, columns).map(([x, y]) => [x, y - k]);
-  }
-  if (i2 < i1) {
-    return wafflePoints(i2, i1, columns);
-  }
+  if (i2 < i1) return wafflePoints(i2, i1, columns); // ensure i1 <= i2
+  if (i1 < 0) return wafflePointsOffset(i1, i2, columns, Math.ceil(-Math.min(i1, i2) / columns)); // ensure i1 >= 0
   const x1f = Math.floor(i1 % columns);
   const x1c = Math.ceil(i1 % columns);
   const x2f = Math.floor(i2 % columns);
@@ -218,6 +213,10 @@ function wafflePoints(i1, i2, columns) {
   }
   points.push(waffleCentroid(i1, i2, columns));
   return points;
+}
+
+function wafflePointsOffset(i1, i2, columns, k) {
+  return wafflePoints(i1 + k * columns, i2 + k * columns, columns).map(([x, y]) => [x, y - k]);
 }
 
 function waffleCentroid(i1, i2, columns) {
