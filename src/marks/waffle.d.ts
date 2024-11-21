@@ -1,4 +1,5 @@
 import type {Data, RenderableMark} from "../mark.js";
+import type {SymbolType} from "../symbol.js";
 import type {BarXOptions, BarYOptions} from "./bar.js";
 
 /** Options for the waffleX and waffleY mark. */
@@ -11,6 +12,8 @@ interface WaffleOptions {
   gap?: number;
   /** If true, round to integers to avoid partial cells. */
   round?: boolean | ((value: number) => number);
+  /** TODO Symbol. */
+  symbol?: SymbolType;
 }
 
 /** Options for the waffleX mark. */

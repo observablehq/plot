@@ -1,9 +1,10 @@
-import {extent, namespaces} from "d3";
+import {extent, namespaces, path} from "d3";
 import {valueObject} from "../channel.js";
 import {create} from "../context.js";
 import {composeRender} from "../mark.js";
 import {hasXY, identity, indexOf, isObject} from "../options.js";
 import {applyChannelStyles, applyDirectStyles, applyIndirectStyles, getPatternId} from "../style.js";
+import {maybeSymbol} from "../symbol.js";
 import {template} from "../template.js";
 import {initializer} from "../transforms/basic.js";
 import {maybeIdentityX, maybeIdentityY} from "../transforms/identity.js";
@@ -26,12 +27,13 @@ export class WaffleX extends BarX {
 }
 
 export class WaffleY extends BarY {
-  constructor(data, {unit = 1, gap = 1, round, multiple, ...options} = {}) {
+  constructor(data, {unit = 1, gap = 1, round, multiple, symbol, ...options} = {}) {
     super(data, wafflePolygon("y", options), waffleDefaults);
     this.unit = Math.max(0, unit);
     this.gap = +gap;
     this.round = maybeRound(round);
     this.multiple = maybeMultiple(multiple);
+    this.symbol = maybeSymbol(symbol);
   }
 }
 
@@ -98,7 +100,7 @@ function waffleRender({render, ...options}) {
   return {
     ...options,
     render: composeRender(render, function (index, scales, values, dimensions, context) {
-      const {gap, rx, ry} = this;
+      const {gap, symbol} = this;
       const {channels, ariaLabel, href, title, ...visualValues} = values;
       const {document} = context;
       const polygon = channels.polygon.value;
@@ -111,13 +113,22 @@ function waffleRender({render, ...options}) {
       basePattern.setAttribute("width", cx);
       basePattern.setAttribute("height", cy);
       basePattern.setAttribute("patternUnits", "userSpaceOnUse");
-      const basePatternRect = basePattern.appendChild(document.createElementNS(namespaces.svg, "rect"));
-      basePatternRect.setAttribute("x", gap / 2);
-      basePatternRect.setAttribute("y", gap / 2);
-      basePatternRect.setAttribute("width", cx - gap);
-      basePatternRect.setAttribute("height", cy - gap);
-      if (rx != null) basePatternRect.setAttribute("rx", rx);
-      if (ry != null) basePatternRect.setAttribute("ry", ry);
+      if (symbol) {
+        const basePatternPath = basePattern.appendChild(document.createElementNS(namespaces.svg, "path"));
+        const d = path();
+        symbol.draw(d, (cx - gap) * (cy - gap) / 2);
+        basePatternPath.setAttribute("d", d);
+        basePatternPath.setAttribute("transform", `translate(${cx / 2},${cy / 2})`);
+      } else {
+        const {rx, ry} = this;
+        const basePatternRect = basePattern.appendChild(document.createElementNS(namespaces.svg, "rect"));
+        basePatternRect.setAttribute("x", gap / 2);
+        basePatternRect.setAttribute("y", gap / 2);
+        basePatternRect.setAttribute("width", cx - gap);
+        basePatternRect.setAttribute("height", cy - gap);
+        if (rx != null) basePatternRect.setAttribute("rx", rx);
+        if (ry != null) basePatternRect.setAttribute("ry", ry);
+      }
 
       return create("svg:g", context)
         .call(applyIndirectStyles, this, dimensions, context)

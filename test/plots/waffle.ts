@@ -46,6 +46,16 @@ export function waffleStroke() {
   });
 }
 
+export function waffleSymbol() {
+return Plot.plot({
+  y: {inset: 12},
+  marks: [
+    Plot.waffleY([4, 9, 24, 46, 66, 7], {symbol: "asterisk", stroke: "black", strokeWidth: 1.5, gap: 4}),
+    Plot.waffleY([-4, -9, -24, -46, -66, -7], {symbol: "plus", stroke: "black", strokeWidth: 1.5, gap: 4})
+  ]
+});
+}
+
 export function waffleRound() {
   return Plot.plot({
     y: {inset: 12},
