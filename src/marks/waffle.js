@@ -36,7 +36,7 @@ export class WaffleY extends BarY {
 }
 
 function wafflePolygon(y, options) {
-  return initializer(waffleRender(y, options), function (data, facets, channels, scales, dimensions) {
+  return initializer(waffleRender(options), function (data, facets, channels, scales, dimensions) {
     const {round, unit} = this;
 
     const values = valueObject(channels, scales);
@@ -74,19 +74,16 @@ function wafflePolygon(y, options) {
 
     for (let i = 0; i < n; ++i) {
       P[i] = wafflePoints(round(Y1[i] / unit), round(Y2[i] / unit), multiple).map(transform);
-      const c = P[i].pop();
+      const c = P[i].pop(); // TODO call waffleCentroid here instead?
       X[i] = c[ix] + mx(i);
       Y[i] = c[iy] + y0;
     }
 
-    this.cx = cx;
-    this.cy = cy;
-    this.x0 = x0;
-    this.y0 = y0;
-
     return {
       channels: {
         polygon: {value: P, source: null},
+        [y === "y" ? "cx" : "cy"]: {value: [cx, x0], source: null, filter: null},
+        [y === "y" ? "cy" : "cx"]: {value: [cy, y0], source: null, filter: null},
         [y === "y" ? "x" : "y"]: {value: X, scale: null, source: null},
         [`${y}1`]: {value: Y, scale: null, source: channels[`${y}1`]},
         [`${y}2`]: {value: Y, scale: null, source: channels[`${y}2`]}
@@ -95,26 +92,28 @@ function wafflePolygon(y, options) {
   });
 }
 
-function waffleRender(y, {render, ...options}) {
+function waffleRender({render, ...options}) {
   return {
     ...options,
     render: composeRender(render, function (index, scales, values, dimensions, context) {
-      const {gap, cx, cy, rx, ry, x0, y0} = this;
-      const {ariaLabel, href, title, ...visualValues} = values;
+      const {gap, rx, ry} = this;
+      const {channels, ariaLabel, href, title, ...visualValues} = values;
       const {document} = context;
-      const polygon = values.channels.polygon.value;
+      const polygon = channels.polygon.value;
+      const [cx, x0] = channels.cx.value;
+      const [cy, y0] = channels.cy.value;
 
       // Create a base pattern with shared attributes for cloning.
       const patternId = getPatternId();
       const basePattern = document.createElementNS(namespaces.svg, "pattern");
-      basePattern.setAttribute("width", y === "y" ? cx : cy);
-      basePattern.setAttribute("height", y === "y" ? cy : cx);
+      basePattern.setAttribute("width", cx);
+      basePattern.setAttribute("height", cy);
       basePattern.setAttribute("patternUnits", "userSpaceOnUse");
       const basePatternRect = basePattern.appendChild(document.createElementNS(namespaces.svg, "rect"));
       basePatternRect.setAttribute("x", gap / 2);
       basePatternRect.setAttribute("y", gap / 2);
-      basePatternRect.setAttribute("width", (y === "y" ? cx : cy) - gap);
-      basePatternRect.setAttribute("height", (y === "y" ? cy : cx) - gap);
+      basePatternRect.setAttribute("width", cx - gap);
+      basePatternRect.setAttribute("height", cy - gap);
       if (rx != null) basePatternRect.setAttribute("rx", rx);
       if (ry != null) basePatternRect.setAttribute("ry", ry);
 
@@ -138,7 +137,7 @@ function waffleRender(y, {render, ...options}) {
             .data(index)
             .enter()
             .append("path")
-            .attr("transform", y === "y" ? template`translate(${x0},${y0})` : template`translate(${y0},${x0})`)
+            .attr("transform", template`translate(${x0},${y0})`)
             .attr("d", (i) => `M${polygon[i].join("L")}Z`)
             .attr("fill", (i) => `url(#${patternId}-${i})`)
             .attr("stroke", this.stroke == null ? null : (i) => `url(#${patternId}-${i})`)
