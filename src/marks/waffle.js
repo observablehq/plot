@@ -2,7 +2,7 @@ import {extent, namespaces} from "d3";
 import {valueObject} from "../channel.js";
 import {create} from "../context.js";
 import {composeRender} from "../mark.js";
-import {hasXY, identity, indexOf} from "../options.js";
+import {hasXY, identity, indexOf, isObject} from "../options.js";
 import {applyChannelStyles, applyDirectStyles, applyIndirectStyles, getPatternId} from "../style.js";
 import {template} from "../template.js";
 import {initializer} from "../transforms/basic.js";
@@ -278,10 +278,26 @@ function spread(domain) {
 
 export function waffleX(data, {tip, ...options} = {}) {
   if (!hasXY(options)) options = {...options, y: indexOf, x2: identity};
-  return new WaffleX(data, {tip, ...maybeStackX(maybeIntervalX(maybeIdentityX(options)))});
+  return new WaffleX(data, {tip: waffleTip(tip), ...maybeStackX(maybeIntervalX(maybeIdentityX(options)))});
 }
 
 export function waffleY(data, {tip, ...options} = {}) {
   if (!hasXY(options)) options = {...options, x: indexOf, y2: identity};
-  return new WaffleY(data, {tip, ...maybeStackY(maybeIntervalY(maybeIdentityY(options)))});
+  return new WaffleY(data, {tip: waffleTip(tip), ...maybeStackY(maybeIntervalY(maybeIdentityY(options)))});
+}
+
+/**
+ * Waffle tips behave a bit unpredictably because we they are driven by the
+ * waffle centroid; you could be hovering over a waffle segment, but more than
+ * 40px away from its centroid, or closer to the centroid of another segment.
+ * We’d rather show a tip, even if it’s the “wrong” one, so we increase the
+ * default maxRadius to Infinity. The “right” way to fix this would be to use
+ * signed distance to the waffle geometry rather than the centroid.
+ */
+function waffleTip(tip) {
+  return tip === true
+    ? {maxRadius: Infinity}
+    : isObject(tip) && tip.maxRadius === undefined
+    ? {...tip, maxRadius: Infinity}
+    : undefined;
 }
