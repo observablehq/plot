@@ -142,7 +142,7 @@ function waffleRender({render, ...options}) {
             .attr("transform", template`translate(${x0},${y0})`)
             .attr("d", (i) => `M${polygon[i].join("L")}Z`)
             .attr("fill", (i) => `url(#${patternId}-${i})`)
-            .attr("stroke", this.stroke == null ? null : (i) => `url(#${patternId}-${i})`)
+            .attr("stroke", this.stroke == null ? null : "none")
             .call(applyChannelStyles, this, {ariaLabel, href, title})
         )
         .node();
