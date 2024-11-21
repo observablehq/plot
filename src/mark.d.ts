@@ -1,4 +1,4 @@
-import {GeoPermissibleObjects} from "d3";
+import type {GeoPermissibleObjects} from "d3";
 import type {Channel, ChannelDomainSort, ChannelValue, ChannelValues, ChannelValueSpec} from "./channel.js";
 import type {Context} from "./context.js";
 import type {Dimensions} from "./dimensions.js";
