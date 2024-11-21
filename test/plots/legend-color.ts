@@ -34,6 +34,22 @@ export function colorLegendCategoricalReverse() {
   return Plot.legend({color: {domain: "ABCDEFGHIJ", reverse: true}});
 }
 
+export function colorLegendDomainUnary() {
+  return Plot.legend({color: {domain: [0]}});
+}
+
+export function colorLegendDomainEmpty() {
+  return Plot.legend({color: {domain: []}});
+}
+
+export function colorLegendLinearDomainUnary() {
+  return Plot.legend({color: {type: "linear", domain: [0]}});
+}
+
+export function colorLegendLinearDomainEmpty() {
+  return Plot.legend({color: {type: "linear", domain: []}});
+}
+
 export function colorLegendOrdinal() {
   return Plot.legend({color: {type: "ordinal", domain: "ABCDEFGHIJ"}});
 }
