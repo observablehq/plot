@@ -36,16 +36,18 @@ export class WaffleY extends BarY {
 }
 
 function wafflePolygon(y, options) {
+  const x = y === "y" ? "x" : "y";
+  const y1 = `${y}1`;
+  const y2 = `${y}2`;
   return initializer(waffleRender(options), function (data, facets, channels, scales, dimensions) {
     const {round, unit} = this;
-
-    const values = valueObject(channels, scales);
-    const Y1 = values.channels[`${y}1`].value;
-    const Y2 = values.channels[`${y}2`].value;
+    const Y1 = channels[y1].value;
+    const Y2 = channels[y2].value;
 
     // We might not use all the available bandwidth if the cells don’t fit evenly.
-    const barwidth = this[y === "y" ? "_width" : "_height"](scales, values, dimensions);
-    const barx = this[y === "y" ? "_x" : "_y"](scales, values, dimensions);
+    const xy = valueObject({...(x in channels && {[x]: channels[x]}), [y1]: channels[y1], [y2]: channels[y2]}, scales);
+    const barwidth = this[y === "y" ? "_width" : "_height"](scales, xy, dimensions);
+    const barx = this[y === "y" ? "_x" : "_y"](scales, xy, dimensions);
 
     // The length of a unit along y in pixels.
     const scale = unit * scaleof(scales.scales[y]);
@@ -82,11 +84,11 @@ function wafflePolygon(y, options) {
     return {
       channels: {
         polygon: {value: P, source: null, filter: null},
-        [y === "y" ? "cx" : "cy"]: {value: [cx, x0], source: null, filter: null},
-        [y === "y" ? "cy" : "cx"]: {value: [cy, y0], source: null, filter: null},
-        [y === "y" ? "x" : "y"]: {value: X, scale: null, source: null},
-        [`${y}1`]: {value: Y, scale: null, source: channels[`${y}1`]},
-        [`${y}2`]: {value: Y, scale: null, source: channels[`${y}2`]}
+        [`c${x}`]: {value: [cx, x0], source: null, filter: null},
+        [`c${y}`]: {value: [cy, y0], source: null, filter: null},
+        [x]: {value: X, scale: null, source: null},
+        [y1]: {value: Y, scale: null, source: channels[y1]},
+        [y2]: {value: Y, scale: null, source: channels[y2]}
       }
     };
   });
