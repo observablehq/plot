@@ -39,9 +39,6 @@
     "docs:build": "node --experimental-network-imports node_modules/vitepress/dist/node/cli.js build docs",
     "docs:preview": "vitepress preview docs"
   },
-  "_moduleAliases": {
-    "@observablehq/plot": "./src/index.js"
-  },
   "sideEffects": [
     "./src/index.js"
   ],
@@ -67,7 +64,6 @@
     "jsdom": "^24.0.0",
     "markdown-it-container": "^4.0.0",
     "mocha": "^10.0.0",
-    "module-alias": "^2.0.0",
     "prettier": "~3.0.0",
     "rollup": "^4.9.1",
     "topojson-client": "^3.1.0",

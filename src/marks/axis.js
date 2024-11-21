@@ -672,10 +672,10 @@ export function inferTickFormat(scale, data, ticks, tickFormat, anchor) {
     ? inferTimeFormat(scale.type, data, anchor) ?? formatDefault
     : scale.tickFormat
     ? scale.tickFormat(typeof ticks === "number" ? ticks : null, tickFormat)
+    : typeof tickFormat === "string" && scale.domain().length > 0
+    ? (isTemporal(scale.domain()) ? utcFormat : format)(tickFormat)
     : tickFormat === undefined
     ? formatDefault
-    : typeof tickFormat === "string"
-    ? (isTemporal(scale.domain()) ? utcFormat : format)(tickFormat)
     : constant(tickFormat);
 }
 
