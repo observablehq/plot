@@ -4,6 +4,7 @@ import {defined, nonempty} from "./defined.js";
 import {formatDefault} from "./format.js";
 import {isNone, isNoneish, isRound, maybeColorChannel, maybeNumberChannel} from "./options.js";
 import {keyof, number, string} from "./options.js";
+import {xyProjection} from "./projection.js";
 import {warn} from "./warnings.js";
 
 export const offset = (typeof window !== "undefined" ? window.devicePixelRatio > 1 : typeof it === "undefined") ? 0 : 0.5; // prettier-ignore
@@ -303,27 +304,22 @@ export function* groupIndex(I, position, mark, channels) {
 }
 
 // Note: may mutate selection.node!
-function applyClip(selection, mark, dimensions, context) {
+function applyClip(selection, mark, scales, dimensions, context) {
   let clipUrl;
   const {clip = context.clip} = mark;
-  switch (clip) {
-    case "frame": {
-      // Wrap the G element with another (untransformed) G element, applying the
-      // clip to the parent G element so that the clip path is not affected by
-      // the mark’s transform. To simplify the adoption of this fix, mutate the
-      // passed-in selection.node to return the parent G element.
-      selection = create("svg:g", context).each(function () {
-        this.appendChild(selection.node());
-        selection.node = () => this; // Note: mutation!
-      });
-      clipUrl = getFrameClip(context, dimensions);
-      break;
-    }
-    case "sphere": {
-      clipUrl = getProjectionClip(context);
-      break;
-    }
-  }
+  if (clip === "frame") {
+    // Wrap the G element with another (untransformed) G element, applying the
+    // clip to the parent G element so that the clip path is not affected by
+    // the mark’s transform. To simplify the adoption of this fix, mutate the
+    // passed-in selection.node to return the parent G element.
+    selection = create("svg:g", context).each(function () {
+      this.appendChild(selection.node());
+      selection.node = () => this; // Note: mutation!
+    });
+    clipUrl = getFrameClip(context, dimensions);
+  } else if (clip === "sphere") clipUrl = getProjectionClip(context);
+  else if (clip?.type) clipUrl = getGeoClip(clip, scales)(context);
+
   // Here we’re careful to apply the ARIA attributes to the outer G element when
   // clipping is applied, and to apply the ARIA attributes before any other
   // attributes (for readability).
@@ -356,15 +352,27 @@ const getFrameClip = memoizeClip((clipPath, context, dimensions) => {
     .attr("height", height - marginTop - marginBottom);
 });
 
-const getProjectionClip = memoizeClip((clipPath, context) => {
-  const {projection} = context;
-  if (!projection) throw new Error(`the "sphere" clip option requires a projection`);
-  clipPath.append("path").attr("d", geoPath(projection)({type: "Sphere"}));
-});
+function memoizeGeo(clip) {
+  const geoClips = new WeakMap();
+  return (geo, scales) => {
+    if (!geoClips.has(geo)) geoClips.set(geo, clip(geo, scales));
+    return geoClips.get(geo);
+  };
+}
+
+const getGeoClip = memoizeGeo((geo, scales) =>
+  memoizeClip((clipPath, context) => {
+    const {projection} = context;
+    if (!projection && geo.type === "Sphere") throw new Error(`clipping to the sphere requires a projection`);
+    clipPath.append("path").attr("d", geoPath(projection ?? xyProjection(scales))(geo));
+  })
+);
+
+const getProjectionClip = getGeoClip({type: "Sphere"});
 
 // Note: may mutate selection.node!
-export function applyIndirectStyles(selection, mark, dimensions, context) {
-  applyClip(selection, mark, dimensions, context);
+export function applyIndirectStyles(selection, mark, scales, dimensions, context) {
+  applyClip(selection, mark, scales, dimensions, context);
   applyAttr(selection, "class", mark.className);
   applyAttr(selection, "fill", mark.fill);
   applyAttr(selection, "fill-opacity", mark.fillOpacity);

@@ -180,3 +180,35 @@ export function mandelbrot() {
     ]
   });
 }
+
+export function mandelbrotClip() {
+  return Plot.plot({
+    height: 500,
+    clip: {
+      type: "Polygon",
+      coordinates: [
+        [
+          [-2, 0],
+          [0, 1.5],
+          [1, 0],
+          [0, -1.5],
+          [-2, 0]
+        ]
+      ]
+    },
+    marks: [
+      Plot.raster({
+        fill: (x, y) => {
+          for (let n = 0, zr = 0, zi = 0; n < 80; ++n) {
+            [zr, zi] = [zr * zr - zi * zi + x, 2 * zr * zi + y];
+            if (zr * zr + zi * zi > 4) return n;
+          }
+        },
+        x1: -2,
+        y1: -1.164,
+        x2: 1,
+        y2: 1.164
+      })
+    ]
+  });
+}

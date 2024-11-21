@@ -602,12 +602,14 @@ export function maybeNamed(things) {
   return isIterable(things) ? named(things) : things;
 }
 
-// TODO Accept other types of clips (paths, urls, x, y, other marks…)?
-// https://github.com/observablehq/plot/issues/181
 export function maybeClip(clip) {
   if (clip === true) clip = "frame";
   else if (clip === false) clip = null;
-  else if (clip != null) clip = keyword(clip, "clip", ["frame", "sphere"]);
+  else if (
+    clip != null &&
+    !["FeatureCollection", "Feature", "Polygon", "GeometryCollection", "MultiPolygon"].includes(clip.type)
+  )
+    clip = keyword(clip, "clip", ["frame", "sphere"]);
   return clip;
 }
 

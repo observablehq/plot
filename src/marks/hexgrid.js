@@ -46,7 +46,7 @@ export class Hexgrid extends Mark {
     }
     return create("svg:g", context)
       .datum(0)
-      .call(applyIndirectStyles, this, dimensions, context)
+      .call(applyIndirectStyles, this, scales, dimensions, context)
       .call(applyTransform, this, {}, offset + ox, offset + oy)
       .call((g) => g.append("path").call(applyDirectStyles, this).call(applyChannelStyles, this, channels).attr("d", d))
       .node();

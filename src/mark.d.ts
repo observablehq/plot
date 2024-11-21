@@ -1,3 +1,4 @@
+import {GeoPermissibleObjects} from "d3";
 import type {Channel, ChannelDomainSort, ChannelValue, ChannelValues, ChannelValueSpec} from "./channel.js";
 import type {Context} from "./context.js";
 import type {Dimensions} from "./dimensions.js";
@@ -295,11 +296,12 @@ export interface MarkOptions {
    *
    * - *frame* or true - clip to the plot’s frame (inner area)
    * - *sphere* - clip to the projected sphere (*e.g.*, front hemisphere)
+   * - geojson - a GeoJSON object with a (multi-) polygon geometry
    * - null or false - do not clip
    *
    * The *sphere* clip option requires a geographic projection.
    */
-  clip?: "frame" | "sphere" | boolean | null;
+  clip?: "frame" | "sphere" | GeoPermissibleObjects | boolean | null;
 
   /**
    * The horizontal offset in pixels; a constant option. On low-density screens,

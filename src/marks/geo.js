@@ -1,8 +1,9 @@
-import {geoGraticule10, geoPath, geoTransform} from "d3";
+import {geoGraticule10, geoPath} from "d3";
 import {create} from "../context.js";
 import {negative, positive} from "../defined.js";
 import {Mark} from "../mark.js";
 import {identity, maybeNumberChannel} from "../options.js";
+import {xyProjection} from "../projection.js";
 import {applyChannelStyles, applyDirectStyles, applyIndirectStyles, applyTransform} from "../style.js";
 import {centroid} from "../transforms/centroid.js";
 import {withDefaultSort} from "./dot.js";
@@ -35,12 +36,12 @@ export class Geo extends Mark {
   }
   render(index, scales, channels, dimensions, context) {
     const {geometry: G, r: R} = channels;
-    const path = geoPath(context.projection ?? scaleProjection(scales));
+    const path = geoPath(context.projection ?? xyProjection(scales));
     const {r} = this;
     if (negative(r)) index = [];
     else if (r !== undefined) path.pointRadius(r);
     return create("svg:g", context)
-      .call(applyIndirectStyles, this, dimensions, context)
+      .call(applyIndirectStyles, this, scales, dimensions, context)
       .call(applyTransform, this, scales)
       .call((g) => {
         g.selectAll()
@@ -52,20 +53,6 @@ export class Geo extends Mark {
           .call(applyChannelStyles, this, channels);
       })
       .node();
-  }
-}
-
-// If no projection is specified, default to a projection that passes points
-// through the x and y scales, if any.
-function scaleProjection({x: X, y: Y}) {
-  if (X || Y) {
-    X ??= (x) => x;
-    Y ??= (y) => y;
-    return geoTransform({
-      point(x, y) {
-        this.stream.point(X(x), Y(y));
-      }
-    });
   }
 }
 
