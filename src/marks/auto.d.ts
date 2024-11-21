@@ -92,7 +92,7 @@ export interface AutoOptions {
    * should usually suffice, and setting an explicit mark type may lead to a
    * nonsensical plot (especially if you change other options).
    */
-  mark?: "area" | "bar" | "dot" | "line" | "rule";
+  mark?: "area" | "bar" | "dot" | "line" | "rule" | "box" | "voronoi";
 }
 
 /**
