@@ -296,25 +296,25 @@ Here’s an example of client-side rendering in Svelte. For server-side renderin
 
 :::code-group
 ```svelte [App.svelte]
-<script>
-  import * as Plot from '@observablehq/plot';
-  import * as d3 from 'd3';
+<script lang="ts">
+	import * as Plot from '@observablehq/plot';
+	import * as d3 from 'd3';
 
-  let div;
-  let data = d3.ticks(-2, 2, 200).map(Math.sin);
+	let div: HTMLElement | undefined = $state();
+	let data = $state(d3.ticks(-2, 2, 200).map(Math.sin));
 
-  function onMousemove(event) {
-    const [x, y] = d3.pointer(event);
-    data = data.slice(-200).concat(Math.atan2(x, y));
-  }
+	function onMousemove(event: MouseEvent) {
+		const [x, y] = d3.pointer(event);
+		data = data.slice(-200).concat(Math.atan2(x, y));
+	}
 
-  $: {
-    div?.firstChild?.remove(); // remove old chart, if any
-    div?.append(Plot.lineY(data).plot({grid: true})); // add the new chart
-  }
+	$effect(() => {
+		div?.firstChild?.remove(); // remove old chart, if any
+		div?.append(Plot.lineY(data).plot({ grid: true })); // add the new chart
+	});
 </script>
 
-<div on:mousemove={onMousemove} bind:this={div} role="img"></div>
+<div onmousemove={onMousemove} bind:this={div} role="img"></div>
 ```
 :::
 
