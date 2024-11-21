@@ -3,8 +3,14 @@ import {create} from "../context.js";
 import {curveAuto, maybeCurveAuto} from "../curve.js";
 import {Mark} from "../mark.js";
 import {markers, applyMarkers} from "../marker.js";
-import {coerceNumbers} from "../options.js";
-import {applyChannelStyles, applyDirectStyles, applyIndirectStyles, applyTransform} from "../style.js";
+import {coerceNumbers, constant} from "../options.js";
+import {
+  applyChannelStyles,
+  applyDirectStyles,
+  applyFrameAnchor,
+  applyIndirectStyles,
+  applyTransform
+} from "../style.js";
 
 const defaults = {
   ariaLabel: "link",
@@ -19,8 +25,8 @@ export class Link extends Mark {
     super(
       data,
       {
-        x1: {value: x1, scale: "x"},
-        y1: {value: y1, scale: "y"},
+        x1: {value: x1, scale: "x", optional: y1 != null},
+        y1: {value: y1, scale: "y", optional: true},
         x2: {value: x2, scale: "x", optional: true},
         y2: {value: y2, scale: "y", optional: true}
       },
@@ -38,6 +44,11 @@ export class Link extends Mark {
   }
   render(index, scales, channels, dimensions, context) {
     const {x1: X1, y1: Y1, x2: X2 = X1, y2: Y2 = Y1} = channels;
+    const [cx, cy] = applyFrameAnchor(this, dimensions);
+    const a1 = X1 ? (i) => X1[i] : constant(cx);
+    const a2 = X2 ? (i) => X2[i] : constant(cx);
+    const b1 = Y1 ? (i) => Y1[i] : constant(cy);
+    const b2 = Y2 ? (i) => Y2[i] : constant(cy);
     const {curve} = this;
     return create("svg:g", context)
       .call(applyIndirectStyles, this, dimensions, context)
@@ -57,8 +68,8 @@ export class Link extends Mark {
                   const p = path();
                   const c = curve(p);
                   c.lineStart();
-                  c.point(X1[i], Y1[i]);
-                  c.point(X2[i], Y2[i]);
+                  c.point(a1(i), b1(i));
+                  c.point(a2(i), b2(i));
                   c.lineEnd();
                   return p;
                 }
