@@ -81,7 +81,7 @@ function wafflePolygon(y, options) {
 
     return {
       channels: {
-        polygon: {value: P, source: null},
+        polygon: {value: P, source: null, filter: null},
         [y === "y" ? "cx" : "cy"]: {value: [cx, x0], source: null, filter: null},
         [y === "y" ? "cy" : "cx"]: {value: [cy, y0], source: null, filter: null},
         [y === "y" ? "x" : "y"]: {value: X, scale: null, source: null},
