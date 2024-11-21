@@ -148,7 +148,7 @@ function waffleRender({render, ...options}) {
   };
 }
 
-// A waffle is a approximately rectangular shape, but may have one or two corner
+// A waffle is approximately a rectangular shape, but may have one or two corner
 // cuts if the starting or ending value is not an even multiple of the number of
 // columns (the width of the waffle in cells). We can represent any waffle by
 // 8 points; below is a waffle of five columns representing the interval 2–11:
@@ -222,30 +222,33 @@ function wafflePoints(i1, i2, columns) {
 
 function waffleCentroid(i1, i2, columns) {
   const r = Math.floor(i2 / columns) - Math.floor(i1 / columns);
-  return r === 0 // Single row
-    ? waffleRowCentroid(i1, i2, columns)
-    : // Two incomplete rows, use the midpoint of their overlap if they do, otherwise use the largest
-    r === 1
-    ? Math.floor(i2 % columns) > Math.ceil(i1 % columns)
+  return r === 0
+    ? // Single row
+      waffleRowCentroid(i1, i2, columns)
+    : r === 1
+    ? // Two incomplete rows; use the midpoint of their overlap if any, otherwise the larger row
+      Math.floor(i2 % columns) > Math.ceil(i1 % columns)
       ? [(Math.floor(i2 % columns) + Math.ceil(i1 % columns)) / 2, Math.floor(i2 / columns)]
       : i2 % columns > columns - (i1 % columns)
       ? waffleRowCentroid(i2 - (i2 % columns), i2, columns)
       : waffleRowCentroid(i1, columns * Math.ceil(i1 / columns), columns)
-    : // At least one full row, take the midpoint of all the rows that include the middle
+    : // At least one full row; take the midpoint of all the rows that include the middle
       [columns / 2, (Math.round(i1 / columns) + Math.round(i2 / columns)) / 2];
 }
 
 function waffleRowCentroid(i1, i2, columns) {
   const c = Math.floor(i2) - Math.floor(i1);
-  return c === 0 // Single cell
-    ? [Math.floor(i1 % columns) + 0.5, Math.floor(i1 / columns) + (((i1 + i2) / 2) % 1)]
-    : c === 1 // Two incomplete cells, use the overlap if it is large enough, otherwise use the largest
-    ? (i2 % 1) - (i1 % 1) > 0.5
+  return c === 0
+    ? // Single cell
+      [Math.floor(i1 % columns) + 0.5, Math.floor(i1 / columns) + (((i1 + i2) / 2) % 1)]
+    : c === 1
+    ? // Two incomplete cells; use the overlap if large enough, otherwise use the largest
+      (i2 % 1) - (i1 % 1) > 0.5
       ? [Math.ceil(i1 % columns), Math.floor(i2 / columns) + ((i1 % 1) + (i2 % 1)) / 2]
       : i2 % 1 > 1 - (i1 % 1)
       ? [Math.floor(i2 % columns) + 0.5, Math.floor(i2 / columns) + (i2 % 1) / 2]
       : [Math.floor(i1 % columns) + 0.5, Math.floor(i1 / columns) + (1 + (i1 % 1)) / 2]
-    : // At least one full cell, take their midpoint
+    : // At least one full cell; take the midpoint
       [
         Math.ceil(i1 % columns) + Math.ceil(Math.floor(i2) - Math.ceil(i1)) / 2,
         Math.floor(i1 / columns) + (i2 >= 1 + i1 ? 0.5 : ((i1 + i2) / 2) % 1)
