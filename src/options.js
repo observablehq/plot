@@ -169,22 +169,36 @@ export function dataify(data) {
 export function arrayify(values) {
   if (values == null || isArray(values)) return values;
   if (isArrowVector(values)) return maybeTypedArrowify(values);
-  switch (values.type) {
-    case "FeatureCollection":
-      return values.features;
-    case "GeometryCollection":
-      return values.geometries;
-    case "Feature":
-    case "LineString":
-    case "MultiLineString":
-    case "MultiPoint":
-    case "MultiPolygon":
-    case "Point":
-    case "Polygon":
-    case "Sphere":
-      return [values];
+  if (isGeoJSON(values)) {
+    switch (values.type) {
+      case "FeatureCollection":
+        return values.features;
+      case "GeometryCollection":
+        return values.geometries;
+      default:
+        return [values];
+    }
   }
   return Array.from(values);
+}
+
+// Duck typing test for GeoJSON
+function isGeoJSON(x) {
+  return (
+    typeof x?.type === "string" &&
+    [
+      "FeatureCollection",
+      "GeometryCollection",
+      "Feature",
+      "LineString",
+      "MultiLineString",
+      "MultiPoint",
+      "MultiPolygon",
+      "Point",
+      "Polygon",
+      "Sphere"
+    ].includes(x.type)
+  );
 }
 
 // An optimization of type.from(values, f): if the given values are already an
@@ -605,11 +619,7 @@ export function maybeNamed(things) {
 export function maybeClip(clip) {
   if (clip === true) clip = "frame";
   else if (clip === false) clip = null;
-  else if (
-    clip != null &&
-    !["FeatureCollection", "Feature", "Polygon", "GeometryCollection", "MultiPolygon"].includes(clip.type)
-  )
-    clip = keyword(clip, "clip", ["frame", "sphere"]);
+  else if (clip != null && !isGeoJSON(clip)) clip = keyword(clip, "clip", ["frame", "sphere"]);
   return clip;
 }
 
