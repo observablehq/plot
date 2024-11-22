@@ -317,7 +317,7 @@ function applyClip(selection, mark, dimensions, context) {
     });
     clipUrl = getFrameClip(context, dimensions);
   } else if (clip) {
-    clipUrl = getGeoClip(clip)(context);
+    clipUrl = getGeoClip(clip, context);
   }
 
   // Here we’re careful to apply the ARIA attributes to the outer G element when
@@ -352,17 +352,23 @@ const getFrameClip = memoizeClip((clipPath, context, dimensions) => {
     .attr("height", height - marginTop - marginBottom);
 });
 
-function memoizeGeo(clip) {
-  const geoClips = new WeakMap();
-  return (geo, scales) => {
-    if (!geoClips.has(geo)) geoClips.set(geo, clip(geo, scales));
-    return geoClips.get(geo);
+function memoizeGeo() {
+  const cache = new WeakMap();
+  const sphere = {type: "Sphere"};
+  return (geo, context) => {
+    let c, url;
+    if (!(c = cache.get(context))) cache.set(context, (c = new WeakMap()));
+    if (geo.type === "Sphere") geo = sphere; // coalesce all spheres.
+    if (!(url = c.get(geo))) {
+      const id = getClipId();
+      select(context.ownerSVGElement).append("clipPath").attr("id", id).append("path").attr("d", context.path()(geo));
+      c.set(geo, (url = `url(#${id})`));
+    }
+    return url;
   };
 }
 
-const getGeoClip = memoizeGeo((geo) =>
-  memoizeClip((clipPath, context) => clipPath.append("path").attr("d", context.path()(geo)))
-);
+const getGeoClip = memoizeGeo();
 
 // Note: may mutate selection.node!
 export function applyIndirectStyles(selection, mark, dimensions, context) {

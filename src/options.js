@@ -616,17 +616,12 @@ export function maybeNamed(things) {
   return isIterable(things) ? named(things) : things;
 }
 
-// A shared Sphere object coalesces all sphere clips.
-const sphere = {type: "Sphere"};
-
 export function maybeClip(clip) {
   if (clip === true) clip = "frame";
   else if (clip === false) clip = null;
-  else if (isGeoJSON(clip)) {
-    if (clip.type === "Sphere") clip = sphere;
-  } else if (clip != null) {
+  else if (!isGeoJSON(clip) && clip != null) {
     clip = keyword(clip, "clip", ["frame", "sphere"]);
-    if (clip === "sphere") clip = sphere;
+    if (clip === "sphere") clip = {type: "Sphere"};
   }
   return clip;
 }
