@@ -2,6 +2,7 @@ import type {GeoPermissibleObjects} from "d3";
 import type {Channel, ChannelDomainSort, ChannelValue, ChannelValues, ChannelValueSpec} from "./channel.js";
 import type {Context} from "./context.js";
 import type {Dimensions} from "./dimensions.js";
+import type {PointerOptions} from "./interactions/pointer.js";
 import type {TipOptions} from "./marks/tip.js";
 import type {plot} from "./plot.js";
 import type {ScaleFunctions} from "./scales.js";
@@ -289,7 +290,7 @@ export interface MarkOptions {
   title?: ChannelValue;
 
   /** Whether to generate a tooltip for this mark, and any tip options. */
-  tip?: boolean | TipPointer | (TipOptions & {pointer?: TipPointer});
+  tip?: boolean | TipPointer | (TipOptions & PointerOptions & {pointer?: TipPointer});
 
   /**
    * How to clip the mark; one of:
