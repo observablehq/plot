@@ -361,6 +361,20 @@ export function waffleHref() {
   });
 }
 
+export function waffleStrokeWidth() {
+  return Plot.plot({
+    inset: 10,
+    marks: [Plot.waffleY({length: 77}, {y: 1, stroke: (d, i) => i % 7, gap: 15, strokeWidth: 15, strokeOpacity: 0.8})]
+  });
+}
+
+export function waffleStrokeWidthConst() {
+  return Plot.plot({
+    inset: 10,
+    marks: [Plot.waffleY({length: 77}, {y: 1, stroke: "black", gap: 15, strokeWidth: 15, strokeOpacity: 0.8})]
+  });
+}
+
 export function waffleTipFacetX() {
   return Plot.plot({
     height: 500,
@@ -376,20 +390,6 @@ export function waffleTipFacetXY() {
     marks: [
       Plot.waffleX({length: 500}, {fx: (d, i) => i % 3, fy: (d, i) => i % 2, x: 1, fill: d3.randomLcg(42), tip: true})
     ]
-  });
-}
-
-export function waffleStrokeWidth() {
-  return Plot.plot({
-    inset: 10,
-    marks: [Plot.waffleY({length: 77}, {y: 1, stroke: (d, i) => i % 7, gap: 15, strokeWidth: 15, strokeOpacity: 0.8})]
-  });
-}
-
-export function waffleStrokeWidthConst() {
-  return Plot.plot({
-    inset: 10,
-    marks: [Plot.waffleY({length: 77}, {y: 1, stroke: "black", gap: 15, strokeWidth: 15, strokeOpacity: 0.8})]
   });
 }
 
