@@ -1,4 +1,4 @@
-import {creator, select} from "d3";
+import {creator, select, zoom as Zoom} from "d3";
 import {createChannel, inferChannelScale} from "./channel.js";
 import {createContext} from "./context.js";
 import {createDimensions} from "./dimensions.js";
@@ -20,7 +20,7 @@ import {initializer} from "./transforms/basic.js";
 import {consumeWarnings, warn} from "./warnings.js";
 
 export function plot(options = {}) {
-  const {facet, style, title, subtitle, caption, ariaLabel, ariaDescription} = options;
+  const {zoom, facet, style, title, subtitle, caption, ariaLabel, ariaDescription} = options;
 
   // className for inline styles
   const className = maybeClassName(options.className);
@@ -287,6 +287,7 @@ export function plot(options = {}) {
       const node = mark.render(index, scales, values, superdimensions, context);
       if (node == null) continue;
       svg.appendChild(node);
+      stateByMark.get(mark).node = node; // TODO
     }
 
     // Render a faceted mark.
@@ -319,6 +320,67 @@ export function plot(options = {}) {
       }
       g?.selectChildren().each(facetTranslate);
     }
+  }
+
+  // Apply the zoom behavior.
+  // TODO Keyboard shortcuts for zooming (+-) and panning (↑↓←→).
+  // TODO Some affordance for resetting to the “home” view.
+  // TODO Conditional x and y (scale may not exist, or may not be zoomable).
+  // TODO Constrained zoom (both in translate and scale extent).
+  // TODO Support mark initializers (axis ticks).
+  // TODO Support transforms (bin transform)?
+  // TODO Support faceted marks.
+  // TODO Handle marks with conditional output.
+  if (zoom) {
+    const zoomed = ({transform}) => {
+      const {x, y} = scaleDescriptors;
+
+      // Compute the zoomed x and y domains.
+      const xDomain = Array.from(x.range, (v) => x.scale.invert(transform.invertX(v)));
+      const yDomain = Array.from(y.range, (v) => y.scale.invert(transform.invertY(v)));
+
+      // Compute the zoomed x and y scales.
+      const zoomX = {...x, domain: xDomain, scale: x.scale.copy().domain(xDomain)};
+      const zoomY = {...y, domain: yDomain, scale: y.scale.copy().domain(yDomain)};
+      const zoomScales = createScaleFunctions({x: zoomX, y: zoomY});
+
+      // Merge the zoomed scales with the other scales.
+      const mergeScales = {...scales, ...zoomScales, scales: {...scales.scales, ...zoomScales.scales}};
+
+      // Re-render each mark.
+      for (const [mark, state] of stateByMark) {
+        const {channels, values, facets: indexes} = state;
+
+        // Extract the zoomed position channels.
+        // TODO Handle mark initializers (e.g., axes).
+        const zoomChannels = {};
+        for (const key in channels) {
+          const channel = channels[key];
+          if (channel.scale === "x" || channel.scale === "y") {
+            zoomChannels[key] = channel;
+          }
+        }
+
+        // Compute the zoomed position channel values.
+        const zoomValues = mark.scale(zoomChannels, zoomScales, context);
+        const mergeValues = {...values, ...zoomValues, channels: {...values.channels, ...zoomValues.channels}};
+
+        // Replace the mark’s previously-rendered output.
+        if (facets === undefined || mark.facet === "super") {
+          let index = null;
+          if (indexes) {
+            index = indexes[0];
+            index = mark.filter(index, channels, mergeValues);
+            if (index.length === 0) continue;
+          }
+          const node = mark.render(index, mergeScales, mergeValues, superdimensions, context);
+          if (node == null) continue;
+          state.node.replaceWith(node);
+          state.node = node;
+        }
+      }
+    };
+    select(svg).call(Zoom().on("zoom", zoomed));
   }
 
   // Wrap the plot in a figure, if needed.
