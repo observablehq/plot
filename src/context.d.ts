@@ -19,7 +19,7 @@ export interface Context {
   projection?: GeoStreamWrapper;
 
   /** A function to draw GeoJSON with the current projection, if any, otherwise with the x and y scales. */
-  path?: () => GeoPath;
+  path: () => GeoPath;
 
   /** The default clip for all marks. */
   clip?: MarkOptions["clip"];
