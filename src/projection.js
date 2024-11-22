@@ -296,3 +296,17 @@ export function getGeometryChannels(channel) {
   for (const object of channel.value) geoStream(object, sink);
   return [x, y];
 }
+
+// If no projection is specified, default to a projection that passes points
+// through the x and y scales, if any.
+export function xyProjection({x: X, y: Y}) {
+  if (X || Y) {
+    X ??= (x) => x;
+    Y ??= (y) => y;
+    return geoTransform({
+      point(x, y) {
+        this.stream.point(X(x), Y(y));
+      }
+    });
+  }
+}

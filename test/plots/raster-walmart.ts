@@ -7,19 +7,12 @@ async function rasterWalmart(options) {
     d3.tsv<any>("data/walmarts.tsv", d3.autoType),
     d3
       .json<any>("data/us-counties-10m.json")
-      .then((us) => [
-        feature(us, us.objects.nation.geometries[0]).geometry.coordinates[0][0],
-        mesh(us, us.objects.states, (a, b) => a !== b)
-      ])
+      .then((us) => [feature(us, us.objects.nation.geometries[0]), mesh(us, us.objects.states, (a, b) => a !== b)])
   ]);
   return Plot.plot({
     projection: "albers",
     color: {scheme: "spectral"},
-    marks: [
-      Plot.raster(walmarts, {x: "longitude", y: "latitude", ...options}),
-      Plot.geo({type: "Polygon", coordinates: [d3.reverse(outline) as number[][]]}, {fill: "white"}),
-      Plot.geo(statemesh)
-    ]
+    marks: [Plot.raster(walmarts, {x: "longitude", y: "latitude", ...options, clip: outline}), Plot.geo(statemesh)]
   });
 }
 
