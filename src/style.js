@@ -352,7 +352,7 @@ const getFrameClip = memoizeClip((clipPath, context, dimensions) => {
     .attr("height", height - marginTop - marginBottom);
 });
 
-function memoizeGeo() {
+const getGeoClip = (function () {
   const cache = new WeakMap();
   const sphere = {type: "Sphere"};
   return (geo, context) => {
@@ -366,9 +366,7 @@ function memoizeGeo() {
     }
     return url;
   };
-}
-
-const getGeoClip = memoizeGeo();
+})();
 
 // Note: may mutate selection.node!
 export function applyIndirectStyles(selection, mark, dimensions, context) {
