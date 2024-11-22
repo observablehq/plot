@@ -316,7 +316,9 @@ function applyClip(selection, mark, dimensions, context) {
       selection.node = () => this; // Note: mutation!
     });
     clipUrl = getFrameClip(context, dimensions);
-  } else if (clip?.type) clipUrl = getGeoClip(clip)(context);
+  } else if (clip) {
+    clipUrl = getGeoClip(clip)(context);
+  }
 
   // Here we’re careful to apply the ARIA attributes to the outer G element when
   // clipping is applied, and to apply the ARIA attributes before any other
