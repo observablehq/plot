@@ -297,7 +297,7 @@ export interface MarkOptions {
    *
    * - *frame* or true - clip to the plot’s frame (inner area)
    * - *sphere* - clip to the projected sphere (*e.g.*, front hemisphere)
-   * - geojson - a GeoJSON object with a (multi-) polygon geometry
+   * - geojson - a GeoJSON object, typically with polygonal geometry
    * - null or false - do not clip
    *
    * The *sphere* clip option requires a geographic projection.
