@@ -1,3 +1,9 @@
+---
+next:
+  text: Plots
+  link: /features/plots
+---
+
 <script setup>
 
 import * as Plot from "@observablehq/plot";
