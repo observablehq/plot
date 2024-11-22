@@ -184,21 +184,21 @@ export function arrayify(values) {
 
 // Duck typing test for GeoJSON
 function isGeoJSON(x) {
-  return (
-    typeof x?.type === "string" &&
-    [
-      "FeatureCollection",
-      "GeometryCollection",
-      "Feature",
-      "LineString",
-      "MultiLineString",
-      "MultiPoint",
-      "MultiPolygon",
-      "Point",
-      "Polygon",
-      "Sphere"
-    ].includes(x.type)
-  );
+  switch (x?.type) {
+    case "FeatureCollection":
+    case "GeometryCollection":
+    case "Feature":
+    case "LineString":
+    case "MultiLineString":
+    case "MultiPoint":
+    case "MultiPolygon":
+    case "Point":
+    case "Polygon":
+    case "Sphere":
+      return true;
+    default:
+      return false;
+  }
 }
 
 // An optimization of type.from(values, f): if the given values are already an
