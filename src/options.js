@@ -619,7 +619,9 @@ export function maybeNamed(things) {
 export function maybeClip(clip) {
   if (clip === true) clip = "frame";
   else if (clip === false) clip = null;
-  else if (clip != null && !isGeoJSON(clip)) clip = keyword(clip, "clip", ["frame", "sphere"]);
+  else if (isGeoJSON(clip)) {
+    if (clip.type === "Sphere") clip = "sphere";
+  } else if (clip != null) clip = keyword(clip, "clip", ["frame", "sphere"]);
   return clip;
 }
 
