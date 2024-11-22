@@ -120,7 +120,7 @@ function waffleRender({render, ...options}) {
       if (ry != null) basePatternRect.setAttribute("ry", ry);
 
       return create("svg:g", context)
-        .call(applyIndirectStyles, this, scales, dimensions, context)
+        .call(applyIndirectStyles, this, dimensions, context)
         .call(this._transform, this, scales)
         .call((g) =>
           g

@@ -37,7 +37,7 @@ export class Frame extends Mark {
     const y2 = height - marginBottom - insetBottom;
     return create(anchor ? "svg:line" : rx1y1 || rx1y2 || rx2y1 || rx2y2 ? "svg:path" : "svg:rect", context)
       .datum(0)
-      .call(applyIndirectStyles, this, scales, dimensions, context)
+      .call(applyIndirectStyles, this, dimensions, context)
       .call(applyDirectStyles, this)
       .call(applyChannelStyles, this, channels)
       .call(applyTransform, this, {})

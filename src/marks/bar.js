@@ -25,7 +25,7 @@ export class AbstractBar extends Mark {
     const w = this._width(scales, channels, dimensions);
     const h = this._height(scales, channels, dimensions);
     return create("svg:g", context)
-      .call(applyIndirectStyles, this, scales, dimensions, context)
+      .call(applyIndirectStyles, this, dimensions, context)
       .call(this._transform, this, scales)
       .call((g) =>
         g

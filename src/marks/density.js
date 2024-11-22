@@ -50,7 +50,7 @@ export class Density extends Mark {
     const {contours} = channels;
     const path = geoPath();
     return create("svg:g", context)
-      .call(applyIndirectStyles, this, scales, dimensions, context)
+      .call(applyIndirectStyles, this, dimensions, context)
       .call(applyTransform, this, {})
       .call((g) =>
         g

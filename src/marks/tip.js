@@ -130,7 +130,7 @@ export class Tip extends Mark {
     // We don’t call applyChannelStyles because we only use the channels to
     // derive the content of the tip, not its aesthetics.
     const g = create("svg:g", context)
-      .call(applyIndirectStyles, this, scales, dimensions, context)
+      .call(applyIndirectStyles, this, dimensions, context)
       .call(applyIndirectTextStyles, this)
       .call(applyTransform, this, {x: X && x, y: Y && y})
       .call((g) =>

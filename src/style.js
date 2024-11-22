@@ -1,10 +1,9 @@
-import {geoPath, group, namespaces, select} from "d3";
+import {group, namespaces, select} from "d3";
 import {create} from "./context.js";
 import {defined, nonempty} from "./defined.js";
 import {formatDefault} from "./format.js";
 import {isNone, isNoneish, isRound, maybeColorChannel, maybeNumberChannel} from "./options.js";
 import {keyof, number, string} from "./options.js";
-import {xyProjection} from "./projection.js";
 import {warn} from "./warnings.js";
 
 export const offset = (typeof window !== "undefined" ? window.devicePixelRatio > 1 : typeof it === "undefined") ? 0 : 0.5; // prettier-ignore
@@ -304,7 +303,7 @@ export function* groupIndex(I, position, mark, channels) {
 }
 
 // Note: may mutate selection.node!
-function applyClip(selection, mark, scales, dimensions, context) {
+function applyClip(selection, mark, dimensions, context) {
   let clipUrl;
   const {clip = context.clip} = mark;
   if (clip === "frame") {
@@ -318,7 +317,7 @@ function applyClip(selection, mark, scales, dimensions, context) {
     });
     clipUrl = getFrameClip(context, dimensions);
   } else if (clip === "sphere") clipUrl = getProjectionClip(context);
-  else if (clip?.type) clipUrl = getGeoClip(clip, scales)(context);
+  else if (clip?.type) clipUrl = getGeoClip(clip)(context);
 
   // Here we’re careful to apply the ARIA attributes to the outer G element when
   // clipping is applied, and to apply the ARIA attributes before any other
@@ -360,19 +359,15 @@ function memoizeGeo(clip) {
   };
 }
 
-const getGeoClip = memoizeGeo((geo, scales) =>
-  memoizeClip((clipPath, context) => {
-    const {projection} = context;
-    if (!projection && geo.type === "Sphere") throw new Error(`clipping to the sphere requires a projection`);
-    clipPath.append("path").attr("d", geoPath(projection ?? xyProjection(scales))(geo));
-  })
+const getGeoClip = memoizeGeo((geo) =>
+  memoizeClip((clipPath, context) => clipPath.append("path").attr("d", context.path()(geo)))
 );
 
 const getProjectionClip = getGeoClip({type: "Sphere"});
 
 // Note: may mutate selection.node!
-export function applyIndirectStyles(selection, mark, scales, dimensions, context) {
-  applyClip(selection, mark, scales, dimensions, context);
+export function applyIndirectStyles(selection, mark, dimensions, context) {
+  applyClip(selection, mark, dimensions, context);
   applyAttr(selection, "class", mark.className);
   applyAttr(selection, "fill", mark.fill);
   applyAttr(selection, "fill-opacity", mark.fillOpacity);

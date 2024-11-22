@@ -41,7 +41,7 @@ export class Rect extends Mark {
     const bx = x?.bandwidth ? x.bandwidth() : 0;
     const by = y?.bandwidth ? y.bandwidth() : 0;
     return create("svg:g", context)
-      .call(applyIndirectStyles, this, scales, dimensions, context)
+      .call(applyIndirectStyles, this, dimensions, context)
       .call(applyTransform, this, {}, 0, 0)
       .call((g) =>
         g

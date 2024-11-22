@@ -91,7 +91,7 @@ export class Contour extends AbstractRaster {
     const {geometry: G} = channels;
     const path = geoPath();
     return create("svg:g", context)
-      .call(applyIndirectStyles, this, scales, dimensions, context)
+      .call(applyIndirectStyles, this, dimensions, context)
       .call(applyTransform, this, scales)
       .call((g) => {
         g.selectAll()
