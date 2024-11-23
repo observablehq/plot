@@ -76,7 +76,7 @@ Plot does not yet generate legends for the *r* (radius) scale or the *length* sc
 
 ## Legend options
 
-If the **legend** [scale option](./scales.md#scale-options) is true, the default legend will be produced for the scale; otherwise, the meaning of the **legend** option depends on the scale: for quantitative color scales, it defaults to *ramp* but may be set to *swatches* for a discrete scale (most commonly for *threshold* color scales); for *ordinal* *color* scales and *symbol* scales, only the *swatches* value is supported.
+If the **legend** [scale option](./scales.md#scale-options) is true, the default legend will be produced for the scale; otherwise, the meaning of the **legend** option depends on the scale: for quantitative color scales, it defaults to *ramp* but may be set to *swatches* for a discrete scale (most commonly for *threshold* color scales); for *ordinal* *color* scales and *symbol* scales, only the *swatches* value is supported. If the **legend* scale option is undefined, it will be inherited from the top-level **legend** plot option. <VersionBadge pr="2247" />
 
 <!-- TODO Describe the color and opacity options. -->
 

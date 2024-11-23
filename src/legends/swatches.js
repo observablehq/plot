@@ -29,6 +29,8 @@ export function legendSwatches(color, {opacity, ...options} = {}) {
   );
 }
 
+const legendSymbolColor = new WeakSet();
+
 export function legendSymbols(
   symbol,
   {
@@ -50,7 +52,7 @@ export function legendSymbols(
   fillOpacity = maybeNumberChannel(fillOpacity)[1];
   strokeOpacity = maybeNumberChannel(strokeOpacity)[1];
   strokeWidth = maybeNumberChannel(strokeWidth)[1];
-  return legendItems(symbol, options, (selection, scale, width, height) =>
+  const legend = legendItems(symbol, options, (selection, scale, width, height) =>
     selection
       .append("svg")
       .attr("viewBox", "-8 -8 16 16")
@@ -68,6 +70,17 @@ export function legendSymbols(
         return p;
       })
   );
+  if (vf === "color" || vs === "color") legendSymbolColor.add(legend);
+  return legend;
+}
+
+/**
+ * Symbol legends can serve as color legends when the associated symbol channel
+ * is also bound to the color scale; this test allows Plot to avoid displaying a
+ * redundant color legend when a satisfying symbol legend is present.
+ */
+export function isSymbolColorLegend(legend) {
+  return legendSymbolColor.has(legend);
 }
 
 function legendItems(scale, options = {}, swatch) {
