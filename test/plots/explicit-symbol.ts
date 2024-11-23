@@ -13,7 +13,6 @@ export async function explicitSymbol() {
         Plot.dodgeY({
           x: "culmen_length_mm",
           symbol: (d) => (d.sex === "FEMALE" ? "square" : "star"),
-          fill: "sex",
           tip: true
         })
       )
