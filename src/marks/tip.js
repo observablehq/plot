@@ -347,8 +347,8 @@ function getSourceChannels(channels, scales) {
     if ((key === "x" || key === "y") && channels.geometry) continue; // ignore x & y on geo
     const source = getSource(channels, key);
     if (source) {
-      // Ignore color/symbol channels if the values are all literal colors/symbols.
-      if (source.scale == null && ["color", "symbol"].includes(source.defaultScale)) continue;
+      // Ignore (e.g., color) channels if the values are all literal.
+      if (source.scale == null && source.defaultScale) continue;
       sources[key] = source;
     }
   }
