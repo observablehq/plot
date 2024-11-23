@@ -352,16 +352,17 @@ const getFrameClip = memoizeClip((clipPath, context, dimensions) => {
     .attr("height", height - marginTop - marginBottom);
 });
 
-const cache = new WeakMap();
+const geoClipCache = new WeakMap();
 const sphere = {type: "Sphere"};
+
 function getGeoClip(geo, context) {
-  let c, url;
-  if (!(c = cache.get(context))) cache.set(context, (c = new WeakMap()));
-  if (geo.type === "Sphere") geo = sphere; // coalesce all spheres.
-  if (!(url = c.get(geo))) {
+  let cache, url;
+  if (!(cache = geoClipCache.get(context))) geoClipCache.set(context, (cache = new WeakMap()));
+  if (geo.type === "Sphere") geo = sphere; // coalesce all spheres
+  if (!(url = cache.get(geo))) {
     const id = getClipId();
     select(context.ownerSVGElement).append("clipPath").attr("id", id).append("path").attr("d", context.path()(geo));
-    c.set(geo, (url = `url(#${id})`));
+    cache.set(geo, (url = `url(#${id})`));
   }
   return url;
 }
