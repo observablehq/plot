@@ -91,7 +91,7 @@ function getFirstPoint(feature) {
     : feature.geometry.coordinates[0][0][0];
 }
 
-/** The geo mark with the tip option and x and y channels. */
+/** The geo mark with the tip option, x and y channels and a projection. */
 export async function geoTipXY() {
   const [london, boroughs] = await getLondonBoroughs();
   const access = await getLondonAccess();
@@ -111,6 +111,33 @@ export async function geoTipXY() {
         channels: {borough: "borough"},
         tip: true
       })
+    ]
+  });
+}
+
+/** The geo mark with the tip option, and scaled x and y channels. */
+export async function geoTipXYScaled() {
+  const [, boroughs] = await getLondonBoroughs();
+  const access = await getLondonAccess();
+  return Plot.plot({
+    width: 900,
+    height: 265,
+    color: {scheme: "RdYlBu", pivot: 0.5},
+    marks: [
+      Plot.geo(
+        access,
+        Plot.centroid({
+          x: (d) => getFirstPoint(boroughs.get(d.borough))[0],
+          y: (d) => getFirstPoint(boroughs.get(d.borough))[1],
+          fx: "year",
+          geometry: (d) => boroughs.get(d.borough),
+          fill: "access",
+          stroke: "var(--plot-background)",
+          strokeWidth: 0.75,
+          channels: {borough: "borough"},
+          tip: true
+        })
+      )
     ]
   });
 }

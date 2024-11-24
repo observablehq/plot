@@ -20,8 +20,8 @@ export function centroid({geometry = identity, ...options} = {}) {
         data,
         facets,
         channels: {
-          x: {value: X, scale: context.projection == null ? "x" : null, source: null},
-          y: {value: Y, scale: context.projection == null ? "y" : null, source: null}
+          x: {value: X, scale: null, source: null},
+          y: {value: Y, scale: null, source: null}
         }
       };
     }
