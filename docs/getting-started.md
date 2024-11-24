@@ -318,7 +318,7 @@ Here’s an example of client-side rendering in Svelte. For server-side renderin
 ```
 :::
 
-See our [Plot + Svelte REPL](https://svelte.dev/repl/ebf78a6a6c1145ecb84cf9345a7f82ae?version=4.2.0) for details.
+See our [Plot + Svelte REPL](https://svelte.dev/playground/e65b5c87ae7e44239cef41ec3df28f52?version=5.2.7) for details.
 
 ## Plot in Node.js
 
