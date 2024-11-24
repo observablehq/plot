@@ -1,4 +1,4 @@
-import {geoPath, pathRound as path} from "d3";
+import {pathRound as path} from "d3";
 import {create} from "../context.js";
 import {curveAuto, maybeCurveAuto} from "../curve.js";
 import {Mark} from "../mark.js";
@@ -52,7 +52,7 @@ export class Link extends Mark {
           .attr(
             "d",
             curve === curveAuto && context.projection
-              ? sphereLink(context.projection, X1, Y1, X2, Y2)
+              ? sphereLink(context.path(), X1, Y1, X2, Y2)
               : (i) => {
                   const p = path();
                   const c = curve(p);
@@ -70,8 +70,7 @@ export class Link extends Mark {
   }
 }
 
-function sphereLink(projection, X1, Y1, X2, Y2) {
-  const path = geoPath(projection);
+function sphereLink(path, X1, Y1, X2, Y2) {
   X1 = coerceNumbers(X1);
   Y1 = coerceNumbers(Y1);
   X2 = coerceNumbers(X2);
