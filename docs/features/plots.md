@@ -1,3 +1,9 @@
+---
+prev:
+  text: Getting started
+  link: /getting-started
+---
+
 <script setup>
 
 import * as Plot from "@observablehq/plot";

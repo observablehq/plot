@@ -1,4 +1,4 @@
-import {geoPath, group, namespaces, select} from "d3";
+import {group, namespaces, select} from "d3";
 import {create} from "./context.js";
 import {defined, nonempty} from "./defined.js";
 import {formatDefault} from "./format.js";
@@ -306,24 +306,20 @@ export function* groupIndex(I, position, mark, channels) {
 function applyClip(selection, mark, dimensions, context) {
   let clipUrl;
   const {clip = context.clip} = mark;
-  switch (clip) {
-    case "frame": {
-      // Wrap the G element with another (untransformed) G element, applying the
-      // clip to the parent G element so that the clip path is not affected by
-      // the mark’s transform. To simplify the adoption of this fix, mutate the
-      // passed-in selection.node to return the parent G element.
-      selection = create("svg:g", context).each(function () {
-        this.appendChild(selection.node());
-        selection.node = () => this; // Note: mutation!
-      });
-      clipUrl = getFrameClip(context, dimensions);
-      break;
-    }
-    case "sphere": {
-      clipUrl = getProjectionClip(context);
-      break;
-    }
+  if (clip === "frame") {
+    // Wrap the G element with another (untransformed) G element, applying the
+    // clip to the parent G element so that the clip path is not affected by
+    // the mark’s transform. To simplify the adoption of this fix, mutate the
+    // passed-in selection.node to return the parent G element.
+    selection = create("svg:g", context).each(function () {
+      this.appendChild(selection.node());
+      selection.node = () => this; // Note: mutation!
+    });
+    clipUrl = getFrameClip(context, dimensions);
+  } else if (clip) {
+    clipUrl = getGeoClip(clip, context);
   }
+
   // Here we’re careful to apply the ARIA attributes to the outer G element when
   // clipping is applied, and to apply the ARIA attributes before any other
   // attributes (for readability).
@@ -356,11 +352,20 @@ const getFrameClip = memoizeClip((clipPath, context, dimensions) => {
     .attr("height", height - marginTop - marginBottom);
 });
 
-const getProjectionClip = memoizeClip((clipPath, context) => {
-  const {projection} = context;
-  if (!projection) throw new Error(`the "sphere" clip option requires a projection`);
-  clipPath.append("path").attr("d", geoPath(projection)({type: "Sphere"}));
-});
+const geoClipCache = new WeakMap();
+const sphere = {type: "Sphere"};
+
+function getGeoClip(geo, context) {
+  let cache, url;
+  if (!(cache = geoClipCache.get(context))) geoClipCache.set(context, (cache = new WeakMap()));
+  if (geo.type === "Sphere") geo = sphere; // coalesce all spheres
+  if (!(url = cache.get(geo))) {
+    const id = getClipId();
+    select(context.ownerSVGElement).append("clipPath").attr("id", id).append("path").attr("d", context.path()(geo));
+    cache.set(geo, (url = `url(#${id})`));
+  }
+  return url;
+}
 
 // Note: may mutate selection.node!
 export function applyIndirectStyles(selection, mark, dimensions, context) {
