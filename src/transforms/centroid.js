@@ -19,10 +19,7 @@ export function centroid({geometry = identity, ...options} = {}) {
       return {
         data,
         facets,
-        channels: {
-          x: {value: X, scale: null, source: null},
-          y: {value: Y, scale: null, source: null}
-        }
+        channels: {x: {value: X, scale: null, source: null}, y: {value: Y, scale: null, source: null}}
       };
     }
   );
