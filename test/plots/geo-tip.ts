@@ -116,7 +116,7 @@ export async function geoTipXY() {
 }
 
 /** The geo mark with the tip option, and scaled x and y channels. */
-export async function geoTipXYScaled() {
+export async function geoTipScaled() {
   const [, boroughs] = await getLondonBoroughs();
   const access = await getLondonAccess();
   return Plot.plot({
@@ -127,8 +127,6 @@ export async function geoTipXYScaled() {
       Plot.geo(
         access,
         Plot.centroid({
-          x: (d) => getFirstPoint(boroughs.get(d.borough))[0],
-          y: (d) => getFirstPoint(boroughs.get(d.borough))[1],
           fx: "year",
           geometry: (d) => boroughs.get(d.borough),
           fill: "access",
