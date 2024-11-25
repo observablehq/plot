@@ -139,7 +139,7 @@ export function plot(options = {}) {
     stateByMark.set(mark, {data, facets, channels});
   }
 
-  // Initalize the scales and dimensions.
+  // Initialize the scales and dimensions.
   const scaleDescriptors = createScales(addScaleChannels(channelsByScale, stateByMark, options), options);
   const dimensions = createDimensions(scaleDescriptors, marks, options);
 
@@ -158,6 +158,11 @@ export function plot(options = {}) {
   context.ownerSVGElement = svg;
   context.className = className;
   context.projection = createProjection(options, subdimensions);
+
+  // A path generator for marks that want to draw GeoJSON.
+  context.path = function () {
+    return geoPath(this.projection ?? xyProjection(scales));
+  };
 
   // Allows e.g. the axis mark to determine faceting lazily.
   context.filterFacets = (data, channels) => {
@@ -235,11 +240,6 @@ export function plot(options = {}) {
     facets = recreateFacets(facets, facetDomains);
     facetTranslate = facetTranslator(fx, fy, dimensions);
   }
-
-  // A path generator for marks that want to draw GeoJSON.
-  context.path = function () {
-    return geoPath(this.projection ?? xyProjection(scales));
-  };
 
   // Compute value objects, applying scales and projection as needed.
   for (const [mark, state] of stateByMark) {
@@ -356,6 +356,17 @@ export function plot(options = {}) {
       .append("title")
       .text(`${w.toLocaleString("en-US")} warning${w === 1 ? "" : "s"}. Please check the console.`);
   }
+
+  figure.rescale = (rescales) => {
+    const reoptions = {...options, figure: false};
+    for (const key in rescales) {
+      if (!(key in scales.scales)) throw new Error(`missing scale: ${key}`);
+      reoptions[key] = {...scales.scales[key], ...rescales[key]};
+    }
+    const resvg = plot(reoptions);
+    while (svg.lastChild) svg.removeChild(svg.lastChild);
+    while (resvg.firstChild) svg.appendChild(resvg.firstChild);
+  };
 
   return figure;
 }
