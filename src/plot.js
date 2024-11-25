@@ -159,6 +159,11 @@ export function plot(options = {}) {
   context.className = className;
   context.projection = createProjection(options, subdimensions);
 
+  // A path generator for marks that want to draw GeoJSON.
+  context.path = function () {
+    return geoPath(this.projection ?? xyProjection(scales));
+  };
+
   // Allows e.g. the axis mark to determine faceting lazily.
   context.filterFacets = (data, channels) => {
     return facetFilter(facets, {channels, groups: facetGroups(data, channels)});
@@ -235,11 +240,6 @@ export function plot(options = {}) {
     facets = recreateFacets(facets, facetDomains);
     facetTranslate = facetTranslator(fx, fy, dimensions);
   }
-
-  // A path generator for marks that want to draw GeoJSON.
-  context.path = function () {
-    return geoPath(this.projection ?? xyProjection(scales));
-  };
 
   // Compute value objects, applying scales and projection as needed.
   for (const [mark, state] of stateByMark) {
