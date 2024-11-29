@@ -286,11 +286,12 @@ If **width** is specified, **x1** defaults to 0 and **x2** defaults to **width**
 
 The following raster-specific constant options are supported:
 
+* **colorSpace** - the [color space](https://developer.mozilla.org/en-US/docs/Web/API/ImageData/colorSpace) <VersionBadge pr="2143" />
 * **interpolate** - the [spatial interpolation method](#spatial-interpolators)
 * **imageRendering** - the [image-rendering attribute](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/image-rendering); defaults to *auto* (bilinear)
 * **blur** - a non-negative pixel radius for smoothing; defaults to 0
 
-The **imageRendering** option may be set to *pixelated* for a sharper image. The **interpolate** option is ignored when **fill** or **fillOpacity** is a function of *x* and *y*.
+The **colorSpace** may be set to *display-p3* for the Display P3 color space. The **imageRendering** option may be set to *pixelated* for a sharper image. The **interpolate** option is ignored when **fill** or **fillOpacity** is a function of *x* and *y*.
 
 ## raster(*data*, *options*) {#raster}
 
