@@ -358,7 +358,7 @@ In addition to the standard options such as **fill** and **stroke** that are sup
 Channels are mark options that can be used to encode data. These options allow the value to vary with the data, such as a different position or color for each dot. To use a channel, supply it with a column of data, typically as:
 
 * a field (column) name,
-* an accessor function, or
+* an [accessor function](./extensibility.md#channel-value), or
 * an array of values of the same length and order as the data.
 
 Not all mark options can be expressed as channels. For example, **stroke** can be a channel but **strokeDasharray** cannot. This is mostly a pragmatic limitation — it would be harder to implement Plot if every option were expressible as a channel — but it also serves to guide you towards options that are intended for encoding data.
@@ -527,7 +527,7 @@ Plot.dot(data, {stroke: {value: "fieldName", scale: "color"}})
 
 The color channels (**fill** and **stroke**) are bound to the *color* scale by default, unless the provided values are all valid CSS color strings or nullish, in which case the values are interpreted literally and unscaled.
 
-In addition to functions of data, arrays, and column names, channel values can be specified as an object with a *transform* method; this transform method is passed the mark’s array of data and must return the corresponding array of channel values. (Whereas a channel value specified as a function is invoked repeatedly for each element in the mark’s data, similar to *array*.map, the transform method is invoked only once being passed the entire array of data.) For example, to pass the mark’s data directly to the **x** channel, equivalent to [Plot.identity](./transforms.md#identity):
+In addition to functions of data, arrays, and column names, channel values can be specified as [an object with a *transform* method](./extensibility.md#channel-transform); this transform method is passed the mark’s array of data and must return the corresponding array of channel values. (Whereas a channel value specified as a function is invoked repeatedly for each element in the mark’s data, similar to *array*.map, the transform method is invoked only once being passed the entire array of data.) For example, to pass the mark’s data directly to the **x** channel, equivalent to [Plot.identity](./transforms.md#identity):
 
 ```js
 Plot.dot(numbers, {x: {transform: (data) => data}})
