@@ -3029,6 +3029,13 @@ picomatch@^2.0.4, picomatch@^2.2.1, picomatch@^2.3.1:
   resolved "https://registry.yarnpkg.com/picomatch/-/picomatch-2.3.1.tgz#3ba3833733646d9d3e4995946c1365a67fb07a42"
   integrity sha512-JU3teHTNjmE2VCGFzuY8EXzCDVwEqB2a8fsIvwaStHhAWJEeVd1o1QD80CU6+ZdEXXSLbSsuLwJjkCBWqRQUVA==
 
+polylabel@^2.0.0:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/polylabel/-/polylabel-2.0.1.tgz#7c2f02b96bd50331a81990dcb9e134c05f996419"
+  integrity sha512-B6Yu+Bdl/8SGtjVhyUfZzD3DwciCS9SPVtHiNdt8idHHatvTHp5Ss8XGDRmQFtfF1ZQnfK+Cj5dXdpkUXBbXgA==
+  dependencies:
+    tinyqueue "^3.0.0"
+
 postcss@^8.4.39, postcss@^8.4.40:
   version "8.4.41"
   resolved "https://registry.yarnpkg.com/postcss/-/postcss-8.4.41.tgz#d6104d3ba272d882fe18fc07d15dc2da62fa2681"
@@ -3454,6 +3461,11 @@ text-table@^0.2.0:
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/text-table/-/text-table-0.2.0.tgz#7f5ee823ae805207c00af2df4a84ec3fcfa570b4"
   integrity sha512-N+8UisAXDGk8PFXP4HAzVR9nbfmVJ3zYLAWiTIoqC5v5isinhr+r5uaO8+7r3BMfuNIufIsA7RdpVgacC2cSpw==
+
+tinyqueue@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/tinyqueue/-/tinyqueue-3.0.0.tgz#101ea761ccc81f979e29200929e78f1556e3661e"
+  integrity sha512-gRa9gwYU3ECmQYv3lslts5hxuIa90veaEcxDYuu3QGOIAEM2mOZkVHp48ANJuu1CURtRdHKUBY5Lm1tHV+sD4g==
 
 to-fast-properties@^2.0.0:
   version "2.0.0"

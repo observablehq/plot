@@ -18,3 +18,20 @@ export async function countryCentroids() {
     ]
   });
 }
+
+export async function countryPois() {
+  const world = await d3.json<any>("data/countries-110m.json");
+  const land = feature(world, world.objects.land);
+  const countries = feature(world, world.objects.countries);
+  return Plot.plot({
+    projection: "orthographic",
+    marks: [
+      Plot.graticule(),
+      Plot.geo(land, {fill: "#ddd"}),
+      Plot.geo(countries, {stroke: "#fff"}),
+      Plot.text(countries, Plot.geoCentroid({fill: "red", text: "id"})),
+      Plot.text(countries, Plot.poi({fill: "green", text: "id"})),
+      Plot.frame()
+    ]
+  });
+}
