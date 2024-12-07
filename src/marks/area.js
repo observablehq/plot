@@ -1,4 +1,4 @@
-import {area as shapeArea} from "d3";
+import {area as shapeArea, line as shapeLine} from "d3";
 import {create} from "../context.js";
 import {maybeCurve} from "../curve.js";
 import {Mark} from "../mark.js";
@@ -24,7 +24,7 @@ const defaults = {
 
 export class Area extends Mark {
   constructor(data, options = {}) {
-    const {x1, y1, x2, y2, z, curve, tension} = options;
+    const {x1, y1, x2, y2, z, curve, tension, line} = options;
     super(
       data,
       {
@@ -35,10 +35,11 @@ export class Area extends Mark {
         z: {value: maybeZ(options), optional: true}
       },
       options,
-      defaults
+      line ? {...defaults, stroke: "currentColor"} : defaults
     );
     this.z = z;
     this.curve = maybeCurve(curve, tension);
+    this.line = !!line;
   }
   filter(index) {
     return index;
@@ -48,11 +49,14 @@ export class Area extends Mark {
     return create("svg:g", context)
       .call(applyIndirectStyles, this, dimensions, context)
       .call(applyTransform, this, scales, 0, 0)
-      .call((g) =>
-        g
+      .call((g) => {
+        g = g
           .selectAll()
           .data(groupIndex(index, [X1, Y1, X2, Y2], this, channels))
-          .enter()
+          .enter();
+
+        if (this.line) g = g.append("g");
+        const area = g
           .append("path")
           .call(applyDirectStyles, this)
           .call(applyGroupedChannelStyles, this, channels)
@@ -65,8 +69,23 @@ export class Area extends Mark {
               .y0((i) => Y1[i])
               .x1((i) => X2[i])
               .y1((i) => Y2[i])
-          )
-      )
+          );
+        if (this.line) {
+          area.attr("stroke", "none");
+          g.append("path")
+            .call(applyDirectStyles, this)
+            .call(applyGroupedChannelStyles, this, channels)
+            .attr(
+              "d",
+              shapeLine()
+                .curve(this.curve)
+                .defined((i) => i >= 0)
+                .x((i) => X2[i])
+                .y((i) => Y2[i])
+            )
+            .attr("fill", "none");
+        }
+      })
       .node();
   }
 }
