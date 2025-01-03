@@ -316,14 +316,15 @@ export function interpolatorBarycentric({random = randomLcg(42)} = {}) {
           if (x < 0 || x >= width || y < 0 || y >= height) continue;
           const xp = x + 0.5; // sample pixel centroids
           const yp = y + 0.5;
-          const ga = ((By - Cy) * (xp - Cx) + (yp - Cy) * (Cx - Bx)) / z;
-          if (ga < 0) continue;
-          const gb = ((Cy - Ay) * (xp - Cx) + (yp - Cy) * (Ax - Cx)) / z;
-          if (gb < 0) continue;
-          const gc = 1 - ga - gb;
-          if (gc < 0) continue;
+          const s = Math.sign(z);
+          const ga = (By - Cy) * (xp - Cx) + (yp - Cy) * (Cx - Bx);
+          if (ga * s < 0) continue;
+          const gb = (Cy - Ay) * (xp - Cx) + (yp - Cy) * (Ax - Cx);
+          if (gb * s < 0) continue;
+          const gc = z - (ga + gb);
+          if (gc * s < 0) continue;
           const i = x + width * y;
-          W[i] = mix(va, ga, vb, gb, vc, gc, x, y);
+          W[i] = mix(va, ga / z, vb, gb / z, vc, gc / z, x, y);
           S[i] = 1;
         }
       }

@@ -170,6 +170,7 @@ export function barX(data?: Data, options?: BarXOptions): BarX;
  * ```js
  * Plot.barY(alphabet, {y: "frequency", x: "letter"})
  * ```
+ *
  * If neither **y1** nor **y2** nor **interval** is specified, an implicit
  * stackY transform is applied and **y** defaults to the identity function,
  * assuming that *data* = [*y₀*, *y₁*, *y₂*, …]. Otherwise if an **interval** is

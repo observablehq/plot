@@ -163,7 +163,7 @@ We’ve long said that *D3 makes things possible, not necessarily easy.* And tha
 **Plot’s goal is to make the easy things easy, and fast, and then some.**
 
 :::tip
-Whether or not Plot succeeds at this goal is up to you — so we’d love [your feedback](https://talk.observablehq.com/c/site-feedback/3) on what you find easy or hard to do with Plot. And we encourage you to [ask for help](https://talk.observablehq.com/c/help/6) when you get stuck. We learn a lot from helping!
+Whether or not Plot succeeds at this goal is up to you — so we’d love [your feedback](https://github.com/observablehq/plot/discussions/new/choose) on what you find easy or hard to do with Plot. And we encourage you to [ask for help](https://github.com/observablehq/plot/discussions/categories/q-a) when you get stuck. We learn a lot from helping!
 :::
 
 Since Plot and D3 have different goals, they make different trade-offs. Plot is more efficient: you can make charts quickly. But it is also necessarily less expressive: bespoke visualizations with extensive animation and interaction, advanced techniques like force-directed graph layout, or even developing your own charting library, are better done with D3’s low-level API.

@@ -441,7 +441,7 @@ Plot.groupZ({x: "proportion"}, {fill: "species"})
 
 Groups on the first channel of **z**, **fill**, or **stroke**, if any. If none of **z**, **fill**, or **stroke** are channels, then all data (within each facet) is placed into a single group.
 
-## find(*test*) {#find} <VersionBadge version="0.6.12" pr="1914" />
+## find(*test*) <VersionBadge version="0.6.12" pr="1914" /> {#find}
 
 ```js
 Plot.groupX(

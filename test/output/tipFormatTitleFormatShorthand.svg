@@ -22,7 +22,7 @@
   <g aria-label="tip" fill="var(--plot-background)" stroke="currentColor" text-anchor="start" transform="translate(0.5,0.5)" visibility="hidden">
     <g transform="translate(320,60)">
       <path filter="drop-shadow(0 3px 4px rgba(0,0,0,0.2))"></path>
-      <text fill="currentColor" fill-opacity="1" stroke="none"><tspan x="0" dy="1em">​0</tspan></text>
+      <text fill="currentColor" fill-opacity="1" stroke="none"><tspan x="0" dy="1em">​0.03</tspan></text>
     </g>
   </g>
 </svg>

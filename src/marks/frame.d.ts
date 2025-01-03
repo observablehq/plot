@@ -6,8 +6,8 @@ import type {RectCornerOptions} from "./rect.js";
 export interface FrameOptions extends MarkOptions, InsetOptions, RectCornerOptions {
   /**
    * If null (default), the rectangular outline of the frame is drawn; otherwise
-   * the frame is drawn as a line only on the given side, and the **rx**,
-   * **ry**, **fill**, and **fillOpacity** options are ignored.
+   * the frame is drawn as a line only on the given side, and the corner radii
+   * (**r** *etc.*) and fill (**fill** and **fillOpacity**) options are ignored.
    */
   anchor?: "top" | "right" | "bottom" | "left" | null;
 }

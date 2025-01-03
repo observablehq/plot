@@ -1,3 +1,11 @@
+import {Mark} from "./mark.js";
+import {plot} from "./plot.js";
+
+// Note: this side effect avoids a circular dependency.
+Mark.prototype.plot = function ({marks = [], ...options} = {}) {
+  return plot({...options, marks: [...marks, this]});
+};
+
 export {plot} from "./plot.js";
 export {Mark, marks} from "./mark.js";
 export {Area, area, areaX, areaY} from "./marks/area.js";
@@ -12,7 +20,7 @@ export {Contour, contour} from "./marks/contour.js";
 export {crosshair, crosshairX, crosshairY} from "./marks/crosshair.js";
 export {delaunayLink, delaunayMesh, hull, voronoi, voronoiMesh} from "./marks/delaunay.js";
 export {Density, density} from "./marks/density.js";
-export {differenceY} from "./marks/difference.js";
+export {differenceX, differenceY} from "./marks/difference.js";
 export {Dot, dot, dotX, dotY, circle, hexagon} from "./marks/dot.js";
 export {Frame, frame} from "./marks/frame.js";
 export {Geo, geo, sphere, graticule} from "./marks/geo.js";
@@ -30,6 +38,7 @@ export {TickX, TickY, tickX, tickY} from "./marks/tick.js";
 export {Tip, tip} from "./marks/tip.js";
 export {tree, cluster} from "./marks/tree.js";
 export {Vector, vector, vectorX, vectorY, spike} from "./marks/vector.js";
+export {WaffleX, WaffleY, waffleX, waffleY} from "./marks/waffle.js";
 export {valueof, column, identity, indexOf} from "./options.js";
 export {filter, reverse, sort, shuffle, basic as transform, initializer} from "./transforms/basic.js";
 export {bin, binX, binY} from "./transforms/bin.js";
@@ -39,12 +48,14 @@ export {find, group, groupX, groupY, groupZ} from "./transforms/group.js";
 export {hexbin} from "./transforms/hexbin.js";
 export {normalize, normalizeX, normalizeY} from "./transforms/normalize.js";
 export {map, mapX, mapY} from "./transforms/map.js";
-export {shiftX} from "./transforms/shift.js";
+export {shiftX, shiftY} from "./transforms/shift.js";
 export {window, windowX, windowY} from "./transforms/window.js";
 export {select, selectFirst, selectLast, selectMaxX, selectMaxY, selectMinX, selectMinY} from "./transforms/select.js";
 export {stackX, stackX1, stackX2, stackY, stackY1, stackY2} from "./transforms/stack.js";
 export {treeNode, treeLink} from "./transforms/tree.js";
 export {pointer, pointerX, pointerY} from "./interactions/pointer.js";
-export {formatIsoDate, formatWeekday, formatMonth} from "./format.js";
+export {formatIsoDate, formatNumber, formatWeekday, formatMonth} from "./format.js";
 export {scale} from "./scales.js";
 export {legend} from "./legends.js";
+export {numberInterval} from "./options.js";
+export {timeInterval, utcInterval} from "./time.js";

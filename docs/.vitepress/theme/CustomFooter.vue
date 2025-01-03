@@ -25,7 +25,6 @@
             <li class="mb2"><a target="_blank" href="https://observablehq.com/plot">Plot</a></li>
             <li class="mb2"><a target="_blank" href="https://observablehq.com/data-integrations">Integrations</a></li>
             <li class="mb2"><a target="_blank" href="https://observablehq.com/pricing">Pricing</a></li>
-            <li class="mb2"><a target="_blank" href="https://observablehq.com/enterprise">Enterprise</a></li>
           </ul>
         </div>
       </div>
