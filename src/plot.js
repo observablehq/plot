@@ -10,7 +10,7 @@ import {axisFx, axisFy, axisX, axisY, gridFx, gridFy, gridX, gridY} from "./mark
 import {frame} from "./marks/frame.js";
 import {tip} from "./marks/tip.js";
 import {isColor, isIterable, isNone, isScaleOptions} from "./options.js";
-import {arrayify, lengthof, map, yes, maybeIntervalTransform, subarray} from "./options.js";
+import {dataify, lengthof, map, yes, maybeIntervalTransform, subarray} from "./options.js";
 import {createProjection, exposeProjection, getGeometryChannels, hasProjection, xyProjection} from "./projection.js";
 import {createScales, createScaleFunctions, autoScaleRange, exposeScales} from "./scales.js";
 import {innerDimensions, outerDimensions} from "./scales.js";
