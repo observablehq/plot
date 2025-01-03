@@ -138,10 +138,10 @@ export function dotX(data?: Data, options?: DotXOptions): Dot;
 export function dotY(data?: Data, options?: DotYOptions): Dot;
 
 /** Like dot, except that the **symbol** option is set to *circle*. */
-export function circle(data?: Data, options?: Exclude<DotOptions, "symbol">): Dot;
+export function circle(data?: Data, options?: Omit<DotOptions, "symbol">): Dot;
 
 /** Like dot, except that the **symbol** option is set to *hexagon*. */
-export function hexagon(data?: Data, options?: Exclude<DotOptions, "symbol">): Dot;
+export function hexagon(data?: Data, options?: Omit<DotOptions, "symbol">): Dot;
 
 /** The dot mark. */
 export class Dot extends RenderableMark {}
