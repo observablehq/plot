@@ -35,10 +35,7 @@ Plot.raster(vapor, {
   fill: Plot.identity,
   width: 360,
   height: 180,
-  x1: -180,
-  y1: 90,
-  x2: 180,
-  y2: -90,
+  x1: -180, y1: 90, x2: 180, y2: -90,
   interpolate: "barycentric",
   blur: 10,
   clip: nation
@@ -51,10 +48,7 @@ This option is not restricted to geographic shapes. For example, to show the val
 
 ```js
 Plot.raster({
-  x1: -1,
-  x2: 1,
-  y1: -1,
-  y2: 1,
+  x1: -1, x2: 1, y1: -1, y2: 1,
   fill: (x, y) => Math.atan2(y, x),
   clip: {
     type: "Polygon",
@@ -65,7 +59,9 @@ Plot.raster({
 }).plot({ width: 300, aspectRatio: 1 })
 ```
 
-Waffle mark improvements.
+The interactive **tip** associated with a [waffle mark](https://observablehq.com/plot/marks/waffle) is now anchored to the “center” of the visual representation of the associated datum. That center depends on the shape that is referenced. For fun, here’s a chart from out unit tests showing these anchoring points for various amounts of waffling. Baffling!
+
+<img src="./img/waffle-pointer-fractional.png" width="672" alt="waffle mark with the anchor position of each datum marked with its value">
 
 ---
 
