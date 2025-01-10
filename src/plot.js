@@ -1,4 +1,4 @@
-import {creator, select} from "d3";
+import {creator, geoPath, select} from "d3";
 import {createChannel, inferChannelScale} from "./channel.js";
 import {createContext} from "./context.js";
 import {createDimensions} from "./dimensions.js";
@@ -11,7 +11,7 @@ import {frame} from "./marks/frame.js";
 import {tip} from "./marks/tip.js";
 import {isColor, isIterable, isNone, isScaleOptions} from "./options.js";
 import {dataify, lengthof, map, yes, maybeIntervalTransform, subarray} from "./options.js";
-import {createProjection, getGeometryChannels, hasProjection} from "./projection.js";
+import {createProjection, getGeometryChannels, hasProjection, xyProjection} from "./projection.js";
 import {createScales, createScaleFunctions, autoScaleRange, exposeScales} from "./scales.js";
 import {innerDimensions, outerDimensions} from "./scales.js";
 import {isPosition, registry as scaleRegistry} from "./scales/index.js";
@@ -158,6 +158,11 @@ export function plot(options = {}) {
   context.ownerSVGElement = svg;
   context.className = className;
   context.projection = createProjection(options, subdimensions);
+
+  // A path generator for marks that want to draw GeoJSON.
+  context.path = function () {
+    return geoPath(this.projection ?? xyProjection(scales));
+  };
 
   // Allows e.g. the axis mark to determine faceting lazily.
   context.filterFacets = (data, channels) => {

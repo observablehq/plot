@@ -30,8 +30,10 @@ export interface PlotOptions extends ScaleDefaults {
    * height. Given an aspect ratio of *dx* / *dy*, and assuming that the *x* and
    * *y* scales represent equivalent units (say, degrees Celsius or meters),
    * computes a default height such that *dx* pixels along *x* represents the
-   * same variation as *dy* pixels along *y*. Note: when faceting, set the *fx*
-   * and *fy* scales’ **round** option to false for an exact aspect ratio.
+   * same variation as *dy* pixels along *y*. When *x* or *y* is ordinal,
+   * consecutive domain values are treated as one unit length apart. Note: when
+   * faceting, set the *fx* and *fy* scales’ **round** option to false for an
+   * exact aspect ratio.
    */
   aspectRatio?: number | boolean | null;
 

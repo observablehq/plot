@@ -1,5 +1,6 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
+import {feature} from "topojson-client";
 
 async function vapor() {
   return d3
@@ -57,6 +58,47 @@ export async function contourVapor() {
         clip: "sphere"
       }),
       Plot.sphere()
+    ]
+  });
+}
+
+export async function contourVaporClip() {
+  const [world, data] = await Promise.all([d3.json<any>("data/countries-50m.json"), vapor()]);
+  const land = feature(world, world.objects.land);
+  return Plot.plot({
+    width: 960,
+    projection: {type: "orthographic", rotate: [0, -90]},
+    color: {scheme: "blues"},
+    marks: [
+      Plot.sphere({fill: "#eee"}),
+      Plot.raster(data, {
+        fill: Plot.identity,
+        interpolate: "random-walk",
+        width: 360,
+        height: 180,
+        x1: -180,
+        y1: 90,
+        x2: 180,
+        y2: -90,
+        blur: 1,
+        pixelSize: 3,
+        clip: land
+      }),
+      Plot.contour(data, {
+        value: Plot.identity,
+        width: 360,
+        height: 180,
+        x1: -180,
+        y1: 90,
+        x2: 180,
+        y2: -90,
+        blur: 0.5,
+        stroke: "black",
+        strokeWidth: 0.5,
+        clip: land
+      }),
+      Plot.geo(land, {stroke: "black"}),
+      Plot.sphere({stroke: "black"})
     ]
   });
 }

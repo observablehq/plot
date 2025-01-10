@@ -292,7 +292,7 @@ Plot.plot({
 ```
 :::
 
-Positions scales also have a **round** option which forces the scale to snap to integer pixels. This defaults to true for point and band scales, and false for quantitative scales. Use caution with high-cardinality ordinal domains (*i.e.*, a point or band scale used to encode many different values), as rounding can lead to “wasted” space or even zero-width bands.
+Position scales also have a **round** option which forces the scale to snap to integer pixels. This defaults to true for point and band scales, and false for quantitative scales. Use caution with high-cardinality ordinal domains (*i.e.*, a point or band scale used to encode many different values), as rounding can lead to “wasted” space or even zero-width bands.
 
 ## Color scales
 
