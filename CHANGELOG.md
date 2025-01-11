@@ -38,7 +38,7 @@ Plot.raster(vapor, {
 }).plot()
 ```
 
-[The code for the map above is too long to reproduce here completely; click on the image above for the complete code.]
+[The code for the map above is too long to reproduce here in its entirety; click the image above for the complete code.]
 
 The **clip** mark option can also be used to clip against arbitrary polygons, not just geographic boundaries. For example, to show the value of [Math.atan2](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/atan2) over the unit circle:
 
