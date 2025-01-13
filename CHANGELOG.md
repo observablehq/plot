@@ -51,7 +51,7 @@ Plot.raster({
   clip: {
     type: "Polygon",
     coordinates: [
-      d3.range(0, 2 * Math.PI, 0.1).map((angle) => d3.pointRadial(angle, 1))
+      d3.range(0, 2 * Math.PI, 0.1).map((angle) => [Math.cos(angle), Math.sin(angle)])
     ]
   }
 }).plot({width: 300, aspectRatio: 1})
