@@ -32,7 +32,7 @@ export function map(outputs = {}, options = {}) {
   });
   return {
     ...basic(options, (data, facets) => {
-      const Z = valueof(data, z);
+      const Z = valueof(data, isObject(z) ? z.value : z);
       const X = channels.map(({input}) => valueof(data, input));
       const MX = channels.map(({setOutput}) => setOutput(new Array(data.length)));
       for (const facet of facets) {
