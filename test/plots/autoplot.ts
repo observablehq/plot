@@ -1,6 +1,11 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 
+export async function autoBox() {
+  const athletes = await d3.csv<any>("data/athletes.csv", d3.autoType);
+  return Plot.auto(athletes, {x: "weight", y: "sex", mark: "box", color: "sex"}).plot();
+}
+
 // Tanner's bug https://github.com/observablehq/plot/issues/1365
 export async function autoLineZero() {
   const industries = await d3.csv<any>("data/bls-industry-unemployment.csv", d3.autoType);
