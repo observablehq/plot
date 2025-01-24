@@ -201,10 +201,18 @@ export function pointerY(options) {
   return pointerK(0.01, 1, options);
 }
 
-export function anchorX({x1: X1, x2: X2, x: X = X1}, cx) {
-  return X1 && X2 ? (i) => (X1[i] + X2[i]) / 2 : X ? (i) => X[i] : () => cx;
+function anchorK(k, values, c) {
+  let {[`${k}1`]: V1, [`${k}2`]: V2, [k]: V, channels} = values;
+  if (V1 && channels[`${k}1`].hint?.singleton) V1 = null;
+  if (V2 && channels[`${k}2`].hint?.singleton) V2 = null;
+  if (V === undefined) V = V1;
+  return V1 && V2 ? (i) => (V1[i] + V2[i]) / 2 : V ? (i) => V[i] : () => c;
 }
 
-export function anchorY({y1: Y1, y2: Y2, y: Y = Y1}, cy) {
-  return Y1 && Y2 ? (i) => (Y1[i] + Y2[i]) / 2 : Y ? (i) => Y[i] : () => cy;
+export function anchorX(values, cx) {
+  return anchorK("x", values, cx);
+}
+
+export function anchorY(values, cy) {
+  return anchorK("y", values, cy);
 }
