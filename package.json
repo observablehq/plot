@@ -56,6 +56,7 @@
     "apache-arrow": "^16.0.2",
     "c8": "^9.1.0",
     "canvas": "^2.0.0",
+    "d3-geo-polygon": "^1.12.1",
     "d3-geo-projection": "^4.0.0",
     "eslint": "^8.16.0",
     "eslint-config-prettier": "^9.1.0",
