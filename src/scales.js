@@ -425,10 +425,11 @@ function inferScaleType(key, channels, {type, domain, range, scheme, pivot, proj
   if (kind === opacity || kind === length) return "linear";
   if (kind === symbol) return "ordinal";
 
-  // If the domain or range has more than two values, assume it’s ordinal. You
-  // can still use a “piecewise” (or “polylinear”) scale, but you must set the
-  // type explicitly.
-  if ((domain || range || []).length > 2) return asOrdinalType(kind);
+  // If a domain or range is explicitly specified and doesn’t have two values,
+  // assume it’s ordinal. You can still use a “piecewise” (or “polylinear”)
+  // scale, but you must set the type explicitly.
+  const n = (domain ?? range)?.length;
+  if (n < 2 || n > 2) return asOrdinalType(kind);
 
   // Otherwise, infer the scale type from the data! Prefer the domain, if
   // present, over channels. (The domain and channels should be consistently

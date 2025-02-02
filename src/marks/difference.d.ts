@@ -6,7 +6,8 @@ import type {Data, MarkOptions, RenderableMark} from "../mark.js";
 export interface DifferenceOptions extends MarkOptions, CurveOptions {
   /**
    * The comparison horizontal position channel, typically bound to the *x*
-   * scale; if not specified, **x** is used.
+   * scale; if not specified, **x** is used. For differenceX, defaults to zero
+   * if only one *x* and *y* channel is specified.
    */
   x1?: ChannelValueSpec;
 
@@ -68,6 +69,19 @@ export interface DifferenceOptions extends MarkOptions, CurveOptions {
    */
   z?: ChannelValue;
 }
+
+/**
+ * Returns a new horizontal difference mark for the given the specified *data*
+ * and *options*, as in a time-series chart where time goes down↓ (or up↑).
+ *
+ * The mark is a composite of a positive area, negative area, and line. The
+ * positive area extends from the left of the frame to the line, and is clipped
+ * by the area extending from the comparison to the right of the frame. The
+ * negative area conversely extends from the right of the frame to the line, and
+ * is clipped by the area extending from the comparison to the left of the
+ * frame.
+ */
+export function differenceX(data?: Data, options?: DifferenceOptions): Difference;
 
 /**
  * Returns a new vertical difference mark for the given the specified *data* and

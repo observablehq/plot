@@ -213,7 +213,7 @@ Plot.plot({
 
 ## Bar options
 
-For required channels, see [barX](#barX) and [barY](#barY). The bar mark supports the [standard mark options](../features/marks.md), including insets and rounded corners. The **stroke** defaults to *none*. The **fill** defaults to *currentColor* if the stroke is *none*, and to *none* otherwise.
+For required channels, see [barX](#barX) and [barY](#barY). The bar mark supports the [standard mark options](../features/marks.md), including [insets](../features/marks.md#insets) and [rounded corners](../features/marks.md#rounded-corners). The **stroke** defaults to *none*. The **fill** defaults to *currentColor* if the stroke is *none*, and to *none* otherwise.
 
 ## barX(*data*, *options*) {#barX}
 

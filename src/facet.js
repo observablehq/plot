@@ -63,11 +63,16 @@ export function facetGroups(data, {fx, fy}) {
 }
 
 export function facetTranslator(fx, fy, {marginTop, marginLeft}) {
-  return fx && fy
-    ? ({x, y}) => `translate(${fx(x) - marginLeft},${fy(y) - marginTop})`
-    : fx
-    ? ({x}) => `translate(${fx(x) - marginLeft},0)`
-    : ({y}) => `translate(0,${fy(y) - marginTop})`;
+  const x = fx ? ({x}) => fx(x) - marginLeft : () => 0;
+  const y = fy ? ({y}) => fy(y) - marginTop : () => 0;
+  return function (d) {
+    if (this.tagName === "svg") {
+      this.setAttribute("x", x(d));
+      this.setAttribute("y", y(d));
+    } else {
+      this.setAttribute("transform", `translate(${x(d)},${y(d)})`);
+    }
+  };
 }
 
 // Returns an index that for each facet lists all the elements present in other

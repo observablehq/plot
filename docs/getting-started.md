@@ -1,3 +1,9 @@
+---
+next:
+  text: Plots
+  link: /features/plots
+---
+
 <script setup>
 
 import * as Plot from "@observablehq/plot";
@@ -296,26 +302,59 @@ Here’s an example of client-side rendering in Svelte. For server-side renderin
 
 :::code-group
 ```svelte [App.svelte]
-<script>
+<script lang="ts">
   import * as Plot from '@observablehq/plot';
   import * as d3 from 'd3';
 
-  let div;
-  let data = d3.ticks(-2, 2, 200).map(Math.sin);
+  let div: HTMLElement | undefined = $state();
+  let data = $state(d3.ticks(-2, 2, 200).map(Math.sin));
 
-  function onMousemove(event) {
+  function onMousemove(event: MouseEvent) {
     const [x, y] = d3.pointer(event);
     data = data.slice(-200).concat(Math.atan2(x, y));
   }
 
-  $: {
+  $effect(() => {
     div?.firstChild?.remove(); // remove old chart, if any
-    div?.append(Plot.lineY(data).plot({grid: true})); // add the new chart
-  }
+    div?.append(Plot.lineY(data).plot({ grid: true })); // add the new chart
+  });
 </script>
 
-<div on:mousemove={onMousemove} bind:this={div} role="img"></div>
+<div onmousemove={onMousemove} bind:this={div} role="img"></div>
 ```
 :::
 
-See our [Plot + Svelte REPL](https://svelte.dev/repl/ebf78a6a6c1145ecb84cf9345a7f82ae?version=4.2.0) for details.
+See our [Plot + Svelte REPL](https://svelte.dev/playground/e65b5c87ae7e44239cef41ec3df28f52?version=5.2.7) for details.
+
+## Plot in Node.js
+
+You can use Plot to server-side render SVG or PNG in Node.js. Use [JSDOM](https://github.com/jsdom/jsdom) for a DOM implementation via the **document** option, then serialize the generated plot using **outerHTML**.
+
+```js
+import {readFile} from "node:fs/promises";
+import * as Plot from "@observablehq/plot";
+import * as d3 from "d3";
+import {JSDOM} from "jsdom";
+
+const penguins = d3.csvParse(await readFile("./penguins.csv", "utf-8"), d3.autoType);
+
+const plot = Plot.plot({
+  document: new JSDOM("").window.document,
+  marks: [
+    Plot.dot(penguins, {x: "culmen_length_mm", y: "culmen_depth_mm", stroke: "species"})
+  ]
+});
+
+plot.setAttributeNS("http://www.w3.org/2000/xmlns/", "xmlns", "http://www.w3.org/2000/svg");
+plot.setAttributeNS("http://www.w3.org/2000/xmlns/", "xmlns:xlink", "http://www.w3.org/1999/xlink");
+
+process.stdout.write(plot.outerHTML);
+```
+
+To rasterize SVG as PNG, you could use [canvg](https://github.com/canvg/canvg) and [node-canvas](https://github.com/Automattic/node-canvas), or [sharp](https://sharp.pixelplumbing.com/):
+
+```js
+process.stdout.write(await sharp(Buffer.from(plot.outerHTML, "utf-8")).png().toBuffer());
+```
+
+For better font rendering, consider [Puppeteer](https://pptr.dev/).

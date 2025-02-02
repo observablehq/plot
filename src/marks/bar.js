@@ -1,26 +1,29 @@
 import {create} from "../context.js";
 import {Mark} from "../mark.js";
-import {hasXY, identity, indexOf, number} from "../options.js";
+import {hasXY, identity, indexOf} from "../options.js";
 import {isCollapsed} from "../scales.js";
 import {applyAttr, applyChannelStyles, applyDirectStyles, applyIndirectStyles, applyTransform} from "../style.js";
-import {impliedString} from "../style.js";
 import {maybeIdentityX, maybeIdentityY} from "../transforms/identity.js";
 import {maybeIntervalX, maybeIntervalY} from "../transforms/interval.js";
 import {maybeStackX, maybeStackY} from "../transforms/stack.js";
+import {applyRoundedRect, rectInsets, rectRadii} from "./rect.js";
+
+const barDefaults = {
+  ariaLabel: "bar"
+};
 
 export class AbstractBar extends Mark {
-  constructor(data, channels, options = {}, defaults) {
+  constructor(data, channels, options = {}, defaults = barDefaults) {
     super(data, channels, options, defaults);
-    const {inset = 0, insetTop = inset, insetRight = inset, insetBottom = inset, insetLeft = inset, rx, ry} = options;
-    this.insetTop = number(insetTop);
-    this.insetRight = number(insetRight);
-    this.insetBottom = number(insetBottom);
-    this.insetLeft = number(insetLeft);
-    this.rx = impliedString(rx, "auto"); // number or percentage
-    this.ry = impliedString(ry, "auto");
+    rectInsets(this, options);
+    rectRadii(this, options);
   }
   render(index, scales, channels, dimensions, context) {
-    const {rx, ry} = this;
+    const {rx, ry, rx1y1, rx1y2, rx2y1, rx2y2} = this;
+    const x = this._x(scales, channels, dimensions);
+    const y = this._y(scales, channels, dimensions);
+    const w = this._width(scales, channels, dimensions);
+    const h = this._height(scales, channels, dimensions);
     return create("svg:g", context)
       .call(applyIndirectStyles, this, dimensions, context)
       .call(this._transform, this, scales)
@@ -29,15 +32,26 @@ export class AbstractBar extends Mark {
           .selectAll()
           .data(index)
           .enter()
-          .append("rect")
-          .call(applyDirectStyles, this)
-          .attr("x", this._x(scales, channels, dimensions))
-          .attr("width", this._width(scales, channels, dimensions))
-          .attr("y", this._y(scales, channels, dimensions))
-          .attr("height", this._height(scales, channels, dimensions))
-          .call(applyAttr, "rx", rx)
-          .call(applyAttr, "ry", ry)
-          .call(applyChannelStyles, this, channels)
+          .call(
+            rx1y1 || rx1y2 || rx2y1 || rx2y2
+              ? (g) =>
+                  g
+                    .append("path")
+                    .call(applyDirectStyles, this)
+                    .call(applyRoundedRect, x, y, add(x, w), add(y, h), this)
+                    .call(applyChannelStyles, this, channels)
+              : (g) =>
+                  g
+                    .append("rect")
+                    .call(applyDirectStyles, this)
+                    .attr("x", x)
+                    .attr("width", w)
+                    .attr("y", y)
+                    .attr("height", h)
+                    .call(applyAttr, "rx", rx)
+                    .call(applyAttr, "ry", ry)
+                    .call(applyChannelStyles, this, channels)
+          )
       )
       .node();
   }
@@ -61,12 +75,18 @@ export class AbstractBar extends Mark {
   }
 }
 
-const defaults = {
-  ariaLabel: "bar"
-};
+function add(a, b) {
+  return typeof a === "function" && typeof b === "function"
+    ? (i) => a(i) + b(i)
+    : typeof a === "function"
+    ? (i) => a(i) + b
+    : typeof b === "function"
+    ? (i) => a + b(i)
+    : a + b;
+}
 
 export class BarX extends AbstractBar {
-  constructor(data, options = {}) {
+  constructor(data, options = {}, defaults) {
     const {x1, x2, y} = options;
     super(
       data,
@@ -95,7 +115,7 @@ export class BarX extends AbstractBar {
 }
 
 export class BarY extends AbstractBar {
-  constructor(data, options = {}) {
+  constructor(data, options = {}, defaults) {
     const {x, y1, y2} = options;
     super(
       data,

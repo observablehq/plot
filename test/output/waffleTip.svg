@@ -1,0 +1,67 @@
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="400" viewBox="0 0 640 400" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style>
+    :where(.plot) {
+      --plot-background: white;
+      display: block;
+      height: auto;
+      height: intrinsic;
+      max-width: 100%;
+    }
+
+    :where(.plot text),
+    :where(.plot tspan) {
+      white-space: pre;
+    }
+  </style>
+  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+    <path transform="translate(40,368)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,325.1974522292994)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,282.3949044585988)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,239.59235668789808)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,196.78980891719746)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,153.98726114649682)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,111.18471337579615)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,68.38216560509554)" d="M0,0L-6,0"></path>
+  </g>
+  <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
+    <text y="0.32em" transform="translate(40,368)">0</text>
+    <text y="0.32em" transform="translate(40,325.1974522292994)">20</text>
+    <text y="0.32em" transform="translate(40,282.3949044585988)">40</text>
+    <text y="0.32em" transform="translate(40,239.59235668789808)">60</text>
+    <text y="0.32em" transform="translate(40,196.78980891719746)">80</text>
+    <text y="0.32em" transform="translate(40,153.98726114649682)">100</text>
+    <text y="0.32em" transform="translate(40,111.18471337579615)">120</text>
+    <text y="0.32em" transform="translate(40,68.38216560509554)">140</text>
+  </g>
+  <g aria-label="waffle">
+    <pattern width="34.24203821656051" height="34.24203821656051" patternUnits="userSpaceOnUse" id="plot-pattern-1">
+      <rect x="0.5" y="0.5" width="33.24203821656051" height="33.24203821656051" fill="rgb(158, 1, 66)"></rect>
+    </pattern>
+    <pattern width="34.24203821656051" height="34.24203821656051" patternUnits="userSpaceOnUse" id="plot-pattern-2">
+      <rect x="0.5" y="0.5" width="33.24203821656051" height="33.24203821656051" fill="rgb(224, 81, 74)"></rect>
+    </pattern>
+    <pattern width="34.24203821656051" height="34.24203821656051" patternUnits="userSpaceOnUse" id="plot-pattern-3">
+      <rect x="0.5" y="0.5" width="33.24203821656051" height="33.24203821656051" fill="rgb(251, 160, 92)"></rect>
+    </pattern>
+    <pattern width="34.24203821656051" height="34.24203821656051" patternUnits="userSpaceOnUse" id="plot-pattern-4">
+      <rect x="0.5" y="0.5" width="33.24203821656051" height="33.24203821656051" fill="rgb(242, 249, 171)"></rect>
+    </pattern>
+    <pattern width="34.24203821656051" height="34.24203821656051" patternUnits="userSpaceOnUse" id="plot-pattern-5">
+      <rect x="0.5" y="0.5" width="33.24203821656051" height="33.24203821656051" fill="rgb(98, 184, 170)"></rect>
+    </pattern>
+    <pattern width="34.24203821656051" height="34.24203821656051" patternUnits="userSpaceOnUse" id="plot-pattern-6">
+      <rect x="0.5" y="0.5" width="33.24203821656051" height="33.24203821656051" fill="rgb(94, 79, 162)"></rect>
+    </pattern>
+    <pattern width="34.24203821656051" height="34.24203821656051" patternUnits="userSpaceOnUse" id="plot-pattern-7">
+      <rect x="0.5" y="0.5" width="33.24203821656051" height="33.24203821656051" fill="rgb(246, 130, 79)"></rect>
+    </pattern>
+    <path transform="translate(65.56369426751593,368)" d="M0,0L0,0L0,0L0,0L0,0L34.24203821656051,0L34.24203821656051,0L34.24203821656051,0L34.24203821656051,-34.24203821656051L0,-34.24203821656051Z" fill="url(#plot-pattern-1)"></path>
+    <path transform="translate(65.56369426751593,368)" d="M34.24203821656051,-34.24203821656051L34.24203821656051,0L34.24203821656051,0L34.24203821656051,0L171.21019108280254,0L171.21019108280254,0L171.21019108280254,0L171.21019108280254,-34.24203821656051Z" fill="url(#plot-pattern-2)"></path>
+    <path transform="translate(65.56369426751593,368)" d="M171.21019108280254,-34.24203821656051L171.21019108280254,0L171.21019108280254,0L171.21019108280254,0L479.38853503184714,0L479.38853503184714,0L479.38853503184714,0L479.38853503184714,-34.24203821656051Z" fill="url(#plot-pattern-3)"></path>
+    <path transform="translate(65.56369426751593,368)" d="M0,-34.24203821656051L479.38853503184714,-34.24203821656051L479.38853503184714,0L479.38853503184714,0L479.38853503184714,0L547.8726114649681,0L547.8726114649681,-68.48407643312102L205.45222929936307,-68.48407643312102L205.45222929936307,-68.48407643312102L205.45222929936307,-68.48407643312102L205.45222929936307,-102.72611464968153L0,-102.72611464968153Z" fill="url(#plot-pattern-4)"></path>
+    <path transform="translate(65.56369426751593,368)" d="M0,-102.72611464968153L205.45222929936307,-102.72611464968153L205.45222929936307,-68.48407643312102L205.45222929936307,-68.48407643312102L205.45222929936307,-68.48407643312102L547.8726114649681,-68.48407643312102L547.8726114649681,-171.21019108280254L136.96815286624204,-171.21019108280254L136.96815286624204,-171.21019108280254L136.96815286624204,-171.21019108280254L136.96815286624204,-205.45222929936307L0,-205.45222929936307Z" fill="url(#plot-pattern-5)"></path>
+    <path transform="translate(65.56369426751593,368)" d="M0,-205.45222929936307L136.96815286624204,-205.45222929936307L136.96815286624204,-171.21019108280254L136.96815286624204,-171.21019108280254L136.96815286624204,-171.21019108280254L547.8726114649681,-171.21019108280254L547.8726114649681,-308.1783439490446L205.45222929936307,-308.1783439490446L205.45222929936307,-308.1783439490446L205.45222929936307,-308.1783439490446L205.45222929936307,-342.4203821656051L0,-342.4203821656051Z" fill="url(#plot-pattern-6)"></path>
+    <path transform="translate(65.56369426751593,368)" d="M205.45222929936307,-342.4203821656051L205.45222929936307,-308.1783439490446L205.45222929936307,-308.1783439490446L205.45222929936307,-308.1783439490446L445.14649681528664,-308.1783439490446L445.14649681528664,-308.1783439490446L445.14649681528664,-308.1783439490446L445.14649681528664,-342.4203821656051Z" fill="url(#plot-pattern-7)"></path>
+  </g>
+  <g aria-label="tip" fill="var(--plot-background)" stroke="currentColor" pointer-events="none" text-anchor="start" transform="translate(0.5,0.5)"></g>
+</svg>

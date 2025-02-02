@@ -1,4 +1,4 @@
-import {geoPath, line as shapeLine} from "d3";
+import {line as shapeLine} from "d3";
 import {create} from "../context.js";
 import {curveAuto, maybeCurveAuto} from "../curve.js";
 import {Mark} from "../mark.js";
@@ -67,7 +67,7 @@ export class Line extends Mark {
           .attr(
             "d",
             curve === curveAuto && context.projection
-              ? sphereLine(context.projection, X, Y)
+              ? sphereLine(context.path(), X, Y)
               : shapeLine()
                   .curve(curve)
                   .defined((i) => i >= 0)
@@ -79,8 +79,7 @@ export class Line extends Mark {
   }
 }
 
-function sphereLine(projection, X, Y) {
-  const path = geoPath(projection);
+function sphereLine(path, X, Y) {
   X = coerceNumbers(X);
   Y = coerceNumbers(Y);
   return (I) => {

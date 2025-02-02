@@ -1,6 +1,8 @@
+import type {GeoPermissibleObjects} from "d3";
 import type {Channel, ChannelDomainSort, ChannelValue, ChannelValues, ChannelValueSpec} from "./channel.js";
 import type {Context} from "./context.js";
 import type {Dimensions} from "./dimensions.js";
+import type {PointerOptions} from "./interactions/pointer.js";
 import type {TipOptions} from "./marks/tip.js";
 import type {plot} from "./plot.js";
 import type {ScaleFunctions} from "./scales.js";
@@ -32,6 +34,7 @@ export type TipPointer = "x" | "y" | "xy";
  *
  * - an array, typed array, or other iterable
  * - an object with a length property and indexed values
+ * - an Apache Arrow Table
  */
 export type Data = Iterable<any> | ArrayLike<any>;
 
@@ -240,6 +243,13 @@ export interface MarkOptions {
   marginLeft?: number;
 
   /**
+   * The [class attribute][1]; a constant string.
+   *
+   * [1]: https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
+   */
+  className?: string;
+
+  /**
    * The [aria-description][1]; a constant textual description.
    *
    * [1]: https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-description
@@ -280,18 +290,19 @@ export interface MarkOptions {
   title?: ChannelValue;
 
   /** Whether to generate a tooltip for this mark, and any tip options. */
-  tip?: boolean | TipPointer | (TipOptions & {pointer?: TipPointer});
+  tip?: boolean | TipPointer | (TipOptions & PointerOptions & {pointer?: TipPointer});
 
   /**
    * How to clip the mark; one of:
    *
    * - *frame* or true - clip to the plot’s frame (inner area)
    * - *sphere* - clip to the projected sphere (*e.g.*, front hemisphere)
+   * - geojson - a GeoJSON object, typically with polygonal geometry
    * - null or false - do not clip
    *
    * The *sphere* clip option requires a geographic projection.
    */
-  clip?: "frame" | "sphere" | boolean | null;
+  clip?: "frame" | "sphere" | GeoPermissibleObjects | boolean | null;
 
   /**
    * The horizontal offset in pixels; a constant option. On low-density screens,

@@ -2,7 +2,7 @@ import {channelDomain, createChannels, valueObject} from "./channel.js";
 import {defined} from "./defined.js";
 import {maybeFacetAnchor} from "./facet.js";
 import {maybeClip, maybeNamed, maybeValue} from "./options.js";
-import {arrayify, isDomainSort, isObject, isOptions, keyword, range, singleton} from "./options.js";
+import {dataify, isDomainSort, isObject, isOptions, keyword, range, singleton, string} from "./options.js";
 import {project} from "./projection.js";
 import {styles} from "./style.js";
 import {basic, initializer} from "./transforms/basic.js";
@@ -23,6 +23,7 @@ export class Mark {
       marginBottom = margin,
       marginLeft = margin,
       creator,
+      className,
       clip = defaults?.clip,
       channels: extraChannels,
       tip,
@@ -72,6 +73,7 @@ export class Mark {
     this.marginLeft = +marginLeft;
     this.clip = maybeClip(clip);
     this.tip = maybeTip(tip);
+    this.className = string(className);
     // Super-faceting currently disallow position channels; in the future, we
     // could allow position to be specified in fx and fy in addition to (or
     // instead of) x and y.
@@ -89,10 +91,10 @@ export class Mark {
     creator?.call(this, options); // XXX
   }
   initialize(facets, facetChannels, plotOptions) {
-    let data = arrayify(this.data);
+    let data = dataify(this.data);
     if (facets === undefined && data != null) facets = [range(data)];
     const originalFacets = facets;
-    if (this.transform != null) ({facets, data} = this.transform(data, facets, plotOptions)), (data = arrayify(data));
+    if (this.transform != null) ({facets, data} = this.transform(data, facets, plotOptions)), (data = dataify(data));
     if (facets !== undefined) facets.original = originalFacets; // needed to read facetChannels
     const channels = createChannels(this.channels, data);
     if (this.sort != null) channelDomain(data, facets, channels, facetChannels, this.sort); // mutates facetChannels!
@@ -133,7 +135,7 @@ export class Mark {
 }
 
 export function marks(...marks) {
-  marks.plot = Mark.prototype.plot; // Note: depends on side-effect in plot!
+  marks.plot = Mark.prototype.plot;
   return marks;
 }
 

@@ -1,9 +1,9 @@
-import {reindex, slice} from "../options.js";
+import {lengthof, reindex, slice} from "../options.js";
 
 export function exclusiveFacets(data, facets) {
   if (facets.length === 1) return {data, facets}; // only one facet; trivially exclusive
 
-  const n = data.length;
+  const n = lengthof(data);
   const O = new Uint8Array(n);
   let overlaps = 0;
 
