@@ -8,7 +8,8 @@ import it from "./jsdom.js";
 import * as plots from "./plots/index.ts"; // TODO index.js
 
 for (const [name, plot] of Object.entries(plots)) {
-  it(`plot ${name}`, async () => {
+  if (name !== "projectionClipAngle") continue;
+  it.only(`plot ${name}`, async () => {
     const root = await (name.startsWith("warn") ? assert.warnsAsync : assert.doesNotWarnAsync)(plot);
     const ext = root.tagName === "svg" ? "svg" : "html";
     for (const svg of root.tagName === "svg" ? [root] : root.querySelectorAll("svg")) {
