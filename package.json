@@ -35,8 +35,8 @@
     "test:tsc": "tsc",
     "prepublishOnly": "rm -rf dist && rollup -c",
     "dev": "vite",
-    "docs:dev": "node node_modules/vitepress/dist/node/cli.js dev docs",
-    "docs:build": "node node_modules/vitepress/dist/node/cli.js build docs",
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
     "docs:preview": "vitepress preview docs"
   },
   "sideEffects": [
