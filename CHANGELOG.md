@@ -4,7 +4,7 @@ Year: **Current (2025)** · [2024](./CHANGELOG-2024.md) · [2023](./CHANGELOG-20
 
 ## 0.6.17
 
-[Released TDB, 2025.](https://github.com/observablehq/plot/releases/tag/v0.6.17)
+[Released February 14, 2025.](https://github.com/observablehq/plot/releases/tag/v0.6.17)
 
 The [**clip** mark option](https://observablehq.com/plot/features/marks#clip) now supports GeoJSON objects 🌎 in addition to the named *frame* and *sphere* clipping methods, allowing the visual extent of marks to be limited to arbitrary polygons. For instance, this Voronoi mesh of world airports is clipped to land boundaries:
 
@@ -57,7 +57,7 @@ Plot.raster({
 }).plot({width: 300, aspectRatio: 1})
 ```
 
-The interactive **tip** associated with a [waffle mark](https://observablehq.com/plot/marks/waffle) is now anchored to the “center” of the visual representation of the associated datum. That center depends on the shape that is referenced. For fun, here’s a chart from out unit tests showing these anchoring points for various amounts of waffling. Baffling!
+The interactive **tip** associated with a [waffle mark](https://observablehq.com/plot/marks/waffle) is now anchored to the “center” of the visual representation of the associated datum. That center depends on the shape that is referenced. For fun, here’s a chart from our unit tests showing these anchoring points for various amounts of waffling. Baffling!
 
 <img src="./img/waffle-pointer-fractional.png" width="672" alt="waffle mark with the anchor position of each datum marked with its value">
 
