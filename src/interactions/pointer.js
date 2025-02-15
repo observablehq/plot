@@ -4,6 +4,7 @@ import {isArray} from "../options.js";
 import {applyFrameAnchor} from "../style.js";
 
 const states = new WeakMap();
+const processedEvents = new WeakSet();
 
 function pointerK(kx, ky, {x, y, px, py, maxRadius = 40, channels, render, ...options} = {}) {
   maxRadius = +maxRadius;
@@ -162,12 +163,13 @@ function pointerK(kx, ky, {x, y, px, py, maxRadius = 40, channels, render, ...op
       }
 
       function pointerdown(event) {
+        if (processedEvents.has(event)) return; // ignore same event on a shared pointer
+        processedEvents.add(event);
         if (event.pointerType !== "mouse") return;
         if (i == null) return; // not pointing
         if (state.sticky && state.roots.some((r) => r?.contains(event.target))) return; // stay sticky
         if (state.sticky) (state.sticky = false), state.renders.forEach((r) => r(null)); // clear all pointers
         else (state.sticky = true), render(i);
-        event.stopImmediatePropagation(); // suppress other pointers
       }
 
       function pointerleave(event) {
