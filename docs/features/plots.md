@@ -323,3 +323,7 @@ const legend = plot.legend("color"); // render a color legend
 ```
 
 Renders a standalone legend for the scale with the specified *name* (such as *x* or *color*) on the given *plot*, where *plot* is a rendered plot element returned by [plot](#plot), returning a SVG or HTML figure element. This element can then be inserted into the page as described in the [getting started guide](../getting-started.md). If the associated *plot* has no scale with the given *name*, returns undefined. Legends are currently only supported for *color*, *opacity*, and *symbol* scales.
+
+## *plot*.dimensions() {#plot_dimensions}
+
+Returns the dimensions of the chart, an object with the properties marginTop, marginRight, marginBottom, marginLeft, width and height set to their actual values.
