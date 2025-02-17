@@ -265,6 +265,10 @@ Plot.plot((() => {
 ```
 :::
 
+The **line** option draws a line connecting the points with coordinates **x2** and **y2** (the “top of the area”).
+
+Example TK.
+
 See also the [ridgeline chart](https://observablehq.com/@observablehq/plot-ridgeline) example.
 
 Interpolation is controlled by the [**curve** option](../features/curves.md). The default curve is *linear*, which draws straight line segments between pairs of adjacent points. A *step* curve is nice for emphasizing when the value changes, while *basis* and *catmull–rom* are nice for smoothing.
@@ -291,6 +295,8 @@ The **stroke** defaults to *none*. The **fill** defaults to *currentColor* if th
 Points along the baseline and topline are connected in input order. Likewise, if there are multiple series via the **z**, **fill**, or **stroke** channel, the series are drawn in input order such that the last series is drawn on top. Typically, the data is already in sorted order, such as chronological for time series; if sorting is needed, consider a [sort transform](../transforms/sort.md).
 
 The area mark supports [curve options](../features/curves.md) to control interpolation between points. If any of the **x1**, **y1**, **x2**, or **y2** values are invalid (undefined, null, or NaN), the baseline and topline will be interrupted, resulting in a break that divides the area shape into multiple segments. (See [d3-shape’s *area*.defined](https://d3js.org/d3-shape/area#area_defined) for more.) If an area segment consists of only a single point, it may appear invisible unless rendered with rounded or square line caps. In addition, some curves such as *cardinal-open* only render a visible segment if it contains multiple points.
+
+The **line** option <VersionBadge pr="2133" /> (boolean, defaults to false) indicates whether the mark should draw a line connecting the points with coordinates **x2** and **y2** (the “top of the area”). In that case, the **stroke** attribute defaults to *currentColor* and is applied to the line only, as well as the stroke opacity. The line uses the same **curve** as the area.
 
 ## areaY(*data*, *options*) {#areaY}
 

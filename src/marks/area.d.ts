@@ -42,6 +42,12 @@ export interface AreaOptions extends MarkOptions, StackOptions, CurveOptions {
    * **stroke** if a channel.
    */
   z?: ChannelValue;
+
+  /**
+   * Whether a line should be drawn connecting the points with coordinates *x2*,
+   * *y2*; the **stroke** then applies to that line and defaults to *currentColor*.
+   */
+  line?: boolean;
 }
 
 /** Options for the areaX mark. */
