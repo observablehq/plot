@@ -89,6 +89,7 @@ export * from "./empty-x.js";
 export * from "./empty.js";
 export * from "./energy-production.js";
 export * from "./error-bar.js";
+export * from "./explicit-symbol.js";
 export * from "./facet-reindex.js";
 export * from "./faithful-density-1d.js";
 export * from "./faithful-density.js";
