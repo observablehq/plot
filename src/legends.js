@@ -1,7 +1,7 @@
 import {rgb} from "d3";
 import {createContext} from "./context.js";
 import {legendRamp} from "./legends/ramp.js";
-import {legendSwatches, legendSymbols} from "./legends/swatches.js";
+import {isSymbolColorLegend, legendSwatches, legendSymbols} from "./legends/swatches.js";
 import {inherit, isScaleOptions} from "./options.js";
 import {normalizeScale} from "./scales.js";
 
@@ -70,12 +70,16 @@ function interpolateOpacity(color) {
 
 export function createLegends(scales, context, options) {
   const legends = [];
+  let hasColor = false;
   for (const [key, value] of legendRegistry) {
-    const o = options[key];
-    if (o?.legend && key in scales) {
-      const legend = value(scales[key], legendOptions(context, scales[key], o), (key) => scales[key]);
-      if (legend != null) legends.push(legend);
-    }
+    if (!(key in scales)) continue;
+    if (key === "color" && hasColor) continue;
+    const o = inherit(options[key], {legend: options.legend});
+    if (!o.legend) continue;
+    const legend = value(scales[key], legendOptions(context, scales[key], o), (key) => scales[key]);
+    if (legend == null) continue;
+    if (key === "symbol" && isSymbolColorLegend(legend)) hasColor = true;
+    legends.push(legend);
   }
   return legends;
 }

@@ -58,6 +58,14 @@ export function colorLegendOrdinalRamp() {
   return Plot.legend({color: {type: "ordinal", domain: "ABCDEFGHIJ"}, legend: "ramp"});
 }
 
+export function colorLegendOrdinalRampInline() {
+  return Plot.plot({
+    legend: "ramp",
+    color: {type: "ordinal", domain: "ABCDEFGHIJ"},
+    marks: [Plot.cellX("ABCDEFGHIJ")]
+  });
+}
+
 export function colorLegendOrdinalRampTickSize() {
   return Plot.legend({
     color: {
