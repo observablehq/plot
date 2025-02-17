@@ -78,6 +78,28 @@ export function colorLegendOrdinalScheme() {
   return Plot.legend({color: {type: "ordinal", domain: "ABCDEFGHIJ", scheme: "rainbow"}});
 }
 
+export function colorLegendLarge() {
+  return Plot.legend({
+    color: {type: "ordinal", domain: "ABCDEFGHIJ", scheme: "rainbow"},
+    className: "legend",
+    style: {fontSize: "16px"}
+  });
+}
+
+export function colorLegendLargeChart() {
+  return Plot.plot({
+    color: {
+      legend: true,
+      type: "ordinal",
+      scheme: "rainbow",
+      className: "legend",
+      style: {fontSize: "16px"}
+    },
+    style: {fontSize: "7px"},
+    marks: [Plot.cell("ABCDEFGHIJ", {x: Plot.identity, fill: Plot.identity})]
+  });
+}
+
 export function colorLegendOrdinalSchemeRamp() {
   return Plot.legend({color: {type: "ordinal", domain: "ABCDEFGHIJ", scheme: "rainbow"}, legend: "ramp"});
 }
