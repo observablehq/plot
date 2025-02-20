@@ -1,5 +1,5 @@
-import * as d3 from "d3";
 import * as Plot from "@observablehq/plot";
+import * as d3 from "d3";
 
 export function opacityDotsFillUnscaled() {
   return Plot.dotX(d3.ticks(0.3, 0.7, 40), {
