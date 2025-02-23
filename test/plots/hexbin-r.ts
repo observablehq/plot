@@ -17,7 +17,7 @@ export async function hexbinR() {
     marks: [
       Plot.frame(),
       Plot.hexgrid(),
-      Plot.dot(penguins, Plot.hexbin({title: "count", r: "count", fill: "proportion-facet"}, xy))
+      Plot.dot(penguins, Plot.hexbin({title: "count", r: "count", fill: "density"}, xy))
     ]
   });
 }

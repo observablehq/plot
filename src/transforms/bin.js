@@ -179,6 +179,7 @@ function binn(
         if (sort) sort.scope("facet", facet);
         if (filter) filter.scope("facet", facet);
         for (const [f, I] of maybeGroup(facet, G)) {
+          for (const o of outputs) o.scope("group", I);
           for (const [k, g] of maybeGroup(I, K)) {
             for (const [b, extent] of bin(g)) {
               if (G) extent.z = f;
