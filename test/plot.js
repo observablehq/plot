@@ -11,10 +11,6 @@ for (const [name, plot] of Object.entries(plots)) {
   it(`plot ${name}`, async () => {
     const root = await (name.startsWith("warn") ? assert.warnsAsync : assert.doesNotWarnAsync)(plot);
     const ext = root.tagName === "svg" ? "svg" : "html";
-    for (const svg of root.tagName === "svg" ? [root] : root.querySelectorAll("svg")) {
-      svg.setAttributeNS("http://www.w3.org/2000/xmlns/", "xmlns", "http://www.w3.org/2000/svg");
-      svg.setAttributeNS("http://www.w3.org/2000/xmlns/", "xmlns:xlink", "http://www.w3.org/1999/xlink");
-    }
     reindexStyle(root);
     reindexMarker(root);
     reindexClip(root);

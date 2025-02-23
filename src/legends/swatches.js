@@ -19,6 +19,8 @@ export function legendSwatches(color, {opacity, ...options} = {}) {
   return legendItems(color, options, (selection, scale, width, height) =>
     selection
       .append("svg")
+      .attr("xmlns", "http://www.w3.org/2000/svg")
+      .attr("xmlns:xlink", "http://www.w3.org/1999/xlink")
       .attr("width", width)
       .attr("height", height)
       .attr("fill", scale.scale)
@@ -55,6 +57,8 @@ export function legendSymbols(
   const legend = legendItems(symbol, options, (selection, scale, width, height) =>
     selection
       .append("svg")
+      .attr("xmlns", "http://www.w3.org/2000/svg")
+      .attr("xmlns:xlink", "http://www.w3.org/1999/xlink")
       .attr("viewBox", "-8 -8 16 16")
       .attr("width", width)
       .attr("height", height)
