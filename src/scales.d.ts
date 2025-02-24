@@ -324,6 +324,17 @@ export interface ScaleDefaults extends InsetOptions {
   grid?: boolean | string | RangeInterval | Iterable<any>;
 
   /**
+   * If true, produces a legend for the scale. For quantitative color scales,
+   * the legend defaults to *ramp* but may be set to *swatches* for discrete
+   * scale types such as *threshold*. An opacity scale is treated as a color
+   * scale with varying transparency. The symbol legend is combined with color
+   * if they encode the same channels.
+   *
+   * For *color*, *opacity*, and *symbol* scales only. See also *plot*.legend.
+   */
+  legend?: LegendOptions["legend"] | boolean | null;
+
+  /**
    * A textual label to show on the axis or legend; if null, show no label. By
    * default the scale label is inferred from channel definitions, possibly with
    * an arrow (↑, →, ↓, or ←) to indicate the direction of increasing value.
@@ -533,17 +544,6 @@ export interface ScaleOptions extends ScaleDefaults {
    * last bands.
    */
   paddingOuter?: number;
-
-  /**
-   * If true, produces a legend for the scale. For quantitative color scales,
-   * the legend defaults to *ramp* but may be set to *swatches* for discrete
-   * scale types such as *threshold*. An opacity scale is treated as a color
-   * scale with varying transparency. The symbol legend is combined with color
-   * if they encode the same channels.
-   *
-   * For *color*, *opacity*, and *symbol* scales only. See also *plot*.legend.
-   */
-  legend?: LegendOptions["legend"] | boolean | null;
 
   /**
    * The desired approximate number of axis ticks, or an explicit array of tick

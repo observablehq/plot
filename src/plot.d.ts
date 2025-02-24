@@ -1,5 +1,5 @@
 import type {ChannelValue} from "./channel.js";
-import type {LegendOptions} from "./legends.js";
+import type {ColorLegendOptions, LegendOptions, OpacityLegendOptions, SymbolLegendOptions} from "./legends.js";
 import type {Data, MarkOptions, Markish} from "./mark.js";
 import type {ProjectionFactory, ProjectionImplementation, ProjectionName, ProjectionOptions} from "./projection.js";
 import type {Scale, ScaleDefaults, ScaleName, ScaleOptions} from "./scales.js";
@@ -246,7 +246,7 @@ export interface PlotOptions extends ScaleDefaults {
    * scale associated with a channel by specifying the value as a {value, scale}
    * object.
    */
-  color?: ScaleOptions;
+  color?: ScaleOptions & ColorLegendOptions;
 
   /**
    * Options for the *opacity* scale for fill or stroke opacity. The *opacity*
@@ -259,7 +259,7 @@ export interface PlotOptions extends ScaleDefaults {
    * override the scale associated with a channel by specifying the value as a
    * {value, scale} object.
    */
-  opacity?: ScaleOptions;
+  opacity?: ScaleOptions & OpacityLegendOptions;
 
   /**
    * Options for the categorical *symbol* scale for dots. The *symbol* scale
@@ -272,7 +272,7 @@ export interface PlotOptions extends ScaleDefaults {
    * override the scale associated with a channel by specifying the value as a
    * {value, scale} object.
    */
-  symbol?: ScaleOptions;
+  symbol?: ScaleOptions & SymbolLegendOptions;
 
   /**
    * Options for the *length* scale for vectors. The *length* scale defaults to
