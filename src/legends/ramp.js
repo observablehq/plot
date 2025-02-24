@@ -1,4 +1,4 @@
-import {quantize, interpolateNumber, piecewise, format, scaleBand, scaleLinear, axisBottom} from "d3";
+import {quantize, interpolateNumber, piecewise, format, scaleBand, scaleLinear, axisBottom, scaleThreshold} from "d3";
 import {inferFontVariant} from "../axes.js";
 import {createContext, create} from "../context.js";
 import {map, maybeNumberChannel} from "../options.js";
@@ -58,7 +58,7 @@ export function legendRamp(color, options) {
 
   // Some D3 scales use scale.interpolate, some scale.interpolator, and some
   // scale.round; this normalizes the API so it works with all scale types.
-  const applyRange = round ? (x, range) => x.rangeRound(range) : (x, range) => x.range(range);
+  const applyRange = round ? (x, range) => (x.rangeRound ?? x.range)(range) : (x, range) => x.range(range);
 
   const {type, domain, range, interpolate, scale, pivot} = color;
 
@@ -70,18 +70,27 @@ export function legendRamp(color, options) {
     const interpolator =
       range === undefined
         ? interpolate
+        : type === "threshold"
+        ? scaleThreshold(
+            Array.from(domain, (_, i) => (i + 1) / (domain.length + 1)),
+            Array.from(range, interpolate)
+          )
         : piecewise(interpolate.length === 1 ? interpolatePiecewise(interpolate) : interpolate, range);
 
     // Construct a D3 scale of the same type, but with a range that evenly
     // divides the horizontal extent of the legend. (In the common case, the
     // domain.length is two, and so the range is simply the extent.) For a
     // diverging scale, we need an extra point in the range for the pivot such
-    // that the pivot is always drawn in the middle.
+    // that the pivot is always drawn in the middle. For a threshold scale, we
+    // add some space below and above.
     x = applyRange(
       scale.copy(),
       quantize(
         interpolateNumber(marginLeft, width - marginRight),
-        Math.min(domain.length + (pivot !== undefined), range === undefined ? Infinity : range.length)
+        Math.min(
+          domain.length + (pivot !== undefined) + 2 * (type === "threshold"),
+          range === undefined ? Infinity : range.length + +(type === "threshold")
+        )
       )
     );
 
