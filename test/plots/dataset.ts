@@ -36,3 +36,9 @@ export async function datasetBars() {
     ]
   });
 }
+
+export async function datasetFrame() {
+  return Plot.frame({
+    dataset: (_, i) => ({hello: "world", epoch: new Date(0), i})
+  }).plot();
+}
