@@ -467,6 +467,21 @@ export interface MarkOptions {
   target?: string;
 
   /**
+   * A [dataset][1] for the mark; a channel specifying arbitrary data. When the
+   * **dataset** channel contains boolean, number, string or date values, they
+   * are applied as a `data-{key}` property, where the key is the channel’s
+   * label if present, and otherwise defaults to "value". When the values are
+   * objects, each entry is applied individually as a `data-{key}` property.
+   * Values are coerced to strings, with dates in [short ISO format][2]. Keys
+   * must follow the naming specification for [custom data attributes][3].
+   *
+   * [1]: https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/dataset
+   * [2]: https://github.com/mbostock/isoformat
+   * [3]: https://developer.mozilla.org/en-US/docs/Learn/HTML/Howto/Use_data_attributes
+   */
+  dataset?: ChannelValueSpec;
+
+  /**
    * An object defining additional custom channels. This meta option may be used
    * by an **initializer** to declare extra channels.
    */
