@@ -1,7 +1,7 @@
 import {group, namespaces, select} from "d3";
 import {create} from "./context.js";
 import {defined, nonempty} from "./defined.js";
-import {formatDefault} from "./format.js";
+import {formatDefault, formatIsoDate} from "./format.js";
 import {isNone, isNoneish, isRound, maybeColorChannel, maybeNumberChannel} from "./options.js";
 import {keyof, number, string} from "./options.js";
 import {warn} from "./warnings.js";
@@ -44,7 +44,8 @@ export function styles(
     paintOrder,
     pointerEvents,
     shapeRendering,
-    channels
+    channels,
+    dataset
   },
   {
     ariaLabel: cariaLabel,
@@ -137,6 +138,7 @@ export function styles(
   mark.paintOrder = impliedString(paintOrder, "normal");
   mark.pointerEvents = impliedString(pointerEvents, "auto");
   mark.shapeRendering = impliedString(shapeRendering, "auto");
+  mark.datakey = typeof dataset === "string" ? dataset : dataset?.label;
 
   return {
     title: {value: title, optional: true, filter: null},
@@ -147,7 +149,8 @@ export function styles(
     stroke: {value: vstroke, scale: "auto", optional: true},
     strokeOpacity: {value: vstrokeOpacity, scale: "auto", optional: true},
     strokeWidth: {value: vstrokeWidth, optional: true},
-    opacity: {value: vopacity, scale: "auto", optional: true}
+    opacity: {value: vopacity, scale: "auto", optional: true},
+    dataset: {value: dataset, optional: true, filter: null}
   };
 }
 
@@ -179,7 +182,7 @@ export function applyTextGroup(selection, T) {
 
 export function applyChannelStyles(
   selection,
-  {target, tip},
+  {target, tip, datakey},
   {
     ariaLabel: AL,
     title: T,
@@ -189,7 +192,8 @@ export function applyChannelStyles(
     strokeOpacity: SO,
     strokeWidth: SW,
     opacity: O,
-    href: H
+    href: H,
+    dataset: D
   }
 ) {
   if (AL) applyAttr(selection, "aria-label", (i) => AL[i]);
@@ -200,6 +204,7 @@ export function applyChannelStyles(
   if (SW) applyAttr(selection, "stroke-width", (i) => SW[i]);
   if (O) applyAttr(selection, "opacity", (i) => O[i]);
   if (H) applyHref(selection, (i) => H[i], target);
+  if (D) applyDataset(selection, (i) => D[i], datakey);
   if (!tip) applyTitle(selection, T);
 }
 
@@ -420,6 +425,21 @@ export function applyTransform(selection, mark, {x, y}, tx = offset, ty = offset
   if (x?.bandwidth) tx += x.bandwidth() / 2;
   if (y?.bandwidth) ty += y.bandwidth() / 2;
   if (tx || ty) selection.attr("transform", `translate(${tx},${ty})`);
+}
+
+export function applyDataset(selection, value, keyname = "value") {
+  selection.each(function (i) {
+    const V = value(i);
+    if (V == null) return;
+    const O =
+      typeof V === "number" || typeof V === "boolean" || typeof V === "string" || V instanceof Date
+        ? {[keyname]: V}
+        : V;
+    if (typeof O !== "object") throw new Error(`Unsupported dataset property: ${value}`);
+    for (const [key, v] of Object.entries(O)) {
+      this.setAttribute(`data-${key}`, v instanceof Date ? formatIsoDate(v) : String(v));
+    }
+  });
 }
 
 export function impliedString(value, impliedValue) {
