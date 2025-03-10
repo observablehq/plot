@@ -52,20 +52,21 @@ function legendColor(color, {legend = true, ...options}) {
     case "ramp":
       return legendRamp(color, options);
     default:
-      throw new Error(`unknown legend type: ${legend}`);
+      throw new Error(`unknown color legend type: ${legend}`);
   }
 }
 
-function legendOpacity({type, interpolate, ...scale}, {legend = true, color = rgb(0, 0, 0), ...options}) {
-  if (!interpolate) throw new Error(`${type} opacity scales are not supported`);
-  if (legend === true) legend = "ramp";
-  if (`${legend}`.toLowerCase() !== "ramp") throw new Error(`${legend} opacity legends are not supported`);
-  return legendColor({type, ...scale, interpolate: interpolateOpacity(color)}, {legend, ...options});
-}
-
-function interpolateOpacity(color) {
+function legendOpacity(opacity, {legend = true, color = "black", ...options}) {
+  if (legend === true) legend = opacity.type === "ordinal" ? "swatches" : "ramp";
   const {r, g, b} = rgb(color) || rgb(0, 0, 0); // treat invalid color as black
-  return (t) => `rgba(${r},${g},${b},${t})`;
+  switch (`${legend}`.toLowerCase()) {
+    case "swatches":
+      return legendSwatches({...opacity, scale: (x) => String(rgb(r, g, b, opacity.scale(x)))}, options);
+    case "ramp":
+      return legendRamp({...opacity, interpolate: (a) => String(rgb(r, g, b, a))}, options);
+    default:
+      throw new Error(`unknown opacity legend type: ${legend}`);
+  }
 }
 
 export function createLegends(scales, context, options) {
