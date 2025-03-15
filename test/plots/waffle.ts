@@ -1,6 +1,6 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
-import {svg} from "htl";
+import {svg, html} from "htl";
 
 const demographics = d3.csvParse(
   `group,label,freq
@@ -429,4 +429,12 @@ export function waffleShapes() {
       waffle(7.6, 22.4)
     ]
   });
+}
+
+export function waffleAutoUnit() {
+  const random = d3.randomLcg(42);
+  return html`${d3
+    .range(-40, 40)
+    .map((i) => 1.618 ** i)
+    .map((k) => Plot.waffleX([k, random() * k]).plot({x: {tickFormat: "s"}}))}`;
 }

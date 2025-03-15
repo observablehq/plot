@@ -2,7 +2,7 @@ import {extent, namespaces} from "d3";
 import {valueObject} from "../channel.js";
 import {create} from "../context.js";
 import {composeRender} from "../mark.js";
-import {hasXY, identity, indexOf, isObject} from "../options.js";
+import {hasXY, identity, indexOf, isObject, keyword} from "../options.js";
 import {applyChannelStyles, applyDirectStyles, applyIndirectStyles, getPatternId} from "../style.js";
 import {template} from "../template.js";
 import {initializer} from "../transforms/basic.js";
@@ -16,9 +16,9 @@ const waffleDefaults = {
 };
 
 export class WaffleX extends BarX {
-  constructor(data, {unit = 1, gap = 1, round, multiple, ...options} = {}) {
+  constructor(data, {unit, gap = 1, round, multiple, ...options} = {}) {
     super(data, wafflePolygon("x", options), waffleDefaults);
-    this.unit = Math.max(0, unit);
+    this.unit = maybeUnit(unit);
     this.gap = +gap;
     this.round = maybeRound(round);
     this.multiple = maybeMultiple(multiple);
@@ -26,9 +26,9 @@ export class WaffleX extends BarX {
 }
 
 export class WaffleY extends BarY {
-  constructor(data, {unit = 1, gap = 1, round, multiple, ...options} = {}) {
+  constructor(data, {unit, gap = 1, round, multiple, ...options} = {}) {
     super(data, wafflePolygon("y", options), waffleDefaults);
-    this.unit = Math.max(0, unit);
+    this.unit = maybeUnit(unit);
     this.gap = +gap;
     this.round = maybeRound(round);
     this.multiple = maybeMultiple(multiple);
@@ -40,7 +40,7 @@ function wafflePolygon(y, options) {
   const y1 = `${y}1`;
   const y2 = `${y}2`;
   return initializer(waffleRender(options), function (data, facets, channels, scales, dimensions) {
-    const {round, unit} = this;
+    const {round} = this;
     const Y1 = channels[y1].value;
     const Y2 = channels[y2].value;
 
@@ -49,8 +49,18 @@ function wafflePolygon(y, options) {
     const barwidth = this[y === "y" ? "_width" : "_height"](scales, xy, dimensions);
     const barx = this[y === "y" ? "_x" : "_y"](scales, xy, dimensions);
 
+    // Auto unit: if the scale of a unit makes it so small that it is invisible,
+    // or conversely insanely large, adopt a different power of 10**3.
+    const p = scaleof(scales.scales[y]); // pixel length per unit of 1
+    let {unit} = this;
+    if (unit === "auto") {
+      const area = barwidth * p; // pixel area per unit of 1
+      if (area < 5 || area > 5e4) unit = 1000 ** Math.ceil((1 - Math.log10(area)) / 3);
+      else unit = 1;
+    }
+
     // The length of a unit along y in pixels.
-    const scale = unit * scaleof(scales.scales[y]);
+    const scale = unit * p;
 
     // The number of cells on each row (or column) of the waffle.
     const {multiple = Math.max(1, Math.floor(Math.sqrt(barwidth / scale)))} = this;
@@ -261,6 +271,10 @@ function maybeRound(round) {
   if (round === true) return Math.round;
   if (typeof round !== "function") throw new Error(`invalid round: ${round}`);
   return round;
+}
+
+function maybeUnit(unit = "auto") {
+  return typeof unit === "number" ? Math.max(0, unit) : keyword(unit, "unit", ["auto"]);
 }
 
 function maybeMultiple(multiple) {
