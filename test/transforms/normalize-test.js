@@ -5,6 +5,10 @@ it("Plot.normalize first", () => {
   testNormalize([1, 2, 4, 5], "first", [1, 2, 4, 5]);
 });
 
+it("Plot.normalize first BigInt", () => {
+  testNormalize([1n, 2n, 4n, 5n], "first", [1, 2, 4, 5]);
+});
+
 it("Plot.normalize last", () => {
   testNormalize([1, 2, 4, 5], "last", [0.2, 0.4, 0.8, 1]);
 });
@@ -15,6 +19,10 @@ it("Plot.normalize mean", () => {
 
 it("Plot.normalize median", () => {
   testNormalize([1, 2, 6, 6], "median", [0.25, 0.5, 1.5, 1.5]);
+});
+
+it("Plot.normalize median BigInt", () => {
+  testNormalize([1n, 2n, 6n, 6n], "median", [0.25, 0.5, 1.5, 1.5]);
 });
 
 it("Plot.normalize min", () => {
