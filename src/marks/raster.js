@@ -36,6 +36,7 @@ export class AbstractRaster extends Mark {
       y1 = y == null ? 0 : undefined,
       x2 = x == null ? width : undefined,
       y2 = y == null ? height : undefined,
+      colorSpace = "srgb",
       pixelSize = defaults.pixelSize,
       blur = 0,
       interpolate
@@ -79,6 +80,7 @@ export class AbstractRaster extends Mark {
     this.pixelSize = number(pixelSize, "pixelSize");
     this.blur = number(blur, "blur");
     this.interpolate = x == null || y == null ? null : maybeInterpolate(interpolate); // interpolation requires x & y
+    this.colorSpace = String(colorSpace);
   }
 }
 
@@ -129,7 +131,7 @@ export class Raster extends AbstractRaster {
     const canvas = document.createElement("canvas");
     canvas.width = w;
     canvas.height = h;
-    const context2d = canvas.getContext("2d");
+    const context2d = canvas.getContext("2d", {colorSpace: this.colorSpace});
     const image = context2d.createImageData(w, h);
     const imageData = image.data;
     let {r, g, b} = rgb(this.fill) ?? {r: 0, g: 0, b: 0};
