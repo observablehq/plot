@@ -185,6 +185,27 @@ export async function tipLongText() {
   return Plot.tip([{x: "Long sentence that gets cropped after a certain length"}], {x: "x"}).plot();
 }
 
+export async function tipLongTextEllipsisEnd() {
+  return Plot.tip([{x: "Long sentence that gets clipped at the end after a certain length"}], {
+    x: "x",
+    textOverflow: "ellipsis" // "ellipsis-end"
+  }).plot();
+}
+
+export async function tipLongTextEllipsisMiddle() {
+  return Plot.tip([{x: "Long sentence that gets clipped in the middle after a certain length"}], {
+    x: "x",
+    textOverflow: "ellipsis-middle"
+  }).plot();
+}
+
+export async function tipLongTextEllipsisStart() {
+  return Plot.tip([{x: "Long sentence that gets clipped at the start after a certain length"}], {
+    x: "x",
+    textOverflow: "ellipsis-start"
+  }).plot();
+}
+
 export async function tipNewLines() {
   return Plot.plot({
     height: 40,
