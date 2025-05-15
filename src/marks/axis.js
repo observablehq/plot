@@ -89,6 +89,7 @@ function axisKy(
     labelAnchor,
     labelArrow,
     labelOffset,
+    ariaLabel = `${k}-axis`,
     ...options
   }
 ) {
@@ -117,6 +118,7 @@ function axisKy(
           tickPadding,
           tickRotate,
           x,
+          ariaLabel,
           ...options
         })
       : null,
@@ -138,6 +140,7 @@ function axisKy(
           marginLeft,
           autoMarginRight,
           autoMarginLeft,
+          ariaLabel,
           ...options
         })
       : null,
@@ -162,7 +165,7 @@ function axisKy(
             }
             this.dy = cla === "top" ? 3 - marginTop : cla === "bottom" ? marginBottom - 3 : 0;
             this.dx = anchor === "right" ? clo : -clo;
-            this.ariaLabel = `${k}-axis label`;
+            this.ariaLabel = `${ariaLabel} label`;
             return {
               facets: [[0]],
               channels: {text: {value: [formatAxisLabel(k, scale, {anchor, label, labelAnchor: cla, labelArrow})]}}
@@ -202,6 +205,7 @@ function axisKx(
     labelAnchor,
     labelArrow,
     labelOffset,
+    ariaLabel = `${k}-axis`,
     ...options
   }
 ) {
@@ -230,6 +234,7 @@ function axisKx(
           tickPadding,
           tickRotate,
           y,
+          ariaLabel,
           ...options
         })
       : null,
@@ -251,6 +256,7 @@ function axisKx(
           marginLeft,
           autoMarginTop,
           autoMarginBottom,
+          ariaLabel,
           ...options
         })
       : null,
@@ -272,7 +278,7 @@ function axisKx(
             this.lineAnchor = anchor;
             this.dy = anchor === "top" ? -clo : clo;
             this.dx = cla === "right" ? marginRight - 3 : cla === "left" ? 3 - marginLeft : 0;
-            this.ariaLabel = `${k}-axis label`;
+            this.ariaLabel = `${ariaLabel} label`;
             return {
               facets: [[0]],
               channels: {text: {value: [formatAxisLabel(k, scale, {anchor, label, labelAnchor: cla, labelArrow})]}}
@@ -299,6 +305,7 @@ function axisTickKy(
     insetRight = inset,
     dx = 0,
     y = k === "y" ? undefined : null,
+    ariaLabel,
     ...options
   }
 ) {
@@ -307,7 +314,7 @@ function axisTickKy(
     k,
     data,
     {
-      ariaLabel: `${k}-axis tick`,
+      ariaLabel: `${ariaLabel} tick`,
       ariaHidden: true
     },
     {
@@ -342,6 +349,7 @@ function axisTickKx(
     insetBottom = inset,
     dy = 0,
     x = k === "x" ? undefined : null,
+    ariaLabel,
     ...options
   }
 ) {
@@ -350,7 +358,7 @@ function axisTickKx(
     k,
     data,
     {
-      ariaLabel: `${k}-axis tick`,
+      ariaLabel: `${ariaLabel} tick`,
       ariaHidden: true
     },
     {
@@ -387,6 +395,7 @@ function axisTextKy(
     insetLeft = inset,
     insetRight = inset,
     dx = 0,
+    ariaLabel,
     y = k === "y" ? undefined : null,
     ...options
   }
@@ -395,7 +404,7 @@ function axisTextKy(
     textY,
     k,
     data,
-    {ariaLabel: `${k}-axis tick label`},
+    {ariaLabel: `${ariaLabel} tick label`},
     {
       facetAnchor,
       frameAnchor,
@@ -434,6 +443,7 @@ function axisTextKx(
     insetBottom = inset,
     dy = 0,
     x = k === "x" ? undefined : null,
+    ariaLabel,
     ...options
   }
 ) {
@@ -441,7 +451,7 @@ function axisTextKx(
     textX,
     k,
     data,
-    {ariaLabel: `${k}-axis tick label`},
+    {ariaLabel: `${ariaLabel} tick label`},
     {
       facetAnchor,
       frameAnchor,
@@ -490,10 +500,12 @@ function gridKy(
     x = null,
     x1 = anchor === "left" ? x : null,
     x2 = anchor === "right" ? x : null,
+    ariaLabel = `${k}-grid`,
+    ariaHidden = true,
     ...options
   }
 ) {
-  return axisMark(ruleY, k, data, {ariaLabel: `${k}-grid`, ariaHidden: true}, {y, x1, x2, ...gridDefaults(options)});
+  return axisMark(ruleY, k, data, {ariaLabel, ariaHidden}, {y, x1, x2, ...gridDefaults(options)});
 }
 
 function gridKx(
@@ -505,10 +517,12 @@ function gridKx(
     y = null,
     y1 = anchor === "top" ? y : null,
     y2 = anchor === "bottom" ? y : null,
+    ariaLabel = `${k}-grid`,
+    ariaHidden = true,
     ...options
   }
 ) {
-  return axisMark(ruleX, k, data, {ariaLabel: `${k}-grid`, ariaHidden: true}, {x, y1, y2, ...gridDefaults(options)});
+  return axisMark(ruleX, k, data, {ariaLabel, ariaHidden}, {x, y1, y2, ...gridDefaults(options)});
 }
 
 function gridDefaults({
@@ -687,10 +701,10 @@ export function inferTickFormat(scale, data, ticks, tickFormat, anchor) {
     ? inferTimeFormat(scale.type, data, anchor) ?? formatDefault
     : scale.tickFormat
     ? scale.tickFormat(typeof ticks === "number" ? ticks : null, tickFormat)
+    : typeof tickFormat === "string" && scale.domain().length > 0
+    ? (isTemporal(scale.domain()) ? utcFormat : format)(tickFormat)
     : tickFormat === undefined
     ? formatDefault
-    : typeof tickFormat === "string"
-    ? (isTemporal(scale.domain()) ? utcFormat : format)(tickFormat)
     : constant(tickFormat);
 }
 

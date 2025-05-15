@@ -1,7 +1,89 @@
 import type {ScaleName, ScaleOptions} from "./scales.js";
 
+export interface SwatchesLegendOptions {
+  /**
+   * The width of the legend in pixels. Defaults to undefined, allowing swatches
+   * to wrap based on content flow.
+   */
+  width?: number;
+
+  /**
+   * The [CSS columns property][1], for a multi-column layout.
+   *
+   * [1]: https://developer.mozilla.org/en-US/docs/Web/CSS/columns
+   */
+  columns?: string;
+
+  /** The swatch width and height in pixels; defaults to 15. */
+  swatchSize?: number;
+
+  /** The swatch width in pixels; defaults to **swatchSize**. */
+  swatchWidth?: number;
+
+  /** The swatch height in pixels; defaults to **swatchSize**. */
+  swatchHeight?: number;
+}
+
+export interface RampLegendOptions {
+  /** The width of the legend in pixels; defaults to 240. */
+  width?: number;
+  /** The height of the legend in pixels; defaults to 44 plus **tickSize**. */
+  height?: number;
+  /** The top margin in pixels; defaults to 18. */
+  marginTop?: number;
+  /** The right margin in pixels; defaults to 0. */
+  marginRight?: number;
+  /** The bottom margin in pixels; defaults to 16 plus **tickSize**. */
+  marginBottom?: number;
+  /** The left margin in pixels; defaults to 0. */
+  marginLeft?: number;
+
+  /**
+   * The desired approximate number of axis ticks, or an explicit array of tick
+   * values, or an interval such as *day* or *month*.
+   */
+  ticks?: ScaleOptions["ticks"];
+
+  /**
+   * The length of axis tick marks in pixels; negative values extend in the
+   * opposite direction.
+   */
+  tickSize?: ScaleOptions["tickSize"];
+
+  /**
+   * If true, round the output value to the nearest integer (pixel); useful for
+   * crisp edges when rendering.
+   */
+  round?: ScaleOptions["round"];
+}
+
+export interface OpacityLegendOptions extends RampLegendOptions {
+  /** The constant color the ramp; defaults to black. */
+  color?: string;
+}
+
+export interface ColorLegendOptions extends SwatchesLegendOptions, RampLegendOptions {
+  /** The desired opacity of the color swatches or ramp; defaults to 1. */
+  opacity?: number;
+}
+
+export interface SymbolLegendOptions extends SwatchesLegendOptions {
+  /** The desired fill color of symbols; use *color* for a redundant encoding. */
+  fill?: string;
+  /** The desired fill opacity of symbols; defaults to 1. */
+  fillOpacity?: number;
+  /** The desired stroke color of symbols; use *color* for a redundant encoding. */
+  stroke?: string;
+  /** The desired stroke opacity of symbols; defaults to 1. */
+  strokeOpacity?: number;
+  /** The desired stroke width of symbols; defaults to 1.5. */
+  strokeWidth?: number;
+  /** The desired radius of symbols in pixels; defaults to 4.5. */
+  r?: number;
+}
+
 /** Options for generating a scale legend. */
-export interface LegendOptions {
+export interface LegendOptions extends ColorLegendOptions, SymbolLegendOptions, OpacityLegendOptions {
   /**
    * The desired legend type; one of:
    *
@@ -14,6 +96,9 @@ export interface LegendOptions {
    * cannot be changed.
    */
   legend?: "ramp" | "swatches";
+
+  /** A textual label to place above the legend. */
+  label?: string | null;
 
   /**
    * How to format tick values sampled from the scale’s domain. This may be a
@@ -44,81 +129,6 @@ export interface LegendOptions {
    * default, a random string prefixed with “plot-”.
    */
   className?: string | null;
-
-  /** The constant color the ramp; defaults to black. For *ramp* *opacity* legends only. */
-  color?: string;
-  /** The desired fill color of symbols; use *color* for a redundant encoding. For *symbol* legends only. */
-  fill?: string;
-  /** The desired fill opacity of symbols. For *symbol* legends only. */
-  fillOpacity?: number;
-  /** The desired opacity of the color swatches or ramp. For *color* legends only. */
-  opacity?: number;
-  /** The desired stroke color of symbols; use *color* for a redundant encoding. For *symbol* legends only. */
-  stroke?: string;
-  /** The desired stroke opacity of symbols. For *symbol* legends only. */
-  strokeOpacity?: number;
-  /** The desired stroke width of symbols. For *symbol* legends only. */
-  strokeWidth?: number;
-  /** The desired radius of symbols in pixels. For *symbol* legends only. */
-  r?: number;
-
-  /**
-   * The width of the legend in pixels. For *ramp* legends, defaults to 240; for
-   * *swatch* legends, defaults to undefined, allowing the swatches to wrap
-   * based on content flow.
-   */
-  width?: number;
-
-  /**
-   * The height of the legend in pixels; defaults to 44 plus **tickSize**. For
-   * *ramp* legends only.
-   */
-  height?: number;
-
-  /** The top margin in pixels; defaults to 18. For *ramp* legends only. */
-  marginTop?: number;
-  /** The right margin in pixels; defaults to 0. For *ramp* legends only. */
-  marginRight?: number;
-  /** The bottom margin in pixels; defaults to 16 plus **tickSize**. For *ramp* legends only. */
-  marginBottom?: number;
-  /** The left margin in pixels; defaults to 0. For *ramp* legends only. */
-  marginLeft?: number;
-
-  /** A textual label to place above the legend. For *ramp* legends only. */
-  label?: string | null;
-
-  /**
-   * The desired approximate number of axis ticks, or an explicit array of tick
-   * values, or an interval such as *day* or *month*. For *ramp* legends only.
-   */
-  ticks?: ScaleOptions["ticks"];
-
-  /**
-   * The length of axis tick marks in pixels; negative values extend in the
-   * opposite direction. For *ramp* legends only.
-   */
-  tickSize?: ScaleOptions["tickSize"];
-
-  /**
-   * If true, round the output value to the nearest integer (pixel); useful for
-   * crisp edges when rendering. For *ramp* legends only.
-   */
-  round?: ScaleOptions["round"];
-
-  /**
-   * The [CSS columns property][1], for a multi-column layout. For *swatches*
-   * legends only.
-   *
-   * [1]: https://developer.mozilla.org/en-US/docs/Web/CSS/columns
-   */
-  columns?: string;
-
-  /** The swatch width and height in pixels; defaults to 15; For *swatches* legends only. */
-  swatchSize?: number;
-  /** The swatch width in pixels; defaults to **swatchSize**; For *swatches* legends only. */
-  swatchWidth?: number;
-  /** The swatch height in pixels; defaults to **swatchSize**; For *swatches* legends only. */
-  swatchHeight?: number;
 }
 
 /** Scale definitions and options for a standalone legend. */

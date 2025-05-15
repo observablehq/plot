@@ -1,6 +1,6 @@
 # Observable Plot - Changelog [2023]
 
-Year: [Current (2024)](./CHANGELOG.md) · **2023** · [2022](./CHANGELOG-2022.md) · [2021](./CHANGELOG-2021.md)
+Year: [Current (2025)](./CHANGELOG.md) · [2024](./CHANGELOG-2024.md) · **2023** · [2022](./CHANGELOG-2022.md) · [2021](./CHANGELOG-2021.md)
 
 ## 0.6.13
 
@@ -233,7 +233,7 @@ Plot.bollingerY(aapl, {x: "Date", y: "Close", n: 20, k: 2}).plot()
 
 The [arrow mark](https://observablehq.com/plot/marks/arrow) supports a new **sweep** option to control the bend orientation. Below, we set this option to *-y* to draw arrows bulging right, independent of the relative vertical positions of its source and target.
 
-[<img src="./img/arc-diagram.png" width="521" alt="Detail of an arc diagram connecting characters in Les Misérables that appear in the same chapters.">](https://observablehq.com/@observablehq/plot-arc-diagram?intent=fork)
+[<img src="./img/arc-diagram.png" width="521" alt="Detail of an arc diagram connecting characters in Les Misérables that appear in the same chapters.">](https://observablehq.com/@observablehq/plot-arc-diagram)
 
 ```js
 Plot.plot({

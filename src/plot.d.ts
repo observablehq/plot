@@ -1,5 +1,5 @@
 import type {ChannelValue} from "./channel.js";
-import type {LegendOptions} from "./legends.js";
+import type {ColorLegendOptions, LegendOptions, OpacityLegendOptions, SymbolLegendOptions} from "./legends.js";
 import type {Data, MarkOptions, Markish} from "./mark.js";
 import type {ProjectionFactory, ProjectionImplementation, ProjectionName, ProjectionOptions} from "./projection.js";
 import type {Scale, ScaleDefaults, ScaleName, ScaleOptions} from "./scales.js";
@@ -30,8 +30,10 @@ export interface PlotOptions extends ScaleDefaults {
    * height. Given an aspect ratio of *dx* / *dy*, and assuming that the *x* and
    * *y* scales represent equivalent units (say, degrees Celsius or meters),
    * computes a default height such that *dx* pixels along *x* represents the
-   * same variation as *dy* pixels along *y*. Note: when faceting, set the *fx*
-   * and *fy* scales’ **round** option to false for an exact aspect ratio.
+   * same variation as *dy* pixels along *y*. When *x* or *y* is ordinal,
+   * consecutive domain values are treated as one unit length apart. Note: when
+   * faceting, set the *fx* and *fy* scales’ **round** option to false for an
+   * exact aspect ratio.
    */
   aspectRatio?: number | boolean | null;
 
@@ -244,7 +246,7 @@ export interface PlotOptions extends ScaleDefaults {
    * scale associated with a channel by specifying the value as a {value, scale}
    * object.
    */
-  color?: ScaleOptions;
+  color?: ScaleOptions & ColorLegendOptions;
 
   /**
    * Options for the *opacity* scale for fill or stroke opacity. The *opacity*
@@ -257,7 +259,7 @@ export interface PlotOptions extends ScaleDefaults {
    * override the scale associated with a channel by specifying the value as a
    * {value, scale} object.
    */
-  opacity?: ScaleOptions;
+  opacity?: ScaleOptions & OpacityLegendOptions;
 
   /**
    * Options for the categorical *symbol* scale for dots. The *symbol* scale
@@ -270,7 +272,7 @@ export interface PlotOptions extends ScaleDefaults {
    * override the scale associated with a channel by specifying the value as a
    * {value, scale} object.
    */
-  symbol?: ScaleOptions;
+  symbol?: ScaleOptions & SymbolLegendOptions;
 
   /**
    * Options for the *length* scale for vectors. The *length* scale defaults to

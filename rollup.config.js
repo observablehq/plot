@@ -3,7 +3,7 @@ import commonjs from "@rollup/plugin-commonjs";
 import json from "@rollup/plugin-json";
 import node from "@rollup/plugin-node-resolve";
 import terser from "@rollup/plugin-terser";
-import meta from "./package.json" assert {type: "json"};
+import meta from "./package.json" with {type: "json"};
 
 const filename = meta.name.split("/").pop();
 

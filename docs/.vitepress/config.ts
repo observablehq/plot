@@ -6,7 +6,7 @@ import plot from "./markdown-it-plot.js";
 // https://vitepress.dev/reference/site-config
 // prettier-ignore
 export default defineConfig({
-  title: "Observable Plot",
+  title: "Plot",
   description: "The JavaScript library for exploratory data visualization",
   appearance: "force-auto",
   base: "/plot/",
@@ -17,6 +17,16 @@ export default defineConfig({
         {find: "@observablehq/plot", replacement: path.resolve("./src/index.js")},
         {find: /^.*\/VPFooter\.vue$/, replacement: fileURLToPath(new URL("./theme/CustomFooter.vue", import.meta.url))}
       ]
+    },
+    define: {
+      __APP_VERSION__: JSON.stringify(process.env.npm_package_version)
+    }
+  },
+  vue: {
+    template: {
+      compilerOptions: {
+        isCustomElement: (tag) => tag.startsWith("observable-")
+      }
     }
   },
   markdown: {
@@ -25,13 +35,17 @@ export default defineConfig({
     }
   },
   head: [
+    ["link", {rel: "preconnect", href: "https://fonts.gstatic.com", crossorigin: ""}],
+    ["link", {rel: "preload", as: "style", href: "https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Spline+Sans+Mono:ital,wght@0,300..700;1,300..700&display=swap"}],
+    ["link", {rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Spline+Sans+Mono:ital,wght@0,300..700;1,300..700&display=swap"}],
     ["link", {rel: "apple-touch-icon", href: "https://static.observablehq.com/favicon-512.0667824687f99c942a02e06e2db1a060911da0bf3606671676a255b1cf97b4fe.png"}],
     ["link", {rel: "icon", type: "image/png", href: "https://static.observablehq.com/favicon-512.0667824687f99c942a02e06e2db1a060911da0bf3606671676a255b1cf97b4fe.png", sizes: "512x512"}],
     ["script", {async: "", src: "https://www.googletagmanager.com/gtag/js?id=G-9B88TP6PKQ"}],
-    ["script", {}, "window.dataLayer=window.dataLayer||[];\nfunction gtag(){dataLayer.push(arguments);}\ngtag('js',new Date());\ngtag('config','G-9B88TP6PKQ');"]
+    ["script", {}, "window.dataLayer=window.dataLayer||[];\nfunction gtag(){dataLayer.push(arguments);}\ngtag('js',new Date());\ngtag('config','G-9B88TP6PKQ');"],
+    ["script", {async: "", defer: "", src: "https://static.observablehq.com/assets/components/observable-made-by.js"}],
   ],
   sitemap: {
-    hostname: 'https://observablehq.com/plot/'
+    hostname: "https://observablehq.com/plot/"
   },
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
@@ -40,19 +54,14 @@ export default defineConfig({
       light: "/observable-light.svg",
       dark: "/observable-dark.svg"
     },
-    nav: [
-      {text: "Home", link: "/"},
-      {text: "Examples", link: "https://observablehq.com/@observablehq/plot-gallery"},
-      {text: "Community", link: "/community"},
-      {text: "D3", link: "https://d3js.org"}
-    ],
     sidebar: [
       {
         text: "Introduction",
         items: [
           {text: "What is Plot?", link: "/what-is-plot"},
           {text: "Why Plot?", link: "/why-plot"},
-          {text: "Getting started", link: "/getting-started"}
+          {text: "Getting started", link: "/getting-started"},
+          {text: "Examples", link: "https://observablehq.com/@observablehq/plot-gallery"}
         ]
       },
       {
@@ -145,13 +154,6 @@ export default defineConfig({
     search: {
       provider: "local"
     },
-    socialLinks: [
-      {icon: "github", link: "https://github.com/observablehq/plot"},
-      {icon: "x", link: "https://twitter.com/observablehq"},
-      {icon: "slack", link: "https://observablehq.com/slack/join"},
-      {icon: "linkedin", link: "https://www.linkedin.com/company/observable"},
-      {icon: "youtube", link: "https://www.youtube.com/c/Observablehq"}
-    ],
     footer: {
       message: "Library released under <a style='text-decoration:underline;' href='https://github.com/observablehq/plot/blob/main/LICENSE'>ISC License</a>.",
       copyright: `Copyright 2020–${new Date().getUTCFullYear()} Observable, Inc.`
