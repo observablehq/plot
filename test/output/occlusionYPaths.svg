@@ -47,36 +47,36 @@
     <path stroke="#4269d0" d="M618.387,386.302L639,386.302"></path>
   </g>
   <g aria-label="dot" transform="translate(0.5,0.5)">
-    <circle cx="0" cy="291.4724145786201" r="3" fill="#4269d0"></circle>
-    <circle cx="20.612903225806452" cy="350.4253674974161" r="3" fill="#efb118"></circle>
-    <circle cx="41.225806451612904" cy="174.82448496657224" r="3" fill="#ff725c"></circle>
-    <circle cx="61.83870967741935" cy="302.3196946301309" r="3" fill="#6cc5b0"></circle>
-    <circle cx="82.45161290322581" cy="247.20387860071986" r="3" fill="#3ca951"></circle>
-    <circle cx="103.06451612903226" cy="372.84812829468075" r="3" fill="#ff8ab7"></circle>
-    <circle cx="123.6774193548387" cy="221.49281205376082" r="3" fill="#a463f2"></circle>
-    <circle cx="144.29032258064515" cy="339.4804339874322" r="3" fill="#97bbf5"></circle>
-    <circle cx="164.90322580645162" cy="68.37305893541657" r="3" fill="#9c6b4e"></circle>
-    <circle cx="185.51612903225808" cy="25" r="3" fill="#9498a0"></circle>
-    <circle cx="206.1290322580645" cy="77.5726000976318" r="3" fill="#4269d0"></circle>
-    <circle cx="226.74193548387098" cy="202.68350985079903" r="3" fill="#efb118"></circle>
-    <circle cx="247.3548387096774" cy="151.59091254054204" r="3" fill="#ff725c"></circle>
-    <circle cx="267.9677419354839" cy="72.0726000976318" r="3" fill="#6cc5b0"></circle>
-    <circle cx="288.5806451612903" cy="165.8802563147093" r="3" fill="#3ca951"></circle>
-    <circle cx="309.19354838709677" cy="344.9804339874322" r="3" fill="#ff8ab7"></circle>
-    <circle cx="329.80645161290323" cy="327.35401647642243" r="3" fill="#a463f2"></circle>
-    <circle cx="350.41935483870964" cy="40.99145110787278" r="3" fill="#97bbf5"></circle>
-    <circle cx="371.03225806451616" cy="51.05322931658238" r="3" fill="#9c6b4e"></circle>
-    <circle cx="391.64516129032256" cy="57.276614658291194" r="3" fill="#9498a0"></circle>
-    <circle cx="412.258064516129" cy="186.1579242981498" r="3" fill="#4269d0"></circle>
-    <circle cx="432.87096774193543" cy="316.80599981274327" r="3" fill="#efb118"></circle>
-    <circle cx="453.48387096774195" cy="192.65396413507247" r="3" fill="#ff725c"></circle>
-    <circle cx="474.0967741935484" cy="284.25675755561025" r="3" fill="#6cc5b0"></circle>
-    <circle cx="494.7096774193548" cy="40.776614658291194" r="3" fill="#3ca951"></circle>
-    <circle cx="515.3225806451612" cy="101.2766146582912" r="3" fill="#ff8ab7"></circle>
-    <circle cx="535.9354838709678" cy="320.3024429251455" r="3" fill="#a463f2"></circle>
-    <circle cx="556.5483870967741" cy="95.7766146582912" r="3" fill="#97bbf5"></circle>
-    <circle cx="577.1612903225806" cy="213.56066998138476" r="3" fill="#9c6b4e"></circle>
-    <circle cx="597.7741935483871" cy="369.8024429251455" r="3" fill="#9498a0"></circle>
-    <circle cx="618.3870967741935" cy="386.3024429251455" r="3" fill="#4269d0"></circle>
+    <circle cx="0" cy="291.472" r="3" fill="#4269d0"></circle>
+    <circle cx="20.613" cy="350.425" r="3" fill="#efb118"></circle>
+    <circle cx="41.226" cy="174.824" r="3" fill="#ff725c"></circle>
+    <circle cx="61.839" cy="302.32" r="3" fill="#6cc5b0"></circle>
+    <circle cx="82.452" cy="247.204" r="3" fill="#3ca951"></circle>
+    <circle cx="103.065" cy="372.848" r="3" fill="#ff8ab7"></circle>
+    <circle cx="123.677" cy="221.493" r="3" fill="#a463f2"></circle>
+    <circle cx="144.29" cy="339.48" r="3" fill="#97bbf5"></circle>
+    <circle cx="164.903" cy="68.373" r="3" fill="#9c6b4e"></circle>
+    <circle cx="185.516" cy="25" r="3" fill="#9498a0"></circle>
+    <circle cx="206.129" cy="77.573" r="3" fill="#4269d0"></circle>
+    <circle cx="226.742" cy="202.684" r="3" fill="#efb118"></circle>
+    <circle cx="247.355" cy="151.591" r="3" fill="#ff725c"></circle>
+    <circle cx="267.968" cy="72.073" r="3" fill="#6cc5b0"></circle>
+    <circle cx="288.581" cy="165.88" r="3" fill="#3ca951"></circle>
+    <circle cx="309.194" cy="344.98" r="3" fill="#ff8ab7"></circle>
+    <circle cx="329.806" cy="327.354" r="3" fill="#a463f2"></circle>
+    <circle cx="350.419" cy="40.991" r="3" fill="#97bbf5"></circle>
+    <circle cx="371.032" cy="51.053" r="3" fill="#9c6b4e"></circle>
+    <circle cx="391.645" cy="57.277" r="3" fill="#9498a0"></circle>
+    <circle cx="412.258" cy="186.158" r="3" fill="#4269d0"></circle>
+    <circle cx="432.871" cy="316.806" r="3" fill="#efb118"></circle>
+    <circle cx="453.484" cy="192.654" r="3" fill="#ff725c"></circle>
+    <circle cx="474.097" cy="284.257" r="3" fill="#6cc5b0"></circle>
+    <circle cx="494.71" cy="40.777" r="3" fill="#3ca951"></circle>
+    <circle cx="515.323" cy="101.277" r="3" fill="#ff8ab7"></circle>
+    <circle cx="535.935" cy="320.302" r="3" fill="#a463f2"></circle>
+    <circle cx="556.548" cy="95.777" r="3" fill="#97bbf5"></circle>
+    <circle cx="577.161" cy="213.561" r="3" fill="#9c6b4e"></circle>
+    <circle cx="597.774" cy="369.802" r="3" fill="#9498a0"></circle>
+    <circle cx="618.387" cy="386.302" r="3" fill="#4269d0"></circle>
   </g>
 </svg>
