@@ -150,7 +150,7 @@
       <text y="0.32em" transform="translate(300,30)">Bethesda-Rockville-Frederick, MD Met Div</text>
     </g>
   </g>
-  <g aria-label="x-axis tick" transform="translate(0.5,0)">
+  <g aria-label="x-axis tick" aria-hidden="true" transform="translate(0.5,0)">
     <g fill="none" stroke="currentColor" transform="translate(0,989)">
       <path transform="translate(300,40)" d="M0,0L0,6"></path>
       <path transform="translate(393.1581043409,40)" d="M0,0L0,6"></path>

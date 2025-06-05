@@ -1,9 +1,10 @@
-import {geoGraticule10, geoPath, geoTransform} from "d3";
+import {geoGraticule10} from "d3";
 import {create} from "../context.js";
 import {negative, positive} from "../defined.js";
 import {Mark} from "../mark.js";
 import {identity, maybeNumberChannel} from "../options.js";
 import {applyChannelStyles, applyDirectStyles, applyIndirectStyles, applyTransform} from "../style.js";
+import {centroid} from "../transforms/centroid.js";
 import {withDefaultSort} from "./dot.js";
 
 const defaults = {
@@ -22,8 +23,10 @@ export class Geo extends Mark {
     super(
       data,
       {
-        geometry: {value: options.geometry, scale: "projection"},
-        r: {value: vr, scale: "r", filter: positive, optional: true}
+        x: {value: options.tip ? options.x : null, scale: "x", optional: true},
+        y: {value: options.tip ? options.y : null, scale: "y", optional: true},
+        r: {value: vr, scale: "r", filter: positive, optional: true},
+        geometry: {value: options.geometry, scale: "projection"}
       },
       withDefaultSort(options),
       defaults
@@ -32,7 +35,7 @@ export class Geo extends Mark {
   }
   render(index, scales, channels, dimensions, context) {
     const {geometry: G, r: R} = channels;
-    const path = geoPath(context.projection ?? scaleProjection(scales));
+    const path = context.path();
     const {r} = this;
     if (negative(r)) index = [];
     else if (r !== undefined) path.pointRadius(r);
@@ -52,40 +55,10 @@ export class Geo extends Mark {
   }
 }
 
-// If no projection is specified, default to a projection that passes points
-// through the x and y scales, if any.
-function scaleProjection({x: X, y: Y}) {
-  if (X || Y) {
-    X ??= (x) => x;
-    Y ??= (y) => y;
-    return geoTransform({
-      point(x, y) {
-        this.stream.point(X(x), Y(y));
-      }
-    });
-  }
-}
-
-export function geo(data, {geometry = identity, ...options} = {}) {
-  switch (data?.type) {
-    case "FeatureCollection":
-      data = data.features;
-      break;
-    case "GeometryCollection":
-      data = data.geometries;
-      break;
-    case "Feature":
-    case "LineString":
-    case "MultiLineString":
-    case "MultiPoint":
-    case "MultiPolygon":
-    case "Point":
-    case "Polygon":
-    case "Sphere":
-      data = [data];
-      break;
-  }
-  return new Geo(data, {geometry, ...options});
+export function geo(data, options = {}) {
+  if (options.tip && options.x === undefined && options.y === undefined) options = centroid(options);
+  else if (options.geometry === undefined) options = {...options, geometry: identity};
+  return new Geo(data, options);
 }
 
 export function sphere({strokeWidth = 1.5, ...options} = {}) {

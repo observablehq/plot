@@ -24,7 +24,7 @@
       <text y="0.32em" transform="translate(60,58.5)">Gentoo</text>
     </g>
   </g>
-  <g aria-label="x-grid" transform="translate(0.5,0)">
+  <g aria-label="x-grid" aria-hidden="true" transform="translate(0.5,0)">
     <g stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0)">
       <line x1="106.66666666666666" x2="106.66666666666666" y1="20" y2="97"></line>
       <line x1="184.44444444444443" x2="184.44444444444443" y1="20" y2="97"></line>
@@ -53,7 +53,7 @@
       <line x1="573.3333333333333" x2="573.3333333333333" y1="20" y2="97"></line>
     </g>
   </g>
-  <g aria-label="x-axis tick" transform="translate(0.5,0)">
+  <g aria-label="x-axis tick" aria-hidden="true" transform="translate(0.5,0)">
     <g fill="none" stroke="currentColor" transform="translate(0,172)">
       <path transform="translate(106.66666666666666,97)" d="M0,0L0,6"></path>
       <path transform="translate(184.44444444444443,97)" d="M0,0L0,6"></path>

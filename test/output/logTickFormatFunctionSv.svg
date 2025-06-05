@@ -1,0 +1,82 @@
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="60" viewBox="0 0 640 60" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style>
+    :where(.plot) {
+      --plot-background: white;
+      display: block;
+      height: auto;
+      height: intrinsic;
+      max-width: 100%;
+    }
+
+    :where(.plot text),
+    :where(.plot tspan) {
+      white-space: pre;
+    }
+  </style>
+  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+    <path transform="translate(20,30)" d="M0,0L0,6"></path>
+    <path transform="translate(69.84972959963056,30)" d="M0,0L0,6"></path>
+    <path transform="translate(99.00995208650392,30)" d="M0,0L0,6"></path>
+    <path transform="translate(119.69945919926116,30)" d="M0,0L0,6"></path>
+    <path transform="translate(135.7474876799204,30)" d="M0,0L0,6"></path>
+    <path transform="translate(148.85968168613448,30)" d="M0,0L0,6"></path>
+    <path transform="translate(159.94588375476354,30)" d="M0,0L0,6"></path>
+    <path transform="translate(169.54918879889175,30)" d="M0,0L0,6"></path>
+    <path transform="translate(178.01990417300786,30)" d="M0,0L0,6"></path>
+    <path transform="translate(185.597217279551,30)" d="M0,0L0,6"></path>
+    <path transform="translate(235.44694687918155,30)" d="M0,0L0,6"></path>
+    <path transform="translate(264.6071693660549,30)" d="M0,0L0,6"></path>
+    <path transform="translate(285.2966764788121,30)" d="M0,0L0,6"></path>
+    <path transform="translate(301.34470495947136,30)" d="M0,0L0,6"></path>
+    <path transform="translate(314.4568989656854,30)" d="M0,0L0,6"></path>
+    <path transform="translate(325.54310103431453,30)" d="M0,0L0,6"></path>
+    <path transform="translate(335.14640607844274,30)" d="M0,0L0,6"></path>
+    <path transform="translate(343.6171214525588,30)" d="M0,0L0,6"></path>
+    <path transform="translate(351.194434559102,30)" d="M0,0L0,6"></path>
+    <path transform="translate(401.0441641587325,30)" d="M0,0L0,6"></path>
+    <path transform="translate(430.20438664560584,30)" d="M0,0L0,6"></path>
+    <path transform="translate(450.8938937583631,30)" d="M0,0L0,6"></path>
+    <path transform="translate(466.9419222390223,30)" d="M0,0L0,6"></path>
+    <path transform="translate(480.0541162452364,30)" d="M0,0L0,6"></path>
+    <path transform="translate(491.14031831386546,30)" d="M0,0L0,6"></path>
+    <path transform="translate(500.74362335799367,30)" d="M0,0L0,6"></path>
+    <path transform="translate(509.2143387321098,30)" d="M0,0L0,6"></path>
+    <path transform="translate(516.7916518386529,30)" d="M0,0L0,6"></path>
+    <path transform="translate(566.6413814382834,30)" d="M0,0L0,6"></path>
+    <path transform="translate(595.8016039251568,30)" d="M0,0L0,6"></path>
+    <path transform="translate(616.491111037914,30)" d="M0,0L0,6"></path>
+  </g>
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+    <text y="0.71em" transform="translate(20,30)">1</text>
+    <text y="0.71em" transform="translate(69.84972959963056,30)">2</text>
+    <text y="0.71em" transform="translate(99.00995208650392,30)"></text>
+    <text y="0.71em" transform="translate(119.69945919926116,30)"></text>
+    <text y="0.71em" transform="translate(135.7474876799204,30)"></text>
+    <text y="0.71em" transform="translate(148.85968168613448,30)"></text>
+    <text y="0.71em" transform="translate(159.94588375476354,30)"></text>
+    <text y="0.71em" transform="translate(169.54918879889175,30)"></text>
+    <text y="0.71em" transform="translate(178.01990417300786,30)"></text>
+    <text y="0.71em" transform="translate(185.597217279551,30)">10</text>
+    <text y="0.71em" transform="translate(235.44694687918155,30)">20</text>
+    <text y="0.71em" transform="translate(264.6071693660549,30)"></text>
+    <text y="0.71em" transform="translate(285.2966764788121,30)"></text>
+    <text y="0.71em" transform="translate(301.34470495947136,30)"></text>
+    <text y="0.71em" transform="translate(314.4568989656854,30)"></text>
+    <text y="0.71em" transform="translate(325.54310103431453,30)"></text>
+    <text y="0.71em" transform="translate(335.14640607844274,30)"></text>
+    <text y="0.71em" transform="translate(343.6171214525588,30)"></text>
+    <text y="0.71em" transform="translate(351.194434559102,30)">100</text>
+    <text y="0.71em" transform="translate(401.0441641587325,30)">200</text>
+    <text y="0.71em" transform="translate(430.20438664560584,30)"></text>
+    <text y="0.71em" transform="translate(450.8938937583631,30)"></text>
+    <text y="0.71em" transform="translate(466.9419222390223,30)"></text>
+    <text y="0.71em" transform="translate(480.0541162452364,30)"></text>
+    <text y="0.71em" transform="translate(491.14031831386546,30)"></text>
+    <text y="0.71em" transform="translate(500.74362335799367,30)"></text>
+    <text y="0.71em" transform="translate(509.2143387321098,30)"></text>
+    <text y="0.71em" transform="translate(516.7916518386529,30)">1 000</text>
+    <text y="0.71em" transform="translate(566.6413814382834,30)">2 000</text>
+    <text y="0.71em" transform="translate(595.8016039251568,30)"></text>
+    <text y="0.71em" transform="translate(616.491111037914,30)"></text>
+  </g>
+</svg>

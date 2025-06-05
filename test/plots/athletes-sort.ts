@@ -16,7 +16,7 @@ export async function athletesSortFacet() {
 export async function athletesSortNationality() {
   const athletes = await d3.csv<any>("data/athletes.csv", d3.autoType);
   return Plot.plot({
-    color: {legend: true},
+    legend: true,
     marks: [
       Plot.dot(
         athletes,
@@ -34,7 +34,7 @@ export async function athletesSortNationality() {
 export async function athletesSortNullLimit() {
   const athletes = await d3.csv<any>("data/athletes.csv", d3.autoType);
   return Plot.plot({
-    color: {legend: true},
+    legend: true,
     marks: [Plot.dot(athletes, {x: "height", y: "weight", stroke: "nationality", sort: {color: null, limit: 10}})]
   });
 }
@@ -42,7 +42,6 @@ export async function athletesSortNullLimit() {
 export async function athletesSortWeightLimit() {
   const athletes = await d3.csv<any>("data/athletes.csv", d3.autoType);
   return Plot.plot({
-    color: {legend: true},
     marks: [
       Plot.dot(athletes, {x: "weight", y: "nationality", sort: {y: "x", reduce: "median", limit: 10}}),
       Plot.tickX(athletes, Plot.groupY({x: "median"}, {x: "weight", y: "nationality", stroke: "red", strokeWidth: 2}))

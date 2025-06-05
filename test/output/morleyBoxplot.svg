@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,10)">
+  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,10)">
     <path transform="translate(40,24)" d="M0,0L-6,0"></path>
     <path transform="translate(40,45)" d="M0,0L-6,0"></path>
     <path transform="translate(40,66)" d="M0,0L-6,0"></path>
@@ -30,7 +30,7 @@
   <g aria-label="y-axis label" transform="translate(-36.5,0.5)">
     <text y="0.71em" transform="translate(40,75) rotate(-90)">Expt</text>
   </g>
-  <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+  <g aria-label="x-grid" aria-hidden="true" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
     <line x1="83.86666666666667" x2="83.86666666666667" y1="20" y2="130"></line>
     <line x1="146.9777777777778" x2="146.9777777777778" y1="20" y2="130"></line>
     <line x1="210.08888888888887" x2="210.08888888888887" y1="20" y2="130"></line>
@@ -41,7 +41,7 @@
     <line x1="525.6444444444445" x2="525.6444444444445" y1="20" y2="130"></line>
     <line x1="588.7555555555556" x2="588.7555555555556" y1="20" y2="130"></line>
   </g>
-  <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,0)">
     <path transform="translate(83.86666666666667,130)" d="M0,0L0,6"></path>
     <path transform="translate(146.9777777777778,130)" d="M0,0L0,6"></path>
     <path transform="translate(210.08888888888887,130)" d="M0,0L0,6"></path>

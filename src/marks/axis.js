@@ -89,6 +89,7 @@ function axisKy(
     labelAnchor,
     labelArrow,
     labelOffset,
+    ariaLabel = `${k}-axis`,
     ...options
   }
 ) {
@@ -107,6 +108,7 @@ function axisKy(
           tickPadding,
           tickRotate,
           x,
+          ariaLabel,
           ...options
         })
       : null,
@@ -126,6 +128,7 @@ function axisKy(
           marginRight,
           marginBottom,
           marginLeft,
+          ariaLabel,
           ...options
         })
       : null,
@@ -150,7 +153,7 @@ function axisKy(
             }
             this.dy = cla === "top" ? 3 - marginTop : cla === "bottom" ? marginBottom - 3 : 0;
             this.dx = anchor === "right" ? clo : -clo;
-            this.ariaLabel = `${k}-axis label`;
+            this.ariaLabel = `${ariaLabel} label`;
             return {
               facets: [[0]],
               channels: {text: {value: [formatAxisLabel(k, scale, {anchor, label, labelAnchor: cla, labelArrow})]}}
@@ -190,6 +193,7 @@ function axisKx(
     labelAnchor,
     labelArrow,
     labelOffset,
+    ariaLabel = `${k}-axis`,
     ...options
   }
 ) {
@@ -208,6 +212,7 @@ function axisKx(
           tickPadding,
           tickRotate,
           y,
+          ariaLabel,
           ...options
         })
       : null,
@@ -227,6 +232,7 @@ function axisKx(
           marginRight,
           marginBottom,
           marginLeft,
+          ariaLabel,
           ...options
         })
       : null,
@@ -248,7 +254,7 @@ function axisKx(
             this.lineAnchor = anchor;
             this.dy = anchor === "top" ? -clo : clo;
             this.dx = cla === "right" ? marginRight - 3 : cla === "left" ? 3 - marginLeft : 0;
-            this.ariaLabel = `${k}-axis label`;
+            this.ariaLabel = `${ariaLabel} label`;
             return {
               facets: [[0]],
               channels: {text: {value: [formatAxisLabel(k, scale, {anchor, label, labelAnchor: cla, labelArrow})]}}
@@ -275,22 +281,32 @@ function axisTickKy(
     insetRight = inset,
     dx = 0,
     y = k === "y" ? undefined : null,
+    ariaLabel,
     ...options
   }
 ) {
-  return axisMark(vectorY, k, anchor, `${k}-axis tick`, data, {
-    strokeWidth,
-    strokeLinecap,
-    strokeLinejoin,
-    facetAnchor,
-    frameAnchor,
-    y,
-    ...options,
-    dx: anchor === "left" ? +dx - offset + +insetLeft : +dx + offset - insetRight,
-    anchor: "start",
-    length: tickSize,
-    shape: anchor === "left" ? shapeTickLeft : shapeTickRight
-  });
+  return axisMark(
+    vectorY,
+    k,
+    data,
+    {
+      ariaLabel: `${ariaLabel} tick`,
+      ariaHidden: true
+    },
+    {
+      strokeWidth,
+      strokeLinecap,
+      strokeLinejoin,
+      facetAnchor,
+      frameAnchor,
+      y,
+      ...options,
+      dx: anchor === "left" ? +dx - offset + +insetLeft : +dx + offset - insetRight,
+      anchor: "start",
+      length: tickSize,
+      shape: anchor === "left" ? shapeTickLeft : shapeTickRight
+    }
+  );
 }
 
 function axisTickKx(
@@ -309,22 +325,32 @@ function axisTickKx(
     insetBottom = inset,
     dy = 0,
     x = k === "x" ? undefined : null,
+    ariaLabel,
     ...options
   }
 ) {
-  return axisMark(vectorX, k, anchor, `${k}-axis tick`, data, {
-    strokeWidth,
-    strokeLinejoin,
-    strokeLinecap,
-    facetAnchor,
-    frameAnchor,
-    x,
-    ...options,
-    dy: anchor === "bottom" ? +dy - offset - insetBottom : +dy + offset + +insetTop,
-    anchor: "start",
-    length: tickSize,
-    shape: anchor === "bottom" ? shapeTickBottom : shapeTickTop
-  });
+  return axisMark(
+    vectorX,
+    k,
+    data,
+    {
+      ariaLabel: `${ariaLabel} tick`,
+      ariaHidden: true
+    },
+    {
+      strokeWidth,
+      strokeLinejoin,
+      strokeLinecap,
+      facetAnchor,
+      frameAnchor,
+      x,
+      ...options,
+      dy: anchor === "bottom" ? +dy - offset - insetBottom : +dy + offset + +insetTop,
+      anchor: "start",
+      length: tickSize,
+      shape: anchor === "bottom" ? shapeTickBottom : shapeTickTop
+    }
+  );
 }
 
 function axisTextKy(
@@ -345,6 +371,7 @@ function axisTextKy(
     insetLeft = inset,
     insetRight = inset,
     dx = 0,
+    ariaLabel,
     y = k === "y" ? undefined : null,
     ...options
   }
@@ -352,9 +379,8 @@ function axisTextKy(
   return axisMark(
     textY,
     k,
-    anchor,
-    `${k}-axis tick label`,
     data,
+    {ariaLabel: `${ariaLabel} tick label`},
     {
       facetAnchor,
       frameAnchor,
@@ -393,15 +419,15 @@ function axisTextKx(
     insetBottom = inset,
     dy = 0,
     x = k === "x" ? undefined : null,
+    ariaLabel,
     ...options
   }
 ) {
   return axisMark(
     textX,
     k,
-    anchor,
-    `${k}-axis tick label`,
     data,
+    {ariaLabel: `${ariaLabel} tick label`},
     {
       facetAnchor,
       frameAnchor,
@@ -450,10 +476,12 @@ function gridKy(
     x = null,
     x1 = anchor === "left" ? x : null,
     x2 = anchor === "right" ? x : null,
+    ariaLabel = `${k}-grid`,
+    ariaHidden = true,
     ...options
   }
 ) {
-  return axisMark(ruleY, k, anchor, `${k}-grid`, data, {y, x1, x2, ...gridDefaults(options)});
+  return axisMark(ruleY, k, data, {ariaLabel, ariaHidden}, {y, x1, x2, ...gridDefaults(options)});
 }
 
 function gridKx(
@@ -465,10 +493,12 @@ function gridKx(
     y = null,
     y1 = anchor === "top" ? y : null,
     y2 = anchor === "bottom" ? y : null,
+    ariaLabel = `${k}-grid`,
+    ariaHidden = true,
     ...options
   }
 ) {
-  return axisMark(ruleX, k, anchor, `${k}-grid`, data, {x, y1, y2, ...gridDefaults(options)});
+  return axisMark(ruleX, k, data, {ariaLabel, ariaHidden}, {x, y1, y2, ...gridDefaults(options)});
 }
 
 function gridDefaults({
@@ -520,7 +550,7 @@ function labelOptions(
   };
 }
 
-function axisMark(mark, k, anchor, ariaLabel, data, options, initialize) {
+function axisMark(mark, k, data, properties, options, initialize) {
   let channels;
 
   function axisInitializer(data, facets, _channels, scales, dimensions, context) {
@@ -615,7 +645,7 @@ function axisMark(mark, k, anchor, ariaLabel, data, options, initialize) {
   } else {
     channels = {};
   }
-  m.ariaLabel = ariaLabel;
+  if (properties !== undefined) Object.assign(m, properties);
   if (m.clip === undefined) m.clip = false; // don’t clip axes by default
   return m;
 }
@@ -636,16 +666,16 @@ function inferTextChannel(scale, data, ticks, tickFormat, anchor) {
 // possible, or the default ISO format (2014-01-26). TODO We need a better way
 // to infer whether the ordinal scale is UTC or local time.
 export function inferTickFormat(scale, data, ticks, tickFormat, anchor) {
-  return typeof tickFormat === "function"
+  return typeof tickFormat === "function" && !(scale.type === "log" && scale.tickFormat)
     ? tickFormat
     : tickFormat === undefined && data && isTemporal(data)
     ? inferTimeFormat(scale.type, data, anchor) ?? formatDefault
     : scale.tickFormat
     ? scale.tickFormat(typeof ticks === "number" ? ticks : null, tickFormat)
+    : typeof tickFormat === "string" && scale.domain().length > 0
+    ? (isTemporal(scale.domain()) ? utcFormat : format)(tickFormat)
     : tickFormat === undefined
     ? formatDefault
-    : typeof tickFormat === "string"
-    ? (isTemporal(scale.domain()) ? utcFormat : format)(tickFormat)
     : constant(tickFormat);
 }
 

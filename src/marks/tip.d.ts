@@ -74,7 +74,7 @@ export interface TipOptions extends MarkOptions, TextStyles {
    * is interpreted as a (UTC) time format for temporal channels, and otherwise
    * a number format.
    */
-  format?: {[name in ChannelName]?: boolean | string | ((d: any, i: number) => string)};
+  format?: {[name in ChannelName]?: null | boolean | TipFormat} | TipFormat;
 
   /** The image filter for the tip’s box; defaults to a drop shadow. */
   pathFilter?: string;
@@ -85,6 +85,18 @@ export interface TipOptions extends MarkOptions, TextStyles {
   /** The padding around the text in pixels; defaults to 8. */
   textPadding?: number;
 }
+
+/**
+ * How to format channel values; one of:
+ *
+ * - a [d3-format][1] string for numeric scales
+ * - a [d3-time-format][2] string for temporal scales
+ * - a function passed a channel *value* and *index*, returning a string
+ *
+ * [1]: https://d3js.org/d3-time
+ * [2]: https://d3js.org/d3-time-format
+ */
+export type TipFormat = string | ((d: any, i: number) => string);
 
 /**
  * Returns a new tip mark for the given *data* and *options*.

@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,0.5)">
     <path transform="translate(40,31)" d="M0,0L-6,0"></path>
     <path transform="translate(40,53)" d="M0,0L-6,0"></path>
     <path transform="translate(40,75)" d="M0,0L-6,0"></path>
@@ -27,7 +27,7 @@
     <text y="0.32em" transform="translate(40,97)">B</text>
     <text y="0.32em" transform="translate(40,119)">A</text>
   </g>
-  <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,0)">
     <path transform="translate(40,130)" d="M0,0L0,6"></path>
     <path transform="translate(140,130)" d="M0,0L0,6"></path>
     <path transform="translate(240,130)" d="M0,0L0,6"></path>
@@ -55,10 +55,10 @@
     </clipPath>
     <path d="M40,119L60,75L80,31L100,31L120,53L140,97L160,75L180,53L200,53L220,53L240,31L260,75L280,119L300,119L320,75L340,119L360,53L380,75L400,31L420,97L440,97L460,97L480,119L500,97L520,97L540,31L560,31L580,119L600,31L620,75L620,0L600,0L580,0L560,0L540,0L520,0L500,0L480,0L460,0L440,0L420,0L400,0L380,0L360,0L340,0L320,0L300,0L280,0L260,0L240,0L220,0L200,0L180,0L160,0L140,0L120,0L100,0L80,0L60,0L40,0Z" clip-path="url(#plot-clip-2)"></path>
   </g>
+  <clipPath id="plot-clip-3">
+    <rect x="40" y="20" width="580" height="110"></rect>
+  </clipPath>
   <g aria-label="line" clip-path="url(#plot-clip-3)">
-    <clipPath id="plot-clip-3">
-      <rect x="40" y="20" width="580" height="110"></rect>
-    </clipPath>
     <g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" transform="translate(0.5,0.5)">
       <path d="M40,119L60,75L80,31L100,31L120,53L140,97L160,75L180,53L200,53L220,53L240,31L260,75L280,119L300,119L320,75L340,119L360,53L380,75L400,31L420,97L440,97L460,97L480,119L500,97L520,97L540,31L560,31L580,119L600,31L620,75"></path>
     </g>

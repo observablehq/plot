@@ -1,17 +1,22 @@
-import {geoPath, group, namespaces} from "d3";
+import {group, namespaces, select} from "d3";
 import {create} from "./context.js";
 import {defined, nonempty} from "./defined.js";
 import {formatDefault} from "./format.js";
 import {isNone, isNoneish, isRound, maybeColorChannel, maybeNumberChannel} from "./options.js";
-import {keyof, keyword, number, string} from "./options.js";
+import {keyof, number, string} from "./options.js";
 import {warn} from "./warnings.js";
 
 export const offset = (typeof window !== "undefined" ? window.devicePixelRatio > 1 : typeof it === "undefined") ? 0 : 0.5; // prettier-ignore
 
 let nextClipId = 0;
+let nextPatternId = 0;
 
 export function getClipId() {
   return `plot-clip-${++nextClipId}`;
+}
+
+export function getPatternId() {
+  return `plot-pattern-${++nextPatternId}`;
 }
 
 export function styles(
@@ -297,54 +302,24 @@ export function* groupIndex(I, position, mark, channels) {
   }
 }
 
-// TODO Accept other types of clips (paths, urls, x, y, other marks…)?
-// https://github.com/observablehq/plot/issues/181
-export function maybeClip(clip) {
-  if (clip === true) clip = "frame";
-  else if (clip === false) clip = null;
-  else if (clip != null) clip = keyword(clip, "clip", ["frame", "sphere"]);
-  return clip;
-}
-
 // Note: may mutate selection.node!
 function applyClip(selection, mark, dimensions, context) {
   let clipUrl;
   const {clip = context.clip} = mark;
-  switch (clip) {
-    case "frame": {
-      const {width, height, marginLeft, marginRight, marginTop, marginBottom} = dimensions;
-      const id = getClipId();
-      clipUrl = `url(#${id})`;
-      selection = create("svg:g", context)
-        .call((g) =>
-          g
-            .append("svg:clipPath")
-            .attr("id", id)
-            .append("rect")
-            .attr("x", marginLeft)
-            .attr("y", marginTop)
-            .attr("width", width - marginRight - marginLeft)
-            .attr("height", height - marginTop - marginBottom)
-        )
-        .each(function () {
-          this.appendChild(selection.node());
-          selection.node = () => this; // Note: mutation!
-        });
-      break;
-    }
-    case "sphere": {
-      const {projection} = context;
-      if (!projection) throw new Error(`the "sphere" clip option requires a projection`);
-      const id = getClipId();
-      clipUrl = `url(#${id})`;
-      selection
-        .append("clipPath")
-        .attr("id", id)
-        .append("path")
-        .attr("d", geoPath(projection)({type: "Sphere"}));
-      break;
-    }
+  if (clip === "frame") {
+    // Wrap the G element with another (untransformed) G element, applying the
+    // clip to the parent G element so that the clip path is not affected by
+    // the mark’s transform. To simplify the adoption of this fix, mutate the
+    // passed-in selection.node to return the parent G element.
+    selection = create("svg:g", context).each(function () {
+      this.appendChild(selection.node());
+      selection.node = () => this; // Note: mutation!
+    });
+    clipUrl = getFrameClip(context, dimensions);
+  } else if (clip) {
+    clipUrl = getGeoClip(clip, context);
   }
+
   // Here we’re careful to apply the ARIA attributes to the outer G element when
   // clipping is applied, and to apply the ARIA attributes before any other
   // attributes (for readability).
@@ -354,9 +329,48 @@ function applyClip(selection, mark, dimensions, context) {
   applyAttr(selection, "clip-path", clipUrl);
 }
 
+function memoizeClip(clip) {
+  const cache = new WeakMap();
+  return (context, dimensions) => {
+    let url = cache.get(context);
+    if (!url) {
+      const id = getClipId();
+      select(context.ownerSVGElement).append("clipPath").attr("id", id).call(clip, context, dimensions);
+      cache.set(context, (url = `url(#${id})`));
+    }
+    return url;
+  };
+}
+
+const getFrameClip = memoizeClip((clipPath, context, dimensions) => {
+  const {width, height, marginLeft, marginRight, marginTop, marginBottom} = dimensions;
+  clipPath
+    .append("rect")
+    .attr("x", marginLeft)
+    .attr("y", marginTop)
+    .attr("width", width - marginRight - marginLeft)
+    .attr("height", height - marginTop - marginBottom);
+});
+
+const geoClipCache = new WeakMap();
+const sphere = {type: "Sphere"};
+
+function getGeoClip(geo, context) {
+  let cache, url;
+  if (!(cache = geoClipCache.get(context))) geoClipCache.set(context, (cache = new WeakMap()));
+  if (geo.type === "Sphere") geo = sphere; // coalesce all spheres
+  if (!(url = cache.get(geo))) {
+    const id = getClipId();
+    select(context.ownerSVGElement).append("clipPath").attr("id", id).append("path").attr("d", context.path()(geo));
+    cache.set(geo, (url = `url(#${id})`));
+  }
+  return url;
+}
+
 // Note: may mutate selection.node!
 export function applyIndirectStyles(selection, mark, dimensions, context) {
   applyClip(selection, mark, dimensions, context);
+  applyAttr(selection, "class", mark.className);
   applyAttr(selection, "fill", mark.fill);
   applyAttr(selection, "fill-opacity", mark.fillOpacity);
   applyAttr(selection, "stroke", mark.stroke);

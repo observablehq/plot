@@ -274,7 +274,7 @@ The following named reducers are supported:
 * *y* - the middle of the bin’s *y* extent (when binning on *y*)
 * *y1* - the lower bound of the bin’s *y* extent (when binning on *y*)
 * *y2* - the upper bound of the bin’s *y* extent (when binning on *y*)
-* *z* <VersionBadge pr="1959" /> - the bin’s *z* value (*z*, *fill*, or *stroke*)
+* *z* <VersionBadge version="0.6.14" pr="1959" /> - the bin’s *z* value (*z*, *fill*, or *stroke*)
 
 In addition, a reducer may be specified as:
 

@@ -114,7 +114,7 @@ Plot.plot({
 ```
 :::
 
-Marks may also be a function which returns an SVG element, if you wish to insert arbitrary content. (Here we use [Hypertext Literal](https://github.com/observablehq/htl) to generate an SVG gradient.)
+Marks may also be a function which returns an [SVG element](https://developer.mozilla.org/en-US/docs/Web/SVG/Element), if you wish to insert arbitrary content. (Here we use [Hypertext Literal](https://github.com/observablehq/htl) to generate an SVG gradient.)
 
 :::plot defer https://observablehq.com/@observablehq/plot-gradient-bars
 ```js
@@ -219,6 +219,10 @@ linedata = [
 ]
 ```
 
+:::tip
+For larger datasets, you can more efficiently pass data using an [Apache Arrow](https://arrow.apache.org/docs/js/) table as a columnar data representation. <VersionBadge version="0.6.16" pr="2115" />
+:::
+
 Then you can pass the data to the line mark, and extract named columns from the data for the desired options:
 
 :::plot https://observablehq.com/@observablehq/plot-accessors
@@ -239,7 +243,7 @@ Plot.lineY(linedata, {
 ```
 :::
 
-For greater efficiency, Plot also supports columnar data: you can pass parallel arrays of values to each channel.
+For greater efficiency, Plot also supports columnar data: you can use an [Apache Arrow](https://arrow.apache.org/docs/js/) table as data instead of an array of objects. <VersionBadge version="0.6.16" pr="2115" /> You can even pass parallel arrays of values, or Apache Arrow vectors, to each channel.
 
 ```js
 Plot.lineY({length: linedata.length}, {
@@ -482,13 +486,14 @@ All marks support the following style options:
 * **dx** - horizontal offset (in pixels; defaults to 0)
 * **dy** - vertical offset (in pixels; defaults to 0)
 * **target** - link target (e.g., “_blank” for a new window); for use with the **href** channel
+* **className** - the [class attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class), if any (defaults to null) <VersionBadge version="0.6.16" pr="1098" />
 * **ariaDescription** - a textual description of the mark’s contents
 * **ariaHidden** - if true, hide this content from the accessibility tree
 * **pointerEvents** - the [pointer events](https://developer.mozilla.org/en-US/docs/Web/CSS/pointer-events) (*e.g.*, *none*)
 * **clip** - whether and how to clip the mark
 * **tip** - whether to generate an implicit [pointer](../interactions/pointer.md) [tip](../marks/tip.md) <VersionBadge version="0.6.7" />
 
-If the **clip** option is *frame* (or equivalently true), the mark is clipped to the frame’s dimensions; if the **clip** option is null (or equivalently false), the mark is not clipped. If the **clip** option is *sphere*, then a [geographic projection](./projections.md) is required and the mark will be clipped to the projected sphere (_e.g._, the front hemisphere when using the orthographic projection).
+If the **clip** option<a id="clip" href="#clip" aria-label="Permalink to &quot;clip&quot;"></a> is *frame* (or equivalently true), the mark is clipped to the frame’s dimensions. If the **clip** option is null (or equivalently false), the mark is not clipped. If the **clip** option is *sphere*, the mark will be clipped to the projected sphere (_e.g._, the front hemisphere when using the orthographic projection); a [geographic projection](./projections.md) is required in this case. Lastly if the **clip** option is a GeoJSON object <VersionBadge version="0.6.17" pr="2243" />, the mark will be clipped to the projected geometry.
 
 If the **tip** option is true, a [tip mark](../marks/tip.md) with the [pointer transform](../interactions/pointer.md) will be derived from this mark and placed atop all other marks, offering details on demand. If the **tip** option is set to an options object, these options will be passed to the derived tip mark. If the **tip** option (or, if an object, its **pointer** option) is set to *x*, *y*, or *xy*, [pointerX](../interactions/pointer.md#pointerX), [pointerY](../interactions/pointer.md#pointerY), or [pointer](../interactions/pointer.md#pointer) will be used, respectively; otherwise the pointing mode will be chosen automatically. (If the **tip** mark option is truthy, the **title** channel is no longer applied using an SVG title element as this would conflict with the tip mark.)
 
@@ -530,17 +535,6 @@ Plot.dot(numbers, {x: {transform: (data) => data}})
 
 The **title**, **href**, and **ariaLabel** options can *only* be specified as channels. When these options are specified as a string, the string refers to the name of a column in the mark’s associated data. If you’d like every instance of a particular mark to have the same value, specify the option as a function that returns the desired value, *e.g.* `() => "Hello, world!"`.
 
-The rectangular marks ([bar](../marks/bar.md), [cell](../marks/cell.md), [frame](../marks/frame.md), and [rect](../marks/rect.md)) support insets and rounded corner constant options:
-
-* **insetTop** - inset the top edge
-* **insetRight** - inset the right edge
-* **insetBottom** - inset the bottom edge
-* **insetLeft** - inset the left edge
-* **rx** - the [*x* radius](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/rx) for rounded corners
-* **ry** - the [*y* radius](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/ry) for rounded corners
-
-Insets are specified in pixels. Corner radii are specified in either pixels or percentages (strings). Both default to zero. Insets are typically used to ensure a one-pixel gap between adjacent bars; note that the [bin transform](../transforms/bin.md) provides default insets, and that the [band scale padding](./scales.md#position-scale-options) defaults to 0.1, which also provides separation.
-
 For marks that support the **frameAnchor** option, it may be specified as one of the four sides (*top*, *right*, *bottom*, *left*), one of the four corners (*top-left*, *top-right*, *bottom-right*, *bottom-left*), or the *middle* of the frame.
 
 All marks support the following [transform](./transforms.md) options:
@@ -552,6 +546,36 @@ All marks support the following [transform](./transforms.md) options:
 * **initializer** - apply a [custom initializer](./transforms.md#custom-initializers)
 
 The **sort** option, when not specified as a channel value (such as a field name or an accessor function), can also be used to [impute ordinal scale domains](./scales.md#sort-mark-option).
+
+### Insets
+
+Rect-like marks support insets: a positive inset moves the respective side in (towards the opposing side), whereas a negative inset moves the respective side out (away from the opposing side). Insets are specified in pixels using the following options:
+
+* **inset** - shorthand for all four insets
+* **insetTop** - inset the top edge
+* **insetRight** - inset the right edge
+* **insetBottom** - inset the bottom edge
+* **insetLeft** - inset the left edge
+
+Insets default to zero. Insets are commonly used to create a one-pixel gap between adjacent bars in histograms; the [bin transform](../transforms/bin.md) provides default insets. (Note that the [band scale padding](./scales.md#position-scale-options) defaults to 0.1 as an alternative to insets.)
+
+### Rounded corners
+
+Rect-like marks support rounded corners. Each corner (or side) is individually addressable <VersionBadge version="0.6.16" pr="2099" /> using the following options:
+
+* **r** - the radius for all four corners
+* **rx1** - the radius for the **x1**-**y1** and **x1**-**y2** corners
+* **rx2** - the radius for the **x2**-**y1** and **x2**-**y2** corners
+* **ry1** - the radius for the **x1**-**y1** and **x2**-**y1** corners
+* **ry2** - the radius for the **x1**-**y2** and **x2**-**y2** corners
+* **rx1y1** - the radius for the **x1**-**y1** corner
+* **rx1y2** - the radius for the **x1**-**y2** corner
+* **rx2y1** - the radius for the **x2**-**y1** corner
+* **rx2y2** - the radius for the **x2**-**y2** corner
+* **rx** - the [*x*-radius](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/rx) for elliptical corners
+* **ry** - the [*y*-radius](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/ry) for elliptical corners
+
+Corner radii are specified in either pixels or, for **rx** and **ry**, as percentages (strings) or the keyword *auto*. If the corner radii are too big, they are reduced proportionally.
 
 ## marks(...*marks*) <VersionBadge version="0.2.0" /> {#marks}
 

@@ -21,7 +21,7 @@
       <text y="0.32em" transform="translate(360,180)">1</text>
     </g>
   </g>
-  <g aria-label="y-axis tick" transform="translate(0,0.5)">
+  <g aria-label="y-axis tick" aria-hidden="true" transform="translate(0,0.5)">
     <g fill="none" stroke="currentColor" transform="translate(0,1)">
       <path transform="translate(40,300.05924198845736)" d="M0,0L-6,0"></path>
       <path transform="translate(40,255.59285606680646)" d="M0,0L-6,0"></path>
@@ -61,7 +61,7 @@
       <text y="0.32em" transform="translate(40,33.260926458552156)">350</text>
     </g>
   </g>
-  <g aria-label="x-axis tick" transform="translate(0.5,0)">
+  <g aria-label="x-axis tick" aria-hidden="true" transform="translate(0.5,0)">
     <g fill="none" stroke="currentColor" transform="translate(0,356)">
       <path transform="translate(111.06722815669826,340)" d="M0,0L0,6"></path>
       <path transform="translate(200,340)" d="M0,0L0,6"></path>

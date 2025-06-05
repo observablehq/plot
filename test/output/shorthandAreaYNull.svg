@@ -1,0 +1,75 @@
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="400" viewBox="0 0 640 400" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style>
+    :where(.plot) {
+      --plot-background: white;
+      display: block;
+      height: auto;
+      height: intrinsic;
+      max-width: 100%;
+    }
+
+    :where(.plot text),
+    :where(.plot tspan) {
+      white-space: pre;
+    }
+  </style>
+  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+    <path transform="translate(40,370)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,344.15066469719346)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,318.30132939438704)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,292.4519940915805)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,266.60265878877397)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,240.7533234859675)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,214.90398818316103)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,189.05465288035452)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,163.205317577548)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,137.3559822747415)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,111.50664697193504)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,85.65731166912852)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,59.80797636632204)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,33.958641063515515)" d="M0,0L-6,0"></path>
+  </g>
+  <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
+    <text y="0.32em" transform="translate(40,370)">0</text>
+    <text y="0.32em" transform="translate(40,344.15066469719346)">5</text>
+    <text y="0.32em" transform="translate(40,318.30132939438704)">10</text>
+    <text y="0.32em" transform="translate(40,292.4519940915805)">15</text>
+    <text y="0.32em" transform="translate(40,266.60265878877397)">20</text>
+    <text y="0.32em" transform="translate(40,240.7533234859675)">25</text>
+    <text y="0.32em" transform="translate(40,214.90398818316103)">30</text>
+    <text y="0.32em" transform="translate(40,189.05465288035452)">35</text>
+    <text y="0.32em" transform="translate(40,163.205317577548)">40</text>
+    <text y="0.32em" transform="translate(40,137.3559822747415)">45</text>
+    <text y="0.32em" transform="translate(40,111.50664697193504)">50</text>
+    <text y="0.32em" transform="translate(40,85.65731166912852)">55</text>
+    <text y="0.32em" transform="translate(40,59.80797636632204)">60</text>
+    <text y="0.32em" transform="translate(40,33.958641063515515)">65</text>
+  </g>
+  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+    <path transform="translate(40,370)" d="M0,0L0,6"></path>
+    <path transform="translate(101.05263157894737,370)" d="M0,0L0,6"></path>
+    <path transform="translate(162.10526315789474,370)" d="M0,0L0,6"></path>
+    <path transform="translate(223.1578947368421,370)" d="M0,0L0,6"></path>
+    <path transform="translate(284.2105263157894,370)" d="M0,0L0,6"></path>
+    <path transform="translate(345.2631578947369,370)" d="M0,0L0,6"></path>
+    <path transform="translate(406.3157894736842,370)" d="M0,0L0,6"></path>
+    <path transform="translate(467.36842105263156,370)" d="M0,0L0,6"></path>
+    <path transform="translate(528.4210526315788,370)" d="M0,0L0,6"></path>
+    <path transform="translate(589.4736842105262,370)" d="M0,0L0,6"></path>
+  </g>
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+    <text y="0.71em" transform="translate(40,370)">0</text>
+    <text y="0.71em" transform="translate(101.05263157894737,370)">2</text>
+    <text y="0.71em" transform="translate(162.10526315789474,370)">4</text>
+    <text y="0.71em" transform="translate(223.1578947368421,370)">6</text>
+    <text y="0.71em" transform="translate(284.2105263157894,370)">8</text>
+    <text y="0.71em" transform="translate(345.2631578947369,370)">10</text>
+    <text y="0.71em" transform="translate(406.3157894736842,370)">12</text>
+    <text y="0.71em" transform="translate(467.36842105263156,370)">14</text>
+    <text y="0.71em" transform="translate(528.4210526315788,370)">16</text>
+    <text y="0.71em" transform="translate(589.4736842105262,370)">18</text>
+  </g>
+  <g aria-label="area">
+    <path d="M40,72.733L70.526,175.613L101.053,119.261L131.579,150.798L131.579,370L101.053,370L70.526,370L40,370ZM284.211,26.204L314.737,20L345.263,115.643L375.789,66.529L406.316,155.968L436.842,88.759L467.368,154.417L497.895,112.541L528.421,58.774L558.947,139.941L589.474,124.948L620,196.809L620,370L589.474,370L558.947,370L528.421,370L497.895,370L467.368,370L436.842,370L406.316,370L375.789,370L345.263,370L314.737,370L284.211,370Z"></path>
+  </g>
+</svg>

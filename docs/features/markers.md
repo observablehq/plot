@@ -30,7 +30,7 @@ A **marker** defines a graphic drawn on vertices of a [line](../marks/line.md) o
   </label>
 </p>
 
-:::plot https://observablehq.com/@observablehq/plot-line-chart-with-markers?intent=fork
+:::plot https://observablehq.com/@observablehq/plot-line-chart-with-markers
 ```js-vue
 Plot.plot({
   marks: [

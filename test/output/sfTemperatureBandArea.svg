@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="y-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
+  <g aria-label="y-grid" aria-hidden="true" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
     <line x1="40" x2="940" y1="362.1889838556507" y2="362.1889838556507"></line>
     <line x1="40" x2="940" y1="338.92212725546074" y2="338.92212725546074"></line>
     <line x1="40" x2="940" y1="315.6552706552708" y2="315.6552706552708"></line>
@@ -30,7 +30,7 @@
     <line x1="40" x2="940" y1="59.71984805318139" y2="59.71984805318139"></line>
     <line x1="40" x2="940" y1="36.452991452991434" y2="36.452991452991434"></line>
   </g>
-  <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,0.5)">
     <path transform="translate(40,362.1889838556507)" d="M0,0L-6,0"></path>
     <path transform="translate(40,338.92212725546074)" d="M0,0L-6,0"></path>
     <path transform="translate(40,315.6552706552708)" d="M0,0L-6,0"></path>
@@ -67,7 +67,7 @@
   <g aria-label="y-axis label" text-anchor="start" transform="translate(-36.5,-16.5)">
     <text y="0.71em" transform="translate(40,20)">↑ Daily temperature range (°F)</text>
   </g>
-  <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,0)">
     <path transform="translate(40,370)" d="M0,0L0,6"></path>
     <path transform="translate(153.26949384404924,370)" d="M0,0L0,6"></path>
     <path transform="translate(264.07660738714094,370)" d="M0,0L0,6"></path>

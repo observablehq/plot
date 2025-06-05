@@ -6,15 +6,24 @@ import {getClipId} from "../style.js";
 import {area} from "./area.js";
 import {line} from "./line.js";
 
-export function differenceY(
+export function differenceX(data, options) {
+  return differenceK("x", data, options);
+}
+
+export function differenceY(data, options) {
+  return differenceK("y", data, options);
+}
+
+function differenceK(
+  k,
   data,
   {
     x1,
     x2,
     y1,
     y2,
-    x = x1 === undefined && x2 === undefined ? indexOf : undefined,
-    y = y1 === undefined && y2 === undefined ? identity : undefined,
+    x = x1 === undefined && x2 === undefined ? (k === "y" ? indexOf : identity) : undefined,
+    y = y1 === undefined && y2 === undefined ? (k === "x" ? indexOf : identity) : undefined,
     fill, // ignored
     positiveFill = "#3ca951",
     negativeFill = "#4269d0",
@@ -32,8 +41,11 @@ export function differenceY(
 ) {
   [x1, x2] = memoTuple(x, x1, x2);
   [y1, y2] = memoTuple(y, y1, y2);
-  if (x1 === x2 && y1 === y2) y1 = memo(0);
-  ({tip} = withTip({tip}, "x"));
+  if (x1 === x2 && y1 === y2) {
+    if (k === "y") y1 = memo(0);
+    else x1 = memo(0);
+  }
+  ({tip} = withTip({tip}, k === "y" ? "x" : "y"));
   return marks(
     !isNoneish(positiveFill)
       ? Object.assign(
@@ -45,7 +57,7 @@ export function differenceY(
             z,
             fill: positiveFill,
             fillOpacity: positiveFillOpacity,
-            render: composeRender(render, clipDifferenceY(true)),
+            render: composeRender(render, clipDifference(k, true)),
             clip,
             ...options
           }),
@@ -62,7 +74,7 @@ export function differenceY(
             z,
             fill: negativeFill,
             fillOpacity: negativeFillOpacity,
-            render: composeRender(render, clipDifferenceY(false)),
+            render: composeRender(render, clipDifference(k, false)),
             clip,
             ...options
           }),
@@ -110,15 +122,20 @@ function memo(v) {
   return {transform: (data) => V || (V = valueof(data, value)), label};
 }
 
-function clipDifferenceY(positive) {
+function clipDifference(k, positive) {
+  const f = k === "x" ? "y" : "x"; // f is the flipped dimension
+  const f1 = `${f}1`;
+  const f2 = `${f}2`;
+  const k1 = `${k}1`;
+  const k2 = `${k}2`;
   return (index, scales, channels, dimensions, context, next) => {
-    const {x1, x2} = channels;
-    const {height} = dimensions;
-    const y1 = new Float32Array(x1.length);
-    const y2 = new Float32Array(x2.length);
-    (positive === inferScaleOrder(scales.y) < 0 ? y1 : y2).fill(height);
-    const oc = next(index, scales, {...channels, x2: x1, y2}, dimensions, context);
-    const og = next(index, scales, {...channels, x1: x2, y1}, dimensions, context);
+    const {[f1]: F1, [f2]: F2} = channels;
+    const K1 = new Float32Array(F1.length);
+    const K2 = new Float32Array(F2.length);
+    const m = dimensions[k === "y" ? "height" : "width"];
+    (positive === inferScaleOrder(scales[k]) < 0 ? K1 : K2).fill(m);
+    const oc = next(index, scales, {...channels, [f2]: F1, [k2]: K2}, dimensions, context);
+    const og = next(index, scales, {...channels, [f1]: F2, [k1]: K1}, dimensions, context);
     const c = oc.querySelector("g") ?? oc; // applyClip
     const g = og.querySelector("g") ?? og; // applyClip
     for (let i = 0; c.firstChild; i += 2) {

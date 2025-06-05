@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="y-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
+  <g aria-label="y-grid" aria-hidden="true" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
     <line x1="40" x2="940" y1="323.90833015408174" y2="323.90833015408174"></line>
     <line x1="40" x2="940" y1="281.795187339942" y2="281.795187339942"></line>
     <line x1="40" x2="940" y1="239.68204452580224" y2="239.68204452580224"></line>
@@ -23,7 +23,7 @@
     <line x1="40" x2="940" y1="71.22947326924321" y2="71.22947326924321"></line>
     <line x1="40" x2="940" y1="29.11633045510343" y2="29.11633045510343"></line>
   </g>
-  <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,0.5)">
     <path transform="translate(40,323.90833015408174)" d="M0,0L-6,0"></path>
     <path transform="translate(40,281.795187339942)" d="M0,0L-6,0"></path>
     <path transform="translate(40,239.68204452580224)" d="M0,0L-6,0"></path>
@@ -46,7 +46,7 @@
   <g aria-label="y-axis label" text-anchor="start" transform="translate(-36.5,-16.5)">
     <text y="0.71em" transform="translate(40,20)">↑ Apple stock price ($)</text>
   </g>
-  <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+  <g aria-label="x-grid" aria-hidden="true" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
     <line x1="117.03999999999999" x2="117.03999999999999" y1="20" y2="370"></line>
     <line x1="274.3428571428571" x2="274.3428571428571" y1="20" y2="370"></line>
     <line x1="431.6457142857143" x2="431.6457142857143" y1="20" y2="370"></line>
@@ -54,7 +54,7 @@
     <line x1="731.0285714285715" x2="731.0285714285715" y1="20" y2="370"></line>
     <line x1="883.2571428571428" x2="883.2571428571428" y1="20" y2="370"></line>
   </g>
-  <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,0)">
     <path transform="translate(117.03999999999999,370)" d="M0,0L0,6"></path>
     <path transform="translate(274.3428571428571,370)" d="M0,0L0,6"></path>
     <path transform="translate(431.6457142857143,370)" d="M0,0L0,6"></path>

@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="y-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
+  <g aria-label="y-grid" aria-hidden="true" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
     <line x1="40" x2="620" y1="370" y2="370"></line>
     <line x1="40" x2="620" y1="341.9551282051282" y2="341.9551282051282"></line>
     <line x1="40" x2="620" y1="313.91025641025647" y2="313.91025641025647"></line>
@@ -28,7 +28,7 @@
     <line x1="40" x2="620" y1="61.50641025641026" y2="61.50641025641026"></line>
     <line x1="40" x2="620" y1="33.46153846153845" y2="33.46153846153845"></line>
   </g>
-  <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,0.5)">
     <path transform="translate(40,370)" d="M0,0L-6,0"></path>
     <path transform="translate(40,341.9551282051282)" d="M0,0L-6,0"></path>
     <path transform="translate(40,313.91025641025647)" d="M0,0L-6,0"></path>
@@ -61,7 +61,7 @@
   <g aria-label="y-axis label" text-anchor="start" transform="translate(-36.5,-16.5)">
     <text y="0.71em" transform="translate(40,20)">↑ Stargazers added per week</text>
   </g>
-  <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,0)">
     <path transform="translate(40,370)" d="M0,0L0,6"></path>
     <path transform="translate(115.32467532467531,370)" d="M0,0L0,6"></path>
     <path transform="translate(193.16017316017314,370)" d="M0,0L0,6"></path>

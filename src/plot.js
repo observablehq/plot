@@ -1,4 +1,4 @@
-import {creator, select} from "d3";
+import {creator, geoPath, select} from "d3";
 import {createChannel, inferChannelScale} from "./channel.js";
 import {createContext} from "./context.js";
 import {createDimensions} from "./dimensions.js";
@@ -10,8 +10,8 @@ import {axisFx, axisFy, axisX, axisY, gridFx, gridFy, gridX, gridY} from "./mark
 import {frame} from "./marks/frame.js";
 import {tip} from "./marks/tip.js";
 import {isColor, isIterable, isNone, isScaleOptions} from "./options.js";
-import {arrayify, map, yes, maybeIntervalTransform, subarray} from "./options.js";
-import {createProjection, getGeometryChannels, hasProjection} from "./projection.js";
+import {dataify, lengthof, map, yes, maybeIntervalTransform, subarray} from "./options.js";
+import {createProjection, getGeometryChannels, hasProjection, xyProjection} from "./projection.js";
 import {createScales, createScaleFunctions, autoScaleRange, exposeScales} from "./scales.js";
 import {innerDimensions, outerDimensions} from "./scales.js";
 import {isPosition, registry as scaleRegistry} from "./scales/index.js";
@@ -159,6 +159,11 @@ export function plot(options = {}) {
   context.className = className;
   context.projection = createProjection(options, subdimensions);
 
+  // A path generator for marks that want to draw GeoJSON.
+  context.path = function () {
+    return geoPath(this.projection ?? xyProjection(scales));
+  };
+
   // Allows e.g. the axis mark to determine faceting lazily.
   context.filterFacets = (data, channels) => {
     return facetFilter(facets, {channels, groups: facetGroups(data, channels)});
@@ -175,7 +180,7 @@ export function plot(options = {}) {
   context.dispatchValue = (value) => {
     if (figure.value === value) return;
     figure.value = value;
-    figure.dispatchEvent(new Event("input", {bubbles: true}));
+    figure.dispatchEvent(new context.document.defaultView.Event("input", {bubbles: true}));
   };
 
   // Reinitialize; for deriving channels dependent on other channels.
@@ -317,7 +322,7 @@ export function plot(options = {}) {
           }
         }
       }
-      g?.selectChildren().attr("transform", facetTranslate);
+      g?.selectChildren().each(facetTranslate);
     }
   }
 
@@ -332,6 +337,7 @@ export function plot(options = {}) {
     if (subtitle != null) figure.append(createTitleElement(document, subtitle, "h3"));
     figure.append(...legends, svg);
     if (caption != null) figure.append(createFigcaption(document, caption));
+    if ("value" in svg) (figure.value = svg.value), delete svg.value;
   }
 
   figure.scale = exposeScales(scales.scales);
@@ -366,13 +372,6 @@ function createFigcaption(document, caption) {
   e.append(caption);
   return e;
 }
-
-function plotThis({marks = [], ...options} = {}) {
-  return plot({...options, marks: [...marks, this]});
-}
-
-// Note: This side-effect avoids a circular dependency.
-Mark.prototype.plot = plotThis;
 
 function flatMarks(marks) {
   return marks
@@ -409,7 +408,7 @@ function applyScaleTransform(channel, options) {
     type,
     percent,
     interval,
-    transform = percent ? (x) => x * 100 : maybeIntervalTransform(interval, type)
+    transform = percent ? (x) => (x == null ? NaN : x * 100) : maybeIntervalTransform(interval, type)
   } = options[scale] ?? {};
   if (transform == null) return;
   channel.value = map(channel.value, transform);
@@ -465,7 +464,7 @@ function maybeTopFacet(facet, options) {
   if (facet == null) return;
   const {x, y} = facet;
   if (x == null && y == null) return;
-  const data = arrayify(facet.data);
+  const data = dataify(facet.data);
   if (data == null) throw new Error("missing facet data");
   const channels = {};
   if (x != null) channels.fx = createChannel(data, {value: x, scale: "fx"});
@@ -484,7 +483,7 @@ function maybeMarkFacet(mark, topFacetState, options) {
   // here with maybeTopFacet that we could reduce.
   const {fx, fy} = mark;
   if (fx != null || fy != null) {
-    const data = arrayify(mark.data ?? fx ?? fy);
+    const data = dataify(mark.data ?? fx ?? fy);
     if (data === undefined) throw new Error(`missing facet data in ${mark.ariaLabel}`);
     if (data === null) return; // ignore channel definitions if no data is provided TODO this right?
     const channels = {};
@@ -506,7 +505,7 @@ function maybeMarkFacet(mark, topFacetState, options) {
   if (
     data.length > 0 &&
     (groups.size > 1 || (groups.size === 1 && channels.fx && channels.fy && [...groups][0][1].size > 1)) &&
-    arrayify(mark.data)?.length === data.length
+    lengthof(dataify(mark.data)) === lengthof(data)
   ) {
     warn(
       `Warning: the ${mark.ariaLabel} mark appears to use faceted data, but isn’t faceted. The mark data has the same length as the facet data and the mark facet option is "auto", but the mark data and facet data are distinct. If this mark should be faceted, set the mark facet option to true; otherwise, suppress this warning by setting the mark facet option to false.`
@@ -738,6 +737,7 @@ function actualDimensions({fx, fy}, dimensions) {
 
 function outerRange(scale) {
   const domain = scale.domain();
+  if (domain.length === 0) return [0, scale.bandwidth()];
   let x1 = scale(domain[0]);
   let x2 = scale(domain[domain.length - 1]);
   if (x2 < x1) [x1, x2] = [x2, x1];

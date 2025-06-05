@@ -15,6 +15,7 @@ export function boxX(
   {
     x = identity,
     y = null,
+    r,
     fill = "#ccc",
     fillOpacity,
     stroke = "currentColor",
@@ -29,7 +30,7 @@ export function boxX(
     ruleY(data, group({x1: loqr1, x2: hiqr2}, {x, y, stroke, strokeOpacity, ...options})),
     barX(data, group({x1: "p25", x2: "p75"}, {x, y, fill, fillOpacity, ...options})),
     tickX(data, group({x: "p50"}, {x, y, stroke, strokeOpacity, strokeWidth, sort, ...options})),
-    dot(data, map({x: oqr}, {x, y, z: y, stroke, strokeOpacity, ...options}))
+    dot(data, map({x: oqr}, {x, y, z: y, r, stroke, strokeOpacity, ...options}))
   );
 }
 
@@ -40,6 +41,7 @@ export function boxY(
   {
     y = identity,
     x = null,
+    r,
     fill = "#ccc",
     fillOpacity,
     stroke = "currentColor",
@@ -54,7 +56,7 @@ export function boxY(
     ruleX(data, group({y1: loqr1, y2: hiqr2}, {x, y, stroke, strokeOpacity, ...options})),
     barY(data, group({y1: "p25", y2: "p75"}, {x, y, fill, fillOpacity, ...options})),
     tickY(data, group({y: "p50"}, {x, y, stroke, strokeOpacity, strokeWidth, sort, ...options})),
-    dot(data, map({y: oqr}, {x, y, z: x, stroke, strokeOpacity, ...options}))
+    dot(data, map({y: oqr}, {x, y, z: x, r, stroke, strokeOpacity, ...options}))
   );
 }
 

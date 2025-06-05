@@ -28,7 +28,7 @@ import {
   mid,
   valueof
 } from "../options.js";
-import {maybeUtcInterval} from "../time.js";
+import {utcInterval} from "../time.js";
 import {basic} from "./basic.js";
 import {
   hasOutput,
@@ -322,7 +322,7 @@ export function maybeThresholds(thresholds, interval, defaultThresholds = thresh
       case "auto":
         return thresholdAuto;
     }
-    return maybeUtcInterval(thresholds);
+    return utcInterval(thresholds);
   }
   return thresholds; // pass array, count, or function to bin.thresholds
 }

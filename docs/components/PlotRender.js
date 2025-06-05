@@ -1,9 +1,12 @@
 import * as Plot from "@observablehq/plot";
 import {h, withDirectives} from "vue";
 
+class Event {}
+
 class Document {
   constructor() {
     this.documentElement = new Element(this, "html");
+    this.defaultView = {Event};
   }
   createElementNS(namespace, tagName) {
     return new Element(this, tagName);
@@ -89,6 +92,12 @@ class Element {
     }
     child.parentNode = this;
     return child;
+  }
+  cloneNode(deep) {
+    const clone = new Element(this.ownerDocument, this.tagName);
+    clone.attributes = {...this.attributes};
+    if (deep) clone.children = this.children.map((child) => child.cloneNode(deep));
+    return clone;
   }
   querySelector() {
     return null;

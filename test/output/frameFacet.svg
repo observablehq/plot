@@ -27,7 +27,7 @@
   <g aria-label="fy-axis label" transform="translate(-76.5,0.5)">
     <text y="0.71em" transform="translate(80,55) rotate(-90)">species</text>
   </g>
-  <g aria-label="x-axis tick" transform="translate(0.5,0)">
+  <g aria-label="x-axis tick" aria-hidden="true" transform="translate(0.5,0)">
     <g fill="none" stroke="currentColor" transform="translate(0,48)">
       <path transform="translate(133.33333333333331,42)" d="M0,0L0,6"></path>
       <path transform="translate(205.55555555555554,42)" d="M0,0L0,6"></path>

@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,0)">
     <path transform="translate(95,700)" d="M0,0L0,6"></path>
     <path transform="translate(165.2,700)" d="M0,0L0,6"></path>
     <path transform="translate(235.4,700)" d="M0,0L0,6"></path>
@@ -32,7 +32,7 @@
   <g aria-label="x-axis label" text-anchor="end" transform="translate(51.5,27.5)">
     <text transform="translate(446,700)">opinion (%) →</text>
   </g>
-  <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,7.5)">
+  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,7.5)">
     <path transform="translate(95,23)" d="M0,0L-6,0"></path>
     <path transform="translate(95,38)" d="M0,0L-6,0"></path>
     <path transform="translate(95,53)" d="M0,0L-6,0"></path>

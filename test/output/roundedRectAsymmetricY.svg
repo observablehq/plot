@@ -1,0 +1,67 @@
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="400" viewBox="0 0 640 400" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style>
+    :where(.plot) {
+      --plot-background: white;
+      display: block;
+      height: auto;
+      height: intrinsic;
+      max-width: 100%;
+    }
+
+    :where(.plot text),
+    :where(.plot tspan) {
+      white-space: pre;
+    }
+  </style>
+  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,43.5)">
+    <path transform="translate(40,23)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,109)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,195)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,281)" d="M0,0L-6,0"></path>
+  </g>
+  <g aria-label="y-axis tick label" text-anchor="end" transform="translate(-8.5,43.5)">
+    <text y="0.32em" transform="translate(40,23)">0</text>
+    <text y="0.32em" transform="translate(40,109)">1</text>
+    <text y="0.32em" transform="translate(40,195)">2</text>
+    <text y="0.32em" transform="translate(40,281)">3</text>
+  </g>
+  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+    <path transform="translate(40,370)" d="M0,0L0,6"></path>
+    <path transform="translate(98,370)" d="M0,0L0,6"></path>
+    <path transform="translate(156,370)" d="M0,0L0,6"></path>
+    <path transform="translate(214,370)" d="M0,0L0,6"></path>
+    <path transform="translate(272,370)" d="M0,0L0,6"></path>
+    <path transform="translate(330,370)" d="M0,0L0,6"></path>
+    <path transform="translate(388,370)" d="M0,0L0,6"></path>
+    <path transform="translate(446,370)" d="M0,0L0,6"></path>
+    <path transform="translate(504,370)" d="M0,0L0,6"></path>
+    <path transform="translate(562,370)" d="M0,0L0,6"></path>
+    <path transform="translate(620,370)" d="M0,0L0,6"></path>
+  </g>
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+    <text y="0.71em" transform="translate(40,370)">0.0</text>
+    <text y="0.71em" transform="translate(98,370)">0.1</text>
+    <text y="0.71em" transform="translate(156,370)">0.2</text>
+    <text y="0.71em" transform="translate(214,370)">0.3</text>
+    <text y="0.71em" transform="translate(272,370)">0.4</text>
+    <text y="0.71em" transform="translate(330,370)">0.5</text>
+    <text y="0.71em" transform="translate(388,370)">0.6</text>
+    <text y="0.71em" transform="translate(446,370)">0.7</text>
+    <text y="0.71em" transform="translate(504,370)">0.8</text>
+    <text y="0.71em" transform="translate(562,370)">0.9</text>
+    <text y="0.71em" transform="translate(620,370)">1.0</text>
+  </g>
+  <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="40" y="20" width="580" height="350"></rect>
+  <g aria-label="rect">
+    <path d="M44,99.54545454545455A74.54545454545455,74.54545454545455 0 0 1 118.54545454545455,25H616A0,0 0 0 1 616,25V107A0,0 0 0 1 616,107H51.45454545454545A7.454545454545454,7.454545454545454 0 0 1 44,99.54545454545455Z"></path>
+  </g>
+  <g aria-label="rect">
+    <path d="M44,111A0,0 0 0 1 44,111H541.4545454545455A74.54545454545455,74.54545454545455 0 0 1 616,185.54545454545456V185.54545454545453A7.454545454545454,7.454545454545454 0 0 1 608.5454545454545,193H44A0,0 0 0 1 44,193Z"></path>
+  </g>
+  <g aria-label="rect">
+    <path d="M44,197A0,0 0 0 1 44,197H608.5454545454545A7.454545454545454,7.454545454545454 0 0 1 616,204.45454545454547V204.45454545454544A74.54545454545455,74.54545454545455 0 0 1 541.4545454545455,279H44A0,0 0 0 1 44,279Z"></path>
+  </g>
+  <g aria-label="rect">
+    <path d="M44,290.45454545454544A7.454545454545454,7.454545454545454 0 0 1 51.45454545454545,283H616A0,0 0 0 1 616,283V365A0,0 0 0 1 616,365H118.54545454545455A74.54545454545455,74.54545454545455 0 0 1 44,290.45454545454544Z"></path>
+  </g>
+</svg>

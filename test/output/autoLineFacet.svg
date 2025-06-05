@@ -60,7 +60,7 @@
   <g aria-label="fy-axis label" transform="translate(37.5,0.5)">
     <text transform="translate(600,624.5) rotate(-90)">industry</text>
   </g>
-  <g aria-label="y-axis tick" transform="translate(0,0.5)">
+  <g aria-label="y-axis tick" aria-hidden="true" transform="translate(0,0.5)">
     <g fill="none" stroke="currentColor" transform="translate(0,0)">
       <path transform="translate(40,66.07054963084497)" d="M0,0L-6,0"></path>
       <path transform="translate(40,34.077112387202625)" d="M0,0L-6,0"></path>
@@ -179,7 +179,7 @@
   <g aria-label="y-axis label" text-anchor="start" transform="translate(-36.5,-16.5)">
     <text y="0.71em" transform="translate(40,20)">↑ unemployed</text>
   </g>
-  <g aria-label="x-axis tick" transform="translate(0.5,0)">
+  <g aria-label="x-axis tick" aria-hidden="true" transform="translate(0.5,0)">
     <g fill="none" stroke="currentColor" transform="translate(0,1131)">
       <path transform="translate(40,98)" d="M0,0L0,6"></path>
       <path transform="translate(151.1183496199783,98)" d="M0,0L0,6"></path>

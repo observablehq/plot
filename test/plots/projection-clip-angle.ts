@@ -8,7 +8,7 @@ export async function projectionClipAngle() {
   return Plot.plot({
     width: 600,
     height: 600,
-    projection: {type: "azimuthal-equidistant", clip: 30, rotate: [0, 90], domain: {type: "Sphere"}},
+    projection: {type: "azimuthal-equidistant", clip: 30, rotate: [0, 89.9], domain: {type: "Sphere"}},
     marks: [Plot.graticule(), Plot.geo(domain, {fill: "currentColor"}), Plot.sphere()]
   });
 }

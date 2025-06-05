@@ -18,17 +18,14 @@ for (const [name, plot] of Object.entries(plots)) {
     reindexStyle(root);
     reindexMarker(root);
     reindexClip(root);
+    reindexPattern(root);
     let expected;
-    let actual = beautify.html(root.outerHTML, {
-      indent_size: 2,
-      inline: ["title", "tspan", "span", "svg", "a", "i"],
-      indent_inner_html: false
-    });
+    let actual = normalizeHtml(root.outerHTML);
     const outfile = path.resolve("./test/output", `${path.basename(name, ".js")}.${ext}`);
     const diffile = path.resolve("./test/output", `${path.basename(name, ".js")}-changed.${ext}`);
 
     try {
-      expected = await fs.readFile(outfile, "utf8");
+      expected = normalizeHtml(await fs.readFile(outfile, "utf8")); // TODO remove after regenerating snapshots
     } catch (error) {
       if (error.code === "ENOENT" && process.env.CI !== "true") {
         console.warn(`! generating ${outfile}`);
@@ -61,6 +58,19 @@ for (const [name, plot] of Object.entries(plots)) {
 
     assert.ok(equal, `${name} must match snapshot`);
   });
+}
+
+function normalizeHtml(html) {
+  return beautify.html(
+    html
+      .replace(/&nbsp;/g, "\xa0") // normalize HTML entities
+      .replace(/\d+\.\d{4,}/g, (d) => +(+d).toFixed(3)), // limit numerical precision
+    {
+      indent_size: 2,
+      inline: ["title", "tspan", "span", "svg", "a", "i"],
+      indent_inner_html: false
+    }
+  );
 }
 
 function reindexStyle(root) {
@@ -101,6 +111,23 @@ function reindexClip(root) {
     node.setAttribute("id", id);
   }
   for (const key of ["clip-path"]) {
+    for (const node of root.querySelectorAll(`[${key}]`)) {
+      let id = node.getAttribute(key).slice(5, -1);
+      if (map.has(id)) node.setAttribute(key, `url(#${map.get(id)})`);
+    }
+  }
+}
+
+function reindexPattern(root) {
+  let index = 0;
+  const map = new Map();
+  for (const node of root.querySelectorAll("[id^=plot-pattern-]")) {
+    let id = node.getAttribute("id");
+    if (map.has(id)) id = map.get(id);
+    else map.set(id, (id = `plot-pattern-${++index}`));
+    node.setAttribute("id", id);
+  }
+  for (const key of ["fill", "stroke"]) {
     for (const node of root.querySelectorAll(`[${key}]`)) {
       let id = node.getAttribute(key).slice(5, -1);
       if (map.has(id)) node.setAttribute(key, `url(#${map.get(id)})`);

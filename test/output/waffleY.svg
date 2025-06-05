@@ -1,0 +1,94 @@
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="400" viewBox="0 0 640 400" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style>
+    :where(.plot) {
+      --plot-background: white;
+      display: block;
+      height: auto;
+      height: intrinsic;
+      max-width: 100%;
+    }
+
+    :where(.plot text),
+    :where(.plot tspan) {
+      white-space: pre;
+    }
+  </style>
+  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(51.5,0)">
+    <path transform="translate(53,370)" d="M0,0L0,6"></path>
+    <path transform="translate(166,370)" d="M0,0L0,6"></path>
+    <path transform="translate(279,370)" d="M0,0L0,6"></path>
+    <path transform="translate(392,370)" d="M0,0L0,6"></path>
+    <path transform="translate(505,370)" d="M0,0L0,6"></path>
+  </g>
+  <g aria-label="x-axis tick label" transform="translate(51.5,9.5)">
+    <text y="0.71em" transform="translate(53,370)">Infants &lt;1</text>
+    <text y="0.71em" transform="translate(166,370)">Children &lt;11</text>
+    <text y="0.71em" transform="translate(279,370)">Teens 12-17</text>
+    <text y="0.71em" transform="translate(392,370)">Adults 18+</text>
+    <text y="0.71em" transform="translate(505,370)">Elderly 65+</text>
+  </g>
+  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+    <path transform="translate(40,370)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,346.7426407070237)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,323.48528141404745)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,300.2279221210712)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,276.9705628280949)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,253.7132035351186)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,230.45584424214235)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,207.19848494916607)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,183.9411256561898)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,160.68376636321352)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,137.42640707023725)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,114.16904777726096)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,90.9116884842847)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,67.65432919130842)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,44.39696989833213)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,21.139610605355855)" d="M0,0L-6,0"></path>
+  </g>
+  <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
+    <text y="0.32em" transform="translate(40,370)">0</text>
+    <text y="0.32em" transform="translate(40,346.7426407070237)">2</text>
+    <text y="0.32em" transform="translate(40,323.48528141404745)">4</text>
+    <text y="0.32em" transform="translate(40,300.2279221210712)">6</text>
+    <text y="0.32em" transform="translate(40,276.9705628280949)">8</text>
+    <text y="0.32em" transform="translate(40,253.7132035351186)">10</text>
+    <text y="0.32em" transform="translate(40,230.45584424214235)">12</text>
+    <text y="0.32em" transform="translate(40,207.19848494916607)">14</text>
+    <text y="0.32em" transform="translate(40,183.9411256561898)">16</text>
+    <text y="0.32em" transform="translate(40,160.68376636321352)">18</text>
+    <text y="0.32em" transform="translate(40,137.42640707023725)">20</text>
+    <text y="0.32em" transform="translate(40,114.16904777726096)">22</text>
+    <text y="0.32em" transform="translate(40,90.9116884842847)">24</text>
+    <text y="0.32em" transform="translate(40,67.65432919130842)">26</text>
+    <text y="0.32em" transform="translate(40,44.39696989833213)">28</text>
+    <text y="0.32em" transform="translate(40,21.139610605355855)">30</text>
+  </g>
+  <g aria-label="y-axis label" text-anchor="start" transform="translate(-36.5,-16.5)">
+    <text y="0.71em" transform="translate(40,20)">↑ Frequency (thousands)</text>
+  </g>
+  <g aria-label="waffle">
+    <pattern width="10.465811681839325" height="10.465811681839325" patternUnits="userSpaceOnUse" id="plot-pattern-1">
+      <rect x="0.5" y="0.5" width="9.465811681839325" height="9.465811681839325" fill="rgb(110, 64, 170)"></rect>
+    </pattern>
+    <pattern width="10.465811681839325" height="10.465811681839325" patternUnits="userSpaceOnUse" id="plot-pattern-2">
+      <rect x="0.5" y="0.5" width="9.465811681839325" height="9.465811681839325" fill="rgb(65, 125, 224)"></rect>
+    </pattern>
+    <pattern width="10.465811681839325" height="10.465811681839325" patternUnits="userSpaceOnUse" id="plot-pattern-3">
+      <rect x="0.5" y="0.5" width="9.465811681839325" height="9.465811681839325" fill="rgb(26, 199, 194)"></rect>
+    </pattern>
+    <pattern width="10.465811681839325" height="10.465811681839325" patternUnits="userSpaceOnUse" id="plot-pattern-4">
+      <rect x="0.5" y="0.5" width="9.465811681839325" height="9.465811681839325" fill="rgb(64, 243, 115)"></rect>
+    </pattern>
+    <pattern width="10.465811681839325" height="10.465811681839325" patternUnits="userSpaceOnUse" id="plot-pattern-5">
+      <rect x="0.5" y="0.5" width="9.465811681839325" height="9.465811681839325" fill="rgb(175, 240, 91)"></rect>
+    </pattern>
+    <path transform="translate(56.90384743172304,370)" d="M0,0L0,0L0,0L0,0L0,0L94.19230513655393,0L94.19230513655393,-188.38461027310785L31.397435045517973,-188.38461027310785L31.397435045517973,-195.39670409994005L20.93162336367865,-195.39670409994005L20.93162336367865,-198.85042195494717L0,-198.85042195494717Z" fill="url(#plot-pattern-1)"></path>
+    <path transform="translate(169.90384743172302,370)" d="M0,0L0,0L0,0L0,0L0,0L94.19230513655393,0L94.19230513655393,-345.37178550069774L41.8632467273573,-345.37178550069774L41.8632467273573,-355.62828094890045L31.397435045517973,-355.62828094890045L31.397435045517973,-355.837597182537L0,-355.837597182537Z" fill="url(#plot-pattern-2)"></path>
+    <path transform="translate(282.903847431723,370)" d="M0,0L0,0L0,0L0,0L0,0L94.19230513655393,0L94.19230513655393,-230.24785700046516L62.794870091035946,-230.24785700046516L62.794870091035946,-235.8993953086583L52.32905840919663,-235.8993953086583L52.32905840919663,-240.71366868230447L0,-240.71366868230447Z" fill="url(#plot-pattern-3)"></path>
+    <path transform="translate(395.903847431723,370)" d="M0,0L0,0L0,0L0,0L0,0L94.19230513655393,0L94.19230513655393,-136.05555186391123L83.7264934547146,-136.05555186391123L83.7264934547146,-141.91640640574127L73.26068177287527,-141.91640640574127L73.26068177287527,-146.52136354575055L0,-146.52136354575055Z" fill="url(#plot-pattern-4)"></path>
+    <path transform="translate(508.903847431723,370)" d="M0,0L0,0L0,0L0,0L0,0L94.19230513655393,0L94.19230513655393,-136.05555186391123L83.7264934547146,-136.05555186391123L83.7264934547146,-141.91640640574127L73.26068177287527,-141.91640640574127L73.26068177287527,-146.52136354575055L0,-146.52136354575055Z" fill="url(#plot-pattern-5)"></path>
+  </g>
+  <g aria-label="rule" stroke="currentColor" transform="translate(0,0.5)">
+    <line x1="40" x2="620" y1="370" y2="370"></line>
+  </g>
+</svg>
