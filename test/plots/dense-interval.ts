@@ -14,3 +14,27 @@ export async function denseIntervalLineY() {
     marks: [Plot.lineY(aapl, {x: "Date", reduce: "count", interval: "month"})]
   });
 }
+
+export async function denseIntervalAreaX() {
+  return Plot.areaX(
+    {length: 1000},
+    {
+      y: d3.randomNormal.source(d3.randomLcg(42))(),
+      reduce: "count",
+      interval: 0.5,
+      curve: "basis"
+    }
+  ).plot({width: 200});
+}
+
+export async function denseIntervalLineX() {
+  return Plot.lineX(
+    {length: 1000},
+    {
+      y: d3.randomNormal.source(d3.randomLcg(42))(),
+      reduce: "count",
+      interval: 0.5,
+      curve: "basis"
+    }
+  ).plot({width: 200});
+}
