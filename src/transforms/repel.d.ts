@@ -1,8 +1,8 @@
 import type {ChannelValueSpec} from "../channel.js";
 import type {Initialized} from "./basic.js";
 
-/** Options for the occlusion transform. */
-export interface OcclusionOptions {
+/** Options for the repel transform. */
+export interface RepelOptions {
   /**
    * A constant in pixels describing the minimum distance between two nodes.
    * Defaults to 11.
@@ -10,8 +10,8 @@ export interface OcclusionOptions {
   minDistance?: number;
 }
 
-/** Options for the occlusionX transform. */
-export interface OcclusionXOptions extends OcclusionOptions {
+/** Options for the repelX transform. */
+export interface RepelXOptions extends RepelOptions {
   /**
    * The vertical position. Nodes sharing the same vertical position will be
    * rearranged horizontally together.
@@ -19,8 +19,8 @@ export interface OcclusionXOptions extends OcclusionOptions {
   y?: ChannelValueSpec;
 }
 
-/** Options for the occlusionY transform. */
-export interface OcclusionYOptions extends OcclusionOptions {
+/** Options for the repelY transform. */
+export interface RepelYOptions extends RepelOptions {
   /**
    * The horizontal position. Nodes sharing the same horizontal position will be
    * rearranged vertically together.
@@ -34,14 +34,11 @@ export interface OcclusionYOptions extends OcclusionOptions {
  * distance, and their visual order preserved. Nodes that share the same
  * position and text are fused together.
  *
- * If *occlusionOptions* is a number, it is shorthand for the occlusion
+ * If *repelOptions* is a number, it is shorthand for the repel
  * **minDistance**.
  */
-export function occlusionX<T>(options?: T & OcclusionXOptions): Initialized<T>;
-export function occlusionX<T>(
-  occlusionOptions?: OcclusionXOptions | OcclusionXOptions["minDistance"],
-  options?: T
-): Initialized<T>;
+export function repelX<T>(options?: T & RepelXOptions): Initialized<T>;
+export function repelX<T>(repelOptions?: RepelXOptions | RepelXOptions["minDistance"], options?: T): Initialized<T>;
 
 /**
  * Given a **y** position channel, rearranges the values in such a way that the
@@ -49,11 +46,8 @@ export function occlusionX<T>(
  * distance, and their visual order preserved. Nodes that share the same
  * position and text are fused together.
  *
- * If *occlusionOptions* is a number, it is shorthand for the occlusion
+ * If *repelOptions* is a number, it is shorthand for the repel
  * **minDistance**.
  */
-export function occlusionY<T>(options?: T & OcclusionYOptions): Initialized<T>;
-export function occlusionY<T>(
-  dodgeOptions?: OcclusionYOptions | OcclusionYOptions["minDistance"],
-  options?: T
-): Initialized<T>;
+export function repelY<T>(options?: T & RepelYOptions): Initialized<T>;
+export function repelY<T>(dodgeOptions?: RepelYOptions | RepelYOptions["minDistance"], options?: T): Initialized<T>;

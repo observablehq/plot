@@ -1,7 +1,7 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 
-export async function occlusionXPaths() {
+export async function repelXPaths() {
   const random = d3.randomNormal.source(d3.randomLcg(42))(5, 2);
   const data = [];
   const points = [];
@@ -12,10 +12,10 @@ export async function occlusionXPaths() {
   return Plot.plot({
     x: {domain: [0, 10]},
     marks: [
-      Plot.line(points, Plot.occlusionX(6, {x: "x", z: "e", y: "y", strokeOpacity: 0.3, strokeWidth: 0.5})),
+      Plot.line(points, Plot.repelX(6, {x: "x", z: "e", y: "y", strokeOpacity: 0.3, strokeWidth: 0.5})),
       Plot.dot(
         points,
-        Plot.occlusionX(
+        Plot.repelX(
           {minDistance: 6},
           {x: "x", r: 2, fill: "currentColor", fillOpacity: (d) => (d.y === d.e ? 1 : 0), y: "y"}
         )
@@ -24,7 +24,7 @@ export async function occlusionXPaths() {
   });
 }
 
-export async function occlusionYPaths() {
+export async function repelYPaths() {
   const random = d3.randomLcg(42);
   const data = [];
   const points = [];
@@ -39,8 +39,8 @@ export async function occlusionYPaths() {
     y: {inset: 25},
     color: {scheme: "Observable10"},
     marks: [
-      Plot.line(points, Plot.occlusionY({x: "x", stroke: "e", y: "y", curve: "basis", strokeWidth: 1})),
-      Plot.dot(points, Plot.occlusionY({x: "x", fill: "e", r: (d) => d.x === d.e, y: "y"}))
+      Plot.line(points, Plot.repelY({x: "x", stroke: "e", y: "y", curve: "basis", strokeWidth: 1})),
+      Plot.dot(points, Plot.repelY({x: "x", fill: "e", r: (d) => d.x === d.e, y: "y"}))
     ]
   });
 }
@@ -50,7 +50,7 @@ async function loadSymbol(name) {
   return d3.csv(`data/${name}.csv`, (d) => ({Symbol, ...d3.autoType(d)}));
 }
 
-export async function occlusionStocks() {
+export async function repelStocks() {
   const stocks = (await Promise.all(["aapl", "amzn", "goog", "ibm"].map(loadSymbol))).flat();
   return Plot.plot({
     insetTop: 4,
@@ -62,7 +62,7 @@ export async function occlusionStocks() {
       Plot.lineY(stocks, {x: "Date", y: "Close", stroke: "Symbol"}),
       Plot.text(
         stocks,
-        Plot.occlusionY(
+        Plot.repelY(
           Plot.binX(
             {
               x: "first",
@@ -87,7 +87,7 @@ export async function occlusionStocks() {
       ),
       Plot.text(
         stocks,
-        Plot.occlusionY(
+        Plot.repelY(
           Plot.selectMaxX({
             dx: 4,
             textAnchor: "start",
@@ -104,7 +104,7 @@ export async function occlusionStocks() {
   });
 }
 
-export async function occlusionCancer() {
+export async function repelCancer() {
   const cancer = await d3.csv<any>("data/cancer.csv", d3.autoType);
   return Plot.plot({
     width: 460,
@@ -122,7 +122,7 @@ export async function occlusionCancer() {
       Plot.line(cancer, {x: "year", y: "survival", z: "name", strokeWidth: 1}),
       Plot.text(
         cancer,
-        Plot.occlusionY(
+        Plot.repelY(
           Plot.group(
             {
               text: "first"
@@ -144,7 +144,7 @@ export async function occlusionCancer() {
       ),
       Plot.text(
         cancer,
-        Plot.occlusionY({
+        Plot.repelY({
           filter: (d) => d.year === "20 Year",
           text: "name",
           textAnchor: "start",

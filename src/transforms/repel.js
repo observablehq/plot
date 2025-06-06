@@ -2,16 +2,16 @@ import {bisector, group} from "d3";
 import {valueof} from "../options.js";
 import {initializer} from "./basic.js";
 
-export function occlusionX(occlusionOptions = {}, options = {}) {
-  if (arguments.length === 1) [occlusionOptions, options] = mergeOptions(occlusionOptions);
-  const {minDistance = 11} = maybeDistance(occlusionOptions);
-  return occlusion("x", "y", minDistance, options);
+export function repelX(repelOptions = {}, options = {}) {
+  if (arguments.length === 1) [repelOptions, options] = mergeOptions(repelOptions);
+  const {minDistance = 11} = maybeDistance(repelOptions);
+  return repel("x", "y", minDistance, options);
 }
 
-export function occlusionY(occlusionOptions = {}, options = {}) {
-  if (arguments.length === 1) [occlusionOptions, options] = mergeOptions(occlusionOptions);
-  const {minDistance = 11} = maybeDistance(occlusionOptions);
-  return occlusion("y", "x", minDistance, options);
+export function repelY(repelOptions = {}, options = {}) {
+  if (arguments.length === 1) [repelOptions, options] = mergeOptions(repelOptions);
+  const {minDistance = 11} = maybeDistance(repelOptions);
+  return repel("y", "x", minDistance, options);
 }
 
 function maybeDistance(minDistance) {
@@ -21,7 +21,7 @@ function mergeOptions({minDistance, ...options}) {
   return [{minDistance}, options];
 }
 
-function occlusion(k, h, minDistance, options) {
+function repel(k, h, minDistance, options) {
   const sk = k[0]; // e.g., the scale for x1 is x
   if (typeof minDistance !== "number" || !(minDistance >= 0)) throw new Error(`unsupported minDistance ${minDistance}`);
   if (minDistance === 0) return options;

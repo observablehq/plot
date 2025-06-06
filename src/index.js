@@ -48,7 +48,7 @@ export {find, group, groupX, groupY, groupZ} from "./transforms/group.js";
 export {hexbin} from "./transforms/hexbin.js";
 export {normalize, normalizeX, normalizeY} from "./transforms/normalize.js";
 export {map, mapX, mapY} from "./transforms/map.js";
-export {occlusionX, occlusionY} from "./transforms/occlusion.js";
+export {repelX, repelY} from "./transforms/repel.js";
 export {shiftX, shiftY} from "./transforms/shift.js";
 export {window, windowX, windowY} from "./transforms/window.js";
 export {select, selectFirst, selectLast, selectMaxX, selectMaxY, selectMinX, selectMinY} from "./transforms/select.js";
