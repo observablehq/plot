@@ -45,7 +45,7 @@ export class Tip extends Mark {
       frameAnchor,
       format,
       textAnchor = "start",
-      textOverflow,
+      textOverflow = "ellipsis",
       textPadding = 8,
       title,
       pointerSize = 12,
@@ -90,7 +90,7 @@ export class Tip extends Mark {
     const mark = this;
     const {x, y, fx, fy} = scales;
     const {ownerSVGElement: svg, document} = context;
-    const {anchor, monospace, lineHeight, lineWidth} = this;
+    const {anchor, monospace, lineHeight, lineWidth, textOverflow} = this;
     const {textPadding: r, pointerSize: m, pathFilter} = this;
     const {marginTop, marginLeft} = dimensions;
 
@@ -185,13 +185,11 @@ export class Tip extends Mark {
         title = value.trim();
         value = "";
       } else {
-        if (label || (!value && !swatch)) value = " " + value;
-        const [k] = cut(value, w - widthof(label), widthof, ee);
-        if (k >= 0) {
-          // value is truncated
-          title = value.trim();
-          value = value.slice(0, k).trimEnd() + ellipsis;
-        }
+        const space = label || (!value && !swatch) ? " " : "";
+        const text = clipper({monospace, lineWidth: lineWidth - widthof(label + space) / 100, textOverflow})(value);
+        // value is truncated
+        if (text !== value) title = value.trim();
+        value = space + text;
       }
       const line = selection.append("tspan").attr("x", 0).attr("dy", `${lineHeight}em`).text("\u200b"); // zwsp for double-click
       if (label) line.append("tspan").attr("font-weight", "bold").text(label);
