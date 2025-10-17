@@ -115,6 +115,14 @@ export function createScaleQ(
     scale.interpolate(interpolate);
   }
 
+  // If the zero option is not specified, then implicitly extend the domain to
+  // include zero if the minimum is less than 7% of the spread (and similarly
+  // for negative domains).
+  if (zero === undefined && type === "linear") {
+    const [min, max] = extent(domain);
+    zero = min > 0 ? min < 0.07 * (max - min) : max < 0 ? max > 0.07 * (min - max) : false;
+  }
+
   // If a zero option is specified, we assume that the domain is numeric, and we
   // want to ensure that the domain crosses zero. However, note that the domain
   // may be reversed (descending) so we shouldn’t assume that the first value is
