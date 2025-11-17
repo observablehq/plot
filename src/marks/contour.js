@@ -1,7 +1,7 @@
-import {blur2, contours, geoPath, max, min, nice, range, ticks, thresholdSturges} from "d3";
+import {blur2, contours, geoPath, max, min, nice, range, ticks, thresholdSturges, scaleUtc} from "d3";
 import {createChannels} from "../channel.js";
 import {create} from "../context.js";
-import {labelof, identity, arrayify, map} from "../options.js";
+import {labelof, identity, arrayify, map, isTemporal} from "../options.js";
 import {applyPosition} from "../projection.js";
 import {applyChannelStyles, applyDirectStyles, applyIndirectStyles, applyTransform, styles} from "../style.js";
 import {initializer} from "../transforms/basic.js";
@@ -115,7 +115,8 @@ function contourGeometry({thresholds, interval, ...options}) {
     const {pixelSize: k, width: w = Math.round(Math.abs(dx) / k), height: h = Math.round(Math.abs(dy) / k)} = this;
     const kx = w / dx;
     const ky = h / dy;
-    const V = channels.value.value;
+    const temporal = isTemporal(channels.value.value);
+    const V = temporal && this.blur > 0 ? Float64Array.from(channels.value.value) : channels.value.value;
     const VV = []; // V per facet
 
     // Interpolate the raster grid, as needed.
@@ -149,7 +150,7 @@ function contourGeometry({thresholds, interval, ...options}) {
     if (this.blur > 0) for (const V of VV) blur2({data: V, width: w, height: h}, this.blur);
 
     // Compute the contour thresholds.
-    const T = maybeTicks(thresholds, V, ...finiteExtent(VV));
+    const T = maybeTicks(thresholds, V, ...finiteExtent(VV), temporal);
     if (T === null) throw new Error(`unsupported thresholds: ${thresholds}`);
 
     // Compute the (maybe faceted) contours.
@@ -187,10 +188,11 @@ function contourGeometry({thresholds, interval, ...options}) {
 // thresholds across facets. When an interval is used, note that the lowest
 // threshold should be below (or equal) to the lowest value, or else some data
 // will be missing.
-function maybeTicks(thresholds, V, min, max) {
+function maybeTicks(thresholds, V, min, max, temporal) {
   if (typeof thresholds?.range === "function") return thresholds.range(thresholds.floor(min), max);
   if (typeof thresholds === "function") thresholds = thresholds(V, min, max);
   if (typeof thresholds !== "number") return arrayify(thresholds);
+  if (temporal) return scaleUtc().domain([min, max]).nice(thresholds).ticks(thresholds);
   const tz = ticks(...nice(min, max, thresholds), thresholds);
   while (tz[tz.length - 1] >= max) tz.pop();
   while (tz[1] < min) tz.shift();
