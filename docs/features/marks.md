@@ -510,6 +510,7 @@ All marks support the following optional channels:
 * **title** - an accessible, short-text description (a string of text, possibly with newlines)
 * **href** - a URL to link to
 * **ariaLabel** - a short label representing the value in the accessibility tree
+* **dataset** - the [dataset property](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/dataset) <VersionBadge pr="2295" />
 
 The **fill**, **fillOpacity**, **stroke**, **strokeWidth**, **strokeOpacity**, and **opacity** options can be specified as either channels or constants. When the fill or stroke is specified as a function or array, it is interpreted as a channel; when the fill or stroke is specified as a string, it is interpreted as a constant if a valid CSS color and otherwise it is interpreted as a column name for a channel. Similarly when the fill opacity, stroke opacity, object opacity, stroke width, or radius is specified as a number, it is interpreted as a constant; otherwise it is interpreted as a channel.
 
@@ -533,7 +534,9 @@ In addition to functions of data, arrays, and column names, channel values can b
 Plot.dot(numbers, {x: {transform: (data) => data}})
 ```
 
-The **title**, **href**, and **ariaLabel** options can *only* be specified as channels. When these options are specified as a string, the string refers to the name of a column in the mark’s associated data. If you’d like every instance of a particular mark to have the same value, specify the option as a function that returns the desired value, *e.g.* `() => "Hello, world!"`.
+The **title**, **href**, **ariaLabel**, and **dataset** options can *only* be specified as channels. When these options are specified as a string, the string refers to the name of a column in the mark’s associated data. If you’d like every instance of a particular mark to have the same value, specify the option as a function that returns the desired value, *e.g.* `() => "Hello, world!"`.
+
+When the **dataset** channel contains boolean, number, string or date values, they are applied as a `data-{key}` property, where the key is the channel’s label if present, and otherwise defaults to "value". When the values are objects, each entry is applied individually as a `data-{key}` property. Values are coerced to strings, with dates in [short ISO format](https://github.com/mbostock/isoformat). Keys must follow the naming specification for [custom data attributes](https://developer.mozilla.org/en-US/docs/Learn/HTML/Howto/Use_data_attributes).
 
 For marks that support the **frameAnchor** option, it may be specified as one of the four sides (*top*, *right*, *bottom*, *left*), one of the four corners (*top-left*, *top-right*, *bottom-right*, *bottom-left*), or the *middle* of the frame.
 
