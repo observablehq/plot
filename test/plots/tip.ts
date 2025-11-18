@@ -223,6 +223,13 @@ export async function tipRaster() {
   });
 }
 
+export async function tipRasterDense() {
+  const volcano = await d3.json<any>("data/volcano.json");
+  return Plot.plot({
+    marks: [Plot.raster(volcano.values, {width: volcano.width, height: volcano.height, tip: true}), Plot.frame()]
+  });
+}
+
 export async function tipRule() {
   const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
   return Plot.ruleX(penguins, {x: "body_mass_g", tip: true}).plot();

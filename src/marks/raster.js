@@ -7,6 +7,9 @@ import {Mark} from "../mark.js";
 import {applyAttr, applyDirectStyles, applyIndirectStyles, applyTransform, impliedString} from "../style.js";
 import {initializer} from "../transforms/basic.js";
 
+// A hint for the pointer interaction…
+const singleton = {singleton: true};
+
 const defaults = {
   ariaLabel: "raster",
   stroke: null,
@@ -65,10 +68,10 @@ export class AbstractRaster extends Mark {
       {
         x: {value: x, scale: "x", optional: true},
         y: {value: y, scale: "y", optional: true},
-        x1: {value: x1 == null ? null : [x1], scale: "x", optional: true, filter: null},
-        y1: {value: y1 == null ? null : [y1], scale: "y", optional: true, filter: null},
-        x2: {value: x2 == null ? null : [x2], scale: "x", optional: true, filter: null},
-        y2: {value: y2 == null ? null : [y2], scale: "y", optional: true, filter: null},
+        x1: {value: x1 == null ? null : [x1], scale: "x", optional: true, filter: null, hint: singleton},
+        y1: {value: y1 == null ? null : [y1], scale: "y", optional: true, filter: null, hint: singleton},
+        x2: {value: x2 == null ? null : [x2], scale: "x", optional: true, filter: null, hint: singleton},
+        y2: {value: y2 == null ? null : [y2], scale: "y", optional: true, filter: null, hint: singleton},
         ...channels
       },
       options,
