@@ -354,6 +354,7 @@ The following named reducers are supported:
 * *first* - the first value, in input order
 * *last* - the last value, in input order
 * *count* - the number of elements (frequency)
+the count or sum normalized by series (*z*)
 * *sum* - the sum of values
 * *proportion* - the sum proportional to the overall total (weighted frequency)
 * *proportion-facet* - the sum proportional to the facet total

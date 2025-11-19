@@ -8,7 +8,7 @@ export async function athletesSportWeight() {
     grid: true,
     color: {scheme: "YlGnBu", zero: true},
     marks: [
-      Plot.barX(athletes, Plot.binX({fill: "proportion-facet"}, {x: "weight", fy: "sport", thresholds: 60})),
+      Plot.barX(athletes, Plot.binX({fill: "density"}, {x: "weight", fy: "sport", thresholds: 60})),
       Plot.frame({anchor: "bottom", facetAnchor: "bottom"})
     ]
   });
