@@ -158,6 +158,8 @@ export function plot(options = {}) {
   context.ownerSVGElement = svg;
   context.className = className;
   context.projection = createProjection(options, subdimensions);
+  svg.setAttributeNS("http://www.w3.org/2000/xmlns/", "xmlns", "http://www.w3.org/2000/svg");
+  svg.setAttributeNS("http://www.w3.org/2000/xmlns/", "xmlns:xlink", "http://www.w3.org/1999/xlink");
 
   // A path generator for marks that want to draw GeoJSON.
   context.path = function () {
