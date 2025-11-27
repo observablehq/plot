@@ -11,6 +11,7 @@ import {frame} from "./frame.js";
 import {line, lineX, lineY} from "./line.js";
 import {rect, rectX, rectY} from "./rect.js";
 import {ruleX, ruleY} from "./rule.js";
+import {boxX, boxY} from "./box.js";
 
 export function autoSpec(data, options) {
   options = normalizeOptions(options);
@@ -139,6 +140,10 @@ export function autoSpec(data, options) {
           : Y && isNumeric(Y) && !(X && isNumeric(X))
           ? barY // if x is temporal, treat as ordinal
           : cell;
+      colorMode = "fill";
+      break;
+    case "box":
+      markImpl = X && isOrdinal(X) ? boxY : boxX;
       colorMode = "fill";
       break;
     default:
@@ -359,6 +364,8 @@ const impls = {
   rectX,
   rectY,
   cell,
+  boxX,
+  boxY,
   bin,
   binX,
   binY,
