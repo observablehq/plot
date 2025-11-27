@@ -92,7 +92,10 @@ function legendItems(scale, options = {}, swatch) {
     swatchSize = 15,
     swatchWidth = swatchSize,
     swatchHeight = swatchSize,
-    marginLeft = 0,
+    marginTop,
+    marginBottom,
+    marginLeft,
+    marginRight,
     className,
     style,
     width
@@ -166,7 +169,6 @@ function legendItems(scale, options = {}, swatch) {
         `:where(.${className}-swatches) {
   font-family: system-ui, sans-serif;
   font-size: 10px;
-  margin-bottom: 0.5em;
 }
 :where(.${className}-swatch > svg) {
   margin-right: 0.5em;
@@ -175,6 +177,9 @@ function legendItems(scale, options = {}, swatch) {
 ${extraStyle}`
       )
     )
+    .style("margin-top", marginTop ? `${+marginTop}px` : null)
+    .style("margin-right", marginRight ? `${+marginRight}px` : null)
+    .style("margin-bottom", `${marginBottom === undefined ? "0.5em" : `${+marginBottom}px`}`)
     .style("margin-left", marginLeft ? `${+marginLeft}px` : null)
     .style("width", width === undefined ? null : `${+width}px`)
     .style("font-variant", impliedString(fontVariant, "normal"))
