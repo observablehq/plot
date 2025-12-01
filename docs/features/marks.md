@@ -547,6 +547,8 @@ All marks support the following [transform](./transforms.md) options:
 
 The **sort** option, when not specified as a channel value (such as a field name or an accessor function), can also be used to [impute ordinal scale domains](./scales.md#sort-mark-option).
 
+The **render** option allows to override or extend the default mark’s [rendering](./lifecycle.md#rendering-marks) method.
+
 ### Insets
 
 Rect-like marks support insets: a positive inset moves the respective side in (towards the opposing side), whereas a negative inset moves the respective side out (away from the opposing side). Insets are specified in pixels using the following options:
