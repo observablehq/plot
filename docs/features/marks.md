@@ -547,6 +547,8 @@ All marks support the following [transform](./transforms.md) options:
 
 The **sort** option, when not specified as a channel value (such as a field name or an accessor function), can also be used to [impute ordinal scale domains](./scales.md#sort-mark-option).
 
+The **render** option allows to override or extend the default mark’s [rendering](#rendering) method.
+
 ### Insets
 
 Rect-like marks support insets: a positive inset moves the respective side in (towards the opposing side), whereas a negative inset moves the respective side out (away from the opposing side). Insets are specified in pixels using the following options:
@@ -588,3 +590,144 @@ Plot.marks(
 ```
 
 A convenience method for composing a mark from a series of other marks. Returns an array of marks that implements the *mark*.plot function. See the [box mark](../marks/box.md) implementation for an example.
+
+## Rendering
+
+To draw the visual representation of a mark, Plot calls its render function and inserts the returned SVG element (if any) in the chart. This function is called for each non-empty facet. It may also be called repeatedly by interactions, for example when the [pointer](../interactions/pointer.md) transform needs to draw the highlighted data point after a mouse move.
+
+:::warning
+This is a low-level interface. We recommend using higher-level options, such as [data transforms](./transforms.md), when possible.
+:::
+
+After all the marks have been initialized, the scales computed and applied to the channels, Plot calls the mark’s render function with the following five arguments, for each facet:
+
+* *index*: the index of data to draw on this facet
+* *scales*: the scale functions and descriptors
+* *values*: the scaled and raw channels
+* *dimensions*: the dimensions of the facet
+* *context*: the context
+
+The render function must return a single SVG node—or a nullish value if there is no output. For a typical mark, like dot, it might return a [G element](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/g), with common properties reflecting, say, a constant stroke or fill color; this group will have children [circle](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/circle) elements for each data point, with individual properties reflecting, say, a variable radius.
+
+You can override or extend this function by specifying a function as the mark’s **render** option. Plot calls that function with the mark as *this* and, in addition to the five arguments listed above, a sixth argument:
+
+* *next*: the next render method in the chain
+
+The first argument, *index*, is an array of indices representing the valid points to be drawn in the current facet.
+
+The *scales* object contains the scale functions, indexed by name, and an additional scales property with the scales descriptors, also indexed by name.
+
+For example, the following code will log the color associated with the Torgersen category ("#e15759") and the [instantiated color scale object](./plots.md#plot_scale); as it returns undefined, it will not render anything to the chart.
+
+```js
+Plot.dot(penguins, {
+  x: "culmen_length_mm",
+  y: "culmen_depth_mm",
+  fill: "island",
+  render(index, scales) {
+    console.log(scales.color("Torgersen")); // "#e15759"
+    console.log(scales.scales.color); // {type: "ordinal", …}
+  }
+}).plot()
+```
+
+The *values* object contains the scaled channels, indexed by name, and an additional channels property with the unscaled channels, also indexed by name. For example:
+
+```js
+Plot.dot(penguins, {
+  x: "culmen_length_mm",
+  y: "culmen_depth_mm",
+  fx: "species",
+  fill: "island",
+  render(index, scales, values) {
+    const i = index[0];
+    console.log(i, values.fill[i], values.channels.fill.value[i]);
+  }
+}).plot()
+```
+
+will output the following three lines to the console, with each line containing the index of the first penguin in the current facet, its fill color, and the underlying (unscaled) category:
+
+```js
+0 '#e15759' 'Torgersen'
+152 '#f28e2c' 'Dream'
+220 '#4e79a7' 'Biscoe'
+```
+
+The *dimensions* object contains the marginTop, marginRight, marginLeft,marginBottom, and width and height of the chart. For example, to draw an ellipse that extends to the edges:
+
+```js
+Plot.plot({
+  marks: [
+    function (index, scales, values, dimensions, context) {
+      const e = context.document.createElementNS("http://www.w3.org/2000/svg", "ellipse");
+      e.setAttribute("rx", (dimensions.width - dimensions.marginLeft - dimensions.marginRight) / 2);
+      e.setAttribute("ry", (dimensions.height - dimensions.marginTop - dimensions.marginBottom) / 2);
+      e.setAttribute("cx", (dimensions.width + dimensions.marginLeft - dimensions.marginRight) / 2);
+      e.setAttribute("cy", (dimensions.height + dimensions.marginTop - dimensions.marginBottom) / 2);
+      e.setAttribute("fill", "red");
+      return e;
+    }
+  ]
+})
+```
+
+The *context* contains several useful globals:
+* document - the [document object](https://developer.mozilla.org/en-US/docs/Web/API/Document)
+* ownerSVGElement - the chart’s bare svg element
+* className - the [class name](./plots.md#other-options) of the chart (*e.g.*, "plot-d6a7b5")
+* clip - the top-level [clip](./plots.md#other-options) option (to use when the mark’s clip option is undefined)
+* projection - the [projection](./projections.md) stream, if any
+* dispatchValue - sets the chart’s value and dispatches an input event if the value has changed; useful for interactive marks
+* getMarkState - read a mark’s index and channels
+* filterFacets - compute the facets for arbitrary data (for use in an [initializer](./transforms#initializer))
+
+:::tip
+When you write a custom mark, use *context*.document to allow your code to run in different environments, such as a server-side rendering with jsdom.
+:::
+
+The sixth argument, *next*, is a function that can be called to continue the render chain. For example, if you wish to animate a mark to fade in, you can set the render option to a function that calls next to render the mark as usual, then immediately sets its opacity to 0, and brings it to life with a [D3 transition](https://d3js.org/d3-transition):
+
+```js
+Plot.dot(penguins, {
+  x: "culmen_length_mm",
+  y: "culmen_depth_mm",
+  fill: "island",
+  render(index, scales, values, dimensions, context, next) {
+    const g = next(index, scales, values, dimensions, context);
+    d3.select(g)
+      .selectAll("circle")
+        .style("opacity", 0)
+      .transition()
+      .delay(() => Math.random() * 5000)
+        .style("opacity", 1);
+    return g;
+  }
+}).plot()
+```
+
+:::info
+Note that Plot’s marks usually set the attributes of the nodes. As styles have precedence over attributes, it is much simpler to customize the output with [CSS](https://developer.mozilla.org/en-US/docs/Web/CSS), when possible, than with a custom render function.
+:::
+
+In this chart, we render the dots one by one:
+```js
+Plot.dot(penguins, {
+  x: "culmen_length_mm",
+  y: "culmen_depth_mm",
+  fill: "island",
+  render(index, scales, values, dimensions, context, next) {
+    let node = next(index, scales, values, dimensions, context);
+    let k = 0;
+    requestAnimationFrame(function draw() {
+      const newNode = next(index.slice(0, ++k), scales, values, dimensions, context);
+      node.replaceWith(newNode);
+      node = newNode;
+      if (node.isConnected && k < index.length) {
+        requestAnimationFrame(draw);
+      }
+    });
+    return node;
+  }
+}).plot()
+```
