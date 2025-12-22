@@ -80,12 +80,10 @@ export const singleton = [null]; // for data-less decoration marks, e.g. frame
 export const field = (name) => (d) => { const v = d[name]; return v === undefined && d.type === "Feature" ? d.properties?.[name] : v; }; // prettier-ignore
 export const indexOf = {transform: range};
 export const identity = {transform: (d) => d};
-export const zero = () => 0;
 export const one = () => 1;
 export const yes = () => true;
 export const string = (x) => (x == null ? x : `${x}`);
 export const number = (x) => (x == null ? x : +x);
-export const boolean = (x) => (x == null ? x : !!x);
 export const first = (x) => (x ? x[0] : undefined);
 export const second = (x) => (x ? x[1] : undefined);
 export const third = (x) => (x ? x[2] : undefined);
@@ -596,7 +594,7 @@ export function inherit(options = {}, ...rest) {
 
 // Given an iterable of named things (objects with a name property), returns a
 // corresponding object with properties associated with the given name.
-export function named(things) {
+function named(things) {
   console.warn("named iterables are deprecated; please use an object instead");
   const names = new Set();
   return Object.fromEntries(

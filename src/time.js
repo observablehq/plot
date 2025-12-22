@@ -110,7 +110,7 @@ const utcIntervals = new Map([
 // interval; that would allow us to move this logic to D3, and allow
 // generalization even when a custom interval is provided.
 export const intervalDuration = Symbol("intervalDuration");
-export const intervalType = Symbol("intervalType");
+const intervalType = Symbol("intervalType");
 
 // We greedily mutate D3’s standard intervals on load so that the hidden fields
 // are available even if specified as e.g. d3.utcMonth instead of "month".

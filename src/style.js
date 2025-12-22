@@ -152,7 +152,7 @@ export function styles(
 }
 
 // Applies the specified titles via selection.call.
-export function applyTitle(selection, L) {
+function applyTitle(selection, L) {
   if (L)
     selection
       .filter((i) => nonempty(L[i]))
@@ -161,7 +161,7 @@ export function applyTitle(selection, L) {
 }
 
 // Like applyTitle, but for grouped data (lines, areas).
-export function applyTitleGroup(selection, L) {
+function applyTitleGroup(selection, L) {
   if (L)
     selection
       .filter(([i]) => nonempty(L[i]))
@@ -169,11 +169,11 @@ export function applyTitleGroup(selection, L) {
       .call(applyTextGroup, L);
 }
 
-export function applyText(selection, T) {
+function applyText(selection, T) {
   if (T) selection.text((i) => formatDefault(T[i]));
 }
 
-export function applyTextGroup(selection, T) {
+function applyTextGroup(selection, T) {
   if (T) selection.text(([i]) => formatDefault(T[i]));
 }
 
@@ -410,7 +410,7 @@ export function applyAttr(selection, name, value) {
   if (value != null) selection.attr(name, value);
 }
 
-export function applyStyle(selection, name, value) {
+function applyStyle(selection, name, value) {
   if (value != null) selection.style(name, value);
 }
 
@@ -426,7 +426,7 @@ export function impliedString(value, impliedValue) {
   if ((value = string(value)) !== impliedValue) return value;
 }
 
-export function impliedNumber(value, impliedValue) {
+function impliedNumber(value, impliedValue) {
   if ((value = number(value)) !== impliedValue) return value;
 }
 
