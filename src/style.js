@@ -260,7 +260,7 @@ export function* groupIndex(I, position, mark, channels) {
   const {z} = mark;
   const {z: Z} = channels; // group channel
   const A = groupAesthetics(channels, mark); // aesthetic channels
-  const C = [...position, ...A]; // all channels
+  const C = [...position.filter((d) => d), ...A]; // all channels
 
   // Group the current index by Z (if any).
   for (const G of Z ? groupZ(I, Z, z) : [I]) {

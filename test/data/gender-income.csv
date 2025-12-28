@@ -1,0 +1,25 @@
+group,gender,value,year
+Low income,Female,29.9,2017
+Low income,Female,19.6,2014
+Low income,Female,11,2011
+Low income,Male,40,2017
+Low income,Male,26.3,2014
+Low income,Male,15.8,2011
+Lower middle income,Female,53,2017
+Lower middle income,Female,35.6,2014
+Lower middle income,Female,23.4,2011
+Lower middle income,Male,62.7,2017
+Lower middle income,Male,48,2014
+Lower middle income,Male,34.3,2011
+Upper middle income,Female,69.3,2017
+Upper middle income,Female,68.7,2014
+Upper middle income,Female,52.4,2011
+Upper middle income,Male,77,2017
+Upper middle income,Male,74.5,2014
+Upper middle income,Male,61.8,2011
+High income,Female,92.9,2017
+High income,Female,92.4,2014
+High income,Female,86.2,2011
+High income,Male,94.5,2017
+High income,Male,93.2,2014
+High income,Male,90.5,2011
