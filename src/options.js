@@ -54,7 +54,7 @@ function maybeTypedMap(data, f, type) {
   return map(data, isNumberType(type) ? (d, i) => coerceNumber(f(d, i)) : f, type); // allow conversion from BigInt
 }
 
-function maybeTypedArrayify(data, type) {
+export function maybeTypedArrayify(data, type) {
   return type === undefined
     ? arrayify(data) // preserve undefined type
     : isArrowVector(data)
