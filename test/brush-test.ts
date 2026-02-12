@@ -11,7 +11,7 @@ it("brush() renders without error", async () => {
   const plot = Plot.plot({
     marks: [Plot.dot(data, {x: "culmen_length_mm", y: "culmen_depth_mm"}), Plot.brush()]
   });
-  assert.ok(plot.querySelector(".overlay"), "brush overlay should exist");
+  assert.ok(plot.querySelector("[aria-label=brush]"), "brush mark should exist");
   assert.ok(plot.querySelector(".selection"), "brush selection rect should exist");
 });
 
@@ -27,7 +27,7 @@ it("brush with inactive/context/focus marks renders correctly", async () => {
       brush
     ]
   });
-  assert.ok(plot.querySelector(".overlay"), "brush overlay should exist");
+  assert.ok(plot.querySelector("[aria-label=brush]"), "brush mark should exist");
 
   const dotGroups = plot.querySelectorAll("[aria-label=dot]");
   // inactive dots should be visible initially
@@ -115,11 +115,12 @@ it("brush faceted filter restricts to the brushed facet", async () => {
   );
 
   // Filter WITHOUT facet (what a broken implementation would do)
-  const filteredWithoutFacet = penguins.filter((d: any) =>
-    d.culmen_length_mm >= lastValue.x1 &&
-    d.culmen_length_mm <= lastValue.x2 &&
-    d.culmen_depth_mm >= lastValue.y1 &&
-    d.culmen_depth_mm <= lastValue.y2
+  const filteredWithoutFacet = penguins.filter(
+    (d: any) =>
+      d.culmen_length_mm >= lastValue.x1 &&
+      d.culmen_length_mm <= lastValue.x2 &&
+      d.culmen_depth_mm >= lastValue.y1 &&
+      d.culmen_depth_mm <= lastValue.y2
   );
 
   assert.ok(filteredWithFacet.length > 0, "should select some points");
@@ -162,9 +163,7 @@ it("brush programmatic move on second facet selects the correct facet", async ()
   assert.ok(lastValue.fx !== undefined, "value should include fx");
   assert.equal(lastValue.fx, "Chinstrap", "fx should be Chinstrap (the second facet)");
 
-  const filtered = penguins.filter((d: any) =>
-    lastValue.filter(d.culmen_length_mm, d.culmen_depth_mm, d.species)
-  );
+  const filtered = penguins.filter((d: any) => lastValue.filter(d.culmen_length_mm, d.culmen_depth_mm, d.species));
   assert.ok(filtered.length > 0, "should select some points");
 
   const species = new Set(filtered.map((d: any) => d.species));
