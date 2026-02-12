@@ -145,6 +145,7 @@ export default defineConfig({
         text: "Interactions",
         collapsed: true,
         items: [
+          {text: "Brush", link: "/interactions/brush"},
           {text: "Crosshair", link: "/interactions/crosshair"},
           {text: "Pointer", link: "/interactions/pointer"}
         ]
