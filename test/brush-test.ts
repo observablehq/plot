@@ -114,7 +114,7 @@ it("brush faceted filter restricts to the brushed facet", async () => {
     lastValue.filter(d.culmen_length_mm, d.culmen_depth_mm, d.species)
   );
 
-  // Filter WITHOUT facet (what a broken implementation would do)
+  // Filter mistakenly WITHOUT facet
   const filteredWithoutFacet = penguins.filter(
     (d: any) =>
       d.culmen_length_mm >= lastValue.x1 &&
