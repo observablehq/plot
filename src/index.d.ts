@@ -4,6 +4,7 @@ export * from "./curve.js";
 export * from "./dimensions.js";
 export * from "./format.js";
 export * from "./inset.js";
+export * from "./interactions/brush.js";
 export * from "./interactions/pointer.js";
 export * from "./interval.js";
 export * from "./legends.js";
