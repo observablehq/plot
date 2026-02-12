@@ -100,7 +100,7 @@ it("brush faceted filter restricts to the brushed facet", async () => {
   let lastValue: any;
   plot.addEventListener("input", () => (lastValue = plot.value));
 
-  // Brush a region that covers roughly [40,50]x[15,19] in the first facet
+  // Brush a region in the first facet (pixel coordinates)
   d3.select(firstFacetNode).call((b as any)._brush.move, [
     [30, 50],
     [170, 300]
