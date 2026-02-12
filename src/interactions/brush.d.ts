@@ -37,7 +37,7 @@ export interface BrushValue {
  * The brush dispatches an input event when the selection changes. The selection
  * is available as plot.value as a **BrushValue**, or null when the selection is
  * cleared. Use the **inactive**, **context**, and **focus** methods to create
- * companion marks that respond to the brush state.
+ * reactive marks that respond to the brush state.
  */
 export class Brush extends RenderableMark {
   /**
