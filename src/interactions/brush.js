@@ -75,14 +75,10 @@ export class Brush extends Mark {
               context.dispatchValue(value);
             }
           } else {
-            let [[px1, py1], [px2, py2]] = selection;
-            px1 -= 0.25;
-            px2 += 0.25;
-            py1 -= 0.25;
-            py2 += 0.25;
+            const [[px1, py1], [px2, py2]] = selection;
             inactive.update(false, currentNode);
-            ctx.update((xi, yi) => !(px1 < xi && xi < px2 && py1 < yi && yi < py2), currentNode);
-            focus.update((xi, yi) => px1 < xi && xi < px2 && py1 < yi && yi < py2, currentNode);
+            ctx.update((xi, yi) => !(px1 <= xi && xi < px2 && py1 <= yi && yi < py2), currentNode);
+            focus.update((xi, yi) => px1 <= xi && xi < px2 && py1 <= yi && yi < py2, currentNode);
 
             let x1 = invertX(px1),
               x2 = invertX(px2);
@@ -135,7 +131,7 @@ function filterFromBrush(xScale, yScale, facet, projection, px1, px2, py1, py2) 
   return filterSignature(
     (dx, dy) => {
       stream.point(dx, dy);
-      return px1 < px && px < px2 && py1 < py && py < py2;
+      return px1 <= px && px < px2 && py1 <= py && py < py2;
     },
     facet?.x,
     facet?.y
