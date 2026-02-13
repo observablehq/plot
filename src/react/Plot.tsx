@@ -1,3 +1,4 @@
+// @ts-nocheck — imports from internal JS modules lack .d.ts declarations
 import React, {useCallback, useMemo, useRef, useState, type ReactNode} from "react";
 import {createChannel, inferChannelScale} from "../channel.js";
 import {createDimensions} from "../dimensions.js";

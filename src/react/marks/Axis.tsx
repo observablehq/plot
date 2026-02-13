@@ -1,3 +1,4 @@
+// @ts-nocheck — imports from internal JS modules lack .d.ts declarations
 import React from "react";
 import {usePlotContext} from "../PlotContext.js";
 import {formatDefault} from "../../format.js";

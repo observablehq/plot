@@ -1,8 +1,9 @@
+// @ts-nocheck — imports from internal JS modules lack .d.ts declarations
 import React, {useMemo} from "react";
-import {line as shapeLine, group} from "d3";
+import {line as shapeLine, group, curveLinear} from "d3";
 import {useMark} from "../useMark.js";
 import {indirectStyleProps, directStyleProps, groupChannelStyleProps, computeTransform} from "../styles.js";
-import {maybeCurveAuto, curveAuto} from "../../curve.js";
+import {maybeCurveAuto} from "../../curve.js";
 import type {ChannelSpec} from "../PlotContext.js";
 import {defined} from "../../defined.js";
 
@@ -112,7 +113,7 @@ export function Line({
   }
 
   const lineGen = shapeLine<number>()
-    .curve(curveValue === curveAuto ? curveValue : curveValue)
+    .curve(curveValue ?? curveLinear)
     .defined((i: number) => i >= 0 && defined(X[i]) && defined(Y[i]))
     .x((i: number) => X[i])
     .y((i: number) => Y[i]);

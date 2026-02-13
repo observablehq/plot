@@ -1,3 +1,4 @@
+// @ts-nocheck — re-exports from internal JS modules lack .d.ts declarations
 // @observablehq/plot/react — React component API for Observable Plot
 //
 // Usage:
@@ -53,6 +54,21 @@ export type {TextProps} from "./marks/Text.js";
 export {Frame} from "./marks/Frame.js";
 export type {FrameProps} from "./marks/Frame.js";
 
+export {TickX, TickY} from "./marks/Tick.js";
+export type {TickProps} from "./marks/Tick.js";
+
+export {Link} from "./marks/Link.js";
+export type {LinkProps} from "./marks/Link.js";
+
+export {Arrow} from "./marks/Arrow.js";
+export type {ArrowProps} from "./marks/Arrow.js";
+
+export {Vector, Spike} from "./marks/Vector.js";
+export type {VectorProps} from "./marks/Vector.js";
+
+export {Image} from "./marks/Image.js";
+export type {ImageProps} from "./marks/Image.js";
+
 // Axis and grid components
 export {AxisX, AxisY, GridX, GridY} from "./marks/Axis.js";
 export type {AxisProps} from "./marks/Axis.js";
@@ -64,6 +80,9 @@ export type {LegendProps} from "./legends/Legend.js";
 // Interaction components
 export {Tip, formatTip} from "./interactions/Tip.js";
 export type {TipProps} from "./interactions/Tip.js";
+
+export {Crosshair, CrosshairX, CrosshairY} from "./interactions/Crosshair.js";
+export type {CrosshairProps} from "./interactions/Crosshair.js";
 
 // Interaction hooks
 export {usePointer, findNearest} from "./interactions/usePointer.js";

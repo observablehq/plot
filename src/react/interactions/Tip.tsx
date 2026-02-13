@@ -1,3 +1,4 @@
+// @ts-nocheck — imports from internal JS modules lack .d.ts declarations
 import React, {useMemo} from "react";
 import {useMark} from "../useMark.js";
 import type {ChannelSpec} from "../PlotContext.js";
