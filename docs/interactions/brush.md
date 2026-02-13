@@ -241,3 +241,21 @@ Plot.dot(data, brush.focus({x: "weight", y: "height", fill: "species"}))
 ```
 
 Returns mark options that hide the mark by default and, during brushing, show only the points *inside* the selection. Use this to highlight the selected data.
+
+## *brush*.move(*value*) {#brush.move}
+
+```js
+brush.move({x1: 36, x2: 48, y1: 15, y2: 20})
+```
+
+Programmatically sets the brush selection in data space. The *value* must have **x1**, **x2**, **y1**, and **y2** properties. For faceted plots, include **fx** or **fy** to target a specific facet. Pass null to clear the selection.
+
+```js
+brush.move({x1: 40, x2: 52, y1: 15, y2: 20, fx: "Chinstrap"})
+```
+
+```js
+brush.move(null)
+```
+
+For projected plots, the coordinates are in pixels (consistent with the [BrushValue](#brushvalue)).

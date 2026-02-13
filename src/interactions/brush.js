@@ -1,4 +1,4 @@
-import {brush as d3Brush, create, pointer, selectAll} from "d3";
+import {brush as d3Brush, create, pointer, select, selectAll} from "d3";
 import {composeRender, Mark} from "../mark.js";
 
 export class Brush extends Mark {
@@ -18,6 +18,8 @@ export class Brush extends Mark {
     if (!index?.fi) {
       const invertX = (!context.projection && x?.invert) || ((d) => d);
       const invertY = (!context.projection && y?.invert) || ((d) => d);
+      this._applyX = (!context.projection && x) || ((d) => d);
+      this._applyY = (!context.projection && y) || ((d) => d);
       context.dispatchValue(null);
       const {_brush, _brushNodes} = this;
       _brush
@@ -108,6 +110,29 @@ export class Brush extends Mark {
     const node = g.node();
     this._brushNodes.push(node);
     return node;
+  }
+  move(value) {
+    if (value == null) {
+      selectAll(this._brushNodes).call(this._brush.move, null);
+      return;
+    }
+    const {x1, x2, y1, y2, fx, fy} = value;
+    const node =
+      this._brushNodes.length === 1
+        ? this._brushNodes[0]
+        : this._brushNodes.find((n) => {
+            const d = n.__data__;
+            return d && (fx === undefined || d.x === fx) && (fy === undefined || d.y === fy);
+          });
+    if (!node) throw new Error("No brush node found for the specified facet");
+    const px1 = this._applyX(x1);
+    const px2 = this._applyX(x2);
+    const py1 = this._applyY(y1);
+    const py2 = this._applyY(y2);
+    select(node).call(this._brush.move, [
+      [Math.min(px1, px2), Math.min(py1, py2)],
+      [Math.max(px1, px2), Math.max(py1, py2)]
+    ]);
   }
 }
 

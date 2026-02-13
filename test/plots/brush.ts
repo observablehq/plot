@@ -1,6 +1,3 @@
-// The programmatic brush.move calls below use the private _brush and
-// _brushNodes API with pixel coordinates. Replace with the public setter
-// (in data space) when available.
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 import {geoProject} from "d3-geo-projection";
@@ -41,10 +38,7 @@ export async function brushDot() {
     textarea.value = formatValue(v) + `\nfiltered: ${filtered.length} of ${penguins.length}`;
   };
   plot.oninput = oninput;
-  d3.select((brush as any)._brushNodes[0]).call((brush as any)._brush.move, [
-    [80, 40],
-    [300, 200]
-  ]);
+  brush.move({x1: 36, x2: 48, y1: 15, y2: 20});
   oninput();
   return html`<figure>${plot}${textarea}</figure>`;
 }
@@ -71,10 +65,7 @@ export async function brushFaceted() {
     textarea.value = formatValue(v) + `\nfiltered: ${filtered.length} of ${penguins.length}`;
   };
   plot.oninput = oninput;
-  d3.select((brush as any)._brushNodes[1]).call((brush as any)._brush.move, [
-    [60, 80],
-    [180, 280]
-  ]);
+  brush.move({x1: 40, x2: 52, y1: 15, y2: 20, fx: "Chinstrap"});
   oninput();
   return html`<figure>${plot}${textarea}</figure>`;
 }
@@ -101,10 +92,7 @@ export async function brushFacetedFy() {
     textarea.value = formatValue(v) + `\nfiltered: ${filtered.length} of ${penguins.length}`;
   };
   plot.oninput = oninput;
-  d3.select((brush as any)._brushNodes[1]).call((brush as any)._brush.move, [
-    [100, 40],
-    [400, 120]
-  ]);
+  brush.move({x1: 38, x2: 52, y1: 15, y2: 19, fy: "Chinstrap"});
   oninput();
   return html`<figure>${plot}${textarea}</figure>`;
 }
@@ -136,10 +124,7 @@ export async function brushFacetedFxFy() {
     textarea.value = formatValue(v) + `\nfiltered: ${filtered.length} of ${penguins.length}`;
   };
   plot.oninput = oninput;
-  d3.select((brush as any)._brushNodes[2]).call((brush as any)._brush.move, [
-    [60, 50],
-    [170, 140]
-  ]);
+  brush.move({x1: 40, x2: 50, y1: 14, y2: 17, fx: "Gentoo", fy: "MALE"});
   oninput();
   return html`<figure>${plot}${textarea}</figure>`;
 }
@@ -188,10 +173,7 @@ export async function brushGeoUS() {
       (filtered.length ? `\n${filtered.map((d: any) => d.capital).join(", ")}` : "");
   };
   plot.oninput = oninput;
-  d3.select((brush as any)._brushNodes[0]).call((brush as any)._brush.move, [
-    [80, 60],
-    [300, 220]
-  ]);
+  brush.move({x1: 80, x2: 300, y1: 60, y2: 220});
   oninput();
   return html`<figure>${plot}${textarea}</figure>`;
 }
@@ -222,10 +204,7 @@ export async function brushGeoWorld() {
       (filtered.length ? `\n${filtered.map((d: any) => d.name).join(", ")}` : "");
   };
   plot.oninput = oninput;
-  d3.select((brush as any)._brushNodes[0]).call((brush as any)._brush.move, [
-    [80, 60],
-    [300, 200]
-  ]);
+  brush.move({x1: 80, x2: 300, y1: 60, y2: 200});
   oninput();
   return html`<figure>${plot}${textarea}</figure>`;
 }
@@ -266,10 +245,7 @@ export async function brushGeoWorldFaceted() {
       (filtered.length ? `\n${filtered.map((d: any) => d.name).join(", ")}` : "");
   };
   plot.oninput = oninput;
-  d3.select((brush as any)._brushNodes[1]).call((brush as any)._brush.move, [
-    [80, 30],
-    [300, 150]
-  ]);
+  brush.move({x1: 80, x2: 300, y1: 30, y2: 150, fy: "< median"});
   oninput();
   return html`<figure>${plot}${textarea}</figure>`;
 }
@@ -294,10 +270,7 @@ export async function brushRandomNormal() {
     textarea.value = formatValue(v) + `\nfiltered: ${filtered.length} of ${data.length}`;
   };
   plot.oninput = oninput;
-  d3.select((brush as any)._brushNodes[0]).call((brush as any)._brush.move, [
-    [100, 60],
-    [350, 250]
-  ]);
+  brush.move({x1: -1, x2: 1, y1: -1, y2: 0.5});
   oninput();
   return html`<figure>${plot}${textarea}</figure>`;
 }

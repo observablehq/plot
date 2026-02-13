@@ -1,6 +1,3 @@
-// The programmatic brush.move calls below use the private _brush and
-// _brushNodes API with pixel coordinates. Replace with the public setter
-// (in data space) when available.
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 import assert from "assert";
@@ -61,13 +58,8 @@ it("brush dispatches value on programmatic brush move", async () => {
   const values: any[] = [];
   plot.addEventListener("input", () => values.push(plot.value));
 
-  // Programmatically move the brush using the brush instance
-  const brushNode = (brush as any)._brushNodes[0];
-  assert.ok(brushNode, "brush node should exist");
-  d3.select(brushNode).call((brush as any)._brush.move, [
-    [100, 100],
-    [400, 300]
-  ]);
+  // Programmatically move the brush in data space
+  brush.move({x1: 10, x2: 45, y1: 10, y2: 45});
 
   // Programmatic brush.move fires start, brush, end events
   assert.ok(values.length >= 3, "should have dispatched at least three values");
@@ -103,17 +95,11 @@ it("brush faceted filter restricts to the brushed facet", async () => {
     ]
   });
 
-  assert.equal((b as any)._brushNodes.length, 3, "should have 3 brush nodes (one per facet)");
-  const firstFacetNode = (b as any)._brushNodes[0];
-
   let lastValue: any;
   plot.addEventListener("input", () => (lastValue = plot.value));
 
-  // Brush a region in the first facet (pixel coordinates)
-  d3.select(firstFacetNode).call((b as any)._brush.move, [
-    [30, 50],
-    [170, 300]
-  ]);
+  // Brush a region in the first facet (data coordinates)
+  b.move({x1: 35, x2: 50, y1: 14, y2: 20, fx: "Adelie"});
 
   assert.ok(lastValue, "should have a value");
   assert.ok(lastValue.fx !== undefined, "value should include fx");
@@ -156,17 +142,11 @@ it("brush programmatic move on second facet selects the correct facet", async ()
     ]
   });
 
-  assert.equal((b as any)._brushNodes.length, 3, "should have 3 brush nodes (one per facet)");
-  const secondFacetNode = (b as any)._brushNodes[1];
-
   let lastValue: any;
   plot.addEventListener("input", () => (lastValue = plot.value));
 
-  // Brush the second facet (Chinstrap)
-  d3.select(secondFacetNode).call((b as any)._brush.move, [
-    [30, 50],
-    [170, 300]
-  ]);
+  // Brush the second facet (Chinstrap) using data coordinates
+  b.move({x1: 35, x2: 50, y1: 14, y2: 20, fx: "Chinstrap"});
 
   assert.ok(lastValue, "should have a value");
   assert.ok(lastValue.fx !== undefined, "value should include fx");
@@ -193,7 +173,7 @@ it("brush reactive marks compose with user render transforms", () => {
     rendered.push("custom");
     return g;
   };
-  const plot = Plot.plot({
+  Plot.plot({
     x: {domain: [0, 40]},
     y: {domain: [0, 40]},
     marks: [

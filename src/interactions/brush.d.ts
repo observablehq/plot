@@ -61,6 +61,15 @@ export class Brush extends RenderableMark {
    * selected data.
    */
   focus<T>(options?: T): Rendered<T>;
+
+  /**
+   * Programmatically sets the brush selection in data space. Pass an object
+   * with **x1**, **x2**, **y1**, **y2** (and optionally **fx**, **fy** for
+   * faceted plots) to set the selection, or null to clear it.
+   */
+  move(
+    value: {x1: number | Date; x2: number | Date; y1: number | Date; y2: number | Date; fx?: any; fy?: any} | null
+  ): void;
 }
 
 /** Creates a new brush mark. */
