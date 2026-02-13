@@ -5,9 +5,11 @@
     "noImplicitAny": false,
     "module": "Node16",
     "baseUrl": "./src",
+    "jsx": "react-jsx",
     "paths": {
-      "@observablehq/plot": ["index"]
+      "@observablehq/plot": ["index"],
+      "@observablehq/plot/react": ["react/index"]
     }
   },
-  "include": ["src/**/*.d.ts", "src/**/*.js", "src/**/*.ts", "test/**/*.js", "test/**/*.ts"]
+  "include": ["src/**/*.d.ts", "src/**/*.js", "src/**/*.ts", "src/**/*.tsx", "test/**/*.js", "test/**/*.ts"]
 }

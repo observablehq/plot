@@ -611,7 +611,104 @@ The shared `core/` modules ensure both APIs stay in sync.
 
 ---
 
-## 10. What NOT to Port
+## 10. Observable Framework Considerations
+
+This port is part of a broader effort to also port **Observable Framework** to
+React. This affects several design decisions:
+
+### 10.1 Reactivity Model
+
+Observable Framework uses Observable's reactive runtime (`viewof`, cell
+dependencies, `Inputs.bind`). In React:
+
+- **Observable cells** → React state (`useState`, `useReducer`)
+- **`viewof` pattern** → Controlled components with `value`/`onChange` props
+- **Cell dependencies** → Component props / context / derived state (`useMemo`)
+
+Plot components must expose clean **callback props** for Framework integration:
+
+```tsx
+<Plot onPointerMove={handlePointer} onSelect={handleSelection}>
+  <Dot data={data} x="x" y="y"
+    onClick={(event, datum) => setSelected(datum)}
+    onPointerEnter={(event, datum) => setHovered(datum)}
+  />
+</Plot>
+```
+
+### 10.2 Data Loaders
+
+Framework's data loaders (`FileAttachment`, `DuckDB`, SQL cells) would become
+React patterns. Plot must accept data purely via props:
+
+```tsx
+// Framework's data loader → React hook
+const data = useDataLoader("data/weather.csv", { typed: true });
+
+// Plot is a pure consumer — no opinion on loading
+<Plot>
+  <Suspense fallback={<PlotSkeleton />}>
+    <Line data={data} x="date" y="temperature" />
+  </Suspense>
+</Plot>
+```
+
+### 10.3 SSR Compatibility
+
+Framework does server-side rendering. All React Plot components must be
+**SSR-safe**:
+
+- No `window`/`document` access during render (only in `useEffect`)
+- Support React Server Components where possible (marks are mostly pure)
+- Hydration-safe: server and client must produce identical SVG
+
+### 10.4 Layout Integration
+
+Framework's dashboard layout (cards, grids, sidebars) would become React
+layout components. Plot should work seamlessly within these:
+
+```tsx
+<DashboardGrid>
+  <Card title="Sales">
+    <Plot>
+      <BarY data={sales} x="month" y="revenue" />
+    </Plot>
+  </Card>
+  <Card title="Users">
+    <Plot>
+      <Line data={users} x="date" y="count" />
+    </Plot>
+  </Card>
+</DashboardGrid>
+```
+
+### 10.5 Responsive/Auto-sizing
+
+Framework auto-sizes plots to their container. The React Plot should support:
+
+```tsx
+// Auto-size to container (via ResizeObserver)
+<Plot width="auto" height={400}>...</Plot>
+
+// Or via a hook
+const { width } = useContainerSize(containerRef);
+<Plot width={width}>...</Plot>
+```
+
+### 10.6 Theme System
+
+Framework has light/dark theme support. Plot components should respect a
+theme context:
+
+```tsx
+<PlotTheme mode="dark" colors={{ background: "#1a1a1a" }}>
+  <Plot>...</Plot>
+</PlotTheme>
+```
+
+---
+
+## 11. What NOT to Port
 
 Some Observable-specific features may be deferred or dropped:
 
