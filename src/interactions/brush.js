@@ -157,6 +157,7 @@ function renderFilter(initialTest) {
   return Object.assign(
     function (options = {}) {
       return {
+        pointerEvents: "none",
         ...options,
         render(index, scales, values, dimensions, context, next) {
           const {x: X, y: Y} = values;

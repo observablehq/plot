@@ -89,10 +89,10 @@ A typical pattern is to layer three reactive marks: the inactive mark provides a
 ```js
 Plot.plot({
   marks: ((brush) => [
+    brush,
     Plot.dot(penguins, brush.inactive({x: "culmen_length_mm", y: "culmen_depth_mm", fill: "species", r: 2})),
     Plot.dot(penguins, brush.context({x: "culmen_length_mm", y: "culmen_depth_mm", fill: "#ccc", r: 2})),
-    brush,
-    Plot.dot(penguins, brush.focus({x: "culmen_length_mm", y: "culmen_depth_mm", fill: "species", r: 3, pointerEvents: "none"}))
+    Plot.dot(penguins, brush.focus({x: "culmen_length_mm", y: "culmen_depth_mm", fill: "species", r: 3}))
   ])(Plot.brush())
 })
 ```
@@ -102,16 +102,16 @@ Plot.plot({
 const brush = Plot.brush();
 Plot.plot({
   marks: [
+    brush,
     Plot.dot(penguins, brush.inactive({x: "culmen_length_mm", y: "culmen_depth_mm", fill: "species", r: 2})),
     Plot.dot(penguins, brush.context({x: "culmen_length_mm", y: "culmen_depth_mm", fill: "#ccc", r: 2})),
-    brush,
-    Plot.dot(penguins, brush.focus({x: "culmen_length_mm", y: "culmen_depth_mm", fill: "species", r: 3, pointerEvents: "none"}))
+    Plot.dot(penguins, brush.focus({x: "culmen_length_mm", y: "culmen_depth_mm", fill: "species", r: 3}))
   ]
 })
 ```
 
 :::tip
-To achieve higher contrast, place the brush mark before the focus mark in the marks array; then set **pointerEvents** to *none* on any mark rendered above the brush to ensure it doesn't intercept pointer events.
+To achieve higher contrast, place the brush below the reactive marks; reactive marks default to using **pointerEvents** *none* to ensure they don't intercept pointer events.
 :::
 
 ## Faceting
@@ -125,10 +125,10 @@ Plot.plot({
   grid: true,
   marks: ((brush) => [
     Plot.frame(),
+    brush,
     Plot.dot(penguins, brush.inactive({x: "culmen_length_mm", y: "culmen_depth_mm", fx: "species", fill: "sex", r: 2})),
     Plot.dot(penguins, brush.context({x: "culmen_length_mm", y: "culmen_depth_mm", fx: "species", fill: "#ccc", r: 2})),
-    brush,
-    Plot.dot(penguins, brush.focus({x: "culmen_length_mm", y: "culmen_depth_mm", fx: "species", fill: "sex", r: 3, pointerEvents: "none"}))
+    Plot.dot(penguins, brush.focus({x: "culmen_length_mm", y: "culmen_depth_mm", fx: "species", fill: "sex", r: 3}))
   ])(Plot.brush())
 })
 ```
@@ -139,10 +139,10 @@ const brush = Plot.brush();
 Plot.plot({
   marks: [
     Plot.frame(),
+    brush,
     Plot.dot(penguins, brush.inactive({x: "culmen_length_mm", y: "culmen_depth_mm", fx: "species", fill: "sex", r: 2})),
     Plot.dot(penguins, brush.context({x: "culmen_length_mm", y: "culmen_depth_mm", fx: "species", fill: "#ccc", r: 2})),
-    brush,
-    Plot.dot(penguins, brush.focus({x: "culmen_length_mm", y: "culmen_depth_mm", fx: "species", fill: "sex", r: 3, pointerEvents: "none"}))
+    Plot.dot(penguins, brush.focus({x: "culmen_length_mm", y: "culmen_depth_mm", fx: "species", fill: "sex", r: 3}))
   ]
 })
 ```
@@ -160,10 +160,10 @@ Plot.plot({
   marks: ((brush) => [
     Plot.geo(land, {strokeWidth: 0.5}),
     Plot.sphere(),
+    brush,
     Plot.dot(cities, brush.inactive({x: "longitude", y: "latitude", r: 2, fill: "#999"})),
     Plot.dot(cities, brush.context({x: "longitude", y: "latitude", r: 1, fill: "#999"})),
-    brush,
-    Plot.dot(cities, brush.focus({x: "longitude", y: "latitude", r: 3, fill: "red", pointerEvents: "none"}))
+    Plot.dot(cities, brush.focus({x: "longitude", y: "latitude", r: 3, fill: "red"}))
   ])(Plot.brush())
 })
 ```
@@ -178,10 +178,10 @@ Plot.plot({
   marks: [
     Plot.geo(land, {strokeWidth: 0.5}),
     Plot.sphere(),
+    brush,
     Plot.dot(cities, brush.inactive({x: "longitude", y: "latitude", r: 2, fill: "#999"})),
     Plot.dot(cities, brush.context({x: "longitude", y: "latitude", r: 1, fill: "#999"})),
-    brush,
-    Plot.dot(cities, brush.focus({x: "longitude", y: "latitude", r: 3, fill: "red", pointerEvents: "none"}))
+    Plot.dot(cities, brush.focus({x: "longitude", y: "latitude", r: 3, fill: "red"}))
   ]
 })
 ```

@@ -29,9 +29,9 @@ export async function brushDot() {
   const plot = Plot.plot({
     marks: [
       brush,
-      Plot.dot(penguins, brush.inactive({...xy, fill: "species", r: 2, pointerEvents: "none"})),
-      Plot.dot(penguins, brush.context({...xy, fill: "#ccc", r: 2, pointerEvents: "none"})),
-      Plot.dot(penguins, brush.focus({...xy, fill: "species", r: 3, pointerEvents: "none"}))
+      Plot.dot(penguins, brush.inactive({...xy, fill: "species", r: 2})),
+      Plot.dot(penguins, brush.context({...xy, fill: "#ccc", r: 2})),
+      Plot.dot(penguins, brush.focus({...xy, fill: "species", r: 3}))
     ]
   });
   const textarea = html`<textarea rows=10 style="width: 640px; resize: none;">`;
@@ -57,9 +57,9 @@ export async function brushFaceted() {
     marks: [
       Plot.frame(),
       brush,
-      Plot.dot(penguins, brush.inactive({...xy, fill: "sex", r: 2, pointerEvents: "none"})),
-      Plot.dot(penguins, brush.context({...xy, fill: "#ccc", r: 2, pointerEvents: "none"})),
-      Plot.dot(penguins, brush.focus({...xy, fill: "sex", r: 3, pointerEvents: "none"}))
+      Plot.dot(penguins, brush.inactive({...xy, fill: "sex", r: 2})),
+      Plot.dot(penguins, brush.context({...xy, fill: "#ccc", r: 2})),
+      Plot.dot(penguins, brush.focus({...xy, fill: "sex", r: 3}))
     ]
   });
   const textarea = html`<textarea rows=10 style="width: 640px; resize: none;">`;
@@ -87,9 +87,9 @@ export async function brushFacetedFy() {
     marks: [
       Plot.frame(),
       brush,
-      Plot.dot(penguins, brush.inactive({...xy, fill: "sex", r: 2, pointerEvents: "none"})),
-      Plot.dot(penguins, brush.context({...xy, fill: "#ccc", r: 2, pointerEvents: "none"})),
-      Plot.dot(penguins, brush.focus({...xy, fill: "sex", r: 3, pointerEvents: "none"}))
+      Plot.dot(penguins, brush.inactive({...xy, fill: "sex", r: 2})),
+      Plot.dot(penguins, brush.context({...xy, fill: "#ccc", r: 2})),
+      Plot.dot(penguins, brush.focus({...xy, fill: "sex", r: 3}))
     ]
   });
   const textarea = html`<textarea rows=10 style="width: 640px; resize: none;">`;
@@ -122,9 +122,9 @@ export async function brushFacetedFxFy() {
     marks: [
       Plot.frame(),
       brush,
-      Plot.dot(penguins, brush.inactive({...xy, r: 2, pointerEvents: "none"})),
-      Plot.dot(penguins, brush.context({...xy, fill: "#ccc", r: 2, pointerEvents: "none"})),
-      Plot.dot(penguins, brush.focus({...xy, fill: "red", r: 3, pointerEvents: "none"}))
+      Plot.dot(penguins, brush.inactive({...xy, r: 2})),
+      Plot.dot(penguins, brush.context({...xy, fill: "#ccc", r: 2})),
+      Plot.dot(penguins, brush.focus({...xy, fill: "red", r: 3}))
     ]
   });
   const textarea = html`<textarea rows=10 style="width: 640px; resize: none;">`;
@@ -173,9 +173,9 @@ export async function brushGeoUS() {
       Plot.geo(nation, {stroke: "#ccc"}),
       Plot.geo(statemesh, {stroke: "#ccc"}),
       brush,
-      Plot.dot(capitals, brush.inactive({x: "px", y: "py", r: 3, fill: "#ccc", pointerEvents: "none"})),
-      Plot.dot(capitals, brush.context({x: "px", y: "py", r: 2, fill: "#ccc", pointerEvents: "none"})),
-      Plot.dot(capitals, brush.focus({x: "px", y: "py", r: 4, fill: "red", pointerEvents: "none"}))
+      Plot.dot(capitals, brush.inactive({x: "px", y: "py", r: 3, fill: "#ccc"})),
+      Plot.dot(capitals, brush.context({x: "px", y: "py", r: 2, fill: "#ccc"})),
+      Plot.dot(capitals, brush.focus({x: "px", y: "py", r: 4, fill: "red"}))
     ]
   });
   const textarea = html`<textarea rows=10 style="width: 640px; resize: none;">`;
@@ -207,9 +207,9 @@ export async function brushGeoWorld() {
       Plot.geo(land),
       Plot.sphere(),
       brush,
-      Plot.dot(cities, brush.inactive({x: "longitude", y: "latitude", r: 2, fill: "#999", pointerEvents: "none"})),
-      Plot.dot(cities, brush.context({x: "longitude", y: "latitude", r: 1, fill: "#999", pointerEvents: "none"})),
-      Plot.dot(cities, brush.focus({x: "longitude", y: "latitude", r: 3, fill: "red", pointerEvents: "none"}))
+      Plot.dot(cities, brush.inactive({x: "longitude", y: "latitude", r: 2, fill: "#999"})),
+      Plot.dot(cities, brush.context({x: "longitude", y: "latitude", r: 1, fill: "#999"})),
+      Plot.dot(cities, brush.focus({x: "longitude", y: "latitude", r: 3, fill: "red"}))
     ]
   });
   const textarea = html`<textarea rows=10 style="width: 640px; resize: none;">`;
@@ -250,9 +250,9 @@ export async function brushGeoWorldFaceted() {
       Plot.geo(land),
       Plot.sphere(),
       brush,
-      Plot.dot(cities, brush.inactive({...xy, r: 2, fill: "#999", pointerEvents: "none"})),
-      Plot.dot(cities, brush.context({...xy, r: 1, fill: "#999", pointerEvents: "none"})),
-      Plot.dot(cities, brush.focus({...xy, r: 3, fill: "red", pointerEvents: "none"}))
+      Plot.dot(cities, brush.inactive({...xy, r: 2, fill: "#999"})),
+      Plot.dot(cities, brush.context({...xy, r: 1, fill: "#999"})),
+      Plot.dot(cities, brush.focus({...xy, r: 3, fill: "red"}))
     ]
   });
   const textarea = html`<textarea rows=10 style="width: 640px; resize: none;">`;
@@ -282,9 +282,9 @@ export async function brushRandomNormal() {
   const plot = Plot.plot({
     marks: [
       brush,
-      Plot.dot(data, brush.inactive({...xy, fillOpacity: 0.5, pointerEvents: "none"})),
-      Plot.dot(data, brush.context({...xy, fill: "#ccc", fillOpacity: 0.5, pointerEvents: "none"})),
-      Plot.dot(data, brush.focus({...xy, fill: "red", fillOpacity: 0.5, pointerEvents: "none"}))
+      Plot.dot(data, brush.inactive({...xy, fillOpacity: 0.5})),
+      Plot.dot(data, brush.context({...xy, fill: "#ccc", fillOpacity: 0.5})),
+      Plot.dot(data, brush.focus({...xy, fill: "red", fillOpacity: 0.5}))
     ]
   });
   const textarea = html`<textarea rows=10 style="width: 640px; resize: none;">`;
