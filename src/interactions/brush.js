@@ -1,5 +1,5 @@
 import {brush as d3Brush, create, pointer, selectAll} from "d3";
-import {Mark} from "../mark.js";
+import {composeRender, Mark} from "../mark.js";
 
 export class Brush extends Mark {
   constructor() {
@@ -155,11 +155,11 @@ function filterSignature(test, currentFx, currentFy) {
 function renderFilter(initialTest) {
   const updatePerFacet = [];
   return Object.assign(
-    function (options = {}) {
+    function ({render, ...options} = {}) {
       return {
         pointerEvents: "none",
         ...options,
-        render(index, scales, values, dimensions, context, next) {
+        render: composeRender(function (index, scales, values, dimensions, context, next) {
           const {x: X, y: Y} = values;
           const filter = (test) =>
             typeof test === "function" ? index.filter((i) => test(X[i], Y[i])) : test ? index : [];
@@ -170,7 +170,7 @@ function renderFilter(initialTest) {
             if (transform) g.setAttribute("transform", transform);
           });
           return g;
-        }
+        }, render)
       };
     },
     {

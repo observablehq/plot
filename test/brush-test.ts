@@ -179,3 +179,29 @@ it("brush programmatic move on second facet selects the correct facet", async ()
   assert.equal(species.size, 1, "all filtered points should be one species");
   assert.equal([...species][0], "Chinstrap", "filtered species should be Chinstrap");
 });
+
+it("brush reactive marks compose with user render transforms", () => {
+  const data = [
+    {x: 10, y: 10},
+    {x: 20, y: 20},
+    {x: 30, y: 30}
+  ];
+  const brush = new Plot.Brush();
+  const rendered: string[] = [];
+  const render = (index: number[], scales: any, values: any, dimensions: any, context: any, next: any) => {
+    const g = next(index, scales, values, dimensions, context);
+    rendered.push("custom");
+    return g;
+  };
+  const plot = Plot.plot({
+    x: {domain: [0, 40]},
+    y: {domain: [0, 40]},
+    marks: [
+      brush,
+      Plot.dot(data, brush.inactive({x: "x", y: "y", render})),
+      Plot.dot(data, brush.context({x: "x", y: "y", render})),
+      Plot.dot(data, brush.focus({x: "x", y: "y", render}))
+    ]
+  });
+  assert.equal(rendered.length, 3, "user render should have been called for each reactive mark");
+});
