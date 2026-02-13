@@ -258,4 +258,4 @@ brush.move({x1: 40, x2: 52, y1: 15, y2: 20, fx: "Chinstrap"})
 brush.move(null)
 ```
 
-For projected plots, the coordinates are in pixels (consistent with the [BrushValue](#brushvalue)).
+For projected plots, the coordinates are in pixels (consistent with the [BrushValue](#brushvalue)), so you need to project the two corners of the brush beforehand. In the future Plot might expose its *projection* to facilitate this. Please upvote [this issue](https://github.com/observablehq/plot/issues/1191) to help prioritize this feature.
