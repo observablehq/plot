@@ -111,7 +111,7 @@ Plot.plot({
 ```
 
 :::tip
-To achieve higher contrast, place the brush below the reactive marks; reactive marks default to using **pointerEvents** *none* to ensure they don't intercept pointer events.
+To achieve higher contrast, place the brush below the reactive marks; reactive marks default to using **pointerEvents** *none* to ensure they don't obstruct pointer events.
 :::
 
 ## Faceting
