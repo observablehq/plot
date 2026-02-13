@@ -181,7 +181,7 @@ Plot.plot({
 
 ## BrushValue {#brushvalue}
 
-The brush value dispatched on [_input_ events](#input-events). When the brush is cleared, the value is null; otherwise it’s an object with the following properties:
+The brush value dispatched on [_input_ events](#input-events). When the brush is cleared, the value is null; otherwise it's an object with the following properties:
 
 - **x1** - the lower *x* bound of the selection (in data space, or pixels if projected)
 - **x2** - the upper *x* bound of the selection
@@ -190,8 +190,18 @@ The brush value dispatched on [_input_ events](#input-events). When the brush is
 - **fx** - the *fx* facet value, if applicable
 - **fy** - the *fy* facet value, if applicable
 - **filter** - a function to test whether a point is inside the selection
+- **pending** - `true` during interaction; absent when committed
 
 By convention, *x1* < *x2* and *y1* < *y2*.
+
+The **pending** property indicates the user is still interacting with the brush. To skip intermediate values and react only to committed selections:
+
+```js
+plot.addEventListener("input", () => {
+  if (plot.value?.pending) return;
+  // handle committed value (null if cleared)
+});
+```
 
 ## brush() {#brush}
 

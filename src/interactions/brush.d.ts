@@ -27,6 +27,8 @@ export interface BrushValue {
    * facet. For projected plots, *x* and *y* are typically longitude and latitude.
    */
   filter: (x: number | Date, y: number | Date, f1?: any, f2?: any) => boolean;
+  /** True during interaction, absent when committed. */
+  pending?: true;
 }
 
 /**

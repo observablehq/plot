@@ -1,4 +1,4 @@
-import {brush as d3Brush, create, selectAll} from "d3";
+import {brush as d3Brush, create, pointer, selectAll} from "d3";
 import {Mark} from "../mark.js";
 
 export class Brush extends Mark {
@@ -49,12 +49,31 @@ export class Brush extends Mark {
                 ctx.update(false, i);
                 focus.update(false, i);
               }
+              context.dispatchValue(null);
             } else {
               inactive.update(false, currentNode);
               ctx.update(true, currentNode);
               focus.update(false, currentNode);
+              let value = null;
+              if (event.sourceEvent) {
+                const [px, py] = pointer(event, this);
+                const x1 = invertX(px);
+                const y1 = invertY(py);
+                const facet = target?.__data__;
+                const filter = filterFromBrush(x, y, facet, context.projection, px, px, py, py);
+                value = {
+                  x1,
+                  x2: x1,
+                  y1,
+                  y2: y1,
+                  ...(fx && facet && {fx: facet.x}),
+                  ...(fy && facet && {fy: facet.y}),
+                  filter,
+                  pending: true
+                };
+              }
+              context.dispatchValue(value);
             }
-            context.dispatchValue(null);
           } else {
             let [[px1, py1], [px2, py2]] = selection;
             px1 -= 0.25;
@@ -81,7 +100,8 @@ export class Brush extends Mark {
               y2,
               ...(fx && facet && {fx: facet.x}),
               ...(fy && facet && {fy: facet.y}),
-              filter
+              filter,
+              ...(type !== "end" && {pending: true})
             });
           }
         });

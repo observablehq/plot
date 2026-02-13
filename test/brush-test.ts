@@ -69,10 +69,19 @@ it("brush dispatches value on programmatic brush move", async () => {
     [400, 300]
   ]);
 
-  // Check the value was dispatched
-  assert.ok(values.length > 0, "should have dispatched at least one value");
+  // Programmatic brush.move fires start, brush, end events
+  assert.ok(values.length >= 3, "should have dispatched at least three values");
+
+  // Intermediate values (start, brush) should be pending
+  const intermediates = values.slice(0, -1);
+  for (const v of intermediates) {
+    assert.equal(v.pending, true, "intermediate value should be pending");
+  }
+
+  // The committed value (end) should not be pending
   const lastValue = values[values.length - 1];
   assert.ok(lastValue, "last value should not be null");
+  assert.ok(!("pending" in lastValue), "committed value should not be pending");
   assert.ok(typeof lastValue.filter === "function", "value should have a filter function");
 
   // Check filtered elements
