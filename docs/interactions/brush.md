@@ -65,8 +65,15 @@ The **filter** function on the brush value tests whether a data point falls insi
 | **fy** only | *filter*(*x*, *y*, *fy*)       |
 | both        | *filter*(*x*, *y*, *fx*, *fy*) |
 
-When faceted, the filter returns true only for points in the brushed facet.
+When faceted, the filter returns true only for points in the brushed facet. For example:
 
+```js
+plot.addEventListener("input", () => {
+  const filter = plot.value?.filter;
+  const selected = filter ? penguins.filter((d) => filter(d.culmen_length_mm, d.culmen_depth_mm)) : penguins;
+  console.log(selected);
+});
+```
 
 ## Reactive marks
 
