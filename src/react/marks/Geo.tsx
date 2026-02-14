@@ -48,27 +48,45 @@ export function Geo({
 }: GeoProps) {
   const {projection} = usePlotContext();
 
-  const channels: Record<string, ChannelSpec> = useMemo(() => ({
-    geometry: {value: geometry ?? ((d: any) => d), scale: "projection", optional: true},
-    ...(r != null && (typeof r === "string" || typeof r === "function" || Array.isArray(r))
-      ? {r: {value: r, scale: "r", optional: true}} : {}),
-    ...(typeof fill === "string" && fill !== "none" && fill !== "currentColor" && !/^#|^rgb|^hsl/.test(fill)
-      ? {fill: {value: fill, scale: "auto", optional: true}} : {}),
-    ...(typeof stroke === "string" && stroke !== "none" && stroke !== "currentColor" && !/^#|^rgb|^hsl/.test(stroke)
-      ? {stroke: {value: stroke, scale: "auto", optional: true}} : {}),
-    ...(typeof opacity === "string" || typeof opacity === "function"
-      ? {opacity: {value: opacity, scale: "auto", optional: true}} : {}),
-    ...(title != null ? {title: {value: title, optional: true, filter: null}} : {})
-  }), [geometry, r, fill, stroke, opacity, title]);
+  const channels: Record<string, ChannelSpec> = useMemo(
+    () => ({
+      geometry: {value: geometry ?? ((d: any) => d), scale: "projection", optional: true},
+      ...(r != null && (typeof r === "string" || typeof r === "function" || Array.isArray(r))
+        ? {r: {value: r, scale: "r", optional: true}}
+        : {}),
+      ...(typeof fill === "string" && fill !== "none" && fill !== "currentColor" && !/^#|^rgb|^hsl/.test(fill)
+        ? {fill: {value: fill, scale: "auto", optional: true}}
+        : {}),
+      ...(typeof stroke === "string" && stroke !== "none" && stroke !== "currentColor" && !/^#|^rgb|^hsl/.test(stroke)
+        ? {stroke: {value: stroke, scale: "auto", optional: true}}
+        : {}),
+      ...(typeof opacity === "string" || typeof opacity === "function"
+        ? {opacity: {value: opacity, scale: "auto", optional: true}}
+        : {}),
+      ...(title != null ? {title: {value: title, optional: true, filter: null}} : {})
+    }),
+    [geometry, r, fill, stroke, opacity, title]
+  );
 
-  const markOptions = useMemo(() => ({
-    ...defaults,
-    ...restOptions,
-    fill: typeof fill === "string" && (fill === "none" || fill === "currentColor" || /^#|^rgb|^hsl/.test(fill)) ? fill : defaults.fill,
-    stroke: typeof stroke === "string" && (stroke === "none" || stroke === "currentColor" || /^#|^rgb|^hsl/.test(stroke)) ? stroke : defaults.stroke,
-    strokeWidth: typeof strokeWidth === "number" ? strokeWidth : defaults.strokeWidth,
-    dx, dy, className
-  }), [fill, stroke, strokeWidth, dx, dy, className, restOptions]);
+  const markOptions = useMemo(
+    () => ({
+      ...defaults,
+      ...restOptions,
+      fill:
+        typeof fill === "string" && (fill === "none" || fill === "currentColor" || /^#|^rgb|^hsl/.test(fill))
+          ? fill
+          : defaults.fill,
+      stroke:
+        typeof stroke === "string" && (stroke === "none" || stroke === "currentColor" || /^#|^rgb|^hsl/.test(stroke))
+          ? stroke
+          : defaults.stroke,
+      strokeWidth: typeof strokeWidth === "number" ? strokeWidth : defaults.strokeWidth,
+      dx,
+      dy,
+      className
+    }),
+    [fill, stroke, strokeWidth, dx, dy, className, restOptions]
+  );
 
   const {values, index, scales, dimensions} = useMark({
     data,
@@ -98,12 +116,7 @@ export function Geo({
         const d = path(geo);
         if (!d) return null;
         return (
-          <path
-            key={i}
-            d={d}
-            {...directStyleProps(markOptions)}
-            {...channelStyleProps(i, values)}
-          >
+          <path key={i} d={d} {...directStyleProps(markOptions)} {...channelStyleProps(i, values)}>
             {values.title && values.title[i] != null && <title>{`${values.title[i]}`}</title>}
           </path>
         );

@@ -55,19 +55,31 @@ export function Raster({
   className,
   ...restOptions
 }: RasterProps) {
-  const channels: Record<string, ChannelSpec> = useMemo(() => ({
-    ...(typeof fill === "string" && fill !== "none" && fill !== "currentColor" && !/^#|^rgb|^hsl/.test(fill)
-      ? {fill: {value: fill, scale: "auto", optional: true}} : {}),
-    ...(x != null ? {x: {value: x, scale: "x", optional: true}} : {}),
-    ...(y != null ? {y: {value: y, scale: "y", optional: true}} : {})
-  }), [fill, x, y]);
+  const channels: Record<string, ChannelSpec> = useMemo(
+    () => ({
+      ...(typeof fill === "string" && fill !== "none" && fill !== "currentColor" && !/^#|^rgb|^hsl/.test(fill)
+        ? {fill: {value: fill, scale: "auto", optional: true}}
+        : {}),
+      ...(x != null ? {x: {value: x, scale: "x", optional: true}} : {}),
+      ...(y != null ? {y: {value: y, scale: "y", optional: true}} : {})
+    }),
+    [fill, x, y]
+  );
 
-  const markOptions = useMemo(() => ({
-    ...defaults,
-    ...restOptions,
-    fill: typeof fill === "string" && (fill === "none" || fill === "currentColor" || /^#|^rgb|^hsl/.test(fill)) ? fill : undefined,
-    dx, dy, className
-  }), [fill, dx, dy, className, restOptions]);
+  const markOptions = useMemo(
+    () => ({
+      ...defaults,
+      ...restOptions,
+      fill:
+        typeof fill === "string" && (fill === "none" || fill === "currentColor" || /^#|^rgb|^hsl/.test(fill))
+          ? fill
+          : undefined,
+      dx,
+      dy,
+      className
+    }),
+    [fill, dx, dy, className, restOptions]
+  );
 
   const {values, index, dimensions} = useMark({data, channels, ariaLabel: defaults.ariaLabel, tip, ...markOptions});
 
@@ -101,9 +113,8 @@ export function Raster({
       // Parse color — simple hex handling
       const p = j * 4;
       if (typeof color === "string" && color.startsWith("#")) {
-        const hex = color.length === 4
-          ? color[1] + color[1] + color[2] + color[2] + color[3] + color[3]
-          : color.slice(1);
+        const hex =
+          color.length === 4 ? color[1] + color[1] + color[2] + color[2] + color[3] + color[3] : color.slice(1);
         pixels[p] = parseInt(hex.slice(0, 2), 16);
         pixels[p + 1] = parseInt(hex.slice(2, 4), 16);
         pixels[p + 2] = parseInt(hex.slice(4, 6), 16);

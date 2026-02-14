@@ -68,26 +68,45 @@ export function Rect({
   onPointerLeave,
   ...restOptions
 }: RectProps) {
-  const channels: Record<string, ChannelSpec> = useMemo(() => ({
-    x1: {value: x1, scale: "x", optional: true},
-    x2: {value: x2, scale: "x", optional: true},
-    y1: {value: y1, scale: "y", optional: true},
-    y2: {value: y2, scale: "y", optional: true},
-    ...(typeof fill === "string" && fill !== "none" && fill !== "currentColor" && !/^#|^rgb|^hsl/.test(fill) ? {fill: {value: fill, scale: "auto", optional: true}} : {}),
-    ...(typeof stroke === "string" && stroke !== "none" && stroke !== "currentColor" && !/^#|^rgb|^hsl/.test(stroke) ? {stroke: {value: stroke, scale: "auto", optional: true}} : {}),
-    ...(typeof fillOpacity === "string" || typeof fillOpacity === "function" ? {fillOpacity: {value: fillOpacity, scale: "auto", optional: true}} : {}),
-    ...(typeof opacity === "string" || typeof opacity === "function" ? {opacity: {value: opacity, scale: "auto", optional: true}} : {}),
-    ...(title != null ? {title: {value: title, optional: true, filter: null}} : {}),
-    ...(href != null ? {href: {value: href, optional: true, filter: null}} : {})
-  }), [x1, x2, y1, y2, fill, stroke, fillOpacity, opacity, title, href]);
+  const channels: Record<string, ChannelSpec> = useMemo(
+    () => ({
+      x1: {value: x1, scale: "x", optional: true},
+      x2: {value: x2, scale: "x", optional: true},
+      y1: {value: y1, scale: "y", optional: true},
+      y2: {value: y2, scale: "y", optional: true},
+      ...(typeof fill === "string" && fill !== "none" && fill !== "currentColor" && !/^#|^rgb|^hsl/.test(fill)
+        ? {fill: {value: fill, scale: "auto", optional: true}}
+        : {}),
+      ...(typeof stroke === "string" && stroke !== "none" && stroke !== "currentColor" && !/^#|^rgb|^hsl/.test(stroke)
+        ? {stroke: {value: stroke, scale: "auto", optional: true}}
+        : {}),
+      ...(typeof fillOpacity === "string" || typeof fillOpacity === "function"
+        ? {fillOpacity: {value: fillOpacity, scale: "auto", optional: true}}
+        : {}),
+      ...(typeof opacity === "string" || typeof opacity === "function"
+        ? {opacity: {value: opacity, scale: "auto", optional: true}}
+        : {}),
+      ...(title != null ? {title: {value: title, optional: true, filter: null}} : {}),
+      ...(href != null ? {href: {value: href, optional: true, filter: null}} : {})
+    }),
+    [x1, x2, y1, y2, fill, stroke, fillOpacity, opacity, title, href]
+  );
 
-  const markOptions = useMemo(() => ({
-    ...defaults,
-    ...restOptions,
-    fill: typeof fill === "string" && (fill === "none" || fill === "currentColor" || /^#|^rgb|^hsl/.test(fill)) ? fill : "currentColor",
-    stroke: typeof stroke === "string" ? stroke : undefined,
-    dx, dy, className
-  }), [fill, stroke, dx, dy, className, restOptions]);
+  const markOptions = useMemo(
+    () => ({
+      ...defaults,
+      ...restOptions,
+      fill:
+        typeof fill === "string" && (fill === "none" || fill === "currentColor" || /^#|^rgb|^hsl/.test(fill))
+          ? fill
+          : "currentColor",
+      stroke: typeof stroke === "string" ? stroke : undefined,
+      dx,
+      dy,
+      className
+    }),
+    [fill, stroke, dx, dy, className, restOptions]
+  );
 
   const {values, index, scales, dimensions} = useMark({
     data,
@@ -147,4 +166,28 @@ export function Rect({
 // Cell is a Rect with band x and y scales
 export function Cell(props: RectProps) {
   return <Rect {...props} />;
+}
+
+// CellX: like Cell, but x defaults to the zero-based index and fill defaults to identity
+export function CellX(props: RectProps) {
+  const {x1 = (_d: any, i: number) => i, fill = (d: any) => d, ...rest} = props;
+  return <Rect x1={x1} fill={fill} {...rest} />;
+}
+
+// CellY: like Cell, but y defaults to the zero-based index and fill defaults to identity
+export function CellY(props: RectProps) {
+  const {y1 = (_d: any, i: number) => i, fill = (d: any) => d, ...rest} = props;
+  return <Rect y1={y1} fill={fill} {...rest} />;
+}
+
+// RectX: like Rect, but with y defaulting to index and x2 defaulting to identity
+export function RectX(props: RectProps) {
+  const {y1 = (_d: any, i: number) => i, x2 = (d: any) => d, ...rest} = props;
+  return <Rect y1={y1} x2={x2} {...rest} />;
+}
+
+// RectY: like Rect, but with x defaulting to index and y2 defaulting to identity
+export function RectY(props: RectProps) {
+  const {x1 = (_d: any, i: number) => i, y2 = (d: any) => d, ...rest} = props;
+  return <Rect x1={x1} y2={y2} {...rest} />;
 }

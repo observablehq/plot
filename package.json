@@ -31,6 +31,7 @@
     "dist/**/*.js",
     "src/**/*.d.ts",
     "src/**/*.js",
+    "src/**/*.ts",
     "src/**/*.tsx"
   ],
   "scripts": {

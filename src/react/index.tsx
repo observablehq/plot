@@ -20,14 +20,30 @@ export type {PlotProps} from "./Plot.js";
 
 // Context (for advanced usage / custom marks)
 export {PlotContext, FacetContext, usePlotContext, useFacetContext} from "./PlotContext.js";
-export type {PlotContextValue, FacetContextValue, MarkRegistration, MarkState, Dimensions, FacetInfo, ChannelSpec} from "./PlotContext.js";
+export type {
+  PlotContextValue,
+  FacetContextValue,
+  MarkRegistration,
+  MarkState,
+  Dimensions,
+  FacetInfo,
+  ChannelSpec
+} from "./PlotContext.js";
 
 // Core hook (for building custom marks)
 export {useMark} from "./useMark.js";
 export type {UseMarkOptions, UseMarkResult} from "./useMark.js";
 
 // Style utilities (for building custom marks)
-export {indirectStyleProps, directStyleProps, channelStyleProps, groupChannelStyleProps, computeTransform, computeFrameAnchor, resolveStyles} from "./styles.js";
+export {
+  indirectStyleProps,
+  directStyleProps,
+  channelStyleProps,
+  groupChannelStyleProps,
+  computeTransform,
+  computeFrameAnchor,
+  resolveStyles
+} from "./styles.js";
 
 // Mark components
 export {Dot, DotX, DotY, Circle, Hexagon} from "./marks/Dot.js";
@@ -42,7 +58,7 @@ export type {AreaProps} from "./marks/Area.js";
 export {BarX, BarY} from "./marks/Bar.js";
 export type {BarProps} from "./marks/Bar.js";
 
-export {Rect, Cell} from "./marks/Rect.js";
+export {Rect, Cell, CellX, CellY, RectX, RectY} from "./marks/Rect.js";
 export type {RectProps} from "./marks/Rect.js";
 
 export {RuleX, RuleY} from "./marks/Rule.js";
@@ -63,7 +79,7 @@ export type {LinkProps} from "./marks/Link.js";
 export {Arrow} from "./marks/Arrow.js";
 export type {ArrowProps} from "./marks/Arrow.js";
 
-export {Vector, Spike} from "./marks/Vector.js";
+export {Vector, VectorX, VectorY, Spike} from "./marks/Vector.js";
 export type {VectorProps} from "./marks/Vector.js";
 
 export {Image} from "./marks/Image.js";
@@ -84,6 +100,9 @@ export type {ContourProps} from "./marks/Contour.js";
 
 export {Raster} from "./marks/Raster.js";
 export type {RasterProps} from "./marks/Raster.js";
+
+// Raster interpolation utilities (pure functions, shared with imperative API)
+export {interpolateNone, interpolatorBarycentric, interpolateNearest, interpolatorRandomWalk} from "../marks/raster.js";
 
 export {Hexgrid} from "./marks/Hexgrid.js";
 export type {HexgridProps} from "./marks/Hexgrid.js";

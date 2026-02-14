@@ -23,7 +23,14 @@ export function BoxX({data, x, y, fill = "#ccc", stroke = "currentColor", stroke
     <>
       <RuleX data={data} x={x} y={y} stroke={stroke} {...rest} />
       <BarX data={data} x={x} y={y} fill={fill} stroke={stroke} strokeWidth={strokeWidth} {...rest} />
-      <TickX data={data} x={x} y={y} stroke={stroke} strokeWidth={typeof strokeWidth === "number" ? strokeWidth * 2 : 2} {...rest} />
+      <TickX
+        data={data}
+        x={x}
+        y={y}
+        stroke={stroke}
+        strokeWidth={typeof strokeWidth === "number" ? strokeWidth * 2 : 2}
+        {...rest}
+      />
       <Dot data={data} x={x} y={y} r={r} fill="currentColor" stroke={stroke} {...rest} />
     </>
   );
@@ -35,7 +42,14 @@ export function BoxY({data, x, y, fill = "#ccc", stroke = "currentColor", stroke
     <>
       <RuleY data={data} x={x} y={y} stroke={stroke} {...rest} />
       <BarY data={data} x={x} y={y} fill={fill} stroke={stroke} strokeWidth={strokeWidth} {...rest} />
-      <TickY data={data} x={x} y={y} stroke={stroke} strokeWidth={typeof strokeWidth === "number" ? strokeWidth * 2 : 2} {...rest} />
+      <TickY
+        data={data}
+        x={x}
+        y={y}
+        stroke={stroke}
+        strokeWidth={typeof strokeWidth === "number" ? strokeWidth * 2 : 2}
+        {...rest}
+      />
       <Dot data={data} x={x} y={y} r={r} fill="currentColor" stroke={stroke} {...rest} />
     </>
   );

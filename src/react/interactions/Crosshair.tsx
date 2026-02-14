@@ -30,10 +30,13 @@ export function CrosshairX({
 }: CrosshairProps) {
   const {pointer, dimensions} = usePlotContext();
 
-  const channels: Record<string, ChannelSpec> = useMemo(() => ({
-    x: {value: x, scale: "x", optional: true},
-    y: {value: y, scale: "y", optional: true}
-  }), [x, y]);
+  const channels: Record<string, ChannelSpec> = useMemo(
+    () => ({
+      x: {value: x, scale: "x", optional: true},
+      y: {value: y, scale: "y", optional: true}
+    }),
+    [x, y]
+  );
 
   const {values, index} = useMark({
     data,
@@ -81,10 +84,13 @@ export function CrosshairY({
 }: CrosshairProps) {
   const {pointer, dimensions} = usePlotContext();
 
-  const channels: Record<string, ChannelSpec> = useMemo(() => ({
-    x: {value: x, scale: "x", optional: true},
-    y: {value: y, scale: "y", optional: true}
-  }), [x, y]);
+  const channels: Record<string, ChannelSpec> = useMemo(
+    () => ({
+      x: {value: x, scale: "x", optional: true},
+      y: {value: y, scale: "y", optional: true}
+    }),
+    [x, y]
+  );
 
   const {values, index} = useMark({
     data,
@@ -133,10 +139,13 @@ export function Crosshair({
 }: CrosshairProps) {
   const {pointer, dimensions} = usePlotContext();
 
-  const channels: Record<string, ChannelSpec> = useMemo(() => ({
-    x: {value: x, scale: "x", optional: true},
-    y: {value: y, scale: "y", optional: true}
-  }), [x, y]);
+  const channels: Record<string, ChannelSpec> = useMemo(
+    () => ({
+      x: {value: x, scale: "x", optional: true},
+      y: {value: y, scale: "y", optional: true}
+    }),
+    [x, y]
+  );
 
   const {values, index} = useMark({
     data,

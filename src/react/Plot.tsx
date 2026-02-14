@@ -1,5 +1,13 @@
 // @ts-nocheck — React components importing from untyped JS modules
-import React, {useCallback, useContext, useMemo, useRef, useState, type ReactNode, type PointerEvent as ReactPointerEvent} from "react";
+import React, {
+  useCallback,
+  useContext,
+  useMemo,
+  useRef,
+  useState,
+  type ReactNode,
+  type PointerEvent as ReactPointerEvent
+} from "react";
 import {createChannel, inferChannelScale} from "../channel.js";
 import {formatDefault} from "../format.js";
 import {createDimensions} from "../dimensions.js";
@@ -218,9 +226,7 @@ export function Plot({
         const reg = marksRef.current.get(markId);
         if (!reg) continue;
         if (reg.facet === null || reg.facet === "super") continue;
-        facetState.facetsIndex = (reg.fx != null || reg.fy != null)
-          ? facetFilter(facets, facetState)
-          : topFacetsIndex;
+        facetState.facetsIndex = reg.fx != null || reg.fy != null ? facetFilter(facets, facetState) : topFacetsIndex;
       }
 
       // Remove empty facets
@@ -369,20 +375,23 @@ export function Plot({
   }, []);
 
   // Build context value
-  const contextValue = useMemo<PlotContextValue>(() => ({
-    registerMark,
-    unregisterMark,
-    scales: computed?.exposedScales ?? null,
-    scaleFunctions: computed?.scaleFunctions ?? null,
-    dimensions: computed?.dimensions ?? null,
-    projection: computed?.projection ?? null,
-    className,
-    facets: computed?.facets,
-    facetTranslate: computed?.facetTranslateFn ?? null,
-    getMarkState: (id: string) => computed?.markStates?.get(id),
-    pointer,
-    dispatchValue: onValue
-  }), [registerMark, unregisterMark, computed, className, onValue, pointer]);
+  const contextValue = useMemo<PlotContextValue>(
+    () => ({
+      registerMark,
+      unregisterMark,
+      scales: computed?.exposedScales ?? null,
+      scaleFunctions: computed?.scaleFunctions ?? null,
+      dimensions: computed?.dimensions ?? null,
+      projection: computed?.projection ?? null,
+      className,
+      facets: computed?.facets,
+      facetTranslate: computed?.facetTranslateFn ?? null,
+      getMarkState: (id: string) => computed?.markStates?.get(id),
+      pointer,
+      dispatchValue: onValue
+    }),
+    [registerMark, unregisterMark, computed, className, onValue, pointer]
+  );
 
   const {width, height} = computed?.dimensions ?? {width: widthProp, height: heightProp ?? 400};
 
@@ -391,7 +400,8 @@ export function Plot({
 
   // Check whether children already include explicit axis components
   const hasExplicitAxes = useMemo(() => {
-    let hasX = false, hasY = false;
+    let hasX = false,
+      hasY = false;
     React.Children.forEach(children, (child) => {
       if (!React.isValidElement(child)) return;
       const name = typeof child.type === "function" ? child.type.name : "";
@@ -453,10 +463,7 @@ export function Plot({
               const tx = fx ? fx(facet.x) : 0;
               const ty = fy ? fy(facet.y) : 0;
               return (
-                <FacetContext.Provider
-                  key={fi}
-                  value={{facetIndex: fi, fx: facet.x, fy: facet.y, fi}}
-                >
+                <FacetContext.Provider key={fi} value={{facetIndex: fi, fx: facet.x, fy: facet.y, fi}}>
                   <g transform={`translate(${tx},${ty})`}>
                     {implicitAxes}
                     {children}
@@ -481,9 +488,13 @@ export function Plot({
   return (
     <figure style={{maxWidth: width, margin: "0 auto"}}>
       {title != null && <h2 style={{fontSize: "16px", fontWeight: "bold", margin: "0 0 4px"}}>{title}</h2>}
-      {subtitle != null && <h3 style={{fontSize: "12px", fontWeight: "normal", color: "#666", margin: "0 0 8px"}}>{subtitle}</h3>}
+      {subtitle != null && (
+        <h3 style={{fontSize: "12px", fontWeight: "normal", color: "#666", margin: "0 0 8px"}}>{subtitle}</h3>
+      )}
       {svg}
-      {caption != null && <figcaption style={{fontSize: "12px", color: "#666", marginTop: "4px"}}>{caption}</figcaption>}
+      {caption != null && (
+        <figcaption style={{fontSize: "12px", color: "#666", marginTop: "4px"}}>{caption}</figcaption>
+      )}
     </figure>
   );
 }
@@ -500,7 +511,14 @@ function ImplicitAxisX() {
   const tickFormat = xScale.tickFormat ? xScale.tickFormat() : formatDefault;
   const scaleLabel = (scales?.x as any)?.label;
   return (
-    <g aria-label="x-axis" transform={`translate(0,${y})`} fill="none" fontSize={10} fontVariant="tabular-nums" textAnchor="middle">
+    <g
+      aria-label="x-axis"
+      transform={`translate(0,${y})`}
+      fill="none"
+      fontSize={10}
+      fontVariant="tabular-nums"
+      textAnchor="middle"
+    >
       <line x1={marginLeft} x2={width - marginRight} stroke="currentColor" />
       {tickValues.map((d: any, i: number) => {
         const x = xScale(d);
@@ -508,12 +526,21 @@ function ImplicitAxisX() {
         return (
           <g key={i} transform={`translate(${x},0)`}>
             <line y2={6} stroke="currentColor" />
-            <text y={9} dy="0.71em" fill="currentColor">{tickFormat(d)}</text>
+            <text y={9} dy="0.71em" fill="currentColor">
+              {tickFormat(d)}
+            </text>
           </g>
         );
       })}
       {scaleLabel != null && (
-        <text x={(marginLeft + width - marginRight) / 2} y={34} fill="currentColor" textAnchor="middle" fontSize={12} fontVariant="normal">{`${scaleLabel} →`}</text>
+        <text
+          x={(marginLeft + width - marginRight) / 2}
+          y={34}
+          fill="currentColor"
+          textAnchor="middle"
+          fontSize={12}
+          fontVariant="normal"
+        >{`${scaleLabel} →`}</text>
       )}
     </g>
   );
@@ -529,7 +556,14 @@ function ImplicitAxisY() {
   const tickFormat = yScale.tickFormat ? yScale.tickFormat() : formatDefault;
   const scaleLabel = (scales?.y as any)?.label;
   return (
-    <g aria-label="y-axis" transform={`translate(${x},0)`} fill="none" fontSize={10} fontVariant="tabular-nums" textAnchor="end">
+    <g
+      aria-label="y-axis"
+      transform={`translate(${x},0)`}
+      fill="none"
+      fontSize={10}
+      fontVariant="tabular-nums"
+      textAnchor="end"
+    >
       <line y1={marginTop} y2={height - marginBottom} stroke="currentColor" />
       {tickValues.map((d: any, i: number) => {
         const y = yScale(d);
@@ -537,12 +571,20 @@ function ImplicitAxisY() {
         return (
           <g key={i} transform={`translate(0,${y})`}>
             <line x2={-6} stroke="currentColor" />
-            <text x={-9} dy="0.32em" fill="currentColor">{tickFormat(d)}</text>
+            <text x={-9} dy="0.32em" fill="currentColor">
+              {tickFormat(d)}
+            </text>
           </g>
         );
       })}
       {scaleLabel != null && (
-        <text transform={`translate(${-45},${marginTop}) rotate(-90)`} fill="currentColor" textAnchor="end" fontSize={12} fontVariant="normal">{`↑ ${scaleLabel}`}</text>
+        <text
+          transform={`translate(${-45},${marginTop}) rotate(-90)`}
+          fill="currentColor"
+          textAnchor="end"
+          fontSize={12}
+          fontVariant="normal"
+        >{`↑ ${scaleLabel}`}</text>
       )}
     </g>
   );
@@ -586,7 +628,12 @@ function applyScaleTransforms(channels: Record<string, any>, options: any) {
     if (scale == null || !t) continue;
     const scaleOpts = options[scale];
     if (!scaleOpts) continue;
-    const {type, percent, interval, transform = percent ? (x: any) => (x == null ? NaN : x * 100) : maybeIntervalTransform(interval, type)} = scaleOpts;
+    const {
+      type,
+      percent,
+      interval,
+      transform = percent ? (x: any) => (x == null ? NaN : x * 100) : maybeIntervalTransform(interval, type)
+    } = scaleOpts;
     if (transform == null) continue;
     channel.value = map(channel.value, transform);
     channel.transform = false;
@@ -600,8 +647,12 @@ function maybeTopFacet(facet: any, options: any) {
   const data = dataify(facet.data);
   if (data == null) throw new Error("missing facet data");
   const channels: Record<string, any> = {};
-  if (x != null) channels.fx = createChannelFromSpec(data, {value: x, scale: "fx"}, "fx") ?? createChannel(data, {value: x, scale: "fx"});
-  if (y != null) channels.fy = createChannelFromSpec(data, {value: y, scale: "fy"}, "fy") ?? createChannel(data, {value: y, scale: "fy"});
+  if (x != null)
+    channels.fx =
+      createChannelFromSpec(data, {value: x, scale: "fx"}, "fx") ?? createChannel(data, {value: x, scale: "fx"});
+  if (y != null)
+    channels.fy =
+      createChannelFromSpec(data, {value: y, scale: "fy"}, "fy") ?? createChannel(data, {value: y, scale: "fy"});
   applyScaleTransforms(channels, options);
   const groups = facetGroups(data, channels);
   return {channels, groups, data: facet.data};
@@ -614,8 +665,14 @@ function maybeMarkFacetState(reg: MarkRegistration, topFacetState: any, options:
     const facetData = dataify(data ?? fx ?? fy);
     if (!facetData) return undefined;
     const channels: Record<string, any> = {};
-    if (fx != null) channels.fx = createChannelFromSpec(facetData, {value: fx, scale: "fx"}, "fx") ?? createChannel(facetData, {value: fx, scale: "fx"});
-    if (fy != null) channels.fy = createChannelFromSpec(facetData, {value: fy, scale: "fy"}, "fy") ?? createChannel(facetData, {value: fy, scale: "fy"});
+    if (fx != null)
+      channels.fx =
+        createChannelFromSpec(facetData, {value: fx, scale: "fx"}, "fx") ??
+        createChannel(facetData, {value: fx, scale: "fx"});
+    if (fy != null)
+      channels.fy =
+        createChannelFromSpec(facetData, {value: fy, scale: "fy"}, "fy") ??
+        createChannel(facetData, {value: fy, scale: "fy"});
     applyScaleTransforms(channels, options);
     return {channels, groups: facetGroups(facetData, channels)};
   }

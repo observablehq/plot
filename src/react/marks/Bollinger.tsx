@@ -40,7 +40,17 @@ export function BollingerX({
 }: BollingerProps) {
   return (
     <>
-      <AreaX data={data} x={x1 ?? x} x1={x1} x2={x2} y={y} fill={fill} fillOpacity={fillOpacity} className={className} {...rest} />
+      <AreaX
+        data={data}
+        x={x1 ?? x}
+        x1={x1}
+        x2={x2}
+        y={y}
+        fill={fill}
+        fillOpacity={fillOpacity}
+        className={className}
+        {...rest}
+      />
       <LineX data={data} x={x} y={y} stroke={stroke} strokeWidth={strokeWidth} className={className} {...rest} />
     </>
   );
@@ -62,7 +72,17 @@ export function BollingerY({
 }: BollingerProps) {
   return (
     <>
-      <AreaY data={data} x={x} y={y1 ?? y} y1={y1} y2={y2} fill={fill} fillOpacity={fillOpacity} className={className} {...rest} />
+      <AreaY
+        data={data}
+        x={x}
+        y={y1 ?? y}
+        y1={y1}
+        y2={y2}
+        fill={fill}
+        fillOpacity={fillOpacity}
+        className={className}
+        {...rest}
+      />
       <LineY data={data} x={x} y={y} stroke={stroke} strokeWidth={strokeWidth} className={className} {...rest} />
     </>
   );

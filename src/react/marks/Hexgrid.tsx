@@ -45,11 +45,11 @@ export function Hexgrid({
         // Hexagon: 6 vertices
         parts.push(
           `M${cx},${cy - ry / 2}` +
-          `l${rx},${hy}` +
-          `v${ry / 2 * 2 - hy * 2 > 0 ? 0 : hy}` +
-          `l${-rx},${hy}` +
-          `l${-rx},${-hy}` +
-          `v${-(ry / 2 * 2 - hy * 2 > 0 ? 0 : hy)}Z`
+            `l${rx},${hy}` +
+            `v${(ry / 2) * 2 - hy * 2 > 0 ? 0 : hy}` +
+            `l${-rx},${hy}` +
+            `l${-rx},${-hy}` +
+            `v${-((ry / 2) * 2 - hy * 2 > 0 ? 0 : hy)}Z`
         );
       }
     }

@@ -1,7 +1,13 @@
 // @ts-nocheck — React components importing from untyped JS modules
 import React, {useMemo} from "react";
 import {useMark} from "../useMark.js";
-import {indirectStyleProps, directStyleProps, channelStyleProps, computeTransform, computeFrameAnchor} from "../styles.js";
+import {
+  indirectStyleProps,
+  directStyleProps,
+  channelStyleProps,
+  computeTransform,
+  computeFrameAnchor
+} from "../styles.js";
 import type {ChannelSpec} from "../PlotContext.js";
 
 const defaults = {
@@ -55,25 +61,41 @@ export function Image({
   onClick,
   ...restOptions
 }: ImageProps) {
-  const isSrcChannel = src != null && (typeof src === "string" && !src.startsWith("http") && !src.startsWith("/") && !src.startsWith("data:") || typeof src === "function" || Array.isArray(src));
+  const isSrcChannel =
+    src != null &&
+    ((typeof src === "string" && !src.startsWith("http") && !src.startsWith("/") && !src.startsWith("data:")) ||
+      typeof src === "function" ||
+      Array.isArray(src));
   const isWidthChannel = typeof widthProp === "string" || typeof widthProp === "function" || Array.isArray(widthProp);
-  const isHeightChannel = typeof heightProp === "string" || typeof heightProp === "function" || Array.isArray(heightProp);
+  const isHeightChannel =
+    typeof heightProp === "string" || typeof heightProp === "function" || Array.isArray(heightProp);
 
-  const channels: Record<string, ChannelSpec> = useMemo(() => ({
-    x: {value: x, scale: "x", optional: true},
-    y: {value: y, scale: "y", optional: true},
-    ...(isSrcChannel ? {src: {value: src, optional: true}} : {}),
-    ...(isWidthChannel ? {width: {value: widthProp, optional: true}} : {}),
-    ...(isHeightChannel ? {height: {value: heightProp, optional: true}} : {}),
-    ...(typeof opacity === "string" || typeof opacity === "function" ? {opacity: {value: opacity, scale: "auto", optional: true}} : {}),
-    ...(title != null ? {title: {value: title, optional: true, filter: null}} : {})
-  }), [x, y, src, widthProp, heightProp, opacity, title, isSrcChannel, isWidthChannel, isHeightChannel]);
+  const channels: Record<string, ChannelSpec> = useMemo(
+    () => ({
+      x: {value: x, scale: "x", optional: true},
+      y: {value: y, scale: "y", optional: true},
+      ...(isSrcChannel ? {src: {value: src, optional: true}} : {}),
+      ...(isWidthChannel ? {width: {value: widthProp, optional: true}} : {}),
+      ...(isHeightChannel ? {height: {value: heightProp, optional: true}} : {}),
+      ...(typeof opacity === "string" || typeof opacity === "function"
+        ? {opacity: {value: opacity, scale: "auto", optional: true}}
+        : {}),
+      ...(title != null ? {title: {value: title, optional: true, filter: null}} : {})
+    }),
+    [x, y, src, widthProp, heightProp, opacity, title, isSrcChannel, isWidthChannel, isHeightChannel]
+  );
 
-  const markOptions = useMemo(() => ({
-    ...defaults,
-    ...restOptions,
-    dx, dy, className, frameAnchor
-  }), [dx, dy, className, frameAnchor, restOptions]);
+  const markOptions = useMemo(
+    () => ({
+      ...defaults,
+      ...restOptions,
+      dx,
+      dy,
+      className,
+      frameAnchor
+    }),
+    [dx, dy, className, frameAnchor, restOptions]
+  );
 
   const {values, index, scales, dimensions} = useMark({
     data,
@@ -88,8 +110,8 @@ export function Image({
   const {x: X, y: Y, src: SRC, width: W, height: H} = values;
   const [anchorX, anchorY] = computeFrameAnchor(frameAnchor, dimensions);
   const constantSrc = isSrcChannel ? undefined : src;
-  const constantWidth = isWidthChannel ? undefined : (typeof widthProp === "number" ? widthProp : 16);
-  const constantHeight = isHeightChannel ? undefined : (typeof heightProp === "number" ? heightProp : 16);
+  const constantWidth = isWidthChannel ? undefined : typeof widthProp === "number" ? widthProp : 16;
+  const constantHeight = isHeightChannel ? undefined : typeof heightProp === "number" ? heightProp : 16;
 
   const transform = computeTransform({dx, dy}, scales);
   const groupProps = {

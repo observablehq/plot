@@ -2,10 +2,7 @@ import type {Dimensions} from "./PlotContext.js";
 
 // Converts the mark's "indirect" (group-level) styles into a props object
 // for the outer <g> element, mirroring applyIndirectStyles from style.js.
-export function indirectStyleProps(
-  mark: Record<string, any>,
-  _dimensions?: Dimensions
-): Record<string, any> {
+export function indirectStyleProps(mark: Record<string, any>, _dimensions?: Dimensions): Record<string, any> {
   const props: Record<string, any> = {};
   if (mark.ariaLabel != null) props["aria-label"] = mark.ariaLabel;
   if (mark.ariaDescription != null) props["aria-description"] = mark.ariaDescription;
@@ -48,7 +45,16 @@ export function channelStyleProps(
   _options?: {tip?: boolean}
 ): Record<string, any> {
   const props: Record<string, any> = {};
-  const {ariaLabel: AL, fill: F, fillOpacity: FO, stroke: S, strokeOpacity: SO, strokeWidth: SW, opacity: O, href: H} = values;
+  const {
+    ariaLabel: AL,
+    fill: F,
+    fillOpacity: FO,
+    stroke: S,
+    strokeOpacity: SO,
+    strokeWidth: SW,
+    opacity: O,
+    href: H
+  } = values;
   if (AL) props["aria-label"] = AL[i];
   if (F) props.fill = F[i];
   if (FO) props.fillOpacity = FO[i];
@@ -62,10 +68,7 @@ export function channelStyleProps(
 
 // Converts per-group channel values (for grouped marks like Line, Area)
 // using the first index of the group.
-export function groupChannelStyleProps(
-  group: number[],
-  values: Record<string, any>
-): Record<string, any> {
+export function groupChannelStyleProps(group: number[], values: Record<string, any>): Record<string, any> {
   return channelStyleProps(group[0], values);
 }
 
@@ -87,22 +90,19 @@ export function computeTransform(
 }
 
 // Computes the frame anchor position for marks that use it (e.g., Dot).
-export function computeFrameAnchor(
-  frameAnchor: string | undefined,
-  dimensions: Dimensions
-): [number, number] {
+export function computeFrameAnchor(frameAnchor: string | undefined, dimensions: Dimensions): [number, number] {
   const {width, height, marginTop, marginRight, marginBottom, marginLeft} = dimensions;
   return [
     /left$/.test(frameAnchor || "")
       ? marginLeft
       : /right$/.test(frameAnchor || "")
-        ? width - marginRight
-        : (marginLeft + width - marginRight) / 2,
+      ? width - marginRight
+      : (marginLeft + width - marginRight) / 2,
     /^top/.test(frameAnchor || "")
       ? marginTop
       : /^bottom/.test(frameAnchor || "")
-        ? height - marginBottom
-        : (marginTop + height - marginBottom) / 2
+      ? height - marginBottom
+      : (marginTop + height - marginBottom) / 2
   ];
 }
 
@@ -139,10 +139,7 @@ const impliedString = (value: any, implied: string): string | undefined =>
 const impliedNumber = (value: any, implied: number): number | undefined =>
   value == null || +value === implied ? undefined : +value;
 
-export function resolveStyles(
-  options: Record<string, any>,
-  defaults: Record<string, any>
-): ResolvedStyles {
+export function resolveStyles(options: Record<string, any>, defaults: Record<string, any>): ResolvedStyles {
   const {
     fill,
     fillOpacity,
@@ -161,13 +158,7 @@ export function resolveStyles(
     className,
     target
   } = options;
-  let {
-    strokeWidth,
-    strokeLinejoin,
-    strokeLinecap,
-    strokeMiterlimit,
-    paintOrder
-  } = options;
+  let {strokeWidth, strokeLinejoin, strokeLinecap, strokeMiterlimit, paintOrder} = options;
 
   const {
     fill: defaultFill = "currentColor",

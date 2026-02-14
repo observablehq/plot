@@ -48,23 +48,36 @@ export function DelaunayLink({
   className,
   ...restOptions
 }: DelaunayProps) {
-  const channels: Record<string, ChannelSpec> = useMemo(() => ({
-    x: {value: x, scale: "x"},
-    y: {value: y, scale: "y"},
-    ...(z != null ? {z: {value: z, optional: true}} : {}),
-    ...(typeof stroke === "string" && stroke !== "none" && stroke !== "currentColor" && !/^#|^rgb|^hsl/.test(stroke)
-      ? {stroke: {value: stroke, scale: "auto", optional: true}} : {}),
-    ...(typeof opacity === "string" || typeof opacity === "function"
-      ? {opacity: {value: opacity, scale: "auto", optional: true}} : {})
-  }), [x, y, z, stroke, opacity]);
+  const channels: Record<string, ChannelSpec> = useMemo(
+    () => ({
+      x: {value: x, scale: "x"},
+      y: {value: y, scale: "y"},
+      ...(z != null ? {z: {value: z, optional: true}} : {}),
+      ...(typeof stroke === "string" && stroke !== "none" && stroke !== "currentColor" && !/^#|^rgb|^hsl/.test(stroke)
+        ? {stroke: {value: stroke, scale: "auto", optional: true}}
+        : {}),
+      ...(typeof opacity === "string" || typeof opacity === "function"
+        ? {opacity: {value: opacity, scale: "auto", optional: true}}
+        : {})
+    }),
+    [x, y, z, stroke, opacity]
+  );
 
-  const markOptions = useMemo(() => ({
-    ...linkDefaults,
-    ...restOptions,
-    stroke: typeof stroke === "string" && (stroke === "none" || stroke === "currentColor" || /^#|^rgb|^hsl/.test(stroke)) ? stroke : linkDefaults.stroke,
-    strokeWidth: typeof strokeWidth === "number" ? strokeWidth : linkDefaults.strokeWidth,
-    dx, dy, className
-  }), [stroke, strokeWidth, dx, dy, className, restOptions]);
+  const markOptions = useMemo(
+    () => ({
+      ...linkDefaults,
+      ...restOptions,
+      stroke:
+        typeof stroke === "string" && (stroke === "none" || stroke === "currentColor" || /^#|^rgb|^hsl/.test(stroke))
+          ? stroke
+          : linkDefaults.stroke,
+      strokeWidth: typeof strokeWidth === "number" ? strokeWidth : linkDefaults.strokeWidth,
+      dx,
+      dy,
+      className
+    }),
+    [stroke, strokeWidth, dx, dy, className, restOptions]
+  );
 
   const {values, index, scales, dimensions} = useMark({
     data,
@@ -102,14 +115,7 @@ export function DelaunayLink({
   return (
     <g {...groupProps}>
       {edges.map(({i1, i2}, j) => (
-        <line
-          key={j}
-          x1={X[i1]}
-          y1={Y[i1]}
-          x2={X[i2]}
-          y2={Y[i2]}
-          {...directStyleProps(markOptions)}
-        />
+        <line key={j} x1={X[i1]} y1={Y[i1]} x2={X[i2]} y2={Y[i2]} {...directStyleProps(markOptions)} />
       ))}
     </g>
   );
@@ -130,19 +136,27 @@ export function DelaunayMesh({
   className,
   ...restOptions
 }: DelaunayProps) {
-  const channels: Record<string, ChannelSpec> = useMemo(() => ({
-    x: {value: x, scale: "x"},
-    y: {value: y, scale: "y"}
-  }), [x, y]);
+  const channels: Record<string, ChannelSpec> = useMemo(
+    () => ({
+      x: {value: x, scale: "x"},
+      y: {value: y, scale: "y"}
+    }),
+    [x, y]
+  );
 
-  const markOptions = useMemo(() => ({
-    ariaLabel: "delaunay-mesh",
-    fill,
-    stroke: typeof stroke === "string" ? stroke : "currentColor",
-    strokeWidth: typeof strokeWidth === "number" ? strokeWidth : 1,
-    ...restOptions,
-    dx, dy, className
-  }), [fill, stroke, strokeWidth, dx, dy, className, restOptions]);
+  const markOptions = useMemo(
+    () => ({
+      ariaLabel: "delaunay-mesh",
+      fill,
+      stroke: typeof stroke === "string" ? stroke : "currentColor",
+      strokeWidth: typeof strokeWidth === "number" ? strokeWidth : 1,
+      ...restOptions,
+      dx,
+      dy,
+      className
+    }),
+    [fill, stroke, strokeWidth, dx, dy, className, restOptions]
+  );
 
   const {values, index, scales, dimensions} = useMark({data, channels, ...markOptions});
 
@@ -190,19 +204,27 @@ export function Hull({
   className,
   ...restOptions
 }: DelaunayProps) {
-  const channels: Record<string, ChannelSpec> = useMemo(() => ({
-    x: {value: x, scale: "x"},
-    y: {value: y, scale: "y"}
-  }), [x, y]);
+  const channels: Record<string, ChannelSpec> = useMemo(
+    () => ({
+      x: {value: x, scale: "x"},
+      y: {value: y, scale: "y"}
+    }),
+    [x, y]
+  );
 
-  const markOptions = useMemo(() => ({
-    ariaLabel: "hull",
-    fill,
-    stroke: typeof stroke === "string" ? stroke : "currentColor",
-    strokeWidth: typeof strokeWidth === "number" ? strokeWidth : 1.5,
-    ...restOptions,
-    dx, dy, className
-  }), [fill, stroke, strokeWidth, dx, dy, className, restOptions]);
+  const markOptions = useMemo(
+    () => ({
+      ariaLabel: "hull",
+      fill,
+      stroke: typeof stroke === "string" ? stroke : "currentColor",
+      strokeWidth: typeof strokeWidth === "number" ? strokeWidth : 1.5,
+      ...restOptions,
+      dx,
+      dy,
+      className
+    }),
+    [fill, stroke, strokeWidth, dx, dy, className, restOptions]
+  );
 
   const {values, index, scales, dimensions} = useMark({data, channels, ...markOptions});
 
@@ -253,24 +275,37 @@ export function Voronoi({
   className,
   ...restOptions
 }: DelaunayProps) {
-  const channels: Record<string, ChannelSpec> = useMemo(() => ({
-    x: {value: x, scale: "x"},
-    y: {value: y, scale: "y"},
-    ...(typeof fill === "string" && fill !== "none" && fill !== "currentColor" && !/^#|^rgb|^hsl/.test(fill)
-      ? {fill: {value: fill, scale: "auto", optional: true}} : {}),
-    ...(typeof opacity === "string" || typeof opacity === "function"
-      ? {opacity: {value: opacity, scale: "auto", optional: true}} : {}),
-    ...(title != null ? {title: {value: title, optional: true, filter: null}} : {})
-  }), [x, y, fill, opacity, title]);
+  const channels: Record<string, ChannelSpec> = useMemo(
+    () => ({
+      x: {value: x, scale: "x"},
+      y: {value: y, scale: "y"},
+      ...(typeof fill === "string" && fill !== "none" && fill !== "currentColor" && !/^#|^rgb|^hsl/.test(fill)
+        ? {fill: {value: fill, scale: "auto", optional: true}}
+        : {}),
+      ...(typeof opacity === "string" || typeof opacity === "function"
+        ? {opacity: {value: opacity, scale: "auto", optional: true}}
+        : {}),
+      ...(title != null ? {title: {value: title, optional: true, filter: null}} : {})
+    }),
+    [x, y, fill, opacity, title]
+  );
 
-  const markOptions = useMemo(() => ({
-    ariaLabel: "voronoi",
-    fill: typeof fill === "string" && (fill === "none" || fill === "currentColor" || /^#|^rgb|^hsl/.test(fill)) ? fill : "none",
-    stroke: typeof stroke === "string" ? stroke : "currentColor",
-    strokeWidth: typeof strokeWidth === "number" ? strokeWidth : 1,
-    ...restOptions,
-    dx, dy, className
-  }), [fill, stroke, strokeWidth, dx, dy, className, restOptions]);
+  const markOptions = useMemo(
+    () => ({
+      ariaLabel: "voronoi",
+      fill:
+        typeof fill === "string" && (fill === "none" || fill === "currentColor" || /^#|^rgb|^hsl/.test(fill))
+          ? fill
+          : "none",
+      stroke: typeof stroke === "string" ? stroke : "currentColor",
+      strokeWidth: typeof strokeWidth === "number" ? strokeWidth : 1,
+      ...restOptions,
+      dx,
+      dy,
+      className
+    }),
+    [fill, stroke, strokeWidth, dx, dy, className, restOptions]
+  );
 
   const {values, index, scales, dimensions} = useMark({data, channels, tip, ...markOptions});
 
@@ -300,12 +335,7 @@ export function Voronoi({
   return (
     <g {...groupProps}>
       {cellPaths.map((d, j) => (
-        <path
-          key={j}
-          d={d}
-          {...directStyleProps(markOptions)}
-          {...channelStyleProps(index[j], values)}
-        >
+        <path key={j} d={d} {...directStyleProps(markOptions)} {...channelStyleProps(index[j], values)}>
           {values.title && values.title[index[j]] != null && <title>{`${values.title[index[j]]}`}</title>}
         </path>
       ))}
@@ -328,19 +358,27 @@ export function VoronoiMesh({
   className,
   ...restOptions
 }: DelaunayProps) {
-  const channels: Record<string, ChannelSpec> = useMemo(() => ({
-    x: {value: x, scale: "x"},
-    y: {value: y, scale: "y"}
-  }), [x, y]);
+  const channels: Record<string, ChannelSpec> = useMemo(
+    () => ({
+      x: {value: x, scale: "x"},
+      y: {value: y, scale: "y"}
+    }),
+    [x, y]
+  );
 
-  const markOptions = useMemo(() => ({
-    ariaLabel: "voronoi-mesh",
-    fill,
-    stroke: typeof stroke === "string" ? stroke : "currentColor",
-    strokeWidth: typeof strokeWidth === "number" ? strokeWidth : 1,
-    ...restOptions,
-    dx, dy, className
-  }), [fill, stroke, strokeWidth, dx, dy, className, restOptions]);
+  const markOptions = useMemo(
+    () => ({
+      ariaLabel: "voronoi-mesh",
+      fill,
+      stroke: typeof stroke === "string" ? stroke : "currentColor",
+      strokeWidth: typeof strokeWidth === "number" ? strokeWidth : 1,
+      ...restOptions,
+      dx,
+      dy,
+      className
+    }),
+    [fill, stroke, strokeWidth, dx, dy, className, restOptions]
+  );
 
   const {values, index, scales, dimensions} = useMark({data, channels, ...markOptions});
 
@@ -378,17 +416,27 @@ export function VoronoiMesh({
 // Simple path context that builds an SVG path string (replaces canvas context)
 class Path2DContext {
   private _d: string[] = [];
-  moveTo(x: number, y: number) { this._d.push(`M${x},${y}`); }
-  lineTo(x: number, y: number) { this._d.push(`L${x},${y}`); }
-  closePath() { this._d.push("Z"); }
+  moveTo(x: number, y: number) {
+    this._d.push(`M${x},${y}`);
+  }
+  lineTo(x: number, y: number) {
+    this._d.push(`L${x},${y}`);
+  }
+  closePath() {
+    this._d.push("Z");
+  }
   arc(x: number, y: number, r: number, a0: number, a1: number) {
-    const x0 = x + r * Math.cos(a0), y0 = y + r * Math.sin(a0);
-    const x1 = x + r * Math.cos(a1), y1 = y + r * Math.sin(a1);
+    const x0 = x + r * Math.cos(a0),
+      y0 = y + r * Math.sin(a0);
+    const x1 = x + r * Math.cos(a1),
+      y1 = y + r * Math.sin(a1);
     const large = Math.abs(a1 - a0) > Math.PI ? 1 : 0;
     this._d.push(`M${x0},${y0}A${r},${r},0,${large},1,${x1},${y1}`);
   }
   rect(x: number, y: number, w: number, h: number) {
     this._d.push(`M${x},${y}h${w}v${h}h${-w}Z`);
   }
-  toString() { return this._d.join(""); }
+  toString() {
+    return this._d.join("");
+  }
 }

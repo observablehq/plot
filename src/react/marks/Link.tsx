@@ -54,23 +54,38 @@ export function Link({
   onClick,
   ...restOptions
 }: LinkProps) {
-  const channels: Record<string, ChannelSpec> = useMemo(() => ({
-    x1: {value: x1, scale: "x"},
-    y1: {value: y1, scale: "y"},
-    x2: {value: x2, scale: "x"},
-    y2: {value: y2, scale: "y"},
-    ...(typeof stroke === "string" && stroke !== "none" && stroke !== "currentColor" && !/^#|^rgb|^hsl/.test(stroke) ? {stroke: {value: stroke, scale: "auto", optional: true}} : {}),
-    ...(typeof opacity === "string" || typeof opacity === "function" ? {opacity: {value: opacity, scale: "auto", optional: true}} : {}),
-    ...(title != null ? {title: {value: title, optional: true, filter: null}} : {})
-  }), [x1, y1, x2, y2, stroke, opacity, title]);
+  const channels: Record<string, ChannelSpec> = useMemo(
+    () => ({
+      x1: {value: x1, scale: "x"},
+      y1: {value: y1, scale: "y"},
+      x2: {value: x2, scale: "x"},
+      y2: {value: y2, scale: "y"},
+      ...(typeof stroke === "string" && stroke !== "none" && stroke !== "currentColor" && !/^#|^rgb|^hsl/.test(stroke)
+        ? {stroke: {value: stroke, scale: "auto", optional: true}}
+        : {}),
+      ...(typeof opacity === "string" || typeof opacity === "function"
+        ? {opacity: {value: opacity, scale: "auto", optional: true}}
+        : {}),
+      ...(title != null ? {title: {value: title, optional: true, filter: null}} : {})
+    }),
+    [x1, y1, x2, y2, stroke, opacity, title]
+  );
 
-  const markOptions = useMemo(() => ({
-    ...defaults,
-    ...restOptions,
-    stroke: typeof stroke === "string" && (stroke === "none" || stroke === "currentColor" || /^#|^rgb|^hsl/.test(stroke)) ? stroke : defaults.stroke,
-    strokeWidth: typeof strokeWidth === "number" ? strokeWidth : defaults.strokeWidth,
-    dx, dy, className
-  }), [stroke, strokeWidth, dx, dy, className, restOptions]);
+  const markOptions = useMemo(
+    () => ({
+      ...defaults,
+      ...restOptions,
+      stroke:
+        typeof stroke === "string" && (stroke === "none" || stroke === "currentColor" || /^#|^rgb|^hsl/.test(stroke))
+          ? stroke
+          : defaults.stroke,
+      strokeWidth: typeof strokeWidth === "number" ? strokeWidth : defaults.strokeWidth,
+      dx,
+      dy,
+      className
+    }),
+    [stroke, strokeWidth, dx, dy, className, restOptions]
+  );
 
   const {values, index, scales, dimensions} = useMark({
     data,

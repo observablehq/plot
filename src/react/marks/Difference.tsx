@@ -66,7 +66,16 @@ export function DifferenceY({
         {...rest}
       />
       {/* Reference line */}
-      <Line data={data} x={x} y={y2} stroke={stroke} strokeWidth={strokeWidth} strokeDasharray="2,2" className={className} {...rest} />
+      <Line
+        data={data}
+        x={x}
+        y={y2}
+        stroke={stroke}
+        strokeWidth={strokeWidth}
+        strokeDasharray="2,2"
+        className={className}
+        {...rest}
+      />
       {/* Primary line */}
       <Line data={data} x={x} y={y1} stroke={stroke} strokeWidth={strokeWidth} className={className} {...rest} />
     </>
@@ -112,7 +121,16 @@ export function DifferenceX({
         className={className}
         {...rest}
       />
-      <Line data={data} x={x2} y={y} stroke={stroke} strokeWidth={strokeWidth} strokeDasharray="2,2" className={className} {...rest} />
+      <Line
+        data={data}
+        x={x2}
+        y={y}
+        stroke={stroke}
+        strokeWidth={strokeWidth}
+        strokeDasharray="2,2"
+        className={className}
+        {...rest}
+      />
       <Line data={data} x={x1} y={y} stroke={stroke} strokeWidth={strokeWidth} className={className} {...rest} />
     </>
   );

@@ -67,24 +67,40 @@ export function Contour({
   className,
   ...restOptions
 }: ContourProps) {
-  const channels: Record<string, ChannelSpec> = useMemo(() => ({
-    ...(value != null ? {value: {value, optional: true}} : {}),
-    ...(x != null ? {x: {value: x, scale: "x", optional: true}} : {}),
-    ...(y != null ? {y: {value: y, scale: "y", optional: true}} : {}),
-    ...(typeof fill === "string" && fill !== "none" && fill !== "currentColor" && !/^#|^rgb|^hsl/.test(fill)
-      ? {fill: {value: fill, scale: "auto", optional: true}} : {}),
-    ...(typeof opacity === "string" || typeof opacity === "function"
-      ? {opacity: {value: opacity, scale: "auto", optional: true}} : {})
-  }), [value, x, y, fill, opacity]);
+  const channels: Record<string, ChannelSpec> = useMemo(
+    () => ({
+      ...(value != null ? {value: {value, optional: true}} : {}),
+      ...(x != null ? {x: {value: x, scale: "x", optional: true}} : {}),
+      ...(y != null ? {y: {value: y, scale: "y", optional: true}} : {}),
+      ...(typeof fill === "string" && fill !== "none" && fill !== "currentColor" && !/^#|^rgb|^hsl/.test(fill)
+        ? {fill: {value: fill, scale: "auto", optional: true}}
+        : {}),
+      ...(typeof opacity === "string" || typeof opacity === "function"
+        ? {opacity: {value: opacity, scale: "auto", optional: true}}
+        : {})
+    }),
+    [value, x, y, fill, opacity]
+  );
 
-  const markOptions = useMemo(() => ({
-    ...defaults,
-    ...restOptions,
-    fill: typeof fill === "string" && (fill === "none" || fill === "currentColor" || /^#|^rgb|^hsl/.test(fill)) ? fill : defaults.fill,
-    stroke: typeof stroke === "string" && (stroke === "none" || stroke === "currentColor" || /^#|^rgb|^hsl/.test(stroke)) ? stroke : defaults.stroke,
-    strokeWidth: typeof strokeWidth === "number" ? strokeWidth : defaults.strokeWidth,
-    dx, dy, className
-  }), [fill, stroke, strokeWidth, dx, dy, className, restOptions]);
+  const markOptions = useMemo(
+    () => ({
+      ...defaults,
+      ...restOptions,
+      fill:
+        typeof fill === "string" && (fill === "none" || fill === "currentColor" || /^#|^rgb|^hsl/.test(fill))
+          ? fill
+          : defaults.fill,
+      stroke:
+        typeof stroke === "string" && (stroke === "none" || stroke === "currentColor" || /^#|^rgb|^hsl/.test(stroke))
+          ? stroke
+          : defaults.stroke,
+      strokeWidth: typeof strokeWidth === "number" ? strokeWidth : defaults.strokeWidth,
+      dx,
+      dy,
+      className
+    }),
+    [fill, stroke, strokeWidth, dx, dy, className, restOptions]
+  );
 
   const {values, index, dimensions} = useMark({data, channels, ariaLabel: defaults.ariaLabel, tip, ...markOptions});
 
@@ -128,18 +144,43 @@ export function Contour({
     const path = geoPath().projection({
       stream(s: any) {
         return {
-          point(x: number, y: number) { s.point(marginLeft + x * sx, marginTop + y * sy); },
-          lineStart() { s.lineStart(); },
-          lineEnd() { s.lineEnd(); },
-          polygonStart() { s.polygonStart(); },
-          polygonEnd() { s.polygonEnd(); },
-          sphere() {},
+          point(x: number, y: number) {
+            s.point(marginLeft + x * sx, marginTop + y * sy);
+          },
+          lineStart() {
+            s.lineStart();
+          },
+          lineEnd() {
+            s.lineEnd();
+          },
+          polygonStart() {
+            s.polygonStart();
+          },
+          polygonEnd() {
+            s.polygonEnd();
+          },
+          sphere() {}
         };
       }
     });
 
     return result.map((c: any) => ({d: path(c), value: c.value}));
-  }, [V, data, index, gridWidth, gridHeight, plotWidth, plotHeight, marginLeft, marginTop, marginRight, marginBottom, pixelSize, thresholds, smooth]);
+  }, [
+    V,
+    data,
+    index,
+    gridWidth,
+    gridHeight,
+    plotWidth,
+    plotHeight,
+    marginLeft,
+    marginTop,
+    marginRight,
+    marginBottom,
+    pixelSize,
+    thresholds,
+    smooth
+  ]);
 
   const groupProps = indirectStyleProps(markOptions, dimensions);
 
@@ -147,13 +188,7 @@ export function Contour({
     <g {...groupProps}>
       {contourPaths.map(({d}: any, j: number) => {
         if (!d) return null;
-        return (
-          <path
-            key={j}
-            d={d}
-            {...directStyleProps(markOptions)}
-          />
-        );
+        return <path key={j} d={d} {...directStyleProps(markOptions)} />;
       })}
     </g>
   );

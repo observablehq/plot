@@ -59,32 +59,54 @@ export function Line({
   ...restOptions
 }: LineProps) {
   // Determine z channel: defaults to fill or stroke if they're channels
-  const maybeZ = z ?? (typeof fill === "string" && !/^#|^rgb|^hsl|^none|^currentColor/.test(fill) ? fill : undefined)
-    ?? (typeof stroke === "string" && !/^#|^rgb|^hsl|^none|^currentColor/.test(stroke) ? stroke : undefined);
+  const maybeZ =
+    z ??
+    (typeof fill === "string" && !/^#|^rgb|^hsl|^none|^currentColor/.test(fill) ? fill : undefined) ??
+    (typeof stroke === "string" && !/^#|^rgb|^hsl|^none|^currentColor/.test(stroke) ? stroke : undefined);
 
-  const channels: Record<string, ChannelSpec> = useMemo(() => ({
-    x: {value: x, scale: "x"},
-    y: {value: y, scale: "y"},
-    ...(maybeZ != null ? {z: {value: maybeZ, optional: true}} : {}),
-    ...(typeof fill === "string" && fill !== "none" && fill !== "currentColor" && !/^#|^rgb|^hsl/.test(fill) ? {fill: {value: fill, scale: "auto", optional: true}} : {}),
-    ...(typeof stroke === "string" && stroke !== "none" && stroke !== "currentColor" && !/^#|^rgb|^hsl/.test(stroke) ? {stroke: {value: stroke, scale: "auto", optional: true}} : {}),
-    ...(typeof strokeOpacity === "string" || typeof strokeOpacity === "function" ? {strokeOpacity: {value: strokeOpacity, scale: "auto", optional: true}} : {}),
-    ...(typeof opacity === "string" || typeof opacity === "function" ? {opacity: {value: opacity, scale: "auto", optional: true}} : {}),
-    ...(title != null ? {title: {value: title, optional: true, filter: null}} : {})
-  }), [x, y, maybeZ, fill, stroke, strokeOpacity, opacity, title]);
+  const channels: Record<string, ChannelSpec> = useMemo(
+    () => ({
+      x: {value: x, scale: "x"},
+      y: {value: y, scale: "y"},
+      ...(maybeZ != null ? {z: {value: maybeZ, optional: true}} : {}),
+      ...(typeof fill === "string" && fill !== "none" && fill !== "currentColor" && !/^#|^rgb|^hsl/.test(fill)
+        ? {fill: {value: fill, scale: "auto", optional: true}}
+        : {}),
+      ...(typeof stroke === "string" && stroke !== "none" && stroke !== "currentColor" && !/^#|^rgb|^hsl/.test(stroke)
+        ? {stroke: {value: stroke, scale: "auto", optional: true}}
+        : {}),
+      ...(typeof strokeOpacity === "string" || typeof strokeOpacity === "function"
+        ? {strokeOpacity: {value: strokeOpacity, scale: "auto", optional: true}}
+        : {}),
+      ...(typeof opacity === "string" || typeof opacity === "function"
+        ? {opacity: {value: opacity, scale: "auto", optional: true}}
+        : {}),
+      ...(title != null ? {title: {value: title, optional: true, filter: null}} : {})
+    }),
+    [x, y, maybeZ, fill, stroke, strokeOpacity, opacity, title]
+  );
 
   const curveValue = useMemo(() => maybeCurveAuto(curveProp, tension), [curveProp, tension]);
 
-  const markOptions = useMemo(() => ({
-    ...defaults,
-    ...restOptions,
-    dx,
-    dy,
-    fill: typeof fill === "string" && (fill === "none" || fill === "currentColor" || /^#|^rgb|^hsl/.test(fill)) ? fill : defaults.fill,
-    stroke: typeof stroke === "string" && (stroke === "none" || stroke === "currentColor" || /^#|^rgb|^hsl/.test(stroke)) ? stroke : defaults.stroke,
-    strokeWidth: typeof strokeWidth === "number" ? strokeWidth : defaults.strokeWidth,
-    className
-  }), [fill, stroke, strokeWidth, dx, dy, className, restOptions]);
+  const markOptions = useMemo(
+    () => ({
+      ...defaults,
+      ...restOptions,
+      dx,
+      dy,
+      fill:
+        typeof fill === "string" && (fill === "none" || fill === "currentColor" || /^#|^rgb|^hsl/.test(fill))
+          ? fill
+          : defaults.fill,
+      stroke:
+        typeof stroke === "string" && (stroke === "none" || stroke === "currentColor" || /^#|^rgb|^hsl/.test(stroke))
+          ? stroke
+          : defaults.stroke,
+      strokeWidth: typeof strokeWidth === "number" ? strokeWidth : defaults.strokeWidth,
+      className
+    }),
+    [fill, stroke, strokeWidth, dx, dy, className, restOptions]
+  );
 
   const {values, index, scales, dimensions} = useMark({
     data,
@@ -132,15 +154,8 @@ export function Line({
         const gStyles = groupChannelStyleProps(g, values);
         const dStyles = directStyleProps(markOptions);
         return (
-          <path
-            key={j}
-            d={d}
-            {...dStyles}
-            {...gStyles}
-          >
-            {values.title && g[0] != null && values.title[g[0]] != null && (
-              <title>{`${values.title[g[0]]}`}</title>
-            )}
+          <path key={j} d={d} {...dStyles} {...gStyles}>
+            {values.title && g[0] != null && values.title[g[0]] != null && <title>{`${values.title[g[0]]}`}</title>}
           </path>
         );
       })}

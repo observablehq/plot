@@ -52,21 +52,36 @@ export function TickX({
   onClick,
   ...restOptions
 }: TickProps) {
-  const channels: Record<string, ChannelSpec> = useMemo(() => ({
-    x: {value: x, scale: "x"},
-    y: {value: y, scale: "y", type: "band", optional: true},
-    ...(typeof stroke === "string" && stroke !== "none" && stroke !== "currentColor" && !/^#|^rgb|^hsl/.test(stroke) ? {stroke: {value: stroke, scale: "auto", optional: true}} : {}),
-    ...(typeof opacity === "string" || typeof opacity === "function" ? {opacity: {value: opacity, scale: "auto", optional: true}} : {}),
-    ...(title != null ? {title: {value: title, optional: true, filter: null}} : {})
-  }), [x, y, stroke, opacity, title]);
+  const channels: Record<string, ChannelSpec> = useMemo(
+    () => ({
+      x: {value: x, scale: "x"},
+      y: {value: y, scale: "y", type: "band", optional: true},
+      ...(typeof stroke === "string" && stroke !== "none" && stroke !== "currentColor" && !/^#|^rgb|^hsl/.test(stroke)
+        ? {stroke: {value: stroke, scale: "auto", optional: true}}
+        : {}),
+      ...(typeof opacity === "string" || typeof opacity === "function"
+        ? {opacity: {value: opacity, scale: "auto", optional: true}}
+        : {}),
+      ...(title != null ? {title: {value: title, optional: true, filter: null}} : {})
+    }),
+    [x, y, stroke, opacity, title]
+  );
 
-  const markOptions = useMemo(() => ({
-    ...defaults,
-    ...restOptions,
-    stroke: typeof stroke === "string" && (stroke === "none" || stroke === "currentColor" || /^#|^rgb|^hsl/.test(stroke)) ? stroke : defaults.stroke,
-    strokeWidth: typeof strokeWidth === "number" ? strokeWidth : undefined,
-    dx, dy, className
-  }), [stroke, strokeWidth, dx, dy, className, restOptions]);
+  const markOptions = useMemo(
+    () => ({
+      ...defaults,
+      ...restOptions,
+      stroke:
+        typeof stroke === "string" && (stroke === "none" || stroke === "currentColor" || /^#|^rgb|^hsl/.test(stroke))
+          ? stroke
+          : defaults.stroke,
+      strokeWidth: typeof strokeWidth === "number" ? strokeWidth : undefined,
+      dx,
+      dy,
+      className
+    }),
+    [stroke, strokeWidth, dx, dy, className, restOptions]
+  );
 
   const {values, index, scales, dimensions} = useMark({
     data,
@@ -130,21 +145,36 @@ export function TickY({
   onClick,
   ...restOptions
 }: TickProps) {
-  const channels: Record<string, ChannelSpec> = useMemo(() => ({
-    y: {value: y, scale: "y"},
-    x: {value: x, scale: "x", type: "band", optional: true},
-    ...(typeof stroke === "string" && stroke !== "none" && stroke !== "currentColor" && !/^#|^rgb|^hsl/.test(stroke) ? {stroke: {value: stroke, scale: "auto", optional: true}} : {}),
-    ...(typeof opacity === "string" || typeof opacity === "function" ? {opacity: {value: opacity, scale: "auto", optional: true}} : {}),
-    ...(title != null ? {title: {value: title, optional: true, filter: null}} : {})
-  }), [x, y, stroke, opacity, title]);
+  const channels: Record<string, ChannelSpec> = useMemo(
+    () => ({
+      y: {value: y, scale: "y"},
+      x: {value: x, scale: "x", type: "band", optional: true},
+      ...(typeof stroke === "string" && stroke !== "none" && stroke !== "currentColor" && !/^#|^rgb|^hsl/.test(stroke)
+        ? {stroke: {value: stroke, scale: "auto", optional: true}}
+        : {}),
+      ...(typeof opacity === "string" || typeof opacity === "function"
+        ? {opacity: {value: opacity, scale: "auto", optional: true}}
+        : {}),
+      ...(title != null ? {title: {value: title, optional: true, filter: null}} : {})
+    }),
+    [x, y, stroke, opacity, title]
+  );
 
-  const markOptions = useMemo(() => ({
-    ...defaults,
-    ...restOptions,
-    stroke: typeof stroke === "string" && (stroke === "none" || stroke === "currentColor" || /^#|^rgb|^hsl/.test(stroke)) ? stroke : defaults.stroke,
-    strokeWidth: typeof strokeWidth === "number" ? strokeWidth : undefined,
-    dx, dy, className
-  }), [stroke, strokeWidth, dx, dy, className, restOptions]);
+  const markOptions = useMemo(
+    () => ({
+      ...defaults,
+      ...restOptions,
+      stroke:
+        typeof stroke === "string" && (stroke === "none" || stroke === "currentColor" || /^#|^rgb|^hsl/.test(stroke))
+          ? stroke
+          : defaults.stroke,
+      strokeWidth: typeof strokeWidth === "number" ? strokeWidth : undefined,
+      dx,
+      dy,
+      className
+    }),
+    [stroke, strokeWidth, dx, dy, className, restOptions]
+  );
 
   const {values, index, scales, dimensions} = useMark({
     data,

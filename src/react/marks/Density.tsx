@@ -52,29 +52,56 @@ export function Density({
   className,
   ...restOptions
 }: DensityProps) {
-  const channels: Record<string, ChannelSpec> = useMemo(() => ({
-    x: {value: x, scale: "x"},
-    y: {value: y, scale: "y"},
-    ...(weight != null ? {weight: {value: weight, optional: true}} : {}),
-    ...(typeof fill === "string" && fill !== "none" && fill !== "currentColor" && !/^#|^rgb|^hsl/.test(fill) && fill !== "density"
-      ? {fill: {value: fill, scale: "auto", optional: true}} : {}),
-    ...(typeof stroke === "string" && stroke !== "none" && stroke !== "currentColor" && !/^#|^rgb|^hsl/.test(stroke) && stroke !== "density"
-      ? {stroke: {value: stroke, scale: "auto", optional: true}} : {}),
-    ...(typeof opacity === "string" || typeof opacity === "function"
-      ? {opacity: {value: opacity, scale: "auto", optional: true}} : {})
-  }), [x, y, weight, fill, stroke, opacity]);
+  const channels: Record<string, ChannelSpec> = useMemo(
+    () => ({
+      x: {value: x, scale: "x"},
+      y: {value: y, scale: "y"},
+      ...(weight != null ? {weight: {value: weight, optional: true}} : {}),
+      ...(typeof fill === "string" &&
+      fill !== "none" &&
+      fill !== "currentColor" &&
+      !/^#|^rgb|^hsl/.test(fill) &&
+      fill !== "density"
+        ? {fill: {value: fill, scale: "auto", optional: true}}
+        : {}),
+      ...(typeof stroke === "string" &&
+      stroke !== "none" &&
+      stroke !== "currentColor" &&
+      !/^#|^rgb|^hsl/.test(stroke) &&
+      stroke !== "density"
+        ? {stroke: {value: stroke, scale: "auto", optional: true}}
+        : {}),
+      ...(typeof opacity === "string" || typeof opacity === "function"
+        ? {opacity: {value: opacity, scale: "auto", optional: true}}
+        : {})
+    }),
+    [x, y, weight, fill, stroke, opacity]
+  );
 
   const useDensityFill = fill === "density";
   const useDensityStroke = stroke === "density";
 
-  const markOptions = useMemo(() => ({
-    ...defaults,
-    ...restOptions,
-    fill: useDensityFill ? "currentColor" : (typeof fill === "string" && (fill === "none" || fill === "currentColor" || /^#|^rgb|^hsl/.test(fill)) ? fill : defaults.fill),
-    stroke: useDensityStroke ? "none" : (typeof stroke === "string" && (stroke === "none" || stroke === "currentColor" || /^#|^rgb|^hsl/.test(stroke)) ? stroke : defaults.stroke),
-    strokeWidth: typeof strokeWidth === "number" ? strokeWidth : defaults.strokeWidth,
-    dx, dy, className
-  }), [fill, stroke, strokeWidth, dx, dy, className, useDensityFill, useDensityStroke, restOptions]);
+  const markOptions = useMemo(
+    () => ({
+      ...defaults,
+      ...restOptions,
+      fill: useDensityFill
+        ? "currentColor"
+        : typeof fill === "string" && (fill === "none" || fill === "currentColor" || /^#|^rgb|^hsl/.test(fill))
+        ? fill
+        : defaults.fill,
+      stroke: useDensityStroke
+        ? "none"
+        : typeof stroke === "string" && (stroke === "none" || stroke === "currentColor" || /^#|^rgb|^hsl/.test(stroke))
+        ? stroke
+        : defaults.stroke,
+      strokeWidth: typeof strokeWidth === "number" ? strokeWidth : defaults.strokeWidth,
+      dx,
+      dy,
+      className
+    }),
+    [fill, stroke, strokeWidth, dx, dy, className, useDensityFill, useDensityStroke, restOptions]
+  );
 
   const {values, index, dimensions} = useMark({data, channels, ariaLabel: defaults.ariaLabel, tip, ...markOptions});
 

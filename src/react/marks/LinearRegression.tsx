@@ -32,9 +32,13 @@ export interface LinearRegressionProps {
 function linearRegression(X: number[], Y: number[], index: number[]) {
   const n = index.length;
   if (n < 2) return null;
-  let sumX = 0, sumY = 0, sumXY = 0, sumX2 = 0;
+  let sumX = 0,
+    sumY = 0,
+    sumXY = 0,
+    sumX2 = 0;
   for (const i of index) {
-    const xi = X[i], yi = Y[i];
+    const xi = X[i],
+      yi = Y[i];
     if (xi == null || yi == null || !isFinite(xi) || !isFinite(yi)) continue;
     sumX += xi;
     sumY += yi;
@@ -61,23 +65,33 @@ export function LinearRegressionY({
   className,
   ...restOptions
 }: LinearRegressionProps) {
-  const channels: Record<string, ChannelSpec> = useMemo(() => ({
-    x: {value: x, scale: "x"},
-    y: {value: y, scale: "y"},
-    ...(z != null ? {z: {value: z, optional: true}} : {}),
-    ...(typeof stroke === "string" && stroke !== "none" && stroke !== "currentColor" && !/^#|^rgb|^hsl/.test(stroke)
-      ? {stroke: {value: stroke, scale: "auto", optional: true}} : {})
-  }), [x, y, z, stroke]);
+  const channels: Record<string, ChannelSpec> = useMemo(
+    () => ({
+      x: {value: x, scale: "x"},
+      y: {value: y, scale: "y"},
+      ...(z != null ? {z: {value: z, optional: true}} : {}),
+      ...(typeof stroke === "string" && stroke !== "none" && stroke !== "currentColor" && !/^#|^rgb|^hsl/.test(stroke)
+        ? {stroke: {value: stroke, scale: "auto", optional: true}}
+        : {})
+    }),
+    [x, y, z, stroke]
+  );
 
-  const markOptions = useMemo(() => ({
-    ...defaults,
-    ...restOptions,
-    fill: typeof fill === "string" ? fill : defaults.fill,
-    fillOpacity,
-    stroke: typeof stroke === "string" && (stroke === "none" || stroke === "currentColor" || /^#|^rgb|^hsl/.test(stroke)) ? stroke : defaults.stroke,
-    strokeWidth: typeof strokeWidth === "number" ? strokeWidth : defaults.strokeWidth,
-    className
-  }), [fill, fillOpacity, stroke, strokeWidth, className, restOptions]);
+  const markOptions = useMemo(
+    () => ({
+      ...defaults,
+      ...restOptions,
+      fill: typeof fill === "string" ? fill : defaults.fill,
+      fillOpacity,
+      stroke:
+        typeof stroke === "string" && (stroke === "none" || stroke === "currentColor" || /^#|^rgb|^hsl/.test(stroke))
+          ? stroke
+          : defaults.stroke,
+      strokeWidth: typeof strokeWidth === "number" ? strokeWidth : defaults.strokeWidth,
+      className
+    }),
+    [fill, fillOpacity, stroke, strokeWidth, className, restOptions]
+  );
 
   const {values, index, scales, dimensions} = useMark({data, channels, ariaLabel: defaults.ariaLabel, ...markOptions});
 
@@ -130,23 +144,33 @@ export function LinearRegressionX({
   className,
   ...restOptions
 }: LinearRegressionProps) {
-  const channels: Record<string, ChannelSpec> = useMemo(() => ({
-    x: {value: x, scale: "x"},
-    y: {value: y, scale: "y"},
-    ...(z != null ? {z: {value: z, optional: true}} : {}),
-    ...(typeof stroke === "string" && stroke !== "none" && stroke !== "currentColor" && !/^#|^rgb|^hsl/.test(stroke)
-      ? {stroke: {value: stroke, scale: "auto", optional: true}} : {})
-  }), [x, y, z, stroke]);
+  const channels: Record<string, ChannelSpec> = useMemo(
+    () => ({
+      x: {value: x, scale: "x"},
+      y: {value: y, scale: "y"},
+      ...(z != null ? {z: {value: z, optional: true}} : {}),
+      ...(typeof stroke === "string" && stroke !== "none" && stroke !== "currentColor" && !/^#|^rgb|^hsl/.test(stroke)
+        ? {stroke: {value: stroke, scale: "auto", optional: true}}
+        : {})
+    }),
+    [x, y, z, stroke]
+  );
 
-  const markOptions = useMemo(() => ({
-    ...defaults,
-    ...restOptions,
-    fill: typeof fill === "string" ? fill : defaults.fill,
-    fillOpacity,
-    stroke: typeof stroke === "string" && (stroke === "none" || stroke === "currentColor" || /^#|^rgb|^hsl/.test(stroke)) ? stroke : defaults.stroke,
-    strokeWidth: typeof strokeWidth === "number" ? strokeWidth : defaults.strokeWidth,
-    className
-  }), [fill, fillOpacity, stroke, strokeWidth, className, restOptions]);
+  const markOptions = useMemo(
+    () => ({
+      ...defaults,
+      ...restOptions,
+      fill: typeof fill === "string" ? fill : defaults.fill,
+      fillOpacity,
+      stroke:
+        typeof stroke === "string" && (stroke === "none" || stroke === "currentColor" || /^#|^rgb|^hsl/.test(stroke))
+          ? stroke
+          : defaults.stroke,
+      strokeWidth: typeof strokeWidth === "number" ? strokeWidth : defaults.strokeWidth,
+      className
+    }),
+    [fill, fillOpacity, stroke, strokeWidth, className, restOptions]
+  );
 
   const {values, index, scales, dimensions} = useMark({data, channels, ariaLabel: defaults.ariaLabel, ...markOptions});
 

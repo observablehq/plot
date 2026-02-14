@@ -52,13 +52,24 @@ export function AxisX({
   const y = isTop ? marginTop : height - marginBottom;
 
   // Generate ticks
-  const tickValues = ticksProp != null
-    ? (Array.isArray(ticksProp) ? ticksProp : (xScale.ticks ? xScale.ticks(ticksProp) : xScale.domain()))
-    : (xScale.ticks ? xScale.ticks() : xScale.domain());
+  const tickValues =
+    ticksProp != null
+      ? Array.isArray(ticksProp)
+        ? ticksProp
+        : xScale.ticks
+        ? xScale.ticks(ticksProp)
+        : xScale.domain()
+      : xScale.ticks
+      ? xScale.ticks()
+      : xScale.domain();
 
   const tickFormat = tickFormatProp
-    ? (typeof tickFormatProp === "function" ? tickFormatProp : (d: any) => `${d}`)
-    : (xScale.tickFormat ? xScale.tickFormat() : formatDefault);
+    ? typeof tickFormatProp === "function"
+      ? tickFormatProp
+      : (d: any) => `${d}`
+    : xScale.tickFormat
+    ? xScale.tickFormat()
+    : formatDefault;
 
   // Get the scale label
   const scaleLabel = label ?? (scales?.x as any)?.label;
@@ -66,9 +77,12 @@ export function AxisX({
 
   // Determine label position
   const resolvedLabelAnchor = labelAnchor ?? "center";
-  const labelX = resolvedLabelAnchor === "left" ? marginLeft
-    : resolvedLabelAnchor === "right" ? width - marginRight
-    : (marginLeft + width - marginRight) / 2;
+  const labelX =
+    resolvedLabelAnchor === "left"
+      ? marginLeft
+      : resolvedLabelAnchor === "right"
+      ? width - marginRight
+      : (marginLeft + width - marginRight) / 2;
   const labelY = isTop ? y - labelOffset : y + labelOffset;
 
   return (
@@ -160,13 +174,24 @@ export function AxisY({
   const x = isRight ? width - marginRight : marginLeft;
 
   // Generate ticks
-  const tickValues = ticksProp != null
-    ? (Array.isArray(ticksProp) ? ticksProp : (yScale.ticks ? yScale.ticks(ticksProp) : yScale.domain()))
-    : (yScale.ticks ? yScale.ticks() : yScale.domain());
+  const tickValues =
+    ticksProp != null
+      ? Array.isArray(ticksProp)
+        ? ticksProp
+        : yScale.ticks
+        ? yScale.ticks(ticksProp)
+        : yScale.domain()
+      : yScale.ticks
+      ? yScale.ticks()
+      : yScale.domain();
 
   const tickFormat = tickFormatProp
-    ? (typeof tickFormatProp === "function" ? tickFormatProp : (d: any) => `${d}`)
-    : (yScale.tickFormat ? yScale.tickFormat() : formatDefault);
+    ? typeof tickFormatProp === "function"
+      ? tickFormatProp
+      : (d: any) => `${d}`
+    : yScale.tickFormat
+    ? yScale.tickFormat()
+    : formatDefault;
 
   // Get the scale label
   const scaleLabel = label ?? (scales?.y as any)?.label;
@@ -174,9 +199,12 @@ export function AxisY({
 
   // Determine label position
   const resolvedLabelAnchor = labelAnchor ?? "top";
-  const labelY = resolvedLabelAnchor === "top" ? marginTop
-    : resolvedLabelAnchor === "bottom" ? height - marginBottom
-    : (marginTop + height - marginBottom) / 2;
+  const labelY =
+    resolvedLabelAnchor === "top"
+      ? marginTop
+      : resolvedLabelAnchor === "bottom"
+      ? height - marginBottom
+      : (marginTop + height - marginBottom) / 2;
   const labelX = isRight ? labelOffset : -labelOffset;
 
   return (
@@ -252,9 +280,16 @@ export function GridX({
   if (!xScale) return null;
 
   const {marginTop, height, marginBottom} = dimensions;
-  const tickValues = ticksProp != null
-    ? (Array.isArray(ticksProp) ? ticksProp : (xScale.ticks ? xScale.ticks(ticksProp) : xScale.domain()))
-    : (xScale.ticks ? xScale.ticks() : xScale.domain());
+  const tickValues =
+    ticksProp != null
+      ? Array.isArray(ticksProp)
+        ? ticksProp
+        : xScale.ticks
+        ? xScale.ticks(ticksProp)
+        : xScale.domain()
+      : xScale.ticks
+      ? xScale.ticks()
+      : xScale.domain();
 
   return (
     <g aria-label="x-grid" className={className}>
@@ -294,9 +329,16 @@ export function GridY({
   if (!yScale) return null;
 
   const {marginLeft, width, marginRight} = dimensions;
-  const tickValues = ticksProp != null
-    ? (Array.isArray(ticksProp) ? ticksProp : (yScale.ticks ? yScale.ticks(ticksProp) : yScale.domain()))
-    : (yScale.ticks ? yScale.ticks() : yScale.domain());
+  const tickValues =
+    ticksProp != null
+      ? Array.isArray(ticksProp)
+        ? ticksProp
+        : yScale.ticks
+        ? yScale.ticks(ticksProp)
+        : yScale.domain()
+      : yScale.ticks
+      ? yScale.ticks()
+      : yScale.domain();
 
   return (
     <g aria-label="y-grid" className={className}>
@@ -353,12 +395,12 @@ export function AxisFx({
   const y = isTop ? marginTop : height - marginBottom;
 
   const domain = fxScale.domain ? fxScale.domain() : [];
-  const tickValues = ticksProp != null
-    ? (Array.isArray(ticksProp) ? ticksProp : domain)
-    : domain;
+  const tickValues = ticksProp != null ? (Array.isArray(ticksProp) ? ticksProp : domain) : domain;
 
   const tickFormat = tickFormatProp
-    ? (typeof tickFormatProp === "function" ? tickFormatProp : (d: any) => `${d}`)
+    ? typeof tickFormatProp === "function"
+      ? tickFormatProp
+      : (d: any) => `${d}`
     : formatDefault;
 
   const bw = fxScale.bandwidth ? fxScale.bandwidth() / 2 : 0;
@@ -366,9 +408,12 @@ export function AxisFx({
   const scaleLabel = label ?? (scales?.fx as any)?.label;
   const labelText = scaleLabel != null ? `${scaleLabel}` : undefined;
   const resolvedLabelAnchor = labelAnchor ?? "center";
-  const labelX = resolvedLabelAnchor === "left" ? marginLeft
-    : resolvedLabelAnchor === "right" ? width - marginRight
-    : (marginLeft + width - marginRight) / 2;
+  const labelX =
+    resolvedLabelAnchor === "left"
+      ? marginLeft
+      : resolvedLabelAnchor === "right"
+      ? width - marginRight
+      : (marginLeft + width - marginRight) / 2;
   const labelY = isTop ? y - labelOffset : y + labelOffset;
 
   return (
@@ -387,7 +432,12 @@ export function AxisFx({
         const dir = isTop ? -1 : 1;
         return (
           <g key={i} transform={`translate(${x + bw},0)`}>
-            <line y2={tickSize * dir} stroke={color ?? stroke} strokeWidth={strokeWidth} strokeOpacity={strokeOpacity} />
+            <line
+              y2={tickSize * dir}
+              stroke={color ?? stroke}
+              strokeWidth={strokeWidth}
+              strokeOpacity={strokeOpacity}
+            />
             <text
               y={(tickSize + tickPadding) * dir}
               dy={isTop ? "0" : "0.71em"}
@@ -445,12 +495,12 @@ export function AxisFy({
   const x = isRight ? width - marginRight : marginLeft;
 
   const domain = fyScale.domain ? fyScale.domain() : [];
-  const tickValues = ticksProp != null
-    ? (Array.isArray(ticksProp) ? ticksProp : domain)
-    : domain;
+  const tickValues = ticksProp != null ? (Array.isArray(ticksProp) ? ticksProp : domain) : domain;
 
   const tickFormat = tickFormatProp
-    ? (typeof tickFormatProp === "function" ? tickFormatProp : (d: any) => `${d}`)
+    ? typeof tickFormatProp === "function"
+      ? tickFormatProp
+      : (d: any) => `${d}`
     : formatDefault;
 
   const bw = fyScale.bandwidth ? fyScale.bandwidth() / 2 : 0;
@@ -458,9 +508,12 @@ export function AxisFy({
   const scaleLabel = label ?? (scales?.fy as any)?.label;
   const labelText = scaleLabel != null ? `${scaleLabel}` : undefined;
   const resolvedLabelAnchor = labelAnchor ?? "top";
-  const labelY = resolvedLabelAnchor === "top" ? marginTop
-    : resolvedLabelAnchor === "bottom" ? height - marginBottom
-    : (marginTop + height - marginBottom) / 2;
+  const labelY =
+    resolvedLabelAnchor === "top"
+      ? marginTop
+      : resolvedLabelAnchor === "bottom"
+      ? height - marginBottom
+      : (marginTop + height - marginBottom) / 2;
   const labelX = isRight ? labelOffset : -labelOffset;
 
   return (
@@ -479,7 +532,12 @@ export function AxisFy({
         const dir = isRight ? 1 : -1;
         return (
           <g key={i} transform={`translate(0,${y + bw})`}>
-            <line x2={tickSize * dir} stroke={color ?? stroke} strokeWidth={strokeWidth} strokeOpacity={strokeOpacity} />
+            <line
+              x2={tickSize * dir}
+              stroke={color ?? stroke}
+              strokeWidth={strokeWidth}
+              strokeOpacity={strokeOpacity}
+            />
             <text
               x={(tickSize + tickPadding) * dir}
               dy="0.32em"
@@ -522,9 +580,7 @@ export function GridFx({
 
   const {marginTop, height, marginBottom} = dimensions;
   const domain = fxScale.domain ? fxScale.domain() : [];
-  const tickValues = ticksProp != null
-    ? (Array.isArray(ticksProp) ? ticksProp : domain)
-    : domain;
+  const tickValues = ticksProp != null ? (Array.isArray(ticksProp) ? ticksProp : domain) : domain;
 
   return (
     <g aria-label="fx-grid" className={className}>
@@ -532,8 +588,17 @@ export function GridFx({
         const x = fxScale(d);
         if (x == null || !isFinite(x)) return null;
         return (
-          <line key={i} x1={x} x2={x} y1={marginTop} y2={height - marginBottom}
-            stroke={stroke} strokeWidth={strokeWidth} strokeOpacity={strokeOpacity} strokeDasharray={strokeDasharray} />
+          <line
+            key={i}
+            x1={x}
+            x2={x}
+            y1={marginTop}
+            y2={height - marginBottom}
+            stroke={stroke}
+            strokeWidth={strokeWidth}
+            strokeOpacity={strokeOpacity}
+            strokeDasharray={strokeDasharray}
+          />
         );
       })}
     </g>
@@ -556,9 +621,7 @@ export function GridFy({
 
   const {marginLeft, width, marginRight} = dimensions;
   const domain = fyScale.domain ? fyScale.domain() : [];
-  const tickValues = ticksProp != null
-    ? (Array.isArray(ticksProp) ? ticksProp : domain)
-    : domain;
+  const tickValues = ticksProp != null ? (Array.isArray(ticksProp) ? ticksProp : domain) : domain;
 
   return (
     <g aria-label="fy-grid" className={className}>
@@ -566,8 +629,17 @@ export function GridFy({
         const y = fyScale(d);
         if (y == null || !isFinite(y)) return null;
         return (
-          <line key={i} x1={marginLeft} x2={width - marginRight} y1={y} y2={y}
-            stroke={stroke} strokeWidth={strokeWidth} strokeOpacity={strokeOpacity} strokeDasharray={strokeDasharray} />
+          <line
+            key={i}
+            x1={marginLeft}
+            x2={width - marginRight}
+            y1={y}
+            y2={y}
+            stroke={stroke}
+            strokeWidth={strokeWidth}
+            strokeOpacity={strokeOpacity}
+            strokeDasharray={strokeDasharray}
+          />
         );
       })}
     </g>

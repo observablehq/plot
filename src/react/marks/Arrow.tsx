@@ -65,23 +65,38 @@ export function Arrow({
   onClick,
   ...restOptions
 }: ArrowProps) {
-  const channels: Record<string, ChannelSpec> = useMemo(() => ({
-    x1: {value: x1, scale: "x"},
-    y1: {value: y1, scale: "y"},
-    x2: {value: x2, scale: "x"},
-    y2: {value: y2, scale: "y"},
-    ...(typeof stroke === "string" && stroke !== "none" && stroke !== "currentColor" && !/^#|^rgb|^hsl/.test(stroke) ? {stroke: {value: stroke, scale: "auto", optional: true}} : {}),
-    ...(typeof opacity === "string" || typeof opacity === "function" ? {opacity: {value: opacity, scale: "auto", optional: true}} : {}),
-    ...(title != null ? {title: {value: title, optional: true, filter: null}} : {})
-  }), [x1, y1, x2, y2, stroke, opacity, title]);
+  const channels: Record<string, ChannelSpec> = useMemo(
+    () => ({
+      x1: {value: x1, scale: "x"},
+      y1: {value: y1, scale: "y"},
+      x2: {value: x2, scale: "x"},
+      y2: {value: y2, scale: "y"},
+      ...(typeof stroke === "string" && stroke !== "none" && stroke !== "currentColor" && !/^#|^rgb|^hsl/.test(stroke)
+        ? {stroke: {value: stroke, scale: "auto", optional: true}}
+        : {}),
+      ...(typeof opacity === "string" || typeof opacity === "function"
+        ? {opacity: {value: opacity, scale: "auto", optional: true}}
+        : {}),
+      ...(title != null ? {title: {value: title, optional: true, filter: null}} : {})
+    }),
+    [x1, y1, x2, y2, stroke, opacity, title]
+  );
 
-  const markOptions = useMemo(() => ({
-    ...defaults,
-    ...restOptions,
-    stroke: typeof stroke === "string" && (stroke === "none" || stroke === "currentColor" || /^#|^rgb|^hsl/.test(stroke)) ? stroke : defaults.stroke,
-    strokeWidth: typeof strokeWidth === "number" ? strokeWidth : defaults.strokeWidth,
-    dx, dy, className
-  }), [stroke, strokeWidth, dx, dy, className, restOptions]);
+  const markOptions = useMemo(
+    () => ({
+      ...defaults,
+      ...restOptions,
+      stroke:
+        typeof stroke === "string" && (stroke === "none" || stroke === "currentColor" || /^#|^rgb|^hsl/.test(stroke))
+          ? stroke
+          : defaults.stroke,
+      strokeWidth: typeof strokeWidth === "number" ? strokeWidth : defaults.strokeWidth,
+      dx,
+      dy,
+      className
+    }),
+    [stroke, strokeWidth, dx, dy, className, restOptions]
+  );
 
   const {values, index, scales, dimensions} = useMark({
     data,
@@ -105,8 +120,12 @@ export function Arrow({
   return (
     <g {...groupProps}>
       {index.map((i) => {
-        let px1 = X1[i], py1 = Y1[i], px2 = X2[i], py2 = Y2[i];
-        const ddx = px2 - px1, ddy = py2 - py1;
+        let px1 = X1[i],
+          py1 = Y1[i],
+          px2 = X2[i],
+          py2 = Y2[i];
+        const ddx = px2 - px1,
+          ddy = py2 - py1;
         const length = Math.hypot(ddx, ddy);
         if (length < insetStart + insetEnd) return null;
 
@@ -132,19 +151,9 @@ export function Arrow({
           : `M${px1},${py1}L${px2},${py2}`;
 
         return (
-          <g key={i}
-            onClick={onClick ? (e) => onClick(e, data?.[i]) : undefined}
-          >
-            <path
-              d={d}
-              {...directStyleProps(markOptions)}
-              {...channelStyleProps(i, values)}
-            />
-            <path
-              d={`M${hx1},${hy1}L${px2},${py2}L${hx2},${hy2}`}
-              fill="none"
-              {...channelStyleProps(i, values)}
-            />
+          <g key={i} onClick={onClick ? (e) => onClick(e, data?.[i]) : undefined}>
+            <path d={d} {...directStyleProps(markOptions)} {...channelStyleProps(i, values)} />
+            <path d={`M${hx1},${hy1}L${px2},${py2}L${hx2},${hy2}`} fill="none" {...channelStyleProps(i, values)} />
             {values.title && values.title[i] != null && <title>{`${values.title[i]}`}</title>}
           </g>
         );

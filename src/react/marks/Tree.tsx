@@ -53,7 +53,17 @@ export function TreeMark({
     <>
       {/* Edges */}
       {(x1 != null || y1 != null) && (
-        <Link data={data} x1={x1} y1={y1} x2={x2} y2={y2} stroke={stroke} strokeWidth={strokeWidth} className={className} {...rest} />
+        <Link
+          data={data}
+          x1={x1}
+          y1={y1}
+          x2={x2}
+          y2={y2}
+          stroke={stroke}
+          strokeWidth={strokeWidth}
+          className={className}
+          {...rest}
+        />
       )}
       {/* Nodes */}
       {x != null && y != null && (
@@ -61,7 +71,20 @@ export function TreeMark({
       )}
       {/* Labels */}
       {text != null && (
-        <Text data={data} x={x} y={y} text={text} dx={dx} dy={dy} textAnchor="start" stroke={textStroke} strokeWidth={3} fill="currentColor" paintOrder="stroke" className={className} />
+        <Text
+          data={data}
+          x={x}
+          y={y}
+          text={text}
+          dx={dx}
+          dy={dy}
+          textAnchor="start"
+          stroke={textStroke}
+          strokeWidth={3}
+          fill="currentColor"
+          paintOrder="stroke"
+          className={className}
+        />
       )}
     </>
   );

@@ -50,11 +50,14 @@ export function Tip({
 }: TipProps) {
   const {pointer: pointerState, dimensions} = usePlotContext();
 
-  const channels: Record<string, ChannelSpec> = useMemo(() => ({
-    x: {value: x, scale: "x", optional: true},
-    y: {value: y, scale: "y", optional: true},
-    ...(titleProp != null ? {title: {value: titleProp, optional: true, filter: null}} : {})
-  }), [x, y, titleProp]);
+  const channels: Record<string, ChannelSpec> = useMemo(
+    () => ({
+      x: {value: x, scale: "x", optional: true},
+      y: {value: y, scale: "y", optional: true},
+      ...(titleProp != null ? {title: {value: titleProp, optional: true, filter: null}} : {})
+    }),
+    [x, y, titleProp]
+  );
 
   const {values, index} = useMark({
     data,
@@ -63,7 +66,8 @@ export function Tip({
     ...restOptions
   });
 
-  if (!values || !index || !dimensions || !pointerState.active || pointerState.x == null || pointerState.y == null) return null;
+  if (!values || !index || !dimensions || !pointerState.active || pointerState.x == null || pointerState.y == null)
+    return null;
 
   // Find nearest datum to pointer
   const nearestIndex = findNearest(index, values, pointerState.x, pointerState.y, pointerMode);
@@ -136,9 +140,12 @@ export function Tip({
 }
 
 function computeAnchor(
-  px: number, py: number,
-  tipWidth: number, tipHeight: number,
-  plotWidth: number, plotHeight: number,
+  px: number,
+  py: number,
+  tipWidth: number,
+  tipHeight: number,
+  plotWidth: number,
+  plotHeight: number,
   preferred: string
 ): string {
   // Choose anchor to keep tooltip within plot bounds
@@ -150,17 +157,17 @@ function computeAnchor(
   return "left";
 }
 
-function anchorOffset(
-  anchor: string,
-  px: number, py: number,
-  tipWidth: number, tipHeight: number
-): [number, number] {
+function anchorOffset(anchor: string, px: number, py: number, tipWidth: number, tipHeight: number): [number, number] {
   const gap = 8;
   switch (anchor) {
-    case "top": return [px - tipWidth / 2, py - tipHeight - gap];
-    case "right": return [px + gap, py - tipHeight / 2];
-    case "left": return [px - tipWidth - gap, py - tipHeight / 2];
-    default: return [px - tipWidth / 2, py + gap]; // bottom
+    case "top":
+      return [px - tipWidth / 2, py - tipHeight - gap];
+    case "right":
+      return [px + gap, py - tipHeight / 2];
+    case "left":
+      return [px - tipWidth - gap, py - tipHeight / 2];
+    default:
+      return [px - tipWidth / 2, py + gap]; // bottom
   }
 }
 
