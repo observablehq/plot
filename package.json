@@ -13,8 +13,14 @@
   "jsdelivr": "dist/plot.umd.min.js",
   "unpkg": "dist/plot.umd.min.js",
   "exports": {
-    "umd": "./dist/plot.umd.min.js",
-    "default": "./src/index.js"
+    ".": {
+      "umd": "./dist/plot.umd.min.js",
+      "default": "./src/index.js"
+    },
+    "./react": {
+      "types": "./src/react/index.d.ts",
+      "default": "./src/react/index.tsx"
+    }
   },
   "types": "src/index.d.ts",
   "repository": {
@@ -24,7 +30,8 @@
   "files": [
     "dist/**/*.js",
     "src/**/*.d.ts",
-    "src/**/*.js"
+    "src/**/*.js",
+    "src/**/*.tsx"
   ],
   "scripts": {
     "test": "yarn test:mocha && yarn test:tsc && yarn test:lint && yarn test:prettier",
@@ -54,6 +61,8 @@
     "@types/d3": "^7.4.0",
     "@types/mocha": "^10.0.1",
     "@types/node": "^22.13.2",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
     "@typescript-eslint/eslint-plugin": "^8.24.0",
     "@typescript-eslint/parser": "^8.24.0",
     "apache-arrow": "^19.0.0",
@@ -91,6 +100,14 @@
     "d3": "^7.9.0",
     "interval-tree-1d": "^1.0.0",
     "isoformat": "^0.2.0"
+  },
+  "peerDependencies": {
+    "react": "^18.0.0 || ^19.0.0",
+    "react-dom": "^18.0.0 || ^19.0.0"
+  },
+  "peerDependenciesMeta": {
+    "react": { "optional": true },
+    "react-dom": { "optional": true }
   },
   "engines": {
     "node": ">=12"
