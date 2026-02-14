@@ -167,7 +167,7 @@ function pointerK(kx, ky, {x, y, px, py, maxRadius = 40, channels, render, ...op
         if (i == null) return; // not pointing
         if (state.sticky && state.roots.some((r) => r?.contains(event.target))) return; // stay sticky
         if (state.sticky) (state.sticky = false), state.renders.forEach((r) => r(null)); // clear all pointers
-        else if (svg.classList.contains("plot-brushing")) return void update(null); // cancel tip on brush start
+        else if (svg.classList.contains("no-tip")) return void update(null); // cancel tip on brush start
         else (state.sticky = true), render(i);
         event.stopImmediatePropagation(); // suppress other pointers
       }
