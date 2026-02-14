@@ -69,8 +69,46 @@ export type {VectorProps} from "./marks/Vector.js";
 export {Image} from "./marks/Image.js";
 export type {ImageProps} from "./marks/Image.js";
 
-// Axis and grid components
-export {AxisX, AxisY, GridX, GridY} from "./marks/Axis.js";
+// Geometric / computational marks
+export {Geo, Sphere, Graticule} from "./marks/Geo.js";
+export type {GeoProps} from "./marks/Geo.js";
+
+export {DelaunayLink, DelaunayMesh, Hull, Voronoi, VoronoiMesh} from "./marks/Delaunay.js";
+export type {DelaunayProps} from "./marks/Delaunay.js";
+
+export {Density} from "./marks/Density.js";
+export type {DensityProps} from "./marks/Density.js";
+
+export {Contour} from "./marks/Contour.js";
+export type {ContourProps} from "./marks/Contour.js";
+
+export {Raster} from "./marks/Raster.js";
+export type {RasterProps} from "./marks/Raster.js";
+
+export {Hexgrid} from "./marks/Hexgrid.js";
+export type {HexgridProps} from "./marks/Hexgrid.js";
+
+// Composite marks
+export {BoxX, BoxY} from "./marks/Box.js";
+export type {BoxProps} from "./marks/Box.js";
+
+export {TreeMark, ClusterMark} from "./marks/Tree.js";
+export type {TreeProps} from "./marks/Tree.js";
+
+export {BollingerX, BollingerY} from "./marks/Bollinger.js";
+export type {BollingerProps} from "./marks/Bollinger.js";
+
+export {DifferenceX, DifferenceY} from "./marks/Difference.js";
+export type {DifferenceProps} from "./marks/Difference.js";
+
+export {LinearRegressionX, LinearRegressionY} from "./marks/LinearRegression.js";
+export type {LinearRegressionProps} from "./marks/LinearRegression.js";
+
+export {WaffleX, WaffleY} from "./marks/Waffle.js";
+export type {WaffleProps} from "./marks/Waffle.js";
+
+// Axis and grid components (including facet axes)
+export {AxisX, AxisY, GridX, GridY, AxisFx, AxisFy, GridFx, GridFy} from "./marks/Axis.js";
 export type {AxisProps} from "./marks/Axis.js";
 
 // Legend components
@@ -88,20 +126,30 @@ export type {CrosshairProps} from "./interactions/Crosshair.js";
 export {usePointer, findNearest} from "./interactions/usePointer.js";
 export type {PointerState, UsePointerOptions} from "./interactions/usePointer.js";
 
-// Re-export transforms for convenience (these are pure functions, shared with imperative API)
+// Re-export ALL transforms (pure functions, shared with imperative API)
+export {filter, reverse, sort, shuffle, basic as transform, initializer} from "../transforms/basic.js";
 export {bin, binX, binY} from "../transforms/bin.js";
-export {group, groupX, groupY, groupZ, find} from "../transforms/group.js";
-export {stackX, stackX1, stackX2, stackY, stackY1, stackY2} from "../transforms/stack.js";
-export {normalize, normalizeX, normalizeY} from "../transforms/normalize.js";
-export {select, selectFirst, selectLast, selectMaxX, selectMaxY, selectMinX, selectMinY} from "../transforms/select.js";
-export {map, mapX, mapY} from "../transforms/map.js";
-export {window, windowX, windowY} from "../transforms/window.js";
+export {centroid, geoCentroid} from "../transforms/centroid.js";
 export {dodgeX, dodgeY} from "../transforms/dodge.js";
+export {group, groupX, groupY, groupZ, find} from "../transforms/group.js";
 export {hexbin} from "../transforms/hexbin.js";
+export {normalize, normalizeX, normalizeY} from "../transforms/normalize.js";
+export {map, mapX, mapY} from "../transforms/map.js";
 export {shiftX, shiftY} from "../transforms/shift.js";
+export {window, windowX, windowY} from "../transforms/window.js";
+export {select, selectFirst, selectLast, selectMaxX, selectMaxY, selectMinX, selectMinY} from "../transforms/select.js";
+export {stackX, stackX1, stackX2, stackY, stackY1, stackY2} from "../transforms/stack.js";
+export {treeNode, treeLink} from "../transforms/tree.js";
+
+// Re-export data utilities
+export {valueof, column, identity, indexOf, numberInterval} from "../options.js";
 
 // Re-export format utilities
 export {formatIsoDate, formatNumber, formatWeekday, formatMonth} from "../format.js";
 
-// Re-export scale utility
+// Re-export scale and legend utilities
 export {scale} from "../scales.js";
+export {legend} from "../legends.js";
+
+// Re-export time interval utilities
+export {timeInterval, utcInterval} from "../time.js";

@@ -320,3 +320,206 @@ export function GridY({
     </g>
   );
 }
+
+// Facet axis/grid variants: AxisFx, AxisFy, GridFx, GridFy
+// These render axes for the facet scales (fx/fy band scales).
+
+export function AxisFx({
+  anchor = "top",
+  label,
+  labelAnchor,
+  labelArrow = true,
+  labelOffset = 34,
+  ticks: ticksProp,
+  tickSize = 6,
+  tickPadding = 3,
+  tickFormat: tickFormatProp,
+  tickRotate = 0,
+  fontVariant = "tabular-nums",
+  stroke = "currentColor",
+  strokeWidth,
+  strokeOpacity = 1,
+  className,
+  color
+}: AxisProps) {
+  const {scaleFunctions, dimensions} = usePlotContext();
+  if (!scaleFunctions || !dimensions) return null;
+
+  const fxScale = scaleFunctions.fx;
+  if (!fxScale) return null;
+
+  const {width, height, marginTop, marginBottom, marginLeft, marginRight} = dimensions;
+  const isTop = anchor === "top";
+  const y = isTop ? marginTop : height - marginBottom;
+
+  const domain = fxScale.domain ? fxScale.domain() : [];
+  const tickValues = ticksProp != null
+    ? (Array.isArray(ticksProp) ? ticksProp : domain)
+    : domain;
+
+  const tickFormat = tickFormatProp
+    ? (typeof tickFormatProp === "function" ? tickFormatProp : (d: any) => `${d}`)
+    : formatDefault;
+
+  const bw = fxScale.bandwidth ? fxScale.bandwidth() / 2 : 0;
+
+  return (
+    <g
+      aria-label={`fx-axis ${anchor}`}
+      transform={`translate(0,${y})`}
+      fill="none"
+      fontSize={10}
+      fontVariant={fontVariant}
+      textAnchor="middle"
+      className={className}
+    >
+      {tickValues.map((d: any, i: number) => {
+        const x = fxScale(d);
+        if (x == null || !isFinite(x)) return null;
+        const dir = isTop ? -1 : 1;
+        return (
+          <g key={i} transform={`translate(${x + bw},0)`}>
+            <line y2={tickSize * dir} stroke={color ?? stroke} strokeWidth={strokeWidth} strokeOpacity={strokeOpacity} />
+            <text y={(tickSize + tickPadding) * dir} dy={isTop ? "0" : "0.71em"} fill={color ?? "currentColor"}>
+              {tickFormat(d)}
+            </text>
+          </g>
+        );
+      })}
+    </g>
+  );
+}
+
+export function AxisFy({
+  anchor = "right",
+  label,
+  labelAnchor,
+  labelArrow = true,
+  labelOffset = 45,
+  ticks: ticksProp,
+  tickSize = 6,
+  tickPadding = 3,
+  tickFormat: tickFormatProp,
+  tickRotate = 0,
+  fontVariant = "tabular-nums",
+  stroke = "currentColor",
+  strokeWidth,
+  strokeOpacity = 1,
+  className,
+  color
+}: AxisProps) {
+  const {scaleFunctions, dimensions} = usePlotContext();
+  if (!scaleFunctions || !dimensions) return null;
+
+  const fyScale = scaleFunctions.fy;
+  if (!fyScale) return null;
+
+  const {width, height, marginTop, marginBottom, marginLeft, marginRight} = dimensions;
+  const isRight = anchor === "right";
+  const x = isRight ? width - marginRight : marginLeft;
+
+  const domain = fyScale.domain ? fyScale.domain() : [];
+  const tickValues = ticksProp != null
+    ? (Array.isArray(ticksProp) ? ticksProp : domain)
+    : domain;
+
+  const tickFormat = tickFormatProp
+    ? (typeof tickFormatProp === "function" ? tickFormatProp : (d: any) => `${d}`)
+    : formatDefault;
+
+  const bw = fyScale.bandwidth ? fyScale.bandwidth() / 2 : 0;
+
+  return (
+    <g
+      aria-label={`fy-axis ${anchor}`}
+      transform={`translate(${x},0)`}
+      fill="none"
+      fontSize={10}
+      fontVariant={fontVariant}
+      textAnchor={isRight ? "start" : "end"}
+      className={className}
+    >
+      {tickValues.map((d: any, i: number) => {
+        const y = fyScale(d);
+        if (y == null || !isFinite(y)) return null;
+        const dir = isRight ? 1 : -1;
+        return (
+          <g key={i} transform={`translate(0,${y + bw})`}>
+            <line x2={tickSize * dir} stroke={color ?? stroke} strokeWidth={strokeWidth} strokeOpacity={strokeOpacity} />
+            <text x={(tickSize + tickPadding) * dir} dy="0.32em" fill={color ?? "currentColor"}>
+              {tickFormat(d)}
+            </text>
+          </g>
+        );
+      })}
+    </g>
+  );
+}
+
+export function GridFx({
+  ticks: ticksProp,
+  stroke = "#ddd",
+  strokeWidth = 1,
+  strokeOpacity = 1,
+  strokeDasharray,
+  className
+}: AxisProps & {strokeDasharray?: string}) {
+  const {scaleFunctions, dimensions} = usePlotContext();
+  if (!scaleFunctions || !dimensions) return null;
+
+  const fxScale = scaleFunctions.fx;
+  if (!fxScale) return null;
+
+  const {marginTop, height, marginBottom} = dimensions;
+  const domain = fxScale.domain ? fxScale.domain() : [];
+  const tickValues = ticksProp != null
+    ? (Array.isArray(ticksProp) ? ticksProp : domain)
+    : domain;
+
+  return (
+    <g aria-label="fx-grid" className={className}>
+      {tickValues.map((d: any, i: number) => {
+        const x = fxScale(d);
+        if (x == null || !isFinite(x)) return null;
+        return (
+          <line key={i} x1={x} x2={x} y1={marginTop} y2={height - marginBottom}
+            stroke={stroke} strokeWidth={strokeWidth} strokeOpacity={strokeOpacity} strokeDasharray={strokeDasharray} />
+        );
+      })}
+    </g>
+  );
+}
+
+export function GridFy({
+  ticks: ticksProp,
+  stroke = "#ddd",
+  strokeWidth = 1,
+  strokeOpacity = 1,
+  strokeDasharray,
+  className
+}: AxisProps & {strokeDasharray?: string}) {
+  const {scaleFunctions, dimensions} = usePlotContext();
+  if (!scaleFunctions || !dimensions) return null;
+
+  const fyScale = scaleFunctions.fy;
+  if (!fyScale) return null;
+
+  const {marginLeft, width, marginRight} = dimensions;
+  const domain = fyScale.domain ? fyScale.domain() : [];
+  const tickValues = ticksProp != null
+    ? (Array.isArray(ticksProp) ? ticksProp : domain)
+    : domain;
+
+  return (
+    <g aria-label="fy-grid" className={className}>
+      {tickValues.map((d: any, i: number) => {
+        const y = fyScale(d);
+        if (y == null || !isFinite(y)) return null;
+        return (
+          <line key={i} x1={marginLeft} x2={width - marginRight} y1={y} y2={y}
+            stroke={stroke} strokeWidth={strokeWidth} strokeOpacity={strokeOpacity} strokeDasharray={strokeDasharray} />
+        );
+      })}
+    </g>
+  );
+}
