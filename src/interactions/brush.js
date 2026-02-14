@@ -32,6 +32,7 @@ export class Brush extends Mark {
           if (type === "start" && !clearing) {
             target = event.sourceEvent?.currentTarget ?? this;
             currentNode = _brushNodes.indexOf(target);
+            if (event.sourceEvent) context.ownerSVGElement.classList.add("plot-brushing");
             if (!clearing) {
               clearing = true;
               selectAll(_brushNodes.filter((_, i) => i !== currentNode)).call(_brush.move, null);
@@ -46,6 +47,7 @@ export class Brush extends Mark {
 
           if (selection === null) {
             if (type === "end") {
+              context.ownerSVGElement.classList.remove("plot-brushing");
               for (let i = 0; i < _brushNodes.length; ++i) {
                 inactive.update(true, i);
                 ctx.update(false, i);
