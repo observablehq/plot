@@ -1,4 +1,4 @@
-// @ts-nocheck — composite mark delegating to other React components
+// @ts-nocheck — React components importing from untyped JS modules
 import React from "react";
 import {AreaX, AreaY} from "./Area.js";
 import {LineX, LineY} from "./Line.js";

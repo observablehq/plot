@@ -4,7 +4,7 @@ import type {Dimensions} from "./PlotContext.js";
 // for the outer <g> element, mirroring applyIndirectStyles from style.js.
 export function indirectStyleProps(
   mark: Record<string, any>,
-  dimensions?: Dimensions
+  _dimensions?: Dimensions
 ): Record<string, any> {
   const props: Record<string, any> = {};
   if (mark.ariaLabel != null) props["aria-label"] = mark.ariaLabel;
@@ -45,7 +45,7 @@ export function directStyleProps(mark: Record<string, any>): Record<string, any>
 export function channelStyleProps(
   i: number,
   values: Record<string, any>,
-  options?: {tip?: boolean}
+  _options?: {tip?: boolean}
 ): Record<string, any> {
   const props: Record<string, any> = {};
   const {ariaLabel: AL, fill: F, fillOpacity: FO, stroke: S, strokeOpacity: SO, strokeWidth: SW, opacity: O, href: H} = values;
@@ -143,20 +143,15 @@ export function resolveStyles(
   options: Record<string, any>,
   defaults: Record<string, any>
 ): ResolvedStyles {
-  let {
+  const {
     fill,
     fillOpacity,
     stroke,
-    strokeWidth,
     strokeOpacity,
-    strokeLinejoin,
-    strokeLinecap,
-    strokeMiterlimit,
     strokeDasharray,
     strokeDashoffset,
     opacity,
     mixBlendMode,
-    paintOrder,
     pointerEvents,
     shapeRendering,
     imageFilter,
@@ -165,6 +160,13 @@ export function resolveStyles(
     ariaHidden,
     className,
     target
+  } = options;
+  let {
+    strokeWidth,
+    strokeLinejoin,
+    strokeLinecap,
+    strokeMiterlimit,
+    paintOrder
   } = options;
 
   const {

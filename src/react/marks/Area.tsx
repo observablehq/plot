@@ -1,4 +1,4 @@
-// @ts-nocheck — imports from internal JS modules lack .d.ts declarations
+// @ts-nocheck — React components importing from untyped JS modules
 import React, {useMemo} from "react";
 import {area as shapeArea, group} from "d3";
 import {useMark} from "../useMark.js";

@@ -1,4 +1,3 @@
-// @ts-nocheck — composite mark delegating to other React components
 import React from "react";
 import {Area} from "./Area.js";
 import {Line} from "./Line.js";
@@ -23,8 +22,9 @@ export interface DifferenceProps {
 
 // DifferenceY renders the difference between two y-series as filled areas.
 // Positive differences (y1 > y2) are one color; negative differences another.
-// In the imperative API, this uses clip paths for proper masking.
-// In React, this provides a simplified approximation.
+// This renders two overlapping areas: one for the positive region and one for
+// the negative region. A full clip-path implementation would mask each area
+// to only show where it is on top, but this approximation works for most cases.
 export function DifferenceY({
   data,
   x,
@@ -41,7 +41,7 @@ export function DifferenceY({
 }: DifferenceProps) {
   return (
     <>
-      {/* Positive difference area (where y1 > y2) */}
+      {/* Positive difference area (where y1 < y2 in screen coords, i.e. y1 > y2 in data) */}
       <Area
         data={data}
         x1={x}
@@ -50,6 +50,18 @@ export function DifferenceY({
         y2={y2}
         fill={positiveFill}
         fillOpacity={positiveFillOpacity}
+        className={className}
+        {...rest}
+      />
+      {/* Negative difference area (where y2 < y1 in screen coords, i.e. y2 > y1 in data) */}
+      <Area
+        data={data}
+        x1={x}
+        x2={x}
+        y1={y2}
+        y2={y1}
+        fill={negativeFill}
+        fillOpacity={negativeFillOpacity}
         className={className}
         {...rest}
       />
@@ -86,6 +98,17 @@ export function DifferenceX({
         y2={y}
         fill={positiveFill}
         fillOpacity={positiveFillOpacity}
+        className={className}
+        {...rest}
+      />
+      <Area
+        data={data}
+        x1={x2}
+        x2={x1}
+        y1={y}
+        y2={y}
+        fill={negativeFill}
+        fillOpacity={negativeFillOpacity}
         className={className}
         {...rest}
       />

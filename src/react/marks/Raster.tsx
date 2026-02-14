@@ -1,4 +1,4 @@
-// @ts-nocheck
+// @ts-nocheck — React components importing from untyped JS modules
 import React, {useMemo, useRef, useEffect} from "react";
 import {useMark} from "../useMark.js";
 import {indirectStyleProps} from "../styles.js";
@@ -47,7 +47,6 @@ export function Raster({
   x2: boundsX2,
   y2: boundsY2,
   pixelSize = 1,
-  blur = 0,
   imageRendering = "auto",
   interpolate,
   tip,
@@ -70,7 +69,7 @@ export function Raster({
     dx, dy, className
   }), [fill, dx, dy, className, restOptions]);
 
-  const {values, index, scales, dimensions} = useMark({data, channels, ariaLabel: defaults.ariaLabel, tip, ...markOptions});
+  const {values, index, dimensions} = useMark({data, channels, ariaLabel: defaults.ariaLabel, tip, ...markOptions});
 
   const imageRef = useRef<SVGImageElement>(null);
 

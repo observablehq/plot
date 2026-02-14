@@ -45,11 +45,34 @@ export default [
     }
   },
   {
-    files: ["test/**/*.js"],
+    files: ["src/react/**/*.tsx", "src/react/**/*.ts"],
+    rules: {
+      "@typescript-eslint/ban-ts-comment": ["error", {
+        "ts-nocheck": "allow-with-description",
+        "ts-expect-error": "allow-with-description"
+      }],
+      "@typescript-eslint/no-unused-vars": [
+        "error",
+        {
+          ignoreRestSiblings: true,
+          argsIgnorePattern: "^_",
+          varsIgnorePattern: "^_"
+        }
+      ]
+    }
+  },
+  {
+    files: ["test/**/*.js", "test/**/*.ts"],
     languageOptions: {
       globals: {
         ...globals.mocha
       }
+    },
+    rules: {
+      "@typescript-eslint/ban-ts-comment": ["error", {
+        "ts-nocheck": "allow-with-description",
+        "ts-expect-error": "allow-with-description"
+      }]
     }
   }
 ];

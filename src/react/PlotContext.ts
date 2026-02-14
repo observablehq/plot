@@ -57,6 +57,13 @@ export interface FacetInfo {
   empty: boolean;
 }
 
+// Pointer state shared across interactive marks.
+export interface PointerState {
+  x: number | null;
+  y: number | null;
+  active: boolean;
+}
+
 // The context provided by <Plot> to all mark children.
 export interface PlotContextValue {
   // Registration phase
@@ -77,6 +84,9 @@ export interface PlotContextValue {
   // Mark states (computed by Plot after all registrations)
   getMarkState: (id: string) => MarkState | undefined;
 
+  // Pointer state for interactive marks (Tip, Crosshair)
+  pointer: PointerState;
+
   // Callbacks for Framework integration
   dispatchValue?: (value: any) => void;
 }
@@ -91,7 +101,8 @@ const defaultContext: PlotContextValue = {
   className: "plot-d6a7b5",
   facets: undefined,
   facetTranslate: null,
-  getMarkState: () => undefined
+  getMarkState: () => undefined,
+  pointer: {x: null, y: null, active: false}
 };
 
 export const PlotContext = createContext<PlotContextValue>(defaultContext);

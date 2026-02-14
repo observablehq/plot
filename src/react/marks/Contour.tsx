@@ -1,4 +1,4 @@
-// @ts-nocheck — imports from internal JS modules lack .d.ts declarations
+// @ts-nocheck — React components importing from untyped JS modules
 import React, {useMemo} from "react";
 import {contours as d3Contours, geoPath} from "d3";
 import {useMark} from "../useMark.js";
@@ -53,7 +53,6 @@ export function Contour({
   fillOpacity,
   opacity,
   thresholds = 10,
-  blur = 0,
   smooth = true,
   pixelSize = 2,
   width: gridWidth,
@@ -87,11 +86,11 @@ export function Contour({
     dx, dy, className
   }), [fill, stroke, strokeWidth, dx, dy, className, restOptions]);
 
-  const {values, index, scales, dimensions} = useMark({data, channels, ariaLabel: defaults.ariaLabel, tip, ...markOptions});
+  const {values, index, dimensions} = useMark({data, channels, ariaLabel: defaults.ariaLabel, tip, ...markOptions});
 
   if (!values || !index || !dimensions) return null;
 
-  const {value: V, x: X, y: Y} = values;
+  const {value: V} = values;
   const {width: plotWidth, height: plotHeight, marginLeft, marginTop, marginRight, marginBottom} = dimensions;
 
   // Compute contours from gridded data
@@ -146,7 +145,7 @@ export function Contour({
 
   return (
     <g {...groupProps}>
-      {contourPaths.map(({d, value: v}: any, j: number) => {
+      {contourPaths.map(({d}: any, j: number) => {
         if (!d) return null;
         return (
           <path

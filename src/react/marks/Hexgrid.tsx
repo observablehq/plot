@@ -1,4 +1,4 @@
-// @ts-nocheck
+// @ts-nocheck — React components importing from untyped JS modules
 import React, {useMemo} from "react";
 import {usePlotContext} from "../PlotContext.js";
 

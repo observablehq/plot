@@ -8,7 +8,11 @@
     "jsx": "react-jsx",
     "paths": {
       "@observablehq/plot": ["index"],
-      "@observablehq/plot/react": ["react/index"]
+      "@observablehq/plot/react": ["react/index"],
+      "react": ["../node_modules/@types/react"],
+      "react/jsx-runtime": ["../node_modules/@types/react/jsx-runtime"],
+      "react-dom": ["../node_modules/@types/react-dom"],
+      "react-dom/*": ["../node_modules/@types/react-dom/*"]
     }
   },
   "include": ["src/**/*.d.ts", "src/**/*.js", "src/**/*.ts", "src/**/*.tsx", "test/**/*.js", "test/**/*.ts"]

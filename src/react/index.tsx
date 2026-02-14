@@ -1,4 +1,4 @@
-// @ts-nocheck — re-exports from internal JS modules lack .d.ts declarations
+// @ts-nocheck — React components importing from untyped JS modules
 // @observablehq/plot/react — React component API for Observable Plot
 //
 // Usage:

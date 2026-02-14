@@ -1,16 +1,17 @@
-// @ts-nocheck — imports from internal JS modules lack .d.ts declarations
-import React, {useCallback, useMemo, useRef, useState, type ReactNode} from "react";
+// @ts-nocheck — React components importing from untyped JS modules
+import React, {useCallback, useContext, useMemo, useRef, useState, type ReactNode, type PointerEvent as ReactPointerEvent} from "react";
 import {createChannel, inferChannelScale} from "../channel.js";
+import {formatDefault} from "../format.js";
 import {createDimensions} from "../dimensions.js";
 import {createFacets, recreateFacets, facetExclude, facetGroups, facetFilter, facetTranslator} from "../facet.js";
-import {isColor, isScaleOptions, dataify, lengthof, map, yes, maybeIntervalTransform, range, subarray} from "../options.js";
-import {createProjection, getGeometryChannels, hasProjection, xyProjection} from "../projection.js";
-import {createScales, createScaleFunctions, autoScaleRange, exposeScales} from "../scales.js";
-import {innerDimensions, outerDimensions} from "../scales.js";
-import {isPosition, registry as scaleRegistry} from "../scales/index.js";
+import {isScaleOptions, dataify, map, maybeIntervalTransform, range} from "../options.js";
+import {createProjection, getGeometryChannels, hasProjection} from "../projection.js";
+import {createScales, createScaleFunctions, autoScaleRange} from "../scales.js";
+import {innerDimensions} from "../scales.js";
+import {registry as scaleRegistry} from "../scales/index.js";
 import {maybeClassName} from "../style.js";
 import {PlotContext, FacetContext} from "./PlotContext.js";
-import type {MarkRegistration, MarkState, Dimensions, FacetInfo, PlotContextValue} from "./PlotContext.js";
+import type {MarkRegistration, MarkState, FacetInfo, PlotContextValue, PointerState} from "./PlotContext.js";
 
 export interface PlotProps {
   // Dimensions
@@ -64,6 +65,12 @@ export interface PlotProps {
   axis?: any;
   grid?: any;
 
+  // Figure wrapping
+  title?: string;
+  subtitle?: string;
+  caption?: string;
+  figure?: boolean;
+
   // Children (mark components)
   children?: ReactNode;
 
@@ -80,6 +87,10 @@ export function Plot({
   style,
   ariaLabel,
   ariaDescription,
+  title,
+  subtitle,
+  caption,
+  figure: figureProp,
   onValue,
   ...options
 }: PlotProps) {
@@ -337,6 +348,26 @@ export function Plot({
     };
   }, [registrationVersion, widthProp, heightProp, options]);
 
+  // Pointer state for interactive marks
+  const svgRef = useRef<SVGSVGElement>(null);
+  const [pointer, setPointer] = useState<PointerState>({x: null, y: null, active: false});
+  const rafRef = useRef<number>(0);
+
+  const handlePointerMove = useCallback((event: ReactPointerEvent<SVGSVGElement>) => {
+    const svg = svgRef.current;
+    if (!svg) return;
+    if (rafRef.current) cancelAnimationFrame(rafRef.current);
+    rafRef.current = requestAnimationFrame(() => {
+      const rect = svg.getBoundingClientRect();
+      setPointer({x: event.clientX - rect.left, y: event.clientY - rect.top, active: true});
+    });
+  }, []);
+
+  const handlePointerLeave = useCallback(() => {
+    if (rafRef.current) cancelAnimationFrame(rafRef.current);
+    setPointer({x: null, y: null, active: false});
+  }, []);
+
   // Build context value
   const contextValue = useMemo<PlotContextValue>(() => ({
     registerMark,
@@ -349,14 +380,44 @@ export function Plot({
     facets: computed?.facets,
     facetTranslate: computed?.facetTranslateFn ?? null,
     getMarkState: (id: string) => computed?.markStates?.get(id),
+    pointer,
     dispatchValue: onValue
-  }), [registerMark, unregisterMark, computed, className, onValue]);
+  }), [registerMark, unregisterMark, computed, className, onValue, pointer]);
 
   const {width, height} = computed?.dimensions ?? {width: widthProp, height: heightProp ?? 400};
 
-  return (
+  // Determine if figure wrapping is needed
+  const useFigure = figureProp ?? (title != null || subtitle != null || caption != null);
+
+  // Check whether children already include explicit axis components
+  const hasExplicitAxes = useMemo(() => {
+    let hasX = false, hasY = false;
+    React.Children.forEach(children, (child) => {
+      if (!React.isValidElement(child)) return;
+      const name = typeof child.type === "function" ? child.type.name : "";
+      if (name === "AxisX" || name === "GridX") hasX = true;
+      if (name === "AxisY" || name === "GridY") hasY = true;
+    });
+    return {hasX, hasY};
+  }, [children]);
+
+  // Render implicit axes when the corresponding scale exists and no explicit axis is provided
+  const implicitAxes = useMemo(() => {
+    if (!computed?.scaleFunctions) return null;
+    const axes: ReactNode[] = [];
+    if (!hasExplicitAxes.hasX && computed.scaleFunctions.x) {
+      axes.push(<ImplicitAxisX key="__implicit-axis-x" />);
+    }
+    if (!hasExplicitAxes.hasY && computed.scaleFunctions.y) {
+      axes.push(<ImplicitAxisY key="__implicit-axis-y" />);
+    }
+    return axes.length > 0 ? axes : null;
+  }, [computed?.scaleFunctions, hasExplicitAxes]);
+
+  const svg = (
     <PlotContext.Provider value={contextValue}>
       <svg
+        ref={svgRef}
         className={className}
         fill="currentColor"
         fontFamily="system-ui, sans-serif"
@@ -368,6 +429,8 @@ export function Plot({
         aria-label={ariaLabel}
         aria-description={ariaDescription}
         style={typeof style === "string" ? undefined : style}
+        onPointerMove={handlePointerMove}
+        onPointerLeave={handlePointerLeave}
       >
         <style>{`:where(.${className}) {
   --plot-background: white;
@@ -395,6 +458,7 @@ export function Plot({
                   value={{facetIndex: fi, fx: facet.x, fy: facet.y, fi}}
                 >
                   <g transform={`translate(${tx},${ty})`}>
+                    {implicitAxes}
                     {children}
                   </g>
                 </FacetContext.Provider>
@@ -403,10 +467,84 @@ export function Plot({
           </>
         ) : (
           // Non-faceted rendering
-          children
+          <>
+            {implicitAxes}
+            {children}
+          </>
         )}
       </svg>
     </PlotContext.Provider>
+  );
+
+  if (!useFigure) return svg;
+
+  return (
+    <figure style={{maxWidth: width, margin: "0 auto"}}>
+      {title != null && <h2 style={{fontSize: "16px", fontWeight: "bold", margin: "0 0 4px"}}>{title}</h2>}
+      {subtitle != null && <h3 style={{fontSize: "12px", fontWeight: "normal", color: "#666", margin: "0 0 8px"}}>{subtitle}</h3>}
+      {svg}
+      {caption != null && <figcaption style={{fontSize: "12px", color: "#666", marginTop: "4px"}}>{caption}</figcaption>}
+    </figure>
+  );
+}
+
+// --- Implicit axis components ---
+
+function ImplicitAxisX() {
+  const {scaleFunctions, scales, dimensions} = useContext(PlotContext);
+  if (!scaleFunctions?.x || !dimensions) return null;
+  const xScale = scaleFunctions.x;
+  const {width, height, marginBottom, marginLeft, marginRight} = dimensions;
+  const y = height - marginBottom;
+  const tickValues = xScale.ticks ? xScale.ticks() : xScale.domain();
+  const tickFormat = xScale.tickFormat ? xScale.tickFormat() : formatDefault;
+  const scaleLabel = (scales?.x as any)?.label;
+  return (
+    <g aria-label="x-axis" transform={`translate(0,${y})`} fill="none" fontSize={10} fontVariant="tabular-nums" textAnchor="middle">
+      <line x1={marginLeft} x2={width - marginRight} stroke="currentColor" />
+      {tickValues.map((d: any, i: number) => {
+        const x = xScale(d);
+        if (x == null || !isFinite(x)) return null;
+        return (
+          <g key={i} transform={`translate(${x},0)`}>
+            <line y2={6} stroke="currentColor" />
+            <text y={9} dy="0.71em" fill="currentColor">{tickFormat(d)}</text>
+          </g>
+        );
+      })}
+      {scaleLabel != null && (
+        <text x={(marginLeft + width - marginRight) / 2} y={34} fill="currentColor" textAnchor="middle" fontSize={12} fontVariant="normal">{`${scaleLabel} →`}</text>
+      )}
+    </g>
+  );
+}
+
+function ImplicitAxisY() {
+  const {scaleFunctions, scales, dimensions} = useContext(PlotContext);
+  if (!scaleFunctions?.y || !dimensions) return null;
+  const yScale = scaleFunctions.y;
+  const {height, marginTop, marginBottom, marginLeft} = dimensions;
+  const x = marginLeft;
+  const tickValues = yScale.ticks ? yScale.ticks() : yScale.domain();
+  const tickFormat = yScale.tickFormat ? yScale.tickFormat() : formatDefault;
+  const scaleLabel = (scales?.y as any)?.label;
+  return (
+    <g aria-label="y-axis" transform={`translate(${x},0)`} fill="none" fontSize={10} fontVariant="tabular-nums" textAnchor="end">
+      <line y1={marginTop} y2={height - marginBottom} stroke="currentColor" />
+      {tickValues.map((d: any, i: number) => {
+        const y = yScale(d);
+        if (y == null || !isFinite(y)) return null;
+        return (
+          <g key={i} transform={`translate(0,${y})`}>
+            <line x2={-6} stroke="currentColor" />
+            <text x={-9} dy="0.32em" fill="currentColor">{tickFormat(d)}</text>
+          </g>
+        );
+      })}
+      {scaleLabel != null && (
+        <text transform={`translate(${-45},${marginTop}) rotate(-90)`} fill="currentColor" textAnchor="end" fontSize={12} fontVariant="normal">{`↑ ${scaleLabel}`}</text>
+      )}
+    </g>
   );
 }
 

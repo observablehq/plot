@@ -1,8 +1,7 @@
-// @ts-nocheck — imports from internal JS modules lack .d.ts declarations
+// @ts-nocheck — React components importing from untyped JS modules
 import React, {useMemo} from "react";
-import {line as shapeLine, area as shapeArea} from "d3";
 import {useMark} from "../useMark.js";
-import {indirectStyleProps, directStyleProps, groupChannelStyleProps, computeTransform} from "../styles.js";
+import {indirectStyleProps, computeTransform} from "../styles.js";
 import type {ChannelSpec} from "../PlotContext.js";
 
 const defaults = {
@@ -59,8 +58,6 @@ export function LinearRegressionY({
   stroke,
   strokeWidth,
   strokeOpacity,
-  ci = 0.95,
-  precision = 4,
   className,
   ...restOptions
 }: LinearRegressionProps) {
@@ -130,8 +127,6 @@ export function LinearRegressionX({
   stroke,
   strokeWidth,
   strokeOpacity,
-  ci = 0.95,
-  precision = 4,
   className,
   ...restOptions
 }: LinearRegressionProps) {
