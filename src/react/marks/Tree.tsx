@@ -1,4 +1,4 @@
-// @ts-nocheck — composite mark delegating to other React components
+// @ts-nocheck — React components importing from untyped JS modules
 import React from "react";
 import {Link} from "./Link.js";
 import {Dot} from "./Dot.js";

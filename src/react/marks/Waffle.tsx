@@ -1,4 +1,4 @@
-// @ts-nocheck — imports from internal JS modules lack .d.ts declarations
+// @ts-nocheck — React components importing from untyped JS modules
 import React, {useMemo} from "react";
 import {useMark} from "../useMark.js";
 import {indirectStyleProps, directStyleProps, channelStyleProps} from "../styles.js";
@@ -52,6 +52,7 @@ export function WaffleY({
   tip,
   dx = 0,
   dy = 0,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   unit = 1,
   gap = 1,
   multiple = 1,
@@ -150,6 +151,7 @@ export function WaffleX({
   tip,
   dx = 0,
   dy = 0,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   unit = 1,
   gap = 1,
   multiple = 1,

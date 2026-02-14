@@ -13,7 +13,7 @@ export interface UsePointerOptions {
 // Hook for tracking pointer position relative to an SVG element.
 export function usePointer(
   svgRef: RefObject<SVGSVGElement | null>,
-  options: UsePointerOptions = {}
+  _options: UsePointerOptions = {}
 ): PointerState & {
   onPointerMove: (event: React.PointerEvent) => void;
   onPointerLeave: () => void;

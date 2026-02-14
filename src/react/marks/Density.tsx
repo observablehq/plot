@@ -1,8 +1,8 @@
-// @ts-nocheck — imports from internal JS modules lack .d.ts declarations
+// @ts-nocheck — React components importing from untyped JS modules
 import React, {useMemo} from "react";
 import {contourDensity, geoPath} from "d3";
 import {useMark} from "../useMark.js";
-import {indirectStyleProps, directStyleProps, channelStyleProps} from "../styles.js";
+import {indirectStyleProps, directStyleProps} from "../styles.js";
 import type {ChannelSpec} from "../PlotContext.js";
 
 const defaults = {
@@ -76,12 +76,12 @@ export function Density({
     dx, dy, className
   }), [fill, stroke, strokeWidth, dx, dy, className, useDensityFill, useDensityStroke, restOptions]);
 
-  const {values, index, scales, dimensions} = useMark({data, channels, ariaLabel: defaults.ariaLabel, tip, ...markOptions});
+  const {values, index, dimensions} = useMark({data, channels, ariaLabel: defaults.ariaLabel, tip, ...markOptions});
 
   if (!values || !index || !dimensions) return null;
 
   const {x: X, y: Y, weight: W} = values;
-  const {width, height, marginLeft, marginTop, marginRight, marginBottom} = dimensions;
+  const {width, height} = dimensions;
 
   // Compute density contours
   const contours = useMemo(() => {

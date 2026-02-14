@@ -1,4 +1,4 @@
-// @ts-nocheck — imports from internal JS modules lack .d.ts declarations
+// @ts-nocheck — React components importing from untyped JS modules
 import React from "react";
 import {usePlotContext} from "../PlotContext.js";
 import {formatDefault} from "../../format.js";
@@ -342,7 +342,7 @@ export function AxisFx({
   className,
   color
 }: AxisProps) {
-  const {scaleFunctions, dimensions} = usePlotContext();
+  const {scales, scaleFunctions, dimensions} = usePlotContext();
   if (!scaleFunctions || !dimensions) return null;
 
   const fxScale = scaleFunctions.fx;
@@ -363,6 +363,14 @@ export function AxisFx({
 
   const bw = fxScale.bandwidth ? fxScale.bandwidth() / 2 : 0;
 
+  const scaleLabel = label ?? (scales?.fx as any)?.label;
+  const labelText = scaleLabel != null ? `${scaleLabel}` : undefined;
+  const resolvedLabelAnchor = labelAnchor ?? "center";
+  const labelX = resolvedLabelAnchor === "left" ? marginLeft
+    : resolvedLabelAnchor === "right" ? width - marginRight
+    : (marginLeft + width - marginRight) / 2;
+  const labelY = isTop ? y - labelOffset : y + labelOffset;
+
   return (
     <g
       aria-label={`fx-axis ${anchor}`}
@@ -380,12 +388,30 @@ export function AxisFx({
         return (
           <g key={i} transform={`translate(${x + bw},0)`}>
             <line y2={tickSize * dir} stroke={color ?? stroke} strokeWidth={strokeWidth} strokeOpacity={strokeOpacity} />
-            <text y={(tickSize + tickPadding) * dir} dy={isTop ? "0" : "0.71em"} fill={color ?? "currentColor"}>
+            <text
+              y={(tickSize + tickPadding) * dir}
+              dy={isTop ? "0" : "0.71em"}
+              textAnchor={tickRotate ? "start" : "middle"}
+              fill={color ?? "currentColor"}
+              transform={tickRotate ? `rotate(${tickRotate})` : undefined}
+            >
               {tickFormat(d)}
             </text>
           </g>
         );
       })}
+      {labelText && (
+        <text
+          x={labelX}
+          y={labelY - y}
+          fill={color ?? "currentColor"}
+          textAnchor={resolvedLabelAnchor === "left" ? "start" : resolvedLabelAnchor === "right" ? "end" : "middle"}
+          fontSize={12}
+          fontVariant="normal"
+        >
+          {labelArrow && resolvedLabelAnchor === "center" ? `${labelText} →` : labelText}
+        </text>
+      )}
     </g>
   );
 }
@@ -408,7 +434,7 @@ export function AxisFy({
   className,
   color
 }: AxisProps) {
-  const {scaleFunctions, dimensions} = usePlotContext();
+  const {scales, scaleFunctions, dimensions} = usePlotContext();
   if (!scaleFunctions || !dimensions) return null;
 
   const fyScale = scaleFunctions.fy;
@@ -429,6 +455,14 @@ export function AxisFy({
 
   const bw = fyScale.bandwidth ? fyScale.bandwidth() / 2 : 0;
 
+  const scaleLabel = label ?? (scales?.fy as any)?.label;
+  const labelText = scaleLabel != null ? `${scaleLabel}` : undefined;
+  const resolvedLabelAnchor = labelAnchor ?? "top";
+  const labelY = resolvedLabelAnchor === "top" ? marginTop
+    : resolvedLabelAnchor === "bottom" ? height - marginBottom
+    : (marginTop + height - marginBottom) / 2;
+  const labelX = isRight ? labelOffset : -labelOffset;
+
   return (
     <g
       aria-label={`fy-axis ${anchor}`}
@@ -446,12 +480,28 @@ export function AxisFy({
         return (
           <g key={i} transform={`translate(0,${y + bw})`}>
             <line x2={tickSize * dir} stroke={color ?? stroke} strokeWidth={strokeWidth} strokeOpacity={strokeOpacity} />
-            <text x={(tickSize + tickPadding) * dir} dy="0.32em" fill={color ?? "currentColor"}>
+            <text
+              x={(tickSize + tickPadding) * dir}
+              dy="0.32em"
+              fill={color ?? "currentColor"}
+              transform={tickRotate ? `rotate(${tickRotate})` : undefined}
+            >
               {tickFormat(d)}
             </text>
           </g>
         );
       })}
+      {labelText && (
+        <text
+          transform={`translate(${labelX},${labelY}) rotate(-90)`}
+          fill={color ?? "currentColor"}
+          textAnchor={resolvedLabelAnchor === "top" ? "end" : resolvedLabelAnchor === "bottom" ? "start" : "middle"}
+          fontSize={12}
+          fontVariant="normal"
+        >
+          {labelArrow && resolvedLabelAnchor === "top" ? `↑ ${labelText}` : labelText}
+        </text>
+      )}
     </g>
   );
 }

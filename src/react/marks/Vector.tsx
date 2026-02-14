@@ -1,4 +1,4 @@
-// @ts-nocheck — imports from internal JS modules lack .d.ts declarations
+// @ts-nocheck — React components importing from untyped JS modules
 import React, {useMemo} from "react";
 import {useMark} from "../useMark.js";
 import {indirectStyleProps, directStyleProps, channelStyleProps, computeTransform, computeFrameAnchor} from "../styles.js";
@@ -49,7 +49,6 @@ export function Vector({
   dx = 0,
   dy = 0,
   anchor = "middle",
-  shape = "spike",
   frameAnchor,
   className,
   ...restOptions

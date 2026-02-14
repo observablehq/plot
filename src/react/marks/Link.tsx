@@ -1,8 +1,7 @@
-// @ts-nocheck — imports from internal JS modules lack .d.ts declarations
+// @ts-nocheck — React components importing from untyped JS modules
 import React, {useMemo} from "react";
 import {useMark} from "../useMark.js";
 import {indirectStyleProps, directStyleProps, channelStyleProps, computeTransform} from "../styles.js";
-import {maybeCurveAuto} from "../../curve.js";
 import type {ChannelSpec} from "../PlotContext.js";
 
 const defaults = {

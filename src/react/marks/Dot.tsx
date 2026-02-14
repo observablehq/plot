@@ -1,3 +1,4 @@
+// @ts-nocheck — React components importing from untyped JS modules
 import React, {useMemo} from "react";
 import {pathRound as path, symbolCircle} from "d3";
 import {useMark} from "../useMark.js";
@@ -112,7 +113,7 @@ export function Dot({
     return <>{customRender(index, scales, values, dimensions)}</>;
   }
 
-  const {x: X, y: Y, r: R, rotate: A, symbol: S, fill: F, stroke: ST} = values;
+  const {x: X, y: Y, r: R, rotate: A, symbol: S} = values;
   const [anchorX, anchorY] = computeFrameAnchor(frameAnchor, dimensions);
   const constantR = isRChannel ? undefined : (typeof r === "number" ? r : 3);
   const constantRotate = isRotateChannel ? undefined : (typeof rotate === "number" ? rotate : 0);

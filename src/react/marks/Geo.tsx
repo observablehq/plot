@@ -1,6 +1,6 @@
-// @ts-nocheck — imports from internal JS modules lack .d.ts declarations
+// @ts-nocheck — React components importing from untyped JS modules
 import React, {useMemo} from "react";
-import {geoPath} from "d3";
+import {geoPath, geoGraticule10} from "d3";
 import {useMark} from "../useMark.js";
 import {usePlotContext} from "../PlotContext.js";
 import {indirectStyleProps, directStyleProps, channelStyleProps, computeTransform} from "../styles.js";
@@ -143,7 +143,6 @@ export function Graticule({
   ...restOptions
 }: Partial<GeoProps>) {
   const graticuleData = useMemo(() => {
-    const {geoGraticule10} = require("d3");
     return [{type: "MultiLineString", coordinates: geoGraticule10().coordinates}];
   }, []);
 
