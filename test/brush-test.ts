@@ -160,6 +160,75 @@ it("brush programmatic move on second facet selects the correct facet", async ()
   assert.equal([...species][0], "Chinstrap", "filtered species should be Chinstrap");
 });
 
+it("brush with data includes filtered data in value", () => {
+  const data = [
+    {x: 10, y: 10},
+    {x: 20, y: 20},
+    {x: 30, y: 30},
+    {x: 40, y: 40},
+    {x: 50, y: 50}
+  ];
+  const brush = Plot.brush(data, {x: "x", y: "y"});
+  const plot = Plot.plot({
+    x: {domain: [0, 60]},
+    y: {domain: [0, 60]},
+    marks: [
+      brush,
+      Plot.dot(data, brush.inactive()),
+      Plot.dot(data, brush.context({fill: "#ccc"})),
+      Plot.dot(data, brush.focus({fill: "red"}))
+    ]
+  });
+
+  let lastValue: any;
+  plot.addEventListener("input", () => (lastValue = plot.value));
+  brush.move({x1: 15, x2: 35, y1: 15, y2: 35});
+
+  assert.ok(lastValue, "should have a value");
+  assert.ok(Array.isArray(lastValue.data), "value should have a data array");
+  assert.equal(lastValue.data.length, 2, "filtered data should contain 2 points");
+  assert.deepEqual(lastValue.data, [
+    {x: 20, y: 20},
+    {x: 30, y: 30}
+  ]);
+});
+
+it("brush with generator data includes filtered data in value", () => {
+  const data = [
+    {x: 10, y: 10},
+    {x: 20, y: 20},
+    {x: 30, y: 30},
+    {x: 40, y: 40},
+    {x: 50, y: 50}
+  ];
+  function* generate() {
+    yield* data;
+  }
+  const brush = Plot.brush(generate(), {x: "x", y: "y"});
+  const plot = Plot.plot({
+    x: {domain: [0, 60]},
+    y: {domain: [0, 60]},
+    marks: [
+      brush,
+      Plot.dot(data, brush.inactive()),
+      Plot.dot(data, brush.context({fill: "#ccc"})),
+      Plot.dot(data, brush.focus({fill: "red"}))
+    ]
+  });
+
+  let lastValue: any;
+  plot.addEventListener("input", () => (lastValue = plot.value));
+  brush.move({x1: 15, x2: 35, y1: 15, y2: 35});
+
+  assert.ok(lastValue, "should have a value");
+  assert.ok(Array.isArray(lastValue.data), "value should have a data array");
+  assert.equal(lastValue.data.length, 2, "filtered data should contain 2 points");
+  assert.deepEqual(lastValue.data, [
+    {x: 20, y: 20},
+    {x: 30, y: 30}
+  ]);
+});
+
 it("brush reactive marks compose with user render transforms", () => {
   const data = [
     {x: 10, y: 10},
