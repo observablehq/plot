@@ -145,7 +145,7 @@ Plot.plot({
 ```
 
 :::tip
-To achieve higher contrast, place the brush below the reactive marks; reactive marks default to using **pointerEvents** *none* to ensure they don't obstruct pointer events.
+To achieve higher contrast, you can place the brush before the reactive marks; reactive marks default to using **pointerEvents** *none* to ensure they don't obstruct pointer events.
 :::
 
 ## Faceting
@@ -233,7 +233,7 @@ The brush value dispatched on [_input_ events](#input-events). When the brush is
 - **filter** - a function to test whether a point is inside the selection
 - **pending** - `true` during interaction; absent when committed
 
-By convention, *x1* < *x2* and *y1* < *y2*. The brushX mark does not dispatch *y1* and *y2*; similarly, the brushY mark does not dispatch *x1* and *x2*.
+By convention, *x1* < *x2* and *y1* < *y2*. The brushX value does not include *y1* and *y2*; similarly, the brushY value does not include *x1* and *x2*.
 
 The **pending** property indicates the user is still interacting with the brush. To skip intermediate values and react only to committed selections:
 
