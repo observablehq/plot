@@ -5,13 +5,17 @@ import {sqrt3} from "../symbol.js";
 import {initializer} from "./basic.js";
 import {hasOutput, maybeGroup, maybeGroupOutputs, maybeSubgroup} from "./group.js";
 
-// We don’t want the hexagons to align with the edges of the plot frame, as that
-// would cause extreme x-values (the upper bound of the default x-scale domain)
-// to be rounded up into a floating bin to the right of the plot. Therefore,
-// rather than centering the origin hexagon around ⟨0,0⟩ in screen coordinates,
-// we offset slightly to ⟨0.5,0⟩. The hexgrid mark uses the same origin.
-export const ox = 0.5 - offset;
-export const oy = -offset;
+// When a data value lands exactly on a hexbin grid boundary (i.e., the scaled
+// x-coordinate is a half-integer due to the odd-row offset), Math.round would
+// round up into a floating bin outside the plot. We use a custom rounding
+// function that breaks such ties toward the center of the plot, preventing
+// exterior bins on left and right edges.
+export const ox = -offset;
+
+// Rounds x to the nearest integer, breaking .5 ties toward center.
+function round(x, center) {
+  return Math.round(center + (x - center) * (1 - 1e-12));
+}
 
 export function hexbin(outputs = {fill: "count"}, {binWidth, ...options} = {}) {
   const {z} = options;
@@ -31,13 +35,18 @@ export function hexbin(outputs = {fill: "count"}, {binWidth, ...options} = {}) {
   if (options.symbol === undefined) options.symbol = "hexagon";
   if (options.r === undefined && !hasOutput(outputs, "r")) options.r = binWidth / 2;
 
-  return initializer(options, (data, facets, channels, scales, _, context) => {
+  return initializer(options, (data, facets, channels, scales, dimensions, context) => {
     let {x: X, y: Y, z: Z, fill: F, stroke: S, symbol: Q} = channels;
     if (X === undefined) throw new Error("missing channel: x");
     if (Y === undefined) throw new Error("missing channel: y");
 
     // Get the (either scaled or projected) xy channels.
     ({x: X, y: Y} = applyPosition(channels, scales, context));
+
+    // Compute the horizontal midpoint of the frame in pixel space; used by
+    // hbin to break rounding ties toward the center, preventing exterior bins.
+    const {marginRight, marginLeft, width} = dimensions;
+    const mx = (marginLeft + width - marginRight) / 2;
 
     // Extract the values for channels that are eligible for grouping; not all
     // marks define a z channel, so compute one if it not already computed. If z
@@ -65,7 +74,7 @@ export function hexbin(outputs = {fill: "count"}, {binWidth, ...options} = {}) {
       const binFacet = [];
       for (const o of outputs) o.scope("facet", facet);
       for (const [f, I] of maybeGroup(facet, G)) {
-        for (const {index: b, extent} of hbin(data, I, X, Y, binWidth)) {
+        for (const {index: b, extent} of hbin(data, I, X, Y, binWidth, mx)) {
           binFacet.push(++i);
           BX.push(extent.x);
           BY.push(extent.y);
@@ -106,15 +115,16 @@ export function hexbin(outputs = {fill: "count"}, {binWidth, ...options} = {}) {
   });
 }
 
-function hbin(data, I, X, Y, dx) {
+function hbin(data, I, X, Y, dx, mx) {
   const dy = dx * (1.5 / sqrt3);
+  const cx = (mx - ox) / dx;
   const bins = new Map();
   for (const i of I) {
     let px = X[i],
       py = Y[i];
     if (isNaN(px) || isNaN(py)) continue;
-    let pj = Math.round((py = (py - oy) / dy)),
-      pi = Math.round((px = (px - ox) / dx - (pj & 1) / 2)),
+    let pj = Math.round((py = py / dy)),
+      pi = round((px = (px - ox) / dx - (pj & 1) / 2), cx - (pj & 1) / 2),
       py1 = py - pj;
     if (Math.abs(py1) * 3 > 1) {
       let px1 = px - pi,
@@ -127,7 +137,7 @@ function hbin(data, I, X, Y, dx) {
     const key = `${pi},${pj}`;
     let bin = bins.get(key);
     if (bin === undefined) {
-      bin = {index: [], extent: {data, x: (pi + (pj & 1) / 2) * dx + ox, y: pj * dy + oy}};
+      bin = {index: [], extent: {data, x: (pi + (pj & 1) / 2) * dx + ox, y: pj * dy}};
       bins.set(key, bin);
     }
     bin.index.push(i);

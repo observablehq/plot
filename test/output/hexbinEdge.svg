@@ -1,0 +1,500 @@
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="630" height="400" viewBox="0 0 630 400" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style>
+    :where(.plot) {
+      --plot-background: white;
+      display: block;
+      height: auto;
+      height: intrinsic;
+      max-width: 100%;
+    }
+
+    :where(.plot text),
+    :where(.plot tspan) {
+      white-space: pre;
+    }
+  </style>
+  <g aria-label="dot" fill="none" stroke="currentColor" stroke-width="1.5">
+    <path transform="translate(20,381.051)" d="M0,11.547L10,5.774L10,-5.774L0,-11.547L-10,-5.774L-10,5.774Z"></path>
+    <path transform="translate(40,381.051)" d="M0,11.547L10,5.774L10,-5.774L0,-11.547L-10,-5.774L-10,5.774Z"></path>
+    <path transform="translate(60,381.051)" d="M0,11.547L10,5.774L10,-5.774L0,-11.547L-10,-5.774L-10,5.774Z"></path>
+    <path transform="translate(80,381.051)" d="M0,11.547L10,5.774L10,-5.774L0,-11.547L-10,-5.774L-10,5.774Z"></path>
+    <path transform="translate(100,381.051)" d="M0,11.547L10,5.774L10,-5.774L0,-11.547L-10,-5.774L-10,5.774Z"></path>
+    <path transform="translate(120,381.051)" d="M0,11.547L10,5.774L10,-5.774L0,-11.547L-10,-5.774L-10,5.774Z"></path>
+    <path transform="translate(140,381.051)" d="M0,11.547L10,5.774L10,-5.774L0,-11.547L-10,-5.774L-10,5.774Z"></path>
+    <path transform="translate(160,381.051)" d="M0,11.547L10,5.774L10,-5.774L0,-11.547L-10,-5.774L-10,5.774Z"></path>
+    <path transform="translate(180,381.051)" d="M0,11.547L10,5.774L10,-5.774L0,-11.547L-10,-5.774L-10,5.774Z"></path>
+    <path transform="translate(200,381.051)" d="M0,11.547L10,5.774L10,-5.774L0,-11.547L-10,-5.774L-10,5.774Z"></path>
+    <path transform="translate(220,381.051)" d="M0,11.547L10,5.774L10,-5.774L0,-11.547L-10,-5.774L-10,5.774Z"></path>
+    <path transform="translate(240,381.051)" d="M0,11.547L10,5.774L10,-5.774L0,-11.547L-10,-5.774L-10,5.774Z"></path>
+    <path transform="translate(260,381.051)" d="M0,11.547L10,5.774L10,-5.774L0,-11.547L-10,-5.774L-10,5.774Z"></path>
+    <path transform="translate(280,381.051)" d="M0,11.547L10,5.774L10,-5.774L0,-11.547L-10,-5.774L-10,5.774Z"></path>
+    <path transform="translate(300,381.051)" d="M0,11.547L10,5.774L10,-5.774L0,-11.547L-10,-5.774L-10,5.774Z"></path>
+    <path transform="translate(320,381.051)" d="M0,11.547L10,5.774L10,-5.774L0,-11.547L-10,-5.774L-10,5.774Z"></path>
+    <path transform="translate(340,381.051)" d="M0,11.547L10,5.774L10,-5.774L0,-11.547L-10,-5.774L-10,5.774Z"></path>
+    <path transform="translate(360,381.051)" d="M0,11.547L10,5.774L10,-5.774L0,-11.547L-10,-5.774L-10,5.774Z"></path>
+    <path transform="translate(380,381.051)" d="M0,11.547L10,5.774L10,-5.774L0,-11.547L-10,-5.774L-10,5.774Z"></path>
+    <path transform="translate(400,381.051)" d="M0,11.547L10,5.774L10,-5.774L0,-11.547L-10,-5.774L-10,5.774Z"></path>
+    <path transform="translate(420,381.051)" d="M0,11.547L10,5.774L10,-5.774L0,-11.547L-10,-5.774L-10,5.774Z"></path>
+    <path transform="translate(440,381.051)" d="M0,11.547L10,5.774L10,-5.774L0,-11.547L-10,-5.774L-10,5.774Z"></path>
+    <path transform="translate(460,381.051)" d="M0,11.547L10,5.774L10,-5.774L0,-11.547L-10,-5.774L-10,5.774Z"></path>
+    <path transform="translate(480,381.051)" d="M0,11.547L10,5.774L10,-5.774L0,-11.547L-10,-5.774L-10,5.774Z"></path>
+    <path transform="translate(500,381.051)" d="M0,11.547L10,5.774L10,-5.774L0,-11.547L-10,-5.774L-10,5.774Z"></path>
+    <path transform="translate(520,381.051)" d="M0,11.547L10,5.774L10,-5.774L0,-11.547L-10,-5.774L-10,5.774Z"></path>
+    <path transform="translate(540,381.051)" d="M0,11.547L10,5.774L10,-5.774L0,-11.547L-10,-5.774L-10,5.774Z"></path>
+    <path transform="translate(560,381.051)" d="M0,11.547L10,5.774L10,-5.774L0,-11.547L-10,-5.774L-10,5.774Z"></path>
+    <path transform="translate(580,381.051)" d="M0,11.547L10,5.774L10,-5.774L0,-11.547L-10,-5.774L-10,5.774Z"></path>
+    <path transform="translate(600,381.051)" d="M0,11.547L10,5.774L10,-5.774L0,-11.547L-10,-5.774L-10,5.774Z"></path>
+    <path transform="translate(30,17.321)" d="M0,11.547L10,5.774L10,-5.774L0,-11.547L-10,-5.774L-10,5.774Z"></path>
+    <path transform="translate(50,17.321)" d="M0,11.547L10,5.774L10,-5.774L0,-11.547L-10,-5.774L-10,5.774Z"></path>
+    <path transform="translate(70,17.321)" d="M0,11.547L10,5.774L10,-5.774L0,-11.547L-10,-5.774L-10,5.774Z"></path>
+    <path transform="translate(90,17.321)" d="M0,11.547L10,5.774L10,-5.774L0,-11.547L-10,-5.774L-10,5.774Z"></path>
+    <path transform="translate(110,17.321)" d="M0,11.547L10,5.774L10,-5.774L0,-11.547L-10,-5.774L-10,5.774Z"></path>
+    <path transform="translate(130,17.321)" d="M0,11.547L10,5.774L10,-5.774L0,-11.547L-10,-5.774L-10,5.774Z"></path>
+    <path transform="translate(150,17.321)" d="M0,11.547L10,5.774L10,-5.774L0,-11.547L-10,-5.774L-10,5.774Z"></path>
+    <path transform="translate(170,17.321)" d="M0,11.547L10,5.774L10,-5.774L0,-11.547L-10,-5.774L-10,5.774Z"></path>
+    <path transform="translate(190,17.321)" d="M0,11.547L10,5.774L10,-5.774L0,-11.547L-10,-5.774L-10,5.774Z"></path>
+    <path transform="translate(210,17.321)" d="M0,11.547L10,5.774L10,-5.774L0,-11.547L-10,-5.774L-10,5.774Z"></path>
+    <path transform="translate(230,17.321)" d="M0,11.547L10,5.774L10,-5.774L0,-11.547L-10,-5.774L-10,5.774Z"></path>
+    <path transform="translate(250,17.321)" d="M0,11.547L10,5.774L10,-5.774L0,-11.547L-10,-5.774L-10,5.774Z"></path>
+    <path transform="translate(270,17.321)" d="M0,11.547L10,5.774L10,-5.774L0,-11.547L-10,-5.774L-10,5.774Z"></path>
+    <path transform="translate(290,17.321)" d="M0,11.547L10,5.774L10,-5.774L0,-11.547L-10,-5.774L-10,5.774Z"></path>
+    <path transform="translate(310,17.321)" d="M0,11.547L10,5.774L10,-5.774L0,-11.547L-10,-5.774L-10,5.774Z"></path>
+    <path transform="translate(330,17.321)" d="M0,11.547L10,5.774L10,-5.774L0,-11.547L-10,-5.774L-10,5.774Z"></path>
+    <path transform="translate(350,17.321)" d="M0,11.547L10,5.774L10,-5.774L0,-11.547L-10,-5.774L-10,5.774Z"></path>
+    <path transform="translate(370,17.321)" d="M0,11.547L10,5.774L10,-5.774L0,-11.547L-10,-5.774L-10,5.774Z"></path>
+    <path transform="translate(390,17.321)" d="M0,11.547L10,5.774L10,-5.774L0,-11.547L-10,-5.774L-10,5.774Z"></path>
+    <path transform="translate(410,17.321)" d="M0,11.547L10,5.774L10,-5.774L0,-11.547L-10,-5.774L-10,5.774Z"></path>
+    <path transform="translate(430,17.321)" d="M0,11.547L10,5.774L10,-5.774L0,-11.547L-10,-5.774L-10,5.774Z"></path>
+    <path transform="translate(450,17.321)" d="M0,11.547L10,5.774L10,-5.774L0,-11.547L-10,-5.774L-10,5.774Z"></path>
+    <path transform="translate(470,17.321)" d="M0,11.547L10,5.774L10,-5.774L0,-11.547L-10,-5.774L-10,5.774Z"></path>
+    <path transform="translate(490,17.321)" d="M0,11.547L10,5.774L10,-5.774L0,-11.547L-10,-5.774L-10,5.774Z"></path>
+    <path transform="translate(510,17.321)" d="M0,11.547L10,5.774L10,-5.774L0,-11.547L-10,-5.774L-10,5.774Z"></path>
+    <path transform="translate(530,17.321)" d="M0,11.547L10,5.774L10,-5.774L0,-11.547L-10,-5.774L-10,5.774Z"></path>
+    <path transform="translate(550,17.321)" d="M0,11.547L10,5.774L10,-5.774L0,-11.547L-10,-5.774L-10,5.774Z"></path>
+    <path transform="translate(570,17.321)" d="M0,11.547L10,5.774L10,-5.774L0,-11.547L-10,-5.774L-10,5.774Z"></path>
+    <path transform="translate(590,17.321)" d="M0,11.547L10,5.774L10,-5.774L0,-11.547L-10,-5.774L-10,5.774Z"></path>
+    <path transform="translate(610,17.321)" d="M0,11.547L10,5.774L10,-5.774L0,-11.547L-10,-5.774L-10,5.774Z"></path>
+    <path transform="translate(30,363.731)" d="M0,11.547L10,5.774L10,-5.774L0,-11.547L-10,-5.774L-10,5.774Z"></path>
+    <path transform="translate(20,346.41)" d="M0,11.547L10,5.774L10,-5.774L0,-11.547L-10,-5.774L-10,5.774Z"></path>
+    <path transform="translate(30,329.09)" d="M0,11.547L10,5.774L10,-5.774L0,-11.547L-10,-5.774L-10,5.774Z"></path>
+    <path transform="translate(20,311.769)" d="M0,11.547L10,5.774L10,-5.774L0,-11.547L-10,-5.774L-10,5.774Z"></path>
+    <path transform="translate(30,294.449)" d="M0,11.547L10,5.774L10,-5.774L0,-11.547L-10,-5.774L-10,5.774Z"></path>
+    <path transform="translate(20,277.128)" d="M0,11.547L10,5.774L10,-5.774L0,-11.547L-10,-5.774L-10,5.774Z"></path>
+    <path transform="translate(30,259.808)" d="M0,11.547L10,5.774L10,-5.774L0,-11.547L-10,-5.774L-10,5.774Z"></path>
+    <path transform="translate(20,242.487)" d="M0,11.547L10,5.774L10,-5.774L0,-11.547L-10,-5.774L-10,5.774Z"></path>
+    <path transform="translate(30,225.167)" d="M0,11.547L10,5.774L10,-5.774L0,-11.547L-10,-5.774L-10,5.774Z"></path>
+    <path transform="translate(20,207.846)" d="M0,11.547L10,5.774L10,-5.774L0,-11.547L-10,-5.774L-10,5.774Z"></path>
+    <path transform="translate(30,190.526)" d="M0,11.547L10,5.774L10,-5.774L0,-11.547L-10,-5.774L-10,5.774Z"></path>
+    <path transform="translate(20,173.205)" d="M0,11.547L10,5.774L10,-5.774L0,-11.547L-10,-5.774L-10,5.774Z"></path>
+    <path transform="translate(30,155.885)" d="M0,11.547L10,5.774L10,-5.774L0,-11.547L-10,-5.774L-10,5.774Z"></path>
+    <path transform="translate(20,138.564)" d="M0,11.547L10,5.774L10,-5.774L0,-11.547L-10,-5.774L-10,5.774Z"></path>
+    <path transform="translate(30,121.244)" d="M0,11.547L10,5.774L10,-5.774L0,-11.547L-10,-5.774L-10,5.774Z"></path>
+    <path transform="translate(20,103.923)" d="M0,11.547L10,5.774L10,-5.774L0,-11.547L-10,-5.774L-10,5.774Z"></path>
+    <path transform="translate(30,86.603)" d="M0,11.547L10,5.774L10,-5.774L0,-11.547L-10,-5.774L-10,5.774Z"></path>
+    <path transform="translate(20,69.282)" d="M0,11.547L10,5.774L10,-5.774L0,-11.547L-10,-5.774L-10,5.774Z"></path>
+    <path transform="translate(30,51.962)" d="M0,11.547L10,5.774L10,-5.774L0,-11.547L-10,-5.774L-10,5.774Z"></path>
+    <path transform="translate(20,34.641)" d="M0,11.547L10,5.774L10,-5.774L0,-11.547L-10,-5.774L-10,5.774Z"></path>
+    <path transform="translate(610,363.731)" d="M0,11.547L10,5.774L10,-5.774L0,-11.547L-10,-5.774L-10,5.774Z"></path>
+    <path transform="translate(600,346.41)" d="M0,11.547L10,5.774L10,-5.774L0,-11.547L-10,-5.774L-10,5.774Z"></path>
+    <path transform="translate(610,329.09)" d="M0,11.547L10,5.774L10,-5.774L0,-11.547L-10,-5.774L-10,5.774Z"></path>
+    <path transform="translate(600,311.769)" d="M0,11.547L10,5.774L10,-5.774L0,-11.547L-10,-5.774L-10,5.774Z"></path>
+    <path transform="translate(610,294.449)" d="M0,11.547L10,5.774L10,-5.774L0,-11.547L-10,-5.774L-10,5.774Z"></path>
+    <path transform="translate(600,277.128)" d="M0,11.547L10,5.774L10,-5.774L0,-11.547L-10,-5.774L-10,5.774Z"></path>
+    <path transform="translate(610,259.808)" d="M0,11.547L10,5.774L10,-5.774L0,-11.547L-10,-5.774L-10,5.774Z"></path>
+    <path transform="translate(600,242.487)" d="M0,11.547L10,5.774L10,-5.774L0,-11.547L-10,-5.774L-10,5.774Z"></path>
+    <path transform="translate(610,225.167)" d="M0,11.547L10,5.774L10,-5.774L0,-11.547L-10,-5.774L-10,5.774Z"></path>
+    <path transform="translate(600,207.846)" d="M0,11.547L10,5.774L10,-5.774L0,-11.547L-10,-5.774L-10,5.774Z"></path>
+    <path transform="translate(610,190.526)" d="M0,11.547L10,5.774L10,-5.774L0,-11.547L-10,-5.774L-10,5.774Z"></path>
+    <path transform="translate(600,173.205)" d="M0,11.547L10,5.774L10,-5.774L0,-11.547L-10,-5.774L-10,5.774Z"></path>
+    <path transform="translate(610,155.885)" d="M0,11.547L10,5.774L10,-5.774L0,-11.547L-10,-5.774L-10,5.774Z"></path>
+    <path transform="translate(600,138.564)" d="M0,11.547L10,5.774L10,-5.774L0,-11.547L-10,-5.774L-10,5.774Z"></path>
+    <path transform="translate(610,121.244)" d="M0,11.547L10,5.774L10,-5.774L0,-11.547L-10,-5.774L-10,5.774Z"></path>
+    <path transform="translate(600,103.923)" d="M0,11.547L10,5.774L10,-5.774L0,-11.547L-10,-5.774L-10,5.774Z"></path>
+    <path transform="translate(610,86.603)" d="M0,11.547L10,5.774L10,-5.774L0,-11.547L-10,-5.774L-10,5.774Z"></path>
+    <path transform="translate(600,69.282)" d="M0,11.547L10,5.774L10,-5.774L0,-11.547L-10,-5.774L-10,5.774Z"></path>
+    <path transform="translate(610,51.962)" d="M0,11.547L10,5.774L10,-5.774L0,-11.547L-10,-5.774L-10,5.774Z"></path>
+    <path transform="translate(600,34.641)" d="M0,11.547L10,5.774L10,-5.774L0,-11.547L-10,-5.774L-10,5.774Z"></path>
+  </g>
+  <g aria-label="dot" fill="red">
+    <circle cx="20" cy="380" r="1"></circle>
+    <circle cx="25.13" cy="380" r="1"></circle>
+    <circle cx="30.261" cy="380" r="1"></circle>
+    <circle cx="35.391" cy="380" r="1"></circle>
+    <circle cx="40.522" cy="380" r="1"></circle>
+    <circle cx="45.652" cy="380" r="1"></circle>
+    <circle cx="50.783" cy="380" r="1"></circle>
+    <circle cx="55.913" cy="380" r="1"></circle>
+    <circle cx="61.043" cy="380" r="1"></circle>
+    <circle cx="66.174" cy="380" r="1"></circle>
+    <circle cx="71.304" cy="380" r="1"></circle>
+    <circle cx="76.435" cy="380" r="1"></circle>
+    <circle cx="81.565" cy="380" r="1"></circle>
+    <circle cx="86.696" cy="380" r="1"></circle>
+    <circle cx="91.826" cy="380" r="1"></circle>
+    <circle cx="96.957" cy="380" r="1"></circle>
+    <circle cx="102.087" cy="380" r="1"></circle>
+    <circle cx="107.217" cy="380" r="1"></circle>
+    <circle cx="112.348" cy="380" r="1"></circle>
+    <circle cx="117.478" cy="380" r="1"></circle>
+    <circle cx="122.609" cy="380" r="1"></circle>
+    <circle cx="127.739" cy="380" r="1"></circle>
+    <circle cx="132.87" cy="380" r="1"></circle>
+    <circle cx="138" cy="380" r="1"></circle>
+    <circle cx="143.13" cy="380" r="1"></circle>
+    <circle cx="148.261" cy="380" r="1"></circle>
+    <circle cx="153.391" cy="380" r="1"></circle>
+    <circle cx="158.522" cy="380" r="1"></circle>
+    <circle cx="163.652" cy="380" r="1"></circle>
+    <circle cx="168.783" cy="380" r="1"></circle>
+    <circle cx="173.913" cy="380" r="1"></circle>
+    <circle cx="179.043" cy="380" r="1"></circle>
+    <circle cx="184.174" cy="380" r="1"></circle>
+    <circle cx="189.304" cy="380" r="1"></circle>
+    <circle cx="194.435" cy="380" r="1"></circle>
+    <circle cx="199.565" cy="380" r="1"></circle>
+    <circle cx="204.696" cy="380" r="1"></circle>
+    <circle cx="209.826" cy="380" r="1"></circle>
+    <circle cx="214.957" cy="380" r="1"></circle>
+    <circle cx="220.087" cy="380" r="1"></circle>
+    <circle cx="225.217" cy="380" r="1"></circle>
+    <circle cx="230.348" cy="380" r="1"></circle>
+    <circle cx="235.478" cy="380" r="1"></circle>
+    <circle cx="240.609" cy="380" r="1"></circle>
+    <circle cx="245.739" cy="380" r="1"></circle>
+    <circle cx="250.87" cy="380" r="1"></circle>
+    <circle cx="256" cy="380" r="1"></circle>
+    <circle cx="261.13" cy="380" r="1"></circle>
+    <circle cx="266.261" cy="380" r="1"></circle>
+    <circle cx="271.391" cy="380" r="1"></circle>
+    <circle cx="276.522" cy="380" r="1"></circle>
+    <circle cx="281.652" cy="380" r="1"></circle>
+    <circle cx="286.783" cy="380" r="1"></circle>
+    <circle cx="291.913" cy="380" r="1"></circle>
+    <circle cx="297.043" cy="380" r="1"></circle>
+    <circle cx="302.174" cy="380" r="1"></circle>
+    <circle cx="307.304" cy="380" r="1"></circle>
+    <circle cx="312.435" cy="380" r="1"></circle>
+    <circle cx="317.565" cy="380" r="1"></circle>
+    <circle cx="322.696" cy="380" r="1"></circle>
+    <circle cx="327.826" cy="380" r="1"></circle>
+    <circle cx="332.957" cy="380" r="1"></circle>
+    <circle cx="338.087" cy="380" r="1"></circle>
+    <circle cx="343.217" cy="380" r="1"></circle>
+    <circle cx="348.348" cy="380" r="1"></circle>
+    <circle cx="353.478" cy="380" r="1"></circle>
+    <circle cx="358.609" cy="380" r="1"></circle>
+    <circle cx="363.739" cy="380" r="1"></circle>
+    <circle cx="368.87" cy="380" r="1"></circle>
+    <circle cx="374" cy="380" r="1"></circle>
+    <circle cx="379.13" cy="380" r="1"></circle>
+    <circle cx="384.261" cy="380" r="1"></circle>
+    <circle cx="389.391" cy="380" r="1"></circle>
+    <circle cx="394.522" cy="380" r="1"></circle>
+    <circle cx="399.652" cy="380" r="1"></circle>
+    <circle cx="404.783" cy="380" r="1"></circle>
+    <circle cx="409.913" cy="380" r="1"></circle>
+    <circle cx="415.043" cy="380" r="1"></circle>
+    <circle cx="420.174" cy="380" r="1"></circle>
+    <circle cx="425.304" cy="380" r="1"></circle>
+    <circle cx="430.435" cy="380" r="1"></circle>
+    <circle cx="435.565" cy="380" r="1"></circle>
+    <circle cx="440.696" cy="380" r="1"></circle>
+    <circle cx="445.826" cy="380" r="1"></circle>
+    <circle cx="450.957" cy="380" r="1"></circle>
+    <circle cx="456.087" cy="380" r="1"></circle>
+    <circle cx="461.217" cy="380" r="1"></circle>
+    <circle cx="466.348" cy="380" r="1"></circle>
+    <circle cx="471.478" cy="380" r="1"></circle>
+    <circle cx="476.609" cy="380" r="1"></circle>
+    <circle cx="481.739" cy="380" r="1"></circle>
+    <circle cx="486.87" cy="380" r="1"></circle>
+    <circle cx="492" cy="380" r="1"></circle>
+    <circle cx="497.13" cy="380" r="1"></circle>
+    <circle cx="502.261" cy="380" r="1"></circle>
+    <circle cx="507.391" cy="380" r="1"></circle>
+    <circle cx="512.522" cy="380" r="1"></circle>
+    <circle cx="517.652" cy="380" r="1"></circle>
+    <circle cx="522.783" cy="380" r="1"></circle>
+    <circle cx="527.913" cy="380" r="1"></circle>
+    <circle cx="533.043" cy="380" r="1"></circle>
+    <circle cx="538.174" cy="380" r="1"></circle>
+    <circle cx="543.304" cy="380" r="1"></circle>
+    <circle cx="548.435" cy="380" r="1"></circle>
+    <circle cx="553.565" cy="380" r="1"></circle>
+    <circle cx="558.696" cy="380" r="1"></circle>
+    <circle cx="563.826" cy="380" r="1"></circle>
+    <circle cx="568.957" cy="380" r="1"></circle>
+    <circle cx="574.087" cy="380" r="1"></circle>
+    <circle cx="579.217" cy="380" r="1"></circle>
+    <circle cx="584.348" cy="380" r="1"></circle>
+    <circle cx="589.478" cy="380" r="1"></circle>
+    <circle cx="594.609" cy="380" r="1"></circle>
+    <circle cx="599.739" cy="380" r="1"></circle>
+    <circle cx="604.87" cy="380" r="1"></circle>
+    <circle cx="610" cy="380" r="1"></circle>
+    <circle cx="20" cy="20" r="1"></circle>
+    <circle cx="25.13" cy="20" r="1"></circle>
+    <circle cx="30.261" cy="20" r="1"></circle>
+    <circle cx="35.391" cy="20" r="1"></circle>
+    <circle cx="40.522" cy="20" r="1"></circle>
+    <circle cx="45.652" cy="20" r="1"></circle>
+    <circle cx="50.783" cy="20" r="1"></circle>
+    <circle cx="55.913" cy="20" r="1"></circle>
+    <circle cx="61.043" cy="20" r="1"></circle>
+    <circle cx="66.174" cy="20" r="1"></circle>
+    <circle cx="71.304" cy="20" r="1"></circle>
+    <circle cx="76.435" cy="20" r="1"></circle>
+    <circle cx="81.565" cy="20" r="1"></circle>
+    <circle cx="86.696" cy="20" r="1"></circle>
+    <circle cx="91.826" cy="20" r="1"></circle>
+    <circle cx="96.957" cy="20" r="1"></circle>
+    <circle cx="102.087" cy="20" r="1"></circle>
+    <circle cx="107.217" cy="20" r="1"></circle>
+    <circle cx="112.348" cy="20" r="1"></circle>
+    <circle cx="117.478" cy="20" r="1"></circle>
+    <circle cx="122.609" cy="20" r="1"></circle>
+    <circle cx="127.739" cy="20" r="1"></circle>
+    <circle cx="132.87" cy="20" r="1"></circle>
+    <circle cx="138" cy="20" r="1"></circle>
+    <circle cx="143.13" cy="20" r="1"></circle>
+    <circle cx="148.261" cy="20" r="1"></circle>
+    <circle cx="153.391" cy="20" r="1"></circle>
+    <circle cx="158.522" cy="20" r="1"></circle>
+    <circle cx="163.652" cy="20" r="1"></circle>
+    <circle cx="168.783" cy="20" r="1"></circle>
+    <circle cx="173.913" cy="20" r="1"></circle>
+    <circle cx="179.043" cy="20" r="1"></circle>
+    <circle cx="184.174" cy="20" r="1"></circle>
+    <circle cx="189.304" cy="20" r="1"></circle>
+    <circle cx="194.435" cy="20" r="1"></circle>
+    <circle cx="199.565" cy="20" r="1"></circle>
+    <circle cx="204.696" cy="20" r="1"></circle>
+    <circle cx="209.826" cy="20" r="1"></circle>
+    <circle cx="214.957" cy="20" r="1"></circle>
+    <circle cx="220.087" cy="20" r="1"></circle>
+    <circle cx="225.217" cy="20" r="1"></circle>
+    <circle cx="230.348" cy="20" r="1"></circle>
+    <circle cx="235.478" cy="20" r="1"></circle>
+    <circle cx="240.609" cy="20" r="1"></circle>
+    <circle cx="245.739" cy="20" r="1"></circle>
+    <circle cx="250.87" cy="20" r="1"></circle>
+    <circle cx="256" cy="20" r="1"></circle>
+    <circle cx="261.13" cy="20" r="1"></circle>
+    <circle cx="266.261" cy="20" r="1"></circle>
+    <circle cx="271.391" cy="20" r="1"></circle>
+    <circle cx="276.522" cy="20" r="1"></circle>
+    <circle cx="281.652" cy="20" r="1"></circle>
+    <circle cx="286.783" cy="20" r="1"></circle>
+    <circle cx="291.913" cy="20" r="1"></circle>
+    <circle cx="297.043" cy="20" r="1"></circle>
+    <circle cx="302.174" cy="20" r="1"></circle>
+    <circle cx="307.304" cy="20" r="1"></circle>
+    <circle cx="312.435" cy="20" r="1"></circle>
+    <circle cx="317.565" cy="20" r="1"></circle>
+    <circle cx="322.696" cy="20" r="1"></circle>
+    <circle cx="327.826" cy="20" r="1"></circle>
+    <circle cx="332.957" cy="20" r="1"></circle>
+    <circle cx="338.087" cy="20" r="1"></circle>
+    <circle cx="343.217" cy="20" r="1"></circle>
+    <circle cx="348.348" cy="20" r="1"></circle>
+    <circle cx="353.478" cy="20" r="1"></circle>
+    <circle cx="358.609" cy="20" r="1"></circle>
+    <circle cx="363.739" cy="20" r="1"></circle>
+    <circle cx="368.87" cy="20" r="1"></circle>
+    <circle cx="374" cy="20" r="1"></circle>
+    <circle cx="379.13" cy="20" r="1"></circle>
+    <circle cx="384.261" cy="20" r="1"></circle>
+    <circle cx="389.391" cy="20" r="1"></circle>
+    <circle cx="394.522" cy="20" r="1"></circle>
+    <circle cx="399.652" cy="20" r="1"></circle>
+    <circle cx="404.783" cy="20" r="1"></circle>
+    <circle cx="409.913" cy="20" r="1"></circle>
+    <circle cx="415.043" cy="20" r="1"></circle>
+    <circle cx="420.174" cy="20" r="1"></circle>
+    <circle cx="425.304" cy="20" r="1"></circle>
+    <circle cx="430.435" cy="20" r="1"></circle>
+    <circle cx="435.565" cy="20" r="1"></circle>
+    <circle cx="440.696" cy="20" r="1"></circle>
+    <circle cx="445.826" cy="20" r="1"></circle>
+    <circle cx="450.957" cy="20" r="1"></circle>
+    <circle cx="456.087" cy="20" r="1"></circle>
+    <circle cx="461.217" cy="20" r="1"></circle>
+    <circle cx="466.348" cy="20" r="1"></circle>
+    <circle cx="471.478" cy="20" r="1"></circle>
+    <circle cx="476.609" cy="20" r="1"></circle>
+    <circle cx="481.739" cy="20" r="1"></circle>
+    <circle cx="486.87" cy="20" r="1"></circle>
+    <circle cx="492" cy="20" r="1"></circle>
+    <circle cx="497.13" cy="20" r="1"></circle>
+    <circle cx="502.261" cy="20" r="1"></circle>
+    <circle cx="507.391" cy="20" r="1"></circle>
+    <circle cx="512.522" cy="20" r="1"></circle>
+    <circle cx="517.652" cy="20" r="1"></circle>
+    <circle cx="522.783" cy="20" r="1"></circle>
+    <circle cx="527.913" cy="20" r="1"></circle>
+    <circle cx="533.043" cy="20" r="1"></circle>
+    <circle cx="538.174" cy="20" r="1"></circle>
+    <circle cx="543.304" cy="20" r="1"></circle>
+    <circle cx="548.435" cy="20" r="1"></circle>
+    <circle cx="553.565" cy="20" r="1"></circle>
+    <circle cx="558.696" cy="20" r="1"></circle>
+    <circle cx="563.826" cy="20" r="1"></circle>
+    <circle cx="568.957" cy="20" r="1"></circle>
+    <circle cx="574.087" cy="20" r="1"></circle>
+    <circle cx="579.217" cy="20" r="1"></circle>
+    <circle cx="584.348" cy="20" r="1"></circle>
+    <circle cx="589.478" cy="20" r="1"></circle>
+    <circle cx="594.609" cy="20" r="1"></circle>
+    <circle cx="599.739" cy="20" r="1"></circle>
+    <circle cx="604.87" cy="20" r="1"></circle>
+    <circle cx="610" cy="20" r="1"></circle>
+    <circle cx="20" cy="380" r="1"></circle>
+    <circle cx="20" cy="375.068" r="1"></circle>
+    <circle cx="20" cy="370.137" r="1"></circle>
+    <circle cx="20" cy="365.205" r="1"></circle>
+    <circle cx="20" cy="360.274" r="1"></circle>
+    <circle cx="20" cy="355.342" r="1"></circle>
+    <circle cx="20" cy="350.411" r="1"></circle>
+    <circle cx="20" cy="345.479" r="1"></circle>
+    <circle cx="20" cy="340.548" r="1"></circle>
+    <circle cx="20" cy="335.616" r="1"></circle>
+    <circle cx="20" cy="330.685" r="1"></circle>
+    <circle cx="20" cy="325.753" r="1"></circle>
+    <circle cx="20" cy="320.822" r="1"></circle>
+    <circle cx="20" cy="315.89" r="1"></circle>
+    <circle cx="20" cy="310.959" r="1"></circle>
+    <circle cx="20" cy="306.027" r="1"></circle>
+    <circle cx="20" cy="301.096" r="1"></circle>
+    <circle cx="20" cy="296.164" r="1"></circle>
+    <circle cx="20" cy="291.233" r="1"></circle>
+    <circle cx="20" cy="286.301" r="1"></circle>
+    <circle cx="20" cy="281.37" r="1"></circle>
+    <circle cx="20" cy="276.438" r="1"></circle>
+    <circle cx="20" cy="271.507" r="1"></circle>
+    <circle cx="20" cy="266.575" r="1"></circle>
+    <circle cx="20" cy="261.644" r="1"></circle>
+    <circle cx="20" cy="256.712" r="1"></circle>
+    <circle cx="20" cy="251.781" r="1"></circle>
+    <circle cx="20" cy="246.849" r="1"></circle>
+    <circle cx="20" cy="241.918" r="1"></circle>
+    <circle cx="20" cy="236.986" r="1"></circle>
+    <circle cx="20" cy="232.055" r="1"></circle>
+    <circle cx="20" cy="227.123" r="1"></circle>
+    <circle cx="20" cy="222.192" r="1"></circle>
+    <circle cx="20" cy="217.26" r="1"></circle>
+    <circle cx="20" cy="212.329" r="1"></circle>
+    <circle cx="20" cy="207.397" r="1"></circle>
+    <circle cx="20" cy="202.466" r="1"></circle>
+    <circle cx="20" cy="197.534" r="1"></circle>
+    <circle cx="20" cy="192.603" r="1"></circle>
+    <circle cx="20" cy="187.671" r="1"></circle>
+    <circle cx="20" cy="182.74" r="1"></circle>
+    <circle cx="20" cy="177.808" r="1"></circle>
+    <circle cx="20" cy="172.877" r="1"></circle>
+    <circle cx="20" cy="167.945" r="1"></circle>
+    <circle cx="20" cy="163.014" r="1"></circle>
+    <circle cx="20" cy="158.082" r="1"></circle>
+    <circle cx="20" cy="153.151" r="1"></circle>
+    <circle cx="20" cy="148.219" r="1"></circle>
+    <circle cx="20" cy="143.288" r="1"></circle>
+    <circle cx="20" cy="138.356" r="1"></circle>
+    <circle cx="20" cy="133.425" r="1"></circle>
+    <circle cx="20" cy="128.493" r="1"></circle>
+    <circle cx="20" cy="123.562" r="1"></circle>
+    <circle cx="20" cy="118.63" r="1"></circle>
+    <circle cx="20" cy="113.699" r="1"></circle>
+    <circle cx="20" cy="108.767" r="1"></circle>
+    <circle cx="20" cy="103.836" r="1"></circle>
+    <circle cx="20" cy="98.904" r="1"></circle>
+    <circle cx="20" cy="93.973" r="1"></circle>
+    <circle cx="20" cy="89.041" r="1"></circle>
+    <circle cx="20" cy="84.11" r="1"></circle>
+    <circle cx="20" cy="79.178" r="1"></circle>
+    <circle cx="20" cy="74.247" r="1"></circle>
+    <circle cx="20" cy="69.315" r="1"></circle>
+    <circle cx="20" cy="64.384" r="1"></circle>
+    <circle cx="20" cy="59.452" r="1"></circle>
+    <circle cx="20" cy="54.521" r="1"></circle>
+    <circle cx="20" cy="49.589" r="1"></circle>
+    <circle cx="20" cy="44.658" r="1"></circle>
+    <circle cx="20" cy="39.726" r="1"></circle>
+    <circle cx="20" cy="34.795" r="1"></circle>
+    <circle cx="20" cy="29.863" r="1"></circle>
+    <circle cx="20" cy="24.932" r="1"></circle>
+    <circle cx="20" cy="20" r="1"></circle>
+    <circle cx="610" cy="380" r="1"></circle>
+    <circle cx="610" cy="375.068" r="1"></circle>
+    <circle cx="610" cy="370.137" r="1"></circle>
+    <circle cx="610" cy="365.205" r="1"></circle>
+    <circle cx="610" cy="360.274" r="1"></circle>
+    <circle cx="610" cy="355.342" r="1"></circle>
+    <circle cx="610" cy="350.411" r="1"></circle>
+    <circle cx="610" cy="345.479" r="1"></circle>
+    <circle cx="610" cy="340.548" r="1"></circle>
+    <circle cx="610" cy="335.616" r="1"></circle>
+    <circle cx="610" cy="330.685" r="1"></circle>
+    <circle cx="610" cy="325.753" r="1"></circle>
+    <circle cx="610" cy="320.822" r="1"></circle>
+    <circle cx="610" cy="315.89" r="1"></circle>
+    <circle cx="610" cy="310.959" r="1"></circle>
+    <circle cx="610" cy="306.027" r="1"></circle>
+    <circle cx="610" cy="301.096" r="1"></circle>
+    <circle cx="610" cy="296.164" r="1"></circle>
+    <circle cx="610" cy="291.233" r="1"></circle>
+    <circle cx="610" cy="286.301" r="1"></circle>
+    <circle cx="610" cy="281.37" r="1"></circle>
+    <circle cx="610" cy="276.438" r="1"></circle>
+    <circle cx="610" cy="271.507" r="1"></circle>
+    <circle cx="610" cy="266.575" r="1"></circle>
+    <circle cx="610" cy="261.644" r="1"></circle>
+    <circle cx="610" cy="256.712" r="1"></circle>
+    <circle cx="610" cy="251.781" r="1"></circle>
+    <circle cx="610" cy="246.849" r="1"></circle>
+    <circle cx="610" cy="241.918" r="1"></circle>
+    <circle cx="610" cy="236.986" r="1"></circle>
+    <circle cx="610" cy="232.055" r="1"></circle>
+    <circle cx="610" cy="227.123" r="1"></circle>
+    <circle cx="610" cy="222.192" r="1"></circle>
+    <circle cx="610" cy="217.26" r="1"></circle>
+    <circle cx="610" cy="212.329" r="1"></circle>
+    <circle cx="610" cy="207.397" r="1"></circle>
+    <circle cx="610" cy="202.466" r="1"></circle>
+    <circle cx="610" cy="197.534" r="1"></circle>
+    <circle cx="610" cy="192.603" r="1"></circle>
+    <circle cx="610" cy="187.671" r="1"></circle>
+    <circle cx="610" cy="182.74" r="1"></circle>
+    <circle cx="610" cy="177.808" r="1"></circle>
+    <circle cx="610" cy="172.877" r="1"></circle>
+    <circle cx="610" cy="167.945" r="1"></circle>
+    <circle cx="610" cy="163.014" r="1"></circle>
+    <circle cx="610" cy="158.082" r="1"></circle>
+    <circle cx="610" cy="153.151" r="1"></circle>
+    <circle cx="610" cy="148.219" r="1"></circle>
+    <circle cx="610" cy="143.288" r="1"></circle>
+    <circle cx="610" cy="138.356" r="1"></circle>
+    <circle cx="610" cy="133.425" r="1"></circle>
+    <circle cx="610" cy="128.493" r="1"></circle>
+    <circle cx="610" cy="123.562" r="1"></circle>
+    <circle cx="610" cy="118.63" r="1"></circle>
+    <circle cx="610" cy="113.699" r="1"></circle>
+    <circle cx="610" cy="108.767" r="1"></circle>
+    <circle cx="610" cy="103.836" r="1"></circle>
+    <circle cx="610" cy="98.904" r="1"></circle>
+    <circle cx="610" cy="93.973" r="1"></circle>
+    <circle cx="610" cy="89.041" r="1"></circle>
+    <circle cx="610" cy="84.11" r="1"></circle>
+    <circle cx="610" cy="79.178" r="1"></circle>
+    <circle cx="610" cy="74.247" r="1"></circle>
+    <circle cx="610" cy="69.315" r="1"></circle>
+    <circle cx="610" cy="64.384" r="1"></circle>
+    <circle cx="610" cy="59.452" r="1"></circle>
+    <circle cx="610" cy="54.521" r="1"></circle>
+    <circle cx="610" cy="49.589" r="1"></circle>
+    <circle cx="610" cy="44.658" r="1"></circle>
+    <circle cx="610" cy="39.726" r="1"></circle>
+    <circle cx="610" cy="34.795" r="1"></circle>
+    <circle cx="610" cy="29.863" r="1"></circle>
+    <circle cx="610" cy="24.932" r="1"></circle>
+    <circle cx="610" cy="20" r="1"></circle>
+  </g>
+</svg>

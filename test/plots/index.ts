@@ -126,6 +126,7 @@ export * from "./hexbin-text.js";
 export * from "./hexbin-z-null.js";
 export * from "./hexbin-z.js";
 export * from "./hexbin.js";
+export * from "./hexbin-edge.js";
 export * from "./high-cardinality-ordinal.js";
 export * from "./href-fill.js";
 export * from "./ibm-trading.js";

@@ -3,7 +3,7 @@ import {Mark} from "../mark.js";
 import {number, singleton} from "../options.js";
 import {applyChannelStyles, applyDirectStyles, applyIndirectStyles, applyTransform} from "../style.js";
 import {sqrt4_3} from "../symbol.js";
-import {ox, oy} from "../transforms/hexbin.js";
+import {ox} from "../transforms/hexbin.js";
 
 const defaults = {
   ariaLabel: "hexgrid",
@@ -26,15 +26,15 @@ export class Hexgrid extends Mark {
     const {marginTop, marginRight, marginBottom, marginLeft, width, height} = dimensions;
     const x0 = marginLeft - ox,
       x1 = width - marginRight - ox,
-      y0 = marginTop - oy,
-      y1 = height - marginBottom - oy,
+      y0 = marginTop,
+      y1 = height - marginBottom,
       rx = binWidth / 2,
       ry = rx * sqrt4_3,
       hy = ry / 2,
       wx = rx * 2,
       wy = ry * 1.5,
-      i0 = Math.floor(x0 / wx),
-      i1 = Math.ceil(x1 / wx),
+      i0 = Math.floor((x0 - rx) / wx),
+      i1 = Math.ceil((x1 + rx) / wx),
       j0 = Math.floor((y0 + hy) / wy),
       j1 = Math.ceil((y1 - hy) / wy) + 1,
       path = `m0,${round(-ry)}l${round(rx)},${round(hy)}v${round(ry)}l${round(-rx)},${round(hy)}`;
@@ -47,7 +47,7 @@ export class Hexgrid extends Mark {
     return create("svg:g", context)
       .datum(0)
       .call(applyIndirectStyles, this, dimensions, context)
-      .call(applyTransform, this, {}, ox, oy)
+      .call(applyTransform, this, {}, ox, 0)
       .call((g) => g.append("path").call(applyDirectStyles, this).call(applyChannelStyles, this, channels).attr("d", d))
       .node();
   }
