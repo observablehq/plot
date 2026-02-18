@@ -414,7 +414,7 @@ export interface MarkOptions {
    *
    * [1]: https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/opacity
    */
-  opacity?: ChannelValueSpec;
+  opacity?: ChannelValueSpec | undefined;
 
   /**
    * The [mix-blend-mode][1]; a constant string specifying how to blend content
