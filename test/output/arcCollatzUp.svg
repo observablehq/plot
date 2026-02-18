@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0,9)">
     <text y="0.71em" transform="translate(20,230)">1</text>
     <text y="0.71em" transform="translate(59.814,230)">2</text>
     <text y="0.71em" transform="translate(99.628,230)">3</text>
@@ -31,7 +31,7 @@
     <text y="0.71em" transform="translate(577.399,230)">15</text>
     <text y="0.71em" transform="translate(617.213,230)">16</text>
   </g>
-  <g aria-label="dot" transform="translate(0.5,0.5)">
+  <g aria-label="dot">
     <circle cx="457.956" cy="230" r="3"></circle>
     <circle cx="219.071" cy="230" r="3"></circle>
     <circle cx="99.628" cy="230" r="3"></circle>
@@ -43,7 +43,7 @@
     <circle cx="59.814" cy="230" r="3"></circle>
     <circle cx="20" cy="230" r="3"></circle>
   </g>
-  <g aria-label="arrow" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-miterlimit="1" transform="translate(0.5,-2.5)">
+  <g aria-label="arrow" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-miterlimit="1" transform="translate(0,-3)">
     <path d="M456.528,226.263A125.625,125.625 0,0,0 223.286,226.263M229.575,221.319L223.286,226.263L222.148,218.345" stroke="url(#gradient1)"></path>
     <path d="M214.793,226.288A60.588,60.588 0,0,0 103.907,226.288M110.361,221.562L103.907,226.288L103.04,218.335" stroke="url(#gradient1)"></path>
     <path d="M98.259,226.26A151.259,151.259 0,0,1 379.697,226.26M380.878,218.347L379.697,226.26L373.435,221.281" stroke="url(#gradient0)"></path>
@@ -56,12 +56,12 @@
   </g>
   <defs>
     <linearGradient id="gradient0" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="5%" stop-color="currentColor" stop-opacity="0.3"></stop>
-      <stop offset="95%" stop-color="currentColor" stop-opacity="1"></stop>
+      <stop offset="5%" stop-opacity="0.3"></stop>
+      <stop offset="95%" stop-opacity="1"></stop>
     </linearGradient>
     <linearGradient id="gradient1" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="5%" stop-color="currentColor" stop-opacity="1"></stop>
-      <stop offset="95%" stop-color="currentColor" stop-opacity="0.3"></stop>
+      <stop offset="5%" stop-opacity="1"></stop>
+      <stop offset="95%" stop-opacity="0.3"></stop>
     </linearGradient>
   </defs>
 </svg>

@@ -13,72 +13,72 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="y-grid" aria-hidden="true" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
+  <g aria-label="y-grid" aria-hidden="true" stroke="currentColor" stroke-opacity="0.1">
     <line x1="40" x2="620" y1="370" y2="370"></line>
-    <line x1="40" x2="620" y1="338.723518391829" y2="338.723518391829"></line>
-    <line x1="40" x2="620" y1="307.447036783658" y2="307.447036783658"></line>
-    <line x1="40" x2="620" y1="276.170555175487" y2="276.170555175487"></line>
-    <line x1="40" x2="620" y1="244.89407356731593" y2="244.89407356731593"></line>
-    <line x1="40" x2="620" y1="213.617591959145" y2="213.617591959145"></line>
-    <line x1="40" x2="620" y1="182.34111035097393" y2="182.34111035097393"></line>
-    <line x1="40" x2="620" y1="151.06462874280294" y2="151.06462874280294"></line>
-    <line x1="40" x2="620" y1="119.78814713463191" y2="119.78814713463191"></line>
-    <line x1="40" x2="620" y1="88.51166552646092" y2="88.51166552646092"></line>
-    <line x1="40" x2="620" y1="57.235183918289906" y2="57.235183918289906"></line>
-    <line x1="40" x2="620" y1="25.958702310118873" y2="25.958702310118873"></line>
+    <line x1="40" x2="620" y1="338.724" y2="338.724"></line>
+    <line x1="40" x2="620" y1="307.447" y2="307.447"></line>
+    <line x1="40" x2="620" y1="276.171" y2="276.171"></line>
+    <line x1="40" x2="620" y1="244.894" y2="244.894"></line>
+    <line x1="40" x2="620" y1="213.618" y2="213.618"></line>
+    <line x1="40" x2="620" y1="182.341" y2="182.341"></line>
+    <line x1="40" x2="620" y1="151.065" y2="151.065"></line>
+    <line x1="40" x2="620" y1="119.788" y2="119.788"></line>
+    <line x1="40" x2="620" y1="88.512" y2="88.512"></line>
+    <line x1="40" x2="620" y1="57.235" y2="57.235"></line>
+    <line x1="40" x2="620" y1="25.959" y2="25.959"></line>
   </g>
-  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor">
     <path transform="translate(40,370)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,338.723518391829)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,307.447036783658)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,276.170555175487)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,244.89407356731593)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,213.617591959145)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,182.34111035097393)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,151.06462874280294)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,119.78814713463191)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,88.51166552646092)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,57.235183918289906)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,25.958702310118873)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,338.724)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,307.447)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,276.171)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,244.894)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,213.618)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,182.341)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,151.065)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,119.788)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,88.512)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,57.235)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,25.959)" d="M0,0L-6,0"></path>
   </g>
-  <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
+  <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-9,0)">
     <text y="0.32em" transform="translate(40,370)">0</text>
-    <text y="0.32em" transform="translate(40,338.723518391829)">2</text>
-    <text y="0.32em" transform="translate(40,307.447036783658)">4</text>
-    <text y="0.32em" transform="translate(40,276.170555175487)">6</text>
-    <text y="0.32em" transform="translate(40,244.89407356731593)">8</text>
-    <text y="0.32em" transform="translate(40,213.617591959145)">10</text>
-    <text y="0.32em" transform="translate(40,182.34111035097393)">12</text>
-    <text y="0.32em" transform="translate(40,151.06462874280294)">14</text>
-    <text y="0.32em" transform="translate(40,119.78814713463191)">16</text>
-    <text y="0.32em" transform="translate(40,88.51166552646092)">18</text>
-    <text y="0.32em" transform="translate(40,57.235183918289906)">20</text>
-    <text y="0.32em" transform="translate(40,25.958702310118873)">22</text>
+    <text y="0.32em" transform="translate(40,338.724)">2</text>
+    <text y="0.32em" transform="translate(40,307.447)">4</text>
+    <text y="0.32em" transform="translate(40,276.171)">6</text>
+    <text y="0.32em" transform="translate(40,244.894)">8</text>
+    <text y="0.32em" transform="translate(40,213.618)">10</text>
+    <text y="0.32em" transform="translate(40,182.341)">12</text>
+    <text y="0.32em" transform="translate(40,151.065)">14</text>
+    <text y="0.32em" transform="translate(40,119.788)">16</text>
+    <text y="0.32em" transform="translate(40,88.512)">18</text>
+    <text y="0.32em" transform="translate(40,57.235)">20</text>
+    <text y="0.32em" transform="translate(40,25.959)">22</text>
   </g>
-  <g aria-label="y-axis label" text-anchor="start" transform="translate(-36.5,-16.5)">
+  <g aria-label="y-axis label" text-anchor="start" transform="translate(-37,-17)">
     <text y="0.71em" transform="translate(40,20)">↑ Annual revenue (billions, adj.)</text>
   </g>
-  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,0)">
-    <path transform="translate(65.20088089994643,370)" d="M0,0L0,6"></path>
-    <path transform="translate(128.23760490446998,370)" d="M0,0L0,6"></path>
-    <path transform="translate(191.30885066365096,370)" d="M0,0L0,6"></path>
-    <path transform="translate(254.34557466817452,370)" d="M0,0L0,6"></path>
-    <path transform="translate(317.382298672698,370)" d="M0,0L0,6"></path>
-    <path transform="translate(380.4190226772216,370)" d="M0,0L0,6"></path>
-    <path transform="translate(443.4902684364025,370)" d="M0,0L0,6"></path>
-    <path transform="translate(506.5269924409261,370)" d="M0,0L0,6"></path>
-    <path transform="translate(569.5637164454497,370)" d="M0,0L0,6"></path>
+  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor">
+    <path transform="translate(65.201,370)" d="M0,0L0,6"></path>
+    <path transform="translate(128.238,370)" d="M0,0L0,6"></path>
+    <path transform="translate(191.309,370)" d="M0,0L0,6"></path>
+    <path transform="translate(254.346,370)" d="M0,0L0,6"></path>
+    <path transform="translate(317.382,370)" d="M0,0L0,6"></path>
+    <path transform="translate(380.419,370)" d="M0,0L0,6"></path>
+    <path transform="translate(443.49,370)" d="M0,0L0,6"></path>
+    <path transform="translate(506.527,370)" d="M0,0L0,6"></path>
+    <path transform="translate(569.564,370)" d="M0,0L0,6"></path>
   </g>
-  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
-    <text y="0.71em" transform="translate(65.20088089994643,370)">1975</text>
-    <text y="0.71em" transform="translate(128.23760490446998,370)">1980</text>
-    <text y="0.71em" transform="translate(191.30885066365096,370)">1985</text>
-    <text y="0.71em" transform="translate(254.34557466817452,370)">1990</text>
-    <text y="0.71em" transform="translate(317.382298672698,370)">1995</text>
-    <text y="0.71em" transform="translate(380.4190226772216,370)">2000</text>
-    <text y="0.71em" transform="translate(443.4902684364025,370)">2005</text>
-    <text y="0.71em" transform="translate(506.5269924409261,370)">2010</text>
-    <text y="0.71em" transform="translate(569.5637164454497,370)">2015</text>
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0,9)">
+    <text y="0.71em" transform="translate(65.201,370)">1975</text>
+    <text y="0.71em" transform="translate(128.238,370)">1980</text>
+    <text y="0.71em" transform="translate(191.309,370)">1985</text>
+    <text y="0.71em" transform="translate(254.346,370)">1990</text>
+    <text y="0.71em" transform="translate(317.382,370)">1995</text>
+    <text y="0.71em" transform="translate(380.419,370)">2000</text>
+    <text y="0.71em" transform="translate(443.49,370)">2005</text>
+    <text y="0.71em" transform="translate(506.527,370)">2010</text>
+    <text y="0.71em" transform="translate(569.564,370)">2015</text>
   </g>
   <g aria-label="area" stroke="white" stroke-linejoin="round" stroke-linecap="round">
     <path fill="#3ca951" d="M40,325.968L52.6,325.462L65.201,326.676L77.801,322.347L90.436,316.495L103.037,311.869L115.637,332.316L128.238,310.224L140.873,309.489L153.473,311.148L166.073,296.618L178.674,274.294L191.309,265.925L203.909,244.894L216.51,209.248L229.11,182.701L241.745,168.674L254.346,144.856L266.946,142.773L279.546,115.127L292.181,93.741L304.782,46.192L317.382,48.676L329.983,52.77L342.618,66.9L355.218,35.159L367.819,21.433L380.419,38.696L393.054,60.888L405.654,90.605L418.255,113.362L430.855,109.548L443.49,118.972L456.091,137.299L468.691,165.104L481.292,208.128L493.927,225.3L506.527,243.075L519.127,245.377L531.728,250.713L544.363,252.922L556.963,261.15L569.564,262.522L582.164,249.757L594.799,232.96L607.4,219.993L620,204.122L620,204.122L607.4,219.993L594.799,232.96L582.164,249.757L569.564,262.522L556.963,261.15L544.363,252.922L531.728,250.713L519.127,245.377L506.527,243.075L493.927,225.3L481.292,208.128L468.691,165.104L456.091,137.299L443.49,118.972L430.855,109.548L418.255,113.362L405.654,90.605L393.054,60.888L380.419,38.696L367.819,21.433L355.218,35.159L342.618,66.9L329.983,52.77L317.382,48.676L304.782,46.192L292.181,93.741L279.546,115.127L266.946,142.773L254.346,144.856L241.745,168.674L229.11,182.701L216.51,209.248L203.909,244.894L191.309,265.925L178.674,274.294L166.073,296.618L153.473,312.64L140.873,323.255L128.238,335.794L115.637,370L103.037,370L90.436,370L77.801,370L65.201,370L52.6,370L40,370Z"><title>8 - Track
@@ -128,7 +128,7 @@
     <path fill="#ff8ab7" d="M40,188.414L52.6,191.614L65.201,192.504L77.801,177.68L90.436,139.038L103.037,116.665L115.637,167.593L128.238,191.35L140.873,195.217L153.473,219.666L166.073,218.011L178.674,203.203L191.309,207.905L203.909,200.715L216.51,174.181L229.11,158.618L241.745,157.818L254.346,141.969L266.946,140.897L279.546,113.234L292.181,92.324L304.782,44.919L317.382,47.451L329.983,51.559L342.618,66.013L355.218,33.695L367.819,20L380.419,37.442L393.054,60.179L405.654,90.052L418.255,112.423L430.855,109.127L443.49,118.411L456.091,136.792L468.691,164.585L481.292,207.021L493.927,224.065L506.527,241.403L519.127,243.173L531.728,247.832L544.363,249.255L556.963,256.939L569.564,256.801L582.164,243.755L594.799,226.524L607.4,213.234L620,196.234L620,196.341L607.4,213.318L594.799,226.623L582.164,243.836L569.564,256.898L556.963,257.032L544.363,249.306L531.728,247.914L519.127,243.255L506.527,241.445L493.927,224.111L481.292,207.075L468.691,164.662L456.091,136.988L443.49,118.681L430.855,109.548L418.255,112.89L405.654,90.605L393.054,60.888L380.419,38.052L367.819,20.67L355.218,34.325L342.618,66.9L329.983,52.77L317.382,48.676L304.782,46.192L292.181,93.741L279.546,115.127L266.946,142.773L254.346,144.856L241.745,161.571L229.11,164.715L216.51,181.336L203.909,209.036L191.309,218.346L178.674,214.696L166.073,228.821L153.473,231.391L140.873,206.494L128.238,203.48L115.637,187.065L103.037,132.626L90.436,155.208L77.801,194.902L65.201,208.221L52.6,207.346L40,205.523Z"><title>Vinyl Single
         Vinyl</title></path>
   </g>
-  <g aria-label="rule" stroke="currentColor" transform="translate(0,0.5)">
+  <g aria-label="rule" stroke="currentColor">
     <line x1="40" x2="620" y1="370" y2="370"></line>
   </g>
 </svg>

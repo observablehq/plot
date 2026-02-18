@@ -13,31 +13,31 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="image" transform="translate(0.5,0.5)">
-    <image x="-40" y="359" width="200" height="200" href="https://placekitten.com/100/100" clip-path="circle(49px)"></image>
-    <image x="59.75" y="359" width="200" height="200" href="https://placekitten.com/102/102" clip-path="circle(49px)"></image>
-    <image x="159.5" y="359" width="200" height="200" href="https://placekitten.com/104/104" clip-path="circle(49px)"></image>
-    <image x="259.25" y="359" width="200" height="200" href="https://placekitten.com/106/106" clip-path="circle(49px)"></image>
-    <image x="359" y="359" width="200" height="200" href="https://placekitten.com/108/108" clip-path="circle(49px)"></image>
-    <image x="-40" y="259.25" width="200" height="200" href="https://placekitten.com/110/110" clip-path="circle(49px)"></image>
-    <image x="59.75" y="259.25" width="200" height="200" href="https://placekitten.com/112/112" clip-path="circle(49px)"></image>
-    <image x="159.5" y="259.25" width="200" height="200" href="https://placekitten.com/114/114" clip-path="circle(49px)"></image>
-    <image x="259.25" y="259.25" width="200" height="200" href="https://placekitten.com/116/116" clip-path="circle(49px)"></image>
-    <image x="359" y="259.25" width="200" height="200" href="https://placekitten.com/118/118" clip-path="circle(49px)"></image>
-    <image x="-40" y="159.5" width="200" height="200" href="https://placekitten.com/120/120" clip-path="circle(49px)"></image>
-    <image x="59.75" y="159.5" width="200" height="200" href="https://placekitten.com/122/122" clip-path="circle(49px)"></image>
-    <image x="159.5" y="159.5" width="200" height="200" href="https://placekitten.com/124/124" clip-path="circle(49px)"></image>
-    <image x="259.25" y="159.5" width="200" height="200" href="https://placekitten.com/126/126" clip-path="circle(49px)"></image>
-    <image x="359" y="159.5" width="200" height="200" href="https://placekitten.com/128/128" clip-path="circle(49px)"></image>
-    <image x="-40" y="59.75" width="200" height="200" href="https://placekitten.com/130/130" clip-path="circle(49px)"></image>
-    <image x="59.75" y="59.75" width="200" height="200" href="https://placekitten.com/132/132" clip-path="circle(49px)"></image>
-    <image x="159.5" y="59.75" width="200" height="200" href="https://placekitten.com/134/134" clip-path="circle(49px)"></image>
-    <image x="259.25" y="59.75" width="200" height="200" href="https://placekitten.com/136/136" clip-path="circle(49px)"></image>
-    <image x="359" y="59.75" width="200" height="200" href="https://placekitten.com/138/138" clip-path="circle(49px)"></image>
-    <image x="-40" y="-40" width="200" height="200" href="https://placekitten.com/140/140" clip-path="circle(49px)"></image>
-    <image x="59.75" y="-40" width="200" height="200" href="https://placekitten.com/142/142" clip-path="circle(49px)"></image>
-    <image x="159.5" y="-40" width="200" height="200" href="https://placekitten.com/144/144" clip-path="circle(49px)"></image>
-    <image x="259.25" y="-40" width="200" height="200" href="https://placekitten.com/146/146" clip-path="circle(49px)"></image>
-    <image x="359" y="-40" width="200" height="200" href="https://placekitten.com/148/148" clip-path="circle(49px)"></image>
+  <g aria-label="image">
+    <image x="-39.5" y="359.5" width="200" height="200" href="https://placekitten.com/100/100" clip-path="circle(49px)"></image>
+    <image x="60.25" y="359.5" width="200" height="200" href="https://placekitten.com/102/102" clip-path="circle(49px)"></image>
+    <image x="160" y="359.5" width="200" height="200" href="https://placekitten.com/104/104" clip-path="circle(49px)"></image>
+    <image x="259.75" y="359.5" width="200" height="200" href="https://placekitten.com/106/106" clip-path="circle(49px)"></image>
+    <image x="359.5" y="359.5" width="200" height="200" href="https://placekitten.com/108/108" clip-path="circle(49px)"></image>
+    <image x="-39.5" y="259.75" width="200" height="200" href="https://placekitten.com/110/110" clip-path="circle(49px)"></image>
+    <image x="60.25" y="259.75" width="200" height="200" href="https://placekitten.com/112/112" clip-path="circle(49px)"></image>
+    <image x="160" y="259.75" width="200" height="200" href="https://placekitten.com/114/114" clip-path="circle(49px)"></image>
+    <image x="259.75" y="259.75" width="200" height="200" href="https://placekitten.com/116/116" clip-path="circle(49px)"></image>
+    <image x="359.5" y="259.75" width="200" height="200" href="https://placekitten.com/118/118" clip-path="circle(49px)"></image>
+    <image x="-39.5" y="160" width="200" height="200" href="https://placekitten.com/120/120" clip-path="circle(49px)"></image>
+    <image x="60.25" y="160" width="200" height="200" href="https://placekitten.com/122/122" clip-path="circle(49px)"></image>
+    <image x="160" y="160" width="200" height="200" href="https://placekitten.com/124/124" clip-path="circle(49px)"></image>
+    <image x="259.75" y="160" width="200" height="200" href="https://placekitten.com/126/126" clip-path="circle(49px)"></image>
+    <image x="359.5" y="160" width="200" height="200" href="https://placekitten.com/128/128" clip-path="circle(49px)"></image>
+    <image x="-39.5" y="60.25" width="200" height="200" href="https://placekitten.com/130/130" clip-path="circle(49px)"></image>
+    <image x="60.25" y="60.25" width="200" height="200" href="https://placekitten.com/132/132" clip-path="circle(49px)"></image>
+    <image x="160" y="60.25" width="200" height="200" href="https://placekitten.com/134/134" clip-path="circle(49px)"></image>
+    <image x="259.75" y="60.25" width="200" height="200" href="https://placekitten.com/136/136" clip-path="circle(49px)"></image>
+    <image x="359.5" y="60.25" width="200" height="200" href="https://placekitten.com/138/138" clip-path="circle(49px)"></image>
+    <image x="-39.5" y="-39.5" width="200" height="200" href="https://placekitten.com/140/140" clip-path="circle(49px)"></image>
+    <image x="60.25" y="-39.5" width="200" height="200" href="https://placekitten.com/142/142" clip-path="circle(49px)"></image>
+    <image x="160" y="-39.5" width="200" height="200" href="https://placekitten.com/144/144" clip-path="circle(49px)"></image>
+    <image x="259.75" y="-39.5" width="200" height="200" href="https://placekitten.com/146/146" clip-path="circle(49px)"></image>
+    <image x="359.5" y="-39.5" width="200" height="200" href="https://placekitten.com/148/148" clip-path="circle(49px)"></image>
   </g>
 </svg>

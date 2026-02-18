@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor">
     <path transform="translate(40,35)" d="M0,0L-6,0"></path>
     <path transform="translate(40,55)" d="M0,0L-6,0"></path>
     <path transform="translate(40,75)" d="M0,0L-6,0"></path>
@@ -41,7 +41,7 @@
     <path transform="translate(40,515)" d="M0,0L-6,0"></path>
     <path transform="translate(40,535)" d="M0,0L-6,0"></path>
   </g>
-  <g aria-label="y-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
+  <g aria-label="y-axis tick label" text-anchor="end" transform="translate(-9,0)">
     <text y="0.32em" transform="translate(40,35)">A</text>
     <text y="0.32em" transform="translate(40,55)">B</text>
     <text y="0.32em" transform="translate(40,75)">C</text>
@@ -69,60 +69,60 @@
     <text y="0.32em" transform="translate(40,515)">Y</text>
     <text y="0.32em" transform="translate(40,535)">Z</text>
   </g>
-  <g aria-label="y-axis label" transform="translate(-36.5,0.5)">
+  <g aria-label="y-axis label" transform="translate(-37,0)">
     <text y="0.71em" transform="translate(40,285) rotate(-90)">letter</text>
   </g>
-  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor">
     <path transform="translate(40,550)" d="M0,0L0,6"></path>
-    <path transform="translate(131.324200913242,550)" d="M0,0L0,6"></path>
-    <path transform="translate(222.64840182648402,550)" d="M0,0L0,6"></path>
-    <path transform="translate(313.972602739726,550)" d="M0,0L0,6"></path>
-    <path transform="translate(405.29680365296804,550)" d="M0,0L0,6"></path>
-    <path transform="translate(496.6210045662101,550)" d="M0,0L0,6"></path>
-    <path transform="translate(587.945205479452,550)" d="M0,0L0,6"></path>
+    <path transform="translate(131.324,550)" d="M0,0L0,6"></path>
+    <path transform="translate(222.648,550)" d="M0,0L0,6"></path>
+    <path transform="translate(313.973,550)" d="M0,0L0,6"></path>
+    <path transform="translate(405.297,550)" d="M0,0L0,6"></path>
+    <path transform="translate(496.621,550)" d="M0,0L0,6"></path>
+    <path transform="translate(587.945,550)" d="M0,0L0,6"></path>
   </g>
-  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0,9)">
     <text y="0.71em" transform="translate(40,550)">0.00</text>
-    <text y="0.71em" transform="translate(131.324200913242,550)">0.02</text>
-    <text y="0.71em" transform="translate(222.64840182648402,550)">0.04</text>
-    <text y="0.71em" transform="translate(313.972602739726,550)">0.06</text>
-    <text y="0.71em" transform="translate(405.29680365296804,550)">0.08</text>
-    <text y="0.71em" transform="translate(496.6210045662101,550)">0.10</text>
-    <text y="0.71em" transform="translate(587.945205479452,550)">0.12</text>
+    <text y="0.71em" transform="translate(131.324,550)">0.02</text>
+    <text y="0.71em" transform="translate(222.648,550)">0.04</text>
+    <text y="0.71em" transform="translate(313.973,550)">0.06</text>
+    <text y="0.71em" transform="translate(405.297,550)">0.08</text>
+    <text y="0.71em" transform="translate(496.621,550)">0.10</text>
+    <text y="0.71em" transform="translate(587.945,550)">0.12</text>
   </g>
-  <g aria-label="x-axis label" text-anchor="end" transform="translate(17.5,27.5)">
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(17,27)">
     <text transform="translate(620,550)">frequency →</text>
   </g>
-  <g aria-label="rule" stroke="currentColor" transform="translate(0.5,0)">
+  <g aria-label="rule" stroke="currentColor">
     <line x1="40" x2="40" y1="20" y2="550"></line>
   </g>
-  <g aria-label="dot" fill="none" stroke="currentColor" stroke-width="1.5" transform="translate(0.5,0.5)">
+  <g aria-label="dot" fill="none" stroke="currentColor" stroke-width="1.5">
     <circle cx="620" cy="115" r="3"></circle>
-    <circle cx="453.51598173515987" cy="415" r="3"></circle>
-    <circle cx="412.9223744292238" cy="35" r="3"></circle>
-    <circle cx="382.7853881278539" cy="315" r="3"></circle>
-    <circle cx="358.0821917808219" cy="195" r="3"></circle>
-    <circle cx="348.17351598173514" cy="295" r="3"></circle>
-    <circle cx="328.9041095890411" cy="395" r="3"></circle>
-    <circle cx="318.2648401826484" cy="175" r="3"></circle>
-    <circle cx="313.37899543378995" cy="375" r="3"></circle>
-    <circle cx="234.20091324200914" cy="95" r="3"></circle>
-    <circle cx="223.78995433789956" cy="255" r="3"></circle>
-    <circle cx="167.03196347031965" cy="75" r="3"></circle>
-    <circle cx="165.93607305936072" cy="435" r="3"></circle>
-    <circle cx="149.86301369863014" cy="275" r="3"></circle>
-    <circle cx="147.76255707762556" cy="475" r="3"></circle>
-    <circle cx="144.47488584474888" cy="135" r="3"></circle>
-    <circle cx="132.00913242009133" cy="155" r="3"></circle>
-    <circle cx="130.13698630136986" cy="515" r="3"></circle>
-    <circle cx="128.08219178082192" cy="335" r="3"></circle>
-    <circle cx="108.12785388127853" cy="55" r="3"></circle>
-    <circle cx="84.65753424657535" cy="455" r="3"></circle>
-    <circle cx="75.25114155251143" cy="235" r="3"></circle>
-    <circle cx="46.986301369863014" cy="215" r="3"></circle>
-    <circle cx="46.849315068493155" cy="495" r="3"></circle>
-    <circle cx="44.337899543378995" cy="355" r="3"></circle>
-    <circle cx="43.37899543378996" cy="535" r="3"></circle>
+    <circle cx="453.516" cy="415" r="3"></circle>
+    <circle cx="412.922" cy="35" r="3"></circle>
+    <circle cx="382.785" cy="315" r="3"></circle>
+    <circle cx="358.082" cy="195" r="3"></circle>
+    <circle cx="348.174" cy="295" r="3"></circle>
+    <circle cx="328.904" cy="395" r="3"></circle>
+    <circle cx="318.265" cy="175" r="3"></circle>
+    <circle cx="313.379" cy="375" r="3"></circle>
+    <circle cx="234.201" cy="95" r="3"></circle>
+    <circle cx="223.79" cy="255" r="3"></circle>
+    <circle cx="167.032" cy="75" r="3"></circle>
+    <circle cx="165.936" cy="435" r="3"></circle>
+    <circle cx="149.863" cy="275" r="3"></circle>
+    <circle cx="147.763" cy="475" r="3"></circle>
+    <circle cx="144.475" cy="135" r="3"></circle>
+    <circle cx="132.009" cy="155" r="3"></circle>
+    <circle cx="130.137" cy="515" r="3"></circle>
+    <circle cx="128.082" cy="335" r="3"></circle>
+    <circle cx="108.128" cy="55" r="3"></circle>
+    <circle cx="84.658" cy="455" r="3"></circle>
+    <circle cx="75.251" cy="235" r="3"></circle>
+    <circle cx="46.986" cy="215" r="3"></circle>
+    <circle cx="46.849" cy="495" r="3"></circle>
+    <circle cx="44.338" cy="355" r="3"></circle>
+    <circle cx="43.379" cy="535" r="3"></circle>
   </g>
-  <g aria-label="tip" fill="var(--plot-background)" stroke="currentColor" pointer-events="none" text-anchor="start" transform="translate(0.5,0.5)"></g>
+  <g aria-label="tip" fill="var(--plot-background)" stroke="currentColor" pointer-events="none" text-anchor="start"></g>
 </svg>
