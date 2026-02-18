@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,6)">
+  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,5.5)">
     <path transform="translate(100,28)" d="M0,0L-6,0"></path>
     <path transform="translate(100,40)" d="M0,0L-6,0"></path>
     <path transform="translate(100,52)" d="M0,0L-6,0"></path>
@@ -43,7 +43,7 @@
     <path transform="translate(100,340)" d="M0,0L-6,0"></path>
     <path transform="translate(100,352)" d="M0,0L-6,0"></path>
   </g>
-  <g aria-label="y-axis tick label" text-anchor="end" transform="translate(-8.5,6)">
+  <g aria-label="y-axis tick label" text-anchor="end" transform="translate(-9,5.5)">
     <text y="0.32em" transform="translate(100,28)">aquatics</text>
     <text y="0.32em" transform="translate(100,40)">archery</text>
     <text y="0.32em" transform="translate(100,52)">athletics</text>
@@ -73,18 +73,18 @@
     <text y="0.32em" transform="translate(100,340)">weightlifting</text>
     <text y="0.32em" transform="translate(100,352)">wrestling</text>
   </g>
-  <g aria-label="y-axis label" transform="translate(-96.5,0.5)">
+  <g aria-label="y-axis label" transform="translate(-97,0)">
     <text y="0.71em" transform="translate(100,195) rotate(-90)">sport</text>
   </g>
-  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(111.5,0)">
+  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(111,0)">
     <path transform="translate(125,370)" d="M0,0L0,6"></path>
     <path transform="translate(372,370)" d="M0,0L0,6"></path>
   </g>
-  <g aria-label="x-axis tick label" transform="translate(111.5,9.5)">
+  <g aria-label="x-axis tick label" transform="translate(111,9)">
     <text y="0.71em" transform="translate(125,370)">female</text>
     <text y="0.71em" transform="translate(372,370)">male</text>
   </g>
-  <g aria-label="x-axis label" transform="translate(0.5,27.5)">
+  <g aria-label="x-axis label" transform="translate(0,27)">
     <text transform="translate(360,370)">sex</text>
   </g>
   <g aria-label="cell">
@@ -145,5 +145,5 @@
     <rect x="125" width="222" y="172" height="11" fill="rgb(218, 232, 246)"></rect>
     <rect x="372" width="222" y="172" height="11" fill="rgb(234, 243, 251)"></rect>
   </g>
-  <g aria-label="tip" fill="var(--plot-background)" stroke="currentColor" pointer-events="none" text-anchor="start" transform="translate(111.5,6)"></g>
+  <g aria-label="tip" fill="var(--plot-background)" stroke="currentColor" pointer-events="none" text-anchor="start" transform="translate(111,5.5)"></g>
 </svg>

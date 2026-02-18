@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="arrow" fill="none" stroke-width="1.5" stroke-opacity="0.6" stroke-linecap="round" stroke-miterlimit="1" transform="translate(0.5,0.5)">
+  <g aria-label="arrow" fill="none" stroke-width="1.5" stroke-opacity="0.6" stroke-linecap="round" stroke-miterlimit="1">
     <path d="M100,554A196,196 0,0,1 100,946" stroke="#aaa"></path>
     <path d="M100,1072A63,63 0,0,0 100,946" stroke="#aaa"></path>
     <path d="M100,1058A56,56 0,0,0 100,946" stroke="#aaa"></path>
@@ -269,7 +269,7 @@
     <path d="M100,22A7,7 0,0,0 100,8" stroke="#1f77b4"></path>
     <path d="M100,36A14,14 0,0,0 100,8" stroke="#1f77b4"></path>
   </g>
-  <g aria-label="dot" transform="translate(0.5,0.5)">
+  <g aria-label="dot">
     <circle cx="100" cy="148" r="3" fill="#ff7f0e"></circle>
     <circle cx="100" cy="162" r="3" fill="#ff7f0e"></circle>
     <circle cx="100" cy="120" r="3" fill="#ff7f0e"></circle>
@@ -348,7 +348,7 @@
     <circle cx="100" cy="554" r="3" fill="#9467bd"></circle>
     <circle cx="100" cy="1016" r="3" fill="#bcbd22"></circle>
   </g>
-  <g aria-label="text" text-anchor="end" transform="translate(-5.5,0.5)">
+  <g aria-label="text" text-anchor="end" transform="translate(-6,0)">
     <text y="0.32em" transform="translate(100,148)" fill="rgb(144, 29, 0)">Myriel</text>
     <text y="0.32em" transform="translate(100,162)" fill="rgb(144, 29, 0)">Napoleon</text>
     <text y="0.32em" transform="translate(100,120)" fill="rgb(144, 29, 0)">Mlle.Baptistine</text>

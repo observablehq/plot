@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor">
     <path transform="translate(20,220)" d="M0,0L0,6"></path>
     <path transform="translate(82,220)" d="M0,0L0,6"></path>
     <path transform="translate(144,220)" d="M0,0L0,6"></path>
@@ -21,7 +21,7 @@
     <path transform="translate(268,220)" d="M0,0L0,6"></path>
     <path transform="translate(330,220)" d="M0,0L0,6"></path>
   </g>
-  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0,9)">
     <text y="0.71em" transform="translate(20,220)">0.0</text>
     <text y="0.71em" transform="translate(82,220)">0.2</text>
     <text y="0.71em" transform="translate(144,220)">0.4</text>
@@ -29,8 +29,8 @@
     <text y="0.71em" transform="translate(268,220)">0.8</text>
     <text y="0.71em" transform="translate(330,220)">1.0</text>
   </g>
-  <line aria-label="frame" stroke="red" stroke-width="4" stroke-linecap="square" transform="translate(0.5,0.5)" x1="20" x2="20" y1="0" y2="220"></line>
-  <line aria-label="frame" stroke="green" stroke-width="4" stroke-linecap="square" transform="translate(0.5,0.5)" x1="330" x2="330" y1="0" y2="220"></line>
-  <line aria-label="frame" stroke="blue" stroke-width="4" stroke-linecap="square" transform="translate(0.5,0.5)" x1="20" x2="330" y1="0" y2="0"></line>
-  <line aria-label="frame" stroke="black" stroke-width="4" stroke-linecap="square" transform="translate(0.5,0.5)" x1="20" x2="330" y1="220" y2="220"></line>
+  <line aria-label="frame" stroke="red" stroke-width="4" stroke-linecap="square" x1="20" x2="20" y1="0.5" y2="220"></line>
+  <line aria-label="frame" stroke="green" stroke-width="4" stroke-linecap="square" x1="330" x2="330" y1="0.5" y2="220"></line>
+  <line aria-label="frame" stroke="blue" stroke-width="4" stroke-linecap="square" x1="20" x2="330" y1="0.5" y2="0.5"></line>
+  <line aria-label="frame" stroke="black" stroke-width="4" stroke-linecap="square" x1="20" x2="330" y1="220" y2="220"></line>
 </svg>

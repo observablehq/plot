@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="fy-axis tick label" transform="translate(-8.5,0.5)">
+  <g aria-label="fy-axis tick label" transform="translate(-9,0)">
     <g text-anchor="end" transform="translate(0,30)">
       <text y="0.32em" transform="translate(160,38)">Australian bushfires</text>
     </g>
@@ -207,36 +207,36 @@
       <text y="0.32em" transform="translate(160,38)">COVID-19 vaccine</text>
     </g>
   </g>
-  <g aria-label="x-axis tick" aria-hidden="true" transform="translate(0.5,1)">
+  <g aria-label="x-axis tick" aria-hidden="true">
     <g fill="none" stroke="currentColor" transform="translate(0,30)">
-      <path transform="translate(166.42857142857144,30)" d="M0,0L0,-6"></path>
-      <path transform="translate(232.85714285714286,30)" d="M0,0L0,-6"></path>
+      <path transform="translate(166.429,30)" d="M0,0L0,-6"></path>
+      <path transform="translate(232.857,30)" d="M0,0L0,-6"></path>
       <path transform="translate(295,30)" d="M0,0L0,-6"></path>
-      <path transform="translate(361.42857142857144,30)" d="M0,0L0,-6"></path>
-      <path transform="translate(425.71428571428567,30)" d="M0,0L0,-6"></path>
-      <path transform="translate(492.1428571428571,30)" d="M0,0L0,-6"></path>
-      <path transform="translate(556.4285714285714,30)" d="M0,0L0,-6"></path>
-      <path transform="translate(622.8571428571429,30)" d="M0,0L0,-6"></path>
-      <path transform="translate(689.2857142857143,30)" d="M0,0L0,-6"></path>
-      <path transform="translate(753.5714285714286,30)" d="M0,0L0,-6"></path>
+      <path transform="translate(361.429,30)" d="M0,0L0,-6"></path>
+      <path transform="translate(425.714,30)" d="M0,0L0,-6"></path>
+      <path transform="translate(492.143,30)" d="M0,0L0,-6"></path>
+      <path transform="translate(556.429,30)" d="M0,0L0,-6"></path>
+      <path transform="translate(622.857,30)" d="M0,0L0,-6"></path>
+      <path transform="translate(689.286,30)" d="M0,0L0,-6"></path>
+      <path transform="translate(753.571,30)" d="M0,0L0,-6"></path>
       <path transform="translate(820,30)" d="M0,0L0,-6"></path>
-      <path transform="translate(884.2857142857143,30)" d="M0,0L0,-6"></path>
+      <path transform="translate(884.286,30)" d="M0,0L0,-6"></path>
     </g>
   </g>
-  <g aria-label="x-axis tick label" transform="translate(0.5,-8.5)">
+  <g aria-label="x-axis tick label" transform="translate(0,-9)">
     <g font-variant="tabular-nums" transform="translate(0,30)">
-      <text transform="translate(166.42857142857144,30)"><tspan x="0" y="-1em">2020</tspan><tspan x="0" dy="1em">Jan</tspan></text>
-      <text transform="translate(232.85714285714286,30)">Feb</text>
+      <text transform="translate(166.429,30)"><tspan x="0" y="-1em">2020</tspan><tspan x="0" dy="1em">Jan</tspan></text>
+      <text transform="translate(232.857,30)">Feb</text>
       <text transform="translate(295,30)">Mar</text>
-      <text transform="translate(361.42857142857144,30)">Apr</text>
-      <text transform="translate(425.71428571428567,30)">May</text>
-      <text transform="translate(492.1428571428571,30)">Jun</text>
-      <text transform="translate(556.4285714285714,30)">Jul</text>
-      <text transform="translate(622.8571428571429,30)">Aug</text>
-      <text transform="translate(689.2857142857143,30)">Sep</text>
-      <text transform="translate(753.5714285714286,30)">Oct</text>
+      <text transform="translate(361.429,30)">Apr</text>
+      <text transform="translate(425.714,30)">May</text>
+      <text transform="translate(492.143,30)">Jun</text>
+      <text transform="translate(556.429,30)">Jul</text>
+      <text transform="translate(622.857,30)">Aug</text>
+      <text transform="translate(689.286,30)">Sep</text>
+      <text transform="translate(753.571,30)">Oct</text>
       <text transform="translate(820,30)">Nov</text>
-      <text transform="translate(884.2857142857143,30)">Dec</text>
+      <text transform="translate(884.286,30)">Dec</text>
     </g>
   </g>
   <g aria-label="area">
@@ -433,7 +433,7 @@
       <path d="M160,45.8L175,46L190,45.8L205,45.8L220,45.2L235,45.6L250,45.6L265,45.6L280,44L295,43.6L310,40.8L325,38L340,41.6L355,41.6L370,42L385,42.4L400,42.4L415,42.4L430,42.4L445,42.4L460,42L475,42.8L490,43.6L505,43.6L520,42.8L535,42L550,42L565,41.6L580,39.2L595,40L610,41.2L625,41.6L640,39.6L655,42L670,42.8L685,41.2L700,41.6L715,42L730,42.8L745,42.8L760,43.2L775,42.4L790,42L805,42.4L820,43.2L835,34.8L850,35.2L865,36L880,31.2L895,19.2L910,6L925,16L940,15.6L940,46L925,46L910,46L895,46L880,46L865,46L850,46L835,46L820,46L805,46L790,46L775,46L760,46L745,46L730,46L715,46L700,46L685,46L670,46L655,46L640,46L625,46L610,46L595,46L580,46L565,46L550,46L535,46L520,46L505,46L490,46L475,46L460,46L445,46L430,46L415,46L400,46L385,46L370,46L355,46L340,46L325,46L310,46L295,46L280,46L265,46L250,46L235,46L220,46L205,46L190,46L175,46L160,46Z"></path>
     </g>
   </g>
-  <g aria-label="line" transform="translate(0.5,0.5)">
+  <g aria-label="line">
     <g fill="none" stroke="white" stroke-linejoin="round" stroke-linecap="round" transform="translate(0,30)">
       <path d="M160,32L175,6L190,35.2L205,40.4L220,42.4L235,43.6L250,43.6L265,44.4L280,45.2L295,44.8L310,45.2L325,45.2L340,45.6L355,45.2L370,45.6L385,45.6L400,45.6L415,45.6L430,45.6L445,45.6L460,45.6L475,45.6L490,45.6L505,45.6L520,36L535,41.6L550,45.2L565,45.6L580,45.6L595,45.6L610,45.8L625,45.6L640,45.6L655,45.6L670,45.8L685,45.8L700,45.2L715,45.6L730,45.6L745,45.8L760,45.6L775,45.8L790,45.6L805,45.6L820,45.8L835,45.8L850,45.8L865,45.8L880,45.6L895,45.8L910,45.8L925,45.8L940,45.8"></path>
     </g>
@@ -627,7 +627,7 @@
       <path d="M160,45.8L175,46L190,45.8L205,45.8L220,45.2L235,45.6L250,45.6L265,45.6L280,44L295,43.6L310,40.8L325,38L340,41.6L355,41.6L370,42L385,42.4L400,42.4L415,42.4L430,42.4L445,42.4L460,42L475,42.8L490,43.6L505,43.6L520,42.8L535,42L550,42L565,41.6L580,39.2L595,40L610,41.2L625,41.6L640,39.6L655,42L670,42.8L685,41.2L700,41.6L715,42L730,42.8L745,42.8L760,43.2L775,42.4L790,42L805,42.4L820,43.2L835,34.8L850,35.2L865,36L880,31.2L895,19.2L910,6L925,16L940,15.6"></path>
     </g>
   </g>
-  <g aria-label="rule" transform="translate(0,0.5)">
+  <g aria-label="rule">
     <g stroke="currentColor" transform="translate(0,30)">
       <line x1="160" x2="940" y1="46" y2="46"></line>
     </g>

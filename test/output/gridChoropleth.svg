@@ -14,162 +14,162 @@
     }
   </style>
   <g aria-label="cell">
-    <rect x="10" width="47" y="212" height="46" fill="rgb(190, 226, 146)"></rect>
-    <rect x="166" width="47" y="314" height="46" fill="rgb(60, 124, 30)"></rect>
-    <rect x="374" width="47" y="365" height="46" fill="rgb(72, 138, 34)"></rect>
-    <rect x="478" width="47" y="110" height="46" fill="rgb(244, 244, 237)"></rect>
-    <rect x="478" width="47" y="161" height="46" fill="rgb(242, 245, 234)"></rect>
-    <rect x="322" width="47" y="161" height="46" fill="rgb(249, 237, 242)"></rect>
-    <rect x="426" width="47" y="161" height="46" fill="rgb(239, 245, 229)"></rect>
-    <rect x="374" width="47" y="314" height="46" fill="rgb(135, 192, 78)"></rect>
-    <rect x="426" width="47" y="263" height="46" fill="rgb(129, 188, 72)"></rect>
-    <rect x="374" width="47" y="110" height="46" fill="rgb(241, 245, 232)"></rect>
-    <rect x="530" width="47" y="161" height="46" fill="rgb(241, 245, 232)"></rect>
-    <rect x="374" width="47" y="263" height="46" fill="rgb(181, 221, 133)"></rect>
-    <rect x="62" width="47" y="110" height="46" fill="rgb(84, 150, 39)"></rect>
-    <rect x="114" width="47" y="263" height="46" fill="rgb(76, 142, 36)"></rect>
-    <rect x="582" width="47" y="59" height="46" fill="rgb(189, 226, 144)"></rect>
-    <rect x="322" width="47" y="263" height="46" fill="rgb(165, 212, 112)"></rect>
-    <rect x="374" width="47" y="161" height="46" fill="rgb(219, 240, 192)"></rect>
-    <rect x="270" width="47" y="212" height="46" fill="rgb(232, 244, 214)"></rect>
-    <rect x="478" width="47" y="212" height="46" fill="rgb(209, 235, 174)"></rect>
-    <rect x="322" width="47" y="110" height="46" fill="rgb(232, 244, 216)"></rect>
-    <rect x="166" width="47" y="212" height="46" fill="rgb(68, 134, 33)"></rect>
-    <rect x="270" width="47" y="110" height="46" fill="rgb(186, 224, 140)"></rect>
-    <rect x="426" width="47" y="314" height="46" fill="rgb(109, 173, 55)"></rect>
-    <rect x="322" width="47" y="314" height="46" fill="rgb(231, 244, 213)"></rect>
-    <rect x="218" width="47" y="314" height="46" fill="rgb(231, 244, 213)"></rect>
-    <rect x="322" width="47" y="212" height="46" fill="rgb(228, 243, 207)"></rect>
-    <rect x="62" width="47" y="161" height="46" fill="rgb(127, 187, 70)"></rect>
-    <rect x="218" width="47" y="263" height="46" fill="rgb(198, 231, 158)"></rect>
-    <rect x="530" width="47" y="110" height="46" fill="rgb(246, 242, 240)"></rect>
-    <rect x="114" width="47" y="212" height="46" fill="rgb(52, 116, 28)"></rect>
-    <rect x="270" width="47" y="161" height="46" fill="rgb(222, 241, 196)"></rect>
-    <rect x="62" width="47" y="212" height="46" fill="rgb(74, 140, 35)"></rect>
-    <rect x="270" width="47" y="263" height="46" fill="rgb(223, 241, 198)"></rect>
-    <rect x="270" width="47" y="314" height="46" fill="rgb(244, 244, 238)"></rect>
-    <rect x="218" width="47" y="212" height="46" fill="rgb(234, 245, 220)"></rect>
-    <rect x="166" width="47" y="263" height="46" fill="rgb(236, 245, 223)"></rect>
-    <rect x="218" width="47" y="161" height="46" fill="rgb(192, 227, 149)"></rect>
-    <rect x="374" width="47" y="212" height="46" fill="rgb(250, 219, 236)"></rect>
-    <rect x="114" width="47" y="161" height="46" fill="rgb(74, 140, 35)"></rect>
-    <rect x="10" width="47" y="365" height="46" fill="rgb(216, 239, 187)"></rect>
-    <rect x="530" width="47" y="59" height="46" fill="rgb(225, 242, 201)"></rect>
-    <rect x="582" width="47" y="8" height="46" fill="rgb(240, 245, 230)"></rect>
-    <rect x="114" width="47" y="110" height="46" fill="rgb(160, 209, 106)"></rect>
-    <rect x="582" width="47" y="110" height="46" fill="rgb(243, 244, 235)"></rect>
-    <rect x="530" width="47" y="212" height="46" fill="rgb(153, 205, 98)"></rect>
-    <rect x="218" width="47" y="110" height="46" fill="rgb(150, 202, 94)"></rect>
-    <rect x="166" width="47" y="110" height="46" fill="rgb(83, 149, 39)"></rect>
-    <rect x="10" width="47" y="8" height="46" fill="rgb(227, 243, 206)"></rect>
-    <rect x="426" width="47" y="212" height="46" fill="rgb(39, 100, 25)"></rect>
-    <rect x="478" width="47" y="59" height="46" fill="rgb(246, 242, 240)"></rect>
-    <rect x="166" width="47" y="161" height="46" fill="rgb(230, 244, 211)"></rect>
+    <rect x="11" width="47" y="213" height="46" fill="rgb(190, 226, 146)"></rect>
+    <rect x="167" width="47" y="315" height="46" fill="rgb(60, 124, 30)"></rect>
+    <rect x="375" width="47" y="366" height="46" fill="rgb(72, 138, 34)"></rect>
+    <rect x="479" width="47" y="111" height="46" fill="rgb(244, 244, 237)"></rect>
+    <rect x="479" width="47" y="162" height="46" fill="rgb(242, 245, 234)"></rect>
+    <rect x="323" width="47" y="162" height="46" fill="rgb(249, 237, 242)"></rect>
+    <rect x="427" width="47" y="162" height="46" fill="rgb(239, 245, 229)"></rect>
+    <rect x="375" width="47" y="315" height="46" fill="rgb(135, 192, 78)"></rect>
+    <rect x="427" width="47" y="264" height="46" fill="rgb(129, 188, 72)"></rect>
+    <rect x="375" width="47" y="111" height="46" fill="rgb(241, 245, 232)"></rect>
+    <rect x="531" width="47" y="162" height="46" fill="rgb(241, 245, 232)"></rect>
+    <rect x="375" width="47" y="264" height="46" fill="rgb(181, 221, 133)"></rect>
+    <rect x="63" width="47" y="111" height="46" fill="rgb(84, 150, 39)"></rect>
+    <rect x="115" width="47" y="264" height="46" fill="rgb(76, 142, 36)"></rect>
+    <rect x="583" width="47" y="60" height="46" fill="rgb(189, 226, 144)"></rect>
+    <rect x="323" width="47" y="264" height="46" fill="rgb(165, 212, 112)"></rect>
+    <rect x="375" width="47" y="162" height="46" fill="rgb(219, 240, 192)"></rect>
+    <rect x="271" width="47" y="213" height="46" fill="rgb(232, 244, 214)"></rect>
+    <rect x="479" width="47" y="213" height="46" fill="rgb(209, 235, 174)"></rect>
+    <rect x="323" width="47" y="111" height="46" fill="rgb(232, 244, 216)"></rect>
+    <rect x="167" width="47" y="213" height="46" fill="rgb(68, 134, 33)"></rect>
+    <rect x="271" width="47" y="111" height="46" fill="rgb(186, 224, 140)"></rect>
+    <rect x="427" width="47" y="315" height="46" fill="rgb(109, 173, 55)"></rect>
+    <rect x="323" width="47" y="315" height="46" fill="rgb(231, 244, 213)"></rect>
+    <rect x="219" width="47" y="315" height="46" fill="rgb(231, 244, 213)"></rect>
+    <rect x="323" width="47" y="213" height="46" fill="rgb(228, 243, 207)"></rect>
+    <rect x="63" width="47" y="162" height="46" fill="rgb(127, 187, 70)"></rect>
+    <rect x="219" width="47" y="264" height="46" fill="rgb(198, 231, 158)"></rect>
+    <rect x="531" width="47" y="111" height="46" fill="rgb(246, 242, 240)"></rect>
+    <rect x="115" width="47" y="213" height="46" fill="rgb(52, 116, 28)"></rect>
+    <rect x="271" width="47" y="162" height="46" fill="rgb(222, 241, 196)"></rect>
+    <rect x="63" width="47" y="213" height="46" fill="rgb(74, 140, 35)"></rect>
+    <rect x="271" width="47" y="264" height="46" fill="rgb(223, 241, 198)"></rect>
+    <rect x="271" width="47" y="315" height="46" fill="rgb(244, 244, 238)"></rect>
+    <rect x="219" width="47" y="213" height="46" fill="rgb(234, 245, 220)"></rect>
+    <rect x="167" width="47" y="264" height="46" fill="rgb(236, 245, 223)"></rect>
+    <rect x="219" width="47" y="162" height="46" fill="rgb(192, 227, 149)"></rect>
+    <rect x="375" width="47" y="213" height="46" fill="rgb(250, 219, 236)"></rect>
+    <rect x="115" width="47" y="162" height="46" fill="rgb(74, 140, 35)"></rect>
+    <rect x="11" width="47" y="366" height="46" fill="rgb(216, 239, 187)"></rect>
+    <rect x="531" width="47" y="60" height="46" fill="rgb(225, 242, 201)"></rect>
+    <rect x="583" width="47" y="9" height="46" fill="rgb(240, 245, 230)"></rect>
+    <rect x="115" width="47" y="111" height="46" fill="rgb(160, 209, 106)"></rect>
+    <rect x="583" width="47" y="111" height="46" fill="rgb(243, 244, 235)"></rect>
+    <rect x="531" width="47" y="213" height="46" fill="rgb(153, 205, 98)"></rect>
+    <rect x="219" width="47" y="111" height="46" fill="rgb(150, 202, 94)"></rect>
+    <rect x="167" width="47" y="111" height="46" fill="rgb(83, 149, 39)"></rect>
+    <rect x="11" width="47" y="9" height="46" fill="rgb(227, 243, 206)"></rect>
+    <rect x="427" width="47" y="213" height="46" fill="rgb(39, 100, 25)"></rect>
+    <rect x="479" width="47" y="60" height="46" fill="rgb(246, 242, 240)"></rect>
+    <rect x="167" width="47" y="162" height="46" fill="rgb(230, 244, 211)"></rect>
   </g>
-  <g aria-label="text" transform="translate(24,17.5)">
-    <text y="0.32em" transform="translate(10,212)">CA</text>
-    <text y="0.32em" transform="translate(166,314)">TX</text>
-    <text y="0.32em" transform="translate(374,365)">FL</text>
-    <text y="0.32em" transform="translate(478,110)">NY</text>
-    <text y="0.32em" transform="translate(478,161)">PA</text>
-    <text y="0.32em" transform="translate(322,161)">IL</text>
-    <text y="0.32em" transform="translate(426,161)">OH</text>
-    <text y="0.32em" transform="translate(374,314)">GA</text>
-    <text y="0.32em" transform="translate(426,263)">NC</text>
-    <text y="0.32em" transform="translate(374,110)">MI</text>
-    <text y="0.32em" transform="translate(530,161)">NJ</text>
-    <text y="0.32em" transform="translate(374,263)">VA</text>
-    <text y="0.32em" transform="translate(62,110)">WA</text>
-    <text y="0.32em" transform="translate(114,263)">AZ</text>
-    <text y="0.32em" transform="translate(582,59)">MA</text>
-    <text y="0.32em" transform="translate(322,263)">TN</text>
-    <text y="0.32em" transform="translate(374,161)">IN</text>
-    <text y="0.32em" transform="translate(270,212)">MO</text>
-    <text y="0.32em" transform="translate(478,212)">MD</text>
-    <text y="0.32em" transform="translate(322,110)">WI</text>
-    <text y="0.32em" transform="translate(166,212)">CO</text>
-    <text y="0.32em" transform="translate(270,110)">MN</text>
-    <text y="0.32em" transform="translate(426,314)">SC</text>
-    <text y="0.32em" transform="translate(322,314)">AL</text>
-    <text y="0.32em" transform="translate(218,314)">LA</text>
-    <text y="0.32em" transform="translate(322,212)">KY</text>
-    <text y="0.32em" transform="translate(62,161)">OR</text>
-    <text y="0.32em" transform="translate(218,263)">OK</text>
-    <text y="0.32em" transform="translate(530,110)">CT</text>
-    <text y="0.32em" transform="translate(114,212)">UT</text>
-    <text y="0.32em" transform="translate(270,161)">IA</text>
-    <text y="0.32em" transform="translate(62,212)">NV</text>
-    <text y="0.32em" transform="translate(270,263)">AR</text>
-    <text y="0.32em" transform="translate(270,314)">MS</text>
-    <text y="0.32em" transform="translate(218,212)">KS</text>
-    <text y="0.32em" transform="translate(166,263)">NM</text>
-    <text y="0.32em" transform="translate(218,161)">NE</text>
-    <text y="0.32em" transform="translate(374,212)">WV</text>
-    <text y="0.32em" transform="translate(114,161)">ID</text>
-    <text y="0.32em" transform="translate(10,365)">HI</text>
-    <text y="0.32em" transform="translate(530,59)">NH</text>
-    <text y="0.32em" transform="translate(582,8)">ME</text>
-    <text y="0.32em" transform="translate(114,110)">MT</text>
-    <text y="0.32em" transform="translate(582,110)">RI</text>
-    <text y="0.32em" transform="translate(530,212)">DE</text>
-    <text y="0.32em" transform="translate(218,110)">SD</text>
-    <text y="0.32em" transform="translate(166,110)">ND</text>
-    <text y="0.32em" transform="translate(10,8)">AK</text>
-    <text y="0.32em" transform="translate(426,212)">DC</text>
-    <text y="0.32em" transform="translate(478,59)">VT</text>
-    <text y="0.32em" transform="translate(166,161)">WY</text>
+  <g aria-label="text" transform="translate(23.5,17)">
+    <text y="0.32em" transform="translate(11,213)">CA</text>
+    <text y="0.32em" transform="translate(167,315)">TX</text>
+    <text y="0.32em" transform="translate(375,366)">FL</text>
+    <text y="0.32em" transform="translate(479,111)">NY</text>
+    <text y="0.32em" transform="translate(479,162)">PA</text>
+    <text y="0.32em" transform="translate(323,162)">IL</text>
+    <text y="0.32em" transform="translate(427,162)">OH</text>
+    <text y="0.32em" transform="translate(375,315)">GA</text>
+    <text y="0.32em" transform="translate(427,264)">NC</text>
+    <text y="0.32em" transform="translate(375,111)">MI</text>
+    <text y="0.32em" transform="translate(531,162)">NJ</text>
+    <text y="0.32em" transform="translate(375,264)">VA</text>
+    <text y="0.32em" transform="translate(63,111)">WA</text>
+    <text y="0.32em" transform="translate(115,264)">AZ</text>
+    <text y="0.32em" transform="translate(583,60)">MA</text>
+    <text y="0.32em" transform="translate(323,264)">TN</text>
+    <text y="0.32em" transform="translate(375,162)">IN</text>
+    <text y="0.32em" transform="translate(271,213)">MO</text>
+    <text y="0.32em" transform="translate(479,213)">MD</text>
+    <text y="0.32em" transform="translate(323,111)">WI</text>
+    <text y="0.32em" transform="translate(167,213)">CO</text>
+    <text y="0.32em" transform="translate(271,111)">MN</text>
+    <text y="0.32em" transform="translate(427,315)">SC</text>
+    <text y="0.32em" transform="translate(323,315)">AL</text>
+    <text y="0.32em" transform="translate(219,315)">LA</text>
+    <text y="0.32em" transform="translate(323,213)">KY</text>
+    <text y="0.32em" transform="translate(63,162)">OR</text>
+    <text y="0.32em" transform="translate(219,264)">OK</text>
+    <text y="0.32em" transform="translate(531,111)">CT</text>
+    <text y="0.32em" transform="translate(115,213)">UT</text>
+    <text y="0.32em" transform="translate(271,162)">IA</text>
+    <text y="0.32em" transform="translate(63,213)">NV</text>
+    <text y="0.32em" transform="translate(271,264)">AR</text>
+    <text y="0.32em" transform="translate(271,315)">MS</text>
+    <text y="0.32em" transform="translate(219,213)">KS</text>
+    <text y="0.32em" transform="translate(167,264)">NM</text>
+    <text y="0.32em" transform="translate(219,162)">NE</text>
+    <text y="0.32em" transform="translate(375,213)">WV</text>
+    <text y="0.32em" transform="translate(115,162)">ID</text>
+    <text y="0.32em" transform="translate(11,366)">HI</text>
+    <text y="0.32em" transform="translate(531,60)">NH</text>
+    <text y="0.32em" transform="translate(583,9)">ME</text>
+    <text y="0.32em" transform="translate(115,111)">MT</text>
+    <text y="0.32em" transform="translate(583,111)">RI</text>
+    <text y="0.32em" transform="translate(531,213)">DE</text>
+    <text y="0.32em" transform="translate(219,111)">SD</text>
+    <text y="0.32em" transform="translate(167,111)">ND</text>
+    <text y="0.32em" transform="translate(11,9)">AK</text>
+    <text y="0.32em" transform="translate(427,213)">DC</text>
+    <text y="0.32em" transform="translate(479,60)">VT</text>
+    <text y="0.32em" transform="translate(167,162)">WY</text>
   </g>
-  <g aria-label="text" fill-opacity="0.6" transform="translate(24,29.5)">
-    <text y="0.32em" transform="translate(10,212)">+6%</text>
-    <text y="0.32em" transform="translate(166,314)">+15%</text>
-    <text y="0.32em" transform="translate(374,365)">+14%</text>
-    <text y="0.32em" transform="translate(478,110)">+0%</text>
-    <text y="0.32em" transform="translate(478,161)">+1%</text>
-    <text y="0.32em" transform="translate(322,161)">−1%</text>
-    <text y="0.32em" transform="translate(426,161)">+1%</text>
-    <text y="0.32em" transform="translate(374,314)">+10%</text>
-    <text y="0.32em" transform="translate(426,263)">+10%</text>
-    <text y="0.32em" transform="translate(374,110)">+1%</text>
-    <text y="0.32em" transform="translate(530,161)">+1%</text>
-    <text y="0.32em" transform="translate(374,263)">+7%</text>
-    <text y="0.32em" transform="translate(62,110)">+13%</text>
-    <text y="0.32em" transform="translate(114,263)">+14%</text>
-    <text y="0.32em" transform="translate(582,59)">+6%</text>
-    <text y="0.32em" transform="translate(322,263)">+8%</text>
-    <text y="0.32em" transform="translate(374,161)">+4%</text>
-    <text y="0.32em" transform="translate(270,212)">+2%</text>
-    <text y="0.32em" transform="translate(478,212)">+5%</text>
-    <text y="0.32em" transform="translate(322,110)">+2%</text>
-    <text y="0.32em" transform="translate(166,212)">+15%</text>
-    <text y="0.32em" transform="translate(270,110)">+6%</text>
-    <text y="0.32em" transform="translate(426,314)">+11%</text>
-    <text y="0.32em" transform="translate(322,314)">+3%</text>
-    <text y="0.32em" transform="translate(218,314)">+3%</text>
-    <text y="0.32em" transform="translate(322,212)">+3%</text>
-    <text y="0.32em" transform="translate(62,161)">+10%</text>
-    <text y="0.32em" transform="translate(218,263)">+5%</text>
-    <text y="0.32em" transform="translate(530,110)">−0%</text>
-    <text y="0.32em" transform="translate(114,212)">+16%</text>
-    <text y="0.32em" transform="translate(270,161)">+4%</text>
-    <text y="0.32em" transform="translate(62,212)">+14%</text>
-    <text y="0.32em" transform="translate(270,263)">+3%</text>
-    <text y="0.32em" transform="translate(270,314)">+0%</text>
-    <text y="0.32em" transform="translate(218,212)">+2%</text>
-    <text y="0.32em" transform="translate(166,263)">+2%</text>
-    <text y="0.32em" transform="translate(218,161)">+6%</text>
-    <text y="0.32em" transform="translate(374,212)">−3%</text>
-    <text y="0.32em" transform="translate(114,161)">+14%</text>
-    <text y="0.32em" transform="translate(10,365)">+4%</text>
-    <text y="0.32em" transform="translate(530,59)">+3%</text>
-    <text y="0.32em" transform="translate(582,8)">+1%</text>
-    <text y="0.32em" transform="translate(114,110)">+8%</text>
-    <text y="0.32em" transform="translate(582,110)">+1%</text>
-    <text y="0.32em" transform="translate(530,212)">+8%</text>
-    <text y="0.32em" transform="translate(218,110)">+9%</text>
-    <text y="0.32em" transform="translate(166,110)">+13%</text>
-    <text y="0.32em" transform="translate(10,8)">+3%</text>
-    <text y="0.32em" transform="translate(426,212)">+17%</text>
-    <text y="0.32em" transform="translate(478,59)">−0%</text>
-    <text y="0.32em" transform="translate(166,161)">+3%</text>
+  <g aria-label="text" fill-opacity="0.6" transform="translate(23.5,29)">
+    <text y="0.32em" transform="translate(11,213)">+6%</text>
+    <text y="0.32em" transform="translate(167,315)">+15%</text>
+    <text y="0.32em" transform="translate(375,366)">+14%</text>
+    <text y="0.32em" transform="translate(479,111)">+0%</text>
+    <text y="0.32em" transform="translate(479,162)">+1%</text>
+    <text y="0.32em" transform="translate(323,162)">−1%</text>
+    <text y="0.32em" transform="translate(427,162)">+1%</text>
+    <text y="0.32em" transform="translate(375,315)">+10%</text>
+    <text y="0.32em" transform="translate(427,264)">+10%</text>
+    <text y="0.32em" transform="translate(375,111)">+1%</text>
+    <text y="0.32em" transform="translate(531,162)">+1%</text>
+    <text y="0.32em" transform="translate(375,264)">+7%</text>
+    <text y="0.32em" transform="translate(63,111)">+13%</text>
+    <text y="0.32em" transform="translate(115,264)">+14%</text>
+    <text y="0.32em" transform="translate(583,60)">+6%</text>
+    <text y="0.32em" transform="translate(323,264)">+8%</text>
+    <text y="0.32em" transform="translate(375,162)">+4%</text>
+    <text y="0.32em" transform="translate(271,213)">+2%</text>
+    <text y="0.32em" transform="translate(479,213)">+5%</text>
+    <text y="0.32em" transform="translate(323,111)">+2%</text>
+    <text y="0.32em" transform="translate(167,213)">+15%</text>
+    <text y="0.32em" transform="translate(271,111)">+6%</text>
+    <text y="0.32em" transform="translate(427,315)">+11%</text>
+    <text y="0.32em" transform="translate(323,315)">+3%</text>
+    <text y="0.32em" transform="translate(219,315)">+3%</text>
+    <text y="0.32em" transform="translate(323,213)">+3%</text>
+    <text y="0.32em" transform="translate(63,162)">+10%</text>
+    <text y="0.32em" transform="translate(219,264)">+5%</text>
+    <text y="0.32em" transform="translate(531,111)">−0%</text>
+    <text y="0.32em" transform="translate(115,213)">+16%</text>
+    <text y="0.32em" transform="translate(271,162)">+4%</text>
+    <text y="0.32em" transform="translate(63,213)">+14%</text>
+    <text y="0.32em" transform="translate(271,264)">+3%</text>
+    <text y="0.32em" transform="translate(271,315)">+0%</text>
+    <text y="0.32em" transform="translate(219,213)">+2%</text>
+    <text y="0.32em" transform="translate(167,264)">+2%</text>
+    <text y="0.32em" transform="translate(219,162)">+6%</text>
+    <text y="0.32em" transform="translate(375,213)">−3%</text>
+    <text y="0.32em" transform="translate(115,162)">+14%</text>
+    <text y="0.32em" transform="translate(11,366)">+4%</text>
+    <text y="0.32em" transform="translate(531,60)">+3%</text>
+    <text y="0.32em" transform="translate(583,9)">+1%</text>
+    <text y="0.32em" transform="translate(115,111)">+8%</text>
+    <text y="0.32em" transform="translate(583,111)">+1%</text>
+    <text y="0.32em" transform="translate(531,213)">+8%</text>
+    <text y="0.32em" transform="translate(219,111)">+9%</text>
+    <text y="0.32em" transform="translate(167,111)">+13%</text>
+    <text y="0.32em" transform="translate(11,9)">+3%</text>
+    <text y="0.32em" transform="translate(427,213)">+17%</text>
+    <text y="0.32em" transform="translate(479,60)">−0%</text>
+    <text y="0.32em" transform="translate(167,162)">+3%</text>
   </g>
 </svg>

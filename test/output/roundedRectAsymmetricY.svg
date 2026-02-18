@@ -13,19 +13,19 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,43.5)">
+  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,43)">
     <path transform="translate(40,23)" d="M0,0L-6,0"></path>
     <path transform="translate(40,109)" d="M0,0L-6,0"></path>
     <path transform="translate(40,195)" d="M0,0L-6,0"></path>
     <path transform="translate(40,281)" d="M0,0L-6,0"></path>
   </g>
-  <g aria-label="y-axis tick label" text-anchor="end" transform="translate(-8.5,43.5)">
+  <g aria-label="y-axis tick label" text-anchor="end" transform="translate(-9,43)">
     <text y="0.32em" transform="translate(40,23)">0</text>
     <text y="0.32em" transform="translate(40,109)">1</text>
     <text y="0.32em" transform="translate(40,195)">2</text>
     <text y="0.32em" transform="translate(40,281)">3</text>
   </g>
-  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor">
     <path transform="translate(40,370)" d="M0,0L0,6"></path>
     <path transform="translate(98,370)" d="M0,0L0,6"></path>
     <path transform="translate(156,370)" d="M0,0L0,6"></path>
@@ -38,7 +38,7 @@
     <path transform="translate(562,370)" d="M0,0L0,6"></path>
     <path transform="translate(620,370)" d="M0,0L0,6"></path>
   </g>
-  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0,9)">
     <text y="0.71em" transform="translate(40,370)">0.0</text>
     <text y="0.71em" transform="translate(98,370)">0.1</text>
     <text y="0.71em" transform="translate(156,370)">0.2</text>
@@ -51,17 +51,17 @@
     <text y="0.71em" transform="translate(562,370)">0.9</text>
     <text y="0.71em" transform="translate(620,370)">1.0</text>
   </g>
-  <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="40" y="20" width="580" height="350"></rect>
+  <rect aria-label="frame" fill="none" stroke="currentColor" x="40" y="20" width="580" height="350"></rect>
   <g aria-label="rect">
-    <path d="M44,99.54545454545455A74.54545454545455,74.54545454545455 0 0 1 118.54545454545455,25H616A0,0 0 0 1 616,25V107A0,0 0 0 1 616,107H51.45454545454545A7.454545454545454,7.454545454545454 0 0 1 44,99.54545454545455Z"></path>
+    <path d="M44,99.545A74.545,74.545 0 0 1 118.545,25H616A0,0 0 0 1 616,25V107A0,0 0 0 1 616,107H51.455A7.455,7.455 0 0 1 44,99.545Z"></path>
   </g>
   <g aria-label="rect">
-    <path d="M44,111A0,0 0 0 1 44,111H541.4545454545455A74.54545454545455,74.54545454545455 0 0 1 616,185.54545454545456V185.54545454545453A7.454545454545454,7.454545454545454 0 0 1 608.5454545454545,193H44A0,0 0 0 1 44,193Z"></path>
+    <path d="M44,111A0,0 0 0 1 44,111H541.455A74.545,74.545 0 0 1 616,185.545V185.545A7.455,7.455 0 0 1 608.545,193H44A0,0 0 0 1 44,193Z"></path>
   </g>
   <g aria-label="rect">
-    <path d="M44,197A0,0 0 0 1 44,197H608.5454545454545A7.454545454545454,7.454545454545454 0 0 1 616,204.45454545454547V204.45454545454544A74.54545454545455,74.54545454545455 0 0 1 541.4545454545455,279H44A0,0 0 0 1 44,279Z"></path>
+    <path d="M44,197A0,0 0 0 1 44,197H608.545A7.455,7.455 0 0 1 616,204.455V204.455A74.545,74.545 0 0 1 541.455,279H44A0,0 0 0 1 44,279Z"></path>
   </g>
   <g aria-label="rect">
-    <path d="M44,290.45454545454544A7.454545454545454,7.454545454545454 0 0 1 51.45454545454545,283H616A0,0 0 0 1 616,283V365A0,0 0 0 1 616,365H118.54545454545455A74.54545454545455,74.54545454545455 0 0 1 44,290.45454545454544Z"></path>
+    <path d="M44,290.455A7.455,7.455 0 0 1 51.455,283H616A0,0 0 0 1 616,283V365A0,0 0 0 1 616,365H118.545A74.545,74.545 0 0 1 44,290.455Z"></path>
   </g>
 </svg>

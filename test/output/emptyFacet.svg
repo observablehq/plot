@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="fx-axis tick label" transform="translate(0.5,-8.5)">
+  <g aria-label="fx-axis tick label" transform="translate(0,-9)">
     <g transform="translate(0,0)">
       <text transform="translate(177.5,30)">a</text>
     </g>
@@ -21,23 +21,23 @@
       <text transform="translate(177.5,30)">b</text>
     </g>
   </g>
-  <g aria-label="fx-axis label" transform="translate(0.5,-26.5)">
+  <g aria-label="fx-axis label" transform="translate(0,-27)">
     <text y="0.71em" transform="translate(330,30)">TYPE</text>
   </g>
-  <g aria-label="y-axis tick" aria-hidden="true" transform="translate(0,0.5)">
+  <g aria-label="y-axis tick" aria-hidden="true">
     <g fill="none" stroke="currentColor" transform="translate(0,0)">
       <path transform="translate(40,215)" d="M0,0L-6,0"></path>
     </g>
   </g>
-  <g aria-label="y-axis tick label" transform="translate(-8.5,0.5)">
+  <g aria-label="y-axis tick label" transform="translate(-9,0)">
     <g text-anchor="end" font-variant="tabular-nums" transform="translate(0,0)">
       <text y="0.32em" transform="translate(40,215)">0</text>
     </g>
   </g>
-  <g aria-label="y-axis label" text-anchor="start" transform="translate(-36.5,-26.5)">
+  <g aria-label="y-axis label" text-anchor="start" transform="translate(-37,-27)">
     <text y="0.71em" transform="translate(40,30)">VALUE</text>
   </g>
-  <g aria-label="x-axis tick" aria-hidden="true" transform="translate(59,0)">
+  <g aria-label="x-axis tick" aria-hidden="true" transform="translate(58.5,0)">
     <g fill="none" stroke="currentColor" transform="translate(0,0)">
       <path transform="translate(54,400)" d="M0,0L0,6"></path>
       <path transform="translate(184,400)" d="M0,0L0,6"></path>
@@ -47,7 +47,7 @@
       <path transform="translate(184,400)" d="M0,0L0,6"></path>
     </g>
   </g>
-  <g aria-label="x-axis tick label" transform="translate(59,9.5)">
+  <g aria-label="x-axis tick label" transform="translate(58.5,9)">
     <g transform="translate(0,0)">
       <text y="0.71em" transform="translate(54,400)">1</text>
       <text y="0.71em" transform="translate(184,400)">2</text>
@@ -57,7 +57,7 @@
       <text y="0.71em" transform="translate(184,400)">2</text>
     </g>
   </g>
-  <g aria-label="x-axis label" transform="translate(0.5,27.5)">
+  <g aria-label="x-axis label" transform="translate(0,27)">
     <text transform="translate(330,400)">PERIOD</text>
   </g>
 </svg>
