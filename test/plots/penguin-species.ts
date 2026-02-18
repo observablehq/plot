@@ -29,6 +29,16 @@ export async function penguinSpeciesCheysson() {
   });
 }
 
+export async function penguinSpeciesPaint() {
+  const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
+  return Plot.plot({
+    marks: [
+      Plot.barY(penguins, Plot.groupX({y: "count"}, {x: "species", fill: Plot.linearGradient()})),
+      Plot.ruleY([0])
+    ]
+  });
+}
+
 export async function penguinSpeciesGradient() {
   const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
   return Plot.plot({
