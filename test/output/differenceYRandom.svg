@@ -13,39 +13,39 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,0.5)">
-    <path transform="translate(40,332.16802174993666)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,283.9902437787918)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,235.8124658076469)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,187.63468783650205)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,139.45690986535718)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,91.2791318942123)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,43.10135392306742)" d="M0,0L-6,0"></path>
+  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor">
+    <path transform="translate(40,332.168)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,283.99)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,235.812)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,187.635)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,139.457)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,91.279)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,43.101)" d="M0,0L-6,0"></path>
   </g>
-  <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
-    <text y="0.32em" transform="translate(40,332.16802174993666)">1.5</text>
-    <text y="0.32em" transform="translate(40,283.9902437787918)">2.0</text>
-    <text y="0.32em" transform="translate(40,235.8124658076469)">2.5</text>
-    <text y="0.32em" transform="translate(40,187.63468783650205)">3.0</text>
-    <text y="0.32em" transform="translate(40,139.45690986535718)">3.5</text>
-    <text y="0.32em" transform="translate(40,91.2791318942123)">4.0</text>
-    <text y="0.32em" transform="translate(40,43.10135392306742)">4.5</text>
+  <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-9,0)">
+    <text y="0.32em" transform="translate(40,332.168)">1.5</text>
+    <text y="0.32em" transform="translate(40,283.99)">2.0</text>
+    <text y="0.32em" transform="translate(40,235.812)">2.5</text>
+    <text y="0.32em" transform="translate(40,187.635)">3.0</text>
+    <text y="0.32em" transform="translate(40,139.457)">3.5</text>
+    <text y="0.32em" transform="translate(40,91.279)">4.0</text>
+    <text y="0.32em" transform="translate(40,43.101)">4.5</text>
   </g>
-  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor">
     <path transform="translate(40,370)" d="M0,0L0,6"></path>
-    <path transform="translate(138.3050847457627,370)" d="M0,0L0,6"></path>
-    <path transform="translate(236.61016949152543,370)" d="M0,0L0,6"></path>
-    <path transform="translate(334.91525423728814,370)" d="M0,0L0,6"></path>
-    <path transform="translate(433.22033898305085,370)" d="M0,0L0,6"></path>
-    <path transform="translate(531.5254237288135,370)" d="M0,0L0,6"></path>
+    <path transform="translate(138.305,370)" d="M0,0L0,6"></path>
+    <path transform="translate(236.61,370)" d="M0,0L0,6"></path>
+    <path transform="translate(334.915,370)" d="M0,0L0,6"></path>
+    <path transform="translate(433.22,370)" d="M0,0L0,6"></path>
+    <path transform="translate(531.525,370)" d="M0,0L0,6"></path>
   </g>
-  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0,9)">
     <text y="0.71em" transform="translate(40,370)">0</text>
-    <text y="0.71em" transform="translate(138.3050847457627,370)">10</text>
-    <text y="0.71em" transform="translate(236.61016949152543,370)">20</text>
-    <text y="0.71em" transform="translate(334.91525423728814,370)">30</text>
-    <text y="0.71em" transform="translate(433.22033898305085,370)">40</text>
-    <text y="0.71em" transform="translate(531.5254237288135,370)">50</text>
+    <text y="0.71em" transform="translate(138.305,370)">10</text>
+    <text y="0.71em" transform="translate(236.61,370)">20</text>
+    <text y="0.71em" transform="translate(334.915,370)">30</text>
+    <text y="0.71em" transform="translate(433.22,370)">40</text>
+    <text y="0.71em" transform="translate(531.525,370)">50</text>
   </g>
   <g aria-label="positive difference" fill="#3ca951">
     <clipPath id="plot-clip-1">
@@ -63,9 +63,9 @@
     <rect x="40" y="20" width="580" height="350"></rect>
   </clipPath>
   <g aria-label="line" clip-path="url(#plot-clip-3)">
-    <g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" transform="translate(0.5,0.5)">
+    <g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round">
       <path d="M40,134.586C43.277,136.32,46.554,138.053,49.831,152.477C53.107,166.901,56.384,194.016,59.661,188.19C62.938,182.364,66.215,143.597,69.492,141.943C72.768,140.288,76.045,175.747,79.322,180.198C82.599,184.649,85.876,158.092,89.153,139.583C92.429,121.074,95.706,110.612,98.983,110.124C102.26,109.635,105.537,119.12,108.814,116.584C112.09,114.048,115.367,99.49,118.644,96.343C121.921,93.197,125.198,101.462,128.475,114.972C131.751,128.483,135.028,147.24,138.305,151.723C141.582,156.206,144.859,146.414,148.136,150.833C151.412,155.253,154.689,173.884,157.966,187.701C161.243,201.519,164.52,210.524,167.797,212.414C171.073,214.304,174.35,209.08,177.627,202.384C180.904,195.687,184.181,187.518,187.458,183.322C190.734,179.126,194.011,178.902,197.288,184.22C200.565,189.538,203.842,200.399,207.119,212.195C210.395,223.99,213.672,236.722,216.949,238.471C220.226,240.22,223.503,230.988,226.78,219.751C230.056,208.513,233.333,195.272,236.61,182.96C239.887,170.648,243.164,159.266,246.441,152.419C249.718,145.572,252.994,143.26,256.271,133.421C259.548,123.582,262.825,106.216,266.102,100.71C269.379,95.205,272.655,101.56,275.932,110.188C279.209,118.815,282.486,129.715,285.763,143.608C289.04,157.501,292.316,174.388,295.593,179.617C298.87,184.846,302.147,178.417,305.424,175.781C308.701,173.144,311.977,174.3,315.254,161.166C318.531,148.033,321.808,120.611,325.085,114.162C328.362,107.713,331.638,122.238,334.915,121.296C338.192,120.354,341.469,103.946,344.746,97.493C348.023,91.039,351.299,94.539,354.576,104.212C357.853,113.885,361.13,129.73,364.407,148.002C367.684,166.273,370.96,186.97,374.237,188.736C377.514,190.502,380.791,173.336,384.068,157.35C387.345,141.365,390.621,126.56,393.898,111.222C397.175,95.884,400.452,80.014,403.729,82.344C407.006,84.674,410.282,105.205,413.559,114.271C416.836,123.338,420.113,120.941,423.39,125.199C426.667,129.456,429.944,140.367,433.22,146.091C436.497,151.815,439.774,152.353,443.051,147.065C446.328,141.778,449.605,130.665,452.881,114.212C456.158,97.758,459.435,75.964,462.712,74.343C465.989,72.722,469.266,91.274,472.542,103.483C475.819,115.692,479.096,121.558,482.373,121.209C485.65,120.86,488.927,114.296,492.203,118.316C495.48,122.335,498.757,136.938,502.034,141.046C505.311,145.154,508.588,138.767,511.864,150.31C515.141,161.852,518.418,191.325,521.695,197.29C524.972,203.255,528.249,185.712,531.525,183.031C534.802,180.35,538.079,192.529,541.356,195.877C544.633,199.225,547.91,193.742,551.186,198.343C554.463,202.945,557.74,217.631,561.017,221.967C564.294,226.303,567.571,220.288,570.847,212.959C574.124,205.63,577.401,196.985,580.678,193.618C583.955,190.25,587.232,192.159,590.508,188.531C593.785,184.903,597.062,175.739,600.339,178.553C603.616,181.366,606.893,196.157,610.169,204.389C613.446,212.621,616.723,214.295,620,215.968"></path>
     </g>
   </g>
-  <g aria-label="tip" fill="var(--plot-background)" stroke="currentColor" pointer-events="none" text-anchor="start" transform="translate(0.5,0.5)"></g>
+  <g aria-label="tip" fill="var(--plot-background)" stroke="currentColor" pointer-events="none" text-anchor="start"></g>
 </svg>

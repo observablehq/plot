@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="y-grid" aria-hidden="true" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,7)">
+  <g aria-label="y-grid" aria-hidden="true" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,6.5)">
     <line x1="100" x2="620" y1="42" y2="42"></line>
     <line x1="100" x2="620" y1="56" y2="56"></line>
     <line x1="100" x2="620" y1="70" y2="70"></line>
@@ -67,7 +67,7 @@
     <line x1="100" x2="620" y1="742" y2="742"></line>
     <line x1="100" x2="620" y1="756" y2="756"></line>
   </g>
-  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,7)">
+  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,6.5)">
     <path transform="translate(100,42)" d="M0,0L-6,0"></path>
     <path transform="translate(100,56)" d="M0,0L-6,0"></path>
     <path transform="translate(100,70)" d="M0,0L-6,0"></path>
@@ -121,7 +121,7 @@
     <path transform="translate(100,742)" d="M0,0L-6,0"></path>
     <path transform="translate(100,756)" d="M0,0L-6,0"></path>
   </g>
-  <g aria-label="y-axis tick label" text-anchor="end" transform="translate(-8.5,7)">
+  <g aria-label="y-axis tick label" text-anchor="end" transform="translate(-9,6.5)">
     <text y="0.32em" transform="translate(100,42)">Texas</text>
     <text y="0.32em" transform="translate(100,56)">Florida</text>
     <text y="0.32em" transform="translate(100,70)">California</text>
@@ -175,7 +175,7 @@
     <text y="0.32em" transform="translate(100,742)">Illinois</text>
     <text y="0.32em" transform="translate(100,756)">Puerto Rico</text>
   </g>
-  <g aria-label="x-grid" aria-hidden="true" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+  <g aria-label="x-grid" aria-hidden="true" stroke="currentColor" stroke-opacity="0.1">
     <line x1="110" x2="110" y1="30" y2="780"></line>
     <line x1="168" x2="168" y1="30" y2="780"></line>
     <line x1="226" x2="226" y1="30" y2="780"></line>
@@ -186,7 +186,7 @@
     <line x1="515" x2="515" y1="30" y2="780"></line>
     <line x1="573" x2="573" y1="30" y2="780"></line>
   </g>
-  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,1)">
+  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor">
     <path transform="translate(110,30)" d="M0,0L0,-6"></path>
     <path transform="translate(168,30)" d="M0,0L0,-6"></path>
     <path transform="translate(226,30)" d="M0,0L0,-6"></path>
@@ -197,7 +197,7 @@
     <path transform="translate(515,30)" d="M0,0L0,-6"></path>
     <path transform="translate(573,30)" d="M0,0L0,-6"></path>
   </g>
-  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,-8.5)">
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0,-9)">
     <text transform="translate(110,30)">−0.5</text>
     <text transform="translate(168,30)">+0.0</text>
     <text transform="translate(226,30)">+0.5</text>
@@ -208,7 +208,7 @@
     <text transform="translate(515,30)">+3.0</text>
     <text transform="translate(573,30)">+3.5</text>
   </g>
-  <g aria-label="x-axis label" transform="translate(0.5,-26.5)">
+  <g aria-label="x-axis label" transform="translate(0,-27)">
     <text y="0.71em" transform="translate(360,30)">← decrease · Change in population, 2010–2019 (millions) · increase →</text>
   </g>
   <g aria-label="bar">
@@ -265,7 +265,7 @@
     <rect x="167" width="1" y="700" height="13" fill="rgb(225, 87, 89)"></rect>
     <rect x="168" width="1" y="658" height="13" fill="rgb(78, 121, 167)"></rect>
   </g>
-  <g aria-label="rule" stroke="currentColor" transform="translate(0.5,0)">
+  <g aria-label="rule" stroke="currentColor">
     <line x1="168" x2="168" y1="30" y2="780"></line>
   </g>
 </svg>

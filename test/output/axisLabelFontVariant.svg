@@ -13,21 +13,21 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor">
     <path transform="translate(80,30)" d="M0,0L0,6"></path>
     <path transform="translate(200,30)" d="M0,0L0,6"></path>
     <path transform="translate(320,30)" d="M0,0L0,6"></path>
     <path transform="translate(440,30)" d="M0,0L0,6"></path>
     <path transform="translate(560,30)" d="M0,0L0,6"></path>
   </g>
-  <g aria-label="x-axis tick label" font-variant="small-caps" transform="translate(0.5,9.5)">
+  <g aria-label="x-axis tick label" font-variant="small-caps" transform="translate(0,9)">
     <text y="0.71em" transform="translate(80,30)">a</text>
     <text y="0.71em" transform="translate(200,30)">b</text>
     <text y="0.71em" transform="translate(320,30)">c</text>
     <text y="0.71em" transform="translate(440,30)">d</text>
     <text y="0.71em" transform="translate(560,30)">e</text>
   </g>
-  <g aria-label="x-axis label" font-variant="small-caps" transform="translate(0.5,27.5)">
+  <g aria-label="x-axis label" font-variant="small-caps" transform="translate(0,27)">
     <text transform="translate(320,30)">Letter</text>
   </g>
 </svg>

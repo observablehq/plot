@@ -13,38 +13,38 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor">
     <path transform="translate(40,370)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,340.3766398645789)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,310.75327972915784)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,281.1299195937368)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,251.5065594583157)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,221.88319932289463)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,192.25983918747355)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,162.6364790520525)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,133.0131189166314)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,103.3897587812103)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,73.76639864578925)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,44.14303851036817)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,340.377)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,310.753)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,281.13)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,251.507)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,221.883)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,192.26)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,162.636)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,133.013)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,103.39)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,73.766)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,44.143)" d="M0,0L-6,0"></path>
   </g>
-  <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
+  <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-9,0)">
     <text y="0.32em" transform="translate(40,370)">0</text>
-    <text y="0.32em" transform="translate(40,340.3766398645789)">200</text>
-    <text y="0.32em" transform="translate(40,310.75327972915784)">400</text>
-    <text y="0.32em" transform="translate(40,281.1299195937368)">600</text>
-    <text y="0.32em" transform="translate(40,251.5065594583157)">800</text>
-    <text y="0.32em" transform="translate(40,221.88319932289463)">1,000</text>
-    <text y="0.32em" transform="translate(40,192.25983918747355)">1,200</text>
-    <text y="0.32em" transform="translate(40,162.6364790520525)">1,400</text>
-    <text y="0.32em" transform="translate(40,133.0131189166314)">1,600</text>
-    <text y="0.32em" transform="translate(40,103.3897587812103)">1,800</text>
-    <text y="0.32em" transform="translate(40,73.76639864578925)">2,000</text>
-    <text y="0.32em" transform="translate(40,44.14303851036817)">2,200</text>
+    <text y="0.32em" transform="translate(40,340.377)">200</text>
+    <text y="0.32em" transform="translate(40,310.753)">400</text>
+    <text y="0.32em" transform="translate(40,281.13)">600</text>
+    <text y="0.32em" transform="translate(40,251.507)">800</text>
+    <text y="0.32em" transform="translate(40,221.883)">1,000</text>
+    <text y="0.32em" transform="translate(40,192.26)">1,200</text>
+    <text y="0.32em" transform="translate(40,162.636)">1,400</text>
+    <text y="0.32em" transform="translate(40,133.013)">1,600</text>
+    <text y="0.32em" transform="translate(40,103.39)">1,800</text>
+    <text y="0.32em" transform="translate(40,73.766)">2,000</text>
+    <text y="0.32em" transform="translate(40,44.143)">2,200</text>
   </g>
-  <g aria-label="y-axis label" text-anchor="start" transform="translate(-36.5,-16.5)">
+  <g aria-label="y-axis label" text-anchor="start" transform="translate(-37,-17)">
     <text y="0.71em" transform="translate(40,20)">↑ Frequency</text>
   </g>
-  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(9.5,0)">
+  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(9,0)">
     <path transform="translate(51,370)" d="M0,0L0,6"></path>
     <path transform="translate(71,370)" d="M0,0L0,6"></path>
     <path transform="translate(91,370)" d="M0,0L0,6"></path>
@@ -74,7 +74,7 @@
     <path transform="translate(571,370)" d="M0,0L0,6"></path>
     <path transform="translate(591,370)" d="M0,0L0,6"></path>
   </g>
-  <g aria-label="x-axis tick label" text-anchor="end" transform="translate(9.5,9.5)">
+  <g aria-label="x-axis tick label" text-anchor="end" transform="translate(9,9)">
     <text y="0.32em" transform="translate(51,370) rotate(-90)">aquatics</text>
     <text y="0.32em" transform="translate(71,370) rotate(-90)">archery</text>
     <text y="0.32em" transform="translate(91,370) rotate(-90)">athletics</text>
@@ -105,120 +105,120 @@
     <text y="0.32em" transform="translate(591,370) rotate(-90)">wrestling</text>
   </g>
   <g aria-label="waffle">
-    <pattern width="4.443504020313162" height="4.443504020313162" patternUnits="userSpaceOnUse" id="plot-pattern-1">
-      <rect x="0.5" y="0.5" width="3.4435040203131617" height="3.4435040203131617"></rect>
+    <pattern width="4.444" height="4.444" patternUnits="userSpaceOnUse" id="plot-pattern-1">
+      <rect x="0.5" y="0.5" width="3.444" height="3.444"></rect>
     </pattern>
-    <pattern width="4.443504020313162" height="4.443504020313162" patternUnits="userSpaceOnUse" id="plot-pattern-2">
-      <rect x="0.5" y="0.5" width="3.4435040203131617" height="3.4435040203131617"></rect>
+    <pattern width="4.444" height="4.444" patternUnits="userSpaceOnUse" id="plot-pattern-2">
+      <rect x="0.5" y="0.5" width="3.444" height="3.444"></rect>
     </pattern>
-    <pattern width="4.443504020313162" height="4.443504020313162" patternUnits="userSpaceOnUse" id="plot-pattern-3">
-      <rect x="0.5" y="0.5" width="3.4435040203131617" height="3.4435040203131617"></rect>
+    <pattern width="4.444" height="4.444" patternUnits="userSpaceOnUse" id="plot-pattern-3">
+      <rect x="0.5" y="0.5" width="3.444" height="3.444"></rect>
     </pattern>
-    <pattern width="4.443504020313162" height="4.443504020313162" patternUnits="userSpaceOnUse" id="plot-pattern-4">
-      <rect x="0.5" y="0.5" width="3.4435040203131617" height="3.4435040203131617"></rect>
+    <pattern width="4.444" height="4.444" patternUnits="userSpaceOnUse" id="plot-pattern-4">
+      <rect x="0.5" y="0.5" width="3.444" height="3.444"></rect>
     </pattern>
-    <pattern width="4.443504020313162" height="4.443504020313162" patternUnits="userSpaceOnUse" id="plot-pattern-5">
-      <rect x="0.5" y="0.5" width="3.4435040203131617" height="3.4435040203131617"></rect>
+    <pattern width="4.444" height="4.444" patternUnits="userSpaceOnUse" id="plot-pattern-5">
+      <rect x="0.5" y="0.5" width="3.444" height="3.444"></rect>
     </pattern>
-    <pattern width="4.443504020313162" height="4.443504020313162" patternUnits="userSpaceOnUse" id="plot-pattern-6">
-      <rect x="0.5" y="0.5" width="3.4435040203131617" height="3.4435040203131617"></rect>
+    <pattern width="4.444" height="4.444" patternUnits="userSpaceOnUse" id="plot-pattern-6">
+      <rect x="0.5" y="0.5" width="3.444" height="3.444"></rect>
     </pattern>
-    <pattern width="4.443504020313162" height="4.443504020313162" patternUnits="userSpaceOnUse" id="plot-pattern-7">
-      <rect x="0.5" y="0.5" width="3.4435040203131617" height="3.4435040203131617"></rect>
+    <pattern width="4.444" height="4.444" patternUnits="userSpaceOnUse" id="plot-pattern-7">
+      <rect x="0.5" y="0.5" width="3.444" height="3.444"></rect>
     </pattern>
-    <pattern width="4.443504020313162" height="4.443504020313162" patternUnits="userSpaceOnUse" id="plot-pattern-8">
-      <rect x="0.5" y="0.5" width="3.4435040203131617" height="3.4435040203131617"></rect>
+    <pattern width="4.444" height="4.444" patternUnits="userSpaceOnUse" id="plot-pattern-8">
+      <rect x="0.5" y="0.5" width="3.444" height="3.444"></rect>
     </pattern>
-    <pattern width="4.443504020313162" height="4.443504020313162" patternUnits="userSpaceOnUse" id="plot-pattern-9">
-      <rect x="0.5" y="0.5" width="3.4435040203131617" height="3.4435040203131617"></rect>
+    <pattern width="4.444" height="4.444" patternUnits="userSpaceOnUse" id="plot-pattern-9">
+      <rect x="0.5" y="0.5" width="3.444" height="3.444"></rect>
     </pattern>
-    <pattern width="4.443504020313162" height="4.443504020313162" patternUnits="userSpaceOnUse" id="plot-pattern-10">
-      <rect x="0.5" y="0.5" width="3.4435040203131617" height="3.4435040203131617"></rect>
+    <pattern width="4.444" height="4.444" patternUnits="userSpaceOnUse" id="plot-pattern-10">
+      <rect x="0.5" y="0.5" width="3.444" height="3.444"></rect>
     </pattern>
-    <pattern width="4.443504020313162" height="4.443504020313162" patternUnits="userSpaceOnUse" id="plot-pattern-11">
-      <rect x="0.5" y="0.5" width="3.4435040203131617" height="3.4435040203131617"></rect>
+    <pattern width="4.444" height="4.444" patternUnits="userSpaceOnUse" id="plot-pattern-11">
+      <rect x="0.5" y="0.5" width="3.444" height="3.444"></rect>
     </pattern>
-    <pattern width="4.443504020313162" height="4.443504020313162" patternUnits="userSpaceOnUse" id="plot-pattern-12">
-      <rect x="0.5" y="0.5" width="3.4435040203131617" height="3.4435040203131617"></rect>
+    <pattern width="4.444" height="4.444" patternUnits="userSpaceOnUse" id="plot-pattern-12">
+      <rect x="0.5" y="0.5" width="3.444" height="3.444"></rect>
     </pattern>
-    <pattern width="4.443504020313162" height="4.443504020313162" patternUnits="userSpaceOnUse" id="plot-pattern-13">
-      <rect x="0.5" y="0.5" width="3.4435040203131617" height="3.4435040203131617"></rect>
+    <pattern width="4.444" height="4.444" patternUnits="userSpaceOnUse" id="plot-pattern-13">
+      <rect x="0.5" y="0.5" width="3.444" height="3.444"></rect>
     </pattern>
-    <pattern width="4.443504020313162" height="4.443504020313162" patternUnits="userSpaceOnUse" id="plot-pattern-14">
-      <rect x="0.5" y="0.5" width="3.4435040203131617" height="3.4435040203131617"></rect>
+    <pattern width="4.444" height="4.444" patternUnits="userSpaceOnUse" id="plot-pattern-14">
+      <rect x="0.5" y="0.5" width="3.444" height="3.444"></rect>
     </pattern>
-    <pattern width="4.443504020313162" height="4.443504020313162" patternUnits="userSpaceOnUse" id="plot-pattern-15">
-      <rect x="0.5" y="0.5" width="3.4435040203131617" height="3.4435040203131617"></rect>
+    <pattern width="4.444" height="4.444" patternUnits="userSpaceOnUse" id="plot-pattern-15">
+      <rect x="0.5" y="0.5" width="3.444" height="3.444"></rect>
     </pattern>
-    <pattern width="4.443504020313162" height="4.443504020313162" patternUnits="userSpaceOnUse" id="plot-pattern-16">
-      <rect x="0.5" y="0.5" width="3.4435040203131617" height="3.4435040203131617"></rect>
+    <pattern width="4.444" height="4.444" patternUnits="userSpaceOnUse" id="plot-pattern-16">
+      <rect x="0.5" y="0.5" width="3.444" height="3.444"></rect>
     </pattern>
-    <pattern width="4.443504020313162" height="4.443504020313162" patternUnits="userSpaceOnUse" id="plot-pattern-17">
-      <rect x="0.5" y="0.5" width="3.4435040203131617" height="3.4435040203131617"></rect>
+    <pattern width="4.444" height="4.444" patternUnits="userSpaceOnUse" id="plot-pattern-17">
+      <rect x="0.5" y="0.5" width="3.444" height="3.444"></rect>
     </pattern>
-    <pattern width="4.443504020313162" height="4.443504020313162" patternUnits="userSpaceOnUse" id="plot-pattern-18">
-      <rect x="0.5" y="0.5" width="3.4435040203131617" height="3.4435040203131617"></rect>
+    <pattern width="4.444" height="4.444" patternUnits="userSpaceOnUse" id="plot-pattern-18">
+      <rect x="0.5" y="0.5" width="3.444" height="3.444"></rect>
     </pattern>
-    <pattern width="4.443504020313162" height="4.443504020313162" patternUnits="userSpaceOnUse" id="plot-pattern-19">
-      <rect x="0.5" y="0.5" width="3.4435040203131617" height="3.4435040203131617"></rect>
+    <pattern width="4.444" height="4.444" patternUnits="userSpaceOnUse" id="plot-pattern-19">
+      <rect x="0.5" y="0.5" width="3.444" height="3.444"></rect>
     </pattern>
-    <pattern width="4.443504020313162" height="4.443504020313162" patternUnits="userSpaceOnUse" id="plot-pattern-20">
-      <rect x="0.5" y="0.5" width="3.4435040203131617" height="3.4435040203131617"></rect>
+    <pattern width="4.444" height="4.444" patternUnits="userSpaceOnUse" id="plot-pattern-20">
+      <rect x="0.5" y="0.5" width="3.444" height="3.444"></rect>
     </pattern>
-    <pattern width="4.443504020313162" height="4.443504020313162" patternUnits="userSpaceOnUse" id="plot-pattern-21">
-      <rect x="0.5" y="0.5" width="3.4435040203131617" height="3.4435040203131617"></rect>
+    <pattern width="4.444" height="4.444" patternUnits="userSpaceOnUse" id="plot-pattern-21">
+      <rect x="0.5" y="0.5" width="3.444" height="3.444"></rect>
     </pattern>
-    <pattern width="4.443504020313162" height="4.443504020313162" patternUnits="userSpaceOnUse" id="plot-pattern-22">
-      <rect x="0.5" y="0.5" width="3.4435040203131617" height="3.4435040203131617"></rect>
+    <pattern width="4.444" height="4.444" patternUnits="userSpaceOnUse" id="plot-pattern-22">
+      <rect x="0.5" y="0.5" width="3.444" height="3.444"></rect>
     </pattern>
-    <pattern width="4.443504020313162" height="4.443504020313162" patternUnits="userSpaceOnUse" id="plot-pattern-23">
-      <rect x="0.5" y="0.5" width="3.4435040203131617" height="3.4435040203131617"></rect>
+    <pattern width="4.444" height="4.444" patternUnits="userSpaceOnUse" id="plot-pattern-23">
+      <rect x="0.5" y="0.5" width="3.444" height="3.444"></rect>
     </pattern>
-    <pattern width="4.443504020313162" height="4.443504020313162" patternUnits="userSpaceOnUse" id="plot-pattern-24">
-      <rect x="0.5" y="0.5" width="3.4435040203131617" height="3.4435040203131617"></rect>
+    <pattern width="4.444" height="4.444" patternUnits="userSpaceOnUse" id="plot-pattern-24">
+      <rect x="0.5" y="0.5" width="3.444" height="3.444"></rect>
     </pattern>
-    <pattern width="4.443504020313162" height="4.443504020313162" patternUnits="userSpaceOnUse" id="plot-pattern-25">
-      <rect x="0.5" y="0.5" width="3.4435040203131617" height="3.4435040203131617"></rect>
+    <pattern width="4.444" height="4.444" patternUnits="userSpaceOnUse" id="plot-pattern-25">
+      <rect x="0.5" y="0.5" width="3.444" height="3.444"></rect>
     </pattern>
-    <pattern width="4.443504020313162" height="4.443504020313162" patternUnits="userSpaceOnUse" id="plot-pattern-26">
-      <rect x="0.5" y="0.5" width="3.4435040203131617" height="3.4435040203131617"></rect>
+    <pattern width="4.444" height="4.444" patternUnits="userSpaceOnUse" id="plot-pattern-26">
+      <rect x="0.5" y="0.5" width="3.444" height="3.444"></rect>
     </pattern>
-    <pattern width="4.443504020313162" height="4.443504020313162" patternUnits="userSpaceOnUse" id="plot-pattern-27">
-      <rect x="0.5" y="0.5" width="3.4435040203131617" height="3.4435040203131617"></rect>
+    <pattern width="4.444" height="4.444" patternUnits="userSpaceOnUse" id="plot-pattern-27">
+      <rect x="0.5" y="0.5" width="3.444" height="3.444"></rect>
     </pattern>
-    <pattern width="4.443504020313162" height="4.443504020313162" patternUnits="userSpaceOnUse" id="plot-pattern-28">
-      <rect x="0.5" y="0.5" width="3.4435040203131617" height="3.4435040203131617"></rect>
+    <pattern width="4.444" height="4.444" patternUnits="userSpaceOnUse" id="plot-pattern-28">
+      <rect x="0.5" y="0.5" width="3.444" height="3.444"></rect>
     </pattern>
-    <path transform="translate(93.33474396953025,370)" d="M0,0L0,0L0,0L0,0L0,0L13.330512060939485,0L13.330512060939485,-346.5933135844266L13.330512060939485,-346.5933135844266L13.330512060939485,-347.9263647905206L8.887008040626323,-347.9263647905206L8.887008040626323,-351.0368176047398L0,-351.0368176047398Z" fill="url(#plot-pattern-1)"></path>
-    <path transform="translate(233.33474396953025,370)" d="M0,0L0,0L0,0L0,0L0,0L13.330512060939485,0L13.330512060939485,-35.548032162505294L4.443504020313162,-35.548032162505294L4.443504020313162,-38.2141345746932L0,-38.2141345746932Z" fill="url(#plot-pattern-2)"></path>
-    <path transform="translate(493.3347439695303,370)" d="M0,0L0,0L0,0L0,0L0,0L13.330512060939485,0L13.330512060939485,-17.774016081252647L4.443504020313162,-17.774016081252647L4.443504020313162,-21.32881929750318L0,-21.32881929750318Z" fill="url(#plot-pattern-3)"></path>
-    <path transform="translate(193.33474396953025,370)" d="M0,0L0,0L0,0L0,0L0,0L13.330512060939485,0L13.330512060939485,-75.53956834532374L8.887008040626323,-75.53956834532374L8.887008040626323,-77.76132035548034L4.443504020313162,-77.76132035548034L4.443504020313162,-79.98307236563691L0,-79.98307236563691Z" fill="url(#plot-pattern-4)"></path>
-    <path transform="translate(533.3347439695302,370)" d="M0,0L0,0L0,0L0,0L0,0L13.330512060939485,0L13.330512060939485,-13.330512060939485L8.887008040626323,-13.330512060939485L8.887008040626323,-13.330512060939485L8.887008040626323,-13.330512060939485L8.887008040626323,-17.774016081252647L0,-17.774016081252647Z" fill="url(#plot-pattern-5)"></path>
-    <path transform="translate(553.3347439695302,370)" d="M0,0L0,0L0,0L0,0L0,0L13.330512060939485,0L13.330512060939485,-53.32204824375794L13.330512060939485,-53.32204824375794L13.330512060939485,-55.0994498518832L8.887008040626323,-55.0994498518832L8.887008040626323,-57.765552264071104L0,-57.765552264071104Z" fill="url(#plot-pattern-6)"></path>
-    <path transform="translate(53.33474396953026,370)" d="M0,0L0,0L0,0L0,0L0,0L13.330512060939485,0L13.330512060939485,-213.28819297503176L4.443504020313162,-213.28819297503176L4.443504020313162,-215.50994498518835L0,-215.50994498518835Z" fill="url(#plot-pattern-7)"></path>
-    <path transform="translate(413.3347439695303,370)" d="M0,0L0,0L0,0L0,0L0,0L13.330512060939485,0L13.330512060939485,-44.43504020313162L0,-44.43504020313162L0,-44.43504020313162L0,-44.43504020313162Z" fill="url(#plot-pattern-8)"></path>
-    <path transform="translate(593.3347439695302,370)" d="M0,0L0,0L0,0L0,0L0,0L13.330512060939485,0L13.330512060939485,-48.87854422344478L13.330512060939485,-48.87854422344478L13.330512060939485,-50.21159542953871L8.887008040626323,-50.21159542953871L8.887008040626323,-53.32204824375794L0,-53.32204824375794Z" fill="url(#plot-pattern-9)"></path>
-    <path transform="translate(253.33474396953025,370)" d="M0,0L0,0L0,0L0,0L0,0L13.330512060939485,0L13.330512060939485,-88.87008040626324L8.887008040626323,-88.87008040626324L8.887008040626323,-89.31443080829456L4.443504020313162,-89.31443080829456L4.443504020313162,-93.3135844265764L0,-93.3135844265764Z" fill="url(#plot-pattern-10)"></path>
-    <path transform="translate(453.3347439695303,370)" d="M0,0L0,0L0,0L0,0L0,0L13.330512060939485,0L13.330512060939485,-57.765552264071104L0,-57.765552264071104L0,-57.765552264071104L0,-57.765552264071104Z" fill="url(#plot-pattern-11)"></path>
-    <path transform="translate(153.33474396953025,370)" d="M0,0L0,0L0,0L0,0L0,0L13.330512060939485,0L13.330512060939485,-39.99153618281846L8.887008040626323,-39.99153618281846L8.887008040626323,-42.65763859500636L4.443504020313162,-42.65763859500636L4.443504020313162,-44.43504020313162L0,-44.43504020313162Z" fill="url(#plot-pattern-12)"></path>
-    <path transform="translate(213.33474396953025,370)" d="M0,0L0,0L0,0L0,0L0,0L13.330512060939485,0L13.330512060939485,-31.10452814219213L8.887008040626323,-31.10452814219213L8.887008040626323,-31.99322894625476L4.443504020313162,-31.99322894625476L4.443504020313162,-35.548032162505294L0,-35.548032162505294Z" fill="url(#plot-pattern-13)"></path>
-    <path transform="translate(393.3347439695303,370)" d="M0,0L0,0L0,0L0,0L0,0L13.330512060939485,0L13.330512060939485,-79.98307236563691L4.443504020313162,-79.98307236563691L4.443504020313162,-83.09352517985614L0,-83.09352517985614Z" fill="url(#plot-pattern-14)"></path>
-    <path transform="translate(353.3347439695303,370)" d="M0,0L0,0L0,0L0,0L0,0L13.330512060939485,0L13.330512060939485,-57.765552264071104L4.443504020313162,-57.765552264071104L4.443504020313162,-58.65425306813375L0,-58.65425306813375Z" fill="url(#plot-pattern-15)"></path>
-    <path transform="translate(313.3347439695303,370)" d="M0,0L0,0L0,0L0,0L0,0L13.330512060939485,0L13.330512060939485,-53.32204824375794L4.443504020313162,-53.32204824375794L4.443504020313162,-54.655099449851875L0,-54.655099449851875Z" fill="url(#plot-pattern-16)"></path>
-    <path transform="translate(113.33474396953025,370)" d="M0,0L0,0L0,0L0,0L0,0L13.330512060939485,0L13.330512060939485,-22.21752010156581L13.330512060939485,-22.21752010156581L13.330512060939485,-23.106220905628437L8.887008040626323,-23.106220905628437L8.887008040626323,-26.66102412187897L0,-26.66102412187897Z" fill="url(#plot-pattern-17)"></path>
-    <path transform="translate(333.3347439695303,370)" d="M0,0L0,0L0,0L0,0L0,0L13.330512060939485,0L13.330512060939485,-62.20905628438426L8.887008040626323,-62.20905628438426L8.887008040626323,-63.09775708844691L4.443504020313162,-63.09775708844691L4.443504020313162,-66.65256030469743L0,-66.65256030469743Z" fill="url(#plot-pattern-18)"></path>
-    <path transform="translate(373.3347439695303,370)" d="M0,0L0,0L0,0L0,0L0,0L13.330512060939485,0L13.330512060939485,-8.887008040626323L8.887008040626323,-8.887008040626323L8.887008040626323,-9.775708844688957L4.443504020313162,-9.775708844688957L4.443504020313162,-13.330512060939485L0,-13.330512060939485Z" fill="url(#plot-pattern-19)"></path>
-    <path transform="translate(473.3347439695303,370)" d="M0,0L0,0L0,0L0,0L0,0L13.330512060939485,0L13.330512060939485,-22.21752010156581L13.330512060939485,-22.21752010156581L13.330512060939485,-23.106220905628437L8.887008040626323,-23.106220905628437L8.887008040626323,-26.66102412187897L0,-26.66102412187897Z" fill="url(#plot-pattern-20)"></path>
-    <path transform="translate(173.33474396953025,370)" d="M0,0L0,0L0,0L0,0L0,0L13.330512060939485,0L13.330512060939485,-48.87854422344478L4.443504020313162,-48.87854422344478L4.443504020313162,-49.3228946254761L0,-49.3228946254761Z" fill="url(#plot-pattern-21)"></path>
-    <path transform="translate(133.33474396953025,370)" d="M0,0L0,0L0,0L0,0L0,0L13.330512060939485,0L13.330512060939485,-39.99153618281846L8.887008040626323,-39.99153618281846L8.887008040626323,-43.54633939906899L4.443504020313162,-43.54633939906899L4.443504020313162,-44.43504020313162L0,-44.43504020313162Z" fill="url(#plot-pattern-22)"></path>
-    <path transform="translate(273.3347439695303,370)" d="M0,0L0,0L0,0L0,0L0,0L13.330512060939485,0L13.330512060939485,-17.774016081252647L0,-17.774016081252647L0,-17.774016081252647L0,-17.774016081252647Z" fill="url(#plot-pattern-23)"></path>
-    <path transform="translate(73.33474396953025,370)" d="M0,0L0,0L0,0L0,0L0,0L13.330512060939485,0L13.330512060939485,-17.774016081252647L4.443504020313162,-17.774016081252647L4.443504020313162,-21.32881929750318L0,-21.32881929750318Z" fill="url(#plot-pattern-24)"></path>
-    <path transform="translate(573.3347439695302,370)" d="M0,0L0,0L0,0L0,0L0,0L13.330512060939485,0L13.330512060939485,-35.548032162505294L8.887008040626323,-35.548032162505294L8.887008040626323,-39.10283537875583L4.443504020313162,-39.10283537875583L4.443504020313162,-39.99153618281846L0,-39.99153618281846Z" fill="url(#plot-pattern-25)"></path>
-    <path transform="translate(433.3347439695303,370)" d="M0,0L0,0L0,0L0,0L0,0L13.330512060939485,0L13.330512060939485,-53.32204824375794L8.887008040626323,-53.32204824375794L8.887008040626323,-53.32204824375794L8.887008040626323,-53.32204824375794L8.887008040626323,-57.765552264071104L0,-57.765552264071104Z" fill="url(#plot-pattern-26)"></path>
-    <path transform="translate(513.3347439695302,370)" d="M0,0L0,0L0,0L0,0L0,0L13.330512060939485,0L13.330512060939485,-26.66102412187897L8.887008040626323,-26.66102412187897L8.887008040626323,-29.327126534066874L4.443504020313162,-29.327126534066874L4.443504020313162,-31.10452814219213L0,-31.10452814219213Z" fill="url(#plot-pattern-27)"></path>
-    <path transform="translate(293.3347439695303,370)" d="M0,0L0,0L0,0L0,0L0,0L13.330512060939485,0L13.330512060939485,-44.43504020313162L13.330512060939485,-44.43504020313162L13.330512060939485,-46.21244181125687L8.887008040626323,-46.21244181125687L8.887008040626323,-48.87854422344478L0,-48.87854422344478Z" fill="url(#plot-pattern-28)"></path>
+    <path transform="translate(93.335,370)" d="M0,0L0,0L0,0L0,0L0,0L13.331,0L13.331,-346.593L13.331,-346.593L13.331,-347.926L8.887,-347.926L8.887,-351.037L0,-351.037Z" fill="url(#plot-pattern-1)"></path>
+    <path transform="translate(233.335,370)" d="M0,0L0,0L0,0L0,0L0,0L13.331,0L13.331,-35.548L4.444,-35.548L4.444,-38.214L0,-38.214Z" fill="url(#plot-pattern-2)"></path>
+    <path transform="translate(493.335,370)" d="M0,0L0,0L0,0L0,0L0,0L13.331,0L13.331,-17.774L4.444,-17.774L4.444,-21.329L0,-21.329Z" fill="url(#plot-pattern-3)"></path>
+    <path transform="translate(193.335,370)" d="M0,0L0,0L0,0L0,0L0,0L13.331,0L13.331,-75.54L8.887,-75.54L8.887,-77.761L4.444,-77.761L4.444,-79.983L0,-79.983Z" fill="url(#plot-pattern-4)"></path>
+    <path transform="translate(533.335,370)" d="M0,0L0,0L0,0L0,0L0,0L13.331,0L13.331,-13.331L8.887,-13.331L8.887,-13.331L8.887,-13.331L8.887,-17.774L0,-17.774Z" fill="url(#plot-pattern-5)"></path>
+    <path transform="translate(553.335,370)" d="M0,0L0,0L0,0L0,0L0,0L13.331,0L13.331,-53.322L13.331,-53.322L13.331,-55.099L8.887,-55.099L8.887,-57.766L0,-57.766Z" fill="url(#plot-pattern-6)"></path>
+    <path transform="translate(53.335,370)" d="M0,0L0,0L0,0L0,0L0,0L13.331,0L13.331,-213.288L4.444,-213.288L4.444,-215.51L0,-215.51Z" fill="url(#plot-pattern-7)"></path>
+    <path transform="translate(413.335,370)" d="M0,0L0,0L0,0L0,0L0,0L13.331,0L13.331,-44.435L0,-44.435L0,-44.435L0,-44.435Z" fill="url(#plot-pattern-8)"></path>
+    <path transform="translate(593.335,370)" d="M0,0L0,0L0,0L0,0L0,0L13.331,0L13.331,-48.879L13.331,-48.879L13.331,-50.212L8.887,-50.212L8.887,-53.322L0,-53.322Z" fill="url(#plot-pattern-9)"></path>
+    <path transform="translate(253.335,370)" d="M0,0L0,0L0,0L0,0L0,0L13.331,0L13.331,-88.87L8.887,-88.87L8.887,-89.314L4.444,-89.314L4.444,-93.314L0,-93.314Z" fill="url(#plot-pattern-10)"></path>
+    <path transform="translate(453.335,370)" d="M0,0L0,0L0,0L0,0L0,0L13.331,0L13.331,-57.766L0,-57.766L0,-57.766L0,-57.766Z" fill="url(#plot-pattern-11)"></path>
+    <path transform="translate(153.335,370)" d="M0,0L0,0L0,0L0,0L0,0L13.331,0L13.331,-39.992L8.887,-39.992L8.887,-42.658L4.444,-42.658L4.444,-44.435L0,-44.435Z" fill="url(#plot-pattern-12)"></path>
+    <path transform="translate(213.335,370)" d="M0,0L0,0L0,0L0,0L0,0L13.331,0L13.331,-31.105L8.887,-31.105L8.887,-31.993L4.444,-31.993L4.444,-35.548L0,-35.548Z" fill="url(#plot-pattern-13)"></path>
+    <path transform="translate(393.335,370)" d="M0,0L0,0L0,0L0,0L0,0L13.331,0L13.331,-79.983L4.444,-79.983L4.444,-83.094L0,-83.094Z" fill="url(#plot-pattern-14)"></path>
+    <path transform="translate(353.335,370)" d="M0,0L0,0L0,0L0,0L0,0L13.331,0L13.331,-57.766L4.444,-57.766L4.444,-58.654L0,-58.654Z" fill="url(#plot-pattern-15)"></path>
+    <path transform="translate(313.335,370)" d="M0,0L0,0L0,0L0,0L0,0L13.331,0L13.331,-53.322L4.444,-53.322L4.444,-54.655L0,-54.655Z" fill="url(#plot-pattern-16)"></path>
+    <path transform="translate(113.335,370)" d="M0,0L0,0L0,0L0,0L0,0L13.331,0L13.331,-22.218L13.331,-22.218L13.331,-23.106L8.887,-23.106L8.887,-26.661L0,-26.661Z" fill="url(#plot-pattern-17)"></path>
+    <path transform="translate(333.335,370)" d="M0,0L0,0L0,0L0,0L0,0L13.331,0L13.331,-62.209L8.887,-62.209L8.887,-63.098L4.444,-63.098L4.444,-66.653L0,-66.653Z" fill="url(#plot-pattern-18)"></path>
+    <path transform="translate(373.335,370)" d="M0,0L0,0L0,0L0,0L0,0L13.331,0L13.331,-8.887L8.887,-8.887L8.887,-9.776L4.444,-9.776L4.444,-13.331L0,-13.331Z" fill="url(#plot-pattern-19)"></path>
+    <path transform="translate(473.335,370)" d="M0,0L0,0L0,0L0,0L0,0L13.331,0L13.331,-22.218L13.331,-22.218L13.331,-23.106L8.887,-23.106L8.887,-26.661L0,-26.661Z" fill="url(#plot-pattern-20)"></path>
+    <path transform="translate(173.335,370)" d="M0,0L0,0L0,0L0,0L0,0L13.331,0L13.331,-48.879L4.444,-48.879L4.444,-49.323L0,-49.323Z" fill="url(#plot-pattern-21)"></path>
+    <path transform="translate(133.335,370)" d="M0,0L0,0L0,0L0,0L0,0L13.331,0L13.331,-39.992L8.887,-39.992L8.887,-43.546L4.444,-43.546L4.444,-44.435L0,-44.435Z" fill="url(#plot-pattern-22)"></path>
+    <path transform="translate(273.335,370)" d="M0,0L0,0L0,0L0,0L0,0L13.331,0L13.331,-17.774L0,-17.774L0,-17.774L0,-17.774Z" fill="url(#plot-pattern-23)"></path>
+    <path transform="translate(73.335,370)" d="M0,0L0,0L0,0L0,0L0,0L13.331,0L13.331,-17.774L4.444,-17.774L4.444,-21.329L0,-21.329Z" fill="url(#plot-pattern-24)"></path>
+    <path transform="translate(573.335,370)" d="M0,0L0,0L0,0L0,0L0,0L13.331,0L13.331,-35.548L8.887,-35.548L8.887,-39.103L4.444,-39.103L4.444,-39.992L0,-39.992Z" fill="url(#plot-pattern-25)"></path>
+    <path transform="translate(433.335,370)" d="M0,0L0,0L0,0L0,0L0,0L13.331,0L13.331,-53.322L8.887,-53.322L8.887,-53.322L8.887,-53.322L8.887,-57.766L0,-57.766Z" fill="url(#plot-pattern-26)"></path>
+    <path transform="translate(513.335,370)" d="M0,0L0,0L0,0L0,0L0,0L13.331,0L13.331,-26.661L8.887,-26.661L8.887,-29.327L4.444,-29.327L4.444,-31.105L0,-31.105Z" fill="url(#plot-pattern-27)"></path>
+    <path transform="translate(293.335,370)" d="M0,0L0,0L0,0L0,0L0,0L13.331,0L13.331,-44.435L13.331,-44.435L13.331,-46.212L8.887,-46.212L8.887,-48.879L0,-48.879Z" fill="url(#plot-pattern-28)"></path>
   </g>
-  <g aria-label="rule" stroke="currentColor" transform="translate(0,0.5)">
+  <g aria-label="rule" stroke="currentColor">
     <line x1="40" x2="620" y1="370" y2="370"></line>
   </g>
 </svg>

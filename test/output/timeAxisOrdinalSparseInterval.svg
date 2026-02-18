@@ -13,32 +13,32 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor">
     <path transform="translate(40,370)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,329.47197800213075)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,288.94395600426145)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,248.41593400639226)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,207.887912008523)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,167.35989001065371)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,126.83186801278447)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,86.3038460149152)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,45.775824017045935)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,329.472)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,288.944)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,248.416)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,207.888)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,167.36)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,126.832)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,86.304)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,45.776)" d="M0,0L-6,0"></path>
   </g>
-  <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
+  <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-9,0)">
     <text y="0.32em" transform="translate(40,370)">0</text>
-    <text y="0.32em" transform="translate(40,329.47197800213075)">20</text>
-    <text y="0.32em" transform="translate(40,288.94395600426145)">40</text>
-    <text y="0.32em" transform="translate(40,248.41593400639226)">60</text>
-    <text y="0.32em" transform="translate(40,207.887912008523)">80</text>
-    <text y="0.32em" transform="translate(40,167.35989001065371)">100</text>
-    <text y="0.32em" transform="translate(40,126.83186801278447)">120</text>
-    <text y="0.32em" transform="translate(40,86.3038460149152)">140</text>
-    <text y="0.32em" transform="translate(40,45.775824017045935)">160</text>
+    <text y="0.32em" transform="translate(40,329.472)">20</text>
+    <text y="0.32em" transform="translate(40,288.944)">40</text>
+    <text y="0.32em" transform="translate(40,248.416)">60</text>
+    <text y="0.32em" transform="translate(40,207.888)">80</text>
+    <text y="0.32em" transform="translate(40,167.36)">100</text>
+    <text y="0.32em" transform="translate(40,126.832)">120</text>
+    <text y="0.32em" transform="translate(40,86.304)">140</text>
+    <text y="0.32em" transform="translate(40,45.776)">160</text>
   </g>
-  <g aria-label="y-axis label" text-anchor="start" transform="translate(-36.5,-16.5)">
+  <g aria-label="y-axis label" text-anchor="start" transform="translate(-37,-17)">
     <text y="0.71em" transform="translate(40,20)">↑ Close</text>
   </g>
-  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(43.5,0)">
+  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(43,0)">
     <path transform="translate(50,370)" d="M0,0L0,6"></path>
     <path transform="translate(145,370)" d="M0,0L0,6"></path>
     <path transform="translate(240,370)" d="M0,0L0,6"></path>
@@ -46,7 +46,7 @@
     <path transform="translate(430,370)" d="M0,0L0,6"></path>
     <path transform="translate(525,370)" d="M0,0L0,6"></path>
   </g>
-  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(43.5,9.5)">
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(43,9)">
     <text y="0.71em" transform="translate(50,370)">2012-11-04</text>
     <text y="0.71em" transform="translate(145,370)">2013-11-03</text>
     <text y="0.71em" transform="translate(240,370)">2014-11-02</text>
@@ -55,11 +55,11 @@
     <text y="0.71em" transform="translate(525,370)">2017-10-29</text>
   </g>
   <g aria-label="bar">
-    <rect x="50" width="86" y="236.32266100438474" height="133.67733899561526"><title>2013-05-13</title></rect>
-    <rect x="145" width="86" y="198.52884073339024" height="171.47115926660976"><title>2013-11-04</title></rect>
-    <rect x="240" width="86" y="127.8450685627312" height="242.1549314372688"><title>2014-11-03</title></rect>
-    <rect x="335" width="86" y="155.84993176325887" height="214.15006823674113"><title>2015-11-02</title></rect>
-    <rect x="430" width="86" y="78.1577054877391" height="291.8422945122609"><title>2016-10-31</title></rect>
+    <rect x="50" width="86" y="236.323" height="133.677"><title>2013-05-13</title></rect>
+    <rect x="145" width="86" y="198.529" height="171.471"><title>2013-11-04</title></rect>
+    <rect x="240" width="86" y="127.845" height="242.155"><title>2014-11-03</title></rect>
+    <rect x="335" width="86" y="155.85" height="214.15"><title>2015-11-02</title></rect>
+    <rect x="430" width="86" y="78.158" height="291.842"><title>2016-10-31</title></rect>
     <rect x="525" width="86" y="20" height="350"><title>2017-10-30</title></rect>
   </g>
 </svg>

@@ -13,23 +13,23 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor">
     <path transform="translate(120,30)" d="M0,0L0,6"></path>
     <path transform="translate(320,30)" d="M0,0L0,6"></path>
     <path transform="translate(520,30)" d="M0,0L0,6"></path>
   </g>
-  <g aria-label="x-axis tick label" transform="translate(0.5,9.5)">
+  <g aria-label="x-axis tick label" transform="translate(0,9)">
     <text y="0.71em" transform="translate(120,30)">Biscoe</text>
     <text y="0.71em" transform="translate(320,30)">Dream</text>
     <text y="0.71em" transform="translate(520,30)">Torgersen</text>
   </g>
-  <g aria-label="x-axis label" transform="translate(0.5,27.5)">
+  <g aria-label="x-axis label" transform="translate(0,27)">
     <text transform="translate(320,30)">island</text>
   </g>
-  <g aria-label="dot" fill="none" stroke="currentColor" stroke-width="1.5" transform="translate(0.5,0.5)">
-    <circle cx="120" cy="15" r="4.145095678246545"></circle>
-    <circle cx="320" cy="15" r="3.5611540519637983"></circle>
-    <circle cx="520" cy="15" r="2.306118344357422"></circle>
+  <g aria-label="dot" fill="none" stroke="currentColor" stroke-width="1.5">
+    <circle cx="120" cy="15.25" r="4.145"></circle>
+    <circle cx="320" cy="15.25" r="3.561"></circle>
+    <circle cx="520" cy="15.25" r="2.306"></circle>
   </g>
-  <g aria-label="tip" fill="var(--plot-background)" stroke="currentColor" pointer-events="none" text-anchor="start" transform="translate(0.5,0.5)"></g>
+  <g aria-label="tip" fill="var(--plot-background)" stroke="currentColor" pointer-events="none" text-anchor="start"></g>
 </svg>

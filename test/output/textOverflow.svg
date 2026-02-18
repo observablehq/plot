@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="fx-axis tick label" transform="translate(0.5,-8.5)">
+  <g aria-label="fx-axis tick label" transform="translate(0,-9)">
     <g transform="translate(2,0)">
       <text transform="translate(225.5,30)">clip-start</text>
     </g>
@@ -33,7 +33,7 @@
       <text transform="translate(225.5,30)">monospace</text>
     </g>
   </g>
-  <g aria-label="y-axis tick" aria-hidden="true" transform="translate(0,0.5)">
+  <g aria-label="y-axis tick" aria-hidden="true">
     <g fill="none" stroke="currentColor" transform="translate(2,0)">
       <path transform="translate(180,42)" d="M0,0L-6,0"></path>
       <path transform="translate(180,63)" d="M0,0L-6,0"></path>
@@ -74,7 +74,7 @@
       <path transform="translate(180,798)" d="M0,0L-6,0"></path>
     </g>
   </g>
-  <g aria-label="y-axis tick label" transform="translate(-8.5,0.5)">
+  <g aria-label="y-axis tick label" transform="translate(-9,0)">
     <g text-anchor="end" transform="translate(2,0)">
       <text y="0.32em" transform="translate(180,42)">The Best Years of Our Lives</text>
       <text y="0.32em" transform="translate(180,63)">The Ballad of Gregorio Cortez</text>
@@ -115,7 +115,7 @@
       <text y="0.32em" transform="translate(180,798)">🧑🏾.👨🏻.👧🏼.👦🏽.🧒🏿.🧑🏾.👨🏻.👧🏼.👦🏽.🧒🏿</text>
     </g>
   </g>
-  <g aria-label="text" transform="translate(4.5,0.5)">
+  <g aria-label="text" transform="translate(4,0)">
     <g text-anchor="start" transform="translate(2,0)">
       <text y="0.32em" transform="translate(180,42)">ars of Our Lives<title>The Best Years of Our Lives</title></text>
       <text y="0.32em" transform="translate(180,63)">Gregorio Cortez<title>The Ballad of Gregorio Cortez</title></text>
@@ -157,7 +157,7 @@
       <text y="0.32em" transform="translate(180,798)">.🧑🏾.👨🏻.👧🏼.👦🏽.🧒🏿<title>🧑🏾.👨🏻.👧🏼.👦🏽.🧒🏿.🧑🏾.👨🏻.👧🏼.👦🏽.🧒🏿</title></text>
     </g>
   </g>
-  <g aria-label="text" transform="translate(-3.5,0.5)">
+  <g aria-label="text" transform="translate(-4,0)">
     <g text-anchor="end" transform="translate(103,0)">
       <text y="0.32em" transform="translate(271,42)">The Best Years<title>The Best Years of Our Lives</title></text>
       <text y="0.32em" transform="translate(271,63)">The Ballad of Gr<title>The Ballad of Gregorio Cortez</title></text>
@@ -199,7 +199,7 @@
       <text y="0.32em" transform="translate(271,798)">🧑🏾.👨🏻.👧🏼.👦🏽.🧒🏿.<title>🧑🏾.👨🏻.👧🏼.👦🏽.🧒🏿.🧑🏾.👨🏻.👧🏼.👦🏽.🧒🏿</title></text>
     </g>
   </g>
-  <g aria-label="text" transform="translate(4.5,0.5)">
+  <g aria-label="text" transform="translate(4,0)">
     <g text-anchor="start" transform="translate(204,0)">
       <text y="0.32em" transform="translate(180,42)">…rs of Our Lives<title>The Best Years of Our Lives</title></text>
       <text y="0.32em" transform="translate(180,63)">…regorio Cortez<title>The Ballad of Gregorio Cortez</title></text>
@@ -241,7 +241,7 @@
       <text y="0.32em" transform="translate(180,798)">….👨🏻.👧🏼.👦🏽.🧒🏿<title>🧑🏾.👨🏻.👧🏼.👦🏽.🧒🏿.🧑🏾.👨🏻.👧🏼.👦🏽.🧒🏿</title></text>
     </g>
   </g>
-  <g aria-label="text" transform="translate(0.5,0.5)">
+  <g aria-label="text">
     <g transform="translate(305,0)">
       <text y="0.32em" transform="translate(225.5,42)">The Be…ur Lives<title>The Best Years of Our Lives</title></text>
       <text y="0.32em" transform="translate(225.5,63)">The Ba…Cortez<title>The Ballad of Gregorio Cortez</title></text>
@@ -283,7 +283,7 @@
       <text y="0.32em" transform="translate(225.5,798)">🧑🏾.👨🏻.….👦🏽.🧒🏿<title>🧑🏾.👨🏻.👧🏼.👦🏽.🧒🏿.🧑🏾.👨🏻.👧🏼.👦🏽.🧒🏿</title></text>
     </g>
   </g>
-  <g aria-label="text" transform="translate(-3.5,0.5)">
+  <g aria-label="text" transform="translate(-4,0)">
     <g text-anchor="end" transform="translate(406,0)">
       <text y="0.32em" transform="translate(271,42)">The Best Year…<title>The Best Years of Our Lives</title></text>
       <text y="0.32em" transform="translate(271,63)">The Ballad of…<title>The Ballad of Gregorio Cortez</title></text>
@@ -325,7 +325,7 @@
       <text y="0.32em" transform="translate(271,798)">🧑🏾.👨🏻.👧🏼.👦🏽.…<title>🧑🏾.👨🏻.👧🏼.👦🏽.🧒🏿.🧑🏾.👨🏻.👧🏼.👦🏽.🧒🏿</title></text>
     </g>
   </g>
-  <g aria-label="text" transform="translate(-3.5,0.5)">
+  <g aria-label="text" transform="translate(-4,0)">
     <g text-anchor="end" font-family="ui-monospace, monospace" transform="translate(507,0)">
       <text y="0.32em" transform="translate(271,42)">The Best Ye…<title>The Best Years of Our Lives</title></text>
       <text y="0.32em" transform="translate(271,63)">The Ballad…<title>The Ballad of Gregorio Cortez</title></text>
@@ -367,7 +367,7 @@
       <text y="0.32em" transform="translate(271,798)">🧑🏾.👨🏻.👧🏼.👦🏽…<title>🧑🏾.👨🏻.👧🏼.👦🏽.🧒🏿.🧑🏾.👨🏻.👧🏼.👦🏽.🧒🏿</title></text>
     </g>
   </g>
-  <g aria-label="frame" transform="translate(0.5,0.5)">
+  <g aria-label="frame">
     <rect fill="none" stroke="currentColor" x="180" y="30" width="91" height="780" transform="translate(2,0)"></rect>
     <rect fill="none" stroke="currentColor" x="180" y="30" width="91" height="780" transform="translate(103,0)"></rect>
     <rect fill="none" stroke="currentColor" x="180" y="30" width="91" height="780" transform="translate(204,0)"></rect>

@@ -1,4 +1,4 @@
-<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="400" height="407.26108765585843" viewBox="0 0 400 407.26108765585843" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="400" height="407.261" viewBox="0 0 400 407.261" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <style>
     :where(.plot) {
       --plot-background: white;
@@ -13,36 +13,36 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="dot" fill="none" stroke="currentColor" stroke-width="1.5" transform="translate(0.5,0.5)">
-    <circle cx="60" cy="104.63999999999999" r="40"></circle>
-    <circle cx="339" cy="104.64000000000004" r="40"></circle>
-    <circle cx="199.49999999999997" cy="346.26108765585843" r="40"></circle>
+  <g aria-label="dot" fill="none" stroke="currentColor" stroke-width="1.5">
+    <circle cx="60.5" cy="105.14" r="40"></circle>
+    <circle cx="339.5" cy="105.14" r="40"></circle>
+    <circle cx="200" cy="346.761" r="40"></circle>
   </g>
-  <g aria-label="arrow" fill="none" stroke="currentColor" stroke-linecap="round" stroke-miterlimit="1" transform="translate(0.5,0.5)">
+  <g aria-label="arrow" fill="none" stroke="currentColor" stroke-linecap="round" stroke-miterlimit="1">
     <path stroke-opacity="0.3"></path>
-    <path d="M112.25639313674904,87.48571842549387A364.5310672005091,364.5310672005091 0,0,1 286.74360686324974,87.48571842549364M282.89725239509653,83.79112754831084L286.74360686324974,87.48571842549364L281.6208200729426,88.9694636682827" stroke-opacity="0.2"></path>
-    <path d="M100.98424019556842,141.31822317931886A364.53106720050914,364.53106720050914 0,0,1 188.22784705881907,292.4285829020338M189.504279380973,287.25024678206194L188.22784705881907,292.4285829020338L184.38149259066589,288.733992024851" stroke-opacity="0.5"></path>
-    <path d="M286.743606863251,121.79428157450613A364.5310672005091,364.5310672005091 0,0,1 112.25639313674986,121.79428157450624M116.10274760490306,125.48887245168905L112.25639313674986,121.79428157450624L117.37917992705701,120.3105363317172" stroke-opacity="0.1"></path>
+    <path d="M112.756,87.986A364.531,364.531 0,0,1 287.244,87.986M283.397,84.291L287.244,87.986L282.121,89.469" stroke-opacity="0.2"></path>
+    <path d="M101.484,141.818A364.531,364.531 0,0,1 188.728,292.929M190.004,287.75L188.728,292.929L184.881,289.234" stroke-opacity="0.5"></path>
+    <path d="M287.244,122.294A364.531,364.531 0,0,1 112.756,122.294M116.603,125.989L112.756,122.294L117.879,120.811" stroke-opacity="0.1"></path>
     <path stroke-opacity="0.7"></path>
-    <path d="M327.7278470588192,158.47250475382447A364.53106720050914,364.53106720050914 0,0,1 240.48424019556842,309.5828644765396M245.60702698587556,308.09911923375057L240.48424019556842,309.5828644765396L241.76067251772236,304.40452835656777" stroke-opacity="0.2"></path>
-    <path d="M158.51575980443153,309.58286447653956A364.53106720050914,364.53106720050914 0,0,1 71.27215294118093,158.47250475382464M69.99572061902698,163.65084087379648L71.27215294118093,158.47250475382464L75.11850740933411,162.16709563100744" stroke-opacity="0.1"></path>
-    <path d="M210.772152941181,292.4285829020334A364.53106720050914,364.53106720050914 0,0,1 298.01575980443147,141.31822317931878M292.8929730141243,142.80196842210782L298.01575980443147,141.31822317931878L296.73932748227753,146.49655929929062" stroke-opacity="0.1"></path>
+    <path d="M328.228,158.973A364.531,364.531 0,0,1 240.984,310.083M246.107,308.599L240.984,310.083L242.261,304.905" stroke-opacity="0.2"></path>
+    <path d="M159.016,310.083A364.531,364.531 0,0,1 71.772,158.973M70.496,164.151L71.772,158.973L75.619,162.667" stroke-opacity="0.1"></path>
+    <path d="M211.272,292.929A364.531,364.531 0,0,1 298.516,141.818M293.393,143.302L298.516,141.818L297.239,146.997" stroke-opacity="0.1"></path>
     <path stroke-opacity="0.8"></path>
   </g>
-  <g aria-label="text" transform="translate(0.5,55.5)">
-    <text y="0.32em" transform="translate(60,104.63999999999999)">A</text>
-    <text y="0.32em" transform="translate(339,104.64000000000004)">B</text>
-    <text y="0.32em" transform="translate(199.49999999999997,346.26108765585843)">C</text>
+  <g aria-label="text" transform="translate(0,55)">
+    <text y="0.32em" transform="translate(60.5,105.14)">A</text>
+    <text y="0.32em" transform="translate(339.5,105.14)">B</text>
+    <text y="0.32em" transform="translate(200,346.761)">C</text>
   </g>
-  <g aria-label="text" font-variant="tabular-nums" transform="translate(0.5,0.5)">
-    <text y="0.32em" transform="translate(60,104.63999999999999)">0.3</text>
-    <text y="0.32em" transform="translate(199.50000000000003,60)">0.2</text>
-    <text y="0.32em" transform="translate(168.40937402493734,203.13054382792922)">0.5</text>
-    <text y="0.32em" transform="translate(199.49999999999997,149.28000000000003)">0.1</text>
-    <text y="0.32em" transform="translate(339,104.64000000000004)">0.7</text>
-    <text y="0.32em" transform="translate(307.90937402493734,247.7705438279292)">0.2</text>
-    <text y="0.32em" transform="translate(91.09062597506264,247.77054382792923)">0.1</text>
-    <text y="0.32em" transform="translate(230.59062597506266,203.13054382792922)">0.1</text>
-    <text y="0.32em" transform="translate(199.49999999999997,346.26108765585843)">0.8</text>
+  <g aria-label="text" font-variant="tabular-nums">
+    <text y="0.32em" transform="translate(60.5,105.14)">0.3</text>
+    <text y="0.32em" transform="translate(200,60.5)">0.2</text>
+    <text y="0.32em" transform="translate(168.909,203.631)">0.5</text>
+    <text y="0.32em" transform="translate(200,149.78)">0.1</text>
+    <text y="0.32em" transform="translate(339.5,105.14)">0.7</text>
+    <text y="0.32em" transform="translate(308.409,248.271)">0.2</text>
+    <text y="0.32em" transform="translate(91.591,248.271)">0.1</text>
+    <text y="0.32em" transform="translate(231.091,203.631)">0.1</text>
+    <text y="0.32em" transform="translate(200,346.761)">0.8</text>
   </g>
 </svg>
