@@ -342,6 +342,7 @@ export function plot(options = {}) {
 
   figure.scale = exposeScales(scales.scales);
   figure.legend = exposeLegends(scaleDescriptors, context, options);
+  figure.dimensions = () => ({...dimensions});
 
   const w = consumeWarnings();
   if (w > 0) {
