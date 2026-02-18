@@ -6,8 +6,7 @@ import {isNone, isNoneish, isRound, maybeColorChannel, maybeNumberChannel} from 
 import {keyof, number, string} from "./options.js";
 import {warn} from "./warnings.js";
 
-export const offset = (typeof window !== "undefined" ? window.devicePixelRatio > 1 : typeof it === "undefined") ? 0 : 0.5; // prettier-ignore
-
+export const offset = typeof window !== "undefined" && !(window.devicePixelRatio > 1) ? 0.5 : 0;
 let nextClipId = 0;
 let nextPatternId = 0;
 
