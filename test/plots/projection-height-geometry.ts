@@ -39,6 +39,7 @@ export async function projectionHeightGeometryNull() {
     aspectRatio: true,
     width: 400,
     facet: {data: [0, 1], y: [0, 1]},
+    zero: false,
     marks: [Plot.geo(shape), Plot.frame({stroke: "red", strokeDasharray: 4})]
   });
 }

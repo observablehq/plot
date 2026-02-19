@@ -35,7 +35,7 @@ export async function arcCollatz() {
 export async function arcCollatzUp() {
   return Plot.plot({
     height: 260,
-    x: {ticks: 20, tickSize: 0},
+    x: {ticks: 20, tickSize: 0, zero: false},
     y: {domain: [0, 1], axis: null},
     marks: [
       Plot.dot(collatz(12), {x: Plot.identity, y: 0, fill: "currentColor"}),
