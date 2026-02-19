@@ -58,7 +58,7 @@ export function createScaleQ(
     nice,
     clamp,
     zero,
-    domain = inferAutoDomain(key, channels),
+    domain = inferAutoDomain(key, channels, zero, type),
     unknown,
     round,
     scheme,
@@ -113,14 +113,6 @@ export function createScaleQ(
     scale.interpolate((range === unit ? constant : interpolatePiecewise)(interpolate));
   } else {
     scale.interpolate(interpolate);
-  }
-
-  // If the zero option is not specified, then implicitly extend the domain to
-  // include zero if the minimum is less than 7% of the spread (and similarly
-  // for negative domains).
-  if (zero === undefined && type === "linear") {
-    const [min, max] = extent(domain);
-    zero = min > 0 ? min < 0.07 * (max - min) : max < 0 ? max > 0.07 * (min - max) : false;
   }
 
   // If a zero option is specified, we assume that the domain is numeric, and we
@@ -290,13 +282,24 @@ export function inferDomain(channels, f = finite) {
     : [0, 1];
 }
 
-function inferAutoDomain(key, channels) {
-  const type = registry.get(key);
-  return (type === radius || type === opacity || type === length ? inferZeroDomain : inferDomain)(channels);
-}
+function inferAutoDomain(key, channels, zero, type) {
+  const domain = inferDomain(channels, undefined);
 
-function inferZeroDomain(channels) {
-  return [0, channels.length ? max(channels, ({value}) => (value === undefined ? value : max(value, finite))) : 1];
+  if (zero === undefined && domain[0] * domain[1] > 0) {
+    // Default to zero for radius, opacity, and length scales
+    const scale = registry.get(key);
+    if (scale === radius || scale === opacity || scale === length) zero = true;
+    // If the zero option is not specified, then implicitly extend the domain to
+    // include zero if the minimum is less than 7% of the spread (and similarly
+    // for negative domains).
+    else if (type === "linear") {
+      const [min, max] = extent(domain);
+      zero = min > 0 ? min < 0.07 * (max - min) : max < 0 ? max > 0.07 * (min - max) : false;
+    }
+    if (zero) return [Math.min(0, domain[0]), Math.max(0, domain[1])];
+  }
+
+  return domain;
 }
 
 // We don’t want the upper bound of the radial domain to be zero, as this would
