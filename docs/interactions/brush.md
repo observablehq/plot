@@ -85,15 +85,15 @@ The brush can be paired with reactive marks that respond to the brush state. Cre
 
 A typical pattern is to layer three reactive marks: the inactive mark provides a default view, while the context and focus marks replace it during brushing, the context dimming unselected points and the focus highlighting selected ones.
 
-:::plot defer hidden
+:::plot hidden
 ```js
 Plot.plot({
-  marks: ((brush) => [
+  marks: ((brush) => (d3.timeout(() => brush.move({x1: 36, x2: 48, y1: 15, y2: 20})), [
     brush,
     Plot.dot(penguins, brush.inactive({x: "culmen_length_mm", y: "culmen_depth_mm", fill: "species", r: 2})),
     Plot.dot(penguins, brush.context({x: "culmen_length_mm", y: "culmen_depth_mm", fill: "#ccc", r: 2})),
     Plot.dot(penguins, brush.focus({x: "culmen_length_mm", y: "culmen_depth_mm", fill: "species", r: 3}))
-  ])(Plot.brush())
+  ]))(Plot.brush())
 })
 ```
 :::
@@ -118,18 +118,18 @@ To achieve higher contrast, place the brush below the reactive marks; reactive m
 
 The brush mark supports [faceting](../features/facets.md). When the plot uses **fx** or **fy** facets, each facet gets its own brush. Starting a brush in one facet clears any selection in other facets. The dispatched value includes the **fx** and **fy** facet values of the brushed facet, and the **filter** function also filters on the relevant facet values.
 
-:::plot defer hidden
+:::plot hidden
 ```js
 Plot.plot({
   height: 270,
   grid: true,
-  marks: ((brush) => [
+  marks: ((brush) => (d3.timeout(() => brush.move({x1: 43, x2: 50, y1: 17, y2: 19, fx: "Adelie"})), [
     Plot.frame(),
     brush,
     Plot.dot(penguins, brush.inactive({x: "culmen_length_mm", y: "culmen_depth_mm", fx: "species", fill: "sex", r: 2})),
     Plot.dot(penguins, brush.context({x: "culmen_length_mm", y: "culmen_depth_mm", fx: "species", fill: "#ccc", r: 2})),
     Plot.dot(penguins, brush.focus({x: "culmen_length_mm", y: "culmen_depth_mm", fx: "species", fill: "sex", r: 3}))
-  ])(Plot.brush())
+  ]))(Plot.brush())
 })
 ```
 :::
@@ -153,18 +153,18 @@ For plots with a [geographic projection](../features/projections.md), the brush 
 
 <div v-if="land && cities.length">
 
-:::plot defer hidden
+:::plot hidden
 ```js
 Plot.plot({
   projection: "equal-earth",
-  marks: ((brush) => [
+  marks: ((brush) => (d3.timeout(() => brush.move({x1: 80, x2: 300, y1: 60, y2: 200})), [
     Plot.geo(land, {strokeWidth: 0.5}),
     Plot.sphere(),
     brush,
     Plot.dot(cities, brush.inactive({x: "longitude", y: "latitude", r: 2, fill: "#999"})),
     Plot.dot(cities, brush.context({x: "longitude", y: "latitude", r: 1, fill: "#999"})),
     Plot.dot(cities, brush.focus({x: "longitude", y: "latitude", r: 3, fill: "red"}))
-  ])(Plot.brush())
+  ]))(Plot.brush())
 })
 ```
 :::
