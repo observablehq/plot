@@ -5,9 +5,7 @@ export async function hexbinSymbol() {
   const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
   return Plot.plot({
     grid: true,
-    symbol: {
-      legend: true
-    },
+    symbol: {legend: true, label: null},
     marks: [Plot.dot(penguins, Plot.hexbin({r: "count"}, {symbol: "sex", x: "culmen_depth_mm", y: "culmen_length_mm"}))]
   });
 }

@@ -40,7 +40,8 @@ export async function energyProduction() {
     },
     color: {
       tickFormat: (t) => types.get(t),
-      legend: true
+      legend: true,
+      label: null
     },
     marks: [
       Plot.rectY(energy, {x: "Year", interval: 1, y: "Value", fill: "Description", sort: {color: "height"}}),

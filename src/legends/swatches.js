@@ -88,7 +88,7 @@ function legendItems(scale, options = {}, swatch) {
     columns,
     tickFormat,
     fontVariant = inferFontVariant(scale),
-    // TODO label,
+    label = scale.label,
     swatchSize = 15,
     swatchWidth = swatchSize,
     swatchHeight = swatchSize,
@@ -101,10 +101,7 @@ function legendItems(scale, options = {}, swatch) {
   className = maybeClassName(className);
   tickFormat = inferTickFormat(scale.scale, scale.domain, undefined, tickFormat);
 
-  const swatches = create("div", context).attr(
-    "class",
-    `${className}-swatches ${className}-swatches-${columns != null ? "columns" : "wrap"}`
-  );
+  const swatches = create("div", context).attr("class", `${className}-swatches`);
 
   let extraStyle;
 
@@ -124,7 +121,8 @@ function legendItems(scale, options = {}, swatch) {
   text-overflow: ellipsis;
 }`;
 
-    swatches
+    (label == null ? swatches : swatches.append("div"))
+      .classed(`${className}-swatches-columns`, true)
       .style("columns", columns)
       .selectAll()
       .data(scale.domain)
@@ -138,17 +136,16 @@ function legendItems(scale, options = {}, swatch) {
   } else {
     extraStyle = `:where(.${className}-swatches-wrap) {
   display: flex;
-  align-items: center;
-  min-height: 33px;
   flex-wrap: wrap;
 }
 :where(.${className}-swatches-wrap .${className}-swatch) {
   display: inline-flex;
-  align-items: center;
   margin-right: 1em;
+  margin-bottom: 0.5em;
 }`;
 
-    swatches
+    (label == null ? swatches : swatches.append("div"))
+      .classed(`${className}-swatches-wrap`, true)
       .selectAll()
       .data(scale.domain)
       .enter()
@@ -159,6 +156,9 @@ function legendItems(scale, options = {}, swatch) {
         return this.ownerDocument.createTextNode(tickFormat.apply(this, arguments));
       });
   }
+
+  if (label != null)
+    extraStyle += `\n.${className}-swatches-label {\n    font-weight: bold;\n    margin-bottom: 0.4em;\n}`;
 
   return swatches
     .call((div) =>
@@ -174,6 +174,11 @@ function legendItems(scale, options = {}, swatch) {
 }
 ${extraStyle}`
       )
+    )
+    .call(
+      label == null
+        ? (div) => div
+        : (div) => div.insert("div", "div").attr("class", `${className}-swatches-label`).text(label)
     )
     .style("margin-left", marginLeft ? `${+marginLeft}px` : null)
     .style("width", width === undefined ? null : `${+width}px`)
