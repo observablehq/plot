@@ -20,7 +20,9 @@ onMounted(() => {
 
 # Brush mark
 
-The **brush mark** renders a two-dimensional [brush](https://d3js.org/d3-brush) that allows the user to select a rectangular region by clicking and dragging. It is typically used to highlight a subset of data, or to filter data for display in a linked view.
+The **brush mark** renders a [brush](https://d3js.org/d3-brush) that allows the user to select a region by clicking and dragging. It is typically used to highlight a subset of data, or to filter data for display in a linked view.
+
+## 2-D brushing
 
 :::plot hidden
 ```js
@@ -42,8 +44,7 @@ Plot.plot({
 })
 ```
 
-The brush mark does not require data. When added to a plot, it renders a [brush](https://d3js.org/d3-brush) overlay covering the frame. The user can click and drag to create a rectangular selection, drag the selection to reposition it, or drag an edge or corner to resize it. Clicking outside the selection clears it.
-
+The user can click and drag to create a rectangular selection, drag the selection to reposition it, or drag an edge or corner to resize it. Clicking outside the selection clears it.
 
 ## 1-D brushing
 
@@ -156,6 +157,65 @@ Plot.plot({
 :::tip
 To achieve higher contrast, you can place the brush before the reactive marks; reactive marks default to using **pointerEvents** *none* to ensure they don't obstruct pointer events.
 :::
+
+## Data and options
+
+The brush accepts optional *data* and *options*. When the options specify **x**, **y**, **fx**, or **fy** channels, these become defaults for the associated reactive marks.
+
+:::plot defer hidden
+```js
+Plot.plot({
+  marks: ((brush) => [
+    brush,
+    Plot.dot(penguins, brush.inactive({fill: "species", r: 2})),
+    Plot.dot(penguins, brush.context({fill: "#ccc", r: 2})),
+    Plot.dot(penguins, brush.focus({fill: "species", r: 3}))
+  ])(Plot.brush(penguins, {x: "culmen_length_mm", y: "culmen_depth_mm"}))
+})
+```
+:::
+
+```js
+const brush = Plot.brush(penguins, {x: "culmen_length_mm", y: "culmen_depth_mm"});
+Plot.plot({
+  marks: [
+    brush,
+    Plot.dot(penguins, brush.inactive({fill: "species", r: 2})),
+    Plot.dot(penguins, brush.context({fill: "#ccc", r: 2})),
+    Plot.dot(penguins, brush.focus({fill: "species", r: 3}))
+  ]
+})
+```
+
+If neither **x** nor **y** is specified, *data* is assumed to be an array of values, such as [*x₀*, *x₁*, …] for 1-dimensional brushes, or an array of pairs [[*x₀*, *y₀*], [*x₁*, *y₁*], …] for 2-dimensional brushes.
+
+```js
+const brush = Plot.brush(points);
+```
+
+### Selection styling
+
+The **fill**, **fillOpacity**, **stroke**, **strokeWidth**, and **strokeOpacity** options style the brush selection rectangle, overriding D3's defaults.
+
+```js
+const brush = Plot.brush(penguins, {
+  x: "culmen_length_mm",
+  y: "culmen_depth_mm",
+  stroke: "currentColor",
+  strokeWidth: 1.5
+});
+```
+
+### Filtered data
+
+When the brush has *data*, the [BrushValue](#brushvalue) includes a **data** property containing the subset filtered by the selection.
+
+```js
+plot.addEventListener("input", () => {
+  console.log(plot.value?.data); // filtered subset of the brush's data
+  const selected = otherData.filter((d) => plot.value?.filter(d.x, d.y)); // filter a different dataset
+});
+```
 
 ## Faceting
 
@@ -273,6 +333,7 @@ The brush value dispatched on [_input_ events](#input-events). When the brush is
 - **fx** - the *fx* facet value, if applicable
 - **fy** - the *fy* facet value, if applicable
 - **filter** - a function to test whether a point is inside the selection
+- **data** - when the brush has data, the filtered subset
 - **pending** - `true` during interaction; absent when committed
 
 By convention, *x1* < *x2* and *y1* < *y2*. The brushX value does not include *y1* and *y2*; similarly, the brushY value does not include *x1* and *x2*.
@@ -286,13 +347,13 @@ plot.addEventListener("input", () => {
 });
 ```
 
-## brush(*options*) {#brush}
+## brush(*data*, *options*) {#brush}
 
 ```js
 const brush = Plot.brush()
 ```
 
-Returns a new brush. The mark exposes the **inactive**, **context**, and **focus** methods for creating reactive marks that respond to the brush state.
+Returns a new brush with the given *data* and *options*. Both *data* and *options* are optional. If *data* is specified but the neither **x** nor **y** is specified in the *options*, *data* is assumed to be an array of pairs [[*x₀*, *y₀*], [*x₁*, *y₁*], …] such that **x** = [*x₀*, *x₁*, …] and **y** = [*y₀*, *y₁*, …].
 
 The following *options* are supported:
 
@@ -344,13 +405,13 @@ brush.move(null)
 
 For projected plots, the coordinates are in pixels (consistent with the [BrushValue](#brushvalue)), so you need to project the two corners of the brush beforehand. In the future Plot might expose its *projection* to facilitate this. Please upvote [this issue](https://github.com/observablehq/plot/issues/1191) to help prioritize this feature.
 
-## brushX(*options*) {#brushX}
+## brushX(*data*, *options*) {#brushX}
 
 ```js
 const brush = Plot.brushX()
 ```
 
-Returns a new horizontal brush mark that selects along the *x* axis. The available *options* are:
+Returns a new horizontal brush mark that selects along the *x* axis. If *data* is specified without an **x** channel, each datum is used as the *x* value directly. In addition to the [brush options](#data-and-options), the *interval* option is supported:
 
 - **interval** - an interval to snap the brush to on release; a number for quantitative scales (_e.g._, `100`), a time interval name for temporal scales (_e.g._, `"month"`), or an object with *floor* and *offset* methods
 
@@ -383,10 +444,10 @@ Plot.plot({
 
 The brushX mark does not support projections.
 
-## brushY(*options*) {#brushY}
+## brushY(*data*, *options*) {#brushY}
 
 ```js
 const brush = Plot.brushY()
 ```
 
-Returns a new vertical brush mark that selects along the *y* axis. Accepts the same *options* as [brushX](#brushX).
+Returns a new vertical brush mark that selects along the *y* axis. If *data* is specified without a **y** channel, each datum is used as the *y* value directly. For the other options, see [brushX](#brushX).
