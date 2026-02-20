@@ -50,7 +50,7 @@ The user can click and drag to create a rectangular selection, drag the selectio
 
 The **brushX** mark operates on the *x* axis.
 
-:::plot defer hidden
+:::plot hidden
 ```js
 Plot.plot({
   height: 200,
