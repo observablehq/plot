@@ -27,7 +27,7 @@ The **brush mark** renders a [brush](https://d3js.org/d3-brush) that allows the 
 :::plot hidden
 ```js
 Plot.plot({
-  marks: ((brush) => (d3.timeout(() => d3.select(brush._brushNodes[0]).call(brush._brush.move, [[100, 60], [300, 200]])), [
+  marks: ((brush) => (d3.timeout(() => brush.move({x1: 36, x2: 48, y1: 15, y2: 20})), [
     Plot.dot(penguins, {x: "culmen_length_mm", y: "culmen_depth_mm", stroke: "species"}),
     brush
   ]))(Plot.brush())

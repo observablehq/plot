@@ -209,10 +209,7 @@ export class Brush extends Mark {
       const d = n.__data__;
       return (fx === undefined || d?.x === fx) && (fy === undefined || d?.y === fy);
     });
-    if (!node)
-      throw new Error(
-        fx === undefined && fy === undefined ? "No brush node found" : "No brush node found for the specified facet"
-      );
+    if (!node) return;
     const [px1, px2] = [x1, x2].map(this._applyX).sort(ascending);
     const [py1, py2] = [y1, y2].map(this._applyY).sort(ascending);
     select(node).call(
