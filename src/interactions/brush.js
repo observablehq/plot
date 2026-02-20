@@ -9,7 +9,7 @@ import {
   ascending
 } from "d3";
 import {composeRender, Mark} from "../mark.js";
-import {dataify, identity, isIterable, keyword, maybeInterval, maybeTuple, take} from "../options.js";
+import {constant, dataify, identity, isIterable, keyword, maybeInterval, maybeTuple, take} from "../options.js";
 import {applyAttr} from "../style.js";
 
 const defaults = {ariaLabel: "brush", fill: "#777", fillOpacity: 0.3, stroke: "#fff"};
@@ -317,12 +317,25 @@ function renderFilter(initialTest, channelDefaults = {}) {
           const {x: X, y: Y, x1: X1, x2: X2, y1: Y1, y2: Y2} = values;
           const MX = X ?? (X1 && X2 ? Float64Array.from(X1, (v, i) => (v + X2[i]) / 2) : undefined);
           const MY = Y ?? (Y1 && Y2 ? Float64Array.from(Y1, (v, i) => (v + Y2[i]) / 2) : undefined);
-          const filter = (test) =>
-            typeof test === "function" ? index.filter((i) => test(MX?.[i], MY?.[i])) : test ? index : [];
-          let g = next(filter(initialTest), scales, values, dimensions, context);
+          const render = (test) => {
+            if (typeof test !== "function") test = constant(test);
+            let run = [];
+            const runs = [run];
+            for (const i of index) {
+              if (test(MX?.[i], MY?.[i])) run.push(i);
+              else if (run.length) runs.push((run = []));
+            }
+            const g = next(runs[0], scales, values, dimensions, context);
+            for (const run of runs.slice(1)) {
+              const h = next(run, scales, values, dimensions, context);
+              while (h.firstChild) g.appendChild(h.firstChild);
+            }
+            return g;
+          };
+          let g = render(initialTest);
           updatePerFacet.push((test) => {
             const transform = g.getAttribute("transform");
-            g.replaceWith((g = next(filter(test), scales, values, dimensions, context)));
+            g.replaceWith((g = render(test)));
             if (transform) g.setAttribute("transform", transform);
           });
           return g;
