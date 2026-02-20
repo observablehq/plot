@@ -2,10 +2,11 @@ import {brush as d3Brush, create, pointer, select, selectAll} from "d3";
 import {composeRender, Mark} from "../mark.js";
 
 export class Brush extends Mark {
-  constructor() {
+  constructor({sync = false} = {}) {
     super(undefined, {}, {}, {});
     this._brush = d3Brush();
     this._brushNodes = [];
+    this._sync = sync;
     this.inactive = renderFilter(true);
     this.context = renderFilter(false);
     this.focus = renderFilter(false);
@@ -13,7 +14,7 @@ export class Brush extends Mark {
   render(index, scales, values, dimensions, context) {
     const {x, y, fx, fy} = scales;
     const {inactive, context: ctx, focus} = this;
-    let target, currentNode, clearing;
+    let target, currentNode, syncing;
 
     if (!index?.fi) {
       const invertX = (!context.projection && x?.invert) || ((d) => d);
@@ -22,30 +23,37 @@ export class Brush extends Mark {
       this._applyY = (!context.projection && y) || ((d) => d);
       context.dispatchValue(null);
       const {_brush, _brushNodes} = this;
+      const sync = this._sync;
       _brush
         .extent([
           [dimensions.marginLeft - 1, dimensions.marginTop - 1],
           [dimensions.width - dimensions.marginRight + 1, dimensions.height - dimensions.marginBottom + 1]
         ])
         .on("start brush end", function (event) {
+          if (syncing) return;
           const {selection, type} = event;
-          if (type === "start" && !clearing) {
+          if (type === "start") {
             target = event.sourceEvent?.currentTarget ?? this;
             currentNode = _brushNodes.indexOf(target);
-            if (!clearing) {
-              clearing = true;
+            if (!sync) {
+              syncing = true;
               selectAll(_brushNodes.filter((_, i) => i !== currentNode)).call(_brush.move, null);
-              clearing = false;
-              for (let i = 0; i < _brushNodes.length; ++i) {
-                inactive.update(false, i);
-                ctx.update(true, i);
-                focus.update(false, i);
-              }
+              syncing = false;
+            }
+            for (let i = 0; i < _brushNodes.length; ++i) {
+              inactive.update(false, i);
+              ctx.update(true, i);
+              focus.update(false, i);
             }
           }
 
           if (selection === null) {
             if (type === "end") {
+              if (sync) {
+                syncing = true;
+                selectAll(_brushNodes.filter((_, i) => i !== currentNode)).call(_brush.move, null);
+                syncing = false;
+              }
               for (let i = 0; i < _brushNodes.length; ++i) {
                 inactive.update(true, i);
                 ctx.update(false, i);
@@ -53,9 +61,11 @@ export class Brush extends Mark {
               }
               context.dispatchValue(null);
             } else {
-              inactive.update(false, currentNode);
-              ctx.update(true, currentNode);
-              focus.update(false, currentNode);
+              for (let i = sync ? 0 : currentNode, n = sync ? _brushNodes.length : currentNode + 1; i < n; ++i) {
+                inactive.update(false, i);
+                ctx.update(true, i);
+                focus.update(false, i);
+              }
               let value = null;
               if (event.sourceEvent) {
                 const [px, py] = pointer(event, this);
@@ -78,9 +88,16 @@ export class Brush extends Mark {
             }
           } else {
             const [[px1, py1], [px2, py2]] = selection;
-            inactive.update(false, currentNode);
-            ctx.update((xi, yi) => !(px1 <= xi && xi < px2 && py1 <= yi && yi < py2), currentNode);
-            focus.update((xi, yi) => px1 <= xi && xi < px2 && py1 <= yi && yi < py2, currentNode);
+            if (sync) {
+              syncing = true;
+              selectAll(_brushNodes.filter((_, i) => i !== currentNode)).call(_brush.move, selection);
+              syncing = false;
+            }
+            for (let i = sync ? 0 : currentNode, n = sync ? _brushNodes.length : currentNode + 1; i < n; ++i) {
+              inactive.update(false, i);
+              ctx.update((xi, yi) => !(px1 <= xi && xi < px2 && py1 <= yi && yi < py2), i);
+              focus.update((xi, yi) => px1 <= xi && xi < px2 && py1 <= yi && yi < py2, i);
+            }
 
             let x1 = invertX(px1),
               x2 = invertX(px2);
@@ -136,8 +153,8 @@ export class Brush extends Mark {
   }
 }
 
-export function brush() {
-  return new Brush();
+export function brush(options) {
+  return new Brush(options);
 }
 
 function filterFromBrush(xScale, yScale, facet, projection, px1, px2, py1, py2) {
@@ -167,10 +184,11 @@ function filterSignature(test, currentFx, currentFy) {
   return currentFx === undefined
     ? currentFy === undefined
       ? (x, y) => test(x, y)
-      : (x, y, fy) => fy === currentFy && test(x, y)
+      : (x, y, fy) => (fy === undefined || fy === currentFy) && test(x, y)
     : currentFy === undefined
-    ? (x, y, fx) => fx === currentFx && test(x, y)
-    : (x, y, fx, fy) => fx === currentFx && fy === currentFy && test(x, y);
+    ? (x, y, fx) => (fx === undefined || fx === currentFx) && test(x, y)
+    : (x, y, fx, fy) =>
+        (fx === undefined || fx === currentFx) && (fy === undefined || fy === currentFy) && test(x, y);
 }
 
 function renderFilter(initialTest) {
