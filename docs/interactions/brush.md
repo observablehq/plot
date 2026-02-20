@@ -6,12 +6,24 @@ import * as topojson from "topojson-client";
 import {shallowRef, computed, onMounted} from "vue";
 import penguins from "../data/penguins.ts";
 
+const stocks = shallowRef([]);
 const world = shallowRef(null);
 const land = computed(() => world.value && topojson.feature(world.value, world.value.objects.land));
 const allCities = shallowRef([]);
 const cities = computed(() => allCities.value.filter((d) => d.population > 500000));
 
 onMounted(() => {
+  Promise.all([
+    d3.csv("../data/aapl.csv", d3.autoType),
+    d3.csv("../data/amzn.csv", d3.autoType),
+    d3.csv("../data/goog.csv", d3.autoType)
+  ]).then(([aapl, amzn, goog]) => {
+    stocks.value = [
+      ...aapl.map((d) => ({Symbol: "AAPL", ...d})),
+      ...amzn.map((d) => ({Symbol: "AMZN", ...d})),
+      ...goog.map((d) => ({Symbol: "GOOG", ...d}))
+    ];
+  });
   d3.json("../data/countries-110m.json").then((data) => (world.value = data));
   d3.csv("../data/cities-10k.csv", d3.autoType).then((data) => (allCities.value = data));
 });
@@ -221,31 +233,37 @@ plot.addEventListener("input", () => {
 
 The brush mark supports [faceting](../features/facets.md). When the plot uses **fx** or **fy** facets, each facet gets its own brush. The dispatched value includes the **fx** and **fy** facet values of the brushed facet, and the **filter** function also filters on the relevant facet values.
 
+<div v-if="stocks.length">
+
 :::plot hidden
 ```js
 Plot.plot({
-  height: 270,
-  grid: true,
-  marks: ((brush) => (d3.timeout(() => brush.move({x1: 45, x2: 55, y1: 15, y2: 20, fx: "Gentoo"})), [
+  height: 350,
+  y: {type: "log", grid: true},
+  fy: {label: null},
+  marks: ((brush) => (d3.timeout(() => brush.move({x1: new Date("2015-01-01"), x2: new Date("2016-06-01"), fy: "AAPL"})), [
     Plot.frame(),
     brush,
-    Plot.dot(penguins, brush.inactive({x: "culmen_length_mm", y: "culmen_depth_mm", fx: "species", fill: "sex", r: 2})),
-    Plot.dot(penguins, brush.context({x: "culmen_length_mm", y: "culmen_depth_mm", fx: "species", fill: "#ccc", r: 2})),
-    Plot.dot(penguins, brush.focus({x: "culmen_length_mm", y: "culmen_depth_mm", fx: "species", fill: "sex", r: 3}))
-  ]))(Plot.brush())
+    Plot.lineY(stocks, {x: "Date", y: "Close", fy: "Symbol", stroke: "#ccc", strokeWidth: 1}),
+    Plot.lineY(stocks, brush.inactive({x: "Date", y: "Close", fy: "Symbol", stroke: "Symbol"})),
+    Plot.lineY(stocks, brush.focus({x: "Date", y: "Close", fy: "Symbol", stroke: "Symbol", strokeWidth: 2}))
+  ]))(Plot.brushX())
 })
 ```
 :::
 
 ```js
-const brush = Plot.brush();
+const brush = Plot.brushX();
 Plot.plot({
+  height: 350,
+  y: {type: "log", grid: true},
+  fy: {label: null},
   marks: [
     Plot.frame(),
     brush,
-    Plot.dot(penguins, brush.inactive({x: "culmen_length_mm", y: "culmen_depth_mm", fx: "species", fill: "sex", r: 2})),
-    Plot.dot(penguins, brush.context({x: "culmen_length_mm", y: "culmen_depth_mm", fx: "species", fill: "#ccc", r: 2})),
-    Plot.dot(penguins, brush.focus({x: "culmen_length_mm", y: "culmen_depth_mm", fx: "species", fill: "sex", r: 3}))
+    Plot.lineY(stocks, {x: "Date", y: "Close", fy: "Symbol", stroke: "#ccc"}),
+    Plot.lineY(stocks, brush.inactive({x: "Date", y: "Close", fy: "Symbol", stroke: "Symbol"})),
+    Plot.lineY(stocks, brush.focus({x: "Date", y: "Close", fy: "Symbol", stroke: "Symbol", strokeWidth: 2}))
   ]
 })
 ```
@@ -255,31 +273,37 @@ By default, starting a brush in one facet clears any selection in other facets. 
 :::plot hidden
 ```js
 Plot.plot({
-  height: 270,
-  grid: true,
-  marks: ((brush) => (d3.timeout(() => brush.move({x1: 43, x2: 50, y1: 17, y2: 19})), [
+  height: 350,
+  y: {type: "log", grid: true},
+  fy: {label: null},
+  marks: ((brush) => (d3.timeout(() => brush.move({x1: new Date("2015-01-01"), x2: new Date("2016-06-01"), fy: "AAPL"})), [
     Plot.frame(),
     brush,
-    Plot.dot(penguins, brush.inactive({x: "culmen_length_mm", y: "culmen_depth_mm", fx: "species", fill: "sex", r: 2})),
-    Plot.dot(penguins, brush.context({x: "culmen_length_mm", y: "culmen_depth_mm", fx: "species", fill: "#ccc", r: 2})),
-    Plot.dot(penguins, brush.focus({x: "culmen_length_mm", y: "culmen_depth_mm", fx: "species", fill: "sex", r: 3}))
-  ]))(Plot.brush({sync: true}))
+    Plot.lineY(stocks, {x: "Date", y: "Close", fy: "Symbol", stroke: "#ccc", strokeWidth: 1}),
+    Plot.lineY(stocks, brush.inactive({x: "Date", y: "Close", fy: "Symbol", stroke: "Symbol"})),
+    Plot.lineY(stocks, brush.focus({x: "Date", y: "Close", fy: "Symbol", stroke: "Symbol", strokeWidth: 2}))
+  ]))(Plot.brushX({sync: true}))
 })
 ```
 :::
 
 ```js
-const brush = Plot.brush({sync: true});
+const brush = Plot.brushX({sync: true});
 Plot.plot({
+  height: 350,
+  y: {type: "log", grid: true},
+  fy: {label: null},
   marks: [
     Plot.frame(),
     brush,
-    Plot.dot(penguins, brush.inactive({x: "culmen_length_mm", y: "culmen_depth_mm", fx: "species", fill: "sex", r: 2})),
-    Plot.dot(penguins, brush.context({x: "culmen_length_mm", y: "culmen_depth_mm", fx: "species", fill: "#ccc", r: 2})),
-    Plot.dot(penguins, brush.focus({x: "culmen_length_mm", y: "culmen_depth_mm", fx: "species", fill: "sex", r: 3}))
+    Plot.lineY(stocks, {x: "Date", y: "Close", fy: "Symbol", stroke: "#ccc"}),
+    Plot.lineY(stocks, brush.inactive({x: "Date", y: "Close", fy: "Symbol", stroke: "Symbol"})),
+    Plot.lineY(stocks, brush.focus({x: "Date", y: "Close", fy: "Symbol", stroke: "Symbol", strokeWidth: 2}))
   ]
 })
 ```
+
+</div>
 
 The dispatched value still includes **fx** (and **fy**), indicating the facet where the interaction originated.
 

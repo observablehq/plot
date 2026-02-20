@@ -187,30 +187,33 @@ it("brush faceted filter without fx selects across all facets", async () => {
 });
 
 it("brush cross-facet filter selects across all facets", async () => {
-  const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
-  const b = new Plot.Brush({sync: true});
-  const xy = {x: "culmen_length_mm", y: "culmen_depth_mm", fx: "species"};
+  const stocks = [
+    ...(await d3.csv<any>("data/aapl.csv", d3.autoType)).map((d: any) => ({...d, Symbol: "AAPL"})),
+    ...(await d3.csv<any>("data/amzn.csv", d3.autoType)).map((d: any) => ({...d, Symbol: "AMZN"})),
+    ...(await d3.csv<any>("data/goog.csv", d3.autoType)).map((d: any) => ({...d, Symbol: "GOOG"}))
+  ];
+  const b = Plot.brushX({sync: true});
   const plot = Plot.plot({
-    marks: [Plot.dot(penguins, b.inactive({...xy, r: 2})), b]
+    marks: [Plot.lineY(stocks, b.inactive({x: "Date", y: "Close", fy: "Symbol"})), b]
   });
 
   let lastValue: any;
   plot.addEventListener("input", () => (lastValue = plot.value));
-  b.move({x1: 35, x2: 50, y1: 14, y2: 20, fx: "Adelie"});
+  b.move({x1: new Date("2015-01-01"), x2: new Date("2016-06-01"), fy: "AAPL"});
 
   assert.ok(lastValue, "should have a value");
-  assert.ok(lastValue.fx !== undefined, "value should include fx (origin facet)");
+  assert.ok(lastValue.fy !== undefined, "value should include fy (origin facet)");
 
-  // Without fx: selects across all facets
-  const withoutFx = penguins.filter((d: any) => lastValue.filter(d.culmen_length_mm, d.culmen_depth_mm));
-  const species = new Set(withoutFx.map((d: any) => d.species));
-  assert.ok(species.size > 1, `should select multiple species, got: ${[...species]}`);
+  // Without fy: selects across all facets
+  const withoutFy = stocks.filter((d: any) => lastValue.filter(d.Date));
+  const symbols = new Set(withoutFy.map((d: any) => d.Symbol));
+  assert.ok(symbols.size > 1, `should select multiple symbols, got: ${[...symbols]}`);
 
-  // With fx: restricts to the origin facet
-  const withFx = penguins.filter((d: any) => lastValue.filter(d.culmen_length_mm, d.culmen_depth_mm, d.species));
-  const fxSpecies = new Set(withFx.map((d: any) => d.species));
-  assert.equal(fxSpecies.size, 1, "with fx should restrict to origin facet");
-  assert.ok(withFx.length < withoutFx.length, "with fx should select fewer points");
+  // With fy: restricts to the origin facet
+  const withFy = stocks.filter((d: any) => lastValue.filter(d.Date, d.Symbol));
+  const fySymbols = new Set(withFy.map((d: any) => d.Symbol));
+  assert.equal(fySymbols.size, 1, "with fy should restrict to origin facet");
+  assert.ok(withFy.length < withoutFy.length, "with fy should select fewer points");
 });
 
 it("brush faceted filter with fx and fy supports partial facet args", async () => {

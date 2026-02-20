@@ -282,26 +282,37 @@ export async function brushRandomNormal() {
 }
 
 export async function brushCrossFacet() {
-  const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
-  const brush = new Plot.Brush({sync: true});
-  const xy = {x: "culmen_length_mm" as const, y: "culmen_depth_mm" as const, fx: "species" as const};
+  const stocks = [
+    ...(await d3.csv<any>("data/aapl.csv", d3.autoType)).map((d: any) => ({...d, Symbol: "AAPL"})),
+    ...(await d3.csv<any>("data/amzn.csv", d3.autoType)).map((d: any) => ({...d, Symbol: "AMZN"})),
+    ...(await d3.csv<any>("data/goog.csv", d3.autoType)).map((d: any) => ({...d, Symbol: "GOOG"}))
+  ];
+  const brush = Plot.brushX({sync: true});
   const plot = Plot.plot({
+    height: 350,
+    y: {type: "log", grid: true},
+    fy: {label: null},
     marks: [
       Plot.frame(),
       brush,
-      Plot.dot(penguins, brush.inactive({...xy, fill: "sex", r: 2})),
-      Plot.dot(penguins, brush.context({...xy, fill: "#ccc", r: 2})),
-      Plot.dot(penguins, brush.focus({...xy, fill: "sex", r: 3}))
+      Plot.lineY(stocks, {x: "Date", y: "Close", fy: "Symbol", stroke: "#ccc"}),
+      Plot.lineY(stocks, brush.inactive({x: "Date", y: "Close", fy: "Symbol", stroke: "Symbol"})),
+      Plot.lineY(stocks, brush.focus({x: "Date", y: "Close", fy: "Symbol", stroke: "Symbol", strokeWidth: 2}))
     ]
   });
   const textarea = html`<textarea rows=10 style="width: 640px; resize: none;">`;
   const oninput = () => {
     const v = plot.value;
-    const filtered = v?.filter ? penguins.filter((d: any) => v.filter(d.culmen_length_mm, d.culmen_depth_mm)) : [];
-    textarea.value = formatValue(v) + `\nfiltered: ${filtered.length} of ${penguins.length}`;
+    if (!v?.filter) {
+      textarea.value = formatValue(v);
+    } else {
+      const filtered = stocks.filter((d: any) => v.filter(d.Date));
+      const inFy = stocks.filter((d: any) => v.filter(d.Date, d.Symbol));
+      textarea.value = formatValue(v) + `\nfiltered: ${filtered.length} of ${stocks.length} (${inFy.length} in ${v.fy})`;
+    }
   };
   plot.oninput = oninput;
-  brush.move({x1: 35, x2: 50, y1: 14, y2: 20, fx: "Adelie"});
+  brush.move({x1: new Date("2015-01-01"), x2: new Date("2016-06-01"), fy: "AAPL"});
   oninput();
   return html`<figure>${plot}${textarea}</figure>`;
 }
