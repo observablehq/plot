@@ -31,6 +31,14 @@ export interface BrushValue {
   pending?: true;
 }
 
+/** Options for the brush mark. */
+export interface BrushOptions {
+  /**
+   * If true, the brush spans all facet panes simultaneously; defaults to false.
+   */
+  sync?: boolean;
+}
+
 /**
  * A brush mark that renders a two-dimensional [brush](https://d3js.org/d3-brush)
  * allowing the user to select a rectangular region. The brush coordinates across
@@ -42,6 +50,7 @@ export interface BrushValue {
  * reactive marks that respond to the brush state.
  */
 export class Brush extends RenderableMark {
+  constructor(options?: BrushOptions);
   /**
    * Returns mark options that show the mark when no brush selection is active,
    * and hide it during brushing. Use this for the default appearance.
@@ -73,4 +82,4 @@ export class Brush extends RenderableMark {
 }
 
 /** Creates a new brush mark. */
-export function brush(): Brush;
+export function brush(options?: BrushOptions): Brush;
