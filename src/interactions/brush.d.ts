@@ -142,13 +142,13 @@ export function brush(data?: Data, options?: BrushOptions): Brush;
  * specified without an **x** channel, each datum is used as the *x* value
  * directly. Not supported with projections.
  */
-export function brushX(options?: Brush1DOptions): Brush;
-export function brushX(data?: Data, options?: Brush1DOptions): Brush;
+export function brushX(options?: BrushOptions): Brush;
+export function brushX(data?: Data, options?: BrushOptions): Brush;
 
 /**
  * Creates a one-dimensional brush mark along the *y* axis. If *data* is
  * specified without a **y** channel, each datum is used as the *y* value
  * directly. Not supported with projections.
  */
-export function brushY(options?: Brush1DOptions): Brush;
-export function brushY(data?: Data, options?: Brush1DOptions): Brush;
+export function brushY(options?: BrushOptions): Brush;
+export function brushY(data?: Data, options?: BrushOptions): Brush;
