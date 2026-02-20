@@ -49,7 +49,7 @@ The brush mark does not require data. When added to a plot, it renders a [brush]
 
 The **brushX** mark operates on the *x* axis.
 
-:::plot defer hidden
+:::plot hidden
 ```js
 Plot.plot({
   height: 200,
