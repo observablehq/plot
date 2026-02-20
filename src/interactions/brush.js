@@ -285,8 +285,7 @@ function filterSignature2D(test, currentFx, currentFy) {
       : (x, y, fy) => (fy === undefined || fy === currentFy) && test(x, y)
     : currentFy === undefined
     ? (x, y, fx) => (fx === undefined || fx === currentFx) && test(x, y)
-    : (x, y, fx, fy) =>
-        (fx === undefined || fx === currentFx) && (fy === undefined || fy === currentFy) && test(x, y);
+    : (x, y, fx, fy) => (fx === undefined || fx === currentFx) && (fy === undefined || fy === currentFy) && test(x, y);
 }
 
 function filterSignature1D(test, currentFx, currentFy) {
@@ -296,8 +295,7 @@ function filterSignature1D(test, currentFx, currentFy) {
       : (v, fy) => (fy === undefined || fy === currentFy) && test(v)
     : currentFy === undefined
     ? (v, fx) => (fx === undefined || fx === currentFx) && test(v)
-    : (v, fx, fy) =>
-        (fx === undefined || fx === currentFx) && (fy === undefined || fy === currentFy) && test(v);
+    : (v, fx, fy) => (fx === undefined || fx === currentFx) && (fy === undefined || fy === currentFy) && test(v);
 }
 
 function intervalRound(interval, v) {
