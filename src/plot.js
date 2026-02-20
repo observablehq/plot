@@ -176,7 +176,7 @@ export function plot(options = {}) {
     return {...state, channels: {...state.channels, ...facetState?.channels}};
   };
 
-  // Allows e.g. the pointer transform to support viewof.
+  // Allows e.g. the pointer transform and brush to support viewof.
   context.dispatchValue = (value) => {
     if (figure.value === value) return;
     figure.value = value;
