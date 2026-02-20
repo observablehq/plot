@@ -290,3 +290,19 @@ export async function brushSimple() {
   plot.oninput = oninput;
   return html`<figure>${plot}${textarea}</figure>`;
 }
+
+export async function brushDotTip() {
+  const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
+  const brush = new Plot.Brush();
+  const xy = {x: "culmen_length_mm" as const, y: "culmen_depth_mm" as const};
+  const plot = Plot.plot({
+    marks: [
+      brush,
+      Plot.dot(penguins, brush.inactive({...xy, fill: "species", r: 2})),
+      Plot.dot(penguins, brush.context({...xy, fill: "#ccc", r: 2})),
+      Plot.dot(penguins, brush.focus({...xy, fill: "species", r: 3, tip: true}))
+    ]
+  });
+  brush.move({x1: 36, x2: 48, y1: 15, y2: 20});
+  return plot;
+}
