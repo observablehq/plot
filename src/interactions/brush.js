@@ -71,8 +71,8 @@ export class Brush extends Mark {
       let snapping;
       _brush
         .extent([
-          [dimensions.marginLeft - 1, dimensions.marginTop - 1],
-          [dimensions.width - dimensions.marginRight + 1, dimensions.height - dimensions.marginBottom + 1]
+          [dimensions.marginLeft - (dim !== "y"), dimensions.marginTop - (dim !== "x")],
+          [dimensions.width - dimensions.marginRight + (dim !== "y"), dimensions.height - dimensions.marginBottom + (dim !== "x")]
         ])
         .on("start brush end", function (event) {
           if (syncing) return;
