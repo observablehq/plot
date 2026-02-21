@@ -6,11 +6,17 @@ import {html} from "htl";
 
 function formatValue(v: any) {
   if (v == null) return JSON.stringify(v);
-  const o: any = {};
+  const lines: string[] = [];
   for (const [k, val] of Object.entries(v)) {
-    o[k] = typeof val === "function" ? `${k}(${paramNames(val as (...args: any[]) => any)})` : val;
+    const formatted =
+      typeof val === "function"
+        ? `${k}(${paramNames(val as (...args: any[]) => any)})`
+        : Array.isArray(val)
+        ? `Array(${val.length})`
+        : JSON.stringify(val);
+    lines.push(`  ${k}: ${formatted}`);
   }
-  return JSON.stringify(o, null, 2);
+  return `{\n${lines.join(",\n")}\n}`;
 }
 
 function paramNames(fn: (...args: any[]) => any) {
@@ -455,6 +461,30 @@ export async function brushXDot() {
   return html`<figure>${plot}${textarea}</figure>`;
 }
 
+export async function brushXData() {
+  const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
+  const values = Plot.valueof(penguins, "body_mass_g");
+  const brush = Plot.brushX(values);
+  const plot = Plot.plot({
+    height: 170,
+    marginTop: 10,
+    marks: [
+      brush,
+      Plot.dot(values, Plot.dodgeY(brush.inactive({fill: "currentColor"}))),
+      Plot.dot(values, Plot.dodgeY(brush.context({fill: "currentColor", fillOpacity: 0.3}))),
+      Plot.dot(values, Plot.dodgeY(brush.focus({fill: "currentColor"})))
+    ]
+  });
+  const textarea = html`<textarea rows=10 style="width: 640px; resize: none;">`;
+  const oninput = () => {
+    textarea.value = formatValue(plot.value);
+  };
+  plot.oninput = oninput;
+  brush.move({x1: 3200, x2: 4800});
+  oninput();
+  return html`<figure>${plot}${textarea}</figure>`;
+}
+
 export async function brushYDot() {
   const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
   const brush = Plot.brushY();
@@ -512,6 +542,50 @@ export async function brushYHistogram() {
   };
   plot.oninput = oninput;
   brush.move({y1: 15, y2: 18});
+  oninput();
+  return html`<figure>${plot}${textarea}</figure>`;
+}
+
+export async function brushBrutalist() {
+  const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
+  const brush = new Plot.Brush(penguins, {
+    x: "culmen_length_mm",
+    y: "culmen_depth_mm",
+    fill: "none",
+    stroke: "currentColor",
+    strokeWidth: 3
+  });
+  const plot = Plot.plot({
+    marks: [
+      brush,
+      Plot.dot(penguins, brush.inactive({symbol: "species", r: 2})),
+      Plot.dot(penguins, brush.context({symbol: "species", r: 2, strokeOpacity: 0.2})),
+      Plot.dot(penguins, brush.focus({symbol: "species", r: 3}))
+    ]
+  });
+  brush.move({x1: 36, x2: 48, y1: 15, y2: 20});
+  return plot;
+}
+
+export async function brushCoordinates() {
+  const random = d3.randomNormal.source(d3.randomLcg(42))();
+  const data = Array.from({length: 200}, () => [random(), random()]);
+  const brush = Plot.brush(data);
+  const plot = Plot.plot({
+    marks: [
+      brush,
+      Plot.dot(data, brush.inactive({fillOpacity: 0.5})),
+      Plot.dot(data, brush.context({fill: "#ccc", fillOpacity: 0.5})),
+      Plot.dot(data, brush.focus({fill: "red", fillOpacity: 0.5}))
+    ]
+  });
+  const textarea = html`<textarea rows=10 style="width: 640px; resize: none;">`;
+  const oninput = () => {
+    const v = plot.value;
+    textarea.value = formatValue(v);
+  };
+  plot.oninput = oninput;
+  brush.move({x1: -1, x2: 1, y1: -1, y2: 0.5});
   oninput();
   return html`<figure>${plot}${textarea}</figure>`;
 }
