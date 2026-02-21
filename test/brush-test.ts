@@ -160,6 +160,183 @@ it("brush programmatic move on second facet selects the correct facet", async ()
   assert.equal([...species][0], "Chinstrap", "filtered species should be Chinstrap");
 });
 
+it("brush faceted filter without fx selects across all facets", async () => {
+  const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
+  const b = new Plot.Brush();
+  const xy = {x: "culmen_length_mm", y: "culmen_depth_mm", fx: "species"};
+  const plot = Plot.plot({
+    marks: [Plot.dot(penguins, b.inactive({...xy, r: 2})), b]
+  });
+
+  let lastValue: any;
+  plot.addEventListener("input", () => (lastValue = plot.value));
+  b.move({x1: 35, x2: 50, y1: 14, y2: 20, fx: "Adelie"});
+
+  // With fx: restricts to Adelie
+  const withFx = penguins.filter((d: any) => lastValue.filter(d.culmen_length_mm, d.culmen_depth_mm, d.species));
+  assert.ok(
+    withFx.every((d: any) => d.species === "Adelie"),
+    "with fx should only select Adelie"
+  );
+
+  // Without fx: selects across all facets
+  const withoutFx = penguins.filter((d: any) => lastValue.filter(d.culmen_length_mm, d.culmen_depth_mm));
+  const species = new Set(withoutFx.map((d: any) => d.species));
+  assert.ok(species.size > 1, `without fx should select multiple species, got: ${[...species]}`);
+  assert.ok(withoutFx.length > withFx.length, "without fx should select more points");
+});
+
+it("brush cross-facet filter selects across all facets", async () => {
+  const stocks = [
+    ...(await d3.csv<any>("data/aapl.csv", d3.autoType)).map((d: any) => ({...d, Symbol: "AAPL"})),
+    ...(await d3.csv<any>("data/amzn.csv", d3.autoType)).map((d: any) => ({...d, Symbol: "AMZN"})),
+    ...(await d3.csv<any>("data/goog.csv", d3.autoType)).map((d: any) => ({...d, Symbol: "GOOG"}))
+  ];
+  const b = Plot.brushX({sync: true});
+  const plot = Plot.plot({
+    marks: [Plot.lineY(stocks, b.inactive({x: "Date", y: "Close", fy: "Symbol"})), b]
+  });
+
+  let lastValue: any;
+  plot.addEventListener("input", () => (lastValue = plot.value));
+  b.move({x1: new Date("2015-01-01"), x2: new Date("2016-06-01"), fy: "AAPL"});
+
+  assert.ok(lastValue, "should have a value");
+  assert.ok(lastValue.fy !== undefined, "value should include fy (origin facet)");
+
+  // Without fy: selects across all facets
+  const withoutFy = stocks.filter((d: any) => lastValue.filter(d.Date));
+  const symbols = new Set(withoutFy.map((d: any) => d.Symbol));
+  assert.ok(symbols.size > 1, `should select multiple symbols, got: ${[...symbols]}`);
+
+  // With fy: restricts to the origin facet
+  const withFy = stocks.filter((d: any) => lastValue.filter(d.Date, d.Symbol));
+  const fySymbols = new Set(withFy.map((d: any) => d.Symbol));
+  assert.equal(fySymbols.size, 1, "with fy should restrict to origin facet");
+  assert.ok(withFy.length < withoutFy.length, "with fy should select fewer points");
+});
+
+it("brush faceted filter with fx and fy supports partial facet args", async () => {
+  const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
+  const b = new Plot.Brush();
+  const xy = {x: "culmen_length_mm", y: "culmen_depth_mm", fx: "species", fy: "sex"};
+  const plot = Plot.plot({
+    marks: [Plot.dot(penguins, b.inactive({...xy, r: 2})), b]
+  });
+
+  let lastValue: any;
+  plot.addEventListener("input", () => (lastValue = plot.value));
+  b.move({x1: 35, x2: 50, y1: 14, y2: 20, fx: "Adelie", fy: "MALE"});
+
+  // Both fx and fy: restricts to Adelie MALE
+  const withBoth = penguins.filter((d: any) =>
+    lastValue.filter(d.culmen_length_mm, d.culmen_depth_mm, d.species, d.sex)
+  );
+  assert.ok(withBoth.length > 0, "should select some points");
+  assert.ok(
+    withBoth.every((d: any) => d.species === "Adelie" && d.sex === "MALE"),
+    "should only select Adelie MALE"
+  );
+
+  // Only fx (fy undefined): restricts to Adelie, any sex
+  const withFx = penguins.filter((d: any) => lastValue.filter(d.culmen_length_mm, d.culmen_depth_mm, d.species));
+  assert.ok(withFx.length >= withBoth.length, "with fx only should select at least as many");
+  assert.ok(
+    withFx.every((d: any) => d.species === "Adelie"),
+    "with fx only should restrict to Adelie"
+  );
+  const sexes = new Set(withFx.map((d: any) => d.sex));
+  assert.ok(sexes.size > 1, `with fx only should include multiple sexes, got: ${[...sexes]}`);
+
+  // Only fy (fx undefined): restricts to MALE, any species
+  const withFy = penguins.filter((d: any) => lastValue.filter(d.culmen_length_mm, d.culmen_depth_mm, undefined, d.sex));
+  assert.ok(withFy.length >= withBoth.length, "with fy only should select at least as many");
+  assert.ok(
+    withFy.every((d: any) => d.sex === "MALE"),
+    "with fy only should restrict to MALE"
+  );
+  const spp = new Set(withFy.map((d: any) => d.species));
+  assert.ok(spp.size > 1, `with fy only should include multiple species, got: ${[...spp]}`);
+
+  // Neither fx nor fy: selects across all facets
+  const withNeither = penguins.filter((d: any) => lastValue.filter(d.culmen_length_mm, d.culmen_depth_mm));
+  assert.ok(withNeither.length >= withFx.length, "without facets should select at least as many as fx only");
+  assert.ok(withNeither.length >= withFy.length, "without facets should select at least as many as fy only");
+  const allSpecies = new Set(withNeither.map((d: any) => d.species));
+  const allSexes = new Set(withNeither.map((d: any) => d.sex));
+  assert.ok(allSpecies.size > 1, "without facets should include multiple species");
+  assert.ok(allSexes.size > 1, "without facets should include multiple sexes");
+});
+
+it("brush with data includes filtered data in value", () => {
+  const data = [
+    {x: 10, y: 10},
+    {x: 20, y: 20},
+    {x: 30, y: 30},
+    {x: 40, y: 40},
+    {x: 50, y: 50}
+  ];
+  const brush = Plot.brush(data, {x: "x", y: "y"});
+  const plot = Plot.plot({
+    x: {domain: [0, 60]},
+    y: {domain: [0, 60]},
+    marks: [
+      brush,
+      Plot.dot(data, brush.inactive()),
+      Plot.dot(data, brush.context({fill: "#ccc"})),
+      Plot.dot(data, brush.focus({fill: "red"}))
+    ]
+  });
+
+  let lastValue: any;
+  plot.addEventListener("input", () => (lastValue = plot.value));
+  brush.move({x1: 15, x2: 35, y1: 15, y2: 35});
+
+  assert.ok(lastValue, "should have a value");
+  assert.ok(Array.isArray(lastValue.data), "value should have a data array");
+  assert.equal(lastValue.data.length, 2, "filtered data should contain 2 points");
+  assert.deepEqual(lastValue.data, [
+    {x: 20, y: 20},
+    {x: 30, y: 30}
+  ]);
+});
+
+it("brush with generator data includes filtered data in value", () => {
+  const data = [
+    {x: 10, y: 10},
+    {x: 20, y: 20},
+    {x: 30, y: 30},
+    {x: 40, y: 40},
+    {x: 50, y: 50}
+  ];
+  function* generate() {
+    yield* data;
+  }
+  const brush = Plot.brush(generate(), {x: "x", y: "y"});
+  const plot = Plot.plot({
+    x: {domain: [0, 60]},
+    y: {domain: [0, 60]},
+    marks: [
+      brush,
+      Plot.dot(data, brush.inactive()),
+      Plot.dot(data, brush.context({fill: "#ccc"})),
+      Plot.dot(data, brush.focus({fill: "red"}))
+    ]
+  });
+
+  let lastValue: any;
+  plot.addEventListener("input", () => (lastValue = plot.value));
+  brush.move({x1: 15, x2: 35, y1: 15, y2: 35});
+
+  assert.ok(lastValue, "should have a value");
+  assert.ok(Array.isArray(lastValue.data), "value should have a data array");
+  assert.equal(lastValue.data.length, 2, "filtered data should contain 2 points");
+  assert.deepEqual(lastValue.data, [
+    {x: 20, y: 20},
+    {x: 30, y: 30}
+  ]);
+});
+
 it("brush reactive marks compose with user render transforms", () => {
   const data = [
     {x: 10, y: 10},
@@ -184,4 +361,80 @@ it("brush reactive marks compose with user render transforms", () => {
     ]
   });
   assert.equal(rendered.length, 3, "user render should have been called for each reactive mark");
+});
+
+it("brushX value has x1/x2 but no y1/y2", async () => {
+  const data = [
+    {x: 10, y: 10},
+    {x: 20, y: 20},
+    {x: 30, y: 30},
+    {x: 40, y: 40},
+    {x: 50, y: 50}
+  ];
+  const brush = Plot.brushX();
+  const plot = Plot.plot({
+    x: {domain: [0, 60]},
+    y: {domain: [0, 60]},
+    marks: [
+      Plot.dot(data, brush.inactive({x: "x", y: "y"})),
+      Plot.dot(data, brush.context({x: "x", y: "y", fill: "#ccc"})),
+      Plot.dot(data, brush.focus({x: "x", y: "y", fill: "red"})),
+      brush
+    ]
+  });
+
+  let lastValue: any;
+  plot.addEventListener("input", () => (lastValue = plot.value));
+
+  brush.move({x1: 15, x2: 45});
+
+  assert.ok(lastValue, "should have a value");
+  assert.ok("x1" in lastValue, "value should have x1");
+  assert.ok("x2" in lastValue, "value should have x2");
+  assert.ok(!("y1" in lastValue), "value should not have y1");
+  assert.ok(!("y2" in lastValue), "value should not have y2");
+  assert.ok(typeof lastValue.filter === "function", "value should have a filter function");
+
+  // 1D filter takes a single argument
+  const filtered = data.filter((d) => lastValue.filter(d.x));
+  assert.ok(filtered.length > 0, "should select some points");
+  assert.ok(filtered.length < data.length, "should not include all points");
+});
+
+it("brushY value has y1/y2 but no x1/x2", async () => {
+  const data = [
+    {x: 10, y: 10},
+    {x: 20, y: 20},
+    {x: 30, y: 30},
+    {x: 40, y: 40},
+    {x: 50, y: 50}
+  ];
+  const brush = Plot.brushY();
+  const plot = Plot.plot({
+    x: {domain: [0, 60]},
+    y: {domain: [0, 60]},
+    marks: [
+      Plot.dot(data, brush.inactive({x: "x", y: "y"})),
+      Plot.dot(data, brush.context({x: "x", y: "y", fill: "#ccc"})),
+      Plot.dot(data, brush.focus({x: "x", y: "y", fill: "red"})),
+      brush
+    ]
+  });
+
+  let lastValue: any;
+  plot.addEventListener("input", () => (lastValue = plot.value));
+
+  brush.move({y1: 15, y2: 45});
+
+  assert.ok(lastValue, "should have a value");
+  assert.ok("y1" in lastValue, "value should have y1");
+  assert.ok("y2" in lastValue, "value should have y2");
+  assert.ok(!("x1" in lastValue), "value should not have x1");
+  assert.ok(!("x2" in lastValue), "value should not have x2");
+  assert.ok(typeof lastValue.filter === "function", "value should have a filter function");
+
+  // 1D filter takes a single argument
+  const filtered = data.filter((d) => lastValue.filter(d.y));
+  assert.ok(filtered.length > 0, "should select some points");
+  assert.ok(filtered.length < data.length, "should not include all points");
 });

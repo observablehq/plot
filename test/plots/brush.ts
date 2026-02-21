@@ -6,11 +6,17 @@ import {html} from "htl";
 
 function formatValue(v: any) {
   if (v == null) return JSON.stringify(v);
-  const o: any = {};
+  const lines: string[] = [];
   for (const [k, val] of Object.entries(v)) {
-    o[k] = typeof val === "function" ? `${k}(${paramNames(val as (...args: any[]) => any)})` : val;
+    const formatted =
+      typeof val === "function"
+        ? `${k}(${paramNames(val as (...args: any[]) => any)})`
+        : Array.isArray(val)
+        ? `Array(${val.length})`
+        : JSON.stringify(val);
+    lines.push(`  ${k}: ${formatted}`);
   }
-  return JSON.stringify(o, null, 2);
+  return `{\n${lines.join(",\n")}\n}`;
 }
 
 function paramNames(fn: (...args: any[]) => any) {
@@ -275,6 +281,351 @@ export async function brushRandomNormal() {
   return html`<figure>${plot}${textarea}</figure>`;
 }
 
+export async function brushCrossFacet() {
+  const stocks = [
+    ...(await d3.csv<any>("data/aapl.csv", d3.autoType)).map((d: any) => ({...d, Symbol: "AAPL"})),
+    ...(await d3.csv<any>("data/amzn.csv", d3.autoType)).map((d: any) => ({...d, Symbol: "AMZN"})),
+    ...(await d3.csv<any>("data/goog.csv", d3.autoType)).map((d: any) => ({...d, Symbol: "GOOG"}))
+  ];
+  const brush = Plot.brushX({sync: true});
+  const plot = Plot.plot({
+    height: 350,
+    y: {type: "log", grid: true},
+    fy: {label: null},
+    marks: [
+      Plot.frame(),
+      brush,
+      Plot.lineY(stocks, {x: "Date", y: "Close", fy: "Symbol", stroke: "#ccc"}),
+      Plot.lineY(stocks, brush.inactive({x: "Date", y: "Close", fy: "Symbol", stroke: "Symbol"})),
+      Plot.lineY(stocks, brush.focus({x: "Date", y: "Close", fy: "Symbol", stroke: "Symbol", strokeWidth: 2}))
+    ]
+  });
+  const textarea = html`<textarea rows=10 style="width: 640px; resize: none;">`;
+  const oninput = () => {
+    const v = plot.value;
+    if (!v?.filter) {
+      textarea.value = formatValue(v);
+    } else {
+      const filtered = stocks.filter((d: any) => v.filter(d.Date));
+      const inFy = stocks.filter((d: any) => v.filter(d.Date, d.Symbol));
+      textarea.value = formatValue(v) + `\nfiltered: ${filtered.length} of ${stocks.length} (${inFy.length} in ${v.fy})`;
+    }
+  };
+  plot.oninput = oninput;
+  brush.move({x1: new Date("2015-01-01"), x2: new Date("2016-06-01"), fy: "AAPL"});
+  oninput();
+  return html`<figure>${plot}${textarea}</figure>`;
+}
+
+export async function brushXHistogram() {
+  const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
+  const brush = Plot.brushX();
+  const plot = Plot.plot({
+    marks: [
+      brush,
+      Plot.rectY(
+        penguins,
+        Plot.binX(
+          {y: "count"},
+          brush.inactive({x: "body_mass_g", thresholds: 40, fill: "currentColor", fillOpacity: 0.8})
+        )
+      ),
+      Plot.rectY(
+        penguins,
+        Plot.binX(
+          {y: "count"},
+          brush.context({x: "body_mass_g", thresholds: 40, fill: "currentColor", fillOpacity: 0.3})
+        )
+      ),
+      Plot.rectY(penguins, Plot.binX({y: "count"}, brush.focus({x: "body_mass_g", thresholds: 40}))),
+      Plot.ruleY([0])
+    ]
+  });
+  const textarea = html`<textarea rows=10 style="width: 640px; resize: none;">`;
+  const oninput = () => {
+    const v = plot.value;
+    const f = v?.filter ? penguins.filter((d: any) => v.filter(d.body_mass_g)) : [];
+    textarea.value = formatValue(v) + `\nfiltered: ${f.length} of ${penguins.length}`;
+  };
+  plot.oninput = oninput;
+  brush.move({x1: 3510, x2: 4960});
+  oninput();
+  return html`<figure>${plot}${textarea}</figure>`;
+}
+
+export async function brushXHistogramFaceted() {
+  const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
+  const [min, max] = d3.extent(penguins, (d: any) => d.body_mass_g) as [number, number];
+  const interval = d3.tickStep(min, max, 40);
+  const brush = Plot.brushX({interval});
+  const plot = Plot.plot({
+    fy: {label: null},
+    y: {grid: true},
+    color: {legend: true},
+    marks: [
+      brush,
+      Plot.rectY(
+        penguins,
+        Plot.binX(
+          {y: "count"},
+          brush.inactive({x: "body_mass_g", interval, fy: "island", fill: "species", fillOpacity: 0.8})
+        )
+      ),
+      Plot.rectY(
+        penguins,
+        Plot.binX(
+          {y: "count"},
+          brush.context({x: "body_mass_g", interval, fy: "island", fill: "species", fillOpacity: 0.3})
+        )
+      ),
+      Plot.rectY(
+        penguins,
+        Plot.binX({y: "count"}, brush.focus({x: "body_mass_g", interval, fy: "island", fill: "species"}))
+      ),
+      Plot.ruleY([0])
+    ]
+  });
+  const textarea = html`<textarea rows=10 style="width: 640px; resize: none;">`;
+  const oninput = () => {
+    const v = plot.value;
+    const f = v?.filter ? penguins.filter((d: any) => v.filter(d.body_mass_g, d.island)) : [];
+    textarea.value = formatValue(v) + `\nfiltered: ${f.length} of ${penguins.length}`;
+  };
+  plot.oninput = oninput;
+  brush.move({x1: 3500, x2: 5000});
+  oninput();
+  return html`<figure>${plot}${textarea}</figure>`;
+}
+
+export async function brushXTemporal() {
+  const aapl = await d3.csv<any>("data/aapl.csv", d3.autoType);
+  const brush = Plot.brushX({interval: "month"});
+  const plot = Plot.plot({
+    y: {grid: true},
+    marks: [
+      brush,
+      Plot.rectY(
+        aapl,
+        Plot.binX(
+          {y: "median"},
+          brush.inactive({x: "Date", y: "Close", interval: "month", fill: "currentColor", fillOpacity: 0.8})
+        )
+      ),
+      Plot.rectY(
+        aapl,
+        Plot.binX(
+          {y: "median"},
+          brush.context({x: "Date", y: "Close", interval: "month", fill: "currentColor", fillOpacity: 0.3})
+        )
+      ),
+      Plot.rectY(aapl, Plot.binX({y: "median"}, brush.focus({x: "Date", y: "Close", interval: "month"}))),
+      Plot.ruleY([0])
+    ]
+  });
+  const textarea = html`<textarea rows=10 style="width: 640px; resize: none;">`;
+  const oninput = () => {
+    const v = plot.value;
+    const f = v?.filter ? aapl.filter((d: any) => v.filter(d.Date)) : [];
+    textarea.value = formatValue(v) + `\nfiltered: ${f.length} of ${aapl.length}`;
+  };
+  plot.oninput = oninput;
+  brush.move({x1: new Date("2014-06-01"), x2: new Date("2015-06-01")});
+  oninput();
+  return html`<figure>${plot}${textarea}</figure>`;
+}
+
+export async function brushXTemporalReversed() {
+  const aapl = await d3.csv<any>("data/aapl.csv", d3.autoType);
+  const brush = Plot.brushX({interval: "month"});
+  const plot = Plot.plot({
+    x: {reverse: true},
+    y: {grid: true},
+    marks: [
+      brush,
+      Plot.rectY(
+        aapl,
+        Plot.binX(
+          {y: "median"},
+          brush.inactive({x: "Date", y: "Close", interval: "month", fill: "currentColor", fillOpacity: 0.8})
+        )
+      ),
+      Plot.rectY(
+        aapl,
+        Plot.binX(
+          {y: "median"},
+          brush.context({x: "Date", y: "Close", interval: "month", fill: "currentColor", fillOpacity: 0.3})
+        )
+      ),
+      Plot.rectY(aapl, Plot.binX({y: "median"}, brush.focus({x: "Date", y: "Close", interval: "month"}))),
+      Plot.ruleY([0])
+    ]
+  });
+  const textarea = html`<textarea rows=10 style="width: 640px; resize: none;">`;
+  const oninput = () => {
+    const v = plot.value;
+    const f = v?.filter ? aapl.filter((d: any) => v.filter(d.Date)) : [];
+    textarea.value = formatValue(v) + `\nfiltered: ${f.length} of ${aapl.length}`;
+  };
+  plot.oninput = oninput;
+  brush.move({x1: new Date("2014-06-01"), x2: new Date("2015-06-01")});
+  oninput();
+  return html`<figure>${plot}${textarea}</figure>`;
+}
+
+export async function brushXDot() {
+  const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
+  const brush = Plot.brushX();
+  const plot = Plot.plot({
+    height: 170,
+    marginTop: 10,
+    marks: [
+      brush,
+      Plot.dot(penguins, Plot.dodgeY(brush.inactive({x: "body_mass_g", fill: "species", r: 3}))),
+      Plot.dot(penguins, Plot.dodgeY(brush.context({x: "body_mass_g", fill: "#ccc", r: 3}))),
+      Plot.dot(penguins, Plot.dodgeY(brush.focus({x: "body_mass_g", fill: "species", r: 3})))
+    ]
+  });
+  const textarea = html`<textarea rows=10 style="width: 640px; resize: none;">`;
+  const oninput = () => {
+    const v = plot.value;
+    const filtered = v?.filter ? penguins.filter((d: any) => v.filter(d.body_mass_g)) : [];
+    textarea.value = formatValue(v) + `\nfiltered: ${filtered.length} of ${penguins.length}`;
+  };
+  plot.oninput = oninput;
+  brush.move({x1: 3200, x2: 4800});
+  oninput();
+  return html`<figure>${plot}${textarea}</figure>`;
+}
+
+export async function brushXData() {
+  const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
+  const values = Plot.valueof(penguins, "body_mass_g");
+  const brush = Plot.brushX(values);
+  const plot = Plot.plot({
+    height: 170,
+    marginTop: 10,
+    marks: [
+      brush,
+      Plot.dot(values, Plot.dodgeY(brush.inactive({fill: "currentColor"}))),
+      Plot.dot(values, Plot.dodgeY(brush.context({fill: "currentColor", fillOpacity: 0.3}))),
+      Plot.dot(values, Plot.dodgeY(brush.focus({fill: "currentColor"})))
+    ]
+  });
+  const textarea = html`<textarea rows=10 style="width: 640px; resize: none;">`;
+  const oninput = () => {
+    textarea.value = formatValue(plot.value);
+  };
+  plot.oninput = oninput;
+  brush.move({x1: 3200, x2: 4800});
+  oninput();
+  return html`<figure>${plot}${textarea}</figure>`;
+}
+
+export async function brushYDot() {
+  const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
+  const brush = Plot.brushY();
+  const xy = {x: "culmen_length_mm" as const, y: "culmen_depth_mm" as const};
+  const plot = Plot.plot({
+    marks: [
+      brush,
+      Plot.dot(penguins, brush.inactive({...xy, fill: "species", r: 2})),
+      Plot.dot(penguins, brush.context({...xy, fill: "#ccc", r: 2})),
+      Plot.dot(penguins, brush.focus({...xy, fill: "species", r: 3}))
+    ]
+  });
+  const textarea = html`<textarea rows=10 style="width: 640px; resize: none;">`;
+  const oninput = () => {
+    const v = plot.value;
+    const filtered = v?.filter ? penguins.filter((d: any) => v.filter(d.culmen_depth_mm)) : [];
+    textarea.value = formatValue(v) + `\nfiltered: ${filtered.length} of ${penguins.length}`;
+  };
+  plot.oninput = oninput;
+  brush.move({y1: 15, y2: 20});
+  oninput();
+  return html`<figure>${plot}${textarea}</figure>`;
+}
+
+export async function brushYHistogram() {
+  const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
+  const brush = Plot.brushY({interval: 0.5});
+  const plot = Plot.plot({
+    x: {grid: true},
+    marks: [
+      brush,
+      Plot.rectX(
+        penguins,
+        Plot.binY(
+          {x: "count"},
+          brush.inactive({y: "culmen_depth_mm", interval: 0.5, fill: "currentColor", fillOpacity: 0.8})
+        )
+      ),
+      Plot.rectX(
+        penguins,
+        Plot.binY(
+          {x: "count"},
+          brush.context({y: "culmen_depth_mm", interval: 0.5, fill: "currentColor", fillOpacity: 0.3})
+        )
+      ),
+      Plot.rectX(penguins, Plot.binY({x: "count"}, brush.focus({y: "culmen_depth_mm", interval: 0.5}))),
+      Plot.ruleX([0])
+    ]
+  });
+  const textarea = html`<textarea rows=10 style="width: 640px; resize: none;">`;
+  const oninput = () => {
+    const v = plot.value;
+    const f = v?.filter ? penguins.filter((d: any) => v.filter(d.culmen_depth_mm)) : [];
+    textarea.value = formatValue(v) + `\nfiltered: ${f.length} of ${penguins.length}`;
+  };
+  plot.oninput = oninput;
+  brush.move({y1: 15, y2: 18});
+  oninput();
+  return html`<figure>${plot}${textarea}</figure>`;
+}
+
+export async function brushBrutalist() {
+  const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
+  const brush = new Plot.Brush(penguins, {
+    x: "culmen_length_mm",
+    y: "culmen_depth_mm",
+    fill: "none",
+    stroke: "currentColor",
+    strokeWidth: 3
+  });
+  const plot = Plot.plot({
+    marks: [
+      brush,
+      Plot.dot(penguins, brush.inactive({symbol: "species", r: 2})),
+      Plot.dot(penguins, brush.context({symbol: "species", r: 2, strokeOpacity: 0.2})),
+      Plot.dot(penguins, brush.focus({symbol: "species", r: 3}))
+    ]
+  });
+  brush.move({x1: 36, x2: 48, y1: 15, y2: 20});
+  return plot;
+}
+
+export async function brushCoordinates() {
+  const random = d3.randomNormal.source(d3.randomLcg(42))();
+  const data = Array.from({length: 200}, () => [random(), random()]);
+  const brush = Plot.brush(data);
+  const plot = Plot.plot({
+    marks: [
+      brush,
+      Plot.dot(data, brush.inactive({fillOpacity: 0.5})),
+      Plot.dot(data, brush.context({fill: "#ccc", fillOpacity: 0.5})),
+      Plot.dot(data, brush.focus({fill: "red", fillOpacity: 0.5}))
+    ]
+  });
+  const textarea = html`<textarea rows=10 style="width: 640px; resize: none;">`;
+  const oninput = () => {
+    const v = plot.value;
+    textarea.value = formatValue(v);
+  };
+  plot.oninput = oninput;
+  brush.move({x1: -1, x2: 1, y1: -1, y2: 0.5});
+  oninput();
+  return html`<figure>${plot}${textarea}</figure>`;
+}
+
 export async function brushSimple() {
   const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
   const plot = Plot.plot({
@@ -288,5 +639,48 @@ export async function brushSimple() {
   };
   oninput();
   plot.oninput = oninput;
+  return html`<figure>${plot}${textarea}</figure>`;
+}
+
+export async function brushDotTip() {
+  const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
+  const brush = new Plot.Brush();
+  const xy = {x: "culmen_length_mm" as const, y: "culmen_depth_mm" as const};
+  const plot = Plot.plot({
+    marks: [
+      brush,
+      Plot.dot(penguins, brush.inactive({...xy, fill: "species", r: 2})),
+      Plot.dot(penguins, brush.context({...xy, fill: "#ccc", r: 2})),
+      Plot.dot(penguins, brush.focus({...xy, fill: "species", r: 3, tip: true}))
+    ]
+  });
+  brush.move({x1: 36, x2: 48, y1: 15, y2: 20});
+  return plot;
+}
+
+export async function brushXLine() {
+  const aapl = await d3.csv<any>("data/aapl.csv", d3.autoType);
+  const brush = Plot.brushX();
+  const plot = Plot.plot({
+    marks: [
+      brush,
+      Plot.lineY(aapl, brush.inactive({x: "Date", y: "Close"})),
+      Plot.lineY(aapl, brush.context({x: "Date", y: "Close", stroke: "#ccc", strokeWidth: 0.5})),
+      Plot.lineY(aapl, brush.focus({x: "Date", y: "Close", strokeWidth: 2}))
+    ]
+  });
+  const textarea = html`<textarea rows=10 style="width: 640px; resize: none;">`;
+  const oninput = () => {
+    const v = plot.value;
+    if (!v?.filter) {
+      textarea.value = formatValue(v);
+    } else {
+      const filtered = aapl.filter((d: any) => v.filter(d.Date));
+      textarea.value = formatValue(v) + `\nfiltered: ${filtered.length} of ${aapl.length}`;
+    }
+  };
+  plot.oninput = oninput;
+  brush.move({x1: new Date("2015-01-01"), x2: new Date("2016-06-01")});
+  oninput();
   return html`<figure>${plot}${textarea}</figure>`;
 }
