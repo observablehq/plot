@@ -1,7 +1,50 @@
-import {extent} from "d3";
+import {extent, max} from "d3";
 import {projectionAspectRatio} from "./projection.js";
 import {isOrdinalScale} from "./scales.js";
 import {offset} from "./style.js";
+import {defaultWidth, monospaceWidth} from "./marks/text.js";
+import {outerDimensions} from "./scales.js";
+import {formatAxisLabel} from "./marks/axis.js";
+
+const marginMedium = 60;
+const marginLarge = 90;
+
+// When axes have "auto" margins, we might need to adjust the margins, after
+// seeing the actual tick labels. In that case we’ll compute the dimensions and
+// scales a second time.
+export function autoMarginK(
+  margin,
+  {scale, labelAnchor, label},
+  options,
+  mark,
+  stateByMark,
+  scales,
+  dimensions,
+  context
+) {
+  const actualLabel = formatAxisLabel(scale, scales[scale], {...options, label});
+  let {data, facets, channels} = stateByMark.get(mark);
+  if (mark.initializer) ({channels} = mark.initializer(data, facets, {}, scales, dimensions, context));
+  if (scale === "y" || scale === "fy") {
+    const width = mark.monospace ? monospaceWidth : defaultWidth;
+    const labelPenalty = actualLabel && (labelAnchor === "center" || (labelAnchor == null && scales[scale].bandwidth));
+    const l = max(channels.text.value, (t) => (t ? width(`${t}`) : NaN)) + (labelPenalty ? 100 : 0);
+    const m = l >= 500 ? marginLarge : l >= 295 ? marginMedium : null;
+    return m === null
+      ? options
+      : scale === "fy"
+      ? {...options, facet: {[margin]: m, ...options.facet}}
+      : {[margin]: m, ...options};
+  }
+  // For the x scale, we bump the margin only if the axis uses multi-line ticks!
+  const re = new RegExp(/\n/);
+  const m = actualLabel && channels.text.value.some((d) => re.test(d)) ? 40 : null;
+  return m === null
+    ? options
+    : scale === "fx"
+    ? {...options, facet: {[margin]: m, ...options.facet}}
+    : {[margin]: m, ...options};
+}
 
 export function createDimensions(scales, marks, options = {}) {
   // Compute the default margins: the maximum of the marks’ margins. While not
@@ -11,7 +54,29 @@ export function createDimensions(scales, marks, options = {}) {
     marginBottomDefault = 0.5 + offset,
     marginLeftDefault = 0.5 - offset;
 
-  for (const {marginTop, marginRight, marginBottom, marginLeft} of marks) {
+  // The left and right margins default to a value inferred from the y (and fy)
+  // scales, if present. Axis tick marks specify a minimum value for the margin,
+  // that might be auto when it needs to be set from the actual tick labels. In
+  // that case, we will compute the chart dimensions as if we used the default
+  // small margin, compute all the tick labels and check their lengths, then
+  // revise the dimensions if necessary.
+  const autoMargins = [];
+  for (const m of marks) {
+    let {
+      marginTop,
+      marginRight,
+      marginBottom,
+      marginLeft,
+      autoMarginTop,
+      autoMarginRight,
+      autoMarginBottom,
+      autoMarginLeft,
+      frameAnchor
+    } = m;
+    if (autoMarginTop) autoMargins.push(["marginTop", autoMarginTop, m]);
+    if (autoMarginRight && frameAnchor === "right") autoMargins.push(["marginRight", autoMarginRight, m]);
+    if (autoMarginBottom) autoMargins.push(["marginBottom", autoMarginBottom, m]);
+    if (autoMarginLeft && frameAnchor === "left") autoMargins.push(["marginLeft", autoMarginLeft, m]);
     if (marginTop > marginTopDefault) marginTopDefault = marginTop;
     if (marginRight > marginRightDefault) marginRightDefault = marginRight;
     if (marginBottom > marginBottomDefault) marginBottomDefault = marginBottom;
@@ -41,9 +106,9 @@ export function createDimensions(scales, marks, options = {}) {
     height = autoHeight(scales, options, {
       width,
       marginTopDefault,
-      marginRightDefault,
+      marginRight,
       marginBottomDefault,
-      marginLeftDefault
+      marginLeft
     }) + Math.max(0, marginTop - marginTopDefault + marginBottom - marginBottomDefault)
   } = options;
 
@@ -84,13 +149,13 @@ export function createDimensions(scales, marks, options = {}) {
     };
   }
 
-  return dimensions;
+  return {dimensions, autoMargins};
 }
 
 function autoHeight(
   {x, y, fy, fx},
   {projection, aspectRatio},
-  {width, marginTopDefault, marginRightDefault, marginBottomDefault, marginLeftDefault}
+  {width, marginTopDefault, marginRight, marginBottomDefault, marginLeft}
 ) {
   const nfy = fy ? fy.scale.domain().length || 1 : 1;
 
@@ -101,7 +166,7 @@ function autoHeight(
     const nfx = fx ? fx.scale.domain().length : 1;
     const far = ((1.1 * nfy - 0.1) / (1.1 * nfx - 0.1)) * ar; // 0.1 is default facet padding
     const lar = Math.max(0.1, Math.min(10, far)); // clamp the aspect ratio to a “reasonable” value
-    return Math.round((width - marginLeftDefault - marginRightDefault) * lar + marginTopDefault + marginBottomDefault);
+    return Math.round((width - marginLeft - marginRight) * lar + marginTopDefault + marginBottomDefault);
   }
   const ny = y ? (isOrdinalScale(y) ? y.scale.domain().length || 1 : Math.max(7, 17 / nfy)) : 1;
 
@@ -112,7 +177,7 @@ function autoHeight(
     const ratio = aspectRatioLength("y", y) / (aspectRatioLength("x", x) * aspectRatio);
     const fxb = fx ? fx.scale.bandwidth() : 1;
     const fyb = fy ? fy.scale.bandwidth() : 1;
-    const w = fxb * (width - marginLeftDefault - marginRightDefault) - x.insetLeft - x.insetRight;
+    const w = fxb * (width - marginLeft - marginRight) - x.insetLeft - x.insetRight;
     return (ratio * w + y.insetTop + y.insetBottom) / fyb + marginTopDefault + marginBottomDefault;
   }
 
@@ -145,4 +210,37 @@ function aspectRatioLength(k, scale) {
   }
   const [min, max] = extent(domain);
   return Math.abs(transform(max) - transform(min));
+}
+
+// This differs from the other outerDimensions in that it accounts for rounding
+// and outer padding in the facet scales; we want the frame to align exactly
+// with the actual range, not the desired range.
+export function actualDimensions({fx, fy}, dimensions) {
+  const {marginTop, marginRight, marginBottom, marginLeft, width, height} = outerDimensions(dimensions);
+  const fxr = fx && outerRange(fx);
+  const fyr = fy && outerRange(fy);
+  return {
+    marginTop: fy ? fyr[0] : marginTop,
+    marginRight: fx ? width - fxr[1] : marginRight,
+    marginBottom: fy ? height - fyr[1] : marginBottom,
+    marginLeft: fx ? fxr[0] : marginLeft,
+    // Some marks, namely the x- and y-axis labels, want to know what the
+    // desired (rather than actual) margins are for positioning.
+    inset: {
+      marginTop: dimensions.marginTop,
+      marginRight: dimensions.marginRight,
+      marginBottom: dimensions.marginBottom,
+      marginLeft: dimensions.marginLeft
+    },
+    width,
+    height
+  };
+}
+
+function outerRange(scale) {
+  const domain = scale.domain;
+  let x1 = scale.scale(domain[0]);
+  let x2 = scale.scale(domain[domain.length - 1]);
+  if (x2 < x1) [x1, x2] = [x2, x1];
+  return [x1, x2 + scale.scale.bandwidth()];
 }

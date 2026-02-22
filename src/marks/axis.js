@@ -82,9 +82,9 @@ function axisKy(
     x,
     margin,
     marginTop = margin === undefined ? 20 : margin,
-    marginRight = margin === undefined ? (anchor === "right" ? 40 : 0) : margin,
+    marginRight,
     marginBottom = margin === undefined ? 20 : margin,
-    marginLeft = margin === undefined ? (anchor === "left" ? 40 : 0) : margin,
+    marginLeft,
     label,
     labelAnchor,
     labelArrow,
@@ -98,6 +98,16 @@ function axisKy(
   tickRotate = number(tickRotate);
   if (labelAnchor !== undefined) labelAnchor = keyword(labelAnchor, "labelAnchor", ["center", "top", "bottom"]);
   labelArrow = maybeLabelArrow(labelArrow);
+  const autoMarginRight = margin === undefined &&
+    marginRight === undefined &&
+    anchor === "right" &&
+    x == null && {scale: k, labelAnchor, label};
+  marginRight ??= margin === undefined ? (anchor === "right" ? 40 : 0) : margin;
+  const autoMarginLeft = margin === undefined &&
+    marginLeft === undefined &&
+    anchor === "left" &&
+    x == null && {scale: k, labelAnchor, label};
+  marginLeft ??= margin === undefined ? (anchor === "left" ? 40 : 0) : margin;
   return marks(
     tickSize && !isNoneish(stroke)
       ? axisTickKy(k, anchor, data, {
@@ -128,6 +138,8 @@ function axisKy(
           marginRight,
           marginBottom,
           marginLeft,
+          autoMarginRight,
+          autoMarginLeft,
           ariaLabel,
           ...options
         })
@@ -185,9 +197,9 @@ function axisKx(
     tickRotate,
     y,
     margin,
-    marginTop = margin === undefined ? (anchor === "top" ? 30 : 0) : margin,
+    marginTop,
     marginRight = margin === undefined ? 20 : margin,
-    marginBottom = margin === undefined ? (anchor === "bottom" ? 30 : 0) : margin,
+    marginBottom,
     marginLeft = margin === undefined ? 20 : margin,
     label,
     labelAnchor,
@@ -202,6 +214,16 @@ function axisKx(
   tickRotate = number(tickRotate);
   if (labelAnchor !== undefined) labelAnchor = keyword(labelAnchor, "labelAnchor", ["center", "left", "right"]);
   labelArrow = maybeLabelArrow(labelArrow);
+  const autoMarginTop = margin === undefined &&
+    marginTop === undefined &&
+    anchor === "top" &&
+    y == null && {scale: k, labelAnchor, label};
+  marginTop ??= margin === undefined ? (anchor === "top" ? 30 : 0) : margin;
+  const autoMarginBottom = margin === undefined &&
+    marginBottom === undefined &&
+    anchor === "bottom" &&
+    y == null && {scale: k, labelAnchor, label};
+  marginBottom ??= margin === undefined ? (anchor === "bottom" ? 30 : 0) : margin;
   return marks(
     tickSize && !isNoneish(stroke)
       ? axisTickKx(k, anchor, data, {
@@ -232,6 +254,8 @@ function axisKx(
           marginRight,
           marginBottom,
           marginLeft,
+          autoMarginTop,
+          autoMarginBottom,
           ariaLabel,
           ...options
         })
@@ -646,6 +670,11 @@ function axisMark(mark, k, data, properties, options, initialize) {
     channels = {};
   }
   if (properties !== undefined) Object.assign(m, properties);
+  m.autoMarginLeft = options.autoMarginLeft;
+  m.autoMarginTop = options.autoMarginTop;
+  m.autoMarginRight = options.autoMarginRight;
+  m.autoMarginBottom = options.autoMarginBottom;
+  m.autoMarginLeft = options.autoMarginLeft;
   if (m.clip === undefined) m.clip = false; // don’t clip axes by default
   return m;
 }
@@ -719,7 +748,7 @@ function inferFontVariant(scale) {
 
 // Takes the scale label, and if this is not an ordinal scale and the label was
 // inferred from an associated channel, adds an orientation-appropriate arrow.
-function formatAxisLabel(k, scale, {anchor, label = scale.label, labelAnchor, labelArrow} = {}) {
+export function formatAxisLabel(k, scale, {anchor, label = scale.label, labelAnchor, labelArrow} = {}) {
   if (label == null || (label.inferred && hasTemporalDomain(scale) && /^(date|time|year)$/i.test(label))) return;
   label = String(label); // coerce to a string after checking if inferred
   if (labelArrow === "auto") labelArrow = (!scale.bandwidth || scale.interval) && !/[↑↓→←]/.test(label);

@@ -257,6 +257,11 @@ export async function autoLineFacet() {
   return Plot.auto(industries, {x: "date", y: "unemployed", fy: "industry"}).plot();
 }
 
+export async function autoLineFacetFlip() {
+  const industries = await d3.csv<any>("data/bls-industry-unemployment.csv", d3.autoType);
+  return Plot.auto(industries, {x: "date", y: "unemployed", fy: "industry"}).plot({y: {axis: "right"}});
+}
+
 export async function autoDotFacet() {
   const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
   return Plot.auto(penguins, {x: "body_mass_g", y: "culmen_length_mm", fx: "island", color: "sex"}).plot();

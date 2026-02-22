@@ -14,12 +14,12 @@
     }
   </style>
   <g aria-label="fy-axis label" transform="translate(37.5,0.5)">
-    <text transform="translate(600,157.5) rotate(-90)">path</text>
+    <text transform="translate(600,NaN) rotate(-90)">path</text>
   </g>
   <g aria-label="y-axis label" text-anchor="start" transform="translate(-36.5,-16.5)">
-    <text y="0.71em" transform="translate(40,0)">visitors</text>
+    <text y="0.71em" transform="translate(40,undefined)">visitors</text>
   </g>
   <g aria-label="x-axis label" transform="translate(0.5,27.5)">
-    <text transform="translate(320,315)">date</text>
+    <text transform="translate(320,NaN)">date</text>
   </g>
 </svg>

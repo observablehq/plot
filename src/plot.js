@@ -1,7 +1,7 @@
 import {creator, geoPath, select} from "d3";
 import {createChannel, inferChannelScale} from "./channel.js";
 import {createContext} from "./context.js";
-import {createDimensions} from "./dimensions.js";
+import {createDimensions, autoMarginK, actualDimensions} from "./dimensions.js";
 import {createFacets, recreateFacets, facetExclude, facetGroups, facetTranslator, facetFilter} from "./facet.js";
 import {pointer, pointerX, pointerY} from "./interactions/pointer.js";
 import {createLegends, exposeLegends} from "./legends.js";
@@ -13,7 +13,7 @@ import {isColor, isIterable, isNone, isScaleOptions} from "./options.js";
 import {dataify, lengthof, map, yes, maybeIntervalTransform, subarray} from "./options.js";
 import {createProjection, getGeometryChannels, hasProjection, xyProjection} from "./projection.js";
 import {createScales, createScaleFunctions, autoScaleRange, exposeScales} from "./scales.js";
-import {innerDimensions, outerDimensions} from "./scales.js";
+import {innerDimensions} from "./scales.js";
 import {isPosition, registry as scaleRegistry} from "./scales/index.js";
 import {applyInlineStyles, maybeClassName} from "./style.js";
 import {initializer} from "./transforms/basic.js";
@@ -139,17 +139,6 @@ export function plot(options = {}) {
     stateByMark.set(mark, {data, facets, channels});
   }
 
-  // Initalize the scales and dimensions.
-  const scaleDescriptors = createScales(addScaleChannels(channelsByScale, stateByMark, options), options);
-  const dimensions = createDimensions(scaleDescriptors, marks, options);
-
-  autoScaleRange(scaleDescriptors, dimensions);
-
-  const scales = createScaleFunctions(scaleDescriptors);
-  const {fx, fy} = scales;
-  const subdimensions = fx || fy ? innerDimensions(scaleDescriptors, dimensions) : dimensions;
-  const superdimensions = fx || fy ? actualDimensions(scales, dimensions) : dimensions;
-
   // Initialize the context.
   const context = createContext(options);
   const document = context.document;
@@ -157,7 +146,6 @@ export function plot(options = {}) {
   let figure = svg; // replaced with the figure element, if any
   context.ownerSVGElement = svg;
   context.className = className;
-  context.projection = createProjection(options, subdimensions);
 
   // A path generator for marks that want to draw GeoJSON.
   context.path = function () {
@@ -175,6 +163,42 @@ export function plot(options = {}) {
     const facetState = facetStateByMark.get(mark);
     return {...state, channels: {...state.channels, ...facetState?.channels}};
   };
+
+  // Initialize the dimensions and scales. Needs a double take when the left or
+  // right margins are based on the y (and fy) actual tick labels.
+  const channels = addScaleChannels(channelsByScale, stateByMark, options);
+  let scaleDescriptors = createScales(channels, options);
+  let {dimensions, autoMargins} = createDimensions(scaleDescriptors, marks, options);
+  autoScaleRange(scaleDescriptors, dimensions); // !! mutates scales ranges…
+  let scales = createScaleFunctions(scaleDescriptors);
+  let {fx, fy} = scales;
+  let subdimensions = fx || fy ? innerDimensions(scaleDescriptors, dimensions) : dimensions;
+  let superdimensions = fx || fy ? actualDimensions(scaleDescriptors, dimensions) : dimensions;
+  context.projection = createProjection(options, subdimensions);
+
+  // Review the auto margins and create new scales if more space is needed.
+  const originalOptions = options;
+  for (const [margin, scale, mark] of autoMargins) {
+    options = autoMarginK(
+      margin,
+      scale,
+      options,
+      mark,
+      stateByMark,
+      scales,
+      mark.facet === "super" ? superdimensions : subdimensions,
+      context
+    );
+  }
+  if (options !== originalOptions) {
+    scaleDescriptors = createScales(channels, options);
+    dimensions = createDimensions(scaleDescriptors, marks, options).dimensions;
+    autoScaleRange(scaleDescriptors, dimensions);
+    ({fx, fy} = scales = createScaleFunctions(scaleDescriptors));
+    subdimensions = fx || fy ? innerDimensions(scaleDescriptors, dimensions) : dimensions;
+    superdimensions = fx || fy ? actualDimensions(scaleDescriptors, dimensions) : dimensions;
+    context.projection = createProjection(options, subdimensions);
+  }
 
   // Allows e.g. the pointer transform to support viewof.
   context.dispatchValue = (value) => {
@@ -708,38 +732,4 @@ function inheritScaleLabels(newScales, scales) {
     }
   }
   return newScales;
-}
-
-// This differs from the other outerDimensions in that it accounts for rounding
-// and outer padding in the facet scales; we want the frame to align exactly
-// with the actual range, not the desired range.
-function actualDimensions({fx, fy}, dimensions) {
-  const {marginTop, marginRight, marginBottom, marginLeft, width, height} = outerDimensions(dimensions);
-  const fxr = fx && outerRange(fx);
-  const fyr = fy && outerRange(fy);
-  return {
-    marginTop: fy ? fyr[0] : marginTop,
-    marginRight: fx ? width - fxr[1] : marginRight,
-    marginBottom: fy ? height - fyr[1] : marginBottom,
-    marginLeft: fx ? fxr[0] : marginLeft,
-    // Some marks, namely the x- and y-axis labels, want to know what the
-    // desired (rather than actual) margins are for positioning.
-    inset: {
-      marginTop: dimensions.marginTop,
-      marginRight: dimensions.marginRight,
-      marginBottom: dimensions.marginBottom,
-      marginLeft: dimensions.marginLeft
-    },
-    width,
-    height
-  };
-}
-
-function outerRange(scale) {
-  const domain = scale.domain();
-  if (domain.length === 0) return [0, scale.bandwidth()];
-  let x1 = scale(domain[0]);
-  let x2 = scale(domain[domain.length - 1]);
-  if (x2 < x1) [x1, x2] = [x2, x1];
-  return [x1, x2 + scale.bandwidth()];
 }
