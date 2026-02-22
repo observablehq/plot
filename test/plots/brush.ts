@@ -558,3 +558,30 @@ export async function brushXLine() {
   oninput();
   return html`<figure>${plot}${textarea}</figure>`;
 }
+
+export async function brushYLine() {
+  const aapl = await d3.csv<any>("data/aapl.csv", d3.autoType);
+  const brush = Plot.brushY();
+  const plot = Plot.plot({
+    marks: [
+      brush,
+      Plot.lineX(aapl, brush.inactive({y: "Date", x: "Close"})),
+      Plot.lineX(aapl, brush.context({y: "Date", x: "Close", stroke: "#ccc", strokeWidth: 0.5})),
+      Plot.lineX(aapl, brush.focus({y: "Date", x: "Close", strokeWidth: 2}))
+    ]
+  });
+  const textarea = html`<textarea rows=10 style="width: 640px; resize: none;">`;
+  const oninput = () => {
+    const v = plot.value;
+    if (!v?.filter) {
+      textarea.value = formatValue(v);
+    } else {
+      const filtered = aapl.filter((d: any) => v.filter(d.Date));
+      textarea.value = formatValue(v) + `\nfiltered: ${filtered.length} of ${aapl.length}`;
+    }
+  };
+  plot.oninput = oninput;
+  brush.move({y1: new Date("2015-01-01"), y2: new Date("2016-06-01")});
+  oninput();
+  return html`<figure>${plot}${textarea}</figure>`;
+}
