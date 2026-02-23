@@ -52,6 +52,18 @@ Plot.plot({
 
 These values are displayed atop the axes on the edge of the frame; unlike the tip mark, the crosshair mark will not obscure other marks in the plot.
 
+When called without data, the crosshair tracks the raw pointer position and inverts the plot's scales directly. This is useful for reading coordinates from any plot, even without matching data.
+
+:::plot defer
+```js
+Plot.plot({
+  x: {type: "utc", domain: [new Date("2010-01-01"), new Date("2025-01-01")]},
+  y: {domain: [0, 100]},
+  marks: [Plot.frame(), Plot.gridX(), Plot.gridY(), Plot.crosshair()]
+})
+```
+:::
+
 ## Selecting
 
 Support for selecting points within a plot through direct manipulation is under development. If you are interested in this feature, please upvote [#5](https://github.com/observablehq/plot/issues/5). See [#721](https://github.com/observablehq/plot/pull/721) for some early work on brushing.
