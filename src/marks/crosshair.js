@@ -1,6 +1,8 @@
+import {maybeAutoTickFormat} from "../axes.js";
 import {getSource} from "../channel.js";
 import {pointer, pointerX, pointerY} from "../interactions/pointer.js";
 import {marks} from "../mark.js";
+import {map, string} from "../options.js";
 import {initializer} from "../transforms/basic.js";
 import {ruleX, ruleY} from "./rule.js";
 import {text} from "./text.js";
@@ -103,7 +105,11 @@ function textOptions(k, pointerOptions, options) {
 // initializer to alias the channel values, such that the text channel can be
 // derived by an initializer such as hexbin.
 function textChannel(source, options) {
+  const format = options?.format?.[source];
   return initializer(options, (data, facets, channels) => {
-    return {channels: {text: {value: getSource(channels, source)?.value}}};
+    let value = getSource(channels, source).value;
+    const f = maybeAutoTickFormat(format, value);
+    if (f !== string) value = map(value, f); // prefer tabular-nums and formatDefault
+    return {channels: {text: {value}}};
   });
 }
