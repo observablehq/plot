@@ -13,7 +13,7 @@ export function getAnchors(text) {
         .toLowerCase()
     );
   }
-  for (const [, anchor] of text.matchAll(/ \{#([\w\d.-]+)\}/g)) {
+  for (const [, anchor] of text.matchAll(/ \{#([\w\d-]+)\}/g)) {
     anchors.push(anchor);
   }
   return anchors;
