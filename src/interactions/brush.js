@@ -148,7 +148,7 @@ export class Brush extends Mark {
         });
     }
 
-    const g = create("svg:g").attr("aria-label", "brush");
+    const g = create("svg:g").attr("aria-label", this._dimension === "xy" ? "brush" : `brush-${this._dimension}`);
     g.call(this._brush);
     const node = g.node();
     this._brushNodes.push(node);
