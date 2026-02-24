@@ -91,8 +91,8 @@ In the future, displayed values will be automatically rounded to the coarsest pr
 The crosshair dispatches [*input* events](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/input_event) when the pointer moves. The plot's value (`plot.value`) is set to an object with **x** and **y** properties (the scale-inverted values), or null when the pointer leaves the frame.
 
 ```js
-const ch = Plot.crosshair();
-const plot = ch.plot({
+const crosshair = Plot.crosshair();
+const plot = crosshair.plot({
   x: {domain: [0, 100]},
   y: {domain: [0, 100]},
   marks: [Plot.frame()]
@@ -160,17 +160,17 @@ Like crosshair, but using [pointerY](./pointer.md#pointerY) when *y* is the domi
 ## *crosshair*.move(*value*) {#crosshair-move}
 
 ```js
-ch.move({x: new Date("2020-06-01"), y: 42})
+crosshair.move({x: new Date("2020-06-01"), y: 42})
 ```
 
 Programmatically sets the crosshair position in data space. Pass an object with **x** and/or **y** values to show the crosshair at that position, or null to hide it. The plot dispatches an *input* event, just as if the user had moved the pointer.
 
 ```js
-ch.move(null) // hide
+crosshair.move(null) // hide
 ```
 
 For faceted plots, include **fx** or **fy** to target a specific facet:
 
 ```js
-ch.move({x: 45, y: 17, fx: "Chinstrap"})
+crosshair.move({x: 45, y: 17, fx: "Chinstrap"})
 ```
