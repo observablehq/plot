@@ -88,7 +88,6 @@ function formatValue(v: any) {
 export async function crosshairDataless() {
   const crosshair = Plot.crosshair();
   const plot = crosshair.plot({
-    style: "overflow: visible;",
     x: {type: "utc", domain: [new Date("2010-01-01"), new Date("2025-01-01")]},
     y: {domain: [0, 100]},
     marks: [Plot.frame(), Plot.gridX({tickSpacing: 25}), Plot.gridY({tickSpacing: 25})]
@@ -105,7 +104,6 @@ export async function crosshairDatalessFacet() {
   const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
   const crosshair = Plot.crosshair();
   const plot = crosshair.plot({
-    style: "overflow: visible;",
     inset: 10,
     grid: true,
     marks: [Plot.frame(), Plot.dot(penguins, {x: "culmen_length_mm", y: "culmen_depth_mm", fx: "species"})]
@@ -125,7 +123,6 @@ export async function crosshairDatalessOrdinal() {
   }));
   const crosshair = Plot.crosshair();
   const plot = Plot.plot({
-    style: "overflow: visible;",
     marginLeft: 60,
     label: null,
     y: {type: "point"},
@@ -149,7 +146,6 @@ export async function crosshairDatalessLog() {
   // TODO: replace with proper symlog ticks once https://github.com/d3/d3-scale/issues/162 is fixed
   const ticks = [-100000, -20000, -5000, -500, -100, -20, -5, 0, 5, 20, 100, 500, 5000, 20000, 100000];
   const plot = crosshair.plot({
-    style: "overflow: visible;",
     x: {type: "symlog", domain: [-100000, 100000], ticks},
     y: {type: "log", domain: [0.1, 10000]},
     grid: true,
