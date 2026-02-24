@@ -84,7 +84,7 @@ Plot.plot({
 ```
 :::
 
-In the future, displayed values will be automatically rounded to the coarsest precision that still distinguishes neighboring pixels.
+Displayed values are automatically rounded to the optimal precision that distinguishes neighboring pixels.
 
 ## Input events
 
