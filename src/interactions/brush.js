@@ -10,6 +10,7 @@ import {
 } from "d3";
 import {composeRender, Mark} from "../mark.js";
 import {constant, dataify, identity, isIterable, keyword, maybeInterval, maybeTuple, take} from "../options.js";
+import {pixelRound} from "../precision.js";
 import {applyAttr} from "../style.js";
 
 const defaults = {ariaLabel: "brush", fill: "#777", fillOpacity: 0.3, stroke: "#fff"};
@@ -49,8 +50,8 @@ export class Brush extends Mark {
       const dim = this._dimension;
       const interval = this._interval;
       if (context.projection && dim !== "xy") throw new Error(`brush${dim.toUpperCase()} does not support projections`);
-      const invertX = (!context.projection && x?.invert) || ((d) => d);
-      const invertY = (!context.projection && y?.invert) || ((d) => d);
+      const invertX = precisionInvert(x, context.projection);
+      const invertY = precisionInvert(y, context.projection);
       const applyX = (this._applyX = (!context.projection && x) || ((d) => d));
       const applyY = (this._applyY = (!context.projection && y) || ((d) => d));
       context.dispatchValue(null);
@@ -72,7 +73,10 @@ export class Brush extends Mark {
       _brush
         .extent([
           [dimensions.marginLeft - (dim !== "y"), dimensions.marginTop - (dim !== "x")],
-          [dimensions.width - dimensions.marginRight + (dim !== "y"), dimensions.height - dimensions.marginBottom + (dim !== "x")]
+          [
+            dimensions.width - dimensions.marginRight + (dim !== "y"),
+            dimensions.height - dimensions.marginBottom + (dim !== "x")
+          ]
         ])
         .on("start brush end", function (event) {
           if (syncing) return;
@@ -129,22 +133,11 @@ export class Brush extends Mark {
               context.dispatchValue(value);
             }
           } else {
-            const [[px1, py1], [px2, py2]] =
-              dim === "xy"
-                ? selection
-                : dim === "x"
-                ? [
-                    [selection[0], NaN],
-                    [selection[1], NaN]
-                  ]
-                : [
-                    [NaN, selection[0]],
-                    [NaN, selection[1]]
-                  ];
-
-            const inX = isNaN(px1) ? () => true : (xi) => px1 <= xi && xi < px2;
-            const inY = isNaN(py1) ? () => true : (yi) => py1 <= yi && yi < py2;
-
+            const [[px1, py1], [px2, py2]] = dim === "xy" ? selection
+                : dim === "x" ? [[selection[0]], [selection[1]]]
+                : [[, selection[0]], [, selection[1]]]; // prettier-ignore
+            const inX = dim !== "y" && ((xi) => px1 <= xi && xi < px2);
+            const inY = dim !== "x" && ((yi) => py1 <= yi && yi < py2);
             if (sync) {
               syncing = true;
               selectAll(_brushNodes.filter((_, i) => i !== currentNode)).call(_brush.move, selection);
@@ -152,17 +145,16 @@ export class Brush extends Mark {
             }
             for (let i = sync ? 0 : currentNode, n = sync ? _brushNodes.length : currentNode + 1; i < n; ++i) {
               inactive.update(false, i);
-              ctx.update((xi, yi) => !(inX(xi) && inY(yi)), i);
-              focus.update((xi, yi) => inX(xi) && inY(yi), i);
+              ctx.update(!inX ? (_, yi) => !inY(yi) : !inY ? (xi) => !inX(xi) : (xi, yi) => !(inX(xi) && inY(yi)), i);
+              focus.update(!inX ? (_, yi) => inY(yi) : !inY ? inX : (xi, yi) => inX(xi) && inY(yi), i);
             }
 
             const [x1, x2] = invertX && [invertX(px1), invertX(px2)].sort(ascending);
             const [y1, y2] = invertY && [invertY(py1), invertY(py2)].sort(ascending);
 
             // Snap to interval on end
-            if (type === "end" && interval && !snapping) {
-              const s1 = dim === "x" ? x1 : y1;
-              const s2 = dim === "x" ? x2 : y2;
+            if (!snapping && type === "end" && interval) {
+              const [s1, s2] = dim === "x" ? [x1, x2] : [y1, y2];
               const r1 = intervalRound(interval, s1);
               let r2 = intervalRound(interval, s2);
               if (+r1 === +r2) r2 = interval.offset(r1);
@@ -205,10 +197,9 @@ export class Brush extends Mark {
       return;
     }
     const {x1, x2, y1, y2, fx, fy} = value;
-    const node = this._brushNodes.find((n) => {
-      const d = n.__data__;
-      return (fx === undefined || d?.x === fx) && (fy === undefined || d?.y === fy);
-    });
+    const node = this._brushNodes.find(
+      (n) => (fx === undefined || n.__data__?.x === fx) && (fy === undefined || n.__data__?.y === fy)
+    );
     if (!node) return;
     const [px1, px2] = [x1, x2].map(this._applyX).sort(ascending);
     const [py1, py2] = [y1, y2].map(this._applyY).sort(ascending);
@@ -313,24 +304,22 @@ function renderFilter(initialTest, channelDefaults = {}) {
         pointerEvents: "none",
         ...channelDefaults,
         ...options,
-        render: composeRender(function (index, scales, values, dimensions, context, next) {
-          const {x: X, y: Y, x1: X1, x2: X2, y1: Y1, y2: Y2} = values;
+        render: composeRender((index, scales, values, dimensions, context, next) => {
+          const {x: X, y: Y, x1: X1, x2: X2, y1: Y1, y2: Y2, z: Z} = values;
           const MX = X ?? (X1 && X2 ? Float64Array.from(X1, (v, i) => (v + X2[i]) / 2) : undefined);
           const MY = Y ?? (Y1 && Y2 ? Float64Array.from(Y1, (v, i) => (v + Y2[i]) / 2) : undefined);
+          const G = Array((MX ?? MY).length);
           const render = (test) => {
             if (typeof test !== "function") test = constant(test);
-            let run = [];
-            const runs = [run];
+            const I = [];
+            let run = 0;
             for (const i of index) {
-              if (test(MX?.[i], MY?.[i])) run.push(i);
-              else if (run.length) runs.push((run = []));
+              if (test(MX?.[i], MY?.[i])) {
+                I.push(i);
+                G[i] = `${Z?.[i] ?? ""}/${run}`;
+              } else ++run;
             }
-            const g = next(runs[0], scales, values, dimensions, context);
-            for (const run of runs.slice(1)) {
-              const h = next(run, scales, values, dimensions, context);
-              while (h.firstChild) g.appendChild(h.firstChild);
-            }
-            return g;
+            return next(I, scales, {...values, z: G}, dimensions, context);
           };
           let g = render(initialTest);
           updatePerFacet.push((test) => {
@@ -348,4 +337,10 @@ function renderFilter(initialTest, channelDefaults = {}) {
       }
     }
   );
+}
+
+function precisionInvert(scale, projection) {
+  if (projection || !scale?.invert) return (d) => d;
+  const round = pixelRound(scale);
+  return (p) => round(scale.invert(p));
 }
