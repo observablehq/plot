@@ -3,6 +3,7 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 import {shallowRef, onMounted} from "vue";
+import penguins from "../data/penguins.ts";
 
 const olympians = shallowRef([
   {weight: 31, height: 1.21, sex: "female"},
@@ -66,7 +67,27 @@ Plot.plot({
 
 ## Selecting
 
-Support for selecting points within a plot through direct manipulation is under development. If you are interested in this feature, please upvote [#5](https://github.com/observablehq/plot/issues/5). See [#721](https://github.com/observablehq/plot/pull/721) for some early work on brushing.
+The [brush mark](../interactions/brush.md) lets the reader select a rectangular region by clicking and dragging. The selected region is then exposed as the plot’s `value` and can be used to filter data. Optionally, when combined with reactive marks — **inactive**, **context**, and **focus** — the brush highlights the selected data while dimming the rest.
+
+:::plot defer hidden
+```js
+Plot.plot({
+  marks: ((brush) => (d3.timeout(() => d3.select(brush._brushNodes[0]).call(brush._brush.move, [[100, 60], [300, 200]])), [
+    Plot.dot(penguins, {x: "culmen_length_mm", y: "culmen_depth_mm", stroke: "species"}),
+    brush
+  ]))(Plot.brush())
+})
+```
+:::
+
+```js
+Plot.plot({
+  marks: [
+    Plot.dot(penguins, {x: "culmen_length_mm", y: "culmen_depth_mm", stroke: "species"}),
+    Plot.brush()
+  ]
+})
+```
 
 ## Zooming
 
