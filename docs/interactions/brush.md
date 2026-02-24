@@ -313,7 +313,7 @@ const brush = Plot.brush()
 
 Returns a new brush with the given *data* and *options*. Both *data* and *options* are optional. If *data* is specified but the neither **x** nor **y** is specified in the *options*, *data* is assumed to be an array of pairs [[*x₀*, *y₀*], [*x₁*, *y₁*], …] such that **x** = [*x₀*, *x₁*, …] and **y** = [*y₀*, *y₁*, …].
 
-## *brush*.inactive(*options*) {#brush.inactive}
+## *brush*.inactive(*options*) {#brush-inactive}
 
 ```js
 Plot.dot(data, brush.inactive({x: "weight", y: "height", fill: "species"}))
@@ -321,7 +321,7 @@ Plot.dot(data, brush.inactive({x: "weight", y: "height", fill: "species"}))
 
 Returns mark options that show the mark when no brush selection is active, and hide it during brushing. Use this for the default appearance of data before any selection is made.
 
-## *brush*.context(*options*) {#brush.context}
+## *brush*.context(*options*) {#brush-context}
 
 ```js
 Plot.dot(data, brush.context({x: "weight", y: "height", fill: "#ccc"}))
@@ -329,7 +329,7 @@ Plot.dot(data, brush.context({x: "weight", y: "height", fill: "#ccc"}))
 
 Returns mark options that hide the mark by default and, during brushing, show only the points *outside* the selection. Use this for a dimmed background layer.
 
-## *brush*.focus(*options*) {#brush.focus}
+## *brush*.focus(*options*) {#brush-focus}
 
 ```js
 Plot.dot(data, brush.focus({x: "weight", y: "height", fill: "species"}))
@@ -337,7 +337,7 @@ Plot.dot(data, brush.focus({x: "weight", y: "height", fill: "species"}))
 
 Returns mark options that hide the mark by default and, during brushing, show only the points *inside* the selection. Use this to highlight the selected data.
 
-## *brush*.move(*value*) {#brush.move}
+## *brush*.move(*value*) {#brush-move}
 
 ```js
 brush.move({x1: 36, x2: 48, y1: 15, y2: 20})
