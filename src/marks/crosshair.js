@@ -4,6 +4,7 @@ import {formatIsoDate} from "../format.js";
 import {pointer, pointerX, pointerY} from "../interactions/pointer.js";
 import {Mark, marks} from "../mark.js";
 import {isIterable, keyword} from "../options.js";
+import {pixelRound} from "../precision.js";
 import {initializer} from "../transforms/basic.js";
 import {ruleX, ruleY} from "./rule.js";
 import {text} from "./text.js";
@@ -25,9 +26,10 @@ function scaleInvert(scale) {
     };
   }
   if (!scale.invert) return null;
+  const round = pixelRound(scale);
   return (px) => {
-    const value = scale.invert(px);
-    return {value, px};
+    const value = round(scale.invert(px));
+    return {value, px: scale(value)};
   };
 }
 
