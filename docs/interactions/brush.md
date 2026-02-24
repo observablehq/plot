@@ -44,6 +44,40 @@ Plot.plot({
 
 The brush mark does not require data. When added to a plot, it renders a [brush](https://d3js.org/d3-brush) overlay covering the frame. The user can click and drag to create a rectangular selection, drag the selection to reposition it, or drag an edge or corner to resize it. Clicking outside the selection clears it.
 
+
+## 1-D brushing
+
+The **brushX** mark operates on the *x* axis.
+
+:::plot hidden
+```js
+Plot.plot({
+  height: 200,
+  marks: ((brush) => (d3.timeout(() => brush.move({x1: 3200, x2: 4800})), [
+    brush,
+    Plot.dot(penguins, Plot.dodgeY(brush.inactive({x: "body_mass_g", fill: "species"}))),
+    Plot.dot(penguins, Plot.dodgeY(brush.context({x: "body_mass_g", fill: "#ddd"}))),
+    Plot.dot(penguins, Plot.dodgeY(brush.focus({x: "body_mass_g", fill: "species"})))
+  ]))(Plot.brushX())
+})
+```
+:::
+
+```js
+const brush = Plot.brushX();
+Plot.plot({
+  height: 200,
+  marks: [
+    brush,
+    Plot.dot(penguins, Plot.dodgeY(brush.inactive({x: "body_mass_g", fill: "species"}))),
+    Plot.dot(penguins, Plot.dodgeY(brush.context({x: "body_mass_g", fill: "#ddd"}))),
+    Plot.dot(penguins, Plot.dodgeY(brush.focus({x: "body_mass_g", fill: "species"})))
+  ]
+})
+```
+
+Similarly, the **brushY** mark operates on the *y* axis.
+
 ## Input events
 
 The brush dispatches an [*input* event](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/input_event) whenever the selection changes. The plot’s value (`plot.value`) is set to a [BrushValue](#brushvalue) object when a selection is active, or null when the selection is cleared. This allows you to use a plot as an [Observable view](https://observablehq.com/@observablehq/views), or to register an *input* event listener to react to the brush.
@@ -56,14 +90,14 @@ plot.addEventListener("input", (event) => {
 });
 ```
 
-The **filter** function on the brush value tests whether a data point falls inside the selection. Its signature depends on whether the plot uses faceting:
+The **filter** function on the brush value tests whether a data point falls inside the selection. Its signature depends on whether the plot uses faceting, and on the brush’s dimension:
 
-| Facets      | Signature                      |
-|-------------|--------------------------------|
-| none        | *filter*(*x*, *y*)             |
-| **fx** only | *filter*(*x*, *y*, *fx*)       |
-| **fy** only | *filter*(*x*, *y*, *fy*)       |
-| both        | *filter*(*x*, *y*, *fx*, *fy*) |
+| Facets            | 1-D brush                     | 2-D brush                      |
+|-------------------|-------------------------------|--------------------------------|
+| *none*            | *filter*(*value*)             | *filter*(*x*, *y*)             |
+| **fx** only       | *filter*(*value*, *fx*)       | *filter*(*x*, *y*, *fx*)       |
+| **fy** only       | *filter*(*value*, *fy*)       | *filter*(*x*, *y*, *fy*)       |
+| **fx** and **fy** | *filter*(*value*, *fx*, *fy*) | *filter*(*x*, *y*, *fx*, *fy*) |
 
 ```js
 plot.addEventListener("input", () => {
@@ -97,7 +131,7 @@ A typical pattern is to layer three reactive marks: the inactive mark provides a
 :::plot hidden
 ```js
 Plot.plot({
-  marks: ((brush) => (d3.timeout(() => brush.move({x1: 36, x2: 48, y1: 15, y2: 20})), [
+  marks: ((brush) => (d3.timeout(() => brush.move({x1: 38, x2: 48, y1: 15, y2: 19})), [
     brush,
     Plot.dot(penguins, brush.inactive({x: "culmen_length_mm", y: "culmen_depth_mm", fill: "species", r: 2})),
     Plot.dot(penguins, brush.context({x: "culmen_length_mm", y: "culmen_depth_mm", fill: "#ccc", r: 2})),
@@ -120,7 +154,7 @@ Plot.plot({
 ```
 
 :::tip
-To achieve higher contrast, place the brush below the reactive marks; reactive marks default to using **pointerEvents** *none* to ensure they don't obstruct pointer events.
+To achieve higher contrast, you can place the brush before the reactive marks; reactive marks default to using **pointerEvents** *none* to ensure they don't obstruct pointer events.
 :::
 
 ## Faceting
@@ -132,7 +166,7 @@ The brush mark supports [faceting](../features/facets.md). When the plot uses **
 Plot.plot({
   height: 270,
   grid: true,
-  marks: ((brush) => (d3.timeout(() => brush.move({x1: 43, x2: 50, y1: 17, y2: 19, fx: "Adelie"})), [
+  marks: ((brush) => (d3.timeout(() => brush.move({x1: 45, x2: 55, y1: 15, y2: 20, fx: "Gentoo"})), [
     Plot.frame(),
     brush,
     Plot.dot(penguins, brush.inactive({x: "culmen_length_mm", y: "culmen_depth_mm", fx: "species", fill: "sex", r: 2})),
@@ -199,7 +233,7 @@ For plots with a [geographic projection](../features/projections.md), the brush 
 ```js
 Plot.plot({
   projection: "equal-earth",
-  marks: ((brush) => (d3.timeout(() => brush.move({x1: 80, x2: 300, y1: 60, y2: 200})), [
+  marks: ((brush) => (d3.timeout(() => brush.move({x1: 300, x2: 500, y1: 50, y2: 200})), [
     Plot.geo(land, {strokeWidth: 0.5}),
     Plot.sphere(),
     brush,
@@ -241,7 +275,7 @@ The brush value dispatched on [_input_ events](#input-events). When the brush is
 - **filter** - a function to test whether a point is inside the selection
 - **pending** - `true` during interaction; absent when committed
 
-By convention, *x1* < *x2* and *y1* < *y2*.
+By convention, *x1* < *x2* and *y1* < *y2*. The brushX value does not include *y1* and *y2*; similarly, the brushY value does not include *x1* and *x2*.
 
 The **pending** property indicates the user is still interacting with the brush. To skip intermediate values and react only to committed selections:
 
@@ -294,7 +328,11 @@ Returns mark options that hide the mark by default and, during brushing, show on
 brush.move({x1: 36, x2: 48, y1: 15, y2: 20})
 ```
 
-Programmatically sets the brush selection in data space. The *value* must have **x1**, **x2**, **y1**, and **y2** properties. For faceted plots, include **fx** or **fy** to target a specific facet. Pass null to clear the selection.
+Programmatically sets the brush selection in data space. For a 2D brush, the *value* must have **x1**, **x2**, **y1**, and **y2** properties; for brushX, **x1** and **x2**; for brushY, **y1** and **y2**. For faceted plots, include **fx** or **fy** to target a specific facet. Pass null to clear the selection.
+
+```js
+brush.move({x1: 3500, x2: 5000}) // brushX
+```
 
 ```js
 brush.move({x1: 40, x2: 52, y1: 15, y2: 20, fx: "Chinstrap"})
@@ -305,3 +343,50 @@ brush.move(null)
 ```
 
 For projected plots, the coordinates are in pixels (consistent with the [BrushValue](#brushvalue)), so you need to project the two corners of the brush beforehand. In the future Plot might expose its *projection* to facilitate this. Please upvote [this issue](https://github.com/observablehq/plot/issues/1191) to help prioritize this feature.
+
+## brushX(*options*) {#brushX}
+
+```js
+const brush = Plot.brushX()
+```
+
+Returns a new horizontal brush mark that selects along the *x* axis. The available *options* are:
+
+- **interval** - an interval to snap the brush to on release; a number for quantitative scales (_e.g._, `100`), a time interval name for temporal scales (_e.g._, `"month"`), or an object with *floor* and *offset* methods
+
+When an **interval** is set, the selection snaps to interval boundaries on release, and the filter rounds values before testing, for consistency with binned marks using the same interval. (Use the same interval in the bin transform so the brush aligns with bin edges.)
+
+:::plot defer hidden
+```js
+Plot.plot({
+  marks: ((brush) => (d3.timeout(() => brush.move({x1: 3500, x2: 5000})), [
+    Plot.rectY(penguins, Plot.binX({y: "count"}, {x: "body_mass_g", interval: 100, fill: "currentColor", fillOpacity: 0.3})),
+    brush,
+    Plot.rectY(penguins, Plot.binX({y: "count"}, brush.focus({x: "body_mass_g", interval: 100}))),
+    Plot.ruleY([0])
+  ]))(Plot.brushX({interval: 100}))
+})
+```
+:::
+
+```js
+const brush = Plot.brushX({interval: 100});
+Plot.plot({
+  marks: [
+    Plot.rectY(penguins, Plot.binX({y: "count"}, {x: "body_mass_g", interval: 100, fill: "currentColor", fillOpacity: 0.3})),
+    brush,
+    Plot.rectY(penguins, Plot.binX({y: "count"}, brush.focus({x: "body_mass_g", interval: 100}))),
+    Plot.ruleY([0])
+  ]
+})
+```
+
+The brushX mark does not support projections.
+
+## brushY(*options*) {#brushY}
+
+```js
+const brush = Plot.brushY()
+```
+
+Returns a new vertical brush mark that selects along the *y* axis. Accepts the same *options* as [brushX](#brushX).
