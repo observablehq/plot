@@ -133,6 +133,7 @@ export default defineConfig({
           {text: "Interval", link: "/transforms/interval"},
           {text: "Map", link: "/transforms/map"},
           {text: "Normalize", link: "/transforms/normalize"},
+          {text: "Repel", link: "/transforms/repel"},
           {text: "Select", link: "/transforms/select"},
           {text: "Shift", link: "/transforms/shift"},
           {text: "Sort", link: "/transforms/sort"},
