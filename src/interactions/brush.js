@@ -10,7 +10,7 @@ import {
 } from "d3";
 import {composeRender, Mark} from "../mark.js";
 import {constant, keyword, maybeInterval} from "../options.js";
-import {pixelPrecision} from "../precision.js";
+import {pixelRound} from "../precision.js";
 
 export class Brush extends Mark {
   constructor({dimension = "xy", interval, sync = false} = {}) {
@@ -294,7 +294,6 @@ function renderFilter(initialTest) {
 
 function precisionInvert(scale, projection) {
   if (projection || !scale?.invert) return (d) => d;
-  const interval = pixelPrecision(scale);
-  if (interval == null) return scale.invert.bind(scale);
-  return (p) => interval.floor(scale.invert(p));
+  const round = pixelRound(scale);
+  return (p) => round(scale.invert(p));
 }
