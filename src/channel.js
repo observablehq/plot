@@ -41,6 +41,8 @@ export function valueObject(channels, scales) {
 // promote symbol names (e.g., "plus") to symbol implementations (symbolPlus).
 // Note: mutates channel!
 export function inferChannelScale(name, channel) {
+  if (name === undefined) name = channel.scale; // TODO fixme
+  else name = name.replace(/^\w+:/, ""); // XXX
   const {scale, value} = channel;
   if (scale === true || scale === "auto") {
     switch (name) {

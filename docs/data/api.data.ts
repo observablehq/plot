@@ -60,6 +60,8 @@ function getHref(name: string, path: string): string {
       }
       break;
     }
+    case "marks/brush":
+      return "interactions/brush";
     case "marks/crosshair":
       return "interactions/crosshair";
     case "transforms/basic": {

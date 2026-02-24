@@ -9,8 +9,14 @@ const olympians = shallowRef([
   {weight: 170, height: 2.21, sex: "male"}
 ]);
 
+const penguins = shallowRef([
+  {culmen_length_mm: 32.1, culmen_depth_mm: 13.1},
+  {culmen_length_mm: 59.6, culmen_depth_mm: 21.5}
+]);
+
 onMounted(() => {
   d3.csv("../data/athletes.csv", d3.autoType).then((data) => (olympians.value = data));
+  d3.csv("../data/penguins.csv", d3.autoType).then((data) => (penguins.value = data));
 });
 
 </script>
@@ -54,7 +60,23 @@ These values are displayed atop the axes on the edge of the frame; unlike the ti
 
 ## Selecting
 
-Support for selecting points within a plot through direct manipulation is under development. If you are interested in this feature, please upvote [#5](https://github.com/observablehq/plot/issues/5). See [#721](https://github.com/observablehq/plot/pull/721) for some early work on brushing.
+The [brush transform](../interactions/brush.md) <VersionBadge version="0.6.11" pr="1653" /> allows the interactive selection of discrete elements by direct manipulation of the chart.
+
+:::plot defer https://observablehq.com/@observablehq/brushing-plot--1653
+```js
+Plot.dot(
+  penguins,
+  Plot.brush({
+    x: "culmen_length_mm",
+    y: "culmen_depth_mm",
+    stroke: "currentColor",
+    fill: "#fff",
+    unselected: {strokeOpacity: 0.5},
+    selected: {fill: "species"}
+  })
+).plot()
+```
+:::
 
 ## Zooming
 

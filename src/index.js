@@ -53,6 +53,7 @@ export {window, windowX, windowY} from "./transforms/window.js";
 export {select, selectFirst, selectLast, selectMaxX, selectMaxY, selectMinX, selectMinY} from "./transforms/select.js";
 export {stackX, stackX1, stackX2, stackY, stackY1, stackY2} from "./transforms/stack.js";
 export {treeNode, treeLink} from "./transforms/tree.js";
+export {brush, brushX, brushY} from "./interactions/brush.js";
 export {pointer, pointerX, pointerY} from "./interactions/pointer.js";
 export {formatIsoDate, formatNumber, formatWeekday, formatMonth} from "./format.js";
 export {scale} from "./scales.js";
