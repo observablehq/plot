@@ -92,10 +92,10 @@ The crosshair dispatches [*input* events](https://developer.mozilla.org/en-US/do
 
 ```js
 const crosshair = Plot.crosshair();
-const plot = crosshair.plot({
+const plot = Plot.plot({
   x: {domain: [0, 100]},
   y: {domain: [0, 100]},
-  marks: [Plot.frame()]
+  marks: [crosshair, Plot.frame()]
 });
 
 plot.addEventListener("input", () => {
