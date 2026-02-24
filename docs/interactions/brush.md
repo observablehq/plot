@@ -311,7 +311,7 @@ plot.addEventListener("input", () => {
 const brush = Plot.brush()
 ```
 
-Returns a new brush with the given *data* and *options*. Both *data* and *options* are optional. If *data* is specified but the neither **x** nor **y** is specified in the *options*, *data* is assumed to be an array of pairs [[*x₀*, *y₀*], [*x₁*, *y₁*], …] such that **x** = [*x₀*, *x₁*, …] and **y** = [*y₀*, *y₁*, …].
+Returns a new brush with the given *data* and *options*. Both *data* and *options* are optional. If *data* is specified but neither **x** nor **y** is specified in the *options*, *data* is assumed to be an array of pairs [[*x₀*, *y₀*], [*x₁*, *y₁*], …] such that **x** = [*x₀*, *x₁*, …] and **y** = [*y₀*, *y₁*, …].
 
 ## *brush*.inactive(*options*) {#brush-inactive}
 
