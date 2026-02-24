@@ -185,3 +185,79 @@ it("brush reactive marks compose with user render transforms", () => {
   });
   assert.equal(rendered.length, 3, "user render should have been called for each reactive mark");
 });
+
+it("brushX value has x1/x2 but no y1/y2", async () => {
+  const data = [
+    {x: 10, y: 10},
+    {x: 20, y: 20},
+    {x: 30, y: 30},
+    {x: 40, y: 40},
+    {x: 50, y: 50}
+  ];
+  const brush = Plot.brushX();
+  const plot = Plot.plot({
+    x: {domain: [0, 60]},
+    y: {domain: [0, 60]},
+    marks: [
+      Plot.dot(data, brush.inactive({x: "x", y: "y"})),
+      Plot.dot(data, brush.context({x: "x", y: "y", fill: "#ccc"})),
+      Plot.dot(data, brush.focus({x: "x", y: "y", fill: "red"})),
+      brush
+    ]
+  });
+
+  let lastValue: any;
+  plot.addEventListener("input", () => (lastValue = plot.value));
+
+  brush.move({x1: 15, x2: 45});
+
+  assert.ok(lastValue, "should have a value");
+  assert.ok("x1" in lastValue, "value should have x1");
+  assert.ok("x2" in lastValue, "value should have x2");
+  assert.ok(!("y1" in lastValue), "value should not have y1");
+  assert.ok(!("y2" in lastValue), "value should not have y2");
+  assert.ok(typeof lastValue.filter === "function", "value should have a filter function");
+
+  // 1D filter takes a single argument
+  const filtered = data.filter((d) => lastValue.filter(d.x));
+  assert.ok(filtered.length > 0, "should select some points");
+  assert.ok(filtered.length < data.length, "should not include all points");
+});
+
+it("brushY value has y1/y2 but no x1/x2", async () => {
+  const data = [
+    {x: 10, y: 10},
+    {x: 20, y: 20},
+    {x: 30, y: 30},
+    {x: 40, y: 40},
+    {x: 50, y: 50}
+  ];
+  const brush = Plot.brushY();
+  const plot = Plot.plot({
+    x: {domain: [0, 60]},
+    y: {domain: [0, 60]},
+    marks: [
+      Plot.dot(data, brush.inactive({x: "x", y: "y"})),
+      Plot.dot(data, brush.context({x: "x", y: "y", fill: "#ccc"})),
+      Plot.dot(data, brush.focus({x: "x", y: "y", fill: "red"})),
+      brush
+    ]
+  });
+
+  let lastValue: any;
+  plot.addEventListener("input", () => (lastValue = plot.value));
+
+  brush.move({y1: 15, y2: 45});
+
+  assert.ok(lastValue, "should have a value");
+  assert.ok("y1" in lastValue, "value should have y1");
+  assert.ok("y2" in lastValue, "value should have y2");
+  assert.ok(!("x1" in lastValue), "value should not have x1");
+  assert.ok(!("x2" in lastValue), "value should not have x2");
+  assert.ok(typeof lastValue.filter === "function", "value should have a filter function");
+
+  // 1D filter takes a single argument
+  const filtered = data.filter((d) => lastValue.filter(d.y));
+  assert.ok(filtered.length > 0, "should select some points");
+  assert.ok(filtered.length < data.length, "should not include all points");
+});
