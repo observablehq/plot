@@ -140,6 +140,7 @@ function pointerK(kx, ky, {x, y, px, py, maxRadius = 40, channels, render, ...op
       // squashed, selecting primarily on the dominant dimension. Across facets,
       // use unsquashed distance to determine the winner.
       function pointermove(event) {
+        if (svg.classList.contains("no-tip")) { if (state.sticky) (state.sticky = false), state.renders.forEach((r) => r(null)); return; } // prettier-ignore
         if (state.sticky) return;
         if (event.pointerType === "mouse" && event.buttons === 1) return void update(null); // hide tip during drag
         let [xp, yp] = pointof(event);
