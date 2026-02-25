@@ -25,6 +25,7 @@ export class Brush extends Mark {
     this.focus = renderFilter(false);
   }
   render(index, scales, values, dimensions, context) {
+    if (typeof document === "undefined") return null;
     const {x, y, fx, fy} = scales;
     const {inactive, context: ctx, focus} = this;
     let target, currentNode, syncing;
