@@ -38,6 +38,7 @@ export class Brush extends Mark {
     this._sync = sync;
   }
   render(index, scales, values, dimensions, context) {
+    if (typeof document === "undefined") return null;
     const {x, y, fx, fy} = scales;
     const X = values.channels?.x?.value;
     const Y = values.channels?.y?.value;
