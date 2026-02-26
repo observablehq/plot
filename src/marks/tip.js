@@ -155,7 +155,7 @@ export class Tip extends Mark {
                 for (const line of mark.splitLines(lines)) {
                   renderLine(that, {value: mark.clipLine(line)});
                 }
-              } else {
+              } else if (isIterable(lines)) {
                 const labels = new Set();
                 for (const line of lines) {
                   const {label = ""} = line;
