@@ -275,6 +275,31 @@ export async function brushRandomNormal() {
   return html`<figure>${plot}${textarea}</figure>`;
 }
 
+export async function brushCrossFacet() {
+  const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
+  const brush = new Plot.Brush({sync: true});
+  const xy = {x: "culmen_length_mm" as const, y: "culmen_depth_mm" as const, fx: "species" as const};
+  const plot = Plot.plot({
+    marks: [
+      Plot.frame(),
+      brush,
+      Plot.dot(penguins, brush.inactive({...xy, fill: "sex", r: 2})),
+      Plot.dot(penguins, brush.context({...xy, fill: "#ccc", r: 2})),
+      Plot.dot(penguins, brush.focus({...xy, fill: "sex", r: 3}))
+    ]
+  });
+  const textarea = html`<textarea rows=10 style="width: 640px; resize: none;">`;
+  const oninput = () => {
+    const v = plot.value;
+    const filtered = v?.filter ? penguins.filter((d: any) => v.filter(d.culmen_length_mm, d.culmen_depth_mm)) : [];
+    textarea.value = formatValue(v) + `\nfiltered: ${filtered.length} of ${penguins.length}`;
+  };
+  plot.oninput = oninput;
+  brush.move({x1: 35, x2: 50, y1: 14, y2: 20, fx: "Adelie"});
+  oninput();
+  return html`<figure>${plot}${textarea}</figure>`;
+}
+
 export async function brushXHistogram() {
   const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
   const brush = Plot.brushX();
