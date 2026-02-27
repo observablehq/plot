@@ -63,6 +63,11 @@ export interface BrushOptions extends MarkOptions {
    * inherited by reactive marks as a default.
    */
   fy?: MarkOptions["fy"];
+
+  /**
+   * If true, the brush spans all facet panes simultaneously; defaults to false.
+   */
+  sync?: boolean;
 }
 
 /**
@@ -76,6 +81,7 @@ export interface BrushOptions extends MarkOptions {
  * reactive marks that respond to the brush state.
  */
 export class Brush extends RenderableMark {
+  constructor(options?: BrushOptions);
   /**
    * Creates a new brush mark with the given *data* and *options*. If *data* and
    * *options* specify **x** and **y** channels, these become defaults for

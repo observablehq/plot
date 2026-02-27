@@ -281,6 +281,31 @@ export async function brushRandomNormal() {
   return html`<figure>${plot}${textarea}</figure>`;
 }
 
+export async function brushCrossFacet() {
+  const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
+  const brush = Plot.brush({sync: true});
+  const xy = {x: "culmen_length_mm" as const, y: "culmen_depth_mm" as const, fx: "species" as const};
+  const plot = Plot.plot({
+    marks: [
+      Plot.frame(),
+      brush,
+      Plot.dot(penguins, brush.inactive({...xy, fill: "sex", r: 2})),
+      Plot.dot(penguins, brush.context({...xy, fill: "#ccc", r: 2})),
+      Plot.dot(penguins, brush.focus({...xy, fill: "sex", r: 3}))
+    ]
+  });
+  const textarea = html`<textarea rows=10 style="width: 640px; resize: none;">`;
+  const oninput = () => {
+    const v = plot.value;
+    const filtered = v?.filter ? penguins.filter((d: any) => v.filter(d.culmen_length_mm, d.culmen_depth_mm)) : [];
+    textarea.value = formatValue(v) + `\nfiltered: ${filtered.length} of ${penguins.length}`;
+  };
+  plot.oninput = oninput;
+  brush.move({x1: 35, x2: 50, y1: 14, y2: 20, fx: "Adelie"});
+  oninput();
+  return html`<figure>${plot}${textarea}</figure>`;
+}
+
 export async function brushXHistogram() {
   const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
   const brush = Plot.brushX();
@@ -606,6 +631,22 @@ export async function brushSimple() {
   return html`<figure>${plot}${textarea}</figure>`;
 }
 
+export async function brushDotTip() {
+  const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
+  const brush = Plot.brush();
+  const xy = {x: "culmen_length_mm" as const, y: "culmen_depth_mm" as const};
+  const plot = Plot.plot({
+    marks: [
+      brush,
+      Plot.dot(penguins, brush.inactive({...xy, fill: "species", r: 2})),
+      Plot.dot(penguins, brush.context({...xy, fill: "#ccc", r: 2})),
+      Plot.dot(penguins, brush.focus({...xy, fill: "species", r: 3, tip: true}))
+    ]
+  });
+  brush.move({x1: 36, x2: 48, y1: 15, y2: 20});
+  return plot;
+}
+
 export async function brushXLine() {
   const aapl = await d3.csv<any>("data/aapl.csv", d3.autoType);
   const brush = Plot.brushX();
@@ -629,6 +670,48 @@ export async function brushXLine() {
   };
   plot.oninput = oninput;
   brush.move({x1: new Date("2015-01-01"), x2: new Date("2016-06-01")});
+  oninput();
+  return html`<figure>${plot}${textarea}</figure>`;
+}
+
+export async function brushLineZ() {
+  const data = await d3.csv<any>("data/bls-metro-unemployment.csv", d3.autoType);
+  const brush = Plot.brush();
+  const zxy = {z: "division", x: "date", y: "unemployment"} as const;
+  const render = (index: number[], scales: any, values: any, dimensions: any, context: any, next: any) => {
+    const Z = values.channels.z?.value;
+    if (!Z) return next(index, scales, values, dimensions, context);
+    const groups = new Set<any>();
+    for (const i of index) groups.add(Z[i]);
+    const expanded: number[] = [];
+    for (let i = 0; i < Z.length; ++i) {
+      if (groups.has(Z[i])) {
+        expanded.push(i);
+        values.z[i] = Z[i];
+      }
+    }
+    return next(expanded, scales, values, dimensions, context);
+  };
+  const plot = Plot.plot({
+    marks: [
+      Plot.lineY(data, {...zxy, stroke: "#ccc", strokeWidth: 0.5}),
+      brush,
+      Plot.lineY(data, brush.focus({...zxy, strokeWidth: 2, render}))
+    ]
+  });
+  const textarea = html`<textarea rows=10 style="width: 640px; resize: none;">`;
+  const oninput = () => {
+    const v = plot.value;
+    if (!v?.filter) {
+      textarea.value = formatValue(v);
+    } else {
+      const groups = new Set(data.filter((d: any) => v.filter(d.date, d.unemployment)).map((d: any) => d.division));
+      const filtered = data.filter((d: any) => groups.has(d.division));
+      textarea.value = formatValue(v) + `\nfiltered: ${filtered.length} of ${data.length}`;
+    }
+  };
+  plot.oninput = oninput;
+  brush.move({x1: new Date("2007-04-01"), x2: new Date("2007-09-30"), y1: 6.18, y2: 7.1});
   oninput();
   return html`<figure>${plot}${textarea}</figure>`;
 }

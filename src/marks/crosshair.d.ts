@@ -1,5 +1,5 @@
 import type {ChannelValueSpec} from "../channel.js";
-import type {CompoundMark, Data, MarkOptions} from "../mark.js";
+import type {CompoundMark, Data, MarkOptions, RenderableMark} from "../mark.js";
 
 /** Options for the crosshair mark. */
 export interface CrosshairOptions extends MarkOptions {
@@ -55,14 +55,33 @@ export interface CrosshairOptions extends MarkOptions {
 }
 
 /**
+ * A dataless crosshair mark that tracks the pointer position and displays
+ * scale-inverted values. Unlike the data-driven crosshair, this does not
+ * require data — it works directly with the plot's scales.
+ */
+export class Crosshair extends RenderableMark {
+  /**
+   * Programmatically sets the crosshair position in data space. Pass an object
+   * with **x** and/or **y** values (and **fx**, **fy** for faceted plots) to
+   * show the crosshair, or null to hide it.
+   */
+  move(value: {x?: any; y?: any; fx?: any; fy?: any} | null): void;
+}
+
+/**
  * Returns a new crosshair mark for the given *data* and *options*, drawing
  * horizontal and vertical rules centered at the point closest to the pointer.
  * The corresponding **x** and **y** values are also drawn just outside the
  * bottom and left sides of the frame, respectively, typically on top of the
  * axes. If either **x** or **y** is not specified, the crosshair will be
  * one-dimensional.
+ *
+ * If called without data, returns a dataless crosshair that tracks the raw
+ * pointer position, inverting the scales with pixel-level precision. The
+ * returned mark has a **.move**() method for programmatic control.
  */
-export function crosshair(data?: Data, options?: CrosshairOptions): CompoundMark;
+export function crosshair(data: Data, options?: CrosshairOptions): CompoundMark;
+export function crosshair(options?: CrosshairOptions): Crosshair;
 
 /**
  * Like crosshair, but uses the pointerX transform: the determination of the
@@ -71,7 +90,8 @@ export function crosshair(data?: Data, options?: CrosshairOptions): CompoundMark
  * as time in a time-series chart, or the aggregated dimension when grouping or
  * binning.
  */
-export function crosshairX(data?: Data, options?: CrosshairOptions): CompoundMark;
+export function crosshairX(data: Data, options?: CrosshairOptions): CompoundMark;
+export function crosshairX(options?: CrosshairOptions): Crosshair;
 
 /**
  * Like crosshair, but uses the pointerY transform: the determination of the
@@ -80,4 +100,5 @@ export function crosshairX(data?: Data, options?: CrosshairOptions): CompoundMar
  * as time in a time-series chart, or the aggregated dimension when grouping or
  * binning.
  */
-export function crosshairY(data?: Data, options?: CrosshairOptions): CompoundMark;
+export function crosshairY(data: Data, options?: CrosshairOptions): CompoundMark;
+export function crosshairY(options?: CrosshairOptions): Crosshair;

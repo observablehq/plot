@@ -99,6 +99,7 @@ export class Brush extends Mark {
 
           if (selection === null) {
             if (type === "end") {
+              context.ownerSVGElement.classList.remove("no-tip");
               if (sync) {
                 syncing = true;
                 selectAll(_brushNodes.filter((_, i) => i !== currentNode)).call(_brush.move, null);
@@ -134,6 +135,7 @@ export class Brush extends Mark {
               context.dispatchValue(value);
             }
           } else {
+            if (event.sourceEvent) context.ownerSVGElement.classList.add("no-tip");
             const [[px1, py1], [px2, py2]] = dim === "xy" ? selection
                 : dim === "x" ? [[selection[0]], [selection[1]]]
                 : [[, selection[0]], [, selection[1]]]; // prettier-ignore
