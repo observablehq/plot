@@ -559,6 +559,48 @@ export async function brushXLine() {
   return html`<figure>${plot}${textarea}</figure>`;
 }
 
+export async function brushLineZ() {
+  const data = await d3.csv<any>("data/bls-metro-unemployment.csv", d3.autoType);
+  const brush = Plot.brush();
+  const zxy = {z: "division", x: "date", y: "unemployment"} as const;
+  const render = (index: number[], scales: any, values: any, dimensions: any, context: any, next: any) => {
+    const Z = values.channels.z?.value;
+    if (!Z) return next(index, scales, values, dimensions, context);
+    const groups = new Set<any>();
+    for (const i of index) groups.add(Z[i]);
+    const expanded: number[] = [];
+    for (let i = 0; i < Z.length; ++i) {
+      if (groups.has(Z[i])) {
+        expanded.push(i);
+        values.z[i] = Z[i];
+      }
+    }
+    return next(expanded, scales, values, dimensions, context);
+  };
+  const plot = Plot.plot({
+    marks: [
+      Plot.lineY(data, {...zxy, stroke: "#ccc", strokeWidth: 0.5}),
+      brush,
+      Plot.lineY(data, brush.focus({...zxy, strokeWidth: 2, render}))
+    ]
+  });
+  const textarea = html`<textarea rows=10 style="width: 640px; resize: none;">`;
+  const oninput = () => {
+    const v = plot.value;
+    if (!v?.filter) {
+      textarea.value = formatValue(v);
+    } else {
+      const groups = new Set(data.filter((d: any) => v.filter(d.date, d.unemployment)).map((d: any) => d.division));
+      const filtered = data.filter((d: any) => groups.has(d.division));
+      textarea.value = formatValue(v) + `\nfiltered: ${filtered.length} of ${data.length}`;
+    }
+  };
+  plot.oninput = oninput;
+  brush.move({x1: new Date("2007-04-01"), x2: new Date("2007-09-30"), y1: 6.18, y2: 7.1});
+  oninput();
+  return html`<figure>${plot}${textarea}</figure>`;
+}
+
 export async function brushYLine() {
   const aapl = await d3.csv<any>("data/aapl.csv", d3.autoType);
   const brush = Plot.brushY();
