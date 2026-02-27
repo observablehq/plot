@@ -140,7 +140,7 @@ function pointerK(kx, ky, {x, y, px, py, maxRadius = 40, channels, render, ...op
       // squashed, selecting primarily on the dominant dimension. Across facets,
       // use unsquashed distance to determine the winner.
       function pointermove(event) {
-        if (svg.classList.contains("no-tip")) { if (state.sticky) (state.sticky = false), state.renders.forEach((r) => r(null)); return; } // prettier-ignore
+        if (context.interaction?.brushing) { if (state.sticky) (state.sticky = false), state.renders.forEach((r) => r(null)); return; } // prettier-ignore
         if (state.sticky) return;
         if (event.pointerType === "mouse" && event.buttons === 1) return void update(null); // hide tip during drag
         let [xp, yp] = pointof(event);
@@ -168,7 +168,7 @@ function pointerK(kx, ky, {x, y, px, py, maxRadius = 40, channels, render, ...op
         if (i == null) return; // not pointing
         if (state.sticky && state.roots.some((r) => r?.contains(event.target))) return; // stay sticky
         if (state.sticky) (state.sticky = false), state.renders.forEach((r) => r(null)); // clear all pointers
-        else if (svg.classList.contains("no-tip")) return void update(null); // cancel tip on brush start
+        else if (context.interaction?.brushing) return void update(null); // cancel tip on brush start
         else (state.sticky = true), render(i);
         event.stopImmediatePropagation(); // suppress other pointers
       }
