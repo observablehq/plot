@@ -139,7 +139,7 @@ export function plot(options = {}) {
     stateByMark.set(mark, {data, facets, channels});
   }
 
-  // Initalize the scales and dimensions.
+  // Initialize the scales and dimensions.
   const scaleDescriptors = createScales(addScaleChannels(channelsByScale, stateByMark, options), options);
   const dimensions = createDimensions(scaleDescriptors, marks, options);
 
@@ -356,6 +356,17 @@ export function plot(options = {}) {
       .append("title")
       .text(`${w.toLocaleString("en-US")} warning${w === 1 ? "" : "s"}. Please check the console.`);
   }
+
+  figure.rescale = (rescales) => {
+    const reoptions = {...options, figure: false};
+    for (const key in rescales) {
+      if (!(key in scales.scales)) throw new Error(`missing scale: ${key}`);
+      reoptions[key] = {...scales.scales[key], ...rescales[key]};
+    }
+    const resvg = plot(reoptions);
+    while (svg.lastChild) svg.removeChild(svg.lastChild);
+    while (resvg.firstChild) svg.appendChild(resvg.firstChild);
+  };
 
   return figure;
 }
