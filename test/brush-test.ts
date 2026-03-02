@@ -74,10 +74,10 @@ it("brush dispatches value on programmatic brush move", async () => {
   const lastValue = values[values.length - 1];
   assert.ok(lastValue, "last value should not be null");
   assert.ok(!("pending" in lastValue), "committed value should not be pending");
-  assert.ok(typeof lastValue.filter === "function", "value should have a filter function");
+  assert.ok(typeof lastValue.contains === "function", "value should have a contains method");
 
   // Check filtered elements
-  const filtered = data.filter((d) => lastValue.filter(d.x, d.y));
+  const filtered = data.filter((d) => lastValue.contains(d.x, d.y));
   assert.ok(filtered.length > 0, "should have filtered some elements");
   assert.ok(filtered.length < data.length, "should not include all elements");
 });
@@ -106,7 +106,7 @@ it("brush faceted filter restricts to the brushed facet", async () => {
 
   // Filter WITH facet (correct)
   const filteredWithFacet = penguins.filter((d: any) =>
-    lastValue.filter(d.culmen_length_mm, d.culmen_depth_mm, d.species)
+    lastValue.contains(d.culmen_length_mm, d.culmen_depth_mm, {fx: d.species})
   );
 
   // Filter mistakenly WITHOUT facet
@@ -127,6 +127,12 @@ it("brush faceted filter restricts to the brushed facet", async () => {
   // All filtered points should belong to a single species
   const species = new Set(filteredWithFacet.map((d: any) => d.species));
   assert.equal(species.size, 1, `all filtered points should be one species, got: ${[...species]}`);
+
+  // Passing {fx: undefined} should match no points, since undefined !== "Adelie"
+  const filteredUndefinedFacet = penguins.filter((d: any) =>
+    lastValue.contains(d.culmen_length_mm, d.culmen_depth_mm, {fx: undefined})
+  );
+  assert.equal(filteredUndefinedFacet.length, 0, "fx: undefined should match no points");
 });
 
 it("brush programmatic move on second facet selects the correct facet", async () => {
@@ -152,7 +158,9 @@ it("brush programmatic move on second facet selects the correct facet", async ()
   assert.ok(lastValue.fx !== undefined, "value should include fx");
   assert.equal(lastValue.fx, "Chinstrap", "fx should be Chinstrap (the second facet)");
 
-  const filtered = penguins.filter((d: any) => lastValue.filter(d.culmen_length_mm, d.culmen_depth_mm, d.species));
+  const filtered = penguins.filter((d: any) =>
+    lastValue.contains(d.culmen_length_mm, d.culmen_depth_mm, {fx: d.species})
+  );
   assert.ok(filtered.length > 0, "should select some points");
 
   const species = new Set(filtered.map((d: any) => d.species));
@@ -321,10 +329,10 @@ it("brushX value has x1/x2 but no y1/y2", async () => {
   assert.ok("x2" in lastValue, "value should have x2");
   assert.ok(!("y1" in lastValue), "value should not have y1");
   assert.ok(!("y2" in lastValue), "value should not have y2");
-  assert.ok(typeof lastValue.filter === "function", "value should have a filter function");
+  assert.ok(typeof lastValue.contains === "function", "value should have a contains method");
 
-  // 1D filter takes a single argument
-  const filtered = data.filter((d) => lastValue.filter(d.x));
+  // 1D contains takes a single argument
+  const filtered = data.filter((d) => lastValue.contains(d.x));
   assert.ok(filtered.length > 0, "should select some points");
   assert.ok(filtered.length < data.length, "should not include all points");
 });
@@ -359,10 +367,10 @@ it("brushY value has y1/y2 but no x1/x2", async () => {
   assert.ok("y2" in lastValue, "value should have y2");
   assert.ok(!("x1" in lastValue), "value should not have x1");
   assert.ok(!("x2" in lastValue), "value should not have x2");
-  assert.ok(typeof lastValue.filter === "function", "value should have a filter function");
+  assert.ok(typeof lastValue.contains === "function", "value should have a contains method");
 
-  // 1D filter takes a single argument
-  const filtered = data.filter((d) => lastValue.filter(d.y));
+  // 1D contains takes a single argument
+  const filtered = data.filter((d) => lastValue.contains(d.y));
   assert.ok(filtered.length > 0, "should select some points");
   assert.ok(filtered.length < data.length, "should not include all points");
 });

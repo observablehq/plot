@@ -4,11 +4,12 @@ import type {Rendered} from "../transforms/basic.js";
 
 /**
  * The brush value dispatched on input events. When the brush is cleared, the
- * value is null; otherwise it contains the selection bounds (in data space,
- * or pixels if projected) and a filter function to test whether a data point
- * is inside the brush. By convention *x1* < *x2* and *y1* < *y2*.
+ * value is null; otherwise it is a Region containing the selection bounds (in
+ * data space, or pixels if the plot has a projection) and methods to test
+ * whether a data point is inside the brush. By convention *x1* < *x2* and
+ * *y1* < *y2*.
  */
-export interface BrushValue {
+export class Region {
   /** The lower *x* value of the brushed region. */
   x1?: number | Date;
   /** The upper *x* value of the brushed region. */
@@ -21,18 +22,18 @@ export interface BrushValue {
   fx?: any;
   /** The *fy* facet value, if applicable. */
   fy?: any;
-  /**
-   * A function to test whether a point falls inside the brush selection.
-   * The signature depends on the dimensions and active facets: for brushX
-   * and brushY, filter on the value *v* with *(v)*, *(v, fx)*, *(v, fy)*,
-   * or *(v, fx, fy)*  *(x, y)*; for a 2D brush, use *(x, y)*, *(x, y, fx)*,
-   * *(x, y, fy)*, or *(x, y, fx, fy)*. When faceted, returns true only for
-   * points in the brushed facet. For projected plots, *x* and *y* are
-   * typically longitude and latitude.
-   */
-  filter: (...args: any[]) => boolean;
   /** True during interaction, absent when committed. */
   pending?: true;
+
+  /**
+   * Tests whether a point falls inside the brush selection.
+   *
+   * For a 2-D brush, pass (x, y) or (x, y, {fx, fy}) for faceted plots.
+   * For a 1-D brush (brushX or brushY), pass (value) or (value, {fx, fy}).
+   * The facet argument is optional; if specified, returns true only for points
+   * in the brushed facet.
+   */
+  contains(x: any, y?: any, facets?: {fx?: any; fy?: any}): boolean;
 }
 
 /** Options for the brush mark. */
@@ -57,7 +58,7 @@ export interface BrushOptions {
  * selections when a new brush starts.
  *
  * The brush dispatches an input event when the selection changes. The selection
- * is available as plot.value as a **BrushValue**, or null when the selection is
+ * is available as plot.value as a **Region**, or null when the selection is
  * cleared. Use the **inactive**, **context**, and **focus** methods to create
  * reactive marks that respond to the brush state.
  */

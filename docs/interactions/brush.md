@@ -80,7 +80,7 @@ Similarly, the **brushY** mark operates on the *y* axis.
 
 ## Input events
 
-The brush dispatches an [*input* event](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/input_event) whenever the selection changes. The plot’s value (`plot.value`) is set to a [BrushValue](#brushvalue) object when a selection is active, or null when the selection is cleared. This allows you to use a plot as an [Observable view](https://observablehq.com/@observablehq/views), or to register an *input* event listener to react to the brush.
+The brush dispatches an [*input* event](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/input_event) whenever the selection changes. The plot’s value (`plot.value`) is set to a [Region](#region) instance when a selection is active, or null when the selection is cleared. This allows you to use a plot as an [Observable view](https://observablehq.com/@observablehq/views), or to register an *input* event listener to react to the brush.
 
 ```js
 const plot = Plot.plot(options);
@@ -90,32 +90,28 @@ plot.addEventListener("input", (event) => {
 });
 ```
 
-The **filter** function on the brush value tests whether a data point falls inside the selection. Its signature depends on whether the plot uses faceting, and on the brush’s dimension:
+The **contains** method on the region tests whether a data point falls inside the selection:
 
-| Facets            | 1-D brush                     | 2-D brush                      |
-|-------------------|-------------------------------|--------------------------------|
-| *none*            | *filter*(*value*)             | *filter*(*x*, *y*)             |
-| **fx** only       | *filter*(*value*, *fx*)       | *filter*(*x*, *y*, *fx*)       |
-| **fy** only       | *filter*(*value*, *fy*)       | *filter*(*x*, *y*, *fy*)       |
-| **fx** and **fy** | *filter*(*value*, *fx*, *fy*) | *filter*(*x*, *y*, *fx*, *fy*) |
+- 2-D brush: *region*.contains(*x*, *y*) or *region*.contains(*x*, *y*, {*fx*, *fy*})
+- 1-D brush: *region*.contains(*value*) or *region*.contains(*value*, {*fx*}) / *region*.contains(*value*, {*fy*})
+
+For faceted plots, you can optionally pass the facet values as an object; contains then returns true only for points in the brushed facet. For example:
 
 ```js
 plot.addEventListener("input", () => {
-  const filter = plot.value?.filter;
-  const selected = filter
-      ? penguins.filter((d) => filter(d.culmen_length_mm, d.culmen_depth_mm))
-      : penguins;
+  const region = plot.value;
+  const selected = region ? penguins.filter((d) => region.contains(d.culmen_length_mm, d.culmen_depth_mm)) : penguins;
   console.log(selected);
 });
 ```
 
-The facet arguments are optional: if *fx* or *fy* is undefined, the filter skips the facet check for that dimension. For example, if the selected region is [44, 46] &times; [17, 19] over the "Adelie" facet:
+The facet argument is optional: if omitted, contains skips the facet check. For example, if the selected region is [44, 46] &times; [17, 19] over the "Adelie" facet:
 
 ```js
-const filter = plot.value?.filter; // f(x, y, fx)
-filter(45, 18) // true
-filter(45, 18, "Adelie") // true
-filter(45, 18, "Gentoo") // false
+const {contains} = plot.value;
+contains(45, 18) // true
+contains(45, 18, {fx: "Adelie"}) // true
+contains(45, 18, {fx: "Gentoo"}) // false
 ```
 
 ## Reactive marks
@@ -159,7 +155,7 @@ To achieve higher contrast, you can place the brush before the reactive marks; r
 
 ## Faceting
 
-The brush mark supports [faceting](../features/facets.md). When the plot uses **fx** or **fy** facets, each facet gets its own brush. The dispatched value includes the **fx** and **fy** facet values of the brushed facet, and the **filter** function also filters on the relevant facet values.
+The brush mark supports [faceting](../features/facets.md). When the plot uses **fx** or **fy** facets, each facet gets its own brush. The dispatched value includes the **fx** and **fy** facet values of the brushed facet; optionally pass `{fx, fy}` as the last argument to **contains** to restrict matching to the brushed facet.
 
 :::plot hidden
 ```js
@@ -225,7 +221,7 @@ The dispatched value still includes **fx** (and **fy**), indicating the facet wh
 
 ## Projections
 
-For plots with a [geographic projection](../features/projections.md), the brush operates in screen space. The brush value’s **x1**, **y1**, **x2**, **y2** bounds are expressed in pixels from the top-left corner of the frame, and the **filter** function takes the data's coordinates (typically longitude and latitude) and projects them to test against the brush extent.
+For plots with a [geographic projection](../features/projections.md), the brush operates in screen space. The brush value’s **x1**, **y1**, **x2**, **y2** bounds are expressed in pixels from the top-left corner of the frame. Use **contains** with pixel coordinates to test against the brush extent.
 
 <div v-if="land && cities.length">
 
@@ -262,9 +258,9 @@ Plot.plot({
 })
 ```
 
-## BrushValue {#brushvalue}
+## Region {#region}
 
-The brush value dispatched on [_input_ events](#input-events). When the brush is cleared, the value is null; otherwise it's an object with the following properties:
+The brush value dispatched on [_input_ events](#input-events). When the brush is cleared, the value is null; otherwise it's a `Region` instance with the following properties:
 
 - **x1** - the lower *x* bound of the selection (in data space, or pixels if projected)
 - **x2** - the upper *x* bound of the selection
@@ -272,7 +268,7 @@ The brush value dispatched on [_input_ events](#input-events). When the brush is
 - **y2** - the upper *y* bound of the selection
 - **fx** - the *fx* facet value, if applicable
 - **fy** - the *fy* facet value, if applicable
-- **filter** - a function to test whether a point is inside the selection
+- **contains** - a method to test whether a point is inside the selection; see [input events](#input-events)
 - **pending** - `true` during interaction; absent when committed
 
 By convention, *x1* < *x2* and *y1* < *y2*. The brushX value does not include *y1* and *y2*; similarly, the brushY value does not include *x1* and *x2*. Values are automatically rounded to the optimal precision that distinguishes neighboring pixels.
@@ -342,7 +338,7 @@ brush.move({x1: 40, x2: 52, y1: 15, y2: 20, fx: "Chinstrap"})
 brush.move(null)
 ```
 
-For projected plots, the coordinates are in pixels (consistent with the [BrushValue](#brushvalue)), so you need to project the two corners of the brush beforehand. In the future Plot might expose its *projection* to facilitate this. Please upvote [this issue](https://github.com/observablehq/plot/issues/1191) to help prioritize this feature.
+For projected plots, the coordinates are in pixels (consistent with the [Region](#region)), so you need to project the two corners of the brush beforehand. In the future Plot might expose its *projection* to facilitate this. Please upvote [this issue](https://github.com/observablehq/plot/issues/1191) to help prioritize this feature.
 
 ## brushX(*options*) {#brushX}
 
@@ -354,7 +350,7 @@ Returns a new horizontal brush mark that selects along the *x* axis. The availab
 
 - **interval** - an interval to snap the brush to on release; a number for quantitative scales (_e.g._, `100`), a time interval name for temporal scales (_e.g._, `"month"`), or an object with *floor* and *offset* methods
 
-When an **interval** is set, the selection snaps to interval boundaries on release, and the filter rounds values before testing, for consistency with binned marks using the same interval. (Use the same interval in the bin transform so the brush aligns with bin edges.)
+When an **interval** is set, the selection snaps to interval boundaries on release. (Use the same interval in the bin transform so the brush aligns with bin edges.)
 
 :::plot defer hidden
 ```js
