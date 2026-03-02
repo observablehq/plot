@@ -105,6 +105,15 @@ plot.addEventListener("input", () => {
 });
 ```
 
+The facet argument is optional: if omitted, contains skips the facet check. For example, if the selected region is [44, 46] &times; [17, 19] over the "Adelie" facet:
+
+```js
+const {contains} = plot.value;
+contains(45, 18) // true
+contains(45, 18, {fx: "Adelie"}) // true
+contains(45, 18, {fx: "Gentoo"}) // false
+```
+
 ## Reactive marks
 
 The brush can be paired with reactive marks that respond to the brush state. Create a brush mark, then call its **inactive**, **context**, and **focus** methods to derive options that reflect the selection.
@@ -146,7 +155,7 @@ To achieve higher contrast, you can place the brush before the reactive marks; r
 
 ## Faceting
 
-The brush mark supports [faceting](../features/facets.md). When the plot uses **fx** or **fy** facets, each facet gets its own brush. Starting a brush in one facet clears any selection in other facets. The dispatched value includes the **fx** and **fy** facet values of the brushed facet; optionally pass `{fx, fy}` as the last argument to **contains** to restrict matching to the brushed facet.
+The brush mark supports [faceting](../features/facets.md). When the plot uses **fx** or **fy** facets, each facet gets its own brush. The dispatched value includes the **fx** and **fy** facet values of the brushed facet; optionally pass `{fx, fy}` as the last argument to **contains** to restrict matching to the brushed facet.
 
 :::plot hidden
 ```js
@@ -176,6 +185,39 @@ Plot.plot({
   ]
 })
 ```
+
+By default, starting a brush in one facet clears any selection in other facets. Set **sync** to true to brush across all facet panes simultaneously. When the user brushes in one facet, the same selection rectangle appears in all panes, and the reactive marks update across all facets.
+
+:::plot hidden
+```js
+Plot.plot({
+  height: 270,
+  grid: true,
+  marks: ((brush) => (d3.timeout(() => brush.move({x1: 43, x2: 50, y1: 17, y2: 19})), [
+    Plot.frame(),
+    brush,
+    Plot.dot(penguins, brush.inactive({x: "culmen_length_mm", y: "culmen_depth_mm", fx: "species", fill: "sex", r: 2})),
+    Plot.dot(penguins, brush.context({x: "culmen_length_mm", y: "culmen_depth_mm", fx: "species", fill: "#ccc", r: 2})),
+    Plot.dot(penguins, brush.focus({x: "culmen_length_mm", y: "culmen_depth_mm", fx: "species", fill: "sex", r: 3}))
+  ]))(Plot.brush({sync: true}))
+})
+```
+:::
+
+```js
+const brush = Plot.brush({sync: true});
+Plot.plot({
+  marks: [
+    Plot.frame(),
+    brush,
+    Plot.dot(penguins, brush.inactive({x: "culmen_length_mm", y: "culmen_depth_mm", fx: "species", fill: "sex", r: 2})),
+    Plot.dot(penguins, brush.context({x: "culmen_length_mm", y: "culmen_depth_mm", fx: "species", fill: "#ccc", r: 2})),
+    Plot.dot(penguins, brush.focus({x: "culmen_length_mm", y: "culmen_depth_mm", fx: "species", fill: "sex", r: 3}))
+  ]
+})
+```
+
+The dispatched value still includes **fx** (and **fy**), indicating the facet where the interaction originated.
 
 ## Projections
 
@@ -230,13 +272,17 @@ The brush value dispatched on [_input_ events](#input-events). When the brush is
 
 By convention, *x1* < *x2* and *y1* < *y2*. The brushX value does not include *y1* and *y2*; similarly, the brushY value does not include *x1* and *x2*. Values are automatically rounded to the optimal precision that distinguishes neighboring pixels.
 
-## brush() {#brush}
+## brush(*options*) {#brush}
 
 ```js
 const brush = Plot.brush()
 ```
 
 Returns a new brush. The mark exposes the **inactive**, **context**, and **focus** methods for creating reactive marks that respond to the brush state.
+
+The following *options* are supported:
+
+- **sync** - if true, the brush spans all facet panes simultaneously; defaults to false
 
 ## *brush*.inactive(*options*) {#brush-inactive}
 
