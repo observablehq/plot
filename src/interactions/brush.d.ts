@@ -1,5 +1,6 @@
+import type {ChannelValueSpec} from "../channel.js";
 import type {Interval} from "../interval.js";
-import type {RenderableMark} from "../mark.js";
+import type {Data, MarkOptions, RenderableMark} from "../mark.js";
 import type {Rendered} from "../transforms/basic.js";
 
 /**
@@ -22,6 +23,9 @@ export class Region {
   fx?: any;
   /** The *fy* facet value, if applicable. */
   fy?: any;
+  /** When the brush has data, the subset of data matching the selection. */
+  data?: any[];
+
   /**
    * Tests whether a point falls inside the brush selection.
    *
@@ -34,19 +38,35 @@ export class Region {
 }
 
 /** Options for the brush mark. */
-export interface BrushOptions {
+export interface BrushOptions extends MarkOptions {
+  /**
+   * The horizontal position channel, typically bound to the *x* scale. When
+   * specified, inherited by reactive marks as a default.
+   */
+  x?: ChannelValueSpec;
+
+  /**
+   * The vertical position channel, typically bound to the *y* scale. When
+   * specified, inherited by reactive marks as a default.
+   */
+  y?: ChannelValueSpec;
+
+  /**
+   * The horizontal facet channel, bound to the *fx* scale. When specified,
+   * inherited by reactive marks as a default.
+   */
+  fx?: MarkOptions["fx"];
+
+  /**
+   * The vertical facet channel, bound to the *fy* scale. When specified,
+   * inherited by reactive marks as a default.
+   */
+  fy?: MarkOptions["fy"];
+
   /**
    * If true, the brush spans all facet panes simultaneously; defaults to false.
    */
   sync?: boolean;
-  /**
-   * An interval to snap the brush to, such as a number for quantitative scales
-   * or a time interval name like *month* for temporal scales. On brush end, the
-   * selection is rounded to the nearest interval boundaries; the dispatched
-   * filter function floors values before testing, for consistency with binned
-   * marks. Supported by the 1-dimensional marks brushX and brushY.
-   */
-  interval?: Interval;
 }
 
 /**
@@ -61,6 +81,14 @@ export interface BrushOptions {
  */
 export class Brush extends RenderableMark {
   constructor(options?: BrushOptions);
+  /**
+   * Creates a new brush mark with the given *data* and *options*. If *data* and
+   * *options* specify **x** and **y** channels, these become defaults for
+   * reactive marks (**inactive**, **context**, **focus**). The **fill**,
+   * **fillOpacity**, **stroke**, **strokeWidth**, and **strokeOpacity** options
+   * style the brush selection rectangle.
+   */
+  constructor(data?: Data, options?: BrushOptions);
   /**
    * Returns mark options that show the mark when no brush selection is active,
    * and hide it during brushing. Use this for the default appearance.
@@ -91,11 +119,36 @@ export class Brush extends RenderableMark {
   ): void;
 }
 
-/** Creates a new two-dimensional brush mark. */
+/**
+ * Creates a new brush mark with the given *data* and *options*. If neither
+ * **x** nor **y** is specified, they default to the first and second
+ * element of each datum, assuming [*x*, *y*] pairs.
+ */
 export function brush(options?: BrushOptions): Brush;
+export function brush(data?: Data, options?: BrushOptions): Brush;
 
-/** Creates a one-dimensional brush mark along the *x* axis. Not supported with projections. */
-export function brushX(options?: BrushOptions): Brush;
+/** Options for 1-dimensional brush marks. */
+export interface Brush1DOptions extends BrushOptions {
+  /**
+   * An interval to snap the brush to, such as a number for quantitative scales
+   * or a time interval name like *month* for temporal scales. On brush end, the
+   * selection is rounded to the nearest interval boundaries.
+   */
+  interval?: Interval;
+}
 
-/** Creates a one-dimensional brush mark along the *y* axis. Not supported with projections. */
-export function brushY(options?: BrushOptions): Brush;
+/**
+ * Creates a one-dimensional brush mark along the *x* axis. If *data* is
+ * specified without an **x** channel, each datum is used as the *x* value
+ * directly. Not supported with projections.
+ */
+export function brushX(options?: Brush1DOptions): Brush;
+export function brushX(data?: Data, options?: Brush1DOptions): Brush;
+
+/**
+ * Creates a one-dimensional brush mark along the *y* axis. If *data* is
+ * specified without a **y** channel, each datum is used as the *y* value
+ * directly. Not supported with projections.
+ */
+export function brushY(options?: Brush1DOptions): Brush;
+export function brushY(data?: Data, options?: Brush1DOptions): Brush;

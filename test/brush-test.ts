@@ -181,14 +181,14 @@ it("brush faceted filter without fx selects across all facets", async () => {
   b.move({x1: 35, x2: 50, y1: 14, y2: 20, fx: "Adelie"});
 
   // With fx: restricts to Adelie
-  const withFx = penguins.filter((d: any) => lastValue.filter(d.culmen_length_mm, d.culmen_depth_mm, d.species));
+  const withFx = penguins.filter((d: any) => lastValue.contains(d.culmen_length_mm, d.culmen_depth_mm, {fx: d.species}));
   assert.ok(
     withFx.every((d: any) => d.species === "Adelie"),
     "with fx should only select Adelie"
   );
 
   // Without fx: selects across all facets
-  const withoutFx = penguins.filter((d: any) => lastValue.filter(d.culmen_length_mm, d.culmen_depth_mm));
+  const withoutFx = penguins.filter((d: any) => lastValue.contains(d.culmen_length_mm, d.culmen_depth_mm));
   const species = new Set(withoutFx.map((d: any) => d.species));
   assert.ok(species.size > 1, `without fx should select multiple species, got: ${[...species]}`);
   assert.ok(withoutFx.length > withFx.length, "without fx should select more points");
@@ -210,12 +210,12 @@ it("brush cross-facet filter selects across all facets", async () => {
   assert.ok(lastValue.fx !== undefined, "value should include fx (origin facet)");
 
   // Without fx: selects across all facets
-  const withoutFx = penguins.filter((d: any) => lastValue.filter(d.culmen_length_mm, d.culmen_depth_mm));
+  const withoutFx = penguins.filter((d: any) => lastValue.contains(d.culmen_length_mm, d.culmen_depth_mm));
   const species = new Set(withoutFx.map((d: any) => d.species));
   assert.ok(species.size > 1, `should select multiple species, got: ${[...species]}`);
 
   // With fx: restricts to the origin facet
-  const withFx = penguins.filter((d: any) => lastValue.filter(d.culmen_length_mm, d.culmen_depth_mm, d.species));
+  const withFx = penguins.filter((d: any) => lastValue.contains(d.culmen_length_mm, d.culmen_depth_mm, {fx: d.species}));
   const fxSpecies = new Set(withFx.map((d: any) => d.species));
   assert.equal(fxSpecies.size, 1, "with fx should restrict to origin facet");
   assert.ok(withFx.length < withoutFx.length, "with fx should select fewer points");
@@ -235,7 +235,7 @@ it("brush faceted filter with fx and fy supports partial facet args", async () =
 
   // Both fx and fy: restricts to Adelie MALE
   const withBoth = penguins.filter((d: any) =>
-    lastValue.filter(d.culmen_length_mm, d.culmen_depth_mm, d.species, d.sex)
+    lastValue.contains(d.culmen_length_mm, d.culmen_depth_mm, {fx: d.species, fy: d.sex})
   );
   assert.ok(withBoth.length > 0, "should select some points");
   assert.ok(
@@ -244,7 +244,7 @@ it("brush faceted filter with fx and fy supports partial facet args", async () =
   );
 
   // Only fx (fy undefined): restricts to Adelie, any sex
-  const withFx = penguins.filter((d: any) => lastValue.filter(d.culmen_length_mm, d.culmen_depth_mm, d.species));
+  const withFx = penguins.filter((d: any) => lastValue.contains(d.culmen_length_mm, d.culmen_depth_mm, {fx: d.species}));
   assert.ok(withFx.length >= withBoth.length, "with fx only should select at least as many");
   assert.ok(
     withFx.every((d: any) => d.species === "Adelie"),
@@ -254,7 +254,7 @@ it("brush faceted filter with fx and fy supports partial facet args", async () =
   assert.ok(sexes.size > 1, `with fx only should include multiple sexes, got: ${[...sexes]}`);
 
   // Only fy (fx undefined): restricts to MALE, any species
-  const withFy = penguins.filter((d: any) => lastValue.filter(d.culmen_length_mm, d.culmen_depth_mm, undefined, d.sex));
+  const withFy = penguins.filter((d: any) => lastValue.contains(d.culmen_length_mm, d.culmen_depth_mm, {fy: d.sex}));
   assert.ok(withFy.length >= withBoth.length, "with fy only should select at least as many");
   assert.ok(
     withFy.every((d: any) => d.sex === "MALE"),
@@ -264,13 +264,83 @@ it("brush faceted filter with fx and fy supports partial facet args", async () =
   assert.ok(spp.size > 1, `with fy only should include multiple species, got: ${[...spp]}`);
 
   // Neither fx nor fy: selects across all facets
-  const withNeither = penguins.filter((d: any) => lastValue.filter(d.culmen_length_mm, d.culmen_depth_mm));
+  const withNeither = penguins.filter((d: any) => lastValue.contains(d.culmen_length_mm, d.culmen_depth_mm));
   assert.ok(withNeither.length >= withFx.length, "without facets should select at least as many as fx only");
   assert.ok(withNeither.length >= withFy.length, "without facets should select at least as many as fy only");
   const allSpecies = new Set(withNeither.map((d: any) => d.species));
   const allSexes = new Set(withNeither.map((d: any) => d.sex));
   assert.ok(allSpecies.size > 1, "without facets should include multiple species");
   assert.ok(allSexes.size > 1, "without facets should include multiple sexes");
+});
+
+it("brush with data includes filtered data in value", () => {
+  const data = [
+    {x: 10, y: 10},
+    {x: 20, y: 20},
+    {x: 30, y: 30},
+    {x: 40, y: 40},
+    {x: 50, y: 50}
+  ];
+  const brush = Plot.brush(data, {x: "x", y: "y"});
+  const plot = Plot.plot({
+    x: {domain: [0, 60]},
+    y: {domain: [0, 60]},
+    marks: [
+      brush,
+      Plot.dot(data, brush.inactive()),
+      Plot.dot(data, brush.context({fill: "#ccc"})),
+      Plot.dot(data, brush.focus({fill: "red"}))
+    ]
+  });
+
+  let lastValue: any;
+  plot.addEventListener("input", () => (lastValue = plot.value));
+  brush.move({x1: 15, x2: 35, y1: 15, y2: 35});
+
+  assert.ok(lastValue, "should have a value");
+  assert.ok(Array.isArray(lastValue.data), "value should have a data array");
+  assert.equal(lastValue.data.length, 2, "filtered data should contain 2 points");
+  assert.deepEqual(lastValue.data, [
+    {x: 20, y: 20},
+    {x: 30, y: 30}
+  ]);
+});
+
+it("brush with generator data includes filtered data in value", () => {
+  const data = [
+    {x: 10, y: 10},
+    {x: 20, y: 20},
+    {x: 30, y: 30},
+    {x: 40, y: 40},
+    {x: 50, y: 50}
+  ];
+  function* generate() {
+    yield* data;
+  }
+  const brush = Plot.brush(generate(), {x: "x", y: "y"});
+  const plot = Plot.plot({
+    x: {domain: [0, 60]},
+    y: {domain: [0, 60]},
+    marks: [
+      brush,
+      Plot.dot(data, brush.inactive()),
+      Plot.dot(data, brush.context({fill: "#ccc"})),
+      Plot.dot(data, brush.focus({fill: "red"}))
+    ]
+  });
+
+  let lastValue: any;
+  plot.addEventListener("input", () => (lastValue = plot.value));
+  brush.move({x1: 15, x2: 35, y1: 15, y2: 35});
+
+  assert.ok(lastValue, "should have a value");
+  assert.ok(Array.isArray(lastValue.data), "value should have a data array");
+  assert.equal(lastValue.data.length, 2, "filtered data should contain 2 points");
+  assert.deepEqual(lastValue.data, [
+    {x: 20, y: 20},
+    {x: 30, y: 30}
+  ]);
+
 });
 
 it("brush reactive marks compose with user render transforms", () => {
