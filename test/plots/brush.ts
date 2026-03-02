@@ -7,7 +7,7 @@ import {html} from "htl";
 function formatValue(v: any) {
   if (v == null) return JSON.stringify(v);
   const o: any = {};
-  for (const k of ["x1", "x2", "y1", "y2", "fx", "fy", "pending"]) {
+  for (const k of ["x1", "x2", "y1", "y2", "fx", "fy"]) {
     if (k in v) o[k] = v[k];
   }
   return JSON.stringify(o, null, 2);
