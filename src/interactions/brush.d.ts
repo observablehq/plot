@@ -25,8 +25,6 @@ export class Region {
   fy?: any;
   /** When the brush has data, the subset of data matching the selection. */
   data?: any[];
-  /** True during interaction, absent when committed. */
-  pending?: true;
 
   /**
    * Tests whether a point falls inside the brush selection.

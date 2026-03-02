@@ -7,7 +7,7 @@ import {html} from "htl";
 function formatValue(v: any) {
   if (v == null) return JSON.stringify(v);
   const lines: string[] = [];
-  for (const k of ["x1", "x2", "y1", "y2", "fx", "fy", "data", "pending"]) {
+  for (const k of ["x1", "x2", "y1", "y2", "fx", "fy", "data"]) {
     if (!(k in v)) continue;
     const val = v[k];
     const formatted = Array.isArray(val) ? `Array(${val.length})` : JSON.stringify(val);
