@@ -12,6 +12,37 @@ import {composeRender, Mark} from "../mark.js";
 import {constant, keyword, maybeInterval} from "../options.js";
 import {pixelRound} from "../precision.js";
 
+export class Region {
+  constructor({x1, x2, y1, y2, fx, fy, pending} = {}) {
+    if (x1 !== undefined) this.x1 = x1;
+    if (x2 !== undefined) this.x2 = x2;
+    if (y1 !== undefined) this.y1 = y1;
+    if (y2 !== undefined) this.y2 = y2;
+    if (fx !== undefined) this.fx = fx;
+    if (fy !== undefined) this.fy = fy;
+    if (pending !== undefined) this.pending = pending;
+  }
+  contains(x, y, facets) {
+    if (this.x1 === undefined || this.y1 === undefined) {
+      // 1D: second arg is facets
+      facets = y;
+      if (this.x1 === undefined) {
+        y = x;
+        x = undefined;
+      } else {
+        y = undefined;
+      }
+    }
+    if (x !== undefined && !(this.x1 <= x && x <= this.x2)) return false;
+    if (y !== undefined && !(this.y1 <= y && y <= this.y2)) return false;
+    if (facets) {
+      if ("fx" in facets && "fx" in this && facets.fx !== this.fx) return false;
+      if ("fy" in facets && "fy" in this && facets.fy !== this.fy) return false;
+    }
+    return true;
+  }
+}
+
 export class Brush extends Mark {
   constructor({dimension = "xy", interval, sync = false} = {}) {
     super(undefined, {}, {}, {});
@@ -92,15 +123,13 @@ export class Brush extends Mark {
               if (event.sourceEvent) {
                 const [px, py] = pointer(event, this);
                 const facet = target?.__data__;
-                const filter = filterFromBrush(dim, interval, x, y, facet, context.projection, px, px, py, py);
-                value = {
+                value = new Region({
                   ...(dim !== "y" && {x1: invertX(px), x2: invertX(px)}),
                   ...(dim !== "x" && {y1: invertY(py), y2: invertY(py)}),
                   ...(fx && facet && {fx: facet.x}),
                   ...(fy && facet && {fy: facet.y}),
-                  filter,
                   pending: true
-                };
+                });
               }
               context.dispatchValue(value);
             }
@@ -138,15 +167,15 @@ export class Brush extends Mark {
             }
 
             const facet = target?.__data__;
-            const filter = filterFromBrush(dim, interval, x, y, facet, context.projection, px1, px2, py1, py2);
-            context.dispatchValue({
-              ...(dim !== "y" && {x1, x2}),
-              ...(dim !== "x" && {y1, y2}),
-              ...(fx && facet && {fx: facet.x}),
-              ...(fy && facet && {fy: facet.y}),
-              filter,
-              ...(type !== "end" && {pending: true})
-            });
+            context.dispatchValue(
+              new Region({
+                ...(dim !== "y" && {x1, x2}),
+                ...(dim !== "x" && {y1, y2}),
+                ...(fx && facet && {fx: facet.x}),
+                ...(fy && facet && {fy: facet.y}),
+                ...(type !== "end" && {pending: true})
+              })
+            );
           }
         });
     }
@@ -193,57 +222,6 @@ export function brushX({interval} = {}) {
 
 export function brushY({interval} = {}) {
   return new Brush({dimension: "y", interval});
-}
-
-function filterFromBrush(dim, interval, xScale, yScale, facet, projection, px1, px2, py1, py2) {
-  switch (dim) {
-    case "x":
-    case "y": {
-      const floor = interval ? (d) => interval.floor(d) : (d) => d;
-      const [scale, pv1, pv2] = dim === "x" ? [xScale, px1, px2] : [yScale, py1, py2];
-      let p;
-      return filterSignature1D((d) => ((p = scale(floor(d))), pv1 <= p && p < pv2), facet?.x, facet?.y);
-    }
-    case "xy": {
-      let px, py;
-      const stream = projection?.stream({
-        point(x, y) {
-          px = x;
-          py = y;
-        }
-      }) ?? {
-        point: (x, y) => {
-          px = xScale(x);
-          py = yScale(y);
-        }
-      };
-      return filterSignature2D(
-        (dx, dy) => (stream.point(dx, dy), px1 <= px && px < px2 && py1 <= py && py < py2),
-        facet?.x,
-        facet?.y
-      );
-    }
-  }
-}
-
-function filterSignature2D(test, currentFx, currentFy) {
-  return currentFx === undefined
-    ? currentFy === undefined
-      ? (x, y) => test(x, y)
-      : (x, y, fy) => (fy === undefined || fy === currentFy) && test(x, y)
-    : currentFy === undefined
-    ? (x, y, fx) => (fx === undefined || fx === currentFx) && test(x, y)
-    : (x, y, fx, fy) => (fx === undefined || fx === currentFx) && (fy === undefined || fy === currentFy) && test(x, y);
-}
-
-function filterSignature1D(test, currentFx, currentFy) {
-  return currentFx === undefined
-    ? currentFy === undefined
-      ? (v) => test(v)
-      : (v, fy) => (fy === undefined || fy === currentFy) && test(v)
-    : currentFy === undefined
-    ? (v, fx) => (fx === undefined || fx === currentFx) && test(v)
-    : (v, fx, fy) => (fx === undefined || fx === currentFx) && (fy === undefined || fy === currentFy) && test(v);
 }
 
 function intervalRound(interval, v) {

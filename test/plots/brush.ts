@@ -7,16 +7,10 @@ import {html} from "htl";
 function formatValue(v: any) {
   if (v == null) return JSON.stringify(v);
   const o: any = {};
-  for (const [k, val] of Object.entries(v)) {
-    o[k] = typeof val === "function" ? `${k}(${paramNames(val as (...args: any[]) => any)})` : val;
+  for (const k of ["x1", "x2", "y1", "y2", "fx", "fy", "pending"]) {
+    if (k in v) o[k] = v[k];
   }
   return JSON.stringify(o, null, 2);
-}
-
-function paramNames(fn: (...args: any[]) => any) {
-  const s = fn.toString();
-  const m = s.match(/^\(([^)]*)\)|^([^=]+?)(?=\s*=>)/);
-  return m ? (m[1] ?? m[2]).trim() : "…";
 }
 
 export async function brushDot() {
@@ -34,7 +28,7 @@ export async function brushDot() {
   const textarea = html`<textarea rows=10 style="width: 640px; resize: none;">`;
   const oninput = () => {
     const v = plot.value;
-    const filtered = v?.filter ? penguins.filter((d: any) => v.filter(d.culmen_length_mm, d.culmen_depth_mm)) : [];
+    const filtered = v ? penguins.filter((d: any) => v.contains(d.culmen_length_mm, d.culmen_depth_mm)) : [];
     textarea.value = formatValue(v) + `\nfiltered: ${filtered.length} of ${penguins.length}`;
   };
   plot.oninput = oninput;
@@ -59,8 +53,8 @@ export async function brushFaceted() {
   const textarea = html`<textarea rows=10 style="width: 640px; resize: none;">`;
   const oninput = () => {
     const v = plot.value;
-    const filtered = v?.filter
-      ? penguins.filter((d: any) => v.filter(d.culmen_length_mm, d.culmen_depth_mm, d.species))
+    const filtered = v
+      ? penguins.filter((d: any) => v.contains(d.culmen_length_mm, d.culmen_depth_mm, {fx: d.species}))
       : [];
     textarea.value = formatValue(v) + `\nfiltered: ${filtered.length} of ${penguins.length}`;
   };
@@ -86,8 +80,8 @@ export async function brushFacetedFy() {
   const textarea = html`<textarea rows=10 style="width: 640px; resize: none;">`;
   const oninput = () => {
     const v = plot.value;
-    const filtered = v?.filter
-      ? penguins.filter((d: any) => v.filter(d.culmen_length_mm, d.culmen_depth_mm, d.species))
+    const filtered = v
+      ? penguins.filter((d: any) => v.contains(d.culmen_length_mm, d.culmen_depth_mm, {fy: d.species}))
       : [];
     textarea.value = formatValue(v) + `\nfiltered: ${filtered.length} of ${penguins.length}`;
   };
@@ -118,8 +112,8 @@ export async function brushFacetedFxFy() {
   const textarea = html`<textarea rows=10 style="width: 640px; resize: none;">`;
   const oninput = () => {
     const v = plot.value;
-    const filtered = v?.filter
-      ? penguins.filter((d: any) => v.filter(d.culmen_length_mm, d.culmen_depth_mm, d.species, d.sex))
+    const filtered = v
+      ? penguins.filter((d: any) => v.contains(d.culmen_length_mm, d.culmen_depth_mm, {fx: d.species, fy: d.sex}))
       : [];
     textarea.value = formatValue(v) + `\nfiltered: ${filtered.length} of ${penguins.length}`;
   };
@@ -166,7 +160,7 @@ export async function brushGeoUS() {
   const textarea = html`<textarea rows=10 style="width: 640px; resize: none;">`;
   const oninput = () => {
     const v = plot.value;
-    const filtered = v?.filter ? capitals.filter((d: any) => v.filter(d.px, d.py)) : [];
+    const filtered = v ? capitals.filter((d: any) => v.contains(d.px, d.py)) : [];
     textarea.value =
       formatValue(v) +
       `\nfiltered: ${filtered.length} of ${capitals.length}` +
@@ -197,7 +191,7 @@ export async function brushGeoWorld() {
   const textarea = html`<textarea rows=10 style="width: 640px; resize: none;">`;
   const oninput = () => {
     const v = plot.value;
-    const filtered = v?.filter ? cities.filter((d: any) => v.filter(d.longitude, d.latitude)) : [];
+    const filtered = v ? cities.filter((d: any) => v.contains(d.longitude, d.latitude)) : [];
     textarea.value =
       formatValue(v) +
       `\nfiltered: ${filtered.length} of ${cities.length}` +
@@ -238,7 +232,7 @@ export async function brushGeoWorldFaceted() {
   const oninput = () => {
     const v = plot.value;
     const fy = (d: any) => (d.population >= median ? "≥ median" : "< median");
-    const filtered = v?.filter ? cities.filter((d: any) => v.filter(d.longitude, d.latitude, fy(d))) : [];
+    const filtered = v ? cities.filter((d: any) => v.contains(d.longitude, d.latitude, {fy: fy(d)})) : [];
     textarea.value =
       formatValue(v) +
       `\nfiltered: ${filtered.length} of ${cities.length}` +
@@ -266,7 +260,7 @@ export async function brushRandomNormal() {
   const textarea = html`<textarea rows=10 style="width: 640px; resize: none;">`;
   const oninput = () => {
     const v = plot.value;
-    const filtered = v?.filter ? data.filter((d) => v.filter(d[0], d[1])) : [];
+    const filtered = v ? data.filter((d) => v.contains(d[0], d[1])) : [];
     textarea.value = formatValue(v) + `\nfiltered: ${filtered.length} of ${data.length}`;
   };
   plot.oninput = oninput;
@@ -302,7 +296,7 @@ export async function brushXHistogram() {
   const textarea = html`<textarea rows=10 style="width: 640px; resize: none;">`;
   const oninput = () => {
     const v = plot.value;
-    const f = v?.filter ? penguins.filter((d: any) => v.filter(d.body_mass_g)) : [];
+    const f = v ? penguins.filter((d: any) => v.contains(d.body_mass_g)) : [];
     textarea.value = formatValue(v) + `\nfiltered: ${f.length} of ${penguins.length}`;
   };
   plot.oninput = oninput;
@@ -346,7 +340,7 @@ export async function brushXHistogramFaceted() {
   const textarea = html`<textarea rows=10 style="width: 640px; resize: none;">`;
   const oninput = () => {
     const v = plot.value;
-    const f = v?.filter ? penguins.filter((d: any) => v.filter(d.body_mass_g, d.island)) : [];
+    const f = v ? penguins.filter((d: any) => v.contains(d.body_mass_g, {fy: d.island})) : [];
     textarea.value = formatValue(v) + `\nfiltered: ${f.length} of ${penguins.length}`;
   };
   plot.oninput = oninput;
@@ -383,7 +377,7 @@ export async function brushXTemporal() {
   const textarea = html`<textarea rows=10 style="width: 640px; resize: none;">`;
   const oninput = () => {
     const v = plot.value;
-    const f = v?.filter ? aapl.filter((d: any) => v.filter(d.Date)) : [];
+    const f = v ? aapl.filter((d: any) => v.contains(d.Date)) : [];
     textarea.value = formatValue(v) + `\nfiltered: ${f.length} of ${aapl.length}`;
   };
   plot.oninput = oninput;
@@ -421,7 +415,7 @@ export async function brushXTemporalReversed() {
   const textarea = html`<textarea rows=10 style="width: 640px; resize: none;">`;
   const oninput = () => {
     const v = plot.value;
-    const f = v?.filter ? aapl.filter((d: any) => v.filter(d.Date)) : [];
+    const f = v ? aapl.filter((d: any) => v.contains(d.Date)) : [];
     textarea.value = formatValue(v) + `\nfiltered: ${f.length} of ${aapl.length}`;
   };
   plot.oninput = oninput;
@@ -446,7 +440,7 @@ export async function brushXDot() {
   const textarea = html`<textarea rows=10 style="width: 640px; resize: none;">`;
   const oninput = () => {
     const v = plot.value;
-    const filtered = v?.filter ? penguins.filter((d: any) => v.filter(d.body_mass_g)) : [];
+    const filtered = v ? penguins.filter((d: any) => v.contains(d.body_mass_g)) : [];
     textarea.value = formatValue(v) + `\nfiltered: ${filtered.length} of ${penguins.length}`;
   };
   plot.oninput = oninput;
@@ -470,7 +464,7 @@ export async function brushYDot() {
   const textarea = html`<textarea rows=10 style="width: 640px; resize: none;">`;
   const oninput = () => {
     const v = plot.value;
-    const filtered = v?.filter ? penguins.filter((d: any) => v.filter(d.culmen_depth_mm)) : [];
+    const filtered = v ? penguins.filter((d: any) => v.contains(d.culmen_depth_mm)) : [];
     textarea.value = formatValue(v) + `\nfiltered: ${filtered.length} of ${penguins.length}`;
   };
   plot.oninput = oninput;
@@ -507,7 +501,7 @@ export async function brushYHistogram() {
   const textarea = html`<textarea rows=10 style="width: 640px; resize: none;">`;
   const oninput = () => {
     const v = plot.value;
-    const f = v?.filter ? penguins.filter((d: any) => v.filter(d.culmen_depth_mm)) : [];
+    const f = v ? penguins.filter((d: any) => v.contains(d.culmen_depth_mm)) : [];
     textarea.value = formatValue(v) + `\nfiltered: ${f.length} of ${penguins.length}`;
   };
   plot.oninput = oninput;
@@ -524,7 +518,7 @@ export async function brushSimple() {
   const textarea = html`<textarea rows=10 style="width: 640px; resize: none;">`;
   const oninput = () => {
     const v = plot.value;
-    const filtered = v?.filter ? penguins.filter((d: any) => v.filter(d.culmen_length_mm, d.culmen_depth_mm)) : [];
+    const filtered = v ? penguins.filter((d: any) => v.contains(d.culmen_length_mm, d.culmen_depth_mm)) : [];
     textarea.value = formatValue(v) + `\nfiltered: ${filtered.length} of ${penguins.length}`;
   };
   oninput();
@@ -562,15 +556,57 @@ export async function brushXLine() {
   const textarea = html`<textarea rows=10 style="width: 640px; resize: none;">`;
   const oninput = () => {
     const v = plot.value;
-    if (!v?.filter) {
+    if (!v) {
       textarea.value = formatValue(v);
     } else {
-      const filtered = aapl.filter((d: any) => v.filter(d.Date));
+      const filtered = aapl.filter((d: any) => v.contains(d.Date));
       textarea.value = formatValue(v) + `\nfiltered: ${filtered.length} of ${aapl.length}`;
     }
   };
   plot.oninput = oninput;
   brush.move({x1: new Date("2015-01-01"), x2: new Date("2016-06-01")});
+  oninput();
+  return html`<figure>${plot}${textarea}</figure>`;
+}
+
+export async function brushLineZ() {
+  const data = await d3.csv<any>("data/bls-metro-unemployment.csv", d3.autoType);
+  const brush = Plot.brush();
+  const zxy = {z: "division", x: "date", y: "unemployment"} as const;
+  const render = (index: number[], scales: any, values: any, dimensions: any, context: any, next: any) => {
+    const Z = values.channels.z?.value;
+    if (!Z) return next(index, scales, values, dimensions, context);
+    const groups = new Set<any>();
+    for (const i of index) groups.add(Z[i]);
+    const expanded: number[] = [];
+    for (let i = 0; i < Z.length; ++i) {
+      if (groups.has(Z[i])) {
+        expanded.push(i);
+        values.z[i] = Z[i];
+      }
+    }
+    return next(expanded, scales, values, dimensions, context);
+  };
+  const plot = Plot.plot({
+    marks: [
+      Plot.lineY(data, {...zxy, stroke: "#ccc", strokeWidth: 0.5}),
+      brush,
+      Plot.lineY(data, brush.focus({...zxy, strokeWidth: 2, render}))
+    ]
+  });
+  const textarea = html`<textarea rows=10 style="width: 640px; resize: none;">`;
+  const oninput = () => {
+    const v = plot.value;
+    if (!v) {
+      textarea.value = formatValue(v);
+    } else {
+      const groups = new Set(data.filter((d: any) => v.contains(d.date, d.unemployment)).map((d: any) => d.division));
+      const filtered = data.filter((d: any) => groups.has(d.division));
+      textarea.value = formatValue(v) + `\nfiltered: ${filtered.length} of ${data.length}`;
+    }
+  };
+  plot.oninput = oninput;
+  brush.move({x1: new Date("2007-04-01"), x2: new Date("2007-09-30"), y1: 6.18, y2: 7.1});
   oninput();
   return html`<figure>${plot}${textarea}</figure>`;
 }
@@ -589,10 +625,10 @@ export async function brushYLine() {
   const textarea = html`<textarea rows=10 style="width: 640px; resize: none;">`;
   const oninput = () => {
     const v = plot.value;
-    if (!v?.filter) {
+    if (!v) {
       textarea.value = formatValue(v);
     } else {
-      const filtered = aapl.filter((d: any) => v.filter(d.Date));
+      const filtered = aapl.filter((d: any) => v.contains(d.Date));
       textarea.value = formatValue(v) + `\nfiltered: ${filtered.length} of ${aapl.length}`;
     }
   };
