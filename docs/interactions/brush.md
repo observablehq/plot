@@ -227,18 +227,8 @@ The brush value dispatched on [_input_ events](#input-events). When the brush is
 - **fx** - the *fx* facet value, if applicable
 - **fy** - the *fy* facet value, if applicable
 - **contains** - a method to test whether a point is inside the selection; see [input events](#input-events)
-- **pending** - `true` during interaction; absent when committed
 
 By convention, *x1* < *x2* and *y1* < *y2*. The brushX value does not include *y1* and *y2*; similarly, the brushY value does not include *x1* and *x2*. Values are automatically rounded to the optimal precision that distinguishes neighboring pixels.
-
-The **pending** property indicates the user is still interacting with the brush. To skip intermediate values and react only to committed selections:
-
-```js
-plot.addEventListener("input", () => {
-  if (plot.value?.pending) return;
-  // handle committed value (null if cleared)
-});
-```
 
 ## brush() {#brush}
 

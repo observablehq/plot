@@ -22,9 +22,6 @@ export class Region {
   fx?: any;
   /** The *fy* facet value, if applicable. */
   fy?: any;
-  /** True during interaction, absent when committed. */
-  pending?: true;
-
   /**
    * Tests whether a point falls inside the brush selection.
    *
