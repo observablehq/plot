@@ -48,7 +48,10 @@ export class Region {
 }
 
 export class Brush extends Mark {
-  constructor(data, {dimension = "xy", interval, sync = false, ...options} = {}) {
+  constructor(data, options = {}) {
+    if (data != null && !isIterable(data)) (options = data), (data = undefined);
+    const {dimension = "xy", interval, sync = false, ...rest} = options;
+    options = rest;
     const {x, y, z} = options;
     super(
       dataify(data),
@@ -142,6 +145,7 @@ export class Brush extends Mark {
 
           if (selection === null) {
             if (type === "end") {
+              context.interaction.brushing = false;
               if (sync) {
                 self._syncing = true;
                 selectAll(nodes.filter((_, i) => i !== currentNode)).call(brush.move, null);
@@ -188,6 +192,7 @@ export class Brush extends Mark {
               context.dispatchValue(value);
             }
           } else {
+            if (event.sourceEvent) context.interaction.brushing = true;
             const [[px1, py1], [px2, py2]] = dim === "xy" ? selection
                 : dim === "x" ? [[selection[0]], [selection[1]]]
                 : [[, selection[0]], [, selection[1]]]; // prettier-ignore
