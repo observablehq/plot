@@ -9,17 +9,21 @@ import {
   ascending
 } from "d3";
 import {composeRender, Mark} from "../mark.js";
-import {constant, keyword, maybeInterval} from "../options.js";
+import {constant, dataify, identity, isIterable, keyword, maybeInterval, maybeTuple, take} from "../options.js";
 import {pixelRound} from "../precision.js";
+import {applyAttr} from "../style.js";
+
+const defaults = {ariaLabel: "brush", fill: "#777", fillOpacity: 0.3, stroke: "#fff"};
 
 export class Region {
-  constructor({x1, x2, y1, y2, fx, fy, pending} = {}) {
+  constructor({x1, x2, y1, y2, fx, fy, data, pending} = {}) {
     if (x1 !== undefined) this.x1 = x1;
     if (x2 !== undefined) this.x2 = x2;
     if (y1 !== undefined) this.y1 = y1;
     if (y2 !== undefined) this.y2 = y2;
     if (fx !== undefined) this.fx = fx;
     if (fy !== undefined) this.fy = fy;
+    if (data !== undefined) this.data = data;
     if (pending !== undefined) this.pending = pending;
   }
   contains(x, y, facets) {
@@ -44,20 +48,34 @@ export class Region {
 }
 
 export class Brush extends Mark {
-  constructor({dimension = "xy", interval, sync = false} = {}) {
-    super(undefined, {}, {}, {});
+  constructor(data, {dimension = "xy", interval, sync = false, ...options} = {}) {
+    const {x, y, z} = options;
+    super(
+      dataify(data),
+      {
+        x: {value: x, scale: "x", optional: true},
+        y: {value: y, scale: "y", optional: true}
+      },
+      options,
+      defaults
+    );
     this._dimension = keyword(dimension, "dimension", ["x", "y", "xy"]);
     this._interval = interval == null ? null : maybeInterval(interval);
     this._sync = sync;
-    this._states = []; // per-plot state: {brush, nodes, applyX, applyY}
+    this._states = []; // per-plot state: {brush, nodes, applyX, applyY, svg}
     this._syncing = false;
-    this.inactive = renderFilter(true);
-    this.context = renderFilter(false);
-    this.focus = renderFilter(false);
+    const channelDefaults = {x, y, z, fx: this.fx, fy: this.fy};
+    this.inactive = renderFilter(true, channelDefaults);
+    this.context = renderFilter(false, channelDefaults);
+    this.focus = renderFilter(false, channelDefaults);
   }
   render(index, scales, values, dimensions, context) {
     if (typeof document === "undefined") return null;
     const {x, y, fx, fy} = scales;
+    const X = values.channels?.x?.value;
+    const Y = values.channels?.y?.value;
+    const FX = values.channels?.fx?.value;
+    const FY = values.channels?.fy?.value;
     const {inactive, context: ctx, focus, _states} = this;
 
     // Per-plot state; context.interaction is fresh for each plot.
@@ -78,6 +96,20 @@ export class Brush extends Mark {
       _states.push(state);
       context.dispatchValue(null);
       const sync = this._sync;
+      const {data} = this;
+      const filterData =
+        data != null &&
+        ((region) =>
+          take(
+            data,
+            index.filter((_, i) =>
+              region.contains(
+                dim !== "y" ? X[i] : undefined,
+                dim !== "x" ? Y[i] : undefined,
+                FX || FY ? {fx: FX?.[i], fy: FY?.[i]} : undefined
+              )
+            )
+          ));
       const self = this;
       let target, currentNode, snapping;
 
@@ -151,6 +183,7 @@ export class Brush extends Mark {
                   ...(fy && facet && {fy: facet.y}),
                   pending: true
                 });
+                if (filterData) value.data = filterData(value);
               }
               context.dispatchValue(value);
             }
@@ -200,6 +233,7 @@ export class Brush extends Mark {
               ...(fy && facet && {fy: facet.y}),
               ...(type !== "end" && {pending: true})
             });
+            if (filterData) region.data = filterData(region);
             context.dispatchValue(region);
 
             // Sync other plots in data space
@@ -236,6 +270,12 @@ export class Brush extends Mark {
 
     const g = create("svg:g").attr("aria-label", this._dimension === "xy" ? "brush" : `brush-${this._dimension}`);
     g.call(state.brush);
+    const sel = g.select(".selection");
+    applyAttr(sel, "fill", this.fill);
+    applyAttr(sel, "fill-opacity", this.fillOpacity);
+    applyAttr(sel, "stroke", this.stroke);
+    applyAttr(sel, "stroke-width", this.strokeWidth);
+    applyAttr(sel, "stroke-opacity", this.strokeOpacity);
     const node = g.node();
     state.nodes.push(node);
     return node;
@@ -270,16 +310,25 @@ export class Brush extends Mark {
   }
 }
 
-export function brush(options) {
-  return new Brush(options);
+export function brush(data, options = {}) {
+  if (arguments.length === 1 && !isIterable(data)) (options = data), (data = undefined);
+  let {x, y, ...rest} = options;
+  if (data != null) [x, y] = maybeTuple(x, y);
+  return new Brush(data, {...rest, x, y});
 }
 
-export function brushX({interval} = {}) {
-  return new Brush({dimension: "x", interval});
+export function brushX(data, options = {}) {
+  if (arguments.length === 1 && !isIterable(data)) (options = data), (data = undefined);
+  let {x, interval, ...rest} = options;
+  if (x === undefined && data != null) x = identity;
+  return new Brush(data, {...rest, dimension: "x", interval, x});
 }
 
-export function brushY({interval} = {}) {
-  return new Brush({dimension: "y", interval});
+export function brushY(data, options = {}) {
+  if (arguments.length === 1 && !isIterable(data)) (options = data), (data = undefined);
+  let {y, interval, ...rest} = options;
+  if (y === undefined && data != null) y = identity;
+  return new Brush(data, {...rest, dimension: "y", interval, y});
 }
 
 function intervalRound(interval, v) {
@@ -289,12 +338,13 @@ function intervalRound(interval, v) {
   return v - +lo < +hi - v ? lo : hi;
 }
 
-function renderFilter(initialTest) {
+function renderFilter(initialTest, channelDefaults = {}) {
   const updates = new WeakMap();
   return Object.assign(
     function ({render, ...options} = {}) {
       return {
         pointerEvents: "none",
+        ...channelDefaults,
         ...options,
         render: composeRender((index, scales, values, dimensions, context, next) => {
           const {x: X, y: Y, x1: X1, x2: X2, y1: Y1, y2: Y2, z: Z} = values;
