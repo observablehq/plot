@@ -47,10 +47,10 @@ export class Brush extends Mark {
   constructor({dimension = "xy", interval, sync = false} = {}) {
     super(undefined, {}, {}, {});
     this._dimension = keyword(dimension, "dimension", ["x", "y", "xy"]);
-    this._brush = this._dimension === "x" ? d3BrushX() : this._dimension === "y" ? d3BrushY() : d3Brush();
     this._interval = interval == null ? null : maybeInterval(interval);
-    this._brushNodes = [];
     this._sync = sync;
+    this._states = []; // per-plot state: {brush, nodes, applyX, applyY}
+    this._syncing = false;
     this.inactive = renderFilter(true);
     this.context = renderFilter(false);
     this.focus = renderFilter(false);
@@ -58,22 +58,30 @@ export class Brush extends Mark {
   render(index, scales, values, dimensions, context) {
     if (typeof document === "undefined") return null;
     const {x, y, fx, fy} = scales;
-    const {inactive, context: ctx, focus} = this;
-    let target, currentNode, syncing;
+    const {inactive, context: ctx, focus, _states} = this;
 
-    if (!index?.fi) {
+    // Per-plot state; context.interaction is fresh for each plot.
+    let state = context.interaction.brush;
+    if (state) {
+      if (state.mark !== this) throw new Error("only one brush per plot");
+    } else {
       const dim = this._dimension;
       const interval = this._interval;
       if (context.projection && dim !== "xy") throw new Error(`brush${dim.toUpperCase()} does not support projections`);
       const invertX = precisionInvert(x, context.projection);
       const invertY = precisionInvert(y, context.projection);
-      const applyX = (this._applyX = (!context.projection && x) || ((d) => d));
-      const applyY = (this._applyY = (!context.projection && y) || ((d) => d));
+      const applyX = (!context.projection && x) || ((d) => d);
+      const applyY = (!context.projection && y) || ((d) => d);
+      const brush = dim === "x" ? d3BrushX() : dim === "y" ? d3BrushY() : d3Brush();
+      const nodes = [];
+      context.interaction.brush = state = {mark: this, brush, nodes, applyX, applyY, svg: context.ownerSVGElement};
+      _states.push(state);
       context.dispatchValue(null);
-      const {_brush, _brushNodes} = this;
       const sync = this._sync;
-      let snapping;
-      _brush
+      const self = this;
+      let target, currentNode, snapping;
+
+      brush
         .extent([
           [dimensions.marginLeft - (dim !== "y"), dimensions.marginTop - (dim !== "x")],
           [
@@ -82,20 +90,21 @@ export class Brush extends Mark {
           ]
         ])
         .on("start brush end", function (event) {
-          if (syncing) return;
+          if (self._syncing) return;
           const {selection, type} = event;
           if (type === "start" && !snapping) {
             target = event.sourceEvent?.currentTarget ?? this;
-            currentNode = _brushNodes.indexOf(target);
+            currentNode = nodes.indexOf(target);
+            // Clear other facets within this plot
             if (!sync) {
-              syncing = true;
-              selectAll(_brushNodes.filter((_, i) => i !== currentNode)).call(_brush.move, null);
-              syncing = false;
+              self._syncing = true;
+              selectAll(nodes.filter((_, i) => i !== currentNode)).call(brush.move, null);
+              self._syncing = false;
             }
-            for (let i = 0; i < _brushNodes.length; ++i) {
-              inactive.update(false, i);
-              ctx.update(true, i);
-              focus.update(false, i);
+            for (const p of _states) {
+              inactive.update(false, p);
+              ctx.update(true, p);
+              focus.update(false, p);
             }
           }
 
@@ -103,21 +112,34 @@ export class Brush extends Mark {
             if (type === "end") {
               context.interaction.brushing = false;
               if (sync) {
-                syncing = true;
-                selectAll(_brushNodes.filter((_, i) => i !== currentNode)).call(_brush.move, null);
-                syncing = false;
+                self._syncing = true;
+                selectAll(nodes.filter((_, i) => i !== currentNode)).call(brush.move, null);
+                self._syncing = false;
               }
-              for (let i = 0; i < _brushNodes.length; ++i) {
-                inactive.update(true, i);
-                ctx.update(false, i);
-                focus.update(false, i);
+              // Clear all other plots
+              self._syncing = true;
+              for (const p of _states) {
+                if (p === state) continue;
+                selectAll(p.nodes).call(p.brush.move, null);
+              }
+              self._syncing = false;
+              for (const p of _states) {
+                inactive.update(true, p);
+                ctx.update(false, p);
+                focus.update(false, p);
               }
               context.dispatchValue(null);
             } else {
-              for (let i = sync ? 0 : currentNode, n = sync ? _brushNodes.length : currentNode + 1; i < n; ++i) {
-                inactive.update(false, i);
-                ctx.update(true, i);
-                focus.update(false, i);
+              if (sync) {
+                for (const p of _states) {
+                  inactive.update(false, p);
+                  ctx.update(true, p);
+                  focus.update(false, p);
+                }
+              } else {
+                inactive.update(false, state, currentNode);
+                ctx.update(true, state, currentNode);
+                focus.update(false, state, currentNode);
               }
               let value = null;
               if (event.sourceEvent) {
@@ -141,14 +163,20 @@ export class Brush extends Mark {
             const inX = dim !== "y" && ((xi) => px1 <= xi && xi < px2);
             const inY = dim !== "x" && ((yi) => py1 <= yi && yi < py2);
             if (sync) {
-              syncing = true;
-              selectAll(_brushNodes.filter((_, i) => i !== currentNode)).call(_brush.move, selection);
-              syncing = false;
+              self._syncing = true;
+              selectAll(nodes.filter((_, i) => i !== currentNode)).call(brush.move, selection);
+              self._syncing = false;
             }
-            for (let i = sync ? 0 : currentNode, n = sync ? _brushNodes.length : currentNode + 1; i < n; ++i) {
-              inactive.update(false, i);
-              ctx.update(!inX ? (_, yi) => !inY(yi) : !inY ? (xi) => !inX(xi) : (xi, yi) => !(inX(xi) && inY(yi)), i);
-              focus.update(!inX ? (_, yi) => inY(yi) : !inY ? inX : (xi, yi) => inX(xi) && inY(yi), i);
+            const ctxTest = !inX ? (_, yi) => !inY(yi) : !inY ? (xi) => !inX(xi) : (xi, yi) => !(inX(xi) && inY(yi));
+            const focusTest = !inX ? (_, yi) => inY(yi) : !inY ? inX : (xi, yi) => inX(xi) && inY(yi);
+            if (sync) {
+              inactive.update(false, state);
+              ctx.update(ctxTest, state);
+              focus.update(focusTest, state);
+            } else {
+              inactive.update(false, state, currentNode);
+              ctx.update(ctxTest, state, currentNode);
+              focus.update(focusTest, state, currentNode);
             }
 
             const [x1, x2] = invertX && [invertX(px1), invertX(px2)].sort(ascending);
@@ -161,54 +189,86 @@ export class Brush extends Mark {
               let r2 = intervalRound(interval, s2);
               if (+r1 === +r2) r2 = interval.offset(r1);
               snapping = true;
-              select(this).call(_brush.move, [r1, r2].map(dim === "x" ? applyX : applyY).sort(ascending));
+              select(this).call(brush.move, [r1, r2].map(dim === "x" ? applyX : applyY).sort(ascending));
               snapping = false;
               return;
             }
 
             const facet = target?.__data__;
-            context.dispatchValue(
-              new Region({
-                ...(dim !== "y" && {x1, x2}),
-                ...(dim !== "x" && {y1, y2}),
-                ...(fx && facet && {fx: facet.x}),
-                ...(fy && facet && {fy: facet.y}),
-                ...(type !== "end" && {pending: true})
-              })
-            );
+            const region = new Region({
+              ...(dim !== "y" && {x1, x2}),
+              ...(dim !== "x" && {y1, y2}),
+              ...(fx && facet && {fx: facet.x}),
+              ...(fy && facet && {fy: facet.y}),
+              ...(type !== "end" && {pending: true})
+            });
+            context.dispatchValue(region);
+
+            // Sync other plots in data space
+            if (type !== "start") {
+              self._syncing = true;
+              for (const p of _states) {
+                if (p === state) continue;
+                const [pX1, pX2] = [p.applyX(x1), p.applyX(x2)].sort(ascending);
+                const [pY1, pY2] = [p.applyY(y1), p.applyY(y2)].sort(ascending);
+                const selection =
+                  dim === "xy"
+                    ? [
+                        [pX1, pY1],
+                        [pX2, pY2]
+                      ]
+                    : dim === "x"
+                    ? [pX1, pX2]
+                    : [pY1, pY2];
+                selectAll(p.nodes).call(p.brush.move, selection);
+                const inXp = dim !== "y" && ((xi) => p.applyX(x1) <= xi && xi < p.applyX(x2));
+                const inYp = dim !== "x" && ((yi) => p.applyY(y1) <= yi && yi < p.applyY(y2));
+                inactive.update(false, p);
+                ctx.update(
+                  !inXp ? (_, yi) => !inYp(yi) : !inYp ? (xi) => !inXp(xi) : (xi, yi) => !(inXp(xi) && inYp(yi)),
+                  p
+                );
+                focus.update(!inXp ? (_, yi) => inYp(yi) : !inYp ? inXp : (xi, yi) => inXp(xi) && inYp(yi), p);
+              }
+              self._syncing = false;
+            }
           }
         });
     }
 
     const g = create("svg:g").attr("aria-label", this._dimension === "xy" ? "brush" : `brush-${this._dimension}`);
-    g.call(this._brush);
+    g.call(state.brush);
     const node = g.node();
-    this._brushNodes.push(node);
+    state.nodes.push(node);
     return node;
   }
   move(value) {
     if (value == null) {
-      selectAll(this._brushNodes).call(this._brush.move, null);
+      for (const {brush, nodes} of this._states) {
+        selectAll(nodes).call(brush.move, null);
+      }
       return;
     }
+    const dim = this._dimension;
     const {x1, x2, y1, y2, fx, fy} = value;
-    const node = this._brushNodes.find(
-      (n) => (fx === undefined || n.__data__?.x === fx) && (fy === undefined || n.__data__?.y === fy)
-    );
-    if (!node) return;
-    const [px1, px2] = [x1, x2].map(this._applyX).sort(ascending);
-    const [py1, py2] = [y1, y2].map(this._applyY).sort(ascending);
-    select(node).call(
-      this._brush.move,
-      this._dimension === "xy"
-        ? [
-            [px1, py1],
-            [px2, py2]
-          ]
-        : this._dimension === "x"
-        ? [px1, px2]
-        : [py1, py2]
-    );
+    for (const {brush, nodes, applyX, applyY} of this._states) {
+      const node = nodes.find(
+        (n) => (fx === undefined || n.__data__?.x === fx) && (fy === undefined || n.__data__?.y === fy)
+      );
+      if (!node) continue;
+      const [px1, px2] = dim !== "y" ? [x1, x2].map(applyX).sort(ascending) : [];
+      const [py1, py2] = dim !== "x" ? [y1, y2].map(applyY).sort(ascending) : [];
+      const selection =
+        dim === "xy"
+          ? [
+              [px1, py1],
+              [px2, py2]
+            ]
+          : dim === "x"
+          ? [px1, px2]
+          : [py1, py2];
+      select(node).call(brush.move, selection);
+    }
   }
 }
 
@@ -232,7 +292,7 @@ function intervalRound(interval, v) {
 }
 
 function renderFilter(initialTest) {
-  const updatePerFacet = [];
+  const updates = new WeakMap();
   return Object.assign(
     function ({render, ...options} = {}) {
       return {
@@ -256,7 +316,9 @@ function renderFilter(initialTest) {
             return next(I, scales, {...values, z: G}, dimensions, context);
           };
           let g = render(initialTest);
-          updatePerFacet.push((test) => {
+          const svg = context.ownerSVGElement;
+          if (!updates.has(svg)) updates.set(svg, []);
+          updates.get(svg).push((test) => {
             const transform = g.getAttribute("transform");
             g.replaceWith((g = render(test)));
             if (transform) g.setAttribute("transform", transform);
@@ -266,8 +328,13 @@ function renderFilter(initialTest) {
       };
     },
     {
-      update(test, i) {
-        return updatePerFacet[i]?.(test);
+      update(test, state, facet) {
+        if (facet === undefined) {
+          const fns = updates.get(state.svg);
+          if (fns) for (const fn of fns) fn(test);
+        } else {
+          updates.get(state.svg)?.[facet]?.(test);
+        }
       }
     }
   );
