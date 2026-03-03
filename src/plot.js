@@ -157,6 +157,7 @@ export function plot(options = {}) {
   let figure = svg; // replaced with the figure element, if any
   context.ownerSVGElement = svg;
   context.className = className;
+  context.interaction = {};
   context.projection = createProjection(options, subdimensions);
 
   // A path generator for marks that want to draw GeoJSON.
@@ -176,7 +177,7 @@ export function plot(options = {}) {
     return {...state, channels: {...state.channels, ...facetState?.channels}};
   };
 
-  // Allows e.g. the pointer transform to support viewof.
+  // Allows e.g. the pointer transform and brush to support viewof.
   context.dispatchValue = (value) => {
     if (figure.value === value) return;
     figure.value = value;
