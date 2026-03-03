@@ -33,6 +33,22 @@ export class Region {
   contains(x: any, y?: any, facets?: {fx?: any; fy?: any}): boolean;
 }
 
+/** Options for the brush mark. */
+export interface BrushOptions {
+  /**
+   * If true, the brush spans all facet panes simultaneously; defaults to false.
+   */
+  sync?: boolean;
+  /**
+   * An interval to snap the brush to, such as a number for quantitative scales
+   * or a time interval name like *month* for temporal scales. On brush end, the
+   * selection is rounded to the nearest interval boundaries; the dispatched
+   * filter function floors values before testing, for consistency with binned
+   * marks. Supported by the 1-dimensional marks brushX and brushY.
+   */
+  interval?: Interval;
+}
+
 /**
  * A mark that renders a [brush](https://d3js.org/d3-brush) allowing the user to
  * select a region. The brush coordinates across facets, clearing previous
@@ -44,6 +60,7 @@ export class Region {
  * reactive marks that respond to the brush state.
  */
 export class Brush extends RenderableMark {
+  constructor(options?: BrushOptions);
   /**
    * Returns mark options that show the mark when no brush selection is active,
    * and hide it during brushing. Use this for the default appearance.
@@ -75,18 +92,7 @@ export class Brush extends RenderableMark {
 }
 
 /** Creates a new two-dimensional brush mark. */
-export function brush(): Brush;
-
-/** Options for brush marks. */
-export interface BrushOptions {
-  /**
-   * An interval to snap the brush to, such as a number for quantitative scales
-   * or a time interval name like *month* for temporal scales. On brush end, the
-   * selection is rounded to the nearest interval boundaries. Supported by the
-   * 1-dimensional marks brushX and brushY.
-   */
-  interval?: Interval;
-}
+export function brush(options?: BrushOptions): Brush;
 
 /** Creates a one-dimensional brush mark along the *x* axis. Not supported with projections. */
 export function brushX(options?: BrushOptions): Brush;
