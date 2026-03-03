@@ -13,55 +13,55 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor">
     <path transform="translate(40,368)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,325.1974522292994)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,282.3949044585988)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,239.59235668789808)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,196.78980891719746)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,153.98726114649682)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,111.18471337579615)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,68.38216560509554)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,325.197)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,282.395)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,239.592)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,196.79)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,153.987)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,111.185)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,68.382)" d="M0,0L-6,0"></path>
   </g>
-  <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
+  <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-9,0)">
     <text y="0.32em" transform="translate(40,368)">0</text>
-    <text y="0.32em" transform="translate(40,325.1974522292994)">20</text>
-    <text y="0.32em" transform="translate(40,282.3949044585988)">40</text>
-    <text y="0.32em" transform="translate(40,239.59235668789808)">60</text>
-    <text y="0.32em" transform="translate(40,196.78980891719746)">80</text>
-    <text y="0.32em" transform="translate(40,153.98726114649682)">100</text>
-    <text y="0.32em" transform="translate(40,111.18471337579615)">120</text>
-    <text y="0.32em" transform="translate(40,68.38216560509554)">140</text>
+    <text y="0.32em" transform="translate(40,325.197)">20</text>
+    <text y="0.32em" transform="translate(40,282.395)">40</text>
+    <text y="0.32em" transform="translate(40,239.592)">60</text>
+    <text y="0.32em" transform="translate(40,196.79)">80</text>
+    <text y="0.32em" transform="translate(40,153.987)">100</text>
+    <text y="0.32em" transform="translate(40,111.185)">120</text>
+    <text y="0.32em" transform="translate(40,68.382)">140</text>
   </g>
   <g aria-label="waffle">
-    <pattern width="34.24203821656051" height="34.24203821656051" patternUnits="userSpaceOnUse" id="plot-pattern-1">
-      <rect x="0.5" y="0.5" width="33.24203821656051" height="33.24203821656051" fill="rgb(158, 1, 66)"></rect>
+    <pattern width="34.242" height="34.242" patternUnits="userSpaceOnUse" id="plot-pattern-1">
+      <rect x="0.5" y="0.5" width="33.242" height="33.242" fill="rgb(158, 1, 66)"></rect>
     </pattern>
-    <pattern width="34.24203821656051" height="34.24203821656051" patternUnits="userSpaceOnUse" id="plot-pattern-2">
-      <rect x="0.5" y="0.5" width="33.24203821656051" height="33.24203821656051" fill="rgb(224, 81, 74)"></rect>
+    <pattern width="34.242" height="34.242" patternUnits="userSpaceOnUse" id="plot-pattern-2">
+      <rect x="0.5" y="0.5" width="33.242" height="33.242" fill="rgb(224, 81, 74)"></rect>
     </pattern>
-    <pattern width="34.24203821656051" height="34.24203821656051" patternUnits="userSpaceOnUse" id="plot-pattern-3">
-      <rect x="0.5" y="0.5" width="33.24203821656051" height="33.24203821656051" fill="rgb(251, 160, 92)"></rect>
+    <pattern width="34.242" height="34.242" patternUnits="userSpaceOnUse" id="plot-pattern-3">
+      <rect x="0.5" y="0.5" width="33.242" height="33.242" fill="rgb(251, 160, 92)"></rect>
     </pattern>
-    <pattern width="34.24203821656051" height="34.24203821656051" patternUnits="userSpaceOnUse" id="plot-pattern-4">
-      <rect x="0.5" y="0.5" width="33.24203821656051" height="33.24203821656051" fill="rgb(242, 249, 171)"></rect>
+    <pattern width="34.242" height="34.242" patternUnits="userSpaceOnUse" id="plot-pattern-4">
+      <rect x="0.5" y="0.5" width="33.242" height="33.242" fill="rgb(242, 249, 171)"></rect>
     </pattern>
-    <pattern width="34.24203821656051" height="34.24203821656051" patternUnits="userSpaceOnUse" id="plot-pattern-5">
-      <rect x="0.5" y="0.5" width="33.24203821656051" height="33.24203821656051" fill="rgb(98, 184, 170)"></rect>
+    <pattern width="34.242" height="34.242" patternUnits="userSpaceOnUse" id="plot-pattern-5">
+      <rect x="0.5" y="0.5" width="33.242" height="33.242" fill="rgb(98, 184, 170)"></rect>
     </pattern>
-    <pattern width="34.24203821656051" height="34.24203821656051" patternUnits="userSpaceOnUse" id="plot-pattern-6">
-      <rect x="0.5" y="0.5" width="33.24203821656051" height="33.24203821656051" fill="rgb(94, 79, 162)"></rect>
+    <pattern width="34.242" height="34.242" patternUnits="userSpaceOnUse" id="plot-pattern-6">
+      <rect x="0.5" y="0.5" width="33.242" height="33.242" fill="rgb(94, 79, 162)"></rect>
     </pattern>
-    <pattern width="34.24203821656051" height="34.24203821656051" patternUnits="userSpaceOnUse" id="plot-pattern-7">
-      <rect x="0.5" y="0.5" width="33.24203821656051" height="33.24203821656051" fill="rgb(246, 130, 79)"></rect>
+    <pattern width="34.242" height="34.242" patternUnits="userSpaceOnUse" id="plot-pattern-7">
+      <rect x="0.5" y="0.5" width="33.242" height="33.242" fill="rgb(246, 130, 79)"></rect>
     </pattern>
-    <path transform="translate(65.56369426751593,368)" d="M0,0L0,0L0,0L0,0L0,0L34.24203821656051,0L34.24203821656051,0L34.24203821656051,0L34.24203821656051,-34.24203821656051L0,-34.24203821656051Z" fill="url(#plot-pattern-1)"></path>
-    <path transform="translate(65.56369426751593,368)" d="M34.24203821656051,-34.24203821656051L34.24203821656051,0L34.24203821656051,0L34.24203821656051,0L171.21019108280254,0L171.21019108280254,0L171.21019108280254,0L171.21019108280254,-34.24203821656051Z" fill="url(#plot-pattern-2)"></path>
-    <path transform="translate(65.56369426751593,368)" d="M171.21019108280254,-34.24203821656051L171.21019108280254,0L171.21019108280254,0L171.21019108280254,0L479.38853503184714,0L479.38853503184714,0L479.38853503184714,0L479.38853503184714,-34.24203821656051Z" fill="url(#plot-pattern-3)"></path>
-    <path transform="translate(65.56369426751593,368)" d="M0,-34.24203821656051L479.38853503184714,-34.24203821656051L479.38853503184714,0L479.38853503184714,0L479.38853503184714,0L547.8726114649681,0L547.8726114649681,-68.48407643312102L205.45222929936307,-68.48407643312102L205.45222929936307,-68.48407643312102L205.45222929936307,-68.48407643312102L205.45222929936307,-102.72611464968153L0,-102.72611464968153Z" fill="url(#plot-pattern-4)"></path>
-    <path transform="translate(65.56369426751593,368)" d="M0,-102.72611464968153L205.45222929936307,-102.72611464968153L205.45222929936307,-68.48407643312102L205.45222929936307,-68.48407643312102L205.45222929936307,-68.48407643312102L547.8726114649681,-68.48407643312102L547.8726114649681,-171.21019108280254L136.96815286624204,-171.21019108280254L136.96815286624204,-171.21019108280254L136.96815286624204,-171.21019108280254L136.96815286624204,-205.45222929936307L0,-205.45222929936307Z" fill="url(#plot-pattern-5)"></path>
-    <path transform="translate(65.56369426751593,368)" d="M0,-205.45222929936307L136.96815286624204,-205.45222929936307L136.96815286624204,-171.21019108280254L136.96815286624204,-171.21019108280254L136.96815286624204,-171.21019108280254L547.8726114649681,-171.21019108280254L547.8726114649681,-308.1783439490446L205.45222929936307,-308.1783439490446L205.45222929936307,-308.1783439490446L205.45222929936307,-308.1783439490446L205.45222929936307,-342.4203821656051L0,-342.4203821656051Z" fill="url(#plot-pattern-6)"></path>
-    <path transform="translate(65.56369426751593,368)" d="M205.45222929936307,-342.4203821656051L205.45222929936307,-308.1783439490446L205.45222929936307,-308.1783439490446L205.45222929936307,-308.1783439490446L445.14649681528664,-308.1783439490446L445.14649681528664,-308.1783439490446L445.14649681528664,-308.1783439490446L445.14649681528664,-342.4203821656051Z" fill="url(#plot-pattern-7)"></path>
+    <path transform="translate(65.814,368)" d="M0,0L0,0L0,0L0,0L0,0L34.242,0L34.242,0L34.242,0L34.242,-34.242L0,-34.242Z" fill="url(#plot-pattern-1)"></path>
+    <path transform="translate(65.814,368)" d="M34.242,-34.242L34.242,0L34.242,0L34.242,0L171.21,0L171.21,0L171.21,0L171.21,-34.242Z" fill="url(#plot-pattern-2)"></path>
+    <path transform="translate(65.814,368)" d="M171.21,-34.242L171.21,0L171.21,0L171.21,0L479.389,0L479.389,0L479.389,0L479.389,-34.242Z" fill="url(#plot-pattern-3)"></path>
+    <path transform="translate(65.814,368)" d="M0,-34.242L479.389,-34.242L479.389,0L479.389,0L479.389,0L547.873,0L547.873,-68.484L205.452,-68.484L205.452,-68.484L205.452,-68.484L205.452,-102.726L0,-102.726Z" fill="url(#plot-pattern-4)"></path>
+    <path transform="translate(65.814,368)" d="M0,-102.726L205.452,-102.726L205.452,-68.484L205.452,-68.484L205.452,-68.484L547.873,-68.484L547.873,-171.21L136.968,-171.21L136.968,-171.21L136.968,-171.21L136.968,-205.452L0,-205.452Z" fill="url(#plot-pattern-5)"></path>
+    <path transform="translate(65.814,368)" d="M0,-205.452L136.968,-205.452L136.968,-171.21L136.968,-171.21L136.968,-171.21L547.873,-171.21L547.873,-308.178L205.452,-308.178L205.452,-308.178L205.452,-308.178L205.452,-342.42L0,-342.42Z" fill="url(#plot-pattern-6)"></path>
+    <path transform="translate(65.814,368)" d="M205.452,-342.42L205.452,-308.178L205.452,-308.178L205.452,-308.178L445.146,-308.178L445.146,-308.178L445.146,-308.178L445.146,-342.42Z" fill="url(#plot-pattern-7)"></path>
   </g>
-  <g aria-label="tip" fill="var(--plot-background)" stroke="currentColor" pointer-events="none" text-anchor="start" transform="translate(0.5,0.5)"></g>
+  <g aria-label="tip" fill="var(--plot-background)" stroke="currentColor" pointer-events="none" text-anchor="start"></g>
 </svg>
