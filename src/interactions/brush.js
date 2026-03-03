@@ -110,6 +110,7 @@ export class Brush extends Mark {
 
           if (selection === null) {
             if (type === "end") {
+              context.interaction.brushing = false;
               if (sync) {
                 self._syncing = true;
                 selectAll(nodes.filter((_, i) => i !== currentNode)).call(brush.move, null);
@@ -155,6 +156,7 @@ export class Brush extends Mark {
               context.dispatchValue(value);
             }
           } else {
+            if (event.sourceEvent) context.interaction.brushing = true;
             const [[px1, py1], [px2, py2]] = dim === "xy" ? selection
                 : dim === "x" ? [[selection[0]], [selection[1]]]
                 : [[, selection[0]], [, selection[1]]]; // prettier-ignore
