@@ -595,6 +595,54 @@ export async function brushLineZ() {
   return html`<figure>${plot}${textarea}</figure>`;
 }
 
+export async function brushSyncedCharts() {
+  const aapl = await d3.csv<any>("data/aapl.csv", d3.autoType);
+  const brush = Plot.brushX();
+  const xy = {x: "Date", y: "Close"} as const;
+  const sign = (d: any) => d.Close < d.Open;
+  const plot1 = Plot.plot({
+    height: 280,
+    y: {grid: true},
+    color: {range: ["#2ecc71", "#e74c3c"]},
+    marks: [
+      Plot.ruleY([0]),
+      brush,
+      Plot.lineY(aapl, brush.inactive({...xy, z: null, stroke: sign})),
+      Plot.lineY(aapl, brush.context({...xy, stroke: "#ccc", strokeWidth: 0.5})),
+      Plot.lineY(aapl, brush.focus({...xy, z: null, stroke: sign, strokeWidth: 2}))
+    ]
+  });
+  const ohlc = {x: "Date", y1: "Low", y2: "High", inset: -0.5, stroke: sign} as const;
+  const aapl2016 = aapl.filter((d: any) => d.Date.getUTCFullYear() === 2016);
+  const plot2 = Plot.plot({
+    height: 280,
+    clip: true,
+    x: {domain: [new Date("2016-01-01"), new Date("2017-01-01")]},
+    y: {
+      domain: d3.nice(...(d3.extent(aapl2016.flatMap((d: any) => [d.Low, d.High])) as [number, number]), 10),
+      grid: true,
+      label: "Price ($)"
+    },
+    color: {range: ["#2ecc71", "#e74c3c"]},
+    marks: [
+      Plot.ruleX(aapl, brush.inactive({...ohlc})),
+      Plot.ruleX(aapl, brush.context({...ohlc, stroke: "#ccc"})),
+      Plot.ruleX(aapl, brush.focus({...ohlc})),
+      brush
+    ]
+  });
+  const textarea = html`<textarea rows=10 style="width: 640px; resize: none;">`;
+  const oninput = () => {
+    const v = plot1.value;
+    const f = v ? aapl.filter((d: any) => v.contains(d.Date)) : [];
+    textarea.value = formatValue(v) + `\nfiltered: ${f.length} of ${aapl.length}`;
+  };
+  plot1.oninput = oninput;
+  brush.move({x1: new Date("2016-07-01"), x2: new Date("2016-12-01")});
+  oninput();
+  return html`<figure>${plot1}${plot2}${textarea}</figure>`;
+}
+
 export async function brushYLine() {
   const aapl = await d3.csv<any>("data/aapl.csv", d3.autoType);
   const brush = Plot.brushY();
