@@ -318,7 +318,7 @@ export class Brush extends Mark {
 export function brush(data, options = {}) {
   if (arguments.length === 1 && !isIterable(data)) (options = data), (data = undefined);
   let {x, y, ...rest} = options;
-  [x, y] = maybeTuple(x, y);
+  if (data != null) [x, y] = maybeTuple(x, y);
   return new Brush(data, {...rest, x, y});
 }
 
