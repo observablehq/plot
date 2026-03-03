@@ -407,6 +407,106 @@ it("brushX value has x1/x2 but no y1/y2", async () => {
   assert.ok(filtered.length < data.length, "should not include all points");
 });
 
+it("brush reused across two plots syncs programmatic move", () => {
+  const data = [
+    {x: 10, y: 10},
+    {x: 20, y: 20},
+    {x: 30, y: 30},
+    {x: 40, y: 40},
+    {x: 50, y: 50}
+  ];
+  const brush = new Plot.Brush();
+  const plot1 = Plot.plot({
+    x: {domain: [0, 60]},
+    y: {domain: [0, 60]},
+    marks: [Plot.dot(data, brush.inactive({x: "x", y: "y"})), brush]
+  });
+  const plot2 = Plot.plot({
+    x: {domain: [0, 60]},
+    y: {domain: [0, 60]},
+    marks: [Plot.dot(data, brush.inactive({x: "x", y: "y"})), brush]
+  });
+
+  let value1: any, value2: any;
+  plot1.addEventListener("input", () => (value1 = plot1.value));
+  plot2.addEventListener("input", () => (value2 = plot2.value));
+
+  brush.move({x1: 15, x2: 35, y1: 15, y2: 35});
+
+  assert.ok(value1, "plot1 should have a value");
+  assert.ok(value2, "plot2 should have a value");
+  assert.equal(value1.x1, value2.x1, "both plots should have the same x1");
+  assert.equal(value1.x2, value2.x2, "both plots should have the same x2");
+
+  // Both plots should show the brush selection
+  assert.ok(plot1.querySelector(".selection"), "plot1 should have a selection rect");
+  assert.ok(plot2.querySelector(".selection"), "plot2 should have a selection rect");
+});
+
+it("brush reused across two plots clears both on null move", () => {
+  const data = [
+    {x: 10, y: 10},
+    {x: 20, y: 20},
+    {x: 30, y: 30}
+  ];
+  const brush = new Plot.Brush();
+  const plot1 = Plot.plot({
+    x: {domain: [0, 60]},
+    y: {domain: [0, 60]},
+    marks: [Plot.dot(data, brush.inactive({x: "x", y: "y"})), brush]
+  });
+  const plot2 = Plot.plot({
+    x: {domain: [0, 60]},
+    y: {domain: [0, 60]},
+    marks: [Plot.dot(data, brush.inactive({x: "x", y: "y"})), brush]
+  });
+
+  let value1: any, value2: any;
+  plot1.addEventListener("input", () => (value1 = plot1.value));
+  plot2.addEventListener("input", () => (value2 = plot2.value));
+
+  brush.move({x1: 15, x2: 35, y1: 15, y2: 35});
+  assert.ok(value1, "plot1 should have a value after move");
+  assert.ok(value2, "plot2 should have a value after move");
+
+  brush.move(null);
+  assert.equal(value1, null, "plot1 value should be null after clear");
+  assert.equal(value2, null, "plot2 value should be null after clear");
+});
+
+it("brushX reused across two plots syncs in data space", () => {
+  const data = [10, 20, 30, 40, 50];
+  const brush = Plot.brushX();
+  // Two plots with different x domains but same brush
+  const plot1 = Plot.plot({
+    x: {domain: [0, 60]},
+    marks: [Plot.dotX(data, brush.inactive()), brush]
+  });
+  const plot2 = Plot.plot({
+    x: {domain: [0, 60]},
+    marks: [Plot.dotX(data, brush.inactive()), brush]
+  });
+
+  let value1: any, value2: any;
+  plot1.addEventListener("input", () => (value1 = plot1.value));
+  plot2.addEventListener("input", () => (value2 = plot2.value));
+
+  brush.move({x1: 15, x2: 45});
+
+  assert.ok(value1, "plot1 should have a value");
+  assert.ok(value2, "plot2 should have a value");
+  assert.equal(value1.x1, value2.x1, "both plots should report the same x1");
+  assert.equal(value1.x2, value2.x2, "both plots should report the same x2");
+});
+
+it("two brush marks in the same plot throws", () => {
+  assert.throws(() => {
+    Plot.plot({
+      marks: [Plot.brush(), Plot.brush()]
+    });
+  }, /only one brush per plot/);
+});
+
 it("brushY value has y1/y2 but no x1/x2", async () => {
   const data = [
     {x: 10, y: 10},
