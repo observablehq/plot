@@ -395,9 +395,8 @@ it("brushX reused across two plots syncs in data space", () => {
 
 it("two brush marks in the same plot throws", () => {
   assert.throws(() => {
-    const data = [{x: 1, y: 1}];
     Plot.plot({
-      marks: [Plot.dot(data, {x: "x", y: "y"}), Plot.brush(), Plot.brush()]
+      marks: [Plot.brush(), Plot.brush()]
     });
   }, /only one brush per plot/);
 });
