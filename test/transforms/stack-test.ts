@@ -1,5 +1,5 @@
+import {assert, it} from "vitest";
 import * as Plot from "@observablehq/plot";
-import assert from "assert";
 
 it("stackY(options) returns the expected values", () => {
   const y = [1, 2, -2, -1];
@@ -15,5 +15,5 @@ it("stackY(options) returns the expected values", () => {
 });
 
 it("stackY({order}) rejects an invalid order", () => {
-  assert.throws(() => Plot.barY([], {y: 1, order: 42 as any}), /^Error: invalid order: 42$/);
+  assert.throws(() => Plot.barY([], {y: 1, order: 42 as any}), /invalid order: 42$/);
 });

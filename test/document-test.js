@@ -1,5 +1,5 @@
+import {assert, it} from "vitest";
 import * as Plot from "@observablehq/plot";
-import assert from "assert";
 import {JSDOM} from "jsdom";
 
 it("Plot.plot supports the document option", () => {

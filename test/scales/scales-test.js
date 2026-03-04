@@ -1,7 +1,7 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 import assert from "../assert.js";
-import it from "../jsdom.js";
+import {it} from "vitest";
 
 // TODO Expose as d3.schemeObservable10, or Plot.scheme("observable10")?
 const schemeObservable10 = [
@@ -2256,7 +2256,7 @@ it("mark(data, {channels}) respects a scale set to true or false", () => {
 it("mark(data, {channels}) rejects unknown scales", () => {
   assert.throws(
     () => Plot.dot([], {channels: {fill: {value: (d) => d, scale: "neo"}}}).initialize().channels.fill.scale,
-    /^Error: unknown scale: neo$/
+    /unknown scale: neo$/
   );
 });
 
