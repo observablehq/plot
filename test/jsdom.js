@@ -18,6 +18,7 @@ function withJsdom(run) {
   return async () => {
     const jsdom = new JSDOM("");
     global.window = jsdom.window;
+    global.window.devicePixelRatio = 2;
     global.document = jsdom.window.document;
     global.Event = jsdom.window.Event;
     global.Node = jsdom.window.Node;

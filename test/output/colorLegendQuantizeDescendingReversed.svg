@@ -20,19 +20,19 @@
     <rect x="192" y="18" width="48" height="10" fill="#d7191c"></rect>
   </g>
   <g transform="translate(0,28)" fill="none" text-anchor="middle" font-variant="tabular-nums">
-    <g class="tick" opacity="1" transform="translate(48.5,0)">
+    <g class="tick" opacity="1" transform="translate(48,0)">
       <line stroke="currentColor" y2="6" y1="-10"></line>
       <text fill="currentColor" y="9" dy="0.71em">8</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(96.5,0)">
+    <g class="tick" opacity="1" transform="translate(96,0)">
       <line stroke="currentColor" y2="6" y1="-10"></line>
       <text fill="currentColor" y="9" dy="0.71em">6</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(144.5,0)">
+    <g class="tick" opacity="1" transform="translate(144,0)">
       <line stroke="currentColor" y2="6" y1="-10"></line>
       <text fill="currentColor" y="9" dy="0.71em">4</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(192.5,0)">
+    <g class="tick" opacity="1" transform="translate(192,0)">
       <line stroke="currentColor" y2="6" y1="-10"></line>
       <text fill="currentColor" y="9" dy="0.71em">2</text>
     </g>
