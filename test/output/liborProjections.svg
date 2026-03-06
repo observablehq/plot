@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="y-grid" aria-hidden="true" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
+  <g aria-label="y-grid" aria-hidden="true" stroke="currentColor" stroke-opacity="0.1">
     <line x1="40" x2="940" y1="327.141" y2="327.141"></line>
     <line x1="40" x2="940" y1="271.283" y2="271.283"></line>
     <line x1="40" x2="940" y1="215.272" y2="215.272"></line>
@@ -21,8 +21,8 @@
     <line x1="40" x2="940" y1="103.557" y2="103.557"></line>
     <line x1="40" x2="940" y1="47.699" y2="47.699"></line>
   </g>
-  <line aria-label="frame" stroke="currentColor" stroke-linecap="square" transform="translate(0.5,0.5)" x1="40" x2="40" y1="20" y2="362.452"></line>
-  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+  <line aria-label="frame" stroke="currentColor" stroke-linecap="square" x1="40" x2="40" y1="20" y2="362.452"></line>
+  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor">
     <path transform="translate(40,327.141)" d="M0,0L-6,0"></path>
     <path transform="translate(40,271.283)" d="M0,0L-6,0"></path>
     <path transform="translate(40,215.272)" d="M0,0L-6,0"></path>
@@ -30,7 +30,7 @@
     <path transform="translate(40,103.557)" d="M0,0L-6,0"></path>
     <path transform="translate(40,47.699)" d="M0,0L-6,0"></path>
   </g>
-  <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
+  <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-9,0)">
     <text y="0.32em" transform="translate(40,327.141)">2015</text>
     <text y="0.32em" transform="translate(40,271.283)">2016</text>
     <text y="0.32em" transform="translate(40,215.272)">2017</text>
@@ -38,10 +38,10 @@
     <text y="0.32em" transform="translate(40,103.557)">2019</text>
     <text y="0.32em" transform="translate(40,47.699)">2020</text>
   </g>
-  <g aria-label="y-axis label" text-anchor="start" transform="translate(-36.5,-16.5)">
+  <g aria-label="y-axis label" text-anchor="start" transform="translate(-37,-17)">
     <text y="0.71em" transform="translate(40,20)">↑ on</text>
   </g>
-  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor">
     <path transform="translate(134.169,362.452)" d="M0,0L0,6"></path>
     <path transform="translate(246.038,362.452)" d="M0,0L0,6"></path>
     <path transform="translate(357.753,362.452)" d="M0,0L0,6"></path>
@@ -51,7 +51,7 @@
     <path transform="translate(804.92,362.452)" d="M0,0L0,6"></path>
     <path transform="translate(916.789,362.452)" d="M0,0L0,6"></path>
   </g>
-  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0,9)">
     <text y="0.71em" transform="translate(134.169,362.452)">2016</text>
     <text y="0.71em" transform="translate(246.038,362.452)">2018</text>
     <text y="0.71em" transform="translate(357.753,362.452)">2020</text>
@@ -61,10 +61,10 @@
     <text y="0.71em" transform="translate(804.92,362.452)">2028</text>
     <text y="0.71em" transform="translate(916.789,362.452)">2030</text>
   </g>
-  <g aria-label="x-axis label" text-anchor="end" transform="translate(17.5,27.5)">
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(17,27)">
     <text transform="translate(940,362.452)">about →</text>
   </g>
-  <g aria-label="dot" transform="translate(0.5,0.5)">
+  <g aria-label="dot">
     <circle cx="50" cy="355.452" r="3" fill="rgb(50, 32, 73)"></circle>
     <circle cx="54.744" cy="355.452" r="3" fill="rgb(51, 32, 75)"></circle>
     <circle cx="59.488" cy="355.452" r="3" fill="rgb(50, 32, 73)"></circle>
@@ -3053,7 +3053,7 @@
     <circle cx="930.409" cy="20" r="3" fill="rgb(39, 183, 229)"></circle>
     <circle cx="935" cy="20" r="3" fill="rgb(39, 184, 229)"></circle>
   </g>
-  <g aria-label="text" fill="black" stroke="white" stroke-width="3" stroke-linejoin="round" paint-order="stroke" transform="translate(0.5,0.5)">
+  <g aria-label="text" fill="black" stroke="white" stroke-width="3" stroke-linejoin="round" paint-order="stroke">
     <text y="0.32em" transform="translate(82.902,355.452)">0.19%</text>
     <text y="0.32em" transform="translate(138.76,355.452)">0.87%</text>
     <text y="0.32em" transform="translate(194.771,355.452)">1.82%</text>

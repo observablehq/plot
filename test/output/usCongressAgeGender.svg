@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="y-grid" aria-hidden="true" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
+  <g aria-label="y-grid" aria-hidden="true" stroke="currentColor" stroke-opacity="0.1">
     <line x1="40" x2="620" y1="270" y2="270"></line>
     <line x1="40" x2="620" y1="237.105" y2="237.105"></line>
     <line x1="40" x2="620" y1="204.211" y2="204.211"></line>
@@ -23,7 +23,7 @@
     <line x1="40" x2="620" y1="72.632" y2="72.632"></line>
     <line x1="40" x2="620" y1="39.737" y2="39.737"></line>
   </g>
-  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor">
     <path transform="translate(40,270)" d="M0,0L-6,0"></path>
     <path transform="translate(40,237.105)" d="M0,0L-6,0"></path>
     <path transform="translate(40,204.211)" d="M0,0L-6,0"></path>
@@ -33,7 +33,7 @@
     <path transform="translate(40,72.632)" d="M0,0L-6,0"></path>
     <path transform="translate(40,39.737)" d="M0,0L-6,0"></path>
   </g>
-  <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
+  <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-9,0)">
     <text y="0.32em" transform="translate(40,270)">10</text>
     <text y="0.32em" transform="translate(40,237.105)">5</text>
     <text y="0.32em" transform="translate(40,204.211)">0</text>
@@ -43,10 +43,10 @@
     <text y="0.32em" transform="translate(40,72.632)">20</text>
     <text y="0.32em" transform="translate(40,39.737)">25</text>
   </g>
-  <g aria-label="y-axis label" transform="translate(-36.5,0.5)">
+  <g aria-label="y-axis label" transform="translate(-37,0)">
     <text y="0.71em" transform="translate(40,145) rotate(-90)">← Women · Men →</text>
   </g>
-  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor">
     <path transform="translate(40,270)" d="M0,0L0,6"></path>
     <path transform="translate(122.857,270)" d="M0,0L0,6"></path>
     <path transform="translate(205.714,270)" d="M0,0L0,6"></path>
@@ -56,7 +56,7 @@
     <path transform="translate(537.143,270)" d="M0,0L0,6"></path>
     <path transform="translate(620,270)" d="M0,0L0,6"></path>
   </g>
-  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0,9)">
     <text y="0.71em" transform="translate(40,270)">30</text>
     <text y="0.71em" transform="translate(122.857,270)">40</text>
     <text y="0.71em" transform="translate(205.714,270)">50</text>
@@ -66,10 +66,10 @@
     <text y="0.71em" transform="translate(537.143,270)">90</text>
     <text y="0.71em" transform="translate(620,270)">100</text>
   </g>
-  <g aria-label="x-axis label" text-anchor="end" transform="translate(17.5,27.5)">
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(17,27)">
     <text transform="translate(620,270)">Age →</text>
   </g>
-  <g aria-label="dot" transform="translate(0.5,0.5)">
+  <g aria-label="dot">
     <circle cx="56.571" cy="210.789" r="3" fill="#4269d0"><title>Alexandria Ocasio-Cortez</title></circle>
     <circle cx="64.857" cy="210.789" r="3" fill="#4269d0"><title>Abby Finkenauer</title></circle>
     <circle cx="73.143" cy="210.789" r="3" fill="#4269d0"><title>Katie Hill</title></circle>
@@ -958,7 +958,7 @@
     <circle cx="595.143" cy="184.474" r="3" fill="#efb118"><title>Frank R. Lautenberg</title></circle>
     <circle cx="603.429" cy="197.632" r="3" fill="#efb118"><title>Ralph M. Hall</title></circle>
   </g>
-  <g aria-label="rule" stroke="currentColor" transform="translate(0,0.5)">
+  <g aria-label="rule" stroke="currentColor">
     <line x1="40" x2="620" y1="204.211" y2="204.211"></line>
   </g>
 </svg>

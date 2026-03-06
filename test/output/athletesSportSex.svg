@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,9.5)">
+  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,9)">
     <path transform="translate(100,26)" d="M0,0L-6,0"></path>
     <path transform="translate(100,46)" d="M0,0L-6,0"></path>
     <path transform="translate(100,66)" d="M0,0L-6,0"></path>
@@ -43,7 +43,7 @@
     <path transform="translate(100,546)" d="M0,0L-6,0"></path>
     <path transform="translate(100,566)" d="M0,0L-6,0"></path>
   </g>
-  <g aria-label="y-axis tick label" text-anchor="end" transform="translate(-8.5,9.5)">
+  <g aria-label="y-axis tick label" text-anchor="end" transform="translate(-9,9)">
     <text y="0.32em" transform="translate(100,26)">boxing</text>
     <text y="0.32em" transform="translate(100,46)">wrestling</text>
     <text y="0.32em" transform="translate(100,66)">canoe</text>
@@ -73,7 +73,7 @@
     <text y="0.32em" transform="translate(100,546)">fencing</text>
     <text y="0.32em" transform="translate(100,566)">gymnastics</text>
   </g>
-  <g aria-label="x-grid" aria-hidden="true" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+  <g aria-label="x-grid" aria-hidden="true" stroke="currentColor" stroke-opacity="0.1">
     <line x1="100" x2="100" y1="20" y2="590"></line>
     <line x1="152" x2="152" y1="20" y2="590"></line>
     <line x1="204" x2="204" y1="20" y2="590"></line>
@@ -86,7 +86,7 @@
     <line x1="568" x2="568" y1="20" y2="590"></line>
     <line x1="620" x2="620" y1="20" y2="590"></line>
   </g>
-  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor">
     <path transform="translate(100,590)" d="M0,0L0,6"></path>
     <path transform="translate(152,590)" d="M0,0L0,6"></path>
     <path transform="translate(204,590)" d="M0,0L0,6"></path>
@@ -99,7 +99,7 @@
     <path transform="translate(568,590)" d="M0,0L0,6"></path>
     <path transform="translate(620,590)" d="M0,0L0,6"></path>
   </g>
-  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0,9)">
     <text y="0.71em" transform="translate(100,590)">0</text>
     <text y="0.71em" transform="translate(152,590)">10</text>
     <text y="0.71em" transform="translate(204,590)">20</text>
@@ -112,7 +112,7 @@
     <text y="0.71em" transform="translate(568,590)">90</text>
     <text y="0.71em" transform="translate(620,590)">100</text>
   </g>
-  <g aria-label="x-axis label" text-anchor="end" transform="translate(17.5,27.5)">
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(17,27)">
     <text transform="translate(620,590)">Women (%) →</text>
   </g>
   <g aria-label="bar">

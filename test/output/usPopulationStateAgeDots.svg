@@ -13,20 +13,20 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="x-grid" aria-hidden="true" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
-    <line x1="20" x2="20" y1="30" y2="659"></line>
-    <line x1="77.734" x2="77.734" y1="30" y2="659"></line>
-    <line x1="135.467" x2="135.467" y1="30" y2="659"></line>
-    <line x1="193.201" x2="193.201" y1="30" y2="659"></line>
-    <line x1="250.934" x2="250.934" y1="30" y2="659"></line>
-    <line x1="308.668" x2="308.668" y1="30" y2="659"></line>
-    <line x1="366.401" x2="366.401" y1="30" y2="659"></line>
-    <line x1="424.135" x2="424.135" y1="30" y2="659"></line>
-    <line x1="481.868" x2="481.868" y1="30" y2="659"></line>
-    <line x1="539.602" x2="539.602" y1="30" y2="659"></line>
-    <line x1="597.335" x2="597.335" y1="30" y2="659"></line>
+  <g aria-label="x-grid" aria-hidden="true" stroke="currentColor" stroke-opacity="0.1">
+    <line x1="20" x2="20" y1="30" y2="659.5"></line>
+    <line x1="77.734" x2="77.734" y1="30" y2="659.5"></line>
+    <line x1="135.467" x2="135.467" y1="30" y2="659.5"></line>
+    <line x1="193.201" x2="193.201" y1="30" y2="659.5"></line>
+    <line x1="250.934" x2="250.934" y1="30" y2="659.5"></line>
+    <line x1="308.668" x2="308.668" y1="30" y2="659.5"></line>
+    <line x1="366.401" x2="366.401" y1="30" y2="659.5"></line>
+    <line x1="424.135" x2="424.135" y1="30" y2="659.5"></line>
+    <line x1="481.868" x2="481.868" y1="30" y2="659.5"></line>
+    <line x1="539.602" x2="539.602" y1="30" y2="659.5"></line>
+    <line x1="597.335" x2="597.335" y1="30" y2="659.5"></line>
   </g>
-  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,1)">
+  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor">
     <path transform="translate(20,30)" d="M0,0L0,-6"></path>
     <path transform="translate(77.734,30)" d="M0,0L0,-6"></path>
     <path transform="translate(135.467,30)" d="M0,0L0,-6"></path>
@@ -39,7 +39,7 @@
     <path transform="translate(539.602,30)" d="M0,0L0,-6"></path>
     <path transform="translate(597.335,30)" d="M0,0L0,-6"></path>
   </g>
-  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,-8.5)">
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0,-9)">
     <text transform="translate(20,30)">0</text>
     <text transform="translate(77.734,30)">2</text>
     <text transform="translate(135.467,30)">4</text>
@@ -52,13 +52,13 @@
     <text transform="translate(539.602,30)">18</text>
     <text transform="translate(597.335,30)">20</text>
   </g>
-  <g aria-label="x-axis label" text-anchor="end" transform="translate(17.5,-26.5)">
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(17,-27)">
     <text y="0.71em" transform="translate(620,30)">Percent (%) →</text>
   </g>
-  <g aria-label="rule" stroke="currentColor" transform="translate(0.5,0)">
-    <line x1="20" x2="20" y1="30" y2="659"></line>
+  <g aria-label="rule" stroke="currentColor">
+    <line x1="20" x2="20" y1="30" y2="659.5"></line>
   </g>
-  <g aria-label="rule" stroke="currentColor" transform="translate(0,0.5)">
+  <g aria-label="rule" stroke="currentColor">
     <line x1="124.218" x2="421.81" y1="399" y2="399"></line>
     <line x1="68.981" x2="492.748" y1="651" y2="651"></line>
     <line x1="129.278" x2="423.192" y1="363" y2="363"></line>
@@ -112,7 +112,7 @@
     <line x1="117.449" x2="430.442" y1="519" y2="519"></line>
     <line x1="141.837" x2="412.741" y1="183" y2="183"></line>
   </g>
-  <g aria-label="dot" transform="translate(0.5,0.5)">
+  <g aria-label="dot">
     <circle cx="376.859" cy="399" r="3" fill="#d53e4f"></circle>
     <circle cx="438.165" cy="651" r="3" fill="#d53e4f"></circle>
     <circle cx="402.719" cy="363" r="3" fill="#d53e4f"></circle>
@@ -582,7 +582,7 @@
     <circle cx="117.449" cy="519" r="3" fill="#3288bd"></circle>
     <circle cx="141.837" cy="183" r="3" fill="#3288bd"></circle>
   </g>
-  <g aria-label="text" text-anchor="end" transform="translate(-5.5,0.5)">
+  <g aria-label="text" text-anchor="end" transform="translate(-6,0)">
     <text y="0.32em" transform="translate(124.218,399)">AL</text>
     <text y="0.32em" transform="translate(68.981,651)">AK</text>
     <text y="0.32em" transform="translate(129.278,363)">AZ</text>

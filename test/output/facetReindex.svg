@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="fy-axis tick label" transform="translate(-8.5,0.5)">
+  <g aria-label="fy-axis tick label" transform="translate(-9,0)">
     <g text-anchor="end" transform="translate(0,1)">
       <text y="0.32em" transform="translate(74,32)">Biscoe</text>
     </g>
@@ -24,10 +24,10 @@
       <text y="0.32em" transform="translate(74,32)">Torgersen</text>
     </g>
   </g>
-  <g aria-label="fy-axis label" transform="translate(-70.5,0.5)">
+  <g aria-label="fy-axis label" transform="translate(-71,0)">
     <text y="0.71em" transform="translate(74,60) rotate(-90)">facet value</text>
   </g>
-  <g aria-label="y-axis tick" aria-hidden="true" transform="translate(1,5.5)">
+  <g aria-label="y-axis tick" aria-hidden="true" transform="translate(0,5)">
     <g fill="none" stroke="currentColor" transform="translate(0,1)">
       <path transform="translate(762,22)" d="M0,0L6,0"></path>
       <path transform="translate(762,33)" d="M0,0L6,0"></path>
@@ -41,7 +41,7 @@
       <path transform="translate(762,33)" d="M0,0L6,0"></path>
     </g>
   </g>
-  <g aria-label="y-axis tick label" transform="translate(9.5,5.5)">
+  <g aria-label="y-axis tick label" transform="translate(9,5)">
     <g text-anchor="start" transform="translate(0,1)">
       <text y="0.32em" transform="translate(762,22)">exclude</text>
       <text y="0.32em" transform="translate(762,33)">include</text>
@@ -55,10 +55,10 @@
       <text y="0.32em" transform="translate(762,33)">include</text>
     </g>
   </g>
-  <g aria-label="y-axis label" transform="translate(65.5,0.5)">
+  <g aria-label="y-axis label" transform="translate(65,0)">
     <text transform="translate(762,60) rotate(-90)">facet option</text>
   </g>
-  <g aria-label="x-axis tick" aria-hidden="true" transform="translate(0.5,0)">
+  <g aria-label="x-axis tick" aria-hidden="true">
     <g fill="none" stroke="currentColor" transform="translate(0,55)">
       <path transform="translate(74,44)" d="M0,0L0,6"></path>
       <path transform="translate(174,44)" d="M0,0L0,6"></path>
@@ -69,7 +69,7 @@
       <path transform="translate(674,44)" d="M0,0L0,6"></path>
     </g>
   </g>
-  <g aria-label="x-axis tick label" transform="translate(0.5,9.5)">
+  <g aria-label="x-axis tick label" transform="translate(0,9)">
     <g font-variant="tabular-nums" transform="translate(0,55)">
       <text y="0.71em" transform="translate(74,44)">0</text>
       <text y="0.71em" transform="translate(174,44)">50</text>
@@ -1128,7 +1128,7 @@
       <rect x="176" width="2" y="33" height="10" fill="#ff725c"></rect>
     </g>
   </g>
-  <g aria-label="frame" transform="translate(0.5,0.5)">
+  <g aria-label="frame">
     <rect fill="none" stroke="currentColor" x="74" y="20" width="688" height="24" transform="translate(0,1)"></rect>
     <rect fill="none" stroke="currentColor" x="74" y="20" width="688" height="24" transform="translate(0,28)"></rect>
     <rect fill="none" stroke="currentColor" x="74" y="20" width="688" height="24" transform="translate(0,55)"></rect>

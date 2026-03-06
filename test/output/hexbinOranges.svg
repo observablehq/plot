@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor">
     <path transform="translate(40,337.2)" d="M0,0L-6,0"></path>
     <path transform="translate(40,313.2)" d="M0,0L-6,0"></path>
     <path transform="translate(40,289.2)" d="M0,0L-6,0"></path>
@@ -28,7 +28,7 @@
     <path transform="translate(40,73.2)" d="M0,0L-6,0"></path>
     <path transform="translate(40,49.2)" d="M0,0L-6,0"></path>
   </g>
-  <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
+  <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-9,0)">
     <text y="0.32em" transform="translate(40,337.2)">34</text>
     <text y="0.32em" transform="translate(40,313.2)">36</text>
     <text y="0.32em" transform="translate(40,289.2)">38</text>
@@ -43,10 +43,10 @@
     <text y="0.32em" transform="translate(40,73.2)">56</text>
     <text y="0.32em" transform="translate(40,49.2)">58</text>
   </g>
-  <g aria-label="y-axis label" text-anchor="start" transform="translate(-36.5,-16.5)">
+  <g aria-label="y-axis label" text-anchor="start" transform="translate(-37,-17)">
     <text y="0.71em" transform="translate(40,20)">↑ culmen_length_mm</text>
   </g>
-  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor">
     <path transform="translate(110,370)" d="M0,0L0,6"></path>
     <path transform="translate(176.667,370)" d="M0,0L0,6"></path>
     <path transform="translate(243.333,370)" d="M0,0L0,6"></path>
@@ -56,7 +56,7 @@
     <path transform="translate(510,370)" d="M0,0L0,6"></path>
     <path transform="translate(576.667,370)" d="M0,0L0,6"></path>
   </g>
-  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0,9)">
     <text y="0.71em" transform="translate(110,370)">14</text>
     <text y="0.71em" transform="translate(176.667,370)">15</text>
     <text y="0.71em" transform="translate(243.333,370)">16</text>
@@ -66,11 +66,11 @@
     <text y="0.71em" transform="translate(510,370)">20</text>
     <text y="0.71em" transform="translate(576.667,370)">21</text>
   </g>
-  <g aria-label="x-axis label" text-anchor="end" transform="translate(17.5,27.5)">
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(17,27)">
     <text transform="translate(620,370)">culmen_depth_mm →</text>
   </g>
-  <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="40" y="20" width="580" height="350"></rect>
-  <g aria-label="dot" fill="none" transform="translate(0.5,0.5)">
+  <rect aria-label="frame" fill="none" stroke="currentColor" x="40" y="20" width="580" height="350"></rect>
+  <g aria-label="dot" fill="none">
     <circle cx="420.5" cy="277.128" r="10" fill="rgb(251, 141, 61)"></circle>
     <circle cx="340.5" cy="277.128" r="10" fill="rgb(253, 185, 126)"></circle>
     <circle cx="370.5" cy="259.808" r="10" fill="rgb(253, 185, 126)"></circle>

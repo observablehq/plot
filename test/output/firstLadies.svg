@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,1)">
+  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor">
     <path transform="translate(44.177,30)" d="M0,0L0,-6"></path>
     <path transform="translate(100.71,30)" d="M0,0L0,-6"></path>
     <path transform="translate(157.243,30)" d="M0,0L0,-6"></path>
@@ -30,7 +30,7 @@
     <path transform="translate(779.094,30)" d="M0,0L0,-6"></path>
     <path transform="translate(835.627,30)" d="M0,0L0,-6"></path>
   </g>
-  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,-8.5)">
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0,-9)">
     <text transform="translate(44.177,30)">1740</text>
     <text transform="translate(100.71,30)">1760</text>
     <text transform="translate(157.243,30)">1780</text>
@@ -159,7 +159,7 @@
     <rect x="827.3" width="11.307" y="1066" height="18"></rect>
     <rect x="838.607" width="1.393" y="1086" height="18"></rect>
   </g>
-  <g aria-label="text" text-anchor="start" transform="translate(5.5,9.5)">
+  <g aria-label="text" text-anchor="start" transform="translate(5,9)">
     <text y="0.32em" transform="translate(220.517,46)">Martha Washington</text>
     <text y="0.32em" transform="translate(266.974,66)">Abigail Adams</text>
     <text y="0.32em" transform="translate(317.719,86)">Martha Jefferson</text>

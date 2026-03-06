@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor">
     <path transform="translate(89.608,270)" d="M0,0L0,6"></path>
     <path transform="translate(163.825,270)" d="M0,0L0,6"></path>
     <path transform="translate(238.053,270)" d="M0,0L0,6"></path>
@@ -27,7 +27,7 @@
     <path transform="translate(831.861,270)" d="M0,0L0,6"></path>
     <path transform="translate(906.088,270)" d="M0,0L0,6"></path>
   </g>
-  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0,9)">
     <text y="0.71em" transform="translate(89.608,270)">1800</text>
     <text y="0.71em" transform="translate(163.825,270)">1820</text>
     <text y="0.71em" transform="translate(238.053,270)">1840</text>
@@ -41,10 +41,10 @@
     <text y="0.71em" transform="translate(831.861,270)">2000</text>
     <text y="0.71em" transform="translate(906.088,270)">2020</text>
   </g>
-  <g aria-label="x-axis label" text-anchor="end" transform="translate(17.5,27.5)">
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(17,27)">
     <text transform="translate(940,270)">First Inauguration Date →</text>
   </g>
-  <g aria-label="image" transform="translate(0.5,0.5)">
+  <g aria-label="image">
     <image x="28" y="225" width="44" height="44" href="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Gilbert_Stuart_Williamstown_Portrait_of_George_Washington.jpg/160px-Gilbert_Stuart_Williamstown_Portrait_of_George_Washington.jpg" preserveAspectRatio="xMidYMin slice" clip-path="circle(22px)"><title>George Washington</title></image>
     <image x="57.112" y="190.685" width="44" height="44" href="https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/John_Adams_A18236.jpg/320px-John_Adams_A18236.jpg" preserveAspectRatio="xMidYMin slice" clip-path="circle(22px)"><title>John Adams</title></image>
     <image x="71.947" y="148.201" width="44" height="44" href="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Thomas_Jefferson_by_Rembrandt_Peale%2C_1800.jpg/160px-Thomas_Jefferson_by_Rembrandt_Peale%2C_1800.jpg" preserveAspectRatio="xMidYMin slice" clip-path="circle(22px)"><title>Thomas Jefferson</title></image>

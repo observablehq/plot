@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="y-grid" aria-hidden="true" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,9.5)">
+  <g aria-label="y-grid" aria-hidden="true" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,9)">
     <line x1="50" x2="620" y1="36" y2="36"></line>
     <line x1="50" x2="620" y1="56" y2="56"></line>
     <line x1="50" x2="620" y1="76" y2="76"></line>
@@ -24,7 +24,7 @@
     <line x1="50" x2="620" y1="176" y2="176"></line>
     <line x1="50" x2="620" y1="196" y2="196"></line>
   </g>
-  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,9.5)">
+  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,9)">
     <path transform="translate(50,36)" d="M0,0L-6,0"></path>
     <path transform="translate(50,56)" d="M0,0L-6,0"></path>
     <path transform="translate(50,76)" d="M0,0L-6,0"></path>
@@ -35,7 +35,7 @@
     <path transform="translate(50,176)" d="M0,0L-6,0"></path>
     <path transform="translate(50,196)" d="M0,0L-6,0"></path>
   </g>
-  <g aria-label="y-axis tick label" text-anchor="end" transform="translate(-8.5,9.5)">
+  <g aria-label="y-axis tick label" text-anchor="end" transform="translate(-9,9)">
     <text y="0.32em" transform="translate(50,36)">&lt;10</text>
     <text y="0.32em" transform="translate(50,56)">10-19</text>
     <text y="0.32em" transform="translate(50,76)">20-29</text>
@@ -46,10 +46,10 @@
     <text y="0.32em" transform="translate(50,176)">70-79</text>
     <text y="0.32em" transform="translate(50,196)">≥80</text>
   </g>
-  <g aria-label="y-axis label" transform="translate(-46.5,0.5)">
+  <g aria-label="y-axis label" transform="translate(-47,0)">
     <text y="0.71em" transform="translate(50,125) rotate(-90)">Age</text>
   </g>
-  <g aria-label="x-grid" aria-hidden="true" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+  <g aria-label="x-grid" aria-hidden="true" stroke="currentColor" stroke-opacity="0.1">
     <line x1="50" x2="50" y1="30" y2="220"></line>
     <line x1="104.847" x2="104.847" y1="30" y2="220"></line>
     <line x1="159.694" x2="159.694" y1="30" y2="220"></line>
@@ -62,7 +62,7 @@
     <line x1="543.622" x2="543.622" y1="30" y2="220"></line>
     <line x1="598.469" x2="598.469" y1="30" y2="220"></line>
   </g>
-  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,1)">
+  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor">
     <path transform="translate(50,30)" d="M0,0L0,-6"></path>
     <path transform="translate(104.847,30)" d="M0,0L0,-6"></path>
     <path transform="translate(159.694,30)" d="M0,0L0,-6"></path>
@@ -75,7 +75,7 @@
     <path transform="translate(543.622,30)" d="M0,0L0,-6"></path>
     <path transform="translate(598.469,30)" d="M0,0L0,-6"></path>
   </g>
-  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,-8.5)">
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0,-9)">
     <text transform="translate(50,30)">0</text>
     <text transform="translate(104.847,30)">2</text>
     <text transform="translate(159.694,30)">4</text>
@@ -88,13 +88,13 @@
     <text transform="translate(543.622,30)">18</text>
     <text transform="translate(598.469,30)">20</text>
   </g>
-  <g aria-label="x-axis label" text-anchor="end" transform="translate(17.5,-26.5)">
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(17,-27)">
     <text y="0.71em" transform="translate(620,30)">Percent (%) →</text>
   </g>
-  <g aria-label="rule" stroke="currentColor" transform="translate(0.5,0)">
+  <g aria-label="rule" stroke="currentColor">
     <line x1="50" x2="50" y1="30" y2="220"></line>
   </g>
-  <g aria-label="tick" stroke="currentColor" transform="translate(0.5,0)">
+  <g aria-label="tick" stroke="currentColor">
     <line x1="389.016" x2="389.016" y1="36" y2="54"></line>
     <line x1="447.256" x2="447.256" y1="36" y2="54"></line>
     <line x1="413.583" x2="413.583" y1="36" y2="54"></line>

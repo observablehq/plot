@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="y-grid" aria-hidden="true" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
+  <g aria-label="y-grid" aria-hidden="true" stroke="currentColor" stroke-opacity="0.1">
     <line x1="40" x2="940" y1="323.908" y2="323.908"></line>
     <line x1="40" x2="940" y1="281.795" y2="281.795"></line>
     <line x1="40" x2="940" y1="239.682" y2="239.682"></line>
@@ -23,7 +23,7 @@
     <line x1="40" x2="940" y1="71.229" y2="71.229"></line>
     <line x1="40" x2="940" y1="29.116" y2="29.116"></line>
   </g>
-  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor">
     <path transform="translate(40,323.908)" d="M0,0L-6,0"></path>
     <path transform="translate(40,281.795)" d="M0,0L-6,0"></path>
     <path transform="translate(40,239.682)" d="M0,0L-6,0"></path>
@@ -33,7 +33,7 @@
     <path transform="translate(40,71.229)" d="M0,0L-6,0"></path>
     <path transform="translate(40,29.116)" d="M0,0L-6,0"></path>
   </g>
-  <g aria-label="y-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
+  <g aria-label="y-axis tick label" text-anchor="end" transform="translate(-9,0)">
     <text y="0.32em" transform="translate(40,323.908)">155</text>
     <text y="0.32em" transform="translate(40,281.795)">160</text>
     <text y="0.32em" transform="translate(40,239.682)">165</text>
@@ -43,10 +43,10 @@
     <text y="0.32em" transform="translate(40,71.229)">185</text>
     <text y="0.32em" transform="translate(40,29.116)">190</text>
   </g>
-  <g aria-label="y-axis label" text-anchor="start" transform="translate(-36.5,-16.5)">
+  <g aria-label="y-axis label" text-anchor="start" transform="translate(-37,-17)">
     <text y="0.71em" transform="translate(40,20)">↑ Apple stock price ($)</text>
   </g>
-  <g aria-label="x-grid" aria-hidden="true" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+  <g aria-label="x-grid" aria-hidden="true" stroke="currentColor" stroke-opacity="0.1">
     <line x1="117.04" x2="117.04" y1="20" y2="370"></line>
     <line x1="274.343" x2="274.343" y1="20" y2="370"></line>
     <line x1="431.646" x2="431.646" y1="20" y2="370"></line>
@@ -54,7 +54,7 @@
     <line x1="731.029" x2="731.029" y1="20" y2="370"></line>
     <line x1="883.257" x2="883.257" y1="20" y2="370"></line>
   </g>
-  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor">
     <path transform="translate(117.04,370)" d="M0,0L0,6"></path>
     <path transform="translate(274.343,370)" d="M0,0L0,6"></path>
     <path transform="translate(431.646,370)" d="M0,0L0,6"></path>
@@ -62,7 +62,7 @@
     <path transform="translate(731.029,370)" d="M0,0L0,6"></path>
     <path transform="translate(883.257,370)" d="M0,0L0,6"></path>
   </g>
-  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0,9)">
     <text transform="translate(117.04,370)"><tspan x="0" y="0.71em">Dec</tspan><tspan x="0" dy="1em">2017</tspan></text>
     <text transform="translate(274.343,370)"><tspan x="0" y="0.71em">Jan</tspan><tspan x="0" dy="1em">2018</tspan></text>
     <text y="0.71em" transform="translate(431.646,370)">Feb</text>
@@ -70,7 +70,7 @@
     <text y="0.71em" transform="translate(731.029,370)">Apr</text>
     <text y="0.71em" transform="translate(883.257,370)">May</text>
   </g>
-  <g aria-label="rule" stroke="currentColor" transform="translate(0.5,0)">
+  <g aria-label="rule" stroke="currentColor">
     <line x1="46" x2="46" y1="200.601" y2="185.861"></line>
     <line x1="61.223" x2="61.223" y1="201.275" y2="192.852"></line>
     <line x1="66.297" x2="66.297" y1="190.999" y2="166.405"></line>
@@ -192,7 +192,7 @@
     <line x1="928.926" x2="928.926" y1="48.91" y2="26"></line>
     <line x1="934" x2="934" y1="50.594" y2="28.611"></line>
   </g>
-  <g aria-label="rule" stroke-width="4" stroke-linecap="round" transform="translate(0.5,0)">
+  <g aria-label="rule" stroke-width="4" stroke-linecap="round">
     <line x1="46" x2="46" y1="188.809" y2="196.306" stroke="#e41a1c"></line>
     <line x1="61.223" x2="61.223" y1="195.126" y2="197.737" stroke="#e41a1c"></line>
     <line x1="66.297" x2="66.297" y1="190.999" y2="171.122" stroke="#4daf4a"></line>

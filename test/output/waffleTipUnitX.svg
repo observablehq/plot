@@ -13,17 +13,17 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,33)">
+  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,32.5)">
     <path transform="translate(40,41)" d="M0,0L-6,0"></path>
     <path transform="translate(40,113)" d="M0,0L-6,0"></path>
     <path transform="translate(40,185)" d="M0,0L-6,0"></path>
   </g>
-  <g aria-label="y-axis tick label" text-anchor="end" transform="translate(-8.5,33)">
+  <g aria-label="y-axis tick label" text-anchor="end" transform="translate(-9,32.5)">
     <text y="0.32em" transform="translate(40,41)">0</text>
     <text y="0.32em" transform="translate(40,113)">1</text>
     <text y="0.32em" transform="translate(40,185)">2</text>
   </g>
-  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor">
     <path transform="translate(40,270)" d="M0,0L0,6"></path>
     <path transform="translate(125.294,270)" d="M0,0L0,6"></path>
     <path transform="translate(210.588,270)" d="M0,0L0,6"></path>
@@ -32,7 +32,7 @@
     <path transform="translate(466.471,270)" d="M0,0L0,6"></path>
     <path transform="translate(551.765,270)" d="M0,0L0,6"></path>
   </g>
-  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0,9)">
     <text y="0.71em" transform="translate(40,270)">0</text>
     <text y="0.71em" transform="translate(125.294,270)">5</text>
     <text y="0.71em" transform="translate(210.588,270)">10</text>
@@ -443,5 +443,5 @@
     <path transform="translate(40,185)" d="M597.059,26L511.765,26L511.765,26L511.765,26L511.765,39L511.765,39L511.765,39L597.059,39Z" fill="url(#plot-pattern-99)"></path>
     <path transform="translate(40,41)" d="M597.059,39L511.765,39L511.765,39L511.765,39L511.765,52L511.765,52L511.765,52L597.059,52Z" fill="url(#plot-pattern-100)"></path>
   </g>
-  <g aria-label="tip" fill="var(--plot-background)" stroke="currentColor" pointer-events="none" text-anchor="start" transform="translate(0.5,33)"></g>
+  <g aria-label="tip" fill="var(--plot-background)" stroke="currentColor" pointer-events="none" text-anchor="start" transform="translate(0,32.5)"></g>
 </svg>

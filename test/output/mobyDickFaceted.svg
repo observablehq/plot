@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="fy-axis tick label" transform="translate(9.5,0.5)">
+  <g aria-label="fy-axis tick label" transform="translate(9,0)">
     <g text-anchor="start" transform="translate(295,1)">
       <text y="0.32em" transform="translate(305,117.5)">lower</text>
     </g>
@@ -21,7 +21,7 @@
       <text y="0.32em" transform="translate(305,117.5)">upper</text>
     </g>
   </g>
-  <g aria-label="fx-axis tick label" transform="translate(0.5,-8.5)">
+  <g aria-label="fx-axis tick label" transform="translate(0,-9)">
     <g transform="translate(1,1)">
       <text transform="translate(172.5,30)">consonant</text>
     </g>
@@ -29,7 +29,7 @@
       <text transform="translate(172.5,30)">vowel</text>
     </g>
   </g>
-  <g aria-label="y-grid" aria-hidden="true" transform="translate(0,0.5)">
+  <g aria-label="y-grid" aria-hidden="true">
     <g stroke="currentColor" stroke-opacity="0.1" transform="translate(1,1)">
       <line x1="40" x2="305" y1="205" y2="205"></line>
       <line x1="40" x2="305" y1="175.93" y2="175.93"></line>
@@ -67,7 +67,7 @@
       <line x1="40" x2="305" y1="30.581" y2="30.581"></line>
     </g>
   </g>
-  <g aria-label="y-axis tick" aria-hidden="true" transform="translate(0,0.5)">
+  <g aria-label="y-axis tick" aria-hidden="true">
     <g fill="none" stroke="currentColor" transform="translate(1,1)">
       <path transform="translate(40,205)" d="M0,0L-6,0"></path>
       <path transform="translate(40,175.93)" d="M0,0L-6,0"></path>
@@ -87,7 +87,7 @@
       <path transform="translate(40,30.581)" d="M0,0L-6,0"></path>
     </g>
   </g>
-  <g aria-label="y-axis tick label" transform="translate(-8.5,0.5)">
+  <g aria-label="y-axis tick label" transform="translate(-9,0)">
     <g text-anchor="end" font-variant="tabular-nums" transform="translate(1,1)">
       <text y="0.32em" transform="translate(40,205)">0</text>
       <text y="0.32em" transform="translate(40,175.93)">200</text>
@@ -107,10 +107,10 @@
       <text y="0.32em" transform="translate(40,30.581)">1,200</text>
     </g>
   </g>
-  <g aria-label="y-axis label" text-anchor="start" transform="translate(-36.5,-26.5)">
+  <g aria-label="y-axis label" text-anchor="start" transform="translate(-37,-27)">
     <text y="0.71em" transform="translate(41,31)">↑ Frequency</text>
   </g>
-  <g aria-label="x-axis tick" aria-hidden="true" transform="translate(5,0)">
+  <g aria-label="x-axis tick" aria-hidden="true" transform="translate(4.5,0)">
     <g fill="none" stroke="currentColor" transform="translate(1,195)">
       <path transform="translate(43,205)" d="M0,0L0,6"></path>
       <path transform="translate(53,205)" d="M0,0L0,6"></path>
@@ -168,7 +168,7 @@
       <path transform="translate(293,205)" d="M0,0L0,6"></path>
     </g>
   </g>
-  <g aria-label="x-axis tick label" transform="translate(5,9.5)">
+  <g aria-label="x-axis tick label" transform="translate(4.5,9)">
     <g transform="translate(1,195)">
       <text y="0.71em" transform="translate(43,205)">A</text>
       <text y="0.71em" transform="translate(53,205)">B</text>
@@ -284,7 +284,7 @@
       <rect x="243" width="9" y="204.855" height="0.145"></rect>
     </g>
   </g>
-  <g aria-label="rule" transform="translate(0,0.5)">
+  <g aria-label="rule">
     <g stroke="currentColor" transform="translate(1,1)">
       <line x1="40" x2="305" y1="205" y2="205"></line>
     </g>

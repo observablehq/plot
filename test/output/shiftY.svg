@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor">
     <path transform="translate(40,360.098)" d="M0,0L-6,0"></path>
     <path transform="translate(40,341.507)" d="M0,0L-6,0"></path>
     <path transform="translate(40,323.32)" d="M0,0L-6,0"></path>
@@ -34,7 +34,7 @@
     <path transform="translate(40,46.27)" d="M0,0L-6,0"></path>
     <path transform="translate(40,28.083)" d="M0,0L-6,0"></path>
   </g>
-  <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
+  <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-9,0)">
     <text transform="translate(40,360.098)"><tspan x="0" y="0.32em">Oct</tspan><tspan x="0" dy="1em">2013</tspan></text>
     <text transform="translate(40,341.507)"><tspan x="0" y="0.32em">Jan</tspan><tspan x="0" dy="1em">2014</tspan></text>
     <text y="0.32em" transform="translate(40,323.32)">Apr</text>
@@ -55,7 +55,7 @@
     <text transform="translate(40,46.27)"><tspan x="0" y="0.32em">Jan</tspan><tspan x="0" dy="1em">2018</tspan></text>
     <text y="0.32em" transform="translate(40,28.083)">Apr</text>
   </g>
-  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor">
     <path transform="translate(56.239,370)" d="M0,0L0,6"></path>
     <path transform="translate(142.945,370)" d="M0,0L0,6"></path>
     <path transform="translate(229.65,370)" d="M0,0L0,6"></path>
@@ -64,7 +64,7 @@
     <path transform="translate(489.768,370)" d="M0,0L0,6"></path>
     <path transform="translate(576.474,370)" d="M0,0L0,6"></path>
   </g>
-  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0,9)">
     <text y="0.71em" transform="translate(56.239,370)">60</text>
     <text y="0.71em" transform="translate(142.945,370)">80</text>
     <text y="0.71em" transform="translate(229.65,370)">100</text>
@@ -73,10 +73,10 @@
     <text y="0.71em" transform="translate(489.768,370)">160</text>
     <text y="0.71em" transform="translate(576.474,370)">180</text>
   </g>
-  <g aria-label="x-axis label" text-anchor="end" transform="translate(17.5,27.5)">
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(17,27)">
     <text transform="translate(620,370)">Close →</text>
   </g>
-  <g aria-label="arrow" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-miterlimit="1" transform="translate(0.5,0.5)">
+  <g aria-label="arrow" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-miterlimit="1">
     <path d="M77.754,370A24.291,24.291 0,0,1 77.754,388.591M82.671,384.819L77.754,388.591L76.945,382.447"></path>
     <path d="M71.016,369.798A24.291,24.291 0,0,1 71.016,388.389M75.932,384.617L71.016,388.389L70.207,382.245"></path>
     <path d="M61.72,369.596A24.291,24.291 0,0,1 61.72,388.187M66.636,384.415L61.72,388.187L60.911,382.043"></path>

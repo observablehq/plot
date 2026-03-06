@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="fx-axis tick label" transform="translate(0.5,-8.5)">
+  <g aria-label="fx-axis tick label" transform="translate(0,-9)">
     <g transform="translate(0,0)">
       <text transform="translate(130,30)">Adelie</text>
     </g>
@@ -24,10 +24,10 @@
       <text transform="translate(130,30)">Gentoo</text>
     </g>
   </g>
-  <g aria-label="fx-axis label" transform="translate(0.5,-26.5)">
+  <g aria-label="fx-axis label" transform="translate(0,-27)">
     <text y="0.71em" transform="translate(330,30)">species</text>
   </g>
-  <g aria-label="y-grid" aria-hidden="true" transform="translate(0,0.5)">
+  <g aria-label="y-grid" aria-hidden="true">
     <g stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0)">
       <line x1="40" x2="220" y1="400" y2="400"></line>
       <line x1="40" x2="220" y1="374.658" y2="374.658"></line>
@@ -80,7 +80,7 @@
       <line x1="40" x2="220" y1="45.205" y2="45.205"></line>
     </g>
   </g>
-  <g aria-label="y-axis tick" aria-hidden="true" transform="translate(0,0.5)">
+  <g aria-label="y-axis tick" aria-hidden="true">
     <g fill="none" stroke="currentColor" transform="translate(0,0)">
       <path transform="translate(40,400)" d="M0,0L-6,0"></path>
       <path transform="translate(40,374.658)" d="M0,0L-6,0"></path>
@@ -99,7 +99,7 @@
       <path transform="translate(40,45.205)" d="M0,0L-6,0"></path>
     </g>
   </g>
-  <g aria-label="y-axis tick label" transform="translate(-8.5,0.5)">
+  <g aria-label="y-axis tick label" transform="translate(-9,0)">
     <g text-anchor="end" font-variant="tabular-nums" transform="translate(0,0)">
       <text y="0.32em" transform="translate(40,400)">0</text>
       <text y="0.32em" transform="translate(40,374.658)">5</text>
@@ -118,10 +118,10 @@
       <text y="0.32em" transform="translate(40,45.205)">70</text>
     </g>
   </g>
-  <g aria-label="y-axis label" text-anchor="start" transform="translate(-36.5,-26.5)">
+  <g aria-label="y-axis label" text-anchor="start" transform="translate(-37,-27)">
     <text y="0.71em" transform="translate(40,30)">↑ Frequency</text>
   </g>
-  <g aria-label="x-axis tick" aria-hidden="true" transform="translate(26.5,0)">
+  <g aria-label="x-axis tick" aria-hidden="true" transform="translate(26,0)">
     <g fill="none" stroke="currentColor" transform="translate(0,0)">
       <path transform="translate(46,400)" d="M0,0L0,6"></path>
       <path transform="translate(104,400)" d="M0,0L0,6"></path>
@@ -138,7 +138,7 @@
       <path transform="translate(162,400)" d="M0,0L0,6"></path>
     </g>
   </g>
-  <g aria-label="x-axis tick label" transform="translate(26.5,9.5)">
+  <g aria-label="x-axis tick label" transform="translate(26,9)">
     <g transform="translate(0,0)">
       <text y="0.71em" transform="translate(46,400)">FEMALE</text>
       <text y="0.71em" transform="translate(104,400)">MALE</text>
@@ -155,7 +155,7 @@
       <text y="0.71em" transform="translate(162,400)">N/A</text>
     </g>
   </g>
-  <g aria-label="x-axis label" transform="translate(0.5,27.5)">
+  <g aria-label="x-axis label" transform="translate(0,27)">
     <text transform="translate(330,400)">sex</text>
   </g>
   <g aria-label="bar">
@@ -179,7 +179,7 @@
       <rect x="162" width="52" y="374.658" height="25.342" fill="#4269d0"></rect>
     </g>
   </g>
-  <g aria-label="rule" transform="translate(0,0.5)">
+  <g aria-label="rule">
     <g stroke="currentColor" transform="translate(0,0)">
       <line x1="40" x2="220" y1="400" y2="400"></line>
     </g>

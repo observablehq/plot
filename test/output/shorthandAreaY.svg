@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor">
     <path transform="translate(40,370)" d="M0,0L-6,0"></path>
     <path transform="translate(40,330.975)" d="M0,0L-6,0"></path>
     <path transform="translate(40,291.949)" d="M0,0L-6,0"></path>
@@ -24,7 +24,7 @@
     <path transform="translate(40,96.822)" d="M0,0L-6,0"></path>
     <path transform="translate(40,57.796)" d="M0,0L-6,0"></path>
   </g>
-  <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
+  <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-9,0)">
     <text y="0.32em" transform="translate(40,370)">0</text>
     <text y="0.32em" transform="translate(40,330.975)">20</text>
     <text y="0.32em" transform="translate(40,291.949)">40</text>
@@ -35,7 +35,7 @@
     <text y="0.32em" transform="translate(40,96.822)">140</text>
     <text y="0.32em" transform="translate(40,57.796)">160</text>
   </g>
-  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor">
     <path transform="translate(40,370)" d="M0,0L0,6"></path>
     <path transform="translate(114.359,370)" d="M0,0L0,6"></path>
     <path transform="translate(188.718,370)" d="M0,0L0,6"></path>
@@ -45,7 +45,7 @@
     <path transform="translate(486.154,370)" d="M0,0L0,6"></path>
     <path transform="translate(560.513,370)" d="M0,0L0,6"></path>
   </g>
-  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0,9)">
     <text y="0.71em" transform="translate(40,370)">0</text>
     <text y="0.71em" transform="translate(114.359,370)">5</text>
     <text y="0.71em" transform="translate(188.718,370)">10</text>

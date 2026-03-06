@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="y-grid" aria-hidden="true" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
+  <g aria-label="y-grid" aria-hidden="true" stroke="currentColor" stroke-opacity="0.1">
     <line x1="40" x2="620" y1="370" y2="370"></line>
     <line x1="40" x2="620" y1="336.411" y2="336.411"></line>
     <line x1="40" x2="620" y1="302.821" y2="302.821"></line>
@@ -26,7 +26,7 @@
     <line x1="40" x2="620" y1="67.697" y2="67.697"></line>
     <line x1="40" x2="620" y1="34.107" y2="34.107"></line>
   </g>
-  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor">
     <path transform="translate(40,370)" d="M0,0L-6,0"></path>
     <path transform="translate(40,336.411)" d="M0,0L-6,0"></path>
     <path transform="translate(40,302.821)" d="M0,0L-6,0"></path>
@@ -39,7 +39,7 @@
     <path transform="translate(40,67.697)" d="M0,0L-6,0"></path>
     <path transform="translate(40,34.107)" d="M0,0L-6,0"></path>
   </g>
-  <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
+  <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-9,0)">
     <text y="0.32em" transform="translate(40,370)">0.0</text>
     <text y="0.32em" transform="translate(40,336.411)">0.5</text>
     <text y="0.32em" transform="translate(40,302.821)">1.0</text>
@@ -52,10 +52,10 @@
     <text y="0.32em" transform="translate(40,67.697)">4.5</text>
     <text y="0.32em" transform="translate(40,34.107)">5.0</text>
   </g>
-  <g aria-label="y-axis label" text-anchor="start" transform="translate(-36.5,-16.5)">
+  <g aria-label="y-axis label" text-anchor="start" transform="translate(-37,-17)">
     <text y="0.71em" transform="translate(40,20)">↑ Frequency (%)</text>
   </g>
-  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor">
     <path transform="translate(40,370)" d="M0,0L0,6"></path>
     <path transform="translate(98,370)" d="M0,0L0,6"></path>
     <path transform="translate(156,370)" d="M0,0L0,6"></path>
@@ -68,7 +68,7 @@
     <path transform="translate(562,370)" d="M0,0L0,6"></path>
     <path transform="translate(620,370)" d="M0,0L0,6"></path>
   </g>
-  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0,9)">
     <text y="0.71em" transform="translate(40,370)">−1.0</text>
     <text y="0.71em" transform="translate(98,370)">−0.8</text>
     <text y="0.71em" transform="translate(156,370)">−0.6</text>
@@ -81,52 +81,52 @@
     <text y="0.71em" transform="translate(562,370)">0.8</text>
     <text y="0.71em" transform="translate(620,370)">1.0</text>
   </g>
-  <g aria-label="x-axis label" transform="translate(0.5,27.5)">
+  <g aria-label="x-axis label" transform="translate(0,27)">
     <text transform="translate(330,370)">Difference of two uniform random variables →</text>
   </g>
   <g aria-label="rect">
-    <rect x="41" y="362.61" width="13.5" height="7.39"></rect>
-    <rect x="55.5" y="344.472" width="13.5" height="25.528"></rect>
-    <rect x="70" y="327.678" width="13.5" height="42.322"></rect>
-    <rect x="84.5" y="306.852" width="13.5" height="63.148"></rect>
-    <rect x="99" y="289.386" width="13.5" height="80.614"></rect>
-    <rect x="113.5" y="284.683" width="13.5" height="85.317"></rect>
-    <rect x="128" y="265.873" width="13.5" height="104.127"></rect>
-    <rect x="142.5" y="249.75" width="13.5" height="120.25"></rect>
-    <rect x="157" y="218.848" width="13.5" height="151.152"></rect>
-    <rect x="171.5" y="212.802" width="13.5" height="157.198"></rect>
-    <rect x="186" y="200.71" width="13.5" height="169.29"></rect>
-    <rect x="200.5" y="177.198" width="13.5" height="192.802"></rect>
-    <rect x="215" y="170.48" width="13.5" height="199.52"></rect>
-    <rect x="229.5" y="146.296" width="13.5" height="223.704"></rect>
-    <rect x="244" y="130.173" width="13.5" height="239.827"></rect>
-    <rect x="258.5" y="118.752" width="13.5" height="251.248"></rect>
-    <rect x="273" y="98.599" width="13.5" height="271.401"></rect>
-    <rect x="287.5" y="85.835" width="13.5" height="284.165"></rect>
-    <rect x="302" y="50.23" width="13.5" height="319.77"></rect>
-    <rect x="316.5" y="58.964" width="13.5" height="311.036"></rect>
-    <rect x="331" y="20" width="13.5" height="350"></rect>
-    <rect x="345.5" y="34.779" width="13.5" height="335.221"></rect>
-    <rect x="360" y="76.43" width="13.5" height="293.57"></rect>
-    <rect x="374.5" y="90.537" width="13.5" height="279.463"></rect>
-    <rect x="389" y="95.912" width="13.5" height="274.088"></rect>
-    <rect x="403.5" y="128.829" width="13.5" height="241.171"></rect>
-    <rect x="418" y="131.516" width="13.5" height="238.484"></rect>
-    <rect x="432.5" y="161.747" width="13.5" height="208.253"></rect>
-    <rect x="447" y="204.069" width="13.5" height="165.931"></rect>
-    <rect x="461.5" y="198.023" width="13.5" height="171.977"></rect>
-    <rect x="476" y="208.1" width="13.5" height="161.9"></rect>
-    <rect x="490.5" y="225.566" width="13.5" height="144.434"></rect>
-    <rect x="505" y="223.551" width="13.5" height="146.449"></rect>
-    <rect x="519.5" y="275.278" width="13.5" height="94.722"></rect>
-    <rect x="534" y="273.263" width="13.5" height="96.737"></rect>
-    <rect x="548.5" y="289.386" width="13.5" height="80.614"></rect>
-    <rect x="563" y="320.96" width="13.5" height="49.04"></rect>
-    <rect x="577.5" y="317.601" width="13.5" height="52.399"></rect>
-    <rect x="592" y="347.831" width="13.5" height="22.169"></rect>
-    <rect x="606.5" y="358.58" width="13.5" height="11.42"></rect>
+    <rect x="40.5" y="362.61" width="13.5" height="7.39"></rect>
+    <rect x="55" y="344.472" width="13.5" height="25.528"></rect>
+    <rect x="69.5" y="327.678" width="13.5" height="42.322"></rect>
+    <rect x="84" y="306.852" width="13.5" height="63.148"></rect>
+    <rect x="98.5" y="289.386" width="13.5" height="80.614"></rect>
+    <rect x="113" y="284.683" width="13.5" height="85.317"></rect>
+    <rect x="127.5" y="265.873" width="13.5" height="104.127"></rect>
+    <rect x="142" y="249.75" width="13.5" height="120.25"></rect>
+    <rect x="156.5" y="218.848" width="13.5" height="151.152"></rect>
+    <rect x="171" y="212.802" width="13.5" height="157.198"></rect>
+    <rect x="185.5" y="200.71" width="13.5" height="169.29"></rect>
+    <rect x="200" y="177.198" width="13.5" height="192.802"></rect>
+    <rect x="214.5" y="170.48" width="13.5" height="199.52"></rect>
+    <rect x="229" y="146.296" width="13.5" height="223.704"></rect>
+    <rect x="243.5" y="130.173" width="13.5" height="239.827"></rect>
+    <rect x="258" y="118.752" width="13.5" height="251.248"></rect>
+    <rect x="272.5" y="98.599" width="13.5" height="271.401"></rect>
+    <rect x="287" y="85.835" width="13.5" height="284.165"></rect>
+    <rect x="301.5" y="50.23" width="13.5" height="319.77"></rect>
+    <rect x="316" y="58.964" width="13.5" height="311.036"></rect>
+    <rect x="330.5" y="20" width="13.5" height="350"></rect>
+    <rect x="345" y="34.779" width="13.5" height="335.221"></rect>
+    <rect x="359.5" y="76.43" width="13.5" height="293.57"></rect>
+    <rect x="374" y="90.537" width="13.5" height="279.463"></rect>
+    <rect x="388.5" y="95.912" width="13.5" height="274.088"></rect>
+    <rect x="403" y="128.829" width="13.5" height="241.171"></rect>
+    <rect x="417.5" y="131.516" width="13.5" height="238.484"></rect>
+    <rect x="432" y="161.747" width="13.5" height="208.253"></rect>
+    <rect x="446.5" y="204.069" width="13.5" height="165.931"></rect>
+    <rect x="461" y="198.023" width="13.5" height="171.977"></rect>
+    <rect x="475.5" y="208.1" width="13.5" height="161.9"></rect>
+    <rect x="490" y="225.566" width="13.5" height="144.434"></rect>
+    <rect x="504.5" y="223.551" width="13.5" height="146.449"></rect>
+    <rect x="519" y="275.278" width="13.5" height="94.722"></rect>
+    <rect x="533.5" y="273.263" width="13.5" height="96.737"></rect>
+    <rect x="548" y="289.386" width="13.5" height="80.614"></rect>
+    <rect x="562.5" y="320.96" width="13.5" height="49.04"></rect>
+    <rect x="577" y="317.601" width="13.5" height="52.399"></rect>
+    <rect x="591.5" y="347.831" width="13.5" height="22.169"></rect>
+    <rect x="606" y="358.58" width="13.5" height="11.42"></rect>
   </g>
-  <g aria-label="rule" stroke="currentColor" transform="translate(0,0.5)">
+  <g aria-label="rule" stroke="currentColor">
     <line x1="40" x2="620" y1="370" y2="370"></line>
   </g>
 </svg>

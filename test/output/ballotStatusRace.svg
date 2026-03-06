@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="fy-axis tick label" transform="translate(-8.5,0.5)">
+  <g aria-label="fy-axis tick label" transform="translate(-9,0)">
     <g text-anchor="end" transform="translate(0,0)">
       <text y="0.32em" transform="translate(210,48)">WHITE</text>
     </g>
@@ -39,7 +39,7 @@
       <text y="0.32em" transform="translate(210,48)">NATIVE HAWAIIAN or PACIFIC ISLANDER</text>
     </g>
   </g>
-  <g aria-label="x-grid" aria-hidden="true" transform="translate(0.5,0)">
+  <g aria-label="x-grid" aria-hidden="true">
     <g stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0)">
       <line x1="210" x2="210" y1="20" y2="76"></line>
       <line x1="313.735" x2="313.735" y1="20" y2="76"></line>
@@ -89,7 +89,7 @@
       <line x1="521.206" x2="521.206" y1="20" y2="76"></line>
     </g>
   </g>
-  <g aria-label="x-axis tick" aria-hidden="true" transform="translate(0.5,0)">
+  <g aria-label="x-axis tick" aria-hidden="true">
     <g fill="none" stroke="currentColor" transform="translate(0,434)">
       <path transform="translate(210,76)" d="M0,0L0,6"></path>
       <path transform="translate(313.735,76)" d="M0,0L0,6"></path>
@@ -97,7 +97,7 @@
       <path transform="translate(521.206,76)" d="M0,0L0,6"></path>
     </g>
   </g>
-  <g aria-label="x-axis tick label" transform="translate(0.5,9.5)">
+  <g aria-label="x-axis tick label" transform="translate(0,9)">
     <g font-variant="tabular-nums" transform="translate(0,434)">
       <text y="0.71em" transform="translate(210,76)">0</text>
       <text y="0.71em" transform="translate(313.735,76)">20</text>
@@ -105,7 +105,7 @@
       <text y="0.71em" transform="translate(521.206,76)">60</text>
     </g>
   </g>
-  <g aria-label="x-axis label" text-anchor="end" transform="translate(17.5,27.5)">
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(17,27)">
     <text transform="translate(620,510)">Frequency (%) →</text>
   </g>
   <g aria-label="bar">
@@ -149,7 +149,7 @@
       <rect x="210" width="302.561" y="22" height="16" fill="currentColor"><title>58.3%</title></rect>
     </g>
   </g>
-  <g aria-label="rule" transform="translate(0.5,0)">
+  <g aria-label="rule">
     <g stroke="currentColor" transform="translate(0,0)">
       <line x1="210" x2="210" y1="20" y2="76"></line>
     </g>

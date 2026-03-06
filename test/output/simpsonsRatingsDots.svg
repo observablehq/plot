@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor">
     <path transform="translate(40,370)" d="M0,0L-6,0"></path>
     <path transform="translate(40,332.766)" d="M0,0L-6,0"></path>
     <path transform="translate(40,295.532)" d="M0,0L-6,0"></path>
@@ -25,7 +25,7 @@
     <path transform="translate(40,72.128)" d="M0,0L-6,0"></path>
     <path transform="translate(40,34.894)" d="M0,0L-6,0"></path>
   </g>
-  <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
+  <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-9,0)">
     <text y="0.32em" transform="translate(40,370)">4.5</text>
     <text y="0.32em" transform="translate(40,332.766)">5.0</text>
     <text y="0.32em" transform="translate(40,295.532)">5.5</text>
@@ -37,10 +37,10 @@
     <text y="0.32em" transform="translate(40,72.128)">8.5</text>
     <text y="0.32em" transform="translate(40,34.894)">9.0</text>
   </g>
-  <g aria-label="y-axis label" text-anchor="start" transform="translate(-36.5,-16.5)">
+  <g aria-label="y-axis label" text-anchor="start" transform="translate(-37,-17)">
     <text y="0.71em" transform="translate(40,20)">↑ IMDb rating</text>
   </g>
-  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor">
     <path transform="translate(60,370)" d="M0,0L0,6"></path>
     <path transform="translate(80,370)" d="M0,0L0,6"></path>
     <path transform="translate(100,370)" d="M0,0L0,6"></path>
@@ -70,7 +70,7 @@
     <path transform="translate(580,370)" d="M0,0L0,6"></path>
     <path transform="translate(600,370)" d="M0,0L0,6"></path>
   </g>
-  <g aria-label="x-axis tick label" transform="translate(0.5,9.5)">
+  <g aria-label="x-axis tick label" transform="translate(0,9)">
     <text y="0.71em" transform="translate(60,370)">1</text>
     <text y="0.71em" transform="translate(80,370)">2</text>
     <text y="0.71em" transform="translate(100,370)">3</text>
@@ -100,10 +100,10 @@
     <text y="0.71em" transform="translate(580,370)">27</text>
     <text y="0.71em" transform="translate(600,370)">28</text>
   </g>
-  <g aria-label="x-axis label" text-anchor="end" transform="translate(17.5,27.5)">
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(17,27)">
     <text transform="translate(620,370)">Season →</text>
   </g>
-  <g aria-label="rule" stroke="currentColor" transform="translate(0.5,0)">
+  <g aria-label="rule" stroke="currentColor">
     <line x1="60" x2="60" y1="154.043" y2="87.021"></line>
     <line x1="80" x2="80" y1="146.596" y2="49.787"></line>
     <line x1="100" x2="100" y1="131.702" y2="49.787"></line>
@@ -133,10 +133,10 @@
     <line x1="580" x2="580" y1="265.745" y2="79.574"></line>
     <line x1="600" x2="600" y1="213.617" y2="213.617"></line>
   </g>
-  <g aria-label="line" fill="none" stroke="red" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" transform="translate(0.5,0.5)">
+  <g aria-label="line" fill="none" stroke="red" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round">
     <path d="M60,124.255L80,105.638L100,94.468L120,94.468L140,79.574L160,79.574L180,87.021L200,101.915L220,116.809L240,139.149L260,161.489L280,161.489L300,172.66L320,176.383L340,176.383L360,176.383L380,191.277L400,183.83L420,191.277L440,183.83L460,198.723L480,191.277L500,187.553L520,195L540,198.723L560,202.447L580,206.17L600,213.617"></path>
   </g>
-  <g aria-label="dot" fill="none" stroke="currentColor" stroke-width="1.5" transform="translate(0.5,0.5)">
+  <g aria-label="dot" fill="none" stroke="currentColor" stroke-width="1.5">
     <circle cx="60" cy="154.043" r="3"></circle>
     <circle cx="60" cy="87.021" r="3"></circle>
     <circle cx="80" cy="94.468" r="3"></circle>

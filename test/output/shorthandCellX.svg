@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(7.233,0)">
+  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(6.733,0)">
     <path transform="translate(21.496,30)" d="M0,0L0,6"></path>
     <path transform="translate(36.459,30)" d="M0,0L0,6"></path>
     <path transform="translate(51.421,30)" d="M0,0L0,6"></path>
@@ -55,7 +55,7 @@
     <path transform="translate(590.075,30)" d="M0,0L0,6"></path>
     <path transform="translate(605.037,30)" d="M0,0L0,6"></path>
   </g>
-  <g aria-label="x-axis tick label" transform="translate(7.233,9.5)">
+  <g aria-label="x-axis tick label" transform="translate(6.733,9)">
     <text y="0.71em" transform="translate(21.496,30)">0</text>
     <text y="0.71em" transform="translate(36.459,30)">1</text>
     <text y="0.71em" transform="translate(51.421,30)">2</text>
@@ -98,45 +98,45 @@
     <text y="0.71em" transform="translate(605.037,30)">39</text>
   </g>
   <g aria-label="cell">
-    <rect x="21.496" width="13.466" y="0" height="30" fill="rgb(236, 209, 46)"></rect>
-    <rect x="36.459" width="13.466" y="0" height="30" fill="rgb(255, 150, 33)"></rect>
-    <rect x="51.421" width="13.466" y="0" height="30" fill="rgb(255, 150, 33)"></rect>
-    <rect x="66.384" width="13.466" y="0" height="30" fill="rgb(255, 124, 28)"></rect>
-    <rect x="81.347" width="13.466" y="0" height="30" fill="rgb(248, 98, 24)"></rect>
-    <rect x="96.309" width="13.466" y="0" height="30" fill="rgb(244, 92, 23)"></rect>
-    <rect x="111.272" width="13.466" y="0" height="30" fill="rgb(255, 132, 30)"></rect>
-    <rect x="126.234" width="13.466" y="0" height="30" fill="rgb(243, 91, 23)"></rect>
-    <rect x="141.197" width="13.466" y="0" height="30" fill="rgb(206, 49, 13)"></rect>
-    <rect x="156.16" width="13.466" y="0" height="30" fill="rgb(162, 18, 2)"></rect>
-    <rect x="171.122" width="13.466" y="0" height="30" fill="rgb(207, 50, 14)"></rect>
-    <rect x="186.085" width="13.466" y="0" height="30" fill="rgb(144, 12, 0)"></rect>
-    <rect x="201.047" width="13.466" y="0" height="30" fill="rgb(149, 12, 0)"></rect>
-    <rect x="216.01" width="13.466" y="0" height="30" fill="rgb(176, 27, 6)"></rect>
-    <rect x="230.973" width="13.466" y="0" height="30" fill="rgb(176, 27, 6)"></rect>
-    <rect x="245.935" width="13.466" y="0" height="30" fill="rgb(177, 28, 6)"></rect>
-    <rect x="260.898" width="13.466" y="0" height="30" fill="rgb(245, 93, 23)"></rect>
-    <rect x="275.86" width="13.466" y="0" height="30" fill="rgb(255, 165, 35)"></rect>
-    <rect x="290.823" width="13.466" y="0" height="30" fill="rgb(236, 209, 46)"></rect>
-    <rect x="305.786" width="13.466" y="0" height="30" fill="rgb(100, 253, 111)"></rect>
-    <rect x="320.748" width="13.466" y="0" height="30" fill="rgb(141, 252, 85)"></rect>
-    <rect x="335.711" width="13.466" y="0" height="30" fill="rgb(151, 250, 79)"></rect>
-    <rect x="350.673" width="13.466" y="0" height="30" fill="rgb(114, 254, 101)"></rect>
-    <rect x="365.636" width="13.466" y="0" height="30" fill="rgb(54, 140, 249)"></rect>
-    <rect x="380.599" width="13.466" y="0" height="30" fill="rgb(35, 23, 27)"></rect>
-    <rect x="395.561" width="13.466" y="0" height="30" fill="rgb(47, 230, 172)"></rect>
-    <rect x="410.524" width="13.466" y="0" height="30" fill="rgb(42, 172, 238)"></rect>
-    <rect x="425.486" width="13.466" y="0" height="30" fill="rgb(74, 82, 212)"></rect>
-    <rect x="440.449" width="13.466" y="0" height="30" fill="rgb(62, 123, 247)"></rect>
-    <rect x="455.411" width="13.466" y="0" height="30" fill="rgb(38, 210, 202)"></rect>
-    <rect x="470.374" width="13.466" y="0" height="30" fill="rgb(47, 229, 173)"></rect>
-    <rect x="485.337" width="13.466" y="0" height="30" fill="rgb(228, 216, 48)"></rect>
-    <rect x="500.299" width="13.466" y="0" height="30" fill="rgb(255, 155, 33)"></rect>
-    <rect x="515.262" width="13.466" y="0" height="30" fill="rgb(255, 163, 35)"></rect>
-    <rect x="530.224" width="13.466" y="0" height="30" fill="rgb(255, 142, 31)"></rect>
-    <rect x="545.187" width="13.466" y="0" height="30" fill="rgb(255, 170, 36)"></rect>
-    <rect x="560.15" width="13.466" y="0" height="30" fill="rgb(255, 117, 27)"></rect>
-    <rect x="575.112" width="13.466" y="0" height="30" fill="rgb(202, 45, 12)"></rect>
-    <rect x="590.075" width="13.466" y="0" height="30" fill="rgb(145, 12, 0)"></rect>
-    <rect x="605.037" width="13.466" y="0" height="30" fill="rgb(144, 12, 0)"></rect>
+    <rect x="21.496" width="13.466" y="0.5" height="29.5" fill="rgb(236, 209, 46)"></rect>
+    <rect x="36.459" width="13.466" y="0.5" height="29.5" fill="rgb(255, 150, 33)"></rect>
+    <rect x="51.421" width="13.466" y="0.5" height="29.5" fill="rgb(255, 150, 33)"></rect>
+    <rect x="66.384" width="13.466" y="0.5" height="29.5" fill="rgb(255, 124, 28)"></rect>
+    <rect x="81.347" width="13.466" y="0.5" height="29.5" fill="rgb(248, 98, 24)"></rect>
+    <rect x="96.309" width="13.466" y="0.5" height="29.5" fill="rgb(244, 92, 23)"></rect>
+    <rect x="111.272" width="13.466" y="0.5" height="29.5" fill="rgb(255, 132, 30)"></rect>
+    <rect x="126.234" width="13.466" y="0.5" height="29.5" fill="rgb(243, 91, 23)"></rect>
+    <rect x="141.197" width="13.466" y="0.5" height="29.5" fill="rgb(206, 49, 13)"></rect>
+    <rect x="156.16" width="13.466" y="0.5" height="29.5" fill="rgb(162, 18, 2)"></rect>
+    <rect x="171.122" width="13.466" y="0.5" height="29.5" fill="rgb(207, 50, 14)"></rect>
+    <rect x="186.085" width="13.466" y="0.5" height="29.5" fill="rgb(144, 12, 0)"></rect>
+    <rect x="201.047" width="13.466" y="0.5" height="29.5" fill="rgb(149, 12, 0)"></rect>
+    <rect x="216.01" width="13.466" y="0.5" height="29.5" fill="rgb(176, 27, 6)"></rect>
+    <rect x="230.973" width="13.466" y="0.5" height="29.5" fill="rgb(176, 27, 6)"></rect>
+    <rect x="245.935" width="13.466" y="0.5" height="29.5" fill="rgb(177, 28, 6)"></rect>
+    <rect x="260.898" width="13.466" y="0.5" height="29.5" fill="rgb(245, 93, 23)"></rect>
+    <rect x="275.86" width="13.466" y="0.5" height="29.5" fill="rgb(255, 165, 35)"></rect>
+    <rect x="290.823" width="13.466" y="0.5" height="29.5" fill="rgb(236, 209, 46)"></rect>
+    <rect x="305.786" width="13.466" y="0.5" height="29.5" fill="rgb(100, 253, 111)"></rect>
+    <rect x="320.748" width="13.466" y="0.5" height="29.5" fill="rgb(141, 252, 85)"></rect>
+    <rect x="335.711" width="13.466" y="0.5" height="29.5" fill="rgb(151, 250, 79)"></rect>
+    <rect x="350.673" width="13.466" y="0.5" height="29.5" fill="rgb(114, 254, 101)"></rect>
+    <rect x="365.636" width="13.466" y="0.5" height="29.5" fill="rgb(54, 140, 249)"></rect>
+    <rect x="380.599" width="13.466" y="0.5" height="29.5" fill="rgb(35, 23, 27)"></rect>
+    <rect x="395.561" width="13.466" y="0.5" height="29.5" fill="rgb(47, 230, 172)"></rect>
+    <rect x="410.524" width="13.466" y="0.5" height="29.5" fill="rgb(42, 172, 238)"></rect>
+    <rect x="425.486" width="13.466" y="0.5" height="29.5" fill="rgb(74, 82, 212)"></rect>
+    <rect x="440.449" width="13.466" y="0.5" height="29.5" fill="rgb(62, 123, 247)"></rect>
+    <rect x="455.411" width="13.466" y="0.5" height="29.5" fill="rgb(38, 210, 202)"></rect>
+    <rect x="470.374" width="13.466" y="0.5" height="29.5" fill="rgb(47, 229, 173)"></rect>
+    <rect x="485.337" width="13.466" y="0.5" height="29.5" fill="rgb(228, 216, 48)"></rect>
+    <rect x="500.299" width="13.466" y="0.5" height="29.5" fill="rgb(255, 155, 33)"></rect>
+    <rect x="515.262" width="13.466" y="0.5" height="29.5" fill="rgb(255, 163, 35)"></rect>
+    <rect x="530.224" width="13.466" y="0.5" height="29.5" fill="rgb(255, 142, 31)"></rect>
+    <rect x="545.187" width="13.466" y="0.5" height="29.5" fill="rgb(255, 170, 36)"></rect>
+    <rect x="560.15" width="13.466" y="0.5" height="29.5" fill="rgb(255, 117, 27)"></rect>
+    <rect x="575.112" width="13.466" y="0.5" height="29.5" fill="rgb(202, 45, 12)"></rect>
+    <rect x="590.075" width="13.466" y="0.5" height="29.5" fill="rgb(145, 12, 0)"></rect>
+    <rect x="605.037" width="13.466" y="0.5" height="29.5" fill="rgb(144, 12, 0)"></rect>
   </g>
 </svg>

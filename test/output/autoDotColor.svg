@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor">
     <path transform="translate(40,331.596)" d="M0,0L-6,0"></path>
     <path transform="translate(40,281.979)" d="M0,0L-6,0"></path>
     <path transform="translate(40,232.362)" d="M0,0L-6,0"></path>
@@ -22,7 +22,7 @@
     <path transform="translate(40,83.51)" d="M0,0L-6,0"></path>
     <path transform="translate(40,33.893)" d="M0,0L-6,0"></path>
   </g>
-  <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
+  <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-9,0)">
     <text y="0.32em" transform="translate(40,331.596)">2,000</text>
     <text y="0.32em" transform="translate(40,281.979)">2,500</text>
     <text y="0.32em" transform="translate(40,232.362)">3,000</text>
@@ -31,10 +31,10 @@
     <text y="0.32em" transform="translate(40,83.51)">4,500</text>
     <text y="0.32em" transform="translate(40,33.893)">5,000</text>
   </g>
-  <g aria-label="y-axis label" text-anchor="start" transform="translate(-36.5,-16.5)">
+  <g aria-label="y-axis label" text-anchor="start" transform="translate(-37,-17)">
     <text y="0.71em" transform="translate(40,20)">↑ weight (lb)</text>
   </g>
-  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor">
     <path transform="translate(84.13,370)" d="M0,0L0,6"></path>
     <path transform="translate(147.174,370)" d="M0,0L0,6"></path>
     <path transform="translate(210.217,370)" d="M0,0L0,6"></path>
@@ -45,7 +45,7 @@
     <path transform="translate(525.435,370)" d="M0,0L0,6"></path>
     <path transform="translate(588.478,370)" d="M0,0L0,6"></path>
   </g>
-  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0,9)">
     <text y="0.71em" transform="translate(84.13,370)">60</text>
     <text y="0.71em" transform="translate(147.174,370)">80</text>
     <text y="0.71em" transform="translate(210.217,370)">100</text>
@@ -56,10 +56,10 @@
     <text y="0.71em" transform="translate(525.435,370)">200</text>
     <text y="0.71em" transform="translate(588.478,370)">220</text>
   </g>
-  <g aria-label="x-axis label" text-anchor="end" transform="translate(17.5,27.5)">
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(17,27)">
     <text transform="translate(620,370)">power (hp) →</text>
   </g>
-  <g aria-label="dot" fill="none" stroke-width="1.5" transform="translate(0.5,0.5)">
+  <g aria-label="dot" fill="none" stroke-width="1.5">
     <circle cx="446.63" cy="150.89" r="3" stroke="rgb(53, 143, 249)"></circle>
     <circle cx="493.913" cy="148.012" r="3" stroke="rgb(61, 41, 110)"></circle>
     <circle cx="367.826" cy="165.676" r="3" stroke="rgb(45, 163, 243)"></circle>
@@ -461,5 +461,5 @@
     <circle cx="289.022" cy="218.469" r="3" stroke="rgb(46, 229, 174)"></circle>
     <circle cx="134.565" cy="216.484" r="3" stroke="rgb(255, 171, 36)"></circle>
   </g>
-  <g aria-label="tip" fill="var(--plot-background)" stroke="currentColor" pointer-events="none" text-anchor="start" transform="translate(0.5,0.5)"></g>
+  <g aria-label="tip" fill="var(--plot-background)" stroke="currentColor" pointer-events="none" text-anchor="start"></g>
 </svg>

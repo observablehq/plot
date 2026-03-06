@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="fy-axis tick label" transform="translate(-8.5,0.5)">
+  <g aria-label="fy-axis tick label" transform="translate(-9,0)">
     <g text-anchor="end" transform="translate(0,6)">
       <text y="0.32em" transform="translate(100,29)">aquatics</text>
     </g>
@@ -99,10 +99,10 @@
       <text y="0.32em" transform="translate(100,29)">wrestling</text>
     </g>
   </g>
-  <g aria-label="fy-axis label" transform="translate(-96.5,0.5)">
+  <g aria-label="fy-axis label" transform="translate(-97,0)">
     <text y="0.71em" transform="translate(100,305) rotate(-90)">sport</text>
   </g>
-  <g aria-label="x-grid" aria-hidden="true" transform="translate(0.5,0)">
+  <g aria-label="x-grid" aria-hidden="true">
     <g stroke="currentColor" stroke-opacity="0.1" transform="translate(0,6)">
       <line x1="133.669" x2="133.669" y1="20" y2="38"></line>
       <line x1="208.489" x2="208.489" y1="20" y2="38"></line>
@@ -356,7 +356,7 @@
       <line x1="582.59" x2="582.59" y1="20" y2="38"></line>
     </g>
   </g>
-  <g aria-label="x-axis tick" aria-hidden="true" transform="translate(0.5,0)">
+  <g aria-label="x-axis tick" aria-hidden="true">
     <g fill="none" stroke="currentColor" transform="translate(0,546)">
       <path transform="translate(133.669,38)" d="M0,0L0,6"></path>
       <path transform="translate(208.489,38)" d="M0,0L0,6"></path>
@@ -367,7 +367,7 @@
       <path transform="translate(582.59,38)" d="M0,0L0,6"></path>
     </g>
   </g>
-  <g aria-label="x-axis tick label" transform="translate(0.5,9.5)">
+  <g aria-label="x-axis tick label" transform="translate(0,9)">
     <g font-variant="tabular-nums" transform="translate(0,546)">
       <text y="0.71em" transform="translate(133.669,38)">40</text>
       <text y="0.71em" transform="translate(208.489,38)">60</text>
@@ -378,10 +378,10 @@
       <text y="0.71em" transform="translate(582.59,38)">160</text>
     </g>
   </g>
-  <g aria-label="x-axis label" text-anchor="end" transform="translate(17.5,27.5)">
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(17,27)">
     <text transform="translate(620,584)">weight →</text>
   </g>
-  <g aria-label="dot" transform="translate(0.5,0.5)">
+  <g aria-label="dot">
     <g transform="translate(0,6)">
       <circle cx="395.54" cy="29" r="5" fill="#d95f02"><title>Evan Van Moerkerke</title></circle>
       <circle cx="328.201" cy="29" r="5" fill="#d95f02"><title>Javier Garcia Gadea</title></circle>

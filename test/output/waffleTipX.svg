@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor">
     <path transform="translate(20,30)" d="M0,0L0,6"></path>
     <path transform="translate(96.433,30)" d="M0,0L0,6"></path>
     <path transform="translate(172.866,30)" d="M0,0L0,6"></path>
@@ -23,7 +23,7 @@
     <path transform="translate(478.599,30)" d="M0,0L0,6"></path>
     <path transform="translate(555.032,30)" d="M0,0L0,6"></path>
   </g>
-  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0,9)">
     <text y="0.71em" transform="translate(20,30)">0</text>
     <text y="0.71em" transform="translate(96.433,30)">20</text>
     <text y="0.71em" transform="translate(172.866,30)">40</text>
@@ -33,7 +33,7 @@
     <text y="0.71em" transform="translate(478.599,30)">120</text>
     <text y="0.71em" transform="translate(555.032,30)">140</text>
   </g>
-  <g aria-label="x-axis label" text-anchor="end" transform="translate(17.5,27.5)">
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(17,27)">
     <text transform="translate(620,30)">quantity →</text>
   </g>
   <g aria-label="waffle">
@@ -58,13 +58,13 @@
     <pattern width="7.643" height="7.643" patternUnits="userSpaceOnUse" id="plot-pattern-7">
       <rect x="0.5" y="0.5" width="6.643" height="6.643" fill="rgb(246, 130, 79)"></rect>
     </pattern>
-    <path transform="translate(20,7.357)" d="M0,0L0,0L0,0L0,0L0,0L0,7.643L0,7.643L0,7.643L7.643,7.643L7.643,0Z" fill="url(#plot-pattern-1)"></path>
-    <path transform="translate(20,7.357)" d="M7.643,0L7.643,7.643L0,7.643L0,7.643L0,7.643L0,15.287L15.287,15.287L15.287,7.643L15.287,7.643L15.287,7.643L22.93,7.643L22.93,0Z" fill="url(#plot-pattern-2)"></path>
-    <path transform="translate(20,7.357)" d="M22.93,0L22.93,7.643L15.287,7.643L15.287,7.643L15.287,7.643L15.287,15.287L53.503,15.287L53.503,0L53.503,0L53.503,0Z" fill="url(#plot-pattern-3)"></path>
-    <path transform="translate(20,7.357)" d="M53.503,0L53.503,0L53.503,0L53.503,0L53.503,0L53.503,15.287L145.223,15.287L145.223,0L145.223,0L145.223,0Z" fill="url(#plot-pattern-4)"></path>
-    <path transform="translate(20,7.357)" d="M145.223,0L145.223,0L145.223,0L145.223,0L145.223,0L145.223,15.287L321.019,15.287L321.019,0L321.019,0L321.019,0Z" fill="url(#plot-pattern-5)"></path>
-    <path transform="translate(20,7.357)" d="M321.019,0L321.019,0L321.019,0L321.019,0L321.019,0L321.019,15.287L573.248,15.287L573.248,0L573.248,0L573.248,0Z" fill="url(#plot-pattern-6)"></path>
-    <path transform="translate(20,7.357)" d="M573.248,0L573.248,0L573.248,0L573.248,0L573.248,0L573.248,15.287L596.178,15.287L596.178,7.643L596.178,7.643L596.178,7.643L603.822,7.643L603.822,0Z" fill="url(#plot-pattern-7)"></path>
+    <path transform="translate(20,7.607)" d="M0,0L0,0L0,0L0,0L0,0L0,7.643L0,7.643L0,7.643L7.643,7.643L7.643,0Z" fill="url(#plot-pattern-1)"></path>
+    <path transform="translate(20,7.607)" d="M7.643,0L7.643,7.643L0,7.643L0,7.643L0,7.643L0,15.287L15.287,15.287L15.287,7.643L15.287,7.643L15.287,7.643L22.93,7.643L22.93,0Z" fill="url(#plot-pattern-2)"></path>
+    <path transform="translate(20,7.607)" d="M22.93,0L22.93,7.643L15.287,7.643L15.287,7.643L15.287,7.643L15.287,15.287L53.503,15.287L53.503,0L53.503,0L53.503,0Z" fill="url(#plot-pattern-3)"></path>
+    <path transform="translate(20,7.607)" d="M53.503,0L53.503,0L53.503,0L53.503,0L53.503,0L53.503,15.287L145.223,15.287L145.223,0L145.223,0L145.223,0Z" fill="url(#plot-pattern-4)"></path>
+    <path transform="translate(20,7.607)" d="M145.223,0L145.223,0L145.223,0L145.223,0L145.223,0L145.223,15.287L321.019,15.287L321.019,0L321.019,0L321.019,0Z" fill="url(#plot-pattern-5)"></path>
+    <path transform="translate(20,7.607)" d="M321.019,0L321.019,0L321.019,0L321.019,0L321.019,0L321.019,15.287L573.248,15.287L573.248,0L573.248,0L573.248,0Z" fill="url(#plot-pattern-6)"></path>
+    <path transform="translate(20,7.607)" d="M573.248,0L573.248,0L573.248,0L573.248,0L573.248,0L573.248,15.287L596.178,15.287L596.178,7.643L596.178,7.643L596.178,7.643L603.822,7.643L603.822,0Z" fill="url(#plot-pattern-7)"></path>
   </g>
-  <g aria-label="tip" fill="var(--plot-background)" stroke="currentColor" pointer-events="none" text-anchor="start" transform="translate(0.5,0.5)"></g>
+  <g aria-label="tip" fill="var(--plot-background)" stroke="currentColor" pointer-events="none" text-anchor="start"></g>
 </svg>

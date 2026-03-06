@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="y-grid" aria-hidden="true" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
+  <g aria-label="y-grid" aria-hidden="true" stroke="currentColor" stroke-opacity="0.1">
     <line x1="40" x2="620" y1="370" y2="370"></line>
     <line x1="40" x2="620" y1="342.445" y2="342.445"></line>
     <line x1="40" x2="620" y1="314.891" y2="314.891"></line>
@@ -28,7 +28,7 @@
     <line x1="40" x2="620" y1="66.898" y2="66.898"></line>
     <line x1="40" x2="620" y1="39.343" y2="39.343"></line>
   </g>
-  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor">
     <path transform="translate(40,370)" d="M0,0L-6,0"></path>
     <path transform="translate(40,342.445)" d="M0,0L-6,0"></path>
     <path transform="translate(40,314.891)" d="M0,0L-6,0"></path>
@@ -43,7 +43,7 @@
     <path transform="translate(40,66.898)" d="M0,0L-6,0"></path>
     <path transform="translate(40,39.343)" d="M0,0L-6,0"></path>
   </g>
-  <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
+  <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-9,0)">
     <text y="0.32em" transform="translate(40,370)">0.00</text>
     <text y="0.32em" transform="translate(40,342.445)">0.01</text>
     <text y="0.32em" transform="translate(40,314.891)">0.02</text>
@@ -58,10 +58,10 @@
     <text y="0.32em" transform="translate(40,66.898)">0.11</text>
     <text y="0.32em" transform="translate(40,39.343)">0.12</text>
   </g>
-  <g aria-label="y-axis label" text-anchor="start" transform="translate(-36.5,-16.5)">
+  <g aria-label="y-axis label" text-anchor="start" transform="translate(-37,-17)">
     <text y="0.71em" transform="translate(40,20)">↑ frequency</text>
   </g>
-  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor">
     <path transform="translate(55,370)" d="M0,0L0,6"></path>
     <path transform="translate(77,370)" d="M0,0L0,6"></path>
     <path transform="translate(99,370)" d="M0,0L0,6"></path>
@@ -89,7 +89,7 @@
     <path transform="translate(583,370)" d="M0,0L0,6"></path>
     <path transform="translate(605,370)" d="M0,0L0,6"></path>
   </g>
-  <g aria-label="x-axis tick label" transform="translate(0.5,9.5)">
+  <g aria-label="x-axis tick label" transform="translate(0,9)">
     <text y="0.71em" transform="translate(55,370)">A</text>
     <text y="0.71em" transform="translate(77,370)">B</text>
     <text y="0.71em" transform="translate(99,370)">C</text>
@@ -117,10 +117,10 @@
     <text y="0.71em" transform="translate(583,370)">Y</text>
     <text y="0.71em" transform="translate(605,370)">Z</text>
   </g>
-  <g aria-label="x-axis label" transform="translate(0.5,27.5)">
+  <g aria-label="x-axis label" transform="translate(0,27)">
     <text transform="translate(330,370)">letter</text>
   </g>
-  <g aria-label="rule" stroke="currentColor" transform="translate(0.5,0)">
+  <g aria-label="rule" stroke="currentColor">
     <line x1="143" x2="143" y1="370" y2="20"></line>
     <line x1="473" x2="473" y1="370" y2="120.464"></line>
     <line x1="55" x2="55" y1="370" y2="144.961"></line>
@@ -148,7 +148,7 @@
     <line x1="407" x2="407" y1="370" y2="367.382"></line>
     <line x1="605" x2="605" y1="370" y2="367.961"></line>
   </g>
-  <g aria-label="dot" transform="translate(0.5,0.5)">
+  <g aria-label="dot">
     <circle cx="143" cy="20" r="3"></circle>
     <circle cx="473" cy="120.464" r="3"></circle>
     <circle cx="55" cy="144.961" r="3"></circle>
@@ -176,7 +176,7 @@
     <circle cx="407" cy="367.382" r="3"></circle>
     <circle cx="605" cy="367.961" r="3"></circle>
   </g>
-  <g aria-label="rule" stroke="currentColor" transform="translate(0,0.5)">
+  <g aria-label="rule" stroke="currentColor">
     <line x1="40" x2="620" y1="370" y2="370"></line>
   </g>
 </svg>

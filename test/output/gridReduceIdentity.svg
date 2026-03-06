@@ -14,66 +14,66 @@
     }
   </style>
   <g aria-label="rect" fill="none" stroke="currentColor">
-    <rect x="3" y="3" width="30.583" height="30.583"></rect>
-    <rect x="405.417" y="3" width="30.583" height="30.583"></rect>
-    <rect x="332.25" y="39.583" width="30.583" height="30.583"></rect>
-    <rect x="368.833" y="39.583" width="30.583" height="30.583"></rect>
-    <rect x="405.417" y="39.583" width="30.583" height="30.583"></rect>
-    <rect x="39.583" y="76.167" width="30.583" height="30.583"></rect>
-    <rect x="76.167" y="76.167" width="30.583" height="30.583"></rect>
-    <rect x="112.75" y="76.167" width="30.583" height="30.583"></rect>
-    <rect x="149.333" y="76.167" width="30.583" height="30.583"></rect>
-    <rect x="185.917" y="76.167" width="30.583" height="30.583"></rect>
-    <rect x="222.5" y="76.167" width="30.583" height="30.583"></rect>
-    <rect x="259.083" y="76.167" width="30.583" height="30.583"></rect>
-    <rect x="332.25" y="76.167" width="30.583" height="30.583"></rect>
-    <rect x="368.833" y="76.167" width="30.583" height="30.583"></rect>
-    <rect x="405.417" y="76.167" width="30.583" height="30.583"></rect>
-    <rect x="39.583" y="112.75" width="30.583" height="30.583"></rect>
-    <rect x="76.167" y="112.75" width="30.583" height="30.583"></rect>
-    <rect x="112.75" y="112.75" width="30.583" height="30.583"></rect>
-    <rect x="149.333" y="112.75" width="30.583" height="30.583"></rect>
-    <rect x="185.917" y="112.75" width="30.583" height="30.583"></rect>
-    <rect x="222.5" y="112.75" width="30.583" height="30.583"></rect>
-    <rect x="259.083" y="112.75" width="30.583" height="30.583"></rect>
-    <rect x="295.667" y="112.75" width="30.583" height="30.583"></rect>
-    <rect x="332.25" y="112.75" width="30.583" height="30.583"></rect>
-    <rect x="368.833" y="112.75" width="30.583" height="30.583"></rect>
-    <rect x="3" y="149.333" width="30.583" height="30.583"></rect>
-    <rect x="39.583" y="149.333" width="30.583" height="30.583"></rect>
-    <rect x="76.167" y="149.333" width="30.583" height="30.583"></rect>
-    <rect x="112.75" y="149.333" width="30.583" height="30.583"></rect>
-    <rect x="149.333" y="149.333" width="30.583" height="30.583"></rect>
-    <rect x="185.917" y="149.333" width="30.583" height="30.583"></rect>
-    <rect x="222.5" y="149.333" width="30.583" height="30.583"></rect>
-    <rect x="259.083" y="149.333" width="30.583" height="30.583"></rect>
-    <rect x="295.667" y="149.333" width="30.583" height="30.583"></rect>
-    <rect x="332.25" y="149.333" width="30.583" height="30.583"></rect>
-    <rect x="368.833" y="149.333" width="30.583" height="30.583"></rect>
-    <rect x="76.167" y="185.917" width="30.583" height="30.583"></rect>
-    <rect x="112.75" y="185.917" width="30.583" height="30.583"></rect>
-    <rect x="149.333" y="185.917" width="30.583" height="30.583"></rect>
-    <rect x="185.917" y="185.917" width="30.583" height="30.583"></rect>
-    <rect x="222.5" y="185.917" width="30.583" height="30.583"></rect>
-    <rect x="259.083" y="185.917" width="30.583" height="30.583"></rect>
-    <rect x="295.667" y="185.917" width="30.583" height="30.583"></rect>
-    <rect x="112.75" y="222.5" width="30.583" height="30.583"></rect>
-    <rect x="149.333" y="222.5" width="30.583" height="30.583"></rect>
-    <rect x="185.917" y="222.5" width="30.583" height="30.583"></rect>
-    <rect x="222.5" y="222.5" width="30.583" height="30.583"></rect>
-    <rect x="259.083" y="222.5" width="30.583" height="30.583"></rect>
-    <rect x="295.667" y="222.5" width="30.583" height="30.583"></rect>
-    <rect x="3" y="259.083" width="30.583" height="30.583"></rect>
-    <rect x="259.083" y="259.083" width="30.583" height="30.583"></rect>
+    <rect x="3.5" y="3.5" width="30.583" height="30.583"></rect>
+    <rect x="405.917" y="3.5" width="30.583" height="30.583"></rect>
+    <rect x="332.75" y="40.083" width="30.583" height="30.583"></rect>
+    <rect x="369.333" y="40.083" width="30.583" height="30.583"></rect>
+    <rect x="405.917" y="40.083" width="30.583" height="30.583"></rect>
+    <rect x="40.083" y="76.667" width="30.583" height="30.583"></rect>
+    <rect x="76.667" y="76.667" width="30.583" height="30.583"></rect>
+    <rect x="113.25" y="76.667" width="30.583" height="30.583"></rect>
+    <rect x="149.833" y="76.667" width="30.583" height="30.583"></rect>
+    <rect x="186.417" y="76.667" width="30.583" height="30.583"></rect>
+    <rect x="223" y="76.667" width="30.583" height="30.583"></rect>
+    <rect x="259.583" y="76.667" width="30.583" height="30.583"></rect>
+    <rect x="332.75" y="76.667" width="30.583" height="30.583"></rect>
+    <rect x="369.333" y="76.667" width="30.583" height="30.583"></rect>
+    <rect x="405.917" y="76.667" width="30.583" height="30.583"></rect>
+    <rect x="40.083" y="113.25" width="30.583" height="30.583"></rect>
+    <rect x="76.667" y="113.25" width="30.583" height="30.583"></rect>
+    <rect x="113.25" y="113.25" width="30.583" height="30.583"></rect>
+    <rect x="149.833" y="113.25" width="30.583" height="30.583"></rect>
+    <rect x="186.417" y="113.25" width="30.583" height="30.583"></rect>
+    <rect x="223" y="113.25" width="30.583" height="30.583"></rect>
+    <rect x="259.583" y="113.25" width="30.583" height="30.583"></rect>
+    <rect x="296.167" y="113.25" width="30.583" height="30.583"></rect>
+    <rect x="332.75" y="113.25" width="30.583" height="30.583"></rect>
+    <rect x="369.333" y="113.25" width="30.583" height="30.583"></rect>
+    <rect x="3.5" y="149.833" width="30.583" height="30.583"></rect>
+    <rect x="40.083" y="149.833" width="30.583" height="30.583"></rect>
+    <rect x="76.667" y="149.833" width="30.583" height="30.583"></rect>
+    <rect x="113.25" y="149.833" width="30.583" height="30.583"></rect>
+    <rect x="149.833" y="149.833" width="30.583" height="30.583"></rect>
+    <rect x="186.417" y="149.833" width="30.583" height="30.583"></rect>
+    <rect x="223" y="149.833" width="30.583" height="30.583"></rect>
+    <rect x="259.583" y="149.833" width="30.583" height="30.583"></rect>
+    <rect x="296.167" y="149.833" width="30.583" height="30.583"></rect>
+    <rect x="332.75" y="149.833" width="30.583" height="30.583"></rect>
+    <rect x="369.333" y="149.833" width="30.583" height="30.583"></rect>
+    <rect x="76.667" y="186.417" width="30.583" height="30.583"></rect>
+    <rect x="113.25" y="186.417" width="30.583" height="30.583"></rect>
+    <rect x="149.833" y="186.417" width="30.583" height="30.583"></rect>
+    <rect x="186.417" y="186.417" width="30.583" height="30.583"></rect>
+    <rect x="223" y="186.417" width="30.583" height="30.583"></rect>
+    <rect x="259.583" y="186.417" width="30.583" height="30.583"></rect>
+    <rect x="296.167" y="186.417" width="30.583" height="30.583"></rect>
+    <rect x="113.25" y="223" width="30.583" height="30.583"></rect>
+    <rect x="149.833" y="223" width="30.583" height="30.583"></rect>
+    <rect x="186.417" y="223" width="30.583" height="30.583"></rect>
+    <rect x="223" y="223" width="30.583" height="30.583"></rect>
+    <rect x="259.583" y="223" width="30.583" height="30.583"></rect>
+    <rect x="296.167" y="223" width="30.583" height="30.583"></rect>
+    <rect x="3.5" y="259.583" width="30.583" height="30.583"></rect>
+    <rect x="259.583" y="259.583" width="30.583" height="30.583"></rect>
   </g>
-  <g aria-label="text" stroke="white" stroke-width="3" stroke-linejoin="round" paint-order="stroke" text-anchor="end" transform="translate(-9.5,0.5)">
-    <text y="0.32em" transform="translate(639,18.292)">AK,ME</text>
-    <text y="0.32em" transform="translate(639,164.625)">CA,NV,UT,CO,KS,MO,KY,WV,DC,MD,DE</text>
-    <text y="0.32em" transform="translate(639,274.375)">HI,FL</text>
-    <text y="0.32em" transform="translate(639,91.458)">WA,MT,ND,SD,MN,WI,MI,NY,CT,RI</text>
-    <text y="0.32em" transform="translate(639,128.042)">OR,ID,WY,NE,IA,IL,IN,OH,PA,NJ</text>
-    <text y="0.32em" transform="translate(639,201.208)">AZ,NM,OK,AR,TN,VA,NC</text>
-    <text y="0.32em" transform="translate(639,237.792)">TX,LA,MS,AL,GA,SC</text>
-    <text y="0.32em" transform="translate(639,54.875)">VT,NH,MA</text>
+  <g aria-label="text" stroke="white" stroke-width="3" stroke-linejoin="round" paint-order="stroke" text-anchor="end" transform="translate(-10,0)">
+    <text y="0.32em" transform="translate(639.5,18.792)">AK,ME</text>
+    <text y="0.32em" transform="translate(639.5,165.125)">CA,NV,UT,CO,KS,MO,KY,WV,DC,MD,DE</text>
+    <text y="0.32em" transform="translate(639.5,274.875)">HI,FL</text>
+    <text y="0.32em" transform="translate(639.5,91.958)">WA,MT,ND,SD,MN,WI,MI,NY,CT,RI</text>
+    <text y="0.32em" transform="translate(639.5,128.542)">OR,ID,WY,NE,IA,IL,IN,OH,PA,NJ</text>
+    <text y="0.32em" transform="translate(639.5,201.708)">AZ,NM,OK,AR,TN,VA,NC</text>
+    <text y="0.32em" transform="translate(639.5,238.292)">TX,LA,MS,AL,GA,SC</text>
+    <text y="0.32em" transform="translate(639.5,55.375)">VT,NH,MA</text>
   </g>
 </svg>

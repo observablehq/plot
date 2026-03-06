@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="fy-axis tick label" transform="translate(-8.5,0.5)">
+  <g aria-label="fy-axis tick label" transform="translate(-9,0)">
     <g text-anchor="end" transform="translate(0,0)">
       <text y="0.32em" transform="translate(40,158)">0</text>
     </g>
@@ -21,7 +21,7 @@
       <text y="0.32em" transform="translate(40,158)">1</text>
     </g>
   </g>
-  <g aria-label="fx-axis tick label" transform="translate(0.5,-8.5)">
+  <g aria-label="fx-axis tick label" transform="translate(0,-9)">
     <g transform="translate(0,0)">
       <text transform="translate(130,30)">0</text>
     </g>
@@ -32,7 +32,7 @@
       <text transform="translate(130,30)">2</text>
     </g>
   </g>
-  <g aria-label="x-axis tick" aria-hidden="true" transform="translate(0.5,0)">
+  <g aria-label="x-axis tick" aria-hidden="true">
     <g fill="none" stroke="currentColor" transform="translate(0,284)">
       <path transform="translate(40,286)" d="M0,0L0,6"></path>
       <path transform="translate(147.143,286)" d="M0,0L0,6"></path>
@@ -46,7 +46,7 @@
       <path transform="translate(147.143,286)" d="M0,0L0,6"></path>
     </g>
   </g>
-  <g aria-label="x-axis tick label" transform="translate(0.5,9.5)">
+  <g aria-label="x-axis tick label" transform="translate(0,9)">
     <g font-variant="tabular-nums" transform="translate(0,284)">
       <text y="0.71em" transform="translate(40,286)">0</text>
       <text y="0.71em" transform="translate(147.143,286)">50</text>
@@ -2074,7 +2074,7 @@
       <path transform="translate(40,50.857)" d="M192.857,42.857L171.429,42.857L171.429,42.857L171.429,42.857L171.429,64.286L171.429,64.286L171.429,64.286L192.857,64.286Z" fill="url(#plot-pattern-500)"></path>
     </g>
   </g>
-  <g aria-label="tip" transform="translate(0.5,0.5)">
+  <g aria-label="tip">
     <g fill="var(--plot-background)" stroke="currentColor" pointer-events="none" text-anchor="start" transform="translate(0,0)"></g>
     <g fill="var(--plot-background)" stroke="currentColor" pointer-events="none" text-anchor="start" transform="translate(0,284)"></g>
     <g fill="var(--plot-background)" stroke="currentColor" pointer-events="none" text-anchor="start" transform="translate(200,0)"></g>

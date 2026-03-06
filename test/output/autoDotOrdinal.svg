@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor">
     <path transform="translate(40,22.923)" d="M0,0L-6,0"></path>
     <path transform="translate(40,28.768)" d="M0,0L-6,0"></path>
     <path transform="translate(40,34.614)" d="M0,0L-6,0"></path>
@@ -222,7 +222,7 @@
     <path transform="translate(40,1221.232)" d="M0,0L-6,0"></path>
     <path transform="translate(40,1227.077)" d="M0,0L-6,0"></path>
   </g>
-  <g aria-label="y-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
+  <g aria-label="y-axis tick label" text-anchor="end" transform="translate(-9,0)">
     <text y="0.32em" transform="translate(40,22.923)">AFG</text>
     <text y="0.32em" transform="translate(40,28.768)">ALB</text>
     <text y="0.32em" transform="translate(40,34.614)">ALG</text>
@@ -431,21 +431,21 @@
     <text y="0.32em" transform="translate(40,1221.232)">ZAM</text>
     <text y="0.32em" transform="translate(40,1227.077)">ZIM</text>
   </g>
-  <g aria-label="y-axis label" transform="translate(-36.5,0.5)">
+  <g aria-label="y-axis label" transform="translate(-37,0)">
     <text y="0.71em" transform="translate(40,625) rotate(-90)">nationality</text>
   </g>
-  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor">
     <path transform="translate(185,1230)" d="M0,0L0,6"></path>
     <path transform="translate(475,1230)" d="M0,0L0,6"></path>
   </g>
-  <g aria-label="x-axis tick label" transform="translate(0.5,9.5)">
+  <g aria-label="x-axis tick label" transform="translate(0,9)">
     <text y="0.71em" transform="translate(185,1230)">female</text>
     <text y="0.71em" transform="translate(475,1230)">male</text>
   </g>
-  <g aria-label="x-axis label" transform="translate(0.5,27.5)">
+  <g aria-label="x-axis label" transform="translate(0,27)">
     <text transform="translate(330,1230)">sex</text>
   </g>
-  <g aria-label="dot" fill="none" stroke="currentColor" stroke-width="1.5" transform="translate(0.5,0.5)">
+  <g aria-label="dot" fill="none" stroke="currentColor" stroke-width="1.5">
     <circle cx="185" cy="1180.314" r="30"></circle>
     <circle cx="475" cy="174.903" r="28.267"></circle>
     <circle cx="475" cy="1180.314" r="28.003"></circle>
@@ -855,5 +855,5 @@
     <circle cx="185" cy="332.729" r="1.723"></circle>
     <circle cx="475" cy="332.729" r="1.723"></circle>
   </g>
-  <g aria-label="tip" fill="var(--plot-background)" stroke="currentColor" pointer-events="none" text-anchor="start" transform="translate(0.5,0.5)"></g>
+  <g aria-label="tip" fill="var(--plot-background)" stroke="currentColor" pointer-events="none" text-anchor="start"></g>
 </svg>

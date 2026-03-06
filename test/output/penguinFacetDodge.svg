@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="fy-axis tick label" transform="translate(-8.5,0.5)">
+  <g aria-label="fy-axis tick label" transform="translate(-9,0)">
     <g text-anchor="end" transform="translate(0,0)">
       <text y="0.32em" transform="translate(60,58.5)">Adelie</text>
     </g>
@@ -24,7 +24,7 @@
       <text y="0.32em" transform="translate(60,58.5)">Gentoo</text>
     </g>
   </g>
-  <g aria-label="x-grid" aria-hidden="true" transform="translate(0.5,0)">
+  <g aria-label="x-grid" aria-hidden="true">
     <g stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0)">
       <line x1="106.667" x2="106.667" y1="20" y2="97"></line>
       <line x1="184.444" x2="184.444" y1="20" y2="97"></line>
@@ -53,7 +53,7 @@
       <line x1="573.333" x2="573.333" y1="20" y2="97"></line>
     </g>
   </g>
-  <g aria-label="x-axis tick" aria-hidden="true" transform="translate(0.5,0)">
+  <g aria-label="x-axis tick" aria-hidden="true">
     <g fill="none" stroke="currentColor" transform="translate(0,172)">
       <path transform="translate(106.667,97)" d="M0,0L0,6"></path>
       <path transform="translate(184.444,97)" d="M0,0L0,6"></path>
@@ -64,7 +64,7 @@
       <path transform="translate(573.333,97)" d="M0,0L0,6"></path>
     </g>
   </g>
-  <g aria-label="x-axis tick label" transform="translate(0.5,9.5)">
+  <g aria-label="x-axis tick label" transform="translate(0,9)">
     <g font-variant="tabular-nums" transform="translate(0,172)">
       <text y="0.71em" transform="translate(106.667,97)">3,000</text>
       <text y="0.71em" transform="translate(184.444,97)">3,500</text>
@@ -75,10 +75,10 @@
       <text y="0.71em" transform="translate(573.333,97)">6,000</text>
     </g>
   </g>
-  <g aria-label="x-axis label" text-anchor="end" transform="translate(17.5,27.5)">
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(17,27)">
     <text transform="translate(620,269)">body_mass_g →</text>
   </g>
-  <g aria-label="dot" transform="translate(0.5,0.5)">
+  <g aria-label="dot">
     <g fill="none" stroke="currentColor" stroke-width="1.5" transform="translate(0,0)">
       <circle cx="223.333" cy="58.5" r="3"></circle>
       <circle cx="231.111" cy="58.5" r="3"></circle>

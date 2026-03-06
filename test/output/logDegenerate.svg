@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor">
     <path transform="translate(20,30)" d="M0,0L0,6"></path>
     <path transform="translate(110.309,30)" d="M0,0L0,6"></path>
     <path transform="translate(163.136,30)" d="M0,0L0,6"></path>
@@ -34,7 +34,7 @@
     <path transform="translate(606.273,30)" d="M0,0L0,6"></path>
     <path transform="translate(620,30)" d="M0,0L0,6"></path>
   </g>
-  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0,9)">
     <text y="0.71em" transform="translate(20,30)">100m</text>
     <text y="0.71em" transform="translate(110.309,30)">200m</text>
     <text y="0.71em" transform="translate(163.136,30)">300m</text>
@@ -55,10 +55,10 @@
     <text y="0.71em" transform="translate(606.273,30)"></text>
     <text y="0.71em" transform="translate(620,30)">10</text>
   </g>
-  <g aria-label="dot" fill="none" stroke="currentColor" stroke-width="1.5" transform="translate(0.5,0.5)">
-    <circle cx="20" cy="15" r="3"></circle>
-    <circle cx="320" cy="15" r="3"></circle>
-    <circle cx="410.309" cy="15" r="3"></circle>
-    <circle cx="620" cy="15" r="3"></circle>
+  <g aria-label="dot" fill="none" stroke="currentColor" stroke-width="1.5">
+    <circle cx="20" cy="15.25" r="3"></circle>
+    <circle cx="320" cy="15.25" r="3"></circle>
+    <circle cx="410.309" cy="15.25" r="3"></circle>
+    <circle cx="620" cy="15.25" r="3"></circle>
   </g>
 </svg>

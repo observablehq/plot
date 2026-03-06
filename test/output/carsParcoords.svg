@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor">
     <path transform="translate(104,25)" d="M0,0L-6,0"></path>
     <path transform="translate(104,50)" d="M0,0L-6,0"></path>
     <path transform="translate(104,75)" d="M0,0L-6,0"></path>
@@ -22,7 +22,7 @@
     <path transform="translate(104,150)" d="M0,0L-6,0"></path>
     <path transform="translate(104,175)" d="M0,0L-6,0"></path>
   </g>
-  <g aria-label="y-axis tick label" text-anchor="end" transform="translate(-14.5,0.5)">
+  <g aria-label="y-axis tick label" text-anchor="end" transform="translate(-15,0)">
     <text y="0.32em" transform="translate(104,25)">economy (mpg)</text>
     <text y="0.32em" transform="translate(104,50)">cylinders</text>
     <text y="0.32em" transform="translate(104,75)">displacement (cc)</text>
@@ -31,7 +31,7 @@
     <text y="0.32em" transform="translate(104,150)">0-60 mph (s)</text>
     <text y="0.32em" transform="translate(104,175)">year</text>
   </g>
-  <g aria-label="rule" stroke="currentColor" transform="translate(0,0.5)">
+  <g aria-label="rule" stroke="currentColor">
     <line x1="104" x2="620" y1="25" y2="25"></line>
     <line x1="104" x2="620" y1="50" y2="50"></line>
     <line x1="104" x2="620" y1="75" y2="75"></line>
@@ -40,7 +40,7 @@
     <line x1="104" x2="620" y1="150" y2="150"></line>
     <line x1="104" x2="620" y1="175" y2="175"></line>
   </g>
-  <g aria-label="line" fill="none" stroke="#444" stroke-width="0.5" stroke-opacity="0.5" stroke-linejoin="round" stroke-linecap="round" transform="translate(0.5,0.5)">
+  <g aria-label="line" fill="none" stroke="#444" stroke-width="0.5" stroke-opacity="0.5" stroke-linejoin="round" stroke-linecap="round">
     <path d="M158.894,25L620,50L493.333,75L465.761,100L427.03,125L196.143,150L233,175"></path>
     <path d="M186.34,25L620,50L533.333,75L507.826,100L431.273,125L119.357,150L104,175"></path>
     <path d="M213.787,25L620,50L418.667,75L395.652,100L405.232,125L211.5,150L190,175"></path>
@@ -445,7 +445,7 @@
     <path d="M213.787,25L413.6,50L230.667,75L325.543,100L327.4,125L276,150L448,175"></path>
     <path d="M401.798,25L413.6,50L206.667,75L188.13,100L330.326,125L460.286,150L577,175"></path>
   </g>
-  <g aria-label="text" fill="black" stroke="white" stroke-width="3" stroke-linejoin="round" paint-order="stroke" font-variant="tabular-nums" transform="translate(0.5,0.5)">
+  <g aria-label="text" fill="black" stroke="white" stroke-width="3" stroke-linejoin="round" paint-order="stroke" font-variant="tabular-nums">
     <text y="0.32em" transform="translate(117.723,25)">10</text>
     <text y="0.32em" transform="translate(186.34,25)">15</text>
     <text y="0.32em" transform="translate(254.957,25)">20</text>

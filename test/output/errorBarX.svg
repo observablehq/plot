@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,9.5)">
+  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,9)">
     <path transform="translate(40,26)" d="M0,0L-6,0"></path>
     <path transform="translate(40,46)" d="M0,0L-6,0"></path>
     <path transform="translate(40,66)" d="M0,0L-6,0"></path>
@@ -41,7 +41,7 @@
     <path transform="translate(40,506)" d="M0,0L-6,0"></path>
     <path transform="translate(40,526)" d="M0,0L-6,0"></path>
   </g>
-  <g aria-label="y-axis tick label" text-anchor="end" transform="translate(-8.5,9.5)">
+  <g aria-label="y-axis tick label" text-anchor="end" transform="translate(-9,9)">
     <text y="0.32em" transform="translate(40,26)">E</text>
     <text y="0.32em" transform="translate(40,46)">T</text>
     <text y="0.32em" transform="translate(40,66)">A</text>
@@ -69,10 +69,10 @@
     <text y="0.32em" transform="translate(40,506)">Q</text>
     <text y="0.32em" transform="translate(40,526)">Z</text>
   </g>
-  <g aria-label="y-axis label" transform="translate(-36.5,0.5)">
+  <g aria-label="y-axis label" transform="translate(-37,0)">
     <text y="0.71em" transform="translate(40,285) rotate(-90)">letter</text>
   </g>
-  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor">
     <path transform="translate(40,550)" d="M0,0L0,6"></path>
     <path transform="translate(123.022,550)" d="M0,0L0,6"></path>
     <path transform="translate(206.044,550)" d="M0,0L0,6"></path>
@@ -81,7 +81,7 @@
     <path transform="translate(455.11,550)" d="M0,0L0,6"></path>
     <path transform="translate(538.132,550)" d="M0,0L0,6"></path>
   </g>
-  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0,9)">
     <text y="0.71em" transform="translate(40,550)">0.00</text>
     <text y="0.71em" transform="translate(123.022,550)">0.02</text>
     <text y="0.71em" transform="translate(206.044,550)">0.04</text>
@@ -90,7 +90,7 @@
     <text y="0.71em" transform="translate(455.11,550)">0.10</text>
     <text y="0.71em" transform="translate(538.132,550)">0.12</text>
   </g>
-  <g aria-label="x-axis label" text-anchor="end" transform="translate(17.5,27.5)">
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(17,27)">
     <text transform="translate(620,550)">frequency →</text>
   </g>
   <g aria-label="bar" fill="steelblue">
@@ -121,7 +121,7 @@
     <rect x="40" width="3.944" y="506" height="18"></rect>
     <rect x="40" width="3.072" y="526" height="18"></rect>
   </g>
-  <g aria-label="rule" stroke="currentColor" transform="translate(0,9.5)">
+  <g aria-label="rule" stroke="currentColor" transform="translate(0,9)">
     <marker viewBox="-3 -3 6 6" markerWidth="6" markerHeight="6" orient="auto" stroke="currentColor" id="plot-marker-1">
       <path d="M0,-3v6"></path>
     </marker>
@@ -158,7 +158,7 @@
     <line x1="43.549" x2="44.338" y1="506" y2="506" marker-start="url(#plot-marker-1)" marker-mid="url(#plot-marker-2)" marker-end="url(#plot-marker-3)"></line>
     <line x1="42.765" x2="43.379" y1="526" y2="526" marker-start="url(#plot-marker-1)" marker-mid="url(#plot-marker-2)" marker-end="url(#plot-marker-3)"></line>
   </g>
-  <g aria-label="rule" stroke="currentColor" transform="translate(0.5,0)">
+  <g aria-label="rule" stroke="currentColor">
     <line x1="40" x2="40" y1="20" y2="550"></line>
   </g>
 </svg>

@@ -13,24 +13,24 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor">
     <path transform="translate(83.273,130)" d="M0,0L0,6"></path>
     <path transform="translate(192.364,130)" d="M0,0L0,6"></path>
     <path transform="translate(301.455,130)" d="M0,0L0,6"></path>
     <path transform="translate(410.545,130)" d="M0,0L0,6"></path>
     <path transform="translate(519.636,130)" d="M0,0L0,6"></path>
   </g>
-  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0,9)">
     <text y="0.71em" transform="translate(83.273,130)">35</text>
     <text y="0.71em" transform="translate(192.364,130)">40</text>
     <text y="0.71em" transform="translate(301.455,130)">45</text>
     <text y="0.71em" transform="translate(410.545,130)">50</text>
     <text y="0.71em" transform="translate(519.636,130)">55</text>
   </g>
-  <g aria-label="x-axis label" text-anchor="end" transform="translate(17.5,27.5)">
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(17,27)">
     <text transform="translate(620,130)">culmen_length_mm →</text>
   </g>
-  <g aria-label="dot" fill="none" stroke="currentColor" stroke-width="1.5" transform="translate(0.5,0.5)">
+  <g aria-label="dot" fill="none" stroke="currentColor" stroke-width="1.5">
     <circle cx="393.091" cy="125.004" r="3.996"></circle>
     <circle cx="620" cy="125.084" r="3.916"></circle>
     <circle cx="434.545" cy="125.1" r="3.9"></circle>
@@ -374,5 +374,5 @@
     <circle cx="113.818" cy="75.562" r="2.688"></circle>
     <circle cx="342.909" cy="83.762" r="2.616"></circle>
   </g>
-  <g aria-label="tip" fill="var(--plot-background)" stroke="currentColor" pointer-events="none" text-anchor="start" transform="translate(0.5,0.5)"></g>
+  <g aria-label="tip" fill="var(--plot-background)" stroke="currentColor" pointer-events="none" text-anchor="start"></g>
 </svg>

@@ -13,32 +13,32 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="text" transform="translate(0.5,0.5)">
-    <text y="0.32em" transform="translate(179.575,128.435)" font-size="210">E</text>
-    <text y="0.32em" transform="translate(346.486,87.945)" font-size="152.592">T</text>
-    <text y="0.32em" transform="translate(518.473,97.401)" font-size="138.594">A</text>
-    <text y="0.32em" transform="translate(468.023,65.826)" font-size="128.202">O</text>
-    <text y="0.32em" transform="translate(257.451,335.802)" font-size="119.684">I</text>
-    <text y="0.32em" transform="translate(513.831,218.677)" font-size="116.267">N</text>
-    <text y="0.32em" transform="translate(392.366,288.27)" font-size="109.622">S</text>
-    <text y="0.32em" transform="translate(260.123,308.143)" font-size="105.953">H</text>
-    <text y="0.32em" transform="translate(71.314,312.039)" font-size="104.269">R</text>
-    <text y="0.32em" transform="translate(454.831,247.52)" font-size="76.966">D</text>
-    <text y="0.32em" transform="translate(137.333,313.285)" font-size="73.376">L</text>
-    <text y="0.32em" transform="translate(474.991,172.386)" font-size="53.804">C</text>
-    <text y="0.32em" transform="translate(343.15,162.074)" font-size="53.426">U</text>
-    <text y="0.32em" transform="translate(447.603,366.944)" font-size="47.884">M</text>
-    <text y="0.32em" transform="translate(421.596,238.561)" font-size="47.16">W</text>
-    <text y="0.32em" transform="translate(539.442,136.811)" font-size="46.026">F</text>
-    <text y="0.32em" transform="translate(142.282,284.172)" font-size="41.727">G</text>
-    <text y="0.32em" transform="translate(243.5,219.323)" font-size="41.082">Y</text>
-    <text y="0.32em" transform="translate(202.228,93.91)" font-size="40.373">P</text>
-    <text y="0.32em" transform="translate(215.673,318.659)" font-size="33.492">B</text>
-    <text y="0.32em" transform="translate(371.747,280.473)" font-size="25.399">V</text>
-    <text y="0.32em" transform="translate(175.827,166.417)" font-size="22.156">K</text>
-    <text y="0.32em" transform="translate(272.113,310.653)" font-size="12.409">J</text>
-    <text y="0.32em" transform="translate(299.425,190.29)" font-size="12.362">X</text>
-    <text y="0.32em" transform="translate(247.405,148.772)" font-size="11.496">Q</text>
-    <text y="0.32em" transform="translate(367.888,141.54)" font-size="11.165">Z</text>
+  <g aria-label="text">
+    <text y="0.32em" transform="translate(180.075,128.935)" font-size="210">E</text>
+    <text y="0.32em" transform="translate(346.986,88.445)" font-size="152.592">T</text>
+    <text y="0.32em" transform="translate(518.973,97.901)" font-size="138.594">A</text>
+    <text y="0.32em" transform="translate(468.523,66.326)" font-size="128.202">O</text>
+    <text y="0.32em" transform="translate(257.951,336.302)" font-size="119.684">I</text>
+    <text y="0.32em" transform="translate(514.331,219.177)" font-size="116.267">N</text>
+    <text y="0.32em" transform="translate(392.866,288.77)" font-size="109.622">S</text>
+    <text y="0.32em" transform="translate(260.623,308.643)" font-size="105.953">H</text>
+    <text y="0.32em" transform="translate(71.814,312.539)" font-size="104.269">R</text>
+    <text y="0.32em" transform="translate(455.331,248.02)" font-size="76.966">D</text>
+    <text y="0.32em" transform="translate(137.833,313.785)" font-size="73.376">L</text>
+    <text y="0.32em" transform="translate(475.491,172.886)" font-size="53.804">C</text>
+    <text y="0.32em" transform="translate(343.65,162.574)" font-size="53.426">U</text>
+    <text y="0.32em" transform="translate(448.103,367.444)" font-size="47.884">M</text>
+    <text y="0.32em" transform="translate(422.096,239.061)" font-size="47.16">W</text>
+    <text y="0.32em" transform="translate(539.942,137.311)" font-size="46.026">F</text>
+    <text y="0.32em" transform="translate(142.782,284.672)" font-size="41.727">G</text>
+    <text y="0.32em" transform="translate(244,219.823)" font-size="41.082">Y</text>
+    <text y="0.32em" transform="translate(202.728,94.41)" font-size="40.373">P</text>
+    <text y="0.32em" transform="translate(216.173,319.159)" font-size="33.492">B</text>
+    <text y="0.32em" transform="translate(372.247,280.973)" font-size="25.399">V</text>
+    <text y="0.32em" transform="translate(176.327,166.917)" font-size="22.156">K</text>
+    <text y="0.32em" transform="translate(272.613,311.153)" font-size="12.409">J</text>
+    <text y="0.32em" transform="translate(299.925,190.79)" font-size="12.362">X</text>
+    <text y="0.32em" transform="translate(247.905,149.272)" font-size="11.496">Q</text>
+    <text y="0.32em" transform="translate(368.388,142.04)" font-size="11.165">Z</text>
   </g>
 </svg>

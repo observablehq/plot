@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor">
     <path transform="translate(40,370)" d="M0,0L-6,0"></path>
     <path transform="translate(40,342.557)" d="M0,0L-6,0"></path>
     <path transform="translate(40,315.114)" d="M0,0L-6,0"></path>
@@ -28,7 +28,7 @@
     <path transform="translate(40,68.129)" d="M0,0L-6,0"></path>
     <path transform="translate(40,40.686)" d="M0,0L-6,0"></path>
   </g>
-  <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
+  <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-9,0)">
     <text y="0.32em" transform="translate(40,370)">0</text>
     <text y="0.32em" transform="translate(40,342.557)">2</text>
     <text y="0.32em" transform="translate(40,315.114)">4</text>
@@ -43,24 +43,24 @@
     <text y="0.32em" transform="translate(40,68.129)">22</text>
     <text y="0.32em" transform="translate(40,40.686)">24</text>
   </g>
-  <g aria-label="y-axis label" text-anchor="start" transform="translate(-36.5,-16.5)">
+  <g aria-label="y-axis label" text-anchor="start" transform="translate(-37,-17)">
     <text y="0.71em" transform="translate(40,20)">↑ temp_max</text>
   </g>
-  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor">
     <path transform="translate(175.736,370)" d="M0,0L0,6"></path>
     <path transform="translate(330.318,370)" d="M0,0L0,6"></path>
     <path transform="translate(484.9,370)" d="M0,0L0,6"></path>
   </g>
-  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0,9)">
     <text y="0.71em" transform="translate(175.736,370)">2013</text>
     <text y="0.71em" transform="translate(330.318,370)">2014</text>
     <text y="0.71em" transform="translate(484.9,370)">2015</text>
   </g>
-  <g aria-label="rule" stroke="currentColor" transform="translate(0,0.5)">
+  <g aria-label="rule" stroke="currentColor">
     <line x1="40" x2="620" y1="370" y2="370"></line>
   </g>
-  <g aria-label="line" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" transform="translate(0.5,0.5)">
+  <g aria-label="line" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round">
     <path d="M40,251.8L78.54,135.605L117.291,42.163L156.254,212.681L194.794,240.653L233.122,108.645L271.873,33.02L310.836,217.812L349.376,228.624L387.704,109.52L426.455,20L465.418,190.727L503.958,200.617L542.286,88.365L581.037,28.695L620,206.835"></path>
   </g>
-  <g aria-label="tip" fill="var(--plot-background)" stroke="currentColor" pointer-events="none" text-anchor="start" transform="translate(0.5,0.5)"></g>
+  <g aria-label="tip" fill="var(--plot-background)" stroke="currentColor" pointer-events="none" text-anchor="start"></g>
 </svg>

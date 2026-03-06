@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor">
     <path transform="translate(40,370)" d="M0,0L-6,0"></path>
     <path transform="translate(40,329.472)" d="M0,0L-6,0"></path>
     <path transform="translate(40,288.944)" d="M0,0L-6,0"></path>
@@ -24,7 +24,7 @@
     <path transform="translate(40,86.304)" d="M0,0L-6,0"></path>
     <path transform="translate(40,45.776)" d="M0,0L-6,0"></path>
   </g>
-  <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
+  <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-9,0)">
     <text y="0.32em" transform="translate(40,370)">0</text>
     <text y="0.32em" transform="translate(40,329.472)">20</text>
     <text y="0.32em" transform="translate(40,288.944)">40</text>
@@ -35,10 +35,10 @@
     <text y="0.32em" transform="translate(40,86.304)">140</text>
     <text y="0.32em" transform="translate(40,45.776)">160</text>
   </g>
-  <g aria-label="y-axis label" text-anchor="start" transform="translate(-36.5,-16.5)">
+  <g aria-label="y-axis label" text-anchor="start" transform="translate(-37,-17)">
     <text y="0.71em" transform="translate(40,20)">↑ Close</text>
   </g>
-  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(43.5,0)">
+  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(43,0)">
     <path transform="translate(50,370)" d="M0,0L0,6"></path>
     <path transform="translate(145,370)" d="M0,0L0,6"></path>
     <path transform="translate(240,370)" d="M0,0L0,6"></path>
@@ -46,7 +46,7 @@
     <path transform="translate(430,370)" d="M0,0L0,6"></path>
     <path transform="translate(525,370)" d="M0,0L0,6"></path>
   </g>
-  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(43.5,9.5)">
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(43,9)">
     <text y="0.71em" transform="translate(50,370)">2012-11-04</text>
     <text y="0.71em" transform="translate(145,370)">2013-11-03</text>
     <text y="0.71em" transform="translate(240,370)">2014-11-02</text>

@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor">
     <path transform="translate(40,355.978)" d="M0,0L-6,0"></path>
     <path transform="translate(40,318.009)" d="M0,0L-6,0"></path>
     <path transform="translate(40,280.039)" d="M0,0L-6,0"></path>
@@ -24,7 +24,7 @@
     <path transform="translate(40,90.19)" d="M0,0L-6,0"></path>
     <path transform="translate(40,52.22)" d="M0,0L-6,0"></path>
   </g>
-  <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
+  <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-9,0)">
     <text y="0.32em" transform="translate(40,355.978)">160</text>
     <text y="0.32em" transform="translate(40,318.009)">162</text>
     <text y="0.32em" transform="translate(40,280.039)">164</text>
@@ -35,7 +35,7 @@
     <text y="0.32em" transform="translate(40,90.19)">174</text>
     <text y="0.32em" transform="translate(40,52.22)">176</text>
   </g>
-  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor">
     <path transform="translate(40,370)" d="M0,0L0,6"></path>
     <path transform="translate(114.359,370)" d="M0,0L0,6"></path>
     <path transform="translate(188.718,370)" d="M0,0L0,6"></path>
@@ -45,7 +45,7 @@
     <path transform="translate(486.154,370)" d="M0,0L0,6"></path>
     <path transform="translate(560.513,370)" d="M0,0L0,6"></path>
   </g>
-  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0,9)">
     <text y="0.71em" transform="translate(40,370)">0</text>
     <text y="0.71em" transform="translate(114.359,370)">5</text>
     <text y="0.71em" transform="translate(188.718,370)">10</text>
@@ -55,7 +55,7 @@
     <text y="0.71em" transform="translate(486.154,370)">30</text>
     <text y="0.71em" transform="translate(560.513,370)">35</text>
   </g>
-  <g aria-label="line" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" transform="translate(0.5,0.5)">
+  <g aria-label="line" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round">
     <path d="M40,124.98L54.872,116.693L69.744,110.535L84.615,109.907L99.487,97.892L114.359,87.993L129.231,73.456L144.103,66.106L158.974,52.491L173.846,41.48L188.718,30.252L203.59,22.902L218.462,20L233.333,29.194L248.205,40.449L263.077,65.428L277.949,100.903L292.821,129.19L307.692,156.664L322.564,187.176L337.436,228.969L352.308,275.537L367.179,294.711L382.051,308.923L396.923,335.502L411.795,359.016L426.667,370L441.538,359.314L456.41,318.741L471.282,293.599L486.154,261.705L501.026,218.962L515.897,182.89L530.769,151.104L545.641,115.006L560.513,89.756L575.385,71.042L590.256,61.681L605.128,51.537L620,31.432"></path>
   </g>
 </svg>

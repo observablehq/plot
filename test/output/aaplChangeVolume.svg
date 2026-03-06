@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="y-grid" aria-hidden="true" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
+  <g aria-label="y-grid" aria-hidden="true" stroke="currentColor" stroke-opacity="0.1">
     <line x1="40" x2="620" y1="359.694" y2="359.694"></line>
     <line x1="40" x2="620" y1="334.067" y2="334.067"></line>
     <line x1="40" x2="620" y1="308.439" y2="308.439"></line>
@@ -29,7 +29,7 @@
     <line x1="40" x2="620" y1="52.163" y2="52.163"></line>
     <line x1="40" x2="620" y1="26.536" y2="26.536"></line>
   </g>
-  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor">
     <path transform="translate(40,359.694)" d="M0,0L-6,0"></path>
     <path transform="translate(40,334.067)" d="M0,0L-6,0"></path>
     <path transform="translate(40,308.439)" d="M0,0L-6,0"></path>
@@ -45,7 +45,7 @@
     <path transform="translate(40,52.163)" d="M0,0L-6,0"></path>
     <path transform="translate(40,26.536)" d="M0,0L-6,0"></path>
   </g>
-  <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
+  <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-9,0)">
     <text y="0.32em" transform="translate(40,359.694)">7.1</text>
     <text y="0.32em" transform="translate(40,334.067)">7.2</text>
     <text y="0.32em" transform="translate(40,308.439)">7.3</text>
@@ -61,10 +61,10 @@
     <text y="0.32em" transform="translate(40,52.163)">8.3</text>
     <text y="0.32em" transform="translate(40,26.536)">8.4</text>
   </g>
-  <g aria-label="y-axis label" text-anchor="start" transform="translate(-36.5,-16.5)">
+  <g aria-label="y-axis label" text-anchor="start" transform="translate(-37,-17)">
     <text y="0.71em" transform="translate(40,20)">↑ Volume (log₁₀)</text>
   </g>
-  <g aria-label="x-grid" aria-hidden="true" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+  <g aria-label="x-grid" aria-hidden="true" stroke="currentColor" stroke-opacity="0.1">
     <line x1="63.953" x2="63.953" y1="20" y2="370"></line>
     <line x1="139.626" x2="139.626" y1="20" y2="370"></line>
     <line x1="215.298" x2="215.298" y1="20" y2="370"></line>
@@ -74,7 +74,7 @@
     <line x1="517.989" x2="517.989" y1="20" y2="370"></line>
     <line x1="593.662" x2="593.662" y1="20" y2="370"></line>
   </g>
-  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor">
     <path transform="translate(63.953,370)" d="M0,0L0,6"></path>
     <path transform="translate(139.626,370)" d="M0,0L0,6"></path>
     <path transform="translate(215.298,370)" d="M0,0L0,6"></path>
@@ -84,7 +84,7 @@
     <path transform="translate(517.989,370)" d="M0,0L0,6"></path>
     <path transform="translate(593.662,370)" d="M0,0L0,6"></path>
   </g>
-  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0,9)">
     <text y="0.71em" transform="translate(63.953,370)">−6</text>
     <text y="0.71em" transform="translate(139.626,370)">−4</text>
     <text y="0.71em" transform="translate(215.298,370)">−2</text>
@@ -94,13 +94,13 @@
     <text y="0.71em" transform="translate(517.989,370)">+6</text>
     <text y="0.71em" transform="translate(593.662,370)">+8</text>
   </g>
-  <g aria-label="x-axis label" text-anchor="end" transform="translate(17.5,27.5)">
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(17,27)">
     <text transform="translate(620,370)">Daily change (%) →</text>
   </g>
-  <g aria-label="rule" stroke="currentColor" transform="translate(0.5,0)">
+  <g aria-label="rule" stroke="currentColor">
     <line x1="290.971" x2="290.971" y1="20" y2="370"></line>
   </g>
-  <g aria-label="dot" fill="none" stroke="currentColor" stroke-width="1.5" transform="translate(0.5,0.5)">
+  <g aria-label="dot" fill="none" stroke="currentColor" stroke-width="1.5">
     <circle cx="274.163" cy="20" r="9.095"></circle>
     <circle cx="296.642" cy="38.952" r="8.352"></circle>
     <circle cx="440.648" cy="41.046" r="8.274"></circle>

@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,9.5)">
+  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,9)">
     <path transform="translate(140,26)" d="M0,0L-6,0"></path>
     <path transform="translate(140,46)" d="M0,0L-6,0"></path>
     <path transform="translate(140,66)" d="M0,0L-6,0"></path>
@@ -40,7 +40,7 @@
     <path transform="translate(140,486)" d="M0,0L-6,0"></path>
     <path transform="translate(140,506)" d="M0,0L-6,0"></path>
   </g>
-  <g aria-label="y-axis tick label" text-anchor="end" transform="translate(-8.5,9.5)">
+  <g aria-label="y-axis tick label" text-anchor="end" transform="translate(-9,9)">
     <text y="0.32em" transform="translate(140,26)">Observable Plot</text>
     <text y="0.32em" transform="translate(140,46)">Marks</text>
     <text y="0.32em" transform="translate(140,66)">Scales</text>
@@ -67,7 +67,7 @@
     <text y="0.32em" transform="translate(140,486)">Interval Transform</text>
     <text y="0.32em" transform="translate(140,506)">Legends</text>
   </g>
-  <g aria-label="x-grid" aria-hidden="true" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+  <g aria-label="x-grid" aria-hidden="true" stroke="currentColor" stroke-opacity="0.1">
     <line x1="140" x2="140" y1="20" y2="530"></line>
     <line x1="198.537" x2="198.537" y1="20" y2="530"></line>
     <line x1="257.073" x2="257.073" y1="20" y2="530"></line>
@@ -78,7 +78,7 @@
     <line x1="549.756" x2="549.756" y1="20" y2="530"></line>
     <line x1="608.293" x2="608.293" y1="20" y2="530"></line>
   </g>
-  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor">
     <path transform="translate(140,530)" d="M0,0L0,6"></path>
     <path transform="translate(198.537,530)" d="M0,0L0,6"></path>
     <path transform="translate(257.073,530)" d="M0,0L0,6"></path>
@@ -89,7 +89,7 @@
     <path transform="translate(549.756,530)" d="M0,0L0,6"></path>
     <path transform="translate(608.293,530)" d="M0,0L0,6"></path>
   </g>
-  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0,9)">
     <text y="0.71em" transform="translate(140,530)">0</text>
     <text y="0.71em" transform="translate(198.537,530)">5</text>
     <text y="0.71em" transform="translate(257.073,530)">10</text>
@@ -100,7 +100,7 @@
     <text y="0.71em" transform="translate(549.756,530)">35</text>
     <text y="0.71em" transform="translate(608.293,530)">40</text>
   </g>
-  <g aria-label="x-axis label" text-anchor="end" transform="translate(17.5,27.5)">
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(17,27)">
     <text transform="translate(620,530)">likes →</text>
   </g>
   <g aria-label="bar"><a fill="inherit" href="https://observablehq.com/@observablehq/plot" target="_blank">
@@ -154,7 +154,7 @@
     </a><a fill="inherit" href="https://observablehq.com/@observablehq/plot-legends" target="_blank">
       <rect x="140" width="210.732" y="506" height="18"></rect>
     </a></g>
-  <g aria-label="text" fill="white" text-anchor="end" transform="translate(-2.5,9.5)">
+  <g aria-label="text" fill="white" text-anchor="end" transform="translate(-3,9)">
     <text y="0.32em" transform="translate(620,26)">⚡︎ 296</text>
     <text y="0.32em" transform="translate(327.317,46)"> 16</text>
     <text y="0.32em" transform="translate(350.732,66)"> 18</text>
@@ -181,7 +181,7 @@
     <text y="0.32em" transform="translate(221.951,486)"> 7</text>
     <text y="0.32em" transform="translate(350.732,506)"> 18</text>
   </g>
-  <g aria-label="rule" stroke="currentColor" transform="translate(0.5,0)">
+  <g aria-label="rule" stroke="currentColor">
     <line x1="140" x2="140" y1="20" y2="530"></line>
   </g>
 </svg>

@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor">
     <path transform="translate(40,370)" d="M0,0L-6,0"></path>
     <path transform="translate(40,330.975)" d="M0,0L-6,0"></path>
     <path transform="translate(40,291.949)" d="M0,0L-6,0"></path>
@@ -24,7 +24,7 @@
     <path transform="translate(40,96.822)" d="M0,0L-6,0"></path>
     <path transform="translate(40,57.796)" d="M0,0L-6,0"></path>
   </g>
-  <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
+  <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-9,0)">
     <text y="0.32em" transform="translate(40,370)">0</text>
     <text y="0.32em" transform="translate(40,330.975)">20</text>
     <text y="0.32em" transform="translate(40,291.949)">40</text>
@@ -35,7 +35,7 @@
     <text y="0.32em" transform="translate(40,96.822)">140</text>
     <text y="0.32em" transform="translate(40,57.796)">160</text>
   </g>
-  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor">
     <path transform="translate(90.877,370)" d="M0,0L0,6"></path>
     <path transform="translate(162.105,370)" d="M0,0L0,6"></path>
     <path transform="translate(233.333,370)" d="M0,0L0,6"></path>
@@ -45,7 +45,7 @@
     <path transform="translate(518.246,370)" d="M0,0L0,6"></path>
     <path transform="translate(589.474,370)" d="M0,0L0,6"></path>
   </g>
-  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0,9)">
     <text transform="translate(90.877,370)"><tspan x="0" y="0.71em">7</tspan><tspan x="0" dy="1em">Jan</tspan></text>
     <text y="0.71em" transform="translate(162.105,370)">14</text>
     <text y="0.71em" transform="translate(233.333,370)">21</text>

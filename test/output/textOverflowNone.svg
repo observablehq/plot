@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor">
     <path transform="translate(95,1070)" d="M0,0L0,6"></path>
     <path transform="translate(165.2,1070)" d="M0,0L0,6"></path>
     <path transform="translate(235.4,1070)" d="M0,0L0,6"></path>
@@ -21,7 +21,7 @@
     <path transform="translate(375.8,1070)" d="M0,0L0,6"></path>
     <path transform="translate(446,1070)" d="M0,0L0,6"></path>
   </g>
-  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0,9)">
     <text y="0.71em" transform="translate(95,1070)">0</text>
     <text y="0.71em" transform="translate(165.2,1070)">20</text>
     <text y="0.71em" transform="translate(235.4,1070)">40</text>
@@ -29,10 +29,10 @@
     <text y="0.71em" transform="translate(375.8,1070)">80</text>
     <text y="0.71em" transform="translate(446,1070)">100</text>
   </g>
-  <g aria-label="x-axis label" text-anchor="end" transform="translate(51.5,27.5)">
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(51,27)">
     <text transform="translate(446,1070)">opinion (%) →</text>
   </g>
-  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,11)">
+  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,10.5)">
     <path transform="translate(95,29)" d="M0,0L-6,0"></path>
     <path transform="translate(95,52)" d="M0,0L-6,0"></path>
     <path transform="translate(95,75)" d="M0,0L-6,0"></path>
@@ -79,7 +79,7 @@
     <path transform="translate(95,1018)" d="M0,0L-6,0"></path>
     <path transform="translate(95,1041)" d="M0,0L-6,0"></path>
   </g>
-  <g aria-label="y-axis tick label" text-anchor="end" transform="translate(-8.5,11)">
+  <g aria-label="y-axis tick label" text-anchor="end" transform="translate(-9,10.5)">
     <text transform="translate(95,29)"><tspan x="0" y="-0.18em">George</tspan><tspan x="0" dy="1em">Washington</tspan></text>
     <text y="0.32em" transform="translate(95,52)">John Adams</text>
     <text transform="translate(95,75)"><tspan x="0" y="-0.18em">Thomas</tspan><tspan x="0" dy="1em">Jefferson</tspan></text>
@@ -126,10 +126,10 @@
     <text transform="translate(95,1018)"><tspan x="0" y="-0.18em">Donald</tspan><tspan x="0" dy="1em">Trump</tspan></text>
     <text y="0.32em" transform="translate(95,1041)">Joe Biden</text>
   </g>
-  <g aria-label="y-axis label" transform="translate(-91.5,0.5)">
+  <g aria-label="y-axis label" transform="translate(-92,0)">
     <text y="0.71em" transform="translate(95,545) rotate(-90)">President</text>
   </g>
-  <g aria-label="y-axis tick label" text-anchor="start" transform="translate(9.5,11)">
+  <g aria-label="y-axis tick label" text-anchor="start" transform="translate(9,10.5)">
     <text y="0.32em" transform="translate(446,29)">1789</text>
     <text y="0.32em" transform="translate(446,52)">1797</text>
     <text y="0.32em" transform="translate(446,75)">1801</text>
@@ -176,7 +176,7 @@
     <text y="0.32em" transform="translate(446,1018)">2017</text>
     <text y="0.32em" transform="translate(446,1041)">2021</text>
   </g>
-  <g aria-label="y-axis label" transform="translate(51.5,0.5)">
+  <g aria-label="y-axis label" transform="translate(51,0)">
     <text transform="translate(446,545) rotate(-90)">First inauguration date</text>
   </g>
   <g aria-label="bar">
@@ -451,7 +451,7 @@
     <rect x="279.364" width="74.455" y="1041" height="21" fill="#91bfdb"><title>Somewhat Favorable 21%</title></rect>
     <rect x="353.818" width="92.182" y="1041" height="21" fill="#4575b4"><title>Very Favorable 26%</title></rect>
   </g>
-  <g aria-label="tick" stroke="white" transform="translate(0.5,0)">
+  <g aria-label="tick" stroke="white">
     <line x1="270.5" x2="270.5" y1="20" y2="1070"></line>
   </g>
 </svg>

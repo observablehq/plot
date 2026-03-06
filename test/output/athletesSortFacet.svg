@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="fy-axis tick label" transform="translate(-8.5,0.5)">
+  <g aria-label="fy-axis tick label" transform="translate(-9,0)">
     <g text-anchor="end" transform="translate(0,6)">
       <text y="0.32em" transform="translate(100,29)">boxing</text>
     </g>
@@ -99,10 +99,10 @@
       <text y="0.32em" transform="translate(100,29)">gymnastics</text>
     </g>
   </g>
-  <g aria-label="fy-axis label" transform="translate(-96.5,0.5)">
+  <g aria-label="fy-axis label" transform="translate(-97,0)">
     <text y="0.71em" transform="translate(100,305) rotate(-90)">sport</text>
   </g>
-  <g aria-label="x-axis tick" aria-hidden="true" transform="translate(0.5,0)">
+  <g aria-label="x-axis tick" aria-hidden="true">
     <g fill="none" stroke="currentColor" transform="translate(0,546)">
       <path transform="translate(100,38)" d="M0,0L0,6"></path>
       <path transform="translate(180.229,38)" d="M0,0L0,6"></path>
@@ -113,7 +113,7 @@
       <path transform="translate(581.371,38)" d="M0,0L0,6"></path>
     </g>
   </g>
-  <g aria-label="x-axis tick label" transform="translate(0.5,9.5)">
+  <g aria-label="x-axis tick label" transform="translate(0,9)">
     <g font-variant="tabular-nums" transform="translate(0,546)">
       <text y="0.71em" transform="translate(100,38)">0.0</text>
       <text y="0.71em" transform="translate(180.229,38)">0.1</text>
@@ -210,5 +210,5 @@
       <rect x="100" width="520" y="20" height="18"></rect>
     </g>
   </g>
-  <line aria-label="frame" stroke="currentColor" stroke-linecap="square" transform="translate(0.5,0.5)" x1="100" x2="100" y1="26" y2="584"></line>
+  <line aria-label="frame" stroke="currentColor" stroke-linecap="square" x1="100" x2="100" y1="26" y2="584"></line>
 </svg>

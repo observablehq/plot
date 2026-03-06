@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="fx-axis tick label" transform="translate(0.5,-8.5)">
+  <g aria-label="fx-axis tick label" transform="translate(0,-9)">
     <g transform="translate(0,0)">
       <text transform="translate(130,30)">Biscoe</text>
     </g>
@@ -24,10 +24,10 @@
       <text transform="translate(130,30)">Torgersen</text>
     </g>
   </g>
-  <g aria-label="fx-axis label" transform="translate(0.5,-26.5)">
+  <g aria-label="fx-axis label" transform="translate(0,-27)">
     <text y="0.71em" transform="translate(330,30)">island</text>
   </g>
-  <g aria-label="y-axis tick" aria-hidden="true" transform="translate(0,0.5)">
+  <g aria-label="y-axis tick" aria-hidden="true">
     <g fill="none" stroke="currentColor" transform="translate(0,0)">
       <path transform="translate(40,374.436)" d="M0,0L-6,0"></path>
       <path transform="translate(40,347.527)" d="M0,0L-6,0"></path>
@@ -44,7 +44,7 @@
       <path transform="translate(40,51.527)" d="M0,0L-6,0"></path>
     </g>
   </g>
-  <g aria-label="y-axis tick label" transform="translate(-8.5,0.5)">
+  <g aria-label="y-axis tick label" transform="translate(-9,0)">
     <g text-anchor="end" font-variant="tabular-nums" transform="translate(0,0)">
       <text y="0.32em" transform="translate(40,374.436)">34</text>
       <text y="0.32em" transform="translate(40,347.527)">36</text>
@@ -61,10 +61,10 @@
       <text y="0.32em" transform="translate(40,51.527)">58</text>
     </g>
   </g>
-  <g aria-label="y-axis label" text-anchor="start" transform="translate(-36.5,-26.5)">
+  <g aria-label="y-axis label" text-anchor="start" transform="translate(-37,-27)">
     <text y="0.71em" transform="translate(40,30)">↑ culmen_length_mm</text>
   </g>
-  <g aria-label="x-axis tick" aria-hidden="true" transform="translate(0.5,0)">
+  <g aria-label="x-axis tick" aria-hidden="true">
     <g fill="none" stroke="currentColor" transform="translate(0,0)">
       <path transform="translate(105,400)" d="M0,0L0,6"></path>
       <path transform="translate(205,400)" d="M0,0L0,6"></path>
@@ -78,7 +78,7 @@
       <path transform="translate(205,400)" d="M0,0L0,6"></path>
     </g>
   </g>
-  <g aria-label="x-axis tick label" transform="translate(0.5,9.5)">
+  <g aria-label="x-axis tick label" transform="translate(0,9)">
     <g font-variant="tabular-nums" transform="translate(0,0)">
       <text y="0.71em" transform="translate(105,400)">4,000</text>
       <text y="0.71em" transform="translate(205,400)">6,000</text>
@@ -92,15 +92,15 @@
       <text y="0.71em" transform="translate(205,400)">6,000</text>
     </g>
   </g>
-  <g aria-label="x-axis label" text-anchor="end" transform="translate(17.5,27.5)">
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(17,27)">
     <text transform="translate(620,400)">body_mass_g →</text>
   </g>
-  <g aria-label="frame" transform="translate(0.5,0.5)">
+  <g aria-label="frame">
     <rect fill="none" stroke="currentColor" stroke-opacity="0.1" x="40" y="30" width="180" height="370" transform="translate(0,0)"></rect>
     <rect fill="none" stroke="currentColor" stroke-opacity="0.1" x="40" y="30" width="180" height="370" transform="translate(200,0)"></rect>
     <rect fill="none" stroke="currentColor" stroke-opacity="0.1" x="40" y="30" width="180" height="370" transform="translate(400,0)"></rect>
   </g>
-  <g aria-label="dot" transform="translate(0.5,0.5)">
+  <g aria-label="dot">
     <g fill="none" stroke-width="1.5" transform="translate(0,0)">
       <circle cx="75" cy="323.309" r="3" stroke="#4269d0"></circle>
       <circle cx="85" cy="324.655" r="3" stroke="#efb118"></circle>
@@ -450,7 +450,7 @@
       <circle cx="80" cy="252" r="3" stroke="#efb118"></circle>
     </g>
   </g>
-  <g aria-label="tip" transform="translate(0.5,0.5)">
+  <g aria-label="tip">
     <g fill="var(--plot-background)" stroke="currentColor" pointer-events="none" text-anchor="start" transform="translate(0,0)"></g>
     <g fill="var(--plot-background)" stroke="currentColor" pointer-events="none" text-anchor="start" transform="translate(200,0)"></g>
     <g fill="var(--plot-background)" stroke="currentColor" pointer-events="none" text-anchor="start" transform="translate(400,0)"></g>

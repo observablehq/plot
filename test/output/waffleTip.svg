@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor">
     <path transform="translate(40,368)" d="M0,0L-6,0"></path>
     <path transform="translate(40,325.197)" d="M0,0L-6,0"></path>
     <path transform="translate(40,282.395)" d="M0,0L-6,0"></path>
@@ -23,7 +23,7 @@
     <path transform="translate(40,111.185)" d="M0,0L-6,0"></path>
     <path transform="translate(40,68.382)" d="M0,0L-6,0"></path>
   </g>
-  <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
+  <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-9,0)">
     <text y="0.32em" transform="translate(40,368)">0</text>
     <text y="0.32em" transform="translate(40,325.197)">20</text>
     <text y="0.32em" transform="translate(40,282.395)">40</text>
@@ -55,13 +55,13 @@
     <pattern width="34.242" height="34.242" patternUnits="userSpaceOnUse" id="plot-pattern-7">
       <rect x="0.5" y="0.5" width="33.242" height="33.242" fill="rgb(246, 130, 79)"></rect>
     </pattern>
-    <path transform="translate(65.564,368)" d="M0,0L0,0L0,0L0,0L0,0L34.242,0L34.242,0L34.242,0L34.242,-34.242L0,-34.242Z" fill="url(#plot-pattern-1)"></path>
-    <path transform="translate(65.564,368)" d="M34.242,-34.242L34.242,0L34.242,0L34.242,0L171.21,0L171.21,0L171.21,0L171.21,-34.242Z" fill="url(#plot-pattern-2)"></path>
-    <path transform="translate(65.564,368)" d="M171.21,-34.242L171.21,0L171.21,0L171.21,0L479.389,0L479.389,0L479.389,0L479.389,-34.242Z" fill="url(#plot-pattern-3)"></path>
-    <path transform="translate(65.564,368)" d="M0,-34.242L479.389,-34.242L479.389,0L479.389,0L479.389,0L547.873,0L547.873,-68.484L205.452,-68.484L205.452,-68.484L205.452,-68.484L205.452,-102.726L0,-102.726Z" fill="url(#plot-pattern-4)"></path>
-    <path transform="translate(65.564,368)" d="M0,-102.726L205.452,-102.726L205.452,-68.484L205.452,-68.484L205.452,-68.484L547.873,-68.484L547.873,-171.21L136.968,-171.21L136.968,-171.21L136.968,-171.21L136.968,-205.452L0,-205.452Z" fill="url(#plot-pattern-5)"></path>
-    <path transform="translate(65.564,368)" d="M0,-205.452L136.968,-205.452L136.968,-171.21L136.968,-171.21L136.968,-171.21L547.873,-171.21L547.873,-308.178L205.452,-308.178L205.452,-308.178L205.452,-308.178L205.452,-342.42L0,-342.42Z" fill="url(#plot-pattern-6)"></path>
-    <path transform="translate(65.564,368)" d="M205.452,-342.42L205.452,-308.178L205.452,-308.178L205.452,-308.178L445.146,-308.178L445.146,-308.178L445.146,-308.178L445.146,-342.42Z" fill="url(#plot-pattern-7)"></path>
+    <path transform="translate(65.814,368)" d="M0,0L0,0L0,0L0,0L0,0L34.242,0L34.242,0L34.242,0L34.242,-34.242L0,-34.242Z" fill="url(#plot-pattern-1)"></path>
+    <path transform="translate(65.814,368)" d="M34.242,-34.242L34.242,0L34.242,0L34.242,0L171.21,0L171.21,0L171.21,0L171.21,-34.242Z" fill="url(#plot-pattern-2)"></path>
+    <path transform="translate(65.814,368)" d="M171.21,-34.242L171.21,0L171.21,0L171.21,0L479.389,0L479.389,0L479.389,0L479.389,-34.242Z" fill="url(#plot-pattern-3)"></path>
+    <path transform="translate(65.814,368)" d="M0,-34.242L479.389,-34.242L479.389,0L479.389,0L479.389,0L547.873,0L547.873,-68.484L205.452,-68.484L205.452,-68.484L205.452,-68.484L205.452,-102.726L0,-102.726Z" fill="url(#plot-pattern-4)"></path>
+    <path transform="translate(65.814,368)" d="M0,-102.726L205.452,-102.726L205.452,-68.484L205.452,-68.484L205.452,-68.484L547.873,-68.484L547.873,-171.21L136.968,-171.21L136.968,-171.21L136.968,-171.21L136.968,-205.452L0,-205.452Z" fill="url(#plot-pattern-5)"></path>
+    <path transform="translate(65.814,368)" d="M0,-205.452L136.968,-205.452L136.968,-171.21L136.968,-171.21L136.968,-171.21L547.873,-171.21L547.873,-308.178L205.452,-308.178L205.452,-308.178L205.452,-308.178L205.452,-342.42L0,-342.42Z" fill="url(#plot-pattern-6)"></path>
+    <path transform="translate(65.814,368)" d="M205.452,-342.42L205.452,-308.178L205.452,-308.178L205.452,-308.178L445.146,-308.178L445.146,-308.178L445.146,-308.178L445.146,-342.42Z" fill="url(#plot-pattern-7)"></path>
   </g>
-  <g aria-label="tip" fill="var(--plot-background)" stroke="currentColor" pointer-events="none" text-anchor="start" transform="translate(0.5,0.5)"></g>
+  <g aria-label="tip" fill="var(--plot-background)" stroke="currentColor" pointer-events="none" text-anchor="start"></g>
 </svg>

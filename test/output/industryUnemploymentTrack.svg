@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="fy-axis tick label" transform="translate(-8.5,0.5)">
+  <g aria-label="fy-axis tick label" transform="translate(-9,0)">
     <g text-anchor="end" transform="translate(0,6)">
       <text y="0.32em" transform="translate(140,29)">Construction</text>
     </g>
@@ -57,10 +57,10 @@
       <text y="0.32em" transform="translate(140,29)">Mining and Extraction</text>
     </g>
   </g>
-  <g aria-label="fy-axis label" transform="translate(-136.5,0.5)">
+  <g aria-label="fy-axis label" transform="translate(-137,0)">
     <text y="0.71em" transform="translate(140,165) rotate(-90)">industry</text>
   </g>
-  <g aria-label="x-axis tick" aria-hidden="true" transform="translate(0.5,0)">
+  <g aria-label="x-axis tick" aria-hidden="true">
     <g fill="none" stroke="currentColor" transform="translate(0,266)">
       <path transform="translate(140,38)" d="M0,0L0,6"></path>
       <path transform="translate(234.526,38)" d="M0,0L0,6"></path>
@@ -70,7 +70,7 @@
       <path transform="translate(612.371,38)" d="M0,0L0,6"></path>
     </g>
   </g>
-  <g aria-label="x-axis tick label" transform="translate(0.5,9.5)">
+  <g aria-label="x-axis tick label" transform="translate(0,9)">
     <g font-variant="tabular-nums" transform="translate(0,266)">
       <text y="0.71em" transform="translate(140,38)">2000</text>
       <text y="0.71em" transform="translate(234.526,38)">2002</text>
@@ -1818,7 +1818,7 @@
       <rect x="616.379" width="3.621" y="20" height="18" fill="#f5eb27"><title>79</title></rect>
     </g>
   </g>
-  <g aria-label="dot" transform="translate(0.5,0.5)">
+  <g aria-label="dot">
     <g fill="black" stroke="#fff" stroke-width="1.5" transform="translate(0,6)">
       <circle cx="616.379" cy="29" r="3"><title>2,440</title></circle>
     </g>
@@ -1862,7 +1862,7 @@
       <circle cx="576.81" cy="29" r="3"><title>125</title></circle>
     </g>
   </g>
-  <g aria-label="dot" transform="translate(0.5,0.5)">
+  <g aria-label="dot">
     <g fill="#333" transform="translate(0,6)">
       <circle cx="163.534" cy="29" r="3"><title>384</title></circle>
     </g>

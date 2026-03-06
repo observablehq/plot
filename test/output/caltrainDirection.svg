@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="fy-axis tick label" transform="translate(-8.5,0.5)">
+  <g aria-label="fy-axis tick label" transform="translate(-9,0)">
     <g text-anchor="end" transform="translate(0,0)">
       <text y="0.32em" transform="translate(40,31)">B</text>
     </g>
@@ -24,7 +24,7 @@
       <text y="0.32em" transform="translate(40,31)">N</text>
     </g>
   </g>
-  <g aria-label="x-axis tick" aria-hidden="true" transform="translate(0.5,0)">
+  <g aria-label="x-axis tick" aria-hidden="true">
     <g fill="none" stroke="currentColor" transform="translate(0,48)">
       <path transform="translate(68.612,42)" d="M0,0L0,6"></path>
       <path transform="translate(155.903,42)" d="M0,0L0,6"></path>
@@ -35,7 +35,7 @@
       <path transform="translate(592.358,42)" d="M0,0L0,6"></path>
     </g>
   </g>
-  <g aria-label="x-axis tick label" transform="translate(0.5,9.5)">
+  <g aria-label="x-axis tick label" transform="translate(0,9)">
     <g font-variant="tabular-nums" transform="translate(0,48)">
       <text y="0.71em" transform="translate(68.612,42)">06 AM</text>
       <text y="0.71em" transform="translate(155.903,42)">09 AM</text>
@@ -46,7 +46,7 @@
       <text y="0.71em" transform="translate(592.358,42)">12 AM</text>
     </g>
   </g>
-  <g aria-label="vector" transform="translate(0.5,0.5)">
+  <g aria-label="vector">
     <g fill="none" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" transform="translate(0,0)">
       <path transform="translate(71.037,31) rotate(0) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="brown"></path>
       <path transform="translate(100.134,31) rotate(0) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="brown"></path>

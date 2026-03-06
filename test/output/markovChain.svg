@@ -13,36 +13,36 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="dot" fill="none" stroke="currentColor" stroke-width="1.5" transform="translate(0.5,0.5)">
-    <circle cx="60" cy="104.64" r="40"></circle>
-    <circle cx="339" cy="104.64" r="40"></circle>
-    <circle cx="199.5" cy="346.261" r="40"></circle>
+  <g aria-label="dot" fill="none" stroke="currentColor" stroke-width="1.5">
+    <circle cx="60.5" cy="105.14" r="40"></circle>
+    <circle cx="339.5" cy="105.14" r="40"></circle>
+    <circle cx="200" cy="346.761" r="40"></circle>
   </g>
-  <g aria-label="arrow" fill="none" stroke="currentColor" stroke-linecap="round" stroke-miterlimit="1" transform="translate(0.5,0.5)">
+  <g aria-label="arrow" fill="none" stroke="currentColor" stroke-linecap="round" stroke-miterlimit="1">
     <path stroke-opacity="0.3"></path>
-    <path d="M112.256,87.486A364.531,364.531 0,0,1 286.744,87.486M282.897,83.791L286.744,87.486L281.621,88.969" stroke-opacity="0.2"></path>
-    <path d="M100.984,141.318A364.531,364.531 0,0,1 188.228,292.429M189.504,287.25L188.228,292.429L184.381,288.734" stroke-opacity="0.5"></path>
-    <path d="M286.744,121.794A364.531,364.531 0,0,1 112.256,121.794M116.103,125.489L112.256,121.794L117.379,120.311" stroke-opacity="0.1"></path>
+    <path d="M112.756,87.986A364.531,364.531 0,0,1 287.244,87.986M283.397,84.291L287.244,87.986L282.121,89.469" stroke-opacity="0.2"></path>
+    <path d="M101.484,141.818A364.531,364.531 0,0,1 188.728,292.929M190.004,287.75L188.728,292.929L184.881,289.234" stroke-opacity="0.5"></path>
+    <path d="M287.244,122.294A364.531,364.531 0,0,1 112.756,122.294M116.603,125.989L112.756,122.294L117.879,120.811" stroke-opacity="0.1"></path>
     <path stroke-opacity="0.7"></path>
-    <path d="M327.728,158.473A364.531,364.531 0,0,1 240.484,309.583M245.607,308.099L240.484,309.583L241.761,304.405" stroke-opacity="0.2"></path>
-    <path d="M158.516,309.583A364.531,364.531 0,0,1 71.272,158.473M69.996,163.651L71.272,158.473L75.119,162.167" stroke-opacity="0.1"></path>
-    <path d="M210.772,292.429A364.531,364.531 0,0,1 298.016,141.318M292.893,142.802L298.016,141.318L296.739,146.497" stroke-opacity="0.1"></path>
+    <path d="M328.228,158.973A364.531,364.531 0,0,1 240.984,310.083M246.107,308.599L240.984,310.083L242.261,304.905" stroke-opacity="0.2"></path>
+    <path d="M159.016,310.083A364.531,364.531 0,0,1 71.772,158.973M70.496,164.151L71.772,158.973L75.619,162.667" stroke-opacity="0.1"></path>
+    <path d="M211.272,292.929A364.531,364.531 0,0,1 298.516,141.818M293.393,143.302L298.516,141.818L297.239,146.997" stroke-opacity="0.1"></path>
     <path stroke-opacity="0.8"></path>
   </g>
-  <g aria-label="text" transform="translate(0.5,55.5)">
-    <text y="0.32em" transform="translate(60,104.64)">A</text>
-    <text y="0.32em" transform="translate(339,104.64)">B</text>
-    <text y="0.32em" transform="translate(199.5,346.261)">C</text>
+  <g aria-label="text" transform="translate(0,55)">
+    <text y="0.32em" transform="translate(60.5,105.14)">A</text>
+    <text y="0.32em" transform="translate(339.5,105.14)">B</text>
+    <text y="0.32em" transform="translate(200,346.761)">C</text>
   </g>
-  <g aria-label="text" font-variant="tabular-nums" transform="translate(0.5,0.5)">
-    <text y="0.32em" transform="translate(60,104.64)">0.3</text>
-    <text y="0.32em" transform="translate(199.5,60)">0.2</text>
-    <text y="0.32em" transform="translate(168.409,203.131)">0.5</text>
-    <text y="0.32em" transform="translate(199.5,149.28)">0.1</text>
-    <text y="0.32em" transform="translate(339,104.64)">0.7</text>
-    <text y="0.32em" transform="translate(307.909,247.771)">0.2</text>
-    <text y="0.32em" transform="translate(91.091,247.771)">0.1</text>
-    <text y="0.32em" transform="translate(230.591,203.131)">0.1</text>
-    <text y="0.32em" transform="translate(199.5,346.261)">0.8</text>
+  <g aria-label="text" font-variant="tabular-nums">
+    <text y="0.32em" transform="translate(60.5,105.14)">0.3</text>
+    <text y="0.32em" transform="translate(200,60.5)">0.2</text>
+    <text y="0.32em" transform="translate(168.909,203.631)">0.5</text>
+    <text y="0.32em" transform="translate(200,149.78)">0.1</text>
+    <text y="0.32em" transform="translate(339.5,105.14)">0.7</text>
+    <text y="0.32em" transform="translate(308.409,248.271)">0.2</text>
+    <text y="0.32em" transform="translate(91.591,248.271)">0.1</text>
+    <text y="0.32em" transform="translate(231.091,203.631)">0.1</text>
+    <text y="0.32em" transform="translate(200,346.761)">0.8</text>
   </g>
 </svg>

@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor">
     <path transform="translate(40,370)" d="M0,0L-6,0"></path>
     <path transform="translate(40,342.445)" d="M0,0L-6,0"></path>
     <path transform="translate(40,314.891)" d="M0,0L-6,0"></path>
@@ -28,7 +28,7 @@
     <path transform="translate(40,66.898)" d="M0,0L-6,0"></path>
     <path transform="translate(40,39.343)" d="M0,0L-6,0"></path>
   </g>
-  <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
+  <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-9,0)">
     <text y="0.32em" transform="translate(40,370)">0.00</text>
     <text y="0.32em" transform="translate(40,342.445)">0.01</text>
     <text y="0.32em" transform="translate(40,314.891)">0.02</text>
@@ -43,10 +43,10 @@
     <text y="0.32em" transform="translate(40,66.898)">0.11</text>
     <text y="0.32em" transform="translate(40,39.343)">0.12</text>
   </g>
-  <g aria-label="y-axis label" text-anchor="start" transform="translate(-36.5,-16.5)">
+  <g aria-label="y-axis label" text-anchor="start" transform="translate(-37,-17)">
     <text y="0.71em" transform="translate(40,20)">↑ frequency</text>
   </g>
-  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(10.5,0)">
+  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(10,0)">
     <path transform="translate(45,370)" d="M0,0L0,6"></path>
     <path transform="translate(67,370)" d="M0,0L0,6"></path>
     <path transform="translate(89,370)" d="M0,0L0,6"></path>
@@ -74,7 +74,7 @@
     <path transform="translate(573,370)" d="M0,0L0,6"></path>
     <path transform="translate(595,370)" d="M0,0L0,6"></path>
   </g>
-  <g aria-label="x-axis tick label" transform="translate(10.5,9.5)">
+  <g aria-label="x-axis tick label" transform="translate(10,9)">
     <text y="0.71em" transform="translate(45,370)">A</text>
     <text y="0.71em" transform="translate(67,370)">B</text>
     <text y="0.71em" transform="translate(89,370)">C</text>
@@ -102,7 +102,7 @@
     <text y="0.71em" transform="translate(573,370)">Y</text>
     <text y="0.71em" transform="translate(595,370)">Z</text>
   </g>
-  <g aria-label="x-axis label" transform="translate(0.5,27.5)">
+  <g aria-label="x-axis label" transform="translate(0,27)">
     <text transform="translate(330,370)">letter</text>
   </g>
   <g aria-label="rect">

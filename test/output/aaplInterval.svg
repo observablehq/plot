@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor">
     <path transform="translate(40,361.227)" d="M0,0L-6,0"></path>
     <path transform="translate(40,321.986)" d="M0,0L-6,0"></path>
     <path transform="translate(40,282.745)" d="M0,0L-6,0"></path>
@@ -24,7 +24,7 @@
     <path transform="translate(40,86.541)" d="M0,0L-6,0"></path>
     <path transform="translate(40,47.3)" d="M0,0L-6,0"></path>
   </g>
-  <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
+  <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-9,0)">
     <text y="0.32em" transform="translate(40,361.227)">56</text>
     <text y="0.32em" transform="translate(40,321.986)">58</text>
     <text y="0.32em" transform="translate(40,282.745)">60</text>
@@ -35,13 +35,13 @@
     <text y="0.32em" transform="translate(40,86.541)">70</text>
     <text y="0.32em" transform="translate(40,47.3)">72</text>
   </g>
-  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor">
     <path transform="translate(133.304,370)" d="M0,0L0,6"></path>
     <path transform="translate(284.609,370)" d="M0,0L0,6"></path>
     <path transform="translate(440.957,370)" d="M0,0L0,6"></path>
     <path transform="translate(597.304,370)" d="M0,0L0,6"></path>
   </g>
-  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0,9)">
     <text transform="translate(133.304,370)"><tspan x="0" y="0.71em">Jun</tspan><tspan x="0" dy="1em">2013</tspan></text>
     <text y="0.71em" transform="translate(284.609,370)">Jul</text>
     <text y="0.71em" transform="translate(440.957,370)">Aug</text>

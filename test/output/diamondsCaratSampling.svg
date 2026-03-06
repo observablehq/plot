@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor">
     <path transform="translate(44,338.325)" d="M0,0L-6,0"></path>
     <path transform="translate(44,300.481)" d="M0,0L-6,0"></path>
     <path transform="translate(44,262.637)" d="M0,0L-6,0"></path>
@@ -24,7 +24,7 @@
     <path transform="translate(44,73.417)" d="M0,0L-6,0"></path>
     <path transform="translate(44,35.573)" d="M0,0L-6,0"></path>
   </g>
-  <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
+  <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-9,0)">
     <text y="0.32em" transform="translate(44,338.325)">2,000</text>
     <text y="0.32em" transform="translate(44,300.481)">4,000</text>
     <text y="0.32em" transform="translate(44,262.637)">6,000</text>
@@ -35,10 +35,10 @@
     <text y="0.32em" transform="translate(44,73.417)">16,000</text>
     <text y="0.32em" transform="translate(44,35.573)">18,000</text>
   </g>
-  <g aria-label="y-axis label" text-anchor="start" transform="translate(-40.5,-16.5)">
+  <g aria-label="y-axis label" text-anchor="start" transform="translate(-41,-17)">
     <text y="0.71em" transform="translate(44,20)">↑ price</text>
   </g>
-  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor">
     <path transform="translate(79.925,370)" d="M0,0L0,6"></path>
     <path transform="translate(139.8,370)" d="M0,0L0,6"></path>
     <path transform="translate(199.676,370)" d="M0,0L0,6"></path>
@@ -50,7 +50,7 @@
     <path transform="translate(558.927,370)" d="M0,0L0,6"></path>
     <path transform="translate(618.802,370)" d="M0,0L0,6"></path>
   </g>
-  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0,9)">
     <text y="0.71em" transform="translate(79.925,370)">0.5</text>
     <text y="0.71em" transform="translate(139.8,370)">1.0</text>
     <text y="0.71em" transform="translate(199.676,370)">1.5</text>
@@ -62,10 +62,10 @@
     <text y="0.71em" transform="translate(558.927,370)">4.5</text>
     <text y="0.71em" transform="translate(618.802,370)">5.0</text>
   </g>
-  <g aria-label="x-axis label" text-anchor="end" transform="translate(17.5,27.5)">
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(17,27)">
     <text transform="translate(620,370)">carat →</text>
   </g>
-  <g aria-label="dot" transform="translate(0.5,0.5)">
+  <g aria-label="dot">
     <circle cx="47.593" cy="370" r="1"></circle>
     <circle cx="55.975" cy="369.413" r="1"></circle>
     <circle cx="46.395" cy="368.524" r="1"></circle>

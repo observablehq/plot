@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor">
     <path transform="translate(40,370)" d="M0,0L-6,0"></path>
     <path transform="translate(40,335.686)" d="M0,0L-6,0"></path>
     <path transform="translate(40,301.373)" d="M0,0L-6,0"></path>
@@ -26,7 +26,7 @@
     <path transform="translate(40,61.176)" d="M0,0L-6,0"></path>
     <path transform="translate(40,26.863)" d="M0,0L-6,0"></path>
   </g>
-  <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
+  <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-9,0)">
     <text y="0.32em" transform="translate(40,370)">0</text>
     <text y="0.32em" transform="translate(40,335.686)">1</text>
     <text y="0.32em" transform="translate(40,301.373)">2</text>
@@ -39,7 +39,7 @@
     <text y="0.32em" transform="translate(40,61.176)">9</text>
     <text y="0.32em" transform="translate(40,26.863)">10</text>
   </g>
-  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(43.5,0)">
+  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(43,0)">
     <path transform="translate(50,370)" d="M0,0L0,6"></path>
     <path transform="translate(145,370)" d="M0,0L0,6"></path>
     <path transform="translate(240,370)" d="M0,0L0,6"></path>
@@ -47,7 +47,7 @@
     <path transform="translate(430,370)" d="M0,0L0,6"></path>
     <path transform="translate(525,370)" d="M0,0L0,6"></path>
   </g>
-  <g aria-label="x-axis tick label" transform="translate(43.5,9.5)">
+  <g aria-label="x-axis tick label" transform="translate(43,9)">
     <text y="0.71em" transform="translate(50,370)">A</text>
     <text y="0.71em" transform="translate(145,370)">B</text>
     <text y="0.71em" transform="translate(240,370)">C</text>
@@ -159,7 +159,7 @@
     <path transform="translate(442.118,370)" d="M0,-205.882L0,-205.882L0,-195.588L20.588,-195.588L20.588,-185.294L61.765,-185.294L61.765,-308.824L20.588,-308.824L20.588,-319.118L0,-319.118Z" fill="url(#plot-pattern-23)"></path>
     <path transform="translate(537.118,370)" d="M0,-226.471L41.176,-226.471L41.176,-226.471L61.765,-226.471L61.765,-329.412L61.765,-329.412L61.765,-350L41.176,-350L41.176,-350L0,-350Z" fill="url(#plot-pattern-24)"></path>
   </g>
-  <g aria-label="rule" stroke="currentColor" transform="translate(0,0.5)">
+  <g aria-label="rule" stroke="currentColor">
     <line x1="40" x2="620" y1="370" y2="370"></line>
   </g>
 </svg>

@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor">
     <path transform="translate(40,370)" d="M0,0L-6,0"></path>
     <path transform="translate(40,340.377)" d="M0,0L-6,0"></path>
     <path transform="translate(40,310.753)" d="M0,0L-6,0"></path>
@@ -27,7 +27,7 @@
     <path transform="translate(40,73.766)" d="M0,0L-6,0"></path>
     <path transform="translate(40,44.143)" d="M0,0L-6,0"></path>
   </g>
-  <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
+  <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-9,0)">
     <text y="0.32em" transform="translate(40,370)">0</text>
     <text y="0.32em" transform="translate(40,340.377)">200</text>
     <text y="0.32em" transform="translate(40,310.753)">400</text>
@@ -41,10 +41,10 @@
     <text y="0.32em" transform="translate(40,73.766)">2,000</text>
     <text y="0.32em" transform="translate(40,44.143)">2,200</text>
   </g>
-  <g aria-label="y-axis label" text-anchor="start" transform="translate(-36.5,-16.5)">
+  <g aria-label="y-axis label" text-anchor="start" transform="translate(-37,-17)">
     <text y="0.71em" transform="translate(40,20)">↑ Frequency</text>
   </g>
-  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(9.5,0)">
+  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(9,0)">
     <path transform="translate(51,370)" d="M0,0L0,6"></path>
     <path transform="translate(71,370)" d="M0,0L0,6"></path>
     <path transform="translate(91,370)" d="M0,0L0,6"></path>
@@ -74,7 +74,7 @@
     <path transform="translate(571,370)" d="M0,0L0,6"></path>
     <path transform="translate(591,370)" d="M0,0L0,6"></path>
   </g>
-  <g aria-label="x-axis tick label" text-anchor="end" transform="translate(9.5,9.5)">
+  <g aria-label="x-axis tick label" text-anchor="end" transform="translate(9,9)">
     <text y="0.32em" transform="translate(51,370) rotate(-90)">aquatics</text>
     <text y="0.32em" transform="translate(71,370) rotate(-90)">archery</text>
     <text y="0.32em" transform="translate(91,370) rotate(-90)">athletics</text>
@@ -218,7 +218,7 @@
     <path transform="translate(513.335,370)" d="M0,0L0,0L0,0L0,0L0,0L13.331,0L13.331,-26.661L8.887,-26.661L8.887,-29.327L4.444,-29.327L4.444,-31.105L0,-31.105Z" fill="url(#plot-pattern-27)"></path>
     <path transform="translate(293.335,370)" d="M0,0L0,0L0,0L0,0L0,0L13.331,0L13.331,-44.435L13.331,-44.435L13.331,-46.212L8.887,-46.212L8.887,-48.879L0,-48.879Z" fill="url(#plot-pattern-28)"></path>
   </g>
-  <g aria-label="rule" stroke="currentColor" transform="translate(0,0.5)">
+  <g aria-label="rule" stroke="currentColor">
     <line x1="40" x2="620" y1="370" y2="370"></line>
   </g>
 </svg>

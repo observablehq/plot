@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="link" fill="none" stroke-width="1.5" stroke-opacity="0.5" stroke-miterlimit="1" transform="translate(0.5,0.5)">
+  <g aria-label="link" fill="none" stroke-width="1.5" stroke-opacity="0.5" stroke-miterlimit="1">
     <path d="M40,72.833C108.333,72.833,108.333,14.333,176.667,14.333" stroke="#636363"></path>
     <path d="M40,72.833C108.333,72.833,108.333,36,176.667,36" stroke="#636363"></path>
     <path d="M40,72.833C108.333,72.833,108.333,53.333,176.667,53.333" stroke="#636363"></path>
@@ -33,7 +33,7 @@
     <path d="M313.333,122.667C381.667,122.667,381.667,122.667,450,122.667" stroke="#bdbdbd"></path>
     <path d="M313.333,140C381.667,140,381.667,140,450,140" stroke="#bdbdbd"></path>
   </g>
-  <g aria-label="dot" transform="translate(0.5,0.5)">
+  <g aria-label="dot">
     <circle cx="40" cy="72.833" r="3" fill="#636363"><title>/foo</title></circle>
     <circle cx="176.667" cy="14.333" r="3" fill="#636363"><title>/foo/a</title></circle>
     <circle cx="176.667" cy="36" r="3" fill="#636363"><title>/foo/b</title></circle>
@@ -54,7 +54,7 @@
     <circle cx="450" cy="122.667" r="3" fill="#bdbdbd"><title>/foo/d\\/d/\/\/example2</title></circle>
     <circle cx="450" cy="140" r="3" fill="#bdbdbd"><title>/foo/d\\/\d/\/\/example2</title></circle>
   </g>
-  <g aria-label="text" stroke="var(--plot-background)" stroke-width="3" stroke-linejoin="round" paint-order="stroke" text-anchor="start" transform="translate(6.5,0.5)">
+  <g aria-label="text" stroke="var(--plot-background)" stroke-width="3" stroke-linejoin="round" paint-order="stroke" text-anchor="start" transform="translate(6,0)">
     <text y="0.32em" transform="translate(313.333,10)">//example<title>/foo/a/\/\/example</title></text>
     <text y="0.32em" transform="translate(313.333,18.667)">//example/1<title>/foo/a/\/\/example\/1</title></text>
     <text y="0.32em" transform="translate(313.333,36)">//example/2<title>/foo/b/\/\/example\/2</title></text>
@@ -65,7 +65,7 @@
     <text y="0.32em" transform="translate(450,122.667)">//example2<title>/foo/d\\/d/\/\/example2</title></text>
     <text y="0.32em" transform="translate(450,140)">//example2<title>/foo/d\\/\d/\/\/example2</title></text>
   </g>
-  <g aria-label="text" stroke="var(--plot-background)" stroke-width="3" stroke-linejoin="round" paint-order="stroke" text-anchor="end" transform="translate(-5.5,0.5)">
+  <g aria-label="text" stroke="var(--plot-background)" stroke-width="3" stroke-linejoin="round" paint-order="stroke" text-anchor="end" transform="translate(-6,0)">
     <text y="0.32em" transform="translate(40,72.833)">foo<title>/foo</title></text>
     <text y="0.32em" transform="translate(176.667,14.333)">a<title>/foo/a</title></text>
     <text y="0.32em" transform="translate(176.667,36)">b<title>/foo/b</title></text>

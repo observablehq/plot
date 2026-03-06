@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor">
     <path transform="translate(40,370)" d="M0,0L-6,0"></path>
     <path transform="translate(40,301.721)" d="M0,0L-6,0"></path>
     <path transform="translate(40,233.441)" d="M0,0L-6,0"></path>
@@ -21,7 +21,7 @@
     <path transform="translate(40,96.883)" d="M0,0L-6,0"></path>
     <path transform="translate(40,28.603)" d="M0,0L-6,0"></path>
   </g>
-  <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
+  <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-9,0)">
     <text y="0.32em" transform="translate(40,370)">0.0</text>
     <text y="0.32em" transform="translate(40,301.721)">0.5</text>
     <text y="0.32em" transform="translate(40,233.441)">1.0</text>
@@ -29,10 +29,10 @@
     <text y="0.32em" transform="translate(40,96.883)">2.0</text>
     <text y="0.32em" transform="translate(40,28.603)">2.5</text>
   </g>
-  <g aria-label="y-axis label" text-anchor="start" transform="translate(-36.5,-16.5)">
+  <g aria-label="y-axis label" text-anchor="start" transform="translate(-37,-17)">
     <text y="0.71em" transform="translate(40,20)">↑ probability (%)</text>
   </g>
-  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor">
     <path transform="translate(40,370)" d="M0,0L0,6"></path>
     <path transform="translate(147.807,370)" d="M0,0L0,6"></path>
     <path transform="translate(255.613,370)" d="M0,0L0,6"></path>
@@ -40,7 +40,7 @@
     <path transform="translate(471.227,370)" d="M0,0L0,6"></path>
     <path transform="translate(579.033,370)" d="M0,0L0,6"></path>
   </g>
-  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0,9)">
     <text y="0.71em" transform="translate(40,370)">0</text>
     <text y="0.71em" transform="translate(147.807,370)">100</text>
     <text y="0.71em" transform="translate(255.613,370)">200</text>
@@ -48,10 +48,10 @@
     <text y="0.71em" transform="translate(471.227,370)">400</text>
     <text y="0.71em" transform="translate(579.033,370)">500</text>
   </g>
-  <g aria-label="x-axis label" text-anchor="end" transform="translate(17.5,27.5)">
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(17,27)">
     <text transform="translate(620,370)">Electoral votes for Hillary Clinton →</text>
   </g>
-  <g aria-label="rule" stroke-width="1.5" shape-rendering="crispEdges" transform="translate(0.5,0)">
+  <g aria-label="rule" stroke-width="1.5" shape-rendering="crispEdges">
     <line x1="40" x2="40" y1="370" y2="370" stroke="#fc8d59"></line>
     <line x1="41.078" x2="41.078" y1="370" y2="370" stroke="#fc8d59"></line>
     <line x1="42.156" x2="42.156" y1="370" y2="370" stroke="#fc8d59"></line>
@@ -592,10 +592,10 @@
     <line x1="618.922" x2="618.922" y1="370" y2="369.863" stroke="#91bfdb"></line>
     <line x1="620" x2="620" y1="370" y2="370" stroke="#91bfdb"></line>
   </g>
-  <g aria-label="rule" stroke="currentColor" transform="translate(0,0.5)">
+  <g aria-label="rule" stroke="currentColor">
     <line x1="40" x2="620" y1="370" y2="370"></line>
   </g>
-  <g aria-label="rule" stroke="currentColor" transform="translate(0.5,0)">
+  <g aria-label="rule" stroke="currentColor">
     <line x1="331.078" x2="331.078" y1="20" y2="370"></line>
   </g>
 </svg>

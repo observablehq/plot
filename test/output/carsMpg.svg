@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="y-grid" aria-hidden="true" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
+  <g aria-label="y-grid" aria-hidden="true" stroke="currentColor" stroke-opacity="0.1">
     <line x1="40" x2="620" y1="370" y2="370"></line>
     <line x1="40" x2="620" y1="332.766" y2="332.766"></line>
     <line x1="40" x2="620" y1="295.532" y2="295.532"></line>
@@ -25,7 +25,7 @@
     <line x1="40" x2="620" y1="72.128" y2="72.128"></line>
     <line x1="40" x2="620" y1="34.894" y2="34.894"></line>
   </g>
-  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor">
     <path transform="translate(40,370)" d="M0,0L-6,0"></path>
     <path transform="translate(40,332.766)" d="M0,0L-6,0"></path>
     <path transform="translate(40,295.532)" d="M0,0L-6,0"></path>
@@ -37,7 +37,7 @@
     <path transform="translate(40,72.128)" d="M0,0L-6,0"></path>
     <path transform="translate(40,34.894)" d="M0,0L-6,0"></path>
   </g>
-  <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
+  <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-9,0)">
     <text y="0.32em" transform="translate(40,370)">0</text>
     <text y="0.32em" transform="translate(40,332.766)">5</text>
     <text y="0.32em" transform="translate(40,295.532)">10</text>
@@ -49,10 +49,10 @@
     <text y="0.32em" transform="translate(40,72.128)">40</text>
     <text y="0.32em" transform="translate(40,34.894)">45</text>
   </g>
-  <g aria-label="y-axis label" text-anchor="start" transform="translate(-36.5,-16.5)">
+  <g aria-label="y-axis label" text-anchor="start" transform="translate(-37,-17)">
     <text y="0.71em" transform="translate(40,20)">↑ economy (mpg)</text>
   </g>
-  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor">
     <path transform="translate(66,370)" d="M0,0L0,6"></path>
     <path transform="translate(110,370)" d="M0,0L0,6"></path>
     <path transform="translate(154,370)" d="M0,0L0,6"></path>
@@ -67,7 +67,7 @@
     <path transform="translate(550,370)" d="M0,0L0,6"></path>
     <path transform="translate(594,370)" d="M0,0L0,6"></path>
   </g>
-  <g aria-label="x-axis tick label" transform="translate(0.5,9.5)">
+  <g aria-label="x-axis tick label" transform="translate(0,9)">
     <text y="0.71em" transform="translate(66,370)">70</text>
     <text y="0.71em" transform="translate(110,370)">71</text>
     <text y="0.71em" transform="translate(154,370)">72</text>
@@ -82,17 +82,17 @@
     <text y="0.71em" transform="translate(550,370)">81</text>
     <text y="0.71em" transform="translate(594,370)">82</text>
   </g>
-  <g aria-label="x-axis label" transform="translate(0.5,27.5)">
+  <g aria-label="x-axis label" transform="translate(0,27)">
     <text transform="translate(330,370)">year</text>
   </g>
-  <g aria-label="line" fill="none" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" transform="translate(0.5,0.5)">
+  <g aria-label="line" fill="none" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round">
     <path stroke="rgb(144, 12, 0)" d="M66,264.917L73.333,265.764C80.667,266.612,95.333,268.306,110,268.921C124.667,269.536,139.333,269.073,154,269.356C168.667,269.64,183.333,270.671,198,269.945C212.667,269.22,227.333,266.738,242,263.676C256.667,260.615,271.333,256.974,286,256.395C300.667,255.816,315.333,258.298,330,257.884C344.667,257.47,359.333,254.161,374,248.72C388.667,243.28,403.333,235.709,418,232.445C432.667,229.181,447.333,230.223,469.333,220.853C491.333,211.482,520.667,191.699,535.333,181.807L550,171.915"></path>
     <path stroke="rgb(255, 130, 29)" d="M66,217.34L73.333,220.443C80.667,223.546,95.333,229.752,117.333,231.613C139.333,233.475,168.667,230.993,190.667,231.17C212.667,231.348,227.333,234.184,242,235.943C256.667,237.701,271.333,238.381,286,235.721C300.667,233.061,315.333,227.063,330,224.684C344.667,222.305,359.333,223.546,374,224.704C388.667,225.863,403.333,226.939,418,222.657C432.667,218.375,447.333,208.735,462,200.254C476.667,191.773,491.333,184.45,506,183.856C520.667,183.262,535.333,189.397,550,186.377C564.667,183.357,579.333,171.182,586.667,165.095L594,159.007"></path>
     <path stroke="rgb(38, 188, 225)" d="M66,181.702L73.333,179.002C80.667,176.301,95.333,170.9,110,173.205C124.667,175.51,139.333,185.521,154,191.397C168.667,197.273,183.333,199.014,198,193.588C212.667,188.162,227.333,175.571,242,172.44C256.667,169.309,271.333,175.638,286,176.921C300.667,178.203,315.333,174.439,330,169.651C344.667,164.864,359.333,159.054,374,155.567C388.667,152.08,403.333,150.915,418,147.914C432.667,144.913,447.333,140.076,462,133.826C476.667,127.577,491.333,119.914,506,118.314C520.667,116.713,535.333,121.176,550,124.329C564.667,127.482,579.333,129.326,586.667,130.248L594,131.17"></path>
     <path stroke="rgb(35, 23, 27)" d="M154,228.511L161.333,229.752C168.667,230.993,183.333,233.475,220,230.372C256.667,227.27,315.333,218.582,366.667,211.507C418,204.433,462,198.972,484,196.241L506,193.511"></path>
     <path stroke="rgb(149, 251, 81)" d="M418,218.83L425.333,212.5C432.667,206.17,447.333,193.511,462,173.528C476.667,153.546,491.333,126.241,498.667,112.589L506,98.936"></path>
   </g>
-  <g aria-label="dot" fill="none" stroke-width="1.5" transform="translate(0.5,0.5)">
+  <g aria-label="dot" fill="none" stroke-width="1.5">
     <circle cx="198" cy="273.191" r="9.95" stroke="rgb(144, 12, 0)"></circle>
     <circle cx="66" cy="258.298" r="9.487" stroke="rgb(144, 12, 0)"></circle>
     <circle cx="198" cy="258.298" r="7.348" stroke="rgb(144, 12, 0)"></circle>

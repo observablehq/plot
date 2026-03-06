@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="y-grid" aria-hidden="true" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
+  <g aria-label="y-grid" aria-hidden="true" stroke="currentColor" stroke-opacity="0.1">
     <line x1="40" x2="940" y1="594.991" y2="594.991"></line>
     <line x1="40" x2="940" y1="588.161" y2="588.161"></line>
     <line x1="40" x2="940" y1="582.137" y2="582.137"></line>
@@ -58,7 +58,7 @@
     <line x1="40" x2="940" y1="49.48" y2="49.48"></line>
     <line x1="40" x2="940" y1="34.767" y2="34.767"></line>
   </g>
-  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor">
     <path transform="translate(40,594.991)" d="M0,0L-6,0"></path>
     <path transform="translate(40,588.161)" d="M0,0L-6,0"></path>
     <path transform="translate(40,582.137)" d="M0,0L-6,0"></path>
@@ -103,7 +103,7 @@
     <path transform="translate(40,49.48)" d="M0,0L-6,0"></path>
     <path transform="translate(40,34.767)" d="M0,0L-6,0"></path>
   </g>
-  <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
+  <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-9,0)">
     <text y="0.32em" transform="translate(40,594.991)"></text>
     <text y="0.32em" transform="translate(40,588.161)"></text>
     <text y="0.32em" transform="translate(40,582.137)"></text>
@@ -148,10 +148,10 @@
     <text y="0.32em" transform="translate(40,49.48)">3M</text>
     <text y="0.32em" transform="translate(40,34.767)"></text>
   </g>
-  <g aria-label="y-axis label" text-anchor="start" transform="translate(-36.5,-16.5)">
+  <g aria-label="y-axis label" text-anchor="start" transform="translate(-37,-17)">
     <text y="0.71em" transform="translate(40,20)">↑ Total number of votes</text>
   </g>
-  <g aria-label="x-grid" aria-hidden="true" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+  <g aria-label="x-grid" aria-hidden="true" stroke="currentColor" stroke-opacity="0.1">
     <line x1="108.043" x2="108.043" y1="20" y2="610"></line>
     <line x1="202.786" x2="202.786" y1="20" y2="610"></line>
     <line x1="297.529" x2="297.529" y1="20" y2="610"></line>
@@ -162,7 +162,7 @@
     <line x1="771.244" x2="771.244" y1="20" y2="610"></line>
     <line x1="865.986" x2="865.986" y1="20" y2="610"></line>
   </g>
-  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor">
     <path transform="translate(108.043,610)" d="M0,0L0,6"></path>
     <path transform="translate(202.786,610)" d="M0,0L0,6"></path>
     <path transform="translate(297.529,610)" d="M0,0L0,6"></path>
@@ -173,7 +173,7 @@
     <path transform="translate(771.244,610)" d="M0,0L0,6"></path>
     <path transform="translate(865.986,610)" d="M0,0L0,6"></path>
   </g>
-  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0,9)">
     <text y="0.71em" transform="translate(108.043,610)">−80</text>
     <text y="0.71em" transform="translate(202.786,610)">−60</text>
     <text y="0.71em" transform="translate(297.529,610)">−40</text>
@@ -184,13 +184,13 @@
     <text y="0.71em" transform="translate(771.244,610)">+60</text>
     <text y="0.71em" transform="translate(865.986,610)">+80</text>
   </g>
-  <g aria-label="x-axis label" transform="translate(0.5,27.5)">
+  <g aria-label="x-axis label" transform="translate(0,27)">
     <text transform="translate(490,610)">← Biden · Vote margin (%) · Trump →</text>
   </g>
-  <g aria-label="rule" stroke="currentColor" transform="translate(0.5,0)">
+  <g aria-label="rule" stroke="currentColor">
     <line x1="487.015" x2="487.015" y1="20" y2="610"></line>
   </g>
-  <g aria-label="dot" stroke="currentColor" stroke-width="0.5" transform="translate(0.5,0.5)">
+  <g aria-label="dot" stroke="currentColor" stroke-width="0.5">
     <circle cx="488.871" cy="358.389" r="3" fill="rgb(242, 239, 237)"><title>ED 1, Alaska
         3,429 votes for Trump
         3,401 votes for Biden</title></circle>

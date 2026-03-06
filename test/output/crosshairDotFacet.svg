@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="fy-axis tick label" transform="translate(9.5,0.5)">
+  <g aria-label="fy-axis tick label" transform="translate(9,0)">
     <g text-anchor="start" transform="translate(0,0)">
       <text y="0.32em" transform="translate(600,86.5)">Adelie</text>
     </g>
@@ -24,10 +24,10 @@
       <text y="0.32em" transform="translate(600,86.5)">Gentoo</text>
     </g>
   </g>
-  <g aria-label="fy-axis label" transform="translate(37.5,0.5)">
+  <g aria-label="fy-axis label" transform="translate(37,0)">
     <text transform="translate(600,234.5) rotate(-90)">species</text>
   </g>
-  <g aria-label="y-axis tick" aria-hidden="true" transform="translate(0,0.5)">
+  <g aria-label="y-axis tick" aria-hidden="true">
     <g fill="none" stroke="currentColor" transform="translate(0,0)">
       <path transform="translate(40,138.75)" d="M0,0L-6,0"></path>
       <path transform="translate(40,107.083)" d="M0,0L-6,0"></path>
@@ -47,7 +47,7 @@
       <path transform="translate(40,43.75)" d="M0,0L-6,0"></path>
     </g>
   </g>
-  <g aria-label="y-axis tick label" transform="translate(-8.5,0.5)">
+  <g aria-label="y-axis tick label" transform="translate(-9,0)">
     <g text-anchor="end" font-variant="tabular-nums" transform="translate(0,0)">
       <text y="0.32em" transform="translate(40,138.75)">14</text>
       <text y="0.32em" transform="translate(40,107.083)">16</text>
@@ -67,10 +67,10 @@
       <text y="0.32em" transform="translate(40,43.75)">20</text>
     </g>
   </g>
-  <g aria-label="y-axis label" text-anchor="start" transform="translate(-36.5,-16.5)">
+  <g aria-label="y-axis label" text-anchor="start" transform="translate(-37,-17)">
     <text y="0.71em" transform="translate(40,20)">↑ culmen_depth_mm</text>
   </g>
-  <g aria-label="x-axis tick" aria-hidden="true" transform="translate(0.5,0)">
+  <g aria-label="x-axis tick" aria-hidden="true">
     <g fill="none" stroke="currentColor" transform="translate(0,296)">
       <path transform="translate(99.055,153)" d="M0,0L0,6"></path>
       <path transform="translate(200.873,153)" d="M0,0L0,6"></path>
@@ -79,7 +79,7 @@
       <path transform="translate(506.327,153)" d="M0,0L0,6"></path>
     </g>
   </g>
-  <g aria-label="x-axis tick label" transform="translate(0.5,9.5)">
+  <g aria-label="x-axis tick label" transform="translate(0,9)">
     <g font-variant="tabular-nums" transform="translate(0,296)">
       <text y="0.71em" transform="translate(99.055,153)">35</text>
       <text y="0.71em" transform="translate(200.873,153)">40</text>
@@ -88,10 +88,10 @@
       <text y="0.71em" transform="translate(506.327,153)">55</text>
     </g>
   </g>
-  <g aria-label="x-axis label" text-anchor="end" transform="translate(37.5,27.5)">
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(37,27)">
     <text transform="translate(600,449)">culmen_length_mm →</text>
   </g>
-  <g aria-label="dot" transform="translate(0.5,0.5)">
+  <g aria-label="dot">
     <g fill="none" stroke-width="1.5" transform="translate(0,0)">
       <circle cx="182.545" cy="64.333" r="3" stroke="#efb118"></circle>
       <circle cx="190.691" cy="84.917" r="3" stroke="#4269d0"></circle>
@@ -441,22 +441,22 @@
       <circle cx="402.473" cy="105.5" r="3" stroke="#efb118"></circle>
     </g>
   </g>
-  <g aria-label="crosshair rule" transform="translate(0.5,0)">
+  <g aria-label="crosshair rule">
     <g stroke="currentColor" stroke-opacity="0.2" pointer-events="none" transform="translate(0,0)"></g>
     <g stroke="currentColor" stroke-opacity="0.2" pointer-events="none" transform="translate(0,148)"></g>
     <g stroke="currentColor" stroke-opacity="0.2" pointer-events="none" transform="translate(0,296)"></g>
   </g>
-  <g aria-label="crosshair rule" transform="translate(0,0.5)">
+  <g aria-label="crosshair rule">
     <g stroke="currentColor" stroke-opacity="0.2" pointer-events="none" transform="translate(0,0)"></g>
     <g stroke="currentColor" stroke-opacity="0.2" pointer-events="none" transform="translate(0,148)"></g>
     <g stroke="currentColor" stroke-opacity="0.2" pointer-events="none" transform="translate(0,296)"></g>
   </g>
-  <g aria-label="crosshair text" transform="translate(0.5,9.5)">
+  <g aria-label="crosshair text" transform="translate(0,9)">
     <g stroke="var(--plot-background)" stroke-width="5" stroke-linejoin="round" paint-order="stroke" pointer-events="none" font-variant="tabular-nums" transform="translate(0,0)"></g>
     <g stroke="var(--plot-background)" stroke-width="5" stroke-linejoin="round" paint-order="stroke" pointer-events="none" font-variant="tabular-nums" transform="translate(0,148)"></g>
     <g stroke="var(--plot-background)" stroke-width="5" stroke-linejoin="round" paint-order="stroke" pointer-events="none" font-variant="tabular-nums" transform="translate(0,296)"></g>
   </g>
-  <g aria-label="crosshair text" transform="translate(-8.5,0.5)">
+  <g aria-label="crosshair text" transform="translate(-9,0)">
     <g stroke="var(--plot-background)" stroke-width="5" stroke-linejoin="round" paint-order="stroke" pointer-events="none" text-anchor="end" font-variant="tabular-nums" transform="translate(0,0)"></g>
     <g stroke="var(--plot-background)" stroke-width="5" stroke-linejoin="round" paint-order="stroke" pointer-events="none" text-anchor="end" font-variant="tabular-nums" transform="translate(0,148)"></g>
     <g stroke="var(--plot-background)" stroke-width="5" stroke-linejoin="round" paint-order="stroke" pointer-events="none" text-anchor="end" font-variant="tabular-nums" transform="translate(0,296)"></g>

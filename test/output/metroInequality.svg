@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="y-grid" aria-hidden="true" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
+  <g aria-label="y-grid" aria-hidden="true" stroke="currentColor" stroke-opacity="0.1">
     <line x1="40" x2="620" y1="345.652" y2="345.652"></line>
     <line x1="40" x2="620" y1="316.957" y2="316.957"></line>
     <line x1="40" x2="620" y1="288.261" y2="288.261"></line>
@@ -27,7 +27,7 @@
     <line x1="40" x2="620" y1="58.696" y2="58.696"></line>
     <line x1="40" x2="620" y1="30" y2="30"></line>
   </g>
-  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor">
     <path transform="translate(40,345.652)" d="M0,0L-6,0"></path>
     <path transform="translate(40,316.957)" d="M0,0L-6,0"></path>
     <path transform="translate(40,288.261)" d="M0,0L-6,0"></path>
@@ -41,7 +41,7 @@
     <path transform="translate(40,58.696)" d="M0,0L-6,0"></path>
     <path transform="translate(40,30)" d="M0,0L-6,0"></path>
   </g>
-  <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
+  <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-9,0)">
     <text y="0.32em" transform="translate(40,345.652)">3.4</text>
     <text y="0.32em" transform="translate(40,316.957)">3.6</text>
     <text y="0.32em" transform="translate(40,288.261)">3.8</text>
@@ -55,10 +55,10 @@
     <text y="0.32em" transform="translate(40,58.696)">5.4</text>
     <text y="0.32em" transform="translate(40,30)">5.6</text>
   </g>
-  <g aria-label="y-axis label" text-anchor="start" transform="translate(-36.5,-16.5)">
+  <g aria-label="y-axis label" text-anchor="start" transform="translate(-37,-17)">
     <text y="0.71em" transform="translate(40,20)">↑ Inequality</text>
   </g>
-  <g aria-label="x-grid" aria-hidden="true" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+  <g aria-label="x-grid" aria-hidden="true" stroke="currentColor" stroke-opacity="0.1">
     <line x1="126.878" x2="126.878" y1="20" y2="370"></line>
     <line x1="172.438" x2="172.438" y1="20" y2="370"></line>
     <line x1="204.763" x2="204.763" y1="20" y2="370"></line>
@@ -78,7 +78,7 @@
     <line x1="554.61" x2="554.61" y1="20" y2="370"></line>
     <line x1="566.449" x2="566.449" y1="20" y2="370"></line>
   </g>
-  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor">
     <path transform="translate(126.878,370)" d="M0,0L0,6"></path>
     <path transform="translate(172.438,370)" d="M0,0L0,6"></path>
     <path transform="translate(204.763,370)" d="M0,0L0,6"></path>
@@ -98,7 +98,7 @@
     <path transform="translate(554.61,370)" d="M0,0L0,6"></path>
     <path transform="translate(566.449,370)" d="M0,0L0,6"></path>
   </g>
-  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0,9)">
     <text y="0.71em" transform="translate(126.878,370)">200k</text>
     <text y="0.71em" transform="translate(172.438,370)">300k</text>
     <text y="0.71em" transform="translate(204.763,370)"></text>
@@ -118,10 +118,10 @@
     <text y="0.71em" transform="translate(554.61,370)"></text>
     <text y="0.71em" transform="translate(566.449,370)">10M</text>
   </g>
-  <g aria-label="x-axis label" text-anchor="end" transform="translate(17.5,27.5)">
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(17,27)">
     <text transform="translate(620,370)">Population →</text>
   </g>
-  <g aria-label="dot" fill="none" stroke="currentColor" stroke-width="1.5" transform="translate(0.5,0.5)">
+  <g aria-label="dot" fill="none" stroke="currentColor" stroke-width="1.5">
     <circle cx="610" cy="216.522" r="3"></circle>
     <circle cx="559.831" cy="202.174" r="3"></circle>
     <circle cx="537.732" cy="288.261" r="3"></circle>

@@ -13,60 +13,60 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor">
     <path transform="translate(24.156,30)" d="M0,0L0,6"></path>
     <path transform="translate(146.406,30)" d="M0,0L0,6"></path>
     <path transform="translate(268.655,30)" d="M0,0L0,6"></path>
     <path transform="translate(390.905,30)" d="M0,0L0,6"></path>
     <path transform="translate(513.154,30)" d="M0,0L0,6"></path>
   </g>
-  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0,9)">
     <text y="0.71em" transform="translate(24.156,30)">155</text>
     <text y="0.71em" transform="translate(146.406,30)">160</text>
     <text y="0.71em" transform="translate(268.655,30)">165</text>
     <text y="0.71em" transform="translate(390.905,30)">170</text>
     <text y="0.71em" transform="translate(513.154,30)">175</text>
   </g>
-  <g aria-label="dot" fill="none" stroke="currentColor" stroke-width="1.5" transform="translate(0.5,0.5)">
-    <circle cx="394.817" cy="15" r="3"></circle>
-    <circle cx="452.763" cy="15" r="3"></circle>
-    <circle cx="453.007" cy="15" r="3"></circle>
-    <circle cx="475.012" cy="15" r="3"></circle>
-    <circle cx="497.262" cy="15" r="3"></circle>
-    <circle cx="502.152" cy="15" r="3"></circle>
-    <circle cx="468.166" cy="15" r="3"></circle>
-    <circle cx="503.13" cy="15" r="3"></circle>
-    <circle cx="542.005" cy="15" r="3"></circle>
-    <circle cx="584.059" cy="15" r="3"></circle>
-    <circle cx="541.271" cy="15" r="3"></circle>
-    <circle cx="620" cy="15" r="3"></circle>
-    <circle cx="601.418" cy="15" r="3"></circle>
-    <circle cx="569.389" cy="15" r="3"></circle>
-    <circle cx="569.389" cy="15" r="3"></circle>
-    <circle cx="568.166" cy="15" r="3"></circle>
-    <circle cx="501.174" cy="15" r="3"></circle>
-    <circle cx="439.804" cy="15" r="3"></circle>
-    <circle cx="394.817" cy="15" r="3"></circle>
-    <circle cx="281.614" cy="15" r="3"></circle>
-    <circle cx="314.377" cy="15" r="3"></circle>
-    <circle cx="321.711" cy="15" r="3"></circle>
-    <circle cx="293.105" cy="15" r="3"></circle>
-    <circle cx="124.401" cy="15" r="3"></circle>
-    <circle cx="20" cy="15" r="3"></circle>
-    <circle cx="221.956" cy="15" r="3"></circle>
-    <circle cx="153.496" cy="15" r="3"></circle>
-    <circle cx="74.768" cy="15" r="3"></circle>
-    <circle cx="109.731" cy="15" r="3"></circle>
-    <circle cx="194.083" cy="15" r="3"></circle>
-    <circle cx="220.733" cy="15" r="3"></circle>
-    <circle cx="385.77" cy="15" r="3"></circle>
-    <circle cx="448.606" cy="15" r="3"></circle>
-    <circle cx="441.027" cy="15" r="3"></circle>
-    <circle cx="460.098" cy="15" r="3"></circle>
-    <circle cx="434.914" cy="15" r="3"></circle>
-    <circle cx="480.636" cy="15" r="3"></circle>
-    <circle cx="546.161" cy="15" r="3"></circle>
-    <circle cx="613.399" cy="15" r="3"></circle>
-    <circle cx="617.311" cy="15" r="3"></circle>
+  <g aria-label="dot" fill="none" stroke="currentColor" stroke-width="1.5">
+    <circle cx="394.817" cy="15.25" r="3"></circle>
+    <circle cx="452.763" cy="15.25" r="3"></circle>
+    <circle cx="453.007" cy="15.25" r="3"></circle>
+    <circle cx="475.012" cy="15.25" r="3"></circle>
+    <circle cx="497.262" cy="15.25" r="3"></circle>
+    <circle cx="502.152" cy="15.25" r="3"></circle>
+    <circle cx="468.166" cy="15.25" r="3"></circle>
+    <circle cx="503.13" cy="15.25" r="3"></circle>
+    <circle cx="542.005" cy="15.25" r="3"></circle>
+    <circle cx="584.059" cy="15.25" r="3"></circle>
+    <circle cx="541.271" cy="15.25" r="3"></circle>
+    <circle cx="620" cy="15.25" r="3"></circle>
+    <circle cx="601.418" cy="15.25" r="3"></circle>
+    <circle cx="569.389" cy="15.25" r="3"></circle>
+    <circle cx="569.389" cy="15.25" r="3"></circle>
+    <circle cx="568.166" cy="15.25" r="3"></circle>
+    <circle cx="501.174" cy="15.25" r="3"></circle>
+    <circle cx="439.804" cy="15.25" r="3"></circle>
+    <circle cx="394.817" cy="15.25" r="3"></circle>
+    <circle cx="281.614" cy="15.25" r="3"></circle>
+    <circle cx="314.377" cy="15.25" r="3"></circle>
+    <circle cx="321.711" cy="15.25" r="3"></circle>
+    <circle cx="293.105" cy="15.25" r="3"></circle>
+    <circle cx="124.401" cy="15.25" r="3"></circle>
+    <circle cx="20" cy="15.25" r="3"></circle>
+    <circle cx="221.956" cy="15.25" r="3"></circle>
+    <circle cx="153.496" cy="15.25" r="3"></circle>
+    <circle cx="74.768" cy="15.25" r="3"></circle>
+    <circle cx="109.731" cy="15.25" r="3"></circle>
+    <circle cx="194.083" cy="15.25" r="3"></circle>
+    <circle cx="220.733" cy="15.25" r="3"></circle>
+    <circle cx="385.77" cy="15.25" r="3"></circle>
+    <circle cx="448.606" cy="15.25" r="3"></circle>
+    <circle cx="441.027" cy="15.25" r="3"></circle>
+    <circle cx="460.098" cy="15.25" r="3"></circle>
+    <circle cx="434.914" cy="15.25" r="3"></circle>
+    <circle cx="480.636" cy="15.25" r="3"></circle>
+    <circle cx="546.161" cy="15.25" r="3"></circle>
+    <circle cx="613.399" cy="15.25" r="3"></circle>
+    <circle cx="617.311" cy="15.25" r="3"></circle>
   </g>
 </svg>

@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="fy-grid" aria-hidden="true" transform="translate(0,0.5)">
+  <g aria-label="fy-grid" aria-hidden="true">
     <g stroke="currentColor" stroke-opacity="0.1" transform="translate(0,2)">
       <line x1="120" x2="940" y1="49.5" y2="49.5"></line>
     </g>
@@ -54,7 +54,7 @@
       <line x1="120" x2="940" y1="49.5" y2="49.5"></line>
     </g>
   </g>
-  <g aria-label="fy-axis tick label" transform="translate(-8.5,0.5)">
+  <g aria-label="fy-axis tick label" transform="translate(-9,0)">
     <g text-anchor="end" transform="translate(0,2)">
       <text y="0.32em" transform="translate(120,49.5)">Documentary</text>
     </g>
@@ -95,7 +95,7 @@
       <text y="0.32em" transform="translate(120,49.5)">Horror</text>
     </g>
   </g>
-  <g aria-label="x-grid" aria-hidden="true" transform="translate(0.5,0)">
+  <g aria-label="x-grid" aria-hidden="true">
     <g stroke="currentColor" stroke-opacity="0.1" transform="translate(0,2)">
       <line x1="120" x2="120" y1="30" y2="69"></line>
       <line x1="202" x2="202" y1="30" y2="69"></line>
@@ -266,7 +266,7 @@
       <line x1="940" x2="940" y1="30" y2="69"></line>
     </g>
   </g>
-  <g aria-label="x-axis tick" aria-hidden="true" transform="translate(0.5,1)">
+  <g aria-label="x-axis tick" aria-hidden="true">
     <g fill="none" stroke="currentColor" transform="translate(0,2)">
       <path transform="translate(120,30)" d="M0,0L0,-6"></path>
       <path transform="translate(202,30)" d="M0,0L0,-6"></path>
@@ -281,7 +281,7 @@
       <path transform="translate(940,30)" d="M0,0L0,-6"></path>
     </g>
   </g>
-  <g aria-label="x-axis tick label" transform="translate(0.5,-8.5)">
+  <g aria-label="x-axis tick label" transform="translate(0,-9)">
     <g font-variant="tabular-nums" transform="translate(0,2)">
       <text transform="translate(120,30)">0</text>
       <text transform="translate(202,30)">1</text>
@@ -296,10 +296,10 @@
       <text transform="translate(940,30)">10</text>
     </g>
   </g>
-  <g aria-label="x-axis label" text-anchor="end" transform="translate(17.5,-26.5)">
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(17,-27)">
     <text y="0.71em" transform="translate(940,32)">IMDB Rating →</text>
   </g>
-  <g aria-label="dot" transform="translate(0.5,0.5)">
+  <g aria-label="dot">
     <g fill="none" stroke-width="1.5" transform="translate(0,2)">
       <circle cx="743.2" cy="49.5" r="2.5" stroke="#ff8ab7"></circle>
       <circle cx="595.6" cy="49.5" r="2.5" stroke="#ff8ab7"></circle>

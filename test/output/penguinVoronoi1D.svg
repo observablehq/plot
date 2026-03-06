@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor">
     <path transform="translate(78.333,30)" d="M0,0L0,6"></path>
     <path transform="translate(158.889,30)" d="M0,0L0,6"></path>
     <path transform="translate(239.444,30)" d="M0,0L0,6"></path>
@@ -22,7 +22,7 @@
     <path transform="translate(481.111,30)" d="M0,0L0,6"></path>
     <path transform="translate(561.667,30)" d="M0,0L0,6"></path>
   </g>
-  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0,9)">
     <text y="0.71em" transform="translate(78.333,30)">3,000</text>
     <text y="0.71em" transform="translate(158.889,30)">3,500</text>
     <text y="0.71em" transform="translate(239.444,30)">4,000</text>
@@ -31,637 +31,637 @@
     <text y="0.71em" transform="translate(481.111,30)">5,500</text>
     <text y="0.71em" transform="translate(561.667,30)">6,000</text>
   </g>
-  <g aria-label="x-axis label" text-anchor="end" transform="translate(17.5,27.5)">
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(17,27)">
     <text transform="translate(620,30)">body_mass_g →</text>
   </g>
-  <g aria-label="voronoi" fill-opacity="0.5" transform="translate(0.5,0.5)"><a fill="inherit" href="https://en.wikipedia.org/wiki/Adelie_penguin" target="_blank">
-      <path d="M201.181,0L201.181,30L197.153,30L197.153,0Z" fill="#4269d0"><title>Adelie (MALE)
+  <g aria-label="voronoi" fill-opacity="0.5"><a fill="inherit" href="https://en.wikipedia.org/wiki/Adelie_penguin" target="_blank">
+      <path d="M201.181,0.5L201.181,30L197.153,30L197.153,0.5Z" fill="#4269d0"><title>Adelie (MALE)
           Torgersen</title></path>
     </a><a fill="inherit" href="https://en.wikipedia.org/wiki/Adelie_penguin" target="_blank">
-      <path d="M181.042,0L181.042,30L177.014,30L177.014,0Z" fill="#4269d0"><title>Adelie (FEMALE)
+      <path d="M181.042,0.5L181.042,30L177.014,30L177.014,0.5Z" fill="#4269d0"><title>Adelie (FEMALE)
           Torgersen</title></path>
     </a><a fill="inherit" href="https://en.wikipedia.org/wiki/Adelie_penguin" target="_blank">
-      <path d="M346.181,30L346.181,0L350.208,0L350.208,30Z" fill="#4269d0"><title>Adelie (MALE)
+      <path d="M346.181,30L346.181,0.5L350.208,0.5L350.208,30Z" fill="#4269d0"><title>Adelie (MALE)
           Torgersen</title></path>
     </a><a fill="inherit" href="https://en.wikipedia.org/wiki/Adelie_penguin" target="_blank">
-      <path d="M317.986,30L317.986,0L324.028,0L324.028,30Z" fill="#4269d0"><title>Adelie (MALE)
+      <path d="M324.028,0.5L324.028,30L317.986,30L317.986,0.5Z" fill="#4269d0"><title>Adelie (MALE)
           Torgersen</title></path>
     </a><a fill="inherit" href="https://en.wikipedia.org/wiki/Adelie_penguin" target="_blank">
-      <path d="M132.708,0L132.708,30L128.681,30L128.681,0Z" fill="#4269d0"><title>Adelie (FEMALE)
+      <path d="M132.708,0.5L132.708,30L128.681,30L128.681,0.5Z" fill="#4269d0"><title>Adelie (FEMALE)
           Torgersen</title></path>
     </a><a fill="inherit" href="https://en.wikipedia.org/wiki/Adelie_penguin" target="_blank">
-      <path d="M275.694,0L275.694,30L267.639,30L267.639,0Z" fill="#4269d0"><title>Adelie (MALE)
+      <path d="M267.639,30L267.639,0.5L275.694,0.5L275.694,30Z" fill="#4269d0"><title>Adelie (MALE)
           Torgersen</title></path>
     </a><a fill="inherit" href="https://en.wikipedia.org/wiki/Adelie_penguin" target="_blank">
-      <path d="M114.583,0L114.583,30L108.542,30L108.542,0Z" fill="#4269d0"><title>Adelie (FEMALE)
+      <path d="M114.583,0.5L114.583,30L108.542,30L108.542,0.5Z" fill="#4269d0"><title>Adelie (FEMALE)
           Biscoe</title></path>
     </a><a fill="inherit" href="https://en.wikipedia.org/wiki/Adelie_penguin" target="_blank">
-      <path d="M120.625,0L120.625,30L114.583,30L114.583,0Z" fill="#4269d0"><title>Adelie (FEMALE)
+      <path d="M120.625,0.5L120.625,30L114.583,30L114.583,0.5Z" fill="#4269d0"><title>Adelie (FEMALE)
           Dream</title></path>
     </a><a fill="inherit" href="https://en.wikipedia.org/wiki/Adelie_penguin" target="_blank">
-      <path d="M128.681,0L128.681,30L124.653,30L124.653,0Z" fill="#4269d0"><title>Adelie (FEMALE)
+      <path d="M128.681,0.5L128.681,30L124.653,30L124.653,0.5Z" fill="#4269d0"><title>Adelie (FEMALE)
           Dream</title></path>
     </a><a fill="inherit" href="https://en.wikipedia.org/wiki/Adelie_penguin" target="_blank">
-      <path d="M98.472,0L98.472,30L92.431,30L92.431,0Z" fill="#4269d0"><title>Adelie (FEMALE)
+      <path d="M98.472,0.5L98.472,30L92.431,30L92.431,0.5Z" fill="#4269d0"><title>Adelie (FEMALE)
           Dream</title></path>
     </a><a fill="inherit" href="https://en.wikipedia.org/wiki/Adelie_penguin" target="_blank">
-      <path d="M76.319,30L76.319,0L82.361,0L82.361,30Z" fill="#4269d0"><title>Adelie (FEMALE)
+      <path d="M76.319,30L76.319,0.5L82.361,0.5L82.361,30Z" fill="#4269d0"><title>Adelie (FEMALE)
           Dream</title></path>
     </a><a fill="inherit" href="https://en.wikipedia.org/wiki/Adelie_penguin" target="_blank">
-      <path d="M144.792,30L144.792,0L148.819,0L148.819,30Z" fill="#4269d0"><title>Adelie (MALE)
+      <path d="M148.819,0.5L148.819,30L144.792,30L144.792,0.5Z" fill="#4269d0"><title>Adelie (MALE)
           Dream</title></path>
     </a><a fill="inherit" href="https://en.wikipedia.org/wiki/Adelie_penguin" target="_blank">
-      <path d="M76.319,0L76.319,30L70.278,30L70.278,0Z" fill="#4269d0"><title>Adelie (null)
+      <path d="M76.319,0.5L76.319,30L70.278,30L70.278,0.5Z" fill="#4269d0"><title>Adelie (null)
           Dream</title></path>
     </a><a fill="inherit" href="https://en.wikipedia.org/wiki/Adelie_penguin" target="_blank">
-      <path d="M267.639,0L267.639,30L259.583,30L259.583,0Z" fill="#4269d0"><title>Adelie (MALE)
+      <path d="M267.639,0.5L267.639,30L259.583,30L259.583,0.5Z" fill="#4269d0"><title>Adelie (MALE)
           Dream</title></path>
     </a><a fill="inherit" href="https://en.wikipedia.org/wiki/Adelie_penguin" target="_blank">
-      <path d="M152.847,0L152.847,30L148.819,30L148.819,0Z" fill="#4269d0"><title>Adelie (FEMALE)
+      <path d="M152.847,0.5L152.847,30L148.819,30L148.819,0.5Z" fill="#4269d0"><title>Adelie (FEMALE)
           Biscoe</title></path>
     </a><a fill="inherit" href="https://en.wikipedia.org/wiki/Adelie_penguin" target="_blank">
-      <path d="M189.097,30L189.097,0L193.125,0L193.125,30Z" fill="#4269d0"><title>Adelie (MALE)
+      <path d="M189.097,30L189.097,0.5L193.125,0.5L193.125,30Z" fill="#4269d0"><title>Adelie (MALE)
           Biscoe</title></path>
     </a><a fill="inherit" href="https://en.wikipedia.org/wiki/Adelie_penguin" target="_blank">
-      <path d="M104.514,0L104.514,30L98.472,30L98.472,0Z" fill="#4269d0"><title>Adelie (FEMALE)
+      <path d="M104.514,0.5L104.514,30L98.472,30L98.472,0.5Z" fill="#4269d0"><title>Adelie (FEMALE)
           Biscoe</title></path>
     </a><a fill="inherit" href="https://en.wikipedia.org/wiki/Adelie_penguin" target="_blank">
-      <path d="M177.014,0L177.014,30L172.986,30L172.986,0Z" fill="#4269d0"><title>Adelie (FEMALE)
+      <path d="M177.014,0.5L177.014,30L172.986,30L172.986,0.5Z" fill="#4269d0"><title>Adelie (FEMALE)
           Biscoe</title></path>
     </a><a fill="inherit" href="https://en.wikipedia.org/wiki/Adelie_penguin" target="_blank">
-      <path d="M58.194,0L58.194,30L42.083,30L42.083,0Z" fill="#4269d0"><title>Adelie (FEMALE)
+      <path d="M42.083,30L42.083,0.5L58.194,0.5L58.194,30Z" fill="#4269d0"><title>Adelie (FEMALE)
           Biscoe</title></path>
     </a><a fill="inherit" href="https://en.wikipedia.org/wiki/Adelie_penguin" target="_blank">
-      <path d="M259.583,0L259.583,30L253.542,30L253.542,0Z" fill="#4269d0"><title>Adelie (MALE)
+      <path d="M259.583,0.5L259.583,30L253.542,30L253.542,0.5Z" fill="#4269d0"><title>Adelie (MALE)
           Biscoe</title></path>
     </a><a fill="inherit" href="https://en.wikipedia.org/wiki/Adelie_penguin" target="_blank">
-      <path d="M313.958,0L313.958,30L307.917,30L307.917,0Z" fill="#4269d0"><title>Adelie (MALE)
+      <path d="M313.958,0.5L313.958,30L307.917,30L307.917,0.5Z" fill="#4269d0"><title>Adelie (MALE)
           Torgersen</title></path>
     </a><a fill="inherit" href="https://en.wikipedia.org/wiki/Adelie_penguin" target="_blank">
-      <path d="M243.472,0L243.472,30L237.431,30L237.431,0Z" fill="#4269d0"><title>Adelie (MALE)
+      <path d="M243.472,0.5L243.472,30L237.431,30L237.431,0.5Z" fill="#4269d0"><title>Adelie (MALE)
           Torgersen</title></path>
     </a><a fill="inherit" href="https://en.wikipedia.org/wiki/Adelie_penguin" target="_blank">
-      <path d="M350.208,30L350.208,0L354.236,0L354.236,30Z" fill="#4269d0"><title>Adelie (MALE)
+      <path d="M350.208,30L350.208,0.5L354.236,0.5L354.236,30Z" fill="#4269d0"><title>Adelie (MALE)
           Torgersen</title></path>
     </a><a fill="inherit" href="https://en.wikipedia.org/wiki/Adelie_penguin" target="_blank">
-      <path d="M138.75,0L138.75,30L132.708,30L132.708,0Z" fill="#4269d0"><title>Adelie (FEMALE)
+      <path d="M132.708,30L132.708,0.5L138.75,0.5L138.75,30Z" fill="#4269d0"><title>Adelie (FEMALE)
           Dream</title></path>
     </a><a fill="inherit" href="https://en.wikipedia.org/wiki/Adelie_penguin" target="_blank">
-      <path d="M168.958,0L168.958,30L164.931,30L164.931,0Z" fill="#4269d0"><title>Adelie (MALE)
+      <path d="M164.931,30L164.931,0.5L168.958,0.5L168.958,30Z" fill="#4269d0"><title>Adelie (MALE)
           Dream</title></path>
     </a><a fill="inherit" href="https://en.wikipedia.org/wiki/Adelie_penguin" target="_blank">
-      <path d="M297.847,0L297.847,30L291.806,30L291.806,0Z" fill="#4269d0"><title>Adelie (MALE)
+      <path d="M297.847,0.5L297.847,30L291.806,30L291.806,0.5Z" fill="#4269d0"><title>Adelie (MALE)
           Dream</title></path>
     </a><a fill="inherit" href="https://en.wikipedia.org/wiki/Adelie_penguin" target="_blank">
-      <path d="M354.236,30L354.236,0L358.264,0L358.264,30Z" fill="#4269d0"><title>Adelie (MALE)
+      <path d="M354.236,30L354.236,0.5L358.264,0.5L358.264,30Z" fill="#4269d0"><title>Adelie (MALE)
           Biscoe</title></path>
     </a><a fill="inherit" href="https://en.wikipedia.org/wiki/Adelie_penguin" target="_blank">
-      <path d="M88.403,30L88.403,0L92.431,0L92.431,30Z" fill="#4269d0"><title>Adelie (FEMALE)
+      <path d="M88.403,30L88.403,0.5L92.431,0.5L92.431,30Z" fill="#4269d0"><title>Adelie (FEMALE)
           Biscoe</title></path>
     </a><a fill="inherit" href="https://en.wikipedia.org/wiki/Adelie_penguin" target="_blank">
-      <path d="M64.236,30L64.236,0L70.278,0L70.278,30Z" fill="#4269d0"><title>Adelie (FEMALE)
+      <path d="M64.236,30L64.236,0.5L70.278,0.5L70.278,30Z" fill="#4269d0"><title>Adelie (FEMALE)
           Biscoe</title></path>
     </a><a fill="inherit" href="https://en.wikipedia.org/wiki/Adelie_penguin" target="_blank">
-      <path d="M108.542,0L108.542,30L104.514,30L104.514,0Z" fill="#4269d0"><title>Adelie (FEMALE)
+      <path d="M108.542,0.5L108.542,30L104.514,30L104.514,0.5Z" fill="#4269d0"><title>Adelie (FEMALE)
           Biscoe</title></path>
     </a><a fill="inherit" href="https://en.wikipedia.org/wiki/Adelie_penguin" target="_blank">
-      <path d="M366.319,0L366.319,30L362.292,30L362.292,0Z" fill="#4269d0"><title>Adelie (MALE)
+      <path d="M362.292,30L362.292,0.5L366.319,0.5L366.319,30Z" fill="#4269d0"><title>Adelie (MALE)
           Biscoe</title></path>
     </a><a fill="inherit" href="https://en.wikipedia.org/wiki/Adelie_penguin" target="_blank">
-      <path d="M213.264,0L213.264,30L209.236,30L209.236,0Z" fill="#4269d0"><title>Adelie (FEMALE)
+      <path d="M213.264,0.5L213.264,30L209.236,30L209.236,0.5Z" fill="#4269d0"><title>Adelie (FEMALE)
           Biscoe</title></path>
     </a><a fill="inherit" href="https://en.wikipedia.org/wiki/Adelie_penguin" target="_blank">
-      <path d="M281.736,30L281.736,0L285.764,0L285.764,30Z" fill="#4269d0"><title>Adelie (MALE)
+      <path d="M285.764,0.5L285.764,30L281.736,30L281.736,0.5Z" fill="#4269d0"><title>Adelie (MALE)
           Biscoe</title></path>
     </a><a fill="inherit" href="https://en.wikipedia.org/wiki/Adelie_penguin" target="_blank">
-      <path d="M253.542,0L253.542,30L249.514,30L249.514,0Z" fill="#4269d0"><title>Adelie (MALE)
+      <path d="M253.542,0.5L253.542,30L249.514,30L249.514,0.5Z" fill="#4269d0"><title>Adelie (MALE)
           Biscoe</title></path>
     </a><a fill="inherit" href="https://en.wikipedia.org/wiki/Adelie_penguin" target="_blank">
-      <path d="M221.319,0L221.319,30L217.292,30L217.292,0Z" fill="#4269d0"><title>Adelie (MALE)
+      <path d="M221.319,0.5L221.319,30L217.292,30L217.292,0.5Z" fill="#4269d0"><title>Adelie (MALE)
           Torgersen</title></path>
     </a><a fill="inherit" href="https://en.wikipedia.org/wiki/Adelie_penguin" target="_blank">
-      <path d="M88.403,0L88.403,30L82.361,30L82.361,0Z" fill="#4269d0"><title>Adelie (FEMALE)
+      <path d="M88.403,0.5L88.403,30L82.361,30L82.361,0.5Z" fill="#4269d0"><title>Adelie (FEMALE)
           Torgersen</title></path>
     </a><a fill="inherit" href="https://en.wikipedia.org/wiki/Adelie_penguin" target="_blank">
-      <path d="M120.625,30L120.625,0L124.653,0L124.653,30Z" fill="#4269d0"><title>Adelie (FEMALE)
+      <path d="M124.653,0.5L124.653,30L120.625,30L120.625,0.5Z" fill="#4269d0"><title>Adelie (FEMALE)
           Torgersen</title></path>
     </a><a fill="inherit" href="https://en.wikipedia.org/wiki/Adelie_penguin" target="_blank">
-      <path d="M291.806,0L291.806,30L285.764,30L285.764,0Z" fill="#4269d0"><title>Adelie (MALE)
+      <path d="M291.806,0.5L291.806,30L285.764,30L285.764,0.5Z" fill="#4269d0"><title>Adelie (MALE)
           Torgersen</title></path>
     </a><a fill="inherit" href="https://en.wikipedia.org/wiki/Adelie_penguin" target="_blank">
-      <path d="M156.875,30L156.875,0L160.903,0L160.903,30Z" fill="#4269d0"><title>Adelie (MALE)
+      <path d="M160.903,0.5L160.903,30L156.875,30L156.875,0.5Z" fill="#4269d0"><title>Adelie (MALE)
           Torgersen</title></path>
     </a><a fill="inherit" href="https://en.wikipedia.org/wiki/Adelie_penguin" target="_blank">
-      <path d="M313.958,30L313.958,0L317.986,0L317.986,30Z" fill="#4269d0"><title>Adelie (MALE)
+      <path d="M313.958,30L313.958,0.5L317.986,0.5L317.986,30Z" fill="#4269d0"><title>Adelie (MALE)
           Dream</title></path>
     </a><a fill="inherit" href="https://en.wikipedia.org/wiki/Adelie_penguin" target="_blank">
-      <path d="M237.431,0L237.431,30L233.403,30L233.403,0Z" fill="#4269d0"><title>Adelie (MALE)
+      <path d="M237.431,0.5L237.431,30L233.403,30L233.403,0.5Z" fill="#4269d0"><title>Adelie (MALE)
           Dream</title></path>
     </a><a fill="inherit" href="https://en.wikipedia.org/wiki/Adelie_penguin" target="_blank">
-      <path d="M281.736,0L281.736,30L275.694,30L275.694,0Z" fill="#4269d0"><title>Adelie (MALE)
+      <path d="M275.694,30L275.694,0.5L281.736,0.5L281.736,30Z" fill="#4269d0"><title>Adelie (MALE)
           Dream</title></path>
     </a><a fill="inherit" href="https://en.wikipedia.org/wiki/Adelie_penguin" target="_blank">
-      <path d="M156.875,0L156.875,30L152.847,30L152.847,0Z" fill="#4269d0"><title>Adelie (MALE)
+      <path d="M156.875,0.5L156.875,30L152.847,30L152.847,0.5Z" fill="#4269d0"><title>Adelie (MALE)
           Dream</title></path>
     </a><a fill="inherit" href="https://en.wikipedia.org/wiki/Adelie_penguin" target="_blank">
-      <path d="M197.153,0L197.153,30L193.125,30L193.125,0Z" fill="#4269d0"><title>Adelie (MALE)
+      <path d="M197.153,0.5L197.153,30L193.125,30L193.125,0.5Z" fill="#4269d0"><title>Adelie (MALE)
           Dream</title></path>
     </a><a fill="inherit" href="https://en.wikipedia.org/wiki/Chinstrap_penguin" target="_blank">
-      <path d="M227.361,0L227.361,30L221.319,30L221.319,0Z" fill="#efb118"><title>Chinstrap (MALE)
+      <path d="M227.361,0.5L227.361,30L221.319,30L221.319,0.5Z" fill="#efb118"><title>Chinstrap (MALE)
           Dream</title></path>
     </a><a fill="inherit" href="https://en.wikipedia.org/wiki/Chinstrap_penguin" target="_blank">
-      <path d="M164.931,0L164.931,30L160.903,30L160.903,0Z" fill="#efb118"><title>Chinstrap (FEMALE)
+      <path d="M164.931,0.5L164.931,30L160.903,30L160.903,0.5Z" fill="#efb118"><title>Chinstrap (FEMALE)
           Dream</title></path>
     </a><a fill="inherit" href="https://en.wikipedia.org/wiki/Chinstrap_penguin" target="_blank">
-      <path d="M172.986,0L172.986,30L168.958,30L168.958,0Z" fill="#efb118"><title>Chinstrap (FEMALE)
+      <path d="M172.986,0.5L172.986,30L168.958,30L168.958,0.5Z" fill="#efb118"><title>Chinstrap (FEMALE)
           Dream</title></path>
     </a><a fill="inherit" href="https://en.wikipedia.org/wiki/Chinstrap_penguin" target="_blank">
-      <path d="M144.792,0L144.792,30L138.75,30L138.75,0Z" fill="#efb118"><title>Chinstrap (MALE)
+      <path d="M144.792,0.5L144.792,30L138.75,30L138.75,0.5Z" fill="#efb118"><title>Chinstrap (MALE)
           Dream</title></path>
     </a><a fill="inherit" href="https://en.wikipedia.org/wiki/Chinstrap_penguin" target="_blank">
-      <path d="M64.236,0L64.236,30L58.194,30L58.194,0Z" fill="#efb118"><title>Chinstrap (FEMALE)
+      <path d="M64.236,0.5L64.236,30L58.194,30L58.194,0.5Z" fill="#efb118"><title>Chinstrap (FEMALE)
           Dream</title></path>
     </a><a fill="inherit" href="https://en.wikipedia.org/wiki/Chinstrap_penguin" target="_blank">
-      <path d="M209.236,0L209.236,30L205.208,30L205.208,0Z" fill="#efb118"><title>Chinstrap (MALE)
+      <path d="M209.236,0.5L209.236,30L205.208,30L205.208,0.5Z" fill="#efb118"><title>Chinstrap (MALE)
           Dream</title></path>
     </a><a fill="inherit" href="https://en.wikipedia.org/wiki/Chinstrap_penguin" target="_blank">
-      <path d="M217.292,0L217.292,30L213.264,30L213.264,0Z" fill="#efb118"><title>Chinstrap (FEMALE)
+      <path d="M217.292,0.5L217.292,30L213.264,30L213.264,0.5Z" fill="#efb118"><title>Chinstrap (FEMALE)
           Dream</title></path>
     </a><a fill="inherit" href="https://en.wikipedia.org/wiki/Chinstrap_penguin" target="_blank">
-      <path d="M20,30L20,0L42.083,0L42.083,30Z" fill="#efb118"><title>Chinstrap (FEMALE)
+      <path d="M42.083,0.5L42.083,30L20,30L20,0.5Z" fill="#efb118"><title>Chinstrap (FEMALE)
           Dream</title></path>
     </a><a fill="inherit" href="https://en.wikipedia.org/wiki/Chinstrap_penguin" target="_blank">
-      <path d="M233.403,0L233.403,30L227.361,30L227.361,0Z" fill="#efb118"><title>Chinstrap (MALE)
+      <path d="M233.403,0.5L233.403,30L227.361,30L227.361,0.5Z" fill="#efb118"><title>Chinstrap (MALE)
           Dream</title></path>
     </a><a fill="inherit" href="https://en.wikipedia.org/wiki/Chinstrap_penguin" target="_blank">
-      <path d="M189.097,0L189.097,30L185.069,30L185.069,0Z" fill="#efb118"><title>Chinstrap (FEMALE)
+      <path d="M189.097,0.5L189.097,30L185.069,30L185.069,0.5Z" fill="#efb118"><title>Chinstrap (FEMALE)
           Dream</title></path>
     </a><a fill="inherit" href="https://en.wikipedia.org/wiki/Chinstrap_penguin" target="_blank">
-      <path d="M243.472,30L243.472,0L249.514,0L249.514,30Z" fill="#efb118"><title>Chinstrap (MALE)
+      <path d="M243.472,30L243.472,0.5L249.514,0.5L249.514,30Z" fill="#efb118"><title>Chinstrap (MALE)
           Dream</title></path>
     </a><a fill="inherit" href="https://en.wikipedia.org/wiki/Chinstrap_penguin" target="_blank">
-      <path d="M185.069,0L185.069,30L181.042,30L181.042,0Z" fill="#efb118"><title>Chinstrap (FEMALE)
+      <path d="M185.069,0.5L185.069,30L181.042,30L181.042,0.5Z" fill="#efb118"><title>Chinstrap (FEMALE)
           Dream</title></path>
     </a><a fill="inherit" href="https://en.wikipedia.org/wiki/Chinstrap_penguin" target="_blank">
-      <path d="M201.181,30L201.181,0L205.208,0L205.208,30Z" fill="#efb118"><title>Chinstrap (MALE)
+      <path d="M205.208,0.5L205.208,30L201.181,30L201.181,0.5Z" fill="#efb118"><title>Chinstrap (MALE)
           Dream</title></path>
     </a><a fill="inherit" href="https://en.wikipedia.org/wiki/Gentoo_penguin" target="_blank">
-      <path d="M509.306,30L509.306,0L517.361,0L517.361,30Z" fill="#ff725c"><title>Gentoo (MALE)
+      <path d="M509.306,30L509.306,0.5L517.361,0.5L517.361,30Z" fill="#ff725c"><title>Gentoo (MALE)
           Biscoe</title></path>
     </a><a fill="inherit" href="https://en.wikipedia.org/wiki/Gentoo_penguin" target="_blank">
-      <path d="M324.028,30L324.028,0L330.069,0L330.069,30Z" fill="#ff725c"><title>Gentoo (FEMALE)
+      <path d="M324.028,30L324.028,0.5L330.069,0.5L330.069,30Z" fill="#ff725c"><title>Gentoo (FEMALE)
           Biscoe</title></path>
     </a><a fill="inherit" href="https://en.wikipedia.org/wiki/Gentoo_penguin" target="_blank">
-      <path d="M346.181,0L346.181,30L342.153,30L342.153,0Z" fill="#ff725c"><title>Gentoo (FEMALE)
+      <path d="M346.181,0.5L346.181,30L342.153,30L342.153,0.5Z" fill="#ff725c"><title>Gentoo (FEMALE)
           Biscoe</title></path>
     </a><a fill="inherit" href="https://en.wikipedia.org/wiki/Gentoo_penguin" target="_blank">
-      <path d="M533.472,30L533.472,0L545.556,0L545.556,30Z" fill="#ff725c"><title>Gentoo (MALE)
+      <path d="M533.472,30L533.472,0.5L545.556,0.5L545.556,30Z" fill="#ff725c"><title>Gentoo (MALE)
           Biscoe</title></path>
     </a><a fill="inherit" href="https://en.wikipedia.org/wiki/Gentoo_penguin" target="_blank">
-      <path d="M620,0L620,30L589.861,30L589.861,0Z" fill="#ff725c"><title>Gentoo (MALE)
+      <path d="M620,0.5L620,30L589.861,30L589.861,0.5Z" fill="#ff725c"><title>Gentoo (MALE)
           Biscoe</title></path>
     </a><a fill="inherit" href="https://en.wikipedia.org/wiki/Gentoo_penguin" target="_blank">
-      <path d="M366.319,30L366.319,0L372.361,0L372.361,30Z" fill="#ff725c"><title>Gentoo (FEMALE)
+      <path d="M366.319,30L366.319,0.5L372.361,0.5L372.361,30Z" fill="#ff725c"><title>Gentoo (FEMALE)
           Biscoe</title></path>
     </a><a fill="inherit" href="https://en.wikipedia.org/wiki/Gentoo_penguin" target="_blank">
-      <path d="M460.972,0L460.972,30L452.917,30L452.917,0Z" fill="#ff725c"><title>Gentoo (MALE)
+      <path d="M452.917,30L452.917,0.5L460.972,0.5L460.972,30Z" fill="#ff725c"><title>Gentoo (MALE)
           Biscoe</title></path>
     </a><a fill="inherit" href="https://en.wikipedia.org/wiki/Gentoo_penguin" target="_blank">
-      <path d="M307.917,0L307.917,30L301.875,30L301.875,0Z" fill="#ff725c"><title>Gentoo (FEMALE)
+      <path d="M307.917,0.5L307.917,30L301.875,30L301.875,0.5Z" fill="#ff725c"><title>Gentoo (FEMALE)
           Biscoe</title></path>
     </a><a fill="inherit" href="https://en.wikipedia.org/wiki/Gentoo_penguin" target="_blank">
-      <path d="M404.583,30L404.583,0L412.639,0L412.639,30Z" fill="#ff725c"><title>Gentoo (FEMALE)
+      <path d="M412.639,0.5L412.639,30L404.583,30L404.583,0.5Z" fill="#ff725c"><title>Gentoo (FEMALE)
           Biscoe</title></path>
     </a><a fill="inherit" href="https://en.wikipedia.org/wiki/Gentoo_penguin" target="_blank">
-      <path d="M565.694,30L565.694,0L589.861,0L589.861,30Z" fill="#ff725c"><title>Gentoo (MALE)
+      <path d="M565.694,30L565.694,0.5L589.861,0.5L589.861,30Z" fill="#ff725c"><title>Gentoo (MALE)
           Biscoe</title></path>
     </a><a fill="inherit" href="https://en.wikipedia.org/wiki/Gentoo_penguin" target="_blank">
-      <path d="M420.694,30L420.694,0L428.75,0L428.75,30Z" fill="#ff725c"><title>Gentoo (FEMALE)
+      <path d="M420.694,30L420.694,0.5L428.75,0.5L428.75,30Z" fill="#ff725c"><title>Gentoo (FEMALE)
           Biscoe</title></path>
     </a><a fill="inherit" href="https://en.wikipedia.org/wiki/Gentoo_penguin" target="_blank">
-      <path d="M469.028,0L469.028,30L460.972,30L460.972,0Z" fill="#ff725c"><title>Gentoo (MALE)
+      <path d="M469.028,0.5L469.028,30L460.972,30L460.972,0.5Z" fill="#ff725c"><title>Gentoo (MALE)
           Biscoe</title></path>
     </a><a fill="inherit" href="https://en.wikipedia.org/wiki/Gentoo_penguin" target="_blank">
-      <path d="M493.194,0L493.194,30L485.139,30L485.139,0Z" fill="#ff725c"><title>Gentoo (MALE)
+      <path d="M485.139,30L485.139,0.5L493.194,0.5L493.194,30Z" fill="#ff725c"><title>Gentoo (MALE)
           Biscoe</title></path>
     </a><a fill="inherit" href="https://en.wikipedia.org/wiki/Gentoo_penguin" target="_blank">
-      <path d="M372.361,30L372.361,0L378.403,0L378.403,30Z" fill="#ff725c"><title>Gentoo (FEMALE)
+      <path d="M378.403,0.5L378.403,30L372.361,30L372.361,0.5Z" fill="#ff725c"><title>Gentoo (FEMALE)
           Biscoe</title></path>
     </a><a fill="inherit" href="https://en.wikipedia.org/wiki/Gentoo_penguin" target="_blank">
-      <path d="M382.431,30L382.431,0L386.458,0L386.458,30Z" fill="#ff725c"><title>Gentoo (FEMALE)
+      <path d="M382.431,30L382.431,0.5L386.458,0.5L386.458,30Z" fill="#ff725c"><title>Gentoo (FEMALE)
           Biscoe</title></path>
     </a><a fill="inherit" href="https://en.wikipedia.org/wiki/Gentoo_penguin" target="_blank">
-      <path d="M444.861,30L444.861,0L452.917,0L452.917,30Z" fill="#ff725c"><title>Gentoo (MALE)
+      <path d="M444.861,30L444.861,0.5L452.917,0.5L452.917,30Z" fill="#ff725c"><title>Gentoo (MALE)
           Biscoe</title></path>
     </a><a fill="inherit" href="https://en.wikipedia.org/wiki/Gentoo_penguin" target="_blank">
-      <path d="M501.25,30L501.25,0L509.306,0L509.306,30Z" fill="#ff725c"><title>Gentoo (MALE)
+      <path d="M501.25,30L501.25,0.5L509.306,0.5L509.306,30Z" fill="#ff725c"><title>Gentoo (MALE)
           Biscoe</title></path>
     </a><a fill="inherit" href="https://en.wikipedia.org/wiki/Gentoo_penguin" target="_blank">
-      <path d="M525.417,30L525.417,0L533.472,0L533.472,30Z" fill="#ff725c"><title>Gentoo (MALE)
+      <path d="M525.417,30L525.417,0.5L533.472,0.5L533.472,30Z" fill="#ff725c"><title>Gentoo (MALE)
           Biscoe</title></path>
     </a><a fill="inherit" href="https://en.wikipedia.org/wiki/Gentoo_penguin" target="_blank">
-      <path d="M358.264,30L358.264,0L362.292,0L362.292,30Z" fill="#ff725c"><title>Gentoo (FEMALE)
+      <path d="M358.264,30L358.264,0.5L362.292,0.5L362.292,30Z" fill="#ff725c"><title>Gentoo (FEMALE)
           Biscoe</title></path>
     </a><a fill="inherit" href="https://en.wikipedia.org/wiki/Gentoo_penguin" target="_blank">
-      <path d="M412.639,30L412.639,0L420.694,0L420.694,30Z" fill="#ff725c"><title>Gentoo (MALE)
+      <path d="M412.639,30L412.639,0.5L420.694,0.5L420.694,30Z" fill="#ff725c"><title>Gentoo (MALE)
           Biscoe</title></path>
     </a><a fill="inherit" href="https://en.wikipedia.org/wiki/Gentoo_penguin" target="_blank">
-      <path d="M557.639,30L557.639,0L565.694,0L565.694,30Z" fill="#ff725c"><title>Gentoo (MALE)
+      <path d="M557.639,30L557.639,0.5L565.694,0.5L565.694,30Z" fill="#ff725c"><title>Gentoo (MALE)
           Biscoe</title></path>
     </a><a fill="inherit" href="https://en.wikipedia.org/wiki/Gentoo_penguin" target="_blank">
-      <path d="M469.028,30L469.028,0L477.083,0L477.083,30Z" fill="#ff725c"><title>Gentoo (MALE)
+      <path d="M469.028,30L469.028,0.5L477.083,0.5L477.083,30Z" fill="#ff725c"><title>Gentoo (MALE)
           Biscoe</title></path>
     </a><a fill="inherit" href="https://en.wikipedia.org/wiki/Gentoo_penguin" target="_blank">
-      <path d="M501.25,0L501.25,30L493.194,30L493.194,0Z" fill="#ff725c"><title>Gentoo (MALE)
+      <path d="M493.194,30L493.194,0.5L501.25,0.5L501.25,30Z" fill="#ff725c"><title>Gentoo (MALE)
           Biscoe</title></path>
     </a><a fill="inherit" href="https://en.wikipedia.org/wiki/Gentoo_penguin" target="_blank">
-      <path d="M334.097,30L334.097,0L338.125,0L338.125,30Z" fill="#ff725c"><title>Gentoo (FEMALE)
+      <path d="M334.097,30L334.097,0.5L338.125,0.5L338.125,30Z" fill="#ff725c"><title>Gentoo (FEMALE)
           Biscoe</title></path>
     </a><a fill="inherit" href="https://en.wikipedia.org/wiki/Gentoo_penguin" target="_blank">
-      <path d="M378.403,30L378.403,0L382.431,0L382.431,30Z" fill="#ff725c"><title>Gentoo (FEMALE)
+      <path d="M378.403,30L378.403,0.5L382.431,0.5L382.431,30Z" fill="#ff725c"><title>Gentoo (FEMALE)
           Biscoe</title></path>
     </a><a fill="inherit" href="https://en.wikipedia.org/wiki/Gentoo_penguin" target="_blank">
-      <path d="M390.486,30L390.486,0L394.514,0L394.514,30Z" fill="#ff725c"><title>Gentoo (FEMALE)
+      <path d="M390.486,30L390.486,0.5L394.514,0.5L394.514,30Z" fill="#ff725c"><title>Gentoo (FEMALE)
           Biscoe</title></path>
     </a><a fill="inherit" href="https://en.wikipedia.org/wiki/Gentoo_penguin" target="_blank">
-      <path d="M338.125,30L338.125,0L342.153,0L342.153,30Z" fill="#ff725c"><title>Gentoo (FEMALE)
+      <path d="M338.125,30L338.125,0.5L342.153,0.5L342.153,30Z" fill="#ff725c"><title>Gentoo (FEMALE)
           Biscoe</title></path>
     </a><a fill="inherit" href="https://en.wikipedia.org/wiki/Gentoo_penguin" target="_blank">
-      <path d="M444.861,0L444.861,30L436.806,30L436.806,0Z" fill="#ff725c"><title>Gentoo (MALE)
+      <path d="M436.806,30L436.806,0.5L444.861,0.5L444.861,30Z" fill="#ff725c"><title>Gentoo (MALE)
           Biscoe</title></path>
     </a><a fill="inherit" href="https://en.wikipedia.org/wiki/Gentoo_penguin" target="_blank">
-      <path d="M394.514,30L394.514,0L398.542,0L398.542,30Z" fill="#ff725c"><title>Gentoo (FEMALE)
+      <path d="M394.514,30L394.514,0.5L398.542,0.5L398.542,30Z" fill="#ff725c"><title>Gentoo (FEMALE)
           Biscoe</title></path>
     </a><a fill="inherit" href="https://en.wikipedia.org/wiki/Gentoo_penguin" target="_blank">
-      <path d="M477.083,30L477.083,0L485.139,0L485.139,30Z" fill="#ff725c"><title>Gentoo (MALE)
+      <path d="M477.083,30L477.083,0.5L485.139,0.5L485.139,30Z" fill="#ff725c"><title>Gentoo (MALE)
           Biscoe</title></path>
     </a><a fill="inherit" href="https://en.wikipedia.org/wiki/Gentoo_penguin" target="_blank">
-      <path d="M330.069,30L330.069,0L334.097,0L334.097,30Z" fill="#ff725c"><title>Gentoo (FEMALE)
+      <path d="M330.069,30L330.069,0.5L334.097,0.5L334.097,30Z" fill="#ff725c"><title>Gentoo (FEMALE)
           Biscoe</title></path>
     </a><a fill="inherit" href="https://en.wikipedia.org/wiki/Gentoo_penguin" target="_blank">
-      <path d="M398.542,30L398.542,0L404.583,0L404.583,30Z" fill="#ff725c"><title>Gentoo (FEMALE)
+      <path d="M398.542,30L398.542,0.5L404.583,0.5L404.583,30Z" fill="#ff725c"><title>Gentoo (FEMALE)
           Biscoe</title></path>
     </a><a fill="inherit" href="https://en.wikipedia.org/wiki/Gentoo_penguin" target="_blank">
-      <path d="M545.556,30L545.556,0L557.639,0L557.639,30Z" fill="#ff725c"><title>Gentoo (MALE)
+      <path d="M545.556,30L545.556,0.5L557.639,0.5L557.639,30Z" fill="#ff725c"><title>Gentoo (MALE)
           Biscoe</title></path>
     </a><a fill="inherit" href="https://en.wikipedia.org/wiki/Gentoo_penguin" target="_blank">
-      <path d="M301.875,0L301.875,30L297.847,30L297.847,0Z" fill="#ff725c"><title>Gentoo (FEMALE)
+      <path d="M301.875,0.5L301.875,30L297.847,30L297.847,0.5Z" fill="#ff725c"><title>Gentoo (FEMALE)
           Biscoe</title></path>
     </a><a fill="inherit" href="https://en.wikipedia.org/wiki/Gentoo_penguin" target="_blank">
-      <path d="M386.458,30L386.458,0L390.486,0L390.486,30Z" fill="#ff725c"><title>Gentoo (FEMALE)
+      <path d="M386.458,30L386.458,0.5L390.486,0.5L390.486,30Z" fill="#ff725c"><title>Gentoo (FEMALE)
           Biscoe</title></path>
     </a><a fill="inherit" href="https://en.wikipedia.org/wiki/Gentoo_penguin" target="_blank">
-      <path d="M525.417,0L525.417,30L517.361,30L517.361,0Z" fill="#ff725c"><title>Gentoo (MALE)
+      <path d="M525.417,0.5L525.417,30L517.361,30L517.361,0.5Z" fill="#ff725c"><title>Gentoo (MALE)
           Biscoe</title></path>
     </a><a fill="inherit" href="https://en.wikipedia.org/wiki/Gentoo_penguin" target="_blank">
-      <path d="M436.806,0L436.806,30L428.75,30L428.75,0Z" fill="#ff725c"><title>Gentoo (FEMALE)
+      <path d="M428.75,30L428.75,0.5L436.806,0.5L436.806,30Z" fill="#ff725c"><title>Gentoo (FEMALE)
           Biscoe</title></path>
     </a></g>
-  <g aria-label="dot" pointer-events="none" transform="translate(0.5,0.5)">
-    <circle cx="199.167" cy="15" r="1.5"></circle>
-    <circle cx="207.222" cy="15" r="1.5"></circle>
-    <circle cx="118.611" cy="15" r="1.5"></circle>
-    <circle cx="150.833" cy="15" r="1.5"></circle>
-    <circle cx="183.056" cy="15" r="1.5"></circle>
-    <circle cx="179.028" cy="15" r="1.5"></circle>
-    <circle cx="348.194" cy="15" r="1.5"></circle>
-    <circle cx="154.861" cy="15" r="1.5"></circle>
-    <circle cx="279.722" cy="15" r="1.5"></circle>
-    <circle cx="126.667" cy="15" r="1.5"></circle>
-    <circle cx="191.111" cy="15" r="1.5"></circle>
-    <circle cx="110.556" cy="15" r="1.5"></circle>
-    <circle cx="207.222" cy="15" r="1.5"></circle>
-    <circle cx="303.889" cy="15" r="1.5"></circle>
-    <circle cx="191.111" cy="15" r="1.5"></circle>
-    <circle cx="150.833" cy="15" r="1.5"></circle>
-    <circle cx="320" cy="15" r="1.5"></circle>
-    <circle cx="130.694" cy="15" r="1.5"></circle>
-    <circle cx="271.667" cy="15" r="1.5"></circle>
-    <circle cx="142.778" cy="15" r="1.5"></circle>
-    <circle cx="175" cy="15" r="1.5"></circle>
-    <circle cx="207.222" cy="15" r="1.5"></circle>
-    <circle cx="231.389" cy="15" r="1.5"></circle>
-    <circle cx="207.222" cy="15" r="1.5"></circle>
-    <circle cx="207.222" cy="15" r="1.5"></circle>
-    <circle cx="166.944" cy="15" r="1.5"></circle>
-    <circle cx="110.556" cy="15" r="1.5"></circle>
-    <circle cx="102.5" cy="15" r="1.5"></circle>
-    <circle cx="231.389" cy="15" r="1.5"></circle>
-    <circle cx="118.611" cy="15" r="1.5"></circle>
-    <circle cx="223.333" cy="15" r="1.5"></circle>
-    <circle cx="126.667" cy="15" r="1.5"></circle>
-    <circle cx="223.333" cy="15" r="1.5"></circle>
-    <circle cx="130.694" cy="15" r="1.5"></circle>
-    <circle cx="263.611" cy="15" r="1.5"></circle>
-    <circle cx="231.389" cy="15" r="1.5"></circle>
-    <circle cx="166.944" cy="15" r="1.5"></circle>
-    <circle cx="126.667" cy="15" r="1.5"></circle>
-    <circle cx="344.167" cy="15" r="1.5"></circle>
-    <circle cx="102.5" cy="15" r="1.5"></circle>
-    <circle cx="223.333" cy="15" r="1.5"></circle>
-    <circle cx="94.444" cy="15" r="1.5"></circle>
-    <circle cx="303.889" cy="15" r="1.5"></circle>
-    <circle cx="78.333" cy="15" r="1.5"></circle>
-    <circle cx="336.111" cy="15" r="1.5"></circle>
-    <circle cx="146.806" cy="15" r="1.5"></circle>
-    <circle cx="74.306" cy="15" r="1.5"></circle>
-    <circle cx="150.833" cy="15" r="1.5"></circle>
-    <circle cx="263.611" cy="15" r="1.5"></circle>
-    <circle cx="158.889" cy="15" r="1.5"></circle>
-    <circle cx="287.778" cy="15" r="1.5"></circle>
-    <circle cx="150.833" cy="15" r="1.5"></circle>
-    <circle cx="247.5" cy="15" r="1.5"></circle>
-    <circle cx="62.222" cy="15" r="1.5"></circle>
-    <circle cx="191.111" cy="15" r="1.5"></circle>
-    <circle cx="166.944" cy="15" r="1.5"></circle>
-    <circle cx="207.222" cy="15" r="1.5"></circle>
-    <circle cx="54.167" cy="15" r="1.5"></circle>
-    <circle cx="199.167" cy="15" r="1.5"></circle>
-    <circle cx="102.5" cy="15" r="1.5"></circle>
-    <circle cx="303.889" cy="15" r="1.5"></circle>
-    <circle cx="175" cy="15" r="1.5"></circle>
-    <circle cx="247.5" cy="15" r="1.5"></circle>
-    <circle cx="54.167" cy="15" r="1.5"></circle>
-    <circle cx="231.389" cy="15" r="1.5"></circle>
-    <circle cx="134.722" cy="15" r="1.5"></circle>
-    <circle cx="255.556" cy="15" r="1.5"></circle>
-    <circle cx="86.389" cy="15" r="1.5"></circle>
-    <circle cx="311.944" cy="15" r="1.5"></circle>
-    <circle cx="175" cy="15" r="1.5"></circle>
-    <circle cx="223.333" cy="15" r="1.5"></circle>
-    <circle cx="166.944" cy="15" r="1.5"></circle>
-    <circle cx="263.611" cy="15" r="1.5"></circle>
-    <circle cx="191.111" cy="15" r="1.5"></circle>
-    <circle cx="279.722" cy="15" r="1.5"></circle>
-    <circle cx="191.111" cy="15" r="1.5"></circle>
-    <circle cx="223.333" cy="15" r="1.5"></circle>
-    <circle cx="166.944" cy="15" r="1.5"></circle>
-    <circle cx="239.444" cy="15" r="1.5"></circle>
-    <circle cx="110.556" cy="15" r="1.5"></circle>
-    <circle cx="352.222" cy="15" r="1.5"></circle>
-    <circle cx="207.222" cy="15" r="1.5"></circle>
-    <circle cx="271.667" cy="15" r="1.5"></circle>
-    <circle cx="134.722" cy="15" r="1.5"></circle>
-    <circle cx="166.944" cy="15" r="1.5"></circle>
-    <circle cx="207.222" cy="15" r="1.5"></circle>
-    <circle cx="158.889" cy="15" r="1.5"></circle>
-    <circle cx="231.389" cy="15" r="1.5"></circle>
-    <circle cx="175" cy="15" r="1.5"></circle>
-    <circle cx="166.944" cy="15" r="1.5"></circle>
-    <circle cx="287.778" cy="15" r="1.5"></circle>
-    <circle cx="142.778" cy="15" r="1.5"></circle>
-    <circle cx="311.944" cy="15" r="1.5"></circle>
-    <circle cx="126.667" cy="15" r="1.5"></circle>
-    <circle cx="287.778" cy="15" r="1.5"></circle>
-    <circle cx="191.111" cy="15" r="1.5"></circle>
-    <circle cx="295.833" cy="15" r="1.5"></circle>
-    <circle cx="62.222" cy="15" r="1.5"></circle>
-    <circle cx="255.556" cy="15" r="1.5"></circle>
-    <circle cx="195.139" cy="15" r="1.5"></circle>
-    <circle cx="356.25" cy="15" r="1.5"></circle>
-    <circle cx="90.417" cy="15" r="1.5"></circle>
-    <circle cx="279.722" cy="15" r="1.5"></circle>
-    <circle cx="66.25" cy="15" r="1.5"></circle>
-    <circle cx="166.944" cy="15" r="1.5"></circle>
-    <circle cx="199.167" cy="15" r="1.5"></circle>
-    <circle cx="223.333" cy="15" r="1.5"></circle>
-    <circle cx="106.528" cy="15" r="1.5"></circle>
-    <circle cx="364.306" cy="15" r="1.5"></circle>
-    <circle cx="211.25" cy="15" r="1.5"></circle>
-    <circle cx="336.111" cy="15" r="1.5"></circle>
-    <circle cx="110.556" cy="15" r="1.5"></circle>
-    <circle cx="283.75" cy="15" r="1.5"></circle>
-    <circle cx="223.333" cy="15" r="1.5"></circle>
-    <circle cx="251.528" cy="15" r="1.5"></circle>
-    <circle cx="62.222" cy="15" r="1.5"></circle>
-    <circle cx="203.194" cy="15" r="1.5"></circle>
-    <circle cx="134.722" cy="15" r="1.5"></circle>
-    <circle cx="130.694" cy="15" r="1.5"></circle>
-    <circle cx="102.5" cy="15" r="1.5"></circle>
-    <circle cx="158.889" cy="15" r="1.5"></circle>
-    <circle cx="150.833" cy="15" r="1.5"></circle>
-    <circle cx="219.306" cy="15" r="1.5"></circle>
-    <circle cx="86.389" cy="15" r="1.5"></circle>
-    <circle cx="239.444" cy="15" r="1.5"></circle>
-    <circle cx="122.639" cy="15" r="1.5"></circle>
-    <circle cx="287.778" cy="15" r="1.5"></circle>
-    <circle cx="86.389" cy="15" r="1.5"></circle>
-    <circle cx="239.444" cy="15" r="1.5"></circle>
-    <circle cx="130.694" cy="15" r="1.5"></circle>
-    <circle cx="158.889" cy="15" r="1.5"></circle>
-    <circle cx="158.889" cy="15" r="1.5"></circle>
-    <circle cx="315.972" cy="15" r="1.5"></circle>
-    <circle cx="146.806" cy="15" r="1.5"></circle>
-    <circle cx="223.333" cy="15" r="1.5"></circle>
-    <circle cx="106.528" cy="15" r="1.5"></circle>
-    <circle cx="235.417" cy="15" r="1.5"></circle>
-    <circle cx="142.778" cy="15" r="1.5"></circle>
-    <circle cx="279.722" cy="15" r="1.5"></circle>
-    <circle cx="142.778" cy="15" r="1.5"></circle>
-    <circle cx="154.861" cy="15" r="1.5"></circle>
-    <circle cx="86.389" cy="15" r="1.5"></circle>
-    <circle cx="195.139" cy="15" r="1.5"></circle>
-    <circle cx="78.333" cy="15" r="1.5"></circle>
-    <circle cx="183.056" cy="15" r="1.5"></circle>
-    <circle cx="279.722" cy="15" r="1.5"></circle>
-    <circle cx="154.861" cy="15" r="1.5"></circle>
-    <circle cx="150.833" cy="15" r="1.5"></circle>
-    <circle cx="199.167" cy="15" r="1.5"></circle>
-    <circle cx="191.111" cy="15" r="1.5"></circle>
-    <circle cx="239.444" cy="15" r="1.5"></circle>
-    <circle cx="158.889" cy="15" r="1.5"></circle>
-    <circle cx="223.333" cy="15" r="1.5"></circle>
-    <circle cx="183.056" cy="15" r="1.5"></circle>
-    <circle cx="162.917" cy="15" r="1.5"></circle>
-    <circle cx="195.139" cy="15" r="1.5"></circle>
-    <circle cx="231.389" cy="15" r="1.5"></circle>
-    <circle cx="118.611" cy="15" r="1.5"></circle>
-    <circle cx="199.167" cy="15" r="1.5"></circle>
-    <circle cx="263.611" cy="15" r="1.5"></circle>
-    <circle cx="191.111" cy="15" r="1.5"></circle>
-    <circle cx="207.222" cy="15" r="1.5"></circle>
-    <circle cx="203.194" cy="15" r="1.5"></circle>
-    <circle cx="191.111" cy="15" r="1.5"></circle>
-    <circle cx="247.5" cy="15" r="1.5"></circle>
-    <circle cx="170.972" cy="15" r="1.5"></circle>
-    <circle cx="247.5" cy="15" r="1.5"></circle>
-    <circle cx="126.667" cy="15" r="1.5"></circle>
-    <circle cx="191.111" cy="15" r="1.5"></circle>
-    <circle cx="150.833" cy="15" r="1.5"></circle>
-    <circle cx="303.889" cy="15" r="1.5"></circle>
-    <circle cx="175" cy="15" r="1.5"></circle>
-    <circle cx="142.778" cy="15" r="1.5"></circle>
-    <circle cx="62.222" cy="15" r="1.5"></circle>
-    <circle cx="207.222" cy="15" r="1.5"></circle>
-    <circle cx="126.667" cy="15" r="1.5"></circle>
-    <circle cx="263.611" cy="15" r="1.5"></circle>
-    <circle cx="142.778" cy="15" r="1.5"></circle>
-    <circle cx="207.222" cy="15" r="1.5"></circle>
-    <circle cx="191.111" cy="15" r="1.5"></circle>
-    <circle cx="328.056" cy="15" r="1.5"></circle>
-    <circle cx="110.556" cy="15" r="1.5"></circle>
-    <circle cx="287.778" cy="15" r="1.5"></circle>
-    <circle cx="134.722" cy="15" r="1.5"></circle>
-    <circle cx="255.556" cy="15" r="1.5"></circle>
-    <circle cx="175" cy="15" r="1.5"></circle>
-    <circle cx="223.333" cy="15" r="1.5"></circle>
-    <circle cx="215.278" cy="15" r="1.5"></circle>
-    <circle cx="368.333" cy="15" r="1.5"></circle>
-    <circle cx="30" cy="15" r="1.5"></circle>
-    <circle cx="320" cy="15" r="1.5"></circle>
-    <circle cx="231.389" cy="15" r="1.5"></circle>
-    <circle cx="183.056" cy="15" r="1.5"></circle>
-    <circle cx="166.944" cy="15" r="1.5"></circle>
-    <circle cx="158.889" cy="15" r="1.5"></circle>
-    <circle cx="187.083" cy="15" r="1.5"></circle>
-    <circle cx="311.944" cy="15" r="1.5"></circle>
-    <circle cx="142.778" cy="15" r="1.5"></circle>
-    <circle cx="287.778" cy="15" r="1.5"></circle>
-    <circle cx="118.611" cy="15" r="1.5"></circle>
-    <circle cx="187.083" cy="15" r="1.5"></circle>
-    <circle cx="130.694" cy="15" r="1.5"></circle>
-    <circle cx="231.389" cy="15" r="1.5"></circle>
-    <circle cx="175" cy="15" r="1.5"></circle>
-    <circle cx="247.5" cy="15" r="1.5"></circle>
-    <circle cx="134.722" cy="15" r="1.5"></circle>
-    <circle cx="150.833" cy="15" r="1.5"></circle>
-    <circle cx="118.611" cy="15" r="1.5"></circle>
-    <circle cx="247.5" cy="15" r="1.5"></circle>
-    <circle cx="207.222" cy="15" r="1.5"></circle>
-    <circle cx="162.917" cy="15" r="1.5"></circle>
-    <circle cx="231.389" cy="15" r="1.5"></circle>
-    <circle cx="183.056" cy="15" r="1.5"></circle>
-    <circle cx="183.056" cy="15" r="1.5"></circle>
-    <circle cx="239.444" cy="15" r="1.5"></circle>
-    <circle cx="142.778" cy="15" r="1.5"></circle>
-    <circle cx="203.194" cy="15" r="1.5"></circle>
-    <circle cx="255.556" cy="15" r="1.5"></circle>
-    <circle cx="203.194" cy="15" r="1.5"></circle>
-    <circle cx="320" cy="15" r="1.5"></circle>
-    <circle cx="513.333" cy="15" r="1.5"></circle>
-    <circle cx="311.944" cy="15" r="1.5"></circle>
-    <circle cx="513.333" cy="15" r="1.5"></circle>
-    <circle cx="465" cy="15" r="1.5"></circle>
-    <circle cx="328.056" cy="15" r="1.5"></circle>
-    <circle cx="368.333" cy="15" r="1.5"></circle>
-    <circle cx="432.778" cy="15" r="1.5"></circle>
-    <circle cx="303.889" cy="15" r="1.5"></circle>
-    <circle cx="424.722" cy="15" r="1.5"></circle>
-    <circle cx="344.167" cy="15" r="1.5"></circle>
-    <circle cx="489.167" cy="15" r="1.5"></circle>
-    <circle cx="344.167" cy="15" r="1.5"></circle>
-    <circle cx="537.5" cy="15" r="1.5"></circle>
-    <circle cx="271.667" cy="15" r="1.5"></circle>
-    <circle cx="537.5" cy="15" r="1.5"></circle>
-    <circle cx="263.611" cy="15" r="1.5"></circle>
-    <circle cx="610" cy="15" r="1.5"></circle>
-    <circle cx="368.333" cy="15" r="1.5"></circle>
-    <circle cx="456.944" cy="15" r="1.5"></circle>
-    <circle cx="513.333" cy="15" r="1.5"></circle>
-    <circle cx="400.556" cy="15" r="1.5"></circle>
-    <circle cx="303.889" cy="15" r="1.5"></circle>
-    <circle cx="408.611" cy="15" r="1.5"></circle>
-    <circle cx="400.556" cy="15" r="1.5"></circle>
-    <circle cx="416.667" cy="15" r="1.5"></circle>
-    <circle cx="255.556" cy="15" r="1.5"></circle>
-    <circle cx="505.278" cy="15" r="1.5"></circle>
-    <circle cx="336.111" cy="15" r="1.5"></circle>
-    <circle cx="489.167" cy="15" r="1.5"></circle>
-    <circle cx="440.833" cy="15" r="1.5"></circle>
-    <circle cx="352.222" cy="15" r="1.5"></circle>
-    <circle cx="408.611" cy="15" r="1.5"></circle>
-    <circle cx="569.722" cy="15" r="1.5"></circle>
-    <circle cx="424.722" cy="15" r="1.5"></circle>
-    <circle cx="465" cy="15" r="1.5"></circle>
-    <circle cx="392.5" cy="15" r="1.5"></circle>
-    <circle cx="440.833" cy="15" r="1.5"></circle>
-    <circle cx="295.833" cy="15" r="1.5"></circle>
-    <circle cx="456.944" cy="15" r="1.5"></circle>
-    <circle cx="231.389" cy="15" r="1.5"></circle>
-    <circle cx="513.333" cy="15" r="1.5"></circle>
-    <circle cx="287.778" cy="15" r="1.5"></circle>
-    <circle cx="360.278" cy="15" r="1.5"></circle>
-    <circle cx="489.167" cy="15" r="1.5"></circle>
-    <circle cx="384.444" cy="15" r="1.5"></circle>
-    <circle cx="271.667" cy="15" r="1.5"></circle>
-    <circle cx="465" cy="15" r="1.5"></circle>
-    <circle cx="416.667" cy="15" r="1.5"></circle>
-    <circle cx="448.889" cy="15" r="1.5"></circle>
-    <circle cx="376.389" cy="15" r="1.5"></circle>
-    <circle cx="448.889" cy="15" r="1.5"></circle>
-    <circle cx="303.889" cy="15" r="1.5"></circle>
-    <circle cx="400.556" cy="15" r="1.5"></circle>
-    <circle cx="384.444" cy="15" r="1.5"></circle>
-    <circle cx="408.611" cy="15" r="1.5"></circle>
-    <circle cx="287.778" cy="15" r="1.5"></circle>
-    <circle cx="400.556" cy="15" r="1.5"></circle>
-    <circle cx="311.944" cy="15" r="1.5"></circle>
-    <circle cx="489.167" cy="15" r="1.5"></circle>
-    <circle cx="271.667" cy="15" r="1.5"></circle>
-    <circle cx="448.889" cy="15" r="1.5"></circle>
-    <circle cx="303.889" cy="15" r="1.5"></circle>
-    <circle cx="505.278" cy="15" r="1.5"></circle>
-    <circle cx="352.222" cy="15" r="1.5"></circle>
-    <circle cx="513.333" cy="15" r="1.5"></circle>
-    <circle cx="344.167" cy="15" r="1.5"></circle>
-    <circle cx="529.444" cy="15" r="1.5"></circle>
-    <circle cx="352.222" cy="15" r="1.5"></circle>
-    <circle cx="489.167" cy="15" r="1.5"></circle>
-    <circle cx="360.278" cy="15" r="1.5"></circle>
-    <circle cx="400.556" cy="15" r="1.5"></circle>
-    <circle cx="416.667" cy="15" r="1.5"></circle>
-    <circle cx="432.778" cy="15" r="1.5"></circle>
-    <circle cx="352.222" cy="15" r="1.5"></circle>
-    <circle cx="529.444" cy="15" r="1.5"></circle>
-    <circle cx="336.111" cy="15" r="1.5"></circle>
-    <circle cx="561.667" cy="15" r="1.5"></circle>
-    <circle cx="360.278" cy="15" r="1.5"></circle>
-    <circle cx="553.611" cy="15" r="1.5"></circle>
-    <circle cx="340.139" cy="15" r="1.5"></circle>
-    <circle cx="473.056" cy="15" r="1.5"></circle>
-    <circle cx="356.25" cy="15" r="1.5"></circle>
-    <circle cx="456.944" cy="15" r="1.5"></circle>
-    <circle cx="360.278" cy="15" r="1.5"></circle>
-    <circle cx="497.222" cy="15" r="1.5"></circle>
-    <circle cx="336.111" cy="15" r="1.5"></circle>
-    <circle cx="448.889" cy="15" r="1.5"></circle>
-    <circle cx="380.417" cy="15" r="1.5"></circle>
-    <circle cx="489.167" cy="15" r="1.5"></circle>
-    <circle cx="392.5" cy="15" r="1.5"></circle>
-    <circle cx="465" cy="15" r="1.5"></circle>
-    <circle cx="360.278" cy="15" r="1.5"></circle>
-    <circle cx="505.278" cy="15" r="1.5"></circle>
-    <circle cx="376.389" cy="15" r="1.5"></circle>
-    <circle cx="432.778" cy="15" r="1.5"></circle>
-    <circle cx="388.472" cy="15" r="1.5"></circle>
-    <circle cx="380.417" cy="15" r="1.5"></circle>
-    <circle cx="340.139" cy="15" r="1.5"></circle>
-    <circle cx="440.833" cy="15" r="1.5"></circle>
-    <circle cx="376.389" cy="15" r="1.5"></circle>
-    <circle cx="497.222" cy="15" r="1.5"></circle>
-    <circle cx="396.528" cy="15" r="1.5"></circle>
-    <circle cx="481.111" cy="15" r="1.5"></circle>
-    <circle cx="356.25" cy="15" r="1.5"></circle>
-    <circle cx="481.111" cy="15" r="1.5"></circle>
-    <circle cx="352.222" cy="15" r="1.5"></circle>
-    <circle cx="481.111" cy="15" r="1.5"></circle>
-    <circle cx="332.083" cy="15" r="1.5"></circle>
-    <circle cx="481.111" cy="15" r="1.5"></circle>
-    <circle cx="400.556" cy="15" r="1.5"></circle>
-    <circle cx="553.611" cy="15" r="1.5"></circle>
-    <circle cx="344.167" cy="15" r="1.5"></circle>
-    <circle cx="481.111" cy="15" r="1.5"></circle>
-    <circle cx="299.861" cy="15" r="1.5"></circle>
-    <circle cx="537.5" cy="15" r="1.5"></circle>
-    <circle cx="380.417" cy="15" r="1.5"></circle>
-    <circle cx="561.667" cy="15" r="1.5"></circle>
-    <circle cx="388.472" cy="15" r="1.5"></circle>
-    <circle cx="376.389" cy="15" r="1.5"></circle>
-    <circle cx="521.389" cy="15" r="1.5"></circle>
-    <circle cx="432.778" cy="15" r="1.5"></circle>
-    <circle cx="465" cy="15" r="1.5"></circle>
+  <g aria-label="dot" pointer-events="none">
+    <circle cx="199.167" cy="15.25" r="1.5"></circle>
+    <circle cx="207.222" cy="15.25" r="1.5"></circle>
+    <circle cx="118.611" cy="15.25" r="1.5"></circle>
+    <circle cx="150.833" cy="15.25" r="1.5"></circle>
+    <circle cx="183.056" cy="15.25" r="1.5"></circle>
+    <circle cx="179.028" cy="15.25" r="1.5"></circle>
+    <circle cx="348.194" cy="15.25" r="1.5"></circle>
+    <circle cx="154.861" cy="15.25" r="1.5"></circle>
+    <circle cx="279.722" cy="15.25" r="1.5"></circle>
+    <circle cx="126.667" cy="15.25" r="1.5"></circle>
+    <circle cx="191.111" cy="15.25" r="1.5"></circle>
+    <circle cx="110.556" cy="15.25" r="1.5"></circle>
+    <circle cx="207.222" cy="15.25" r="1.5"></circle>
+    <circle cx="303.889" cy="15.25" r="1.5"></circle>
+    <circle cx="191.111" cy="15.25" r="1.5"></circle>
+    <circle cx="150.833" cy="15.25" r="1.5"></circle>
+    <circle cx="320" cy="15.25" r="1.5"></circle>
+    <circle cx="130.694" cy="15.25" r="1.5"></circle>
+    <circle cx="271.667" cy="15.25" r="1.5"></circle>
+    <circle cx="142.778" cy="15.25" r="1.5"></circle>
+    <circle cx="175" cy="15.25" r="1.5"></circle>
+    <circle cx="207.222" cy="15.25" r="1.5"></circle>
+    <circle cx="231.389" cy="15.25" r="1.5"></circle>
+    <circle cx="207.222" cy="15.25" r="1.5"></circle>
+    <circle cx="207.222" cy="15.25" r="1.5"></circle>
+    <circle cx="166.944" cy="15.25" r="1.5"></circle>
+    <circle cx="110.556" cy="15.25" r="1.5"></circle>
+    <circle cx="102.5" cy="15.25" r="1.5"></circle>
+    <circle cx="231.389" cy="15.25" r="1.5"></circle>
+    <circle cx="118.611" cy="15.25" r="1.5"></circle>
+    <circle cx="223.333" cy="15.25" r="1.5"></circle>
+    <circle cx="126.667" cy="15.25" r="1.5"></circle>
+    <circle cx="223.333" cy="15.25" r="1.5"></circle>
+    <circle cx="130.694" cy="15.25" r="1.5"></circle>
+    <circle cx="263.611" cy="15.25" r="1.5"></circle>
+    <circle cx="231.389" cy="15.25" r="1.5"></circle>
+    <circle cx="166.944" cy="15.25" r="1.5"></circle>
+    <circle cx="126.667" cy="15.25" r="1.5"></circle>
+    <circle cx="344.167" cy="15.25" r="1.5"></circle>
+    <circle cx="102.5" cy="15.25" r="1.5"></circle>
+    <circle cx="223.333" cy="15.25" r="1.5"></circle>
+    <circle cx="94.444" cy="15.25" r="1.5"></circle>
+    <circle cx="303.889" cy="15.25" r="1.5"></circle>
+    <circle cx="78.333" cy="15.25" r="1.5"></circle>
+    <circle cx="336.111" cy="15.25" r="1.5"></circle>
+    <circle cx="146.806" cy="15.25" r="1.5"></circle>
+    <circle cx="74.306" cy="15.25" r="1.5"></circle>
+    <circle cx="150.833" cy="15.25" r="1.5"></circle>
+    <circle cx="263.611" cy="15.25" r="1.5"></circle>
+    <circle cx="158.889" cy="15.25" r="1.5"></circle>
+    <circle cx="287.778" cy="15.25" r="1.5"></circle>
+    <circle cx="150.833" cy="15.25" r="1.5"></circle>
+    <circle cx="247.5" cy="15.25" r="1.5"></circle>
+    <circle cx="62.222" cy="15.25" r="1.5"></circle>
+    <circle cx="191.111" cy="15.25" r="1.5"></circle>
+    <circle cx="166.944" cy="15.25" r="1.5"></circle>
+    <circle cx="207.222" cy="15.25" r="1.5"></circle>
+    <circle cx="54.167" cy="15.25" r="1.5"></circle>
+    <circle cx="199.167" cy="15.25" r="1.5"></circle>
+    <circle cx="102.5" cy="15.25" r="1.5"></circle>
+    <circle cx="303.889" cy="15.25" r="1.5"></circle>
+    <circle cx="175" cy="15.25" r="1.5"></circle>
+    <circle cx="247.5" cy="15.25" r="1.5"></circle>
+    <circle cx="54.167" cy="15.25" r="1.5"></circle>
+    <circle cx="231.389" cy="15.25" r="1.5"></circle>
+    <circle cx="134.722" cy="15.25" r="1.5"></circle>
+    <circle cx="255.556" cy="15.25" r="1.5"></circle>
+    <circle cx="86.389" cy="15.25" r="1.5"></circle>
+    <circle cx="311.944" cy="15.25" r="1.5"></circle>
+    <circle cx="175" cy="15.25" r="1.5"></circle>
+    <circle cx="223.333" cy="15.25" r="1.5"></circle>
+    <circle cx="166.944" cy="15.25" r="1.5"></circle>
+    <circle cx="263.611" cy="15.25" r="1.5"></circle>
+    <circle cx="191.111" cy="15.25" r="1.5"></circle>
+    <circle cx="279.722" cy="15.25" r="1.5"></circle>
+    <circle cx="191.111" cy="15.25" r="1.5"></circle>
+    <circle cx="223.333" cy="15.25" r="1.5"></circle>
+    <circle cx="166.944" cy="15.25" r="1.5"></circle>
+    <circle cx="239.444" cy="15.25" r="1.5"></circle>
+    <circle cx="110.556" cy="15.25" r="1.5"></circle>
+    <circle cx="352.222" cy="15.25" r="1.5"></circle>
+    <circle cx="207.222" cy="15.25" r="1.5"></circle>
+    <circle cx="271.667" cy="15.25" r="1.5"></circle>
+    <circle cx="134.722" cy="15.25" r="1.5"></circle>
+    <circle cx="166.944" cy="15.25" r="1.5"></circle>
+    <circle cx="207.222" cy="15.25" r="1.5"></circle>
+    <circle cx="158.889" cy="15.25" r="1.5"></circle>
+    <circle cx="231.389" cy="15.25" r="1.5"></circle>
+    <circle cx="175" cy="15.25" r="1.5"></circle>
+    <circle cx="166.944" cy="15.25" r="1.5"></circle>
+    <circle cx="287.778" cy="15.25" r="1.5"></circle>
+    <circle cx="142.778" cy="15.25" r="1.5"></circle>
+    <circle cx="311.944" cy="15.25" r="1.5"></circle>
+    <circle cx="126.667" cy="15.25" r="1.5"></circle>
+    <circle cx="287.778" cy="15.25" r="1.5"></circle>
+    <circle cx="191.111" cy="15.25" r="1.5"></circle>
+    <circle cx="295.833" cy="15.25" r="1.5"></circle>
+    <circle cx="62.222" cy="15.25" r="1.5"></circle>
+    <circle cx="255.556" cy="15.25" r="1.5"></circle>
+    <circle cx="195.139" cy="15.25" r="1.5"></circle>
+    <circle cx="356.25" cy="15.25" r="1.5"></circle>
+    <circle cx="90.417" cy="15.25" r="1.5"></circle>
+    <circle cx="279.722" cy="15.25" r="1.5"></circle>
+    <circle cx="66.25" cy="15.25" r="1.5"></circle>
+    <circle cx="166.944" cy="15.25" r="1.5"></circle>
+    <circle cx="199.167" cy="15.25" r="1.5"></circle>
+    <circle cx="223.333" cy="15.25" r="1.5"></circle>
+    <circle cx="106.528" cy="15.25" r="1.5"></circle>
+    <circle cx="364.306" cy="15.25" r="1.5"></circle>
+    <circle cx="211.25" cy="15.25" r="1.5"></circle>
+    <circle cx="336.111" cy="15.25" r="1.5"></circle>
+    <circle cx="110.556" cy="15.25" r="1.5"></circle>
+    <circle cx="283.75" cy="15.25" r="1.5"></circle>
+    <circle cx="223.333" cy="15.25" r="1.5"></circle>
+    <circle cx="251.528" cy="15.25" r="1.5"></circle>
+    <circle cx="62.222" cy="15.25" r="1.5"></circle>
+    <circle cx="203.194" cy="15.25" r="1.5"></circle>
+    <circle cx="134.722" cy="15.25" r="1.5"></circle>
+    <circle cx="130.694" cy="15.25" r="1.5"></circle>
+    <circle cx="102.5" cy="15.25" r="1.5"></circle>
+    <circle cx="158.889" cy="15.25" r="1.5"></circle>
+    <circle cx="150.833" cy="15.25" r="1.5"></circle>
+    <circle cx="219.306" cy="15.25" r="1.5"></circle>
+    <circle cx="86.389" cy="15.25" r="1.5"></circle>
+    <circle cx="239.444" cy="15.25" r="1.5"></circle>
+    <circle cx="122.639" cy="15.25" r="1.5"></circle>
+    <circle cx="287.778" cy="15.25" r="1.5"></circle>
+    <circle cx="86.389" cy="15.25" r="1.5"></circle>
+    <circle cx="239.444" cy="15.25" r="1.5"></circle>
+    <circle cx="130.694" cy="15.25" r="1.5"></circle>
+    <circle cx="158.889" cy="15.25" r="1.5"></circle>
+    <circle cx="158.889" cy="15.25" r="1.5"></circle>
+    <circle cx="315.972" cy="15.25" r="1.5"></circle>
+    <circle cx="146.806" cy="15.25" r="1.5"></circle>
+    <circle cx="223.333" cy="15.25" r="1.5"></circle>
+    <circle cx="106.528" cy="15.25" r="1.5"></circle>
+    <circle cx="235.417" cy="15.25" r="1.5"></circle>
+    <circle cx="142.778" cy="15.25" r="1.5"></circle>
+    <circle cx="279.722" cy="15.25" r="1.5"></circle>
+    <circle cx="142.778" cy="15.25" r="1.5"></circle>
+    <circle cx="154.861" cy="15.25" r="1.5"></circle>
+    <circle cx="86.389" cy="15.25" r="1.5"></circle>
+    <circle cx="195.139" cy="15.25" r="1.5"></circle>
+    <circle cx="78.333" cy="15.25" r="1.5"></circle>
+    <circle cx="183.056" cy="15.25" r="1.5"></circle>
+    <circle cx="279.722" cy="15.25" r="1.5"></circle>
+    <circle cx="154.861" cy="15.25" r="1.5"></circle>
+    <circle cx="150.833" cy="15.25" r="1.5"></circle>
+    <circle cx="199.167" cy="15.25" r="1.5"></circle>
+    <circle cx="191.111" cy="15.25" r="1.5"></circle>
+    <circle cx="239.444" cy="15.25" r="1.5"></circle>
+    <circle cx="158.889" cy="15.25" r="1.5"></circle>
+    <circle cx="223.333" cy="15.25" r="1.5"></circle>
+    <circle cx="183.056" cy="15.25" r="1.5"></circle>
+    <circle cx="162.917" cy="15.25" r="1.5"></circle>
+    <circle cx="195.139" cy="15.25" r="1.5"></circle>
+    <circle cx="231.389" cy="15.25" r="1.5"></circle>
+    <circle cx="118.611" cy="15.25" r="1.5"></circle>
+    <circle cx="199.167" cy="15.25" r="1.5"></circle>
+    <circle cx="263.611" cy="15.25" r="1.5"></circle>
+    <circle cx="191.111" cy="15.25" r="1.5"></circle>
+    <circle cx="207.222" cy="15.25" r="1.5"></circle>
+    <circle cx="203.194" cy="15.25" r="1.5"></circle>
+    <circle cx="191.111" cy="15.25" r="1.5"></circle>
+    <circle cx="247.5" cy="15.25" r="1.5"></circle>
+    <circle cx="170.972" cy="15.25" r="1.5"></circle>
+    <circle cx="247.5" cy="15.25" r="1.5"></circle>
+    <circle cx="126.667" cy="15.25" r="1.5"></circle>
+    <circle cx="191.111" cy="15.25" r="1.5"></circle>
+    <circle cx="150.833" cy="15.25" r="1.5"></circle>
+    <circle cx="303.889" cy="15.25" r="1.5"></circle>
+    <circle cx="175" cy="15.25" r="1.5"></circle>
+    <circle cx="142.778" cy="15.25" r="1.5"></circle>
+    <circle cx="62.222" cy="15.25" r="1.5"></circle>
+    <circle cx="207.222" cy="15.25" r="1.5"></circle>
+    <circle cx="126.667" cy="15.25" r="1.5"></circle>
+    <circle cx="263.611" cy="15.25" r="1.5"></circle>
+    <circle cx="142.778" cy="15.25" r="1.5"></circle>
+    <circle cx="207.222" cy="15.25" r="1.5"></circle>
+    <circle cx="191.111" cy="15.25" r="1.5"></circle>
+    <circle cx="328.056" cy="15.25" r="1.5"></circle>
+    <circle cx="110.556" cy="15.25" r="1.5"></circle>
+    <circle cx="287.778" cy="15.25" r="1.5"></circle>
+    <circle cx="134.722" cy="15.25" r="1.5"></circle>
+    <circle cx="255.556" cy="15.25" r="1.5"></circle>
+    <circle cx="175" cy="15.25" r="1.5"></circle>
+    <circle cx="223.333" cy="15.25" r="1.5"></circle>
+    <circle cx="215.278" cy="15.25" r="1.5"></circle>
+    <circle cx="368.333" cy="15.25" r="1.5"></circle>
+    <circle cx="30" cy="15.25" r="1.5"></circle>
+    <circle cx="320" cy="15.25" r="1.5"></circle>
+    <circle cx="231.389" cy="15.25" r="1.5"></circle>
+    <circle cx="183.056" cy="15.25" r="1.5"></circle>
+    <circle cx="166.944" cy="15.25" r="1.5"></circle>
+    <circle cx="158.889" cy="15.25" r="1.5"></circle>
+    <circle cx="187.083" cy="15.25" r="1.5"></circle>
+    <circle cx="311.944" cy="15.25" r="1.5"></circle>
+    <circle cx="142.778" cy="15.25" r="1.5"></circle>
+    <circle cx="287.778" cy="15.25" r="1.5"></circle>
+    <circle cx="118.611" cy="15.25" r="1.5"></circle>
+    <circle cx="187.083" cy="15.25" r="1.5"></circle>
+    <circle cx="130.694" cy="15.25" r="1.5"></circle>
+    <circle cx="231.389" cy="15.25" r="1.5"></circle>
+    <circle cx="175" cy="15.25" r="1.5"></circle>
+    <circle cx="247.5" cy="15.25" r="1.5"></circle>
+    <circle cx="134.722" cy="15.25" r="1.5"></circle>
+    <circle cx="150.833" cy="15.25" r="1.5"></circle>
+    <circle cx="118.611" cy="15.25" r="1.5"></circle>
+    <circle cx="247.5" cy="15.25" r="1.5"></circle>
+    <circle cx="207.222" cy="15.25" r="1.5"></circle>
+    <circle cx="162.917" cy="15.25" r="1.5"></circle>
+    <circle cx="231.389" cy="15.25" r="1.5"></circle>
+    <circle cx="183.056" cy="15.25" r="1.5"></circle>
+    <circle cx="183.056" cy="15.25" r="1.5"></circle>
+    <circle cx="239.444" cy="15.25" r="1.5"></circle>
+    <circle cx="142.778" cy="15.25" r="1.5"></circle>
+    <circle cx="203.194" cy="15.25" r="1.5"></circle>
+    <circle cx="255.556" cy="15.25" r="1.5"></circle>
+    <circle cx="203.194" cy="15.25" r="1.5"></circle>
+    <circle cx="320" cy="15.25" r="1.5"></circle>
+    <circle cx="513.333" cy="15.25" r="1.5"></circle>
+    <circle cx="311.944" cy="15.25" r="1.5"></circle>
+    <circle cx="513.333" cy="15.25" r="1.5"></circle>
+    <circle cx="465" cy="15.25" r="1.5"></circle>
+    <circle cx="328.056" cy="15.25" r="1.5"></circle>
+    <circle cx="368.333" cy="15.25" r="1.5"></circle>
+    <circle cx="432.778" cy="15.25" r="1.5"></circle>
+    <circle cx="303.889" cy="15.25" r="1.5"></circle>
+    <circle cx="424.722" cy="15.25" r="1.5"></circle>
+    <circle cx="344.167" cy="15.25" r="1.5"></circle>
+    <circle cx="489.167" cy="15.25" r="1.5"></circle>
+    <circle cx="344.167" cy="15.25" r="1.5"></circle>
+    <circle cx="537.5" cy="15.25" r="1.5"></circle>
+    <circle cx="271.667" cy="15.25" r="1.5"></circle>
+    <circle cx="537.5" cy="15.25" r="1.5"></circle>
+    <circle cx="263.611" cy="15.25" r="1.5"></circle>
+    <circle cx="610" cy="15.25" r="1.5"></circle>
+    <circle cx="368.333" cy="15.25" r="1.5"></circle>
+    <circle cx="456.944" cy="15.25" r="1.5"></circle>
+    <circle cx="513.333" cy="15.25" r="1.5"></circle>
+    <circle cx="400.556" cy="15.25" r="1.5"></circle>
+    <circle cx="303.889" cy="15.25" r="1.5"></circle>
+    <circle cx="408.611" cy="15.25" r="1.5"></circle>
+    <circle cx="400.556" cy="15.25" r="1.5"></circle>
+    <circle cx="416.667" cy="15.25" r="1.5"></circle>
+    <circle cx="255.556" cy="15.25" r="1.5"></circle>
+    <circle cx="505.278" cy="15.25" r="1.5"></circle>
+    <circle cx="336.111" cy="15.25" r="1.5"></circle>
+    <circle cx="489.167" cy="15.25" r="1.5"></circle>
+    <circle cx="440.833" cy="15.25" r="1.5"></circle>
+    <circle cx="352.222" cy="15.25" r="1.5"></circle>
+    <circle cx="408.611" cy="15.25" r="1.5"></circle>
+    <circle cx="569.722" cy="15.25" r="1.5"></circle>
+    <circle cx="424.722" cy="15.25" r="1.5"></circle>
+    <circle cx="465" cy="15.25" r="1.5"></circle>
+    <circle cx="392.5" cy="15.25" r="1.5"></circle>
+    <circle cx="440.833" cy="15.25" r="1.5"></circle>
+    <circle cx="295.833" cy="15.25" r="1.5"></circle>
+    <circle cx="456.944" cy="15.25" r="1.5"></circle>
+    <circle cx="231.389" cy="15.25" r="1.5"></circle>
+    <circle cx="513.333" cy="15.25" r="1.5"></circle>
+    <circle cx="287.778" cy="15.25" r="1.5"></circle>
+    <circle cx="360.278" cy="15.25" r="1.5"></circle>
+    <circle cx="489.167" cy="15.25" r="1.5"></circle>
+    <circle cx="384.444" cy="15.25" r="1.5"></circle>
+    <circle cx="271.667" cy="15.25" r="1.5"></circle>
+    <circle cx="465" cy="15.25" r="1.5"></circle>
+    <circle cx="416.667" cy="15.25" r="1.5"></circle>
+    <circle cx="448.889" cy="15.25" r="1.5"></circle>
+    <circle cx="376.389" cy="15.25" r="1.5"></circle>
+    <circle cx="448.889" cy="15.25" r="1.5"></circle>
+    <circle cx="303.889" cy="15.25" r="1.5"></circle>
+    <circle cx="400.556" cy="15.25" r="1.5"></circle>
+    <circle cx="384.444" cy="15.25" r="1.5"></circle>
+    <circle cx="408.611" cy="15.25" r="1.5"></circle>
+    <circle cx="287.778" cy="15.25" r="1.5"></circle>
+    <circle cx="400.556" cy="15.25" r="1.5"></circle>
+    <circle cx="311.944" cy="15.25" r="1.5"></circle>
+    <circle cx="489.167" cy="15.25" r="1.5"></circle>
+    <circle cx="271.667" cy="15.25" r="1.5"></circle>
+    <circle cx="448.889" cy="15.25" r="1.5"></circle>
+    <circle cx="303.889" cy="15.25" r="1.5"></circle>
+    <circle cx="505.278" cy="15.25" r="1.5"></circle>
+    <circle cx="352.222" cy="15.25" r="1.5"></circle>
+    <circle cx="513.333" cy="15.25" r="1.5"></circle>
+    <circle cx="344.167" cy="15.25" r="1.5"></circle>
+    <circle cx="529.444" cy="15.25" r="1.5"></circle>
+    <circle cx="352.222" cy="15.25" r="1.5"></circle>
+    <circle cx="489.167" cy="15.25" r="1.5"></circle>
+    <circle cx="360.278" cy="15.25" r="1.5"></circle>
+    <circle cx="400.556" cy="15.25" r="1.5"></circle>
+    <circle cx="416.667" cy="15.25" r="1.5"></circle>
+    <circle cx="432.778" cy="15.25" r="1.5"></circle>
+    <circle cx="352.222" cy="15.25" r="1.5"></circle>
+    <circle cx="529.444" cy="15.25" r="1.5"></circle>
+    <circle cx="336.111" cy="15.25" r="1.5"></circle>
+    <circle cx="561.667" cy="15.25" r="1.5"></circle>
+    <circle cx="360.278" cy="15.25" r="1.5"></circle>
+    <circle cx="553.611" cy="15.25" r="1.5"></circle>
+    <circle cx="340.139" cy="15.25" r="1.5"></circle>
+    <circle cx="473.056" cy="15.25" r="1.5"></circle>
+    <circle cx="356.25" cy="15.25" r="1.5"></circle>
+    <circle cx="456.944" cy="15.25" r="1.5"></circle>
+    <circle cx="360.278" cy="15.25" r="1.5"></circle>
+    <circle cx="497.222" cy="15.25" r="1.5"></circle>
+    <circle cx="336.111" cy="15.25" r="1.5"></circle>
+    <circle cx="448.889" cy="15.25" r="1.5"></circle>
+    <circle cx="380.417" cy="15.25" r="1.5"></circle>
+    <circle cx="489.167" cy="15.25" r="1.5"></circle>
+    <circle cx="392.5" cy="15.25" r="1.5"></circle>
+    <circle cx="465" cy="15.25" r="1.5"></circle>
+    <circle cx="360.278" cy="15.25" r="1.5"></circle>
+    <circle cx="505.278" cy="15.25" r="1.5"></circle>
+    <circle cx="376.389" cy="15.25" r="1.5"></circle>
+    <circle cx="432.778" cy="15.25" r="1.5"></circle>
+    <circle cx="388.472" cy="15.25" r="1.5"></circle>
+    <circle cx="380.417" cy="15.25" r="1.5"></circle>
+    <circle cx="340.139" cy="15.25" r="1.5"></circle>
+    <circle cx="440.833" cy="15.25" r="1.5"></circle>
+    <circle cx="376.389" cy="15.25" r="1.5"></circle>
+    <circle cx="497.222" cy="15.25" r="1.5"></circle>
+    <circle cx="396.528" cy="15.25" r="1.5"></circle>
+    <circle cx="481.111" cy="15.25" r="1.5"></circle>
+    <circle cx="356.25" cy="15.25" r="1.5"></circle>
+    <circle cx="481.111" cy="15.25" r="1.5"></circle>
+    <circle cx="352.222" cy="15.25" r="1.5"></circle>
+    <circle cx="481.111" cy="15.25" r="1.5"></circle>
+    <circle cx="332.083" cy="15.25" r="1.5"></circle>
+    <circle cx="481.111" cy="15.25" r="1.5"></circle>
+    <circle cx="400.556" cy="15.25" r="1.5"></circle>
+    <circle cx="553.611" cy="15.25" r="1.5"></circle>
+    <circle cx="344.167" cy="15.25" r="1.5"></circle>
+    <circle cx="481.111" cy="15.25" r="1.5"></circle>
+    <circle cx="299.861" cy="15.25" r="1.5"></circle>
+    <circle cx="537.5" cy="15.25" r="1.5"></circle>
+    <circle cx="380.417" cy="15.25" r="1.5"></circle>
+    <circle cx="561.667" cy="15.25" r="1.5"></circle>
+    <circle cx="388.472" cy="15.25" r="1.5"></circle>
+    <circle cx="376.389" cy="15.25" r="1.5"></circle>
+    <circle cx="521.389" cy="15.25" r="1.5"></circle>
+    <circle cx="432.778" cy="15.25" r="1.5"></circle>
+    <circle cx="465" cy="15.25" r="1.5"></circle>
   </g>
-  <g aria-label="voronoi mesh" fill="none" stroke="currentColor" stroke-opacity="0.2" pointer-events="none" transform="translate(0.5,0.5)">
-    <path d="M313.958,0L313.958,30M317.986,0L317.986,30M307.917,30L307.917,0M324.028,30L324.028,0M301.875,0L301.875,30M330.069,0L330.069,30M297.847,30L297.847,0M334.097,30L334.097,0M338.125,0L338.125,30M291.806,0L291.806,30M346.181,30L346.181,0M342.153,30L342.153,0M285.764,30L285.764,0M281.736,30L281.736,0M350.208,0L350.208,30M354.236,30L354.236,0M275.694,0L275.694,30M358.264,30L358.264,0M362.292,0L362.292,30M267.639,0L267.639,30M366.319,30L366.319,0M259.583,30L259.583,0M372.361,0L372.361,30M253.542,0L253.542,30M378.403,30L378.403,0M249.514,30L249.514,0M382.431,0L382.431,30M386.458,0L386.458,30M243.472,0L243.472,30M390.486,30L390.486,0M237.431,30L237.431,0M394.514,0L394.514,30M233.403,0L233.403,30M398.542,30L398.542,0M227.361,30L227.361,0M404.583,30L404.583,0M221.319,0L221.319,30M217.292,30L217.292,0M412.639,30L412.639,0M213.264,0L213.264,30M209.236,0L209.236,30M420.694,0L420.694,30M205.208,30L205.208,0M201.181,0L201.181,30M428.75,0L428.75,30M197.153,0L197.153,30M193.125,30L193.125,0M444.861,30L444.861,0M436.806,30L436.806,0M189.097,0L189.097,30M185.069,30L185.069,0M181.042,30L181.042,0M177.014,0L177.014,30M452.917,0L452.917,30M172.986,30L172.986,0M168.958,0L168.958,30M469.028,30L469.028,0M460.972,30L460.972,0M164.931,0L164.931,30M160.903,30L160.903,0M156.875,0L156.875,30M152.847,0L152.847,30M477.083,0L477.083,30M148.819,30L148.819,0M144.792,0L144.792,30M485.139,0L485.139,30M138.75,30L138.75,0M501.25,30L501.25,0M493.194,30L493.194,0M132.708,0L132.708,30M128.681,30L128.681,0M120.625,0L120.625,30M124.653,0L124.653,30M509.306,0L509.306,30M114.583,30L114.583,0M525.417,30L525.417,0M517.361,30L517.361,0M108.542,0L108.542,30M104.514,30L104.514,0M98.472,0L98.472,30M533.472,0L533.472,30M92.431,30L92.431,0M88.403,0L88.403,30M82.361,30L82.361,0M545.556,0L545.556,30M76.319,0L76.319,30M557.639,30L557.639,0M70.278,30L70.278,0M64.236,0L64.236,30M565.694,0L565.694,30M58.194,30L58.194,0M42.083,0L42.083,30M589.861,30L589.861,0"></path>
+  <g aria-label="voronoi mesh" fill="none" stroke="currentColor" stroke-opacity="0.2" pointer-events="none">
+    <path d="M313.958,0.5L313.958,30M317.986,0.5L317.986,30M307.917,30L307.917,0.5M301.875,0.5L301.875,30M324.028,30L324.028,0.5M330.069,0.5L330.069,30M297.847,0.5L297.847,30M334.097,30L334.097,0.5M338.125,0.5L338.125,30M291.806,0.5L291.806,30M346.181,30L346.181,0.5M342.153,30L342.153,0.5M285.764,30L285.764,0.5M281.736,30L281.736,0.5M350.208,0.5L350.208,30M354.236,30L354.236,0.5M267.639,0.5L267.639,30M275.694,0.5L275.694,30M358.264,30L358.264,0.5M362.292,0.5L362.292,30M366.319,30L366.319,0.5M259.583,30L259.583,0.5M372.361,0.5L372.361,30M253.542,0.5L253.542,30M378.403,30L378.403,0.5M249.514,30L249.514,0.5M382.431,0.5L382.431,30M386.458,0.5L386.458,30M243.472,0.5L243.472,30M390.486,30L390.486,0.5M237.431,30L237.431,0.5M394.514,0.5L394.514,30M233.403,0.5L233.403,30M398.542,30L398.542,0.5M227.361,30L227.361,0.5M412.639,30L412.639,0.5M404.583,30L404.583,0.5M221.319,0.5L221.319,30M217.292,30L217.292,0.5M213.264,0.5L213.264,30M209.236,0.5L209.236,30M420.694,0.5L420.694,30M205.208,30L205.208,0.5M201.181,0.5L201.181,30M428.75,0.5L428.75,30M197.153,0.5L197.153,30M193.125,30L193.125,0.5M436.806,30L436.806,0.5M189.097,0.5L189.097,30M185.069,30L185.069,0.5M444.861,30L444.861,0.5M181.042,30L181.042,0.5M177.014,0.5L177.014,30M452.917,0.5L452.917,30M172.986,30L172.986,0.5M164.931,0.5L164.931,30M168.958,0.5L168.958,30M469.028,30L469.028,0.5M460.972,30L460.972,0.5M160.903,30L160.903,0.5M156.875,0.5L156.875,30M152.847,0.5L152.847,30M477.083,30L477.083,0.5M148.819,30L148.819,0.5M144.792,0.5L144.792,30M485.139,0.5L485.139,30M138.75,30L138.75,0.5M493.194,30L493.194,0.5M132.708,0.5L132.708,30M128.681,30L128.681,0.5M501.25,30L501.25,0.5M124.653,30L124.653,0.5M120.625,0.5L120.625,30M509.306,0.5L509.306,30M114.583,30L114.583,0.5M525.417,30L525.417,0.5M517.361,30L517.361,0.5M108.542,0.5L108.542,30M104.514,30L104.514,0.5M98.472,0.5L98.472,30M533.472,30L533.472,0.5M92.431,30L92.431,0.5M88.403,0.5L88.403,30M82.361,30L82.361,0.5M545.556,0.5L545.556,30M76.319,0.5L76.319,30M557.639,30L557.639,0.5M70.278,30L70.278,0.5M64.236,0.5L64.236,30M565.694,0.5L565.694,30M58.194,30L58.194,0.5M589.861,30L589.861,0.5M42.083,0.5L42.083,30"></path>
   </g>
 </svg>

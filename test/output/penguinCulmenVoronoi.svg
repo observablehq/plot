@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor">
     <path transform="translate(40,345.818)" d="M0,0L-6,0"></path>
     <path transform="translate(40,320.364)" d="M0,0L-6,0"></path>
     <path transform="translate(40,294.909)" d="M0,0L-6,0"></path>
@@ -28,7 +28,7 @@
     <path transform="translate(40,65.818)" d="M0,0L-6,0"></path>
     <path transform="translate(40,40.364)" d="M0,0L-6,0"></path>
   </g>
-  <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
+  <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-9,0)">
     <text y="0.32em" transform="translate(40,345.818)">34</text>
     <text y="0.32em" transform="translate(40,320.364)">36</text>
     <text y="0.32em" transform="translate(40,294.909)">38</text>
@@ -43,10 +43,10 @@
     <text y="0.32em" transform="translate(40,65.818)">56</text>
     <text y="0.32em" transform="translate(40,40.364)">58</text>
   </g>
-  <g aria-label="y-axis label" text-anchor="start" transform="translate(-36.5,-16.5)">
+  <g aria-label="y-axis label" text-anchor="start" transform="translate(-37,-17)">
     <text y="0.71em" transform="translate(40,20)">↑ culmen_length_mm</text>
   </g>
-  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor">
     <path transform="translate(102.143,370)" d="M0,0L0,6"></path>
     <path transform="translate(171.19,370)" d="M0,0L0,6"></path>
     <path transform="translate(240.238,370)" d="M0,0L0,6"></path>
@@ -56,7 +56,7 @@
     <path transform="translate(516.429,370)" d="M0,0L0,6"></path>
     <path transform="translate(585.476,370)" d="M0,0L0,6"></path>
   </g>
-  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0,9)">
     <text y="0.71em" transform="translate(102.143,370)">14</text>
     <text y="0.71em" transform="translate(171.19,370)">15</text>
     <text y="0.71em" transform="translate(240.238,370)">16</text>
@@ -66,10 +66,10 @@
     <text y="0.71em" transform="translate(516.429,370)">20</text>
     <text y="0.71em" transform="translate(585.476,370)">21</text>
   </g>
-  <g aria-label="x-axis label" text-anchor="end" transform="translate(17.5,27.5)">
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(17,27)">
     <text transform="translate(620,370)">culmen_depth_mm →</text>
   </g>
-  <g aria-label="dot" transform="translate(0.5,0.5)">
+  <g aria-label="dot">
     <circle cx="426.667" cy="280.909" r="1.5"></circle>
     <circle cx="336.905" cy="275.818" r="1.5"></circle>
     <circle cx="378.333" cy="265.636" r="1.5"></circle>
@@ -413,7 +413,7 @@
     <circle cx="157.381" cy="203.273" r="1.5"></circle>
     <circle cx="247.143" cy="143.455" r="1.5"></circle>
   </g>
-  <g aria-label="voronoi" fill="none" stroke-miterlimit="1" transform="translate(0.5,0.5)">
+  <g aria-label="voronoi" fill="none" stroke-miterlimit="1">
     <path d="M422.98,281.545L424.756,271.908L431.292,279L430.354,281.545Z" stroke="#4269d0"></path>
     <path d="M335.05,263.837L346.42,267.692L346.933,271.865L333.795,286.12L333.695,286L329.589,279.636L330.645,268.182Z" stroke="#4269d0"></path>
     <path d="M377.388,257.563L388.354,265L378.447,272.679L373.473,268.182Z" stroke="#4269d0"></path>
@@ -753,5 +753,5 @@
     <path d="M168.688,217.285L167.771,218.456L149.984,204.67L151.18,198.182L152.939,195L157.314,195L163.446,198.326Z" stroke="#ff725c"></path>
     <path d="M250.595,146L244.042,146L240.53,139.649L240.59,139L246.249,128.767L253.344,135.182L253.925,141.484Z" stroke="#ff725c"></path>
   </g>
-  <g aria-label="tip" fill="var(--plot-background)" stroke="currentColor" pointer-events="none" text-anchor="start" transform="translate(0.5,0.5)"></g>
+  <g aria-label="tip" fill="var(--plot-background)" stroke="currentColor" pointer-events="none" text-anchor="start"></g>
 </svg>

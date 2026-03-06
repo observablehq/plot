@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor">
     <path transform="translate(40,359.706)" d="M0,0L-6,0"></path>
     <path transform="translate(40,318.529)" d="M0,0L-6,0"></path>
     <path transform="translate(40,277.353)" d="M0,0L-6,0"></path>
@@ -24,7 +24,7 @@
     <path transform="translate(40,71.471)" d="M0,0L-6,0"></path>
     <path transform="translate(40,30.294)" d="M0,0L-6,0"></path>
   </g>
-  <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
+  <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-9,0)">
     <text y="0.32em" transform="translate(40,359.706)">2</text>
     <text y="0.32em" transform="translate(40,318.529)">4</text>
     <text y="0.32em" transform="translate(40,277.353)">6</text>
@@ -35,7 +35,7 @@
     <text y="0.32em" transform="translate(40,71.471)">16</text>
     <text y="0.32em" transform="translate(40,30.294)">18</text>
   </g>
-  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor">
     <path transform="translate(81.429,370)" d="M0,0L0,6"></path>
     <path transform="translate(136.667,370)" d="M0,0L0,6"></path>
     <path transform="translate(191.905,370)" d="M0,0L0,6"></path>
@@ -47,7 +47,7 @@
     <path transform="translate(523.333,370)" d="M0,0L0,6"></path>
     <path transform="translate(578.571,370)" d="M0,0L0,6"></path>
   </g>
-  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0,9)">
     <text y="0.71em" transform="translate(81.429,370)">0</text>
     <text y="0.71em" transform="translate(136.667,370)">2</text>
     <text y="0.71em" transform="translate(191.905,370)">4</text>
@@ -59,7 +59,7 @@
     <text y="0.71em" transform="translate(523.333,370)">16</text>
     <text y="0.71em" transform="translate(578.571,370)">18</text>
   </g>
-  <g aria-label="dot" transform="translate(0.5,0.5)">
+  <g aria-label="dot">
     <circle cx="40" cy="164.118" r="3" fill="rgb(35, 23, 27)"></circle>
     <circle cx="67.619" cy="122.941" r="3" fill="rgb(35, 23, 27)"></circle>
     <circle cx="150.476" cy="267.059" r="3" fill="rgb(35, 23, 27)"></circle>

@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor">
     <path transform="translate(40,370)" d="M0,0L-6,0"></path>
     <path transform="translate(40,335)" d="M0,0L-6,0"></path>
     <path transform="translate(40,300)" d="M0,0L-6,0"></path>
@@ -26,7 +26,7 @@
     <path transform="translate(40,55)" d="M0,0L-6,0"></path>
     <path transform="translate(40,20)" d="M0,0L-6,0"></path>
   </g>
-  <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
+  <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-9,0)">
     <text y="0.32em" transform="translate(40,370)">0</text>
     <text y="0.32em" transform="translate(40,335)">2</text>
     <text y="0.32em" transform="translate(40,300)">4</text>
@@ -39,7 +39,7 @@
     <text y="0.32em" transform="translate(40,55)">18</text>
     <text y="0.32em" transform="translate(40,20)">20</text>
   </g>
-  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(15,0)">
+  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(14.5,0)">
     <path transform="translate(44,370)" d="M0,0L0,6"></path>
     <path transform="translate(108,370)" d="M0,0L0,6"></path>
     <path transform="translate(172,370)" d="M0,0L0,6"></path>
@@ -50,7 +50,7 @@
     <path transform="translate(492,370)" d="M0,0L0,6"></path>
     <path transform="translate(556,370)" d="M0,0L0,6"></path>
   </g>
-  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(15,9.5)">
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(14.5,9)">
     <text y="0.71em" transform="translate(44,370)">2002</text>
     <text y="0.71em" transform="translate(108,370)">2004</text>
     <text y="0.71em" transform="translate(172,370)">2006</text>

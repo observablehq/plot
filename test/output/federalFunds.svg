@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor">
     <path transform="translate(61.224,370)" d="M0,0L0,6"></path>
     <path transform="translate(134.761,370)" d="M0,0L0,6"></path>
     <path transform="translate(208.298,370)" d="M0,0L0,6"></path>
@@ -23,7 +23,7 @@
     <path transform="translate(502.486,370)" d="M0,0L0,6"></path>
     <path transform="translate(576.023,370)" d="M0,0L0,6"></path>
   </g>
-  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0,9)">
     <text y="0.71em" transform="translate(61.224,370)">1985</text>
     <text y="0.71em" transform="translate(134.761,370)">1990</text>
     <text y="0.71em" transform="translate(208.298,370)">1995</text>
@@ -33,7 +33,7 @@
     <text y="0.71em" transform="translate(502.486,370)">2015</text>
     <text y="0.71em" transform="translate(576.023,370)">2020</text>
   </g>
-  <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(23.5,-5.5)">
+  <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(23,-6)">
     <text transform="translate(0,370)">0 </text>
     <text transform="translate(0,309.811)">2 </text>
     <text transform="translate(0,249.622)">4 </text>
@@ -41,10 +41,10 @@
     <text transform="translate(0,129.243)">8 </text>
     <text transform="translate(0,69.054)">10%</text>
   </g>
-  <g aria-label="y-axis label" text-anchor="start" transform="translate(3.5,-16.5)">
+  <g aria-label="y-axis label" text-anchor="start" transform="translate(3,-17)">
     <text y="0.71em" transform="translate(0,20)">↑ Federal funds rate (% per year)</text>
   </g>
-  <g aria-label="y-grid" aria-hidden="true" stroke="currentColor" stroke-opacity="0.4" stroke-dasharray="1.5" transform="translate(0,0.5)">
+  <g aria-label="y-grid" aria-hidden="true" stroke="currentColor" stroke-opacity="0.4" stroke-dasharray="1.5">
     <line x1="0" x2="620" y1="370" y2="370"></line>
     <line x1="0" x2="620" y1="309.811" y2="309.811"></line>
     <line x1="0" x2="620" y1="249.622" y2="249.622"></line>
@@ -52,10 +52,10 @@
     <line x1="0" x2="620" y1="129.243" y2="129.243"></line>
     <line x1="0" x2="620" y1="69.054" y2="69.054"></line>
   </g>
-  <g aria-label="rule" stroke="currentColor" transform="translate(0,0.5)">
+  <g aria-label="rule" stroke="currentColor">
     <line x1="0" x2="620" y1="370" y2="370"></line>
   </g>
-  <g aria-label="line" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" transform="translate(0.5,0.5)">
+  <g aria-label="line" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round">
     <marker viewBox="-5 -5 10 10" markerWidth="6.67" markerHeight="6.67" fill="currentColor" stroke="none" id="plot-marker-1">
       <circle r="2.5"></circle>
     </marker>

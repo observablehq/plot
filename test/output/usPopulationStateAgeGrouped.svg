@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="fx-axis tick" aria-hidden="true" transform="translate(0.5,0)">
+  <g aria-label="fx-axis tick" aria-hidden="true">
     <g fill="none" stroke="currentColor" transform="translate(1,0)">
       <path transform="translate(84,400)" d="M0,0L0,6"></path>
     </g>
@@ -33,7 +33,7 @@
       <path transform="translate(84,400)" d="M0,0L0,6"></path>
     </g>
   </g>
-  <g aria-label="fx-axis tick label" transform="translate(0.5,9.5)">
+  <g aria-label="fx-axis tick label" transform="translate(0,9)">
     <g transform="translate(1,0)">
       <text y="0.71em" transform="translate(84,400)">CA</text>
     </g>
@@ -53,7 +53,7 @@
       <text y="0.71em" transform="translate(84,400)">IL</text>
     </g>
   </g>
-  <g aria-label="y-grid" aria-hidden="true" transform="translate(0,0.5)">
+  <g aria-label="y-grid" aria-hidden="true">
     <g stroke="currentColor" stroke-opacity="0.1" transform="translate(1,0)">
       <line x1="40" x2="128" y1="400" y2="400"></line>
       <line x1="40" x2="128" y1="367.295" y2="367.295"></line>
@@ -139,7 +139,7 @@
       <line x1="40" x2="128" y1="40.242" y2="40.242"></line>
     </g>
   </g>
-  <g aria-label="y-axis tick" aria-hidden="true" transform="translate(0,0.5)">
+  <g aria-label="y-axis tick" aria-hidden="true">
     <g fill="none" stroke="currentColor" transform="translate(1,0)">
       <path transform="translate(40,400)" d="M0,0L-6,0"></path>
       <path transform="translate(40,367.295)" d="M0,0L-6,0"></path>
@@ -155,7 +155,7 @@
       <path transform="translate(40,40.242)" d="M0,0L-6,0"></path>
     </g>
   </g>
-  <g aria-label="y-axis tick label" transform="translate(-8.5,0.5)">
+  <g aria-label="y-axis tick label" transform="translate(-9,0)">
     <g text-anchor="end" font-variant="tabular-nums" transform="translate(1,0)">
       <text y="0.32em" transform="translate(40,400)">0.0M</text>
       <text y="0.32em" transform="translate(40,367.295)">0.5M</text>
@@ -171,7 +171,7 @@
       <text y="0.32em" transform="translate(40,40.242)">5.5M</text>
     </g>
   </g>
-  <g aria-label="y-axis label" text-anchor="start" transform="translate(-36.5,-16.5)">
+  <g aria-label="y-axis label" text-anchor="start" transform="translate(-37,-17)">
     <text y="0.71em" transform="translate(41,20)">↑ population</text>
   </g>
   <g aria-label="bar">
@@ -242,7 +242,7 @@
       <rect x="116" width="8" y="368.672" height="31.328" fill="#3288bd"><title>≥80</title></rect>
     </g>
   </g>
-  <g aria-label="rule" transform="translate(0,0.5)">
+  <g aria-label="rule">
     <g stroke="currentColor" transform="translate(1,0)">
       <line x1="40" x2="128" y1="400" y2="400"></line>
     </g>

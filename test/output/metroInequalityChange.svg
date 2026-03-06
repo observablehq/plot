@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="y-grid" aria-hidden="true" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
+  <g aria-label="y-grid" aria-hidden="true" stroke="currentColor" stroke-opacity="0.1">
     <line x1="40" x2="620" y1="347.778" y2="347.778"></line>
     <line x1="40" x2="620" y1="317.222" y2="317.222"></line>
     <line x1="40" x2="620" y1="286.667" y2="286.667"></line>
@@ -26,7 +26,7 @@
     <line x1="40" x2="620" y1="72.778" y2="72.778"></line>
     <line x1="40" x2="620" y1="42.222" y2="42.222"></line>
   </g>
-  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor">
     <path transform="translate(40,347.778)" d="M0,0L-6,0"></path>
     <path transform="translate(40,317.222)" d="M0,0L-6,0"></path>
     <path transform="translate(40,286.667)" d="M0,0L-6,0"></path>
@@ -39,7 +39,7 @@
     <path transform="translate(40,72.778)" d="M0,0L-6,0"></path>
     <path transform="translate(40,42.222)" d="M0,0L-6,0"></path>
   </g>
-  <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
+  <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-9,0)">
     <text y="0.32em" transform="translate(40,347.778)">3.5</text>
     <text y="0.32em" transform="translate(40,317.222)">4.0</text>
     <text y="0.32em" transform="translate(40,286.667)">4.5</text>
@@ -52,10 +52,10 @@
     <text y="0.32em" transform="translate(40,72.778)">8.0</text>
     <text y="0.32em" transform="translate(40,42.222)">8.5</text>
   </g>
-  <g aria-label="y-axis label" text-anchor="start" transform="translate(-36.5,-16.5)">
+  <g aria-label="y-axis label" text-anchor="start" transform="translate(-37,-17)">
     <text y="0.71em" transform="translate(40,20)">↑ Inequality</text>
   </g>
-  <g aria-label="x-grid" aria-hidden="true" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+  <g aria-label="x-grid" aria-hidden="true" stroke="currentColor" stroke-opacity="0.1">
     <line x1="122.351" x2="122.351" y1="20" y2="370"></line>
     <line x1="165.228" x2="165.228" y1="20" y2="370"></line>
     <line x1="195.649" x2="195.649" y1="20" y2="370"></line>
@@ -76,7 +76,7 @@
     <line x1="536.037" x2="536.037" y1="20" y2="370"></line>
     <line x1="609.335" x2="609.335" y1="20" y2="370"></line>
   </g>
-  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor">
     <path transform="translate(122.351,370)" d="M0,0L0,6"></path>
     <path transform="translate(165.228,370)" d="M0,0L0,6"></path>
     <path transform="translate(195.649,370)" d="M0,0L0,6"></path>
@@ -97,7 +97,7 @@
     <path transform="translate(536.037,370)" d="M0,0L0,6"></path>
     <path transform="translate(609.335,370)" d="M0,0L0,6"></path>
   </g>
-  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0,9)">
     <text y="0.71em" transform="translate(122.351,370)">200k</text>
     <text y="0.71em" transform="translate(165.228,370)">300k</text>
     <text y="0.71em" transform="translate(195.649,370)"></text>
@@ -118,10 +118,10 @@
     <text y="0.71em" transform="translate(536.037,370)">10M</text>
     <text y="0.71em" transform="translate(609.335,370)">20M</text>
   </g>
-  <g aria-label="x-axis label" text-anchor="end" transform="translate(17.5,27.5)">
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(17,27)">
     <text transform="translate(620,370)">Population →</text>
   </g>
-  <g aria-label="arrow" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-miterlimit="1" transform="translate(0.5,0.5)">
+  <g aria-label="arrow" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-miterlimit="1">
     <path d="M577.023,298.889A219.846,219.846 0,0,1 610,133.889M602.822,137.421L610,133.889L609.47,141.871" stroke="rgb(193, 58, 59)"></path>
     <path d="M529.808,292.778A205.298,205.298 0,0,1 566.528,140M559.219,143.252L566.528,140L565.69,147.956" stroke="rgb(203, 75, 68)"></path>
     <path d="M509.01,329.444A177.919,177.919 0,0,1 530.641,195M523.601,198.8L530.641,195L530.412,202.997" stroke="rgb(216, 103, 85)"></path>
@@ -318,7 +318,7 @@
     <path d="M52.486,256.111A23.957,23.957 0,0,1 52.185,274.444M57.095,270.804L52.185,274.444L51.487,268.373" stroke="rgb(5, 48, 97)"></path>
     <path d="M102.583,317.222A173.823,173.823 0,0,1 50.039,195M46.131,201.981L50.039,195L54.131,201.874" stroke="rgb(225, 121, 97)"></path>
   </g>
-  <g aria-label="text" stroke="white" stroke-width="3" stroke-linejoin="round" paint-order="stroke" transform="translate(0.5,-7.5)">
+  <g aria-label="text" stroke="white" stroke-width="3" stroke-linejoin="round" paint-order="stroke" transform="translate(0,-8)">
     <text y="0.32em" transform="translate(610,133.889)">New York</text>
     <text y="0.32em" transform="translate(530.641,195)">Chicago</text>
     <text y="0.32em" transform="translate(491.766,127.778)">Houston</text>

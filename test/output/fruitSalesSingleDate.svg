@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor">
     <path transform="translate(40,370)" d="M0,0L-6,0"></path>
     <path transform="translate(40,338.182)" d="M0,0L-6,0"></path>
     <path transform="translate(40,306.364)" d="M0,0L-6,0"></path>
@@ -27,7 +27,7 @@
     <path transform="translate(40,51.818)" d="M0,0L-6,0"></path>
     <path transform="translate(40,20)" d="M0,0L-6,0"></path>
   </g>
-  <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
+  <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-9,0)">
     <text y="0.32em" transform="translate(40,370)">0</text>
     <text y="0.32em" transform="translate(40,338.182)">1</text>
     <text y="0.32em" transform="translate(40,306.364)">2</text>
@@ -41,13 +41,13 @@
     <text y="0.32em" transform="translate(40,51.818)">10</text>
     <text y="0.32em" transform="translate(40,20)">11</text>
   </g>
-  <g aria-label="y-axis label" text-anchor="start" transform="translate(-36.5,-16.5)">
+  <g aria-label="y-axis label" text-anchor="start" transform="translate(-37,-17)">
     <text y="0.71em" transform="translate(40,20)">↑ units</text>
   </g>
-  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(237.5,0)">
+  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(237,0)">
     <path transform="translate(93,370)" d="M0,0L0,6"></path>
   </g>
-  <g aria-label="x-axis tick label" transform="translate(237.5,9.5)">
+  <g aria-label="x-axis tick label" transform="translate(237,9)">
     <text transform="translate(93,370)"><tspan x="0" y="0.71em">15</tspan><tspan x="0" dy="1em">Mar</tspan></text>
   </g>
   <g aria-label="bar">
@@ -55,7 +55,7 @@
     <rect x="93" width="474" y="115.455" height="63.636" fill="#ff725c"></rect>
     <rect x="93" width="474" y="20" height="95.455" fill="#efb118"></rect>
   </g>
-  <g aria-label="text" transform="translate(237.5,0.5)">
+  <g aria-label="text" transform="translate(237,0)">
     <text y="0.32em" transform="translate(93,274.545)">apples</text>
     <text y="0.32em" transform="translate(93,147.273)">oranges</text>
     <text y="0.32em" transform="translate(93,67.727)">grapes</text>

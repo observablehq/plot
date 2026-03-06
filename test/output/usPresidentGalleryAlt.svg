@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor">
     <path transform="translate(89.608,270)" d="M0,0L0,6"></path>
     <path transform="translate(163.825,270)" d="M0,0L0,6"></path>
     <path transform="translate(238.053,270)" d="M0,0L0,6"></path>
@@ -27,7 +27,7 @@
     <path transform="translate(831.861,270)" d="M0,0L0,6"></path>
     <path transform="translate(906.088,270)" d="M0,0L0,6"></path>
   </g>
-  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0,9)">
     <text y="0.71em" transform="translate(89.608,270)">1800</text>
     <text y="0.71em" transform="translate(163.825,270)">1820</text>
     <text y="0.71em" transform="translate(238.053,270)">1840</text>
@@ -41,10 +41,10 @@
     <text y="0.71em" transform="translate(831.861,270)">2000</text>
     <text y="0.71em" transform="translate(906.088,270)">2020</text>
   </g>
-  <g aria-label="x-axis label" text-anchor="end" transform="translate(17.5,27.5)">
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(17,27)">
     <text transform="translate(940,270)">First Inauguration Date →</text>
   </g>
-  <g aria-label="image" transform="translate(0.5,-9.5)">
+  <g aria-label="image" transform="translate(0,-10)">
     <image x="247.092" y="40.1" width="60" height="60" href="https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Fillmore.jpg/160px-Fillmore.jpg"><title>Millard Fillmore</title></image>
     <image x="227.247" y="80.488" width="60" height="60" href="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/JKP.jpg/160px-JKP.jpg"><title>James K. Polk</title></image>
     <image x="375.702" y="86.431" width="60" height="60" href="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Grover_Cleveland_-_NARA_-_518139_%28cropped%29.jpg/160px-Grover_Cleveland_-_NARA_-_518139_%28cropped%29.jpg"><title>Grover Cleveland</title></image>

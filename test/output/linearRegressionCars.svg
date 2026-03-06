@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor">
     <path transform="translate(40,360.691)" d="M0,0L-6,0"></path>
     <path transform="translate(40,314.149)" d="M0,0L-6,0"></path>
     <path transform="translate(40,267.606)" d="M0,0L-6,0"></path>
@@ -23,7 +23,7 @@
     <path transform="translate(40,81.436)" d="M0,0L-6,0"></path>
     <path transform="translate(40,34.894)" d="M0,0L-6,0"></path>
   </g>
-  <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
+  <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-9,0)">
     <text y="0.32em" transform="translate(40,360.691)">10</text>
     <text y="0.32em" transform="translate(40,314.149)">15</text>
     <text y="0.32em" transform="translate(40,267.606)">20</text>
@@ -33,10 +33,10 @@
     <text y="0.32em" transform="translate(40,81.436)">40</text>
     <text y="0.32em" transform="translate(40,34.894)">45</text>
   </g>
-  <g aria-label="y-axis label" text-anchor="start" transform="translate(-36.5,-16.5)">
+  <g aria-label="y-axis label" text-anchor="start" transform="translate(-37,-17)">
     <text y="0.71em" transform="translate(40,20)">↑ economy (mpg)</text>
   </g>
-  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor">
     <path transform="translate(103.64,370)" d="M0,0L0,6"></path>
     <path transform="translate(185.863,370)" d="M0,0L0,6"></path>
     <path transform="translate(268.086,370)" d="M0,0L0,6"></path>
@@ -45,7 +45,7 @@
     <path transform="translate(514.755,370)" d="M0,0L0,6"></path>
     <path transform="translate(596.978,370)" d="M0,0L0,6"></path>
   </g>
-  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0,9)">
     <text y="0.71em" transform="translate(103.64,370)">2,000</text>
     <text y="0.71em" transform="translate(185.863,370)">2,500</text>
     <text y="0.71em" transform="translate(268.086,370)">3,000</text>
@@ -54,10 +54,10 @@
     <text y="0.71em" transform="translate(514.755,370)">4,500</text>
     <text y="0.71em" transform="translate(596.978,370)">5,000</text>
   </g>
-  <g aria-label="x-axis label" text-anchor="end" transform="translate(17.5,27.5)">
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(17,27)">
     <text transform="translate(620,370)">weight (lb) →</text>
   </g>
-  <g aria-label="dot" fill="none" stroke="currentColor" stroke-width="1.5" transform="translate(0.5,0.5)">
+  <g aria-label="dot" fill="none" stroke="currentColor" stroke-width="1.5">
     <circle cx="403.096" cy="332.766" r="2"></circle>
     <circle cx="407.865" cy="314.149" r="2"></circle>
     <circle cx="378.594" cy="295.532" r="2"></circle>
@@ -457,7 +457,7 @@
     <circle cx="291.109" cy="295.532" r="2"></circle>
     <circle cx="294.398" cy="168.005" r="2"></circle>
   </g>
-  <g aria-label="linear-regression" fill-opacity="0.1" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" transform="translate(0.5,0.5)">
+  <g aria-label="linear-regression" fill-opacity="0.1" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round">
     <path stroke="none" d="M40,127.97L44,129.836L48,131.702L52,133.566L56,135.43L60,137.293L64,139.155L68,141.017L72,142.877L76,144.737L80,146.596L84,148.454L88,150.311L92,152.166L96,154.021L100,155.875L104,157.727L108,159.578L112,161.428L116,163.277L120,165.124L124,166.97L128,168.814L132,170.656L136,172.497L140,174.336L144,176.173L148,178.009L152,179.842L156,181.674L160,183.503L164,185.33L168,187.154L172,188.976L176,190.796L180,192.613L184,194.427L188,196.239L192,198.047L196,199.853L200,201.655L204,203.454L208,205.249L212,207.041L216,208.83L220,210.615L224,212.396L228,214.173L232,215.946L236,217.715L240,219.48L244,221.241L248,222.998L252,224.75L256,226.498L260,228.242L264,229.982L268,231.717L272,233.448L276,235.174L280,236.896L284,238.614L288,240.328L292,242.038L296,243.743L300,245.445L304,247.142L308,248.836L312,250.526L316,252.213L320,253.896L324,255.575L328,257.251L332,258.924L336,260.594L340,262.26L344,263.924L348,265.585L352,267.243L356,268.899L360,270.552L364,272.203L368,273.851L372,275.498L376,277.142L380,278.784L384,280.424L388,282.062L392,283.699L396,285.334L400,286.967L404,288.598L408,290.228L412,291.857L416,293.484L420,295.11L424,296.735L428,298.358L432,299.981L436,301.602L440,303.222L444,304.841L448,306.459L452,308.076L456,309.692L460,311.308L464,312.922L468,314.536L472,316.149L476,317.761L480,319.372L484,320.983L488,322.593L492,324.203L496,325.812L500,327.42L504,329.028L508,330.635L512,332.242L516,333.848L520,335.454L524,337.059L528,338.664L532,340.268L536,341.872L540,343.475L544,345.079L548,346.681L552,348.284L556,349.886L560,351.487L564,353.089L568,354.69L572,356.29L576,357.891L580,359.491L584,361.091L588,362.69L592,364.29L596,365.889L600,367.488L604,369.086L608,370.684L612,372.283L616,373.88L620,375.478L620,404.37L616,402.491L612,400.613L608,398.735L604,396.857L600,394.979L596,393.101L592,391.224L588,389.347L584,387.471L580,385.594L576,383.718L572,381.842L568,379.966L564,378.091L560,376.216L556,374.342L552,372.467L548,370.593L544,368.72L540,366.847L536,364.974L532,363.101L528,361.23L524,359.358L520,357.487L516,355.616L512,353.746L508,351.877L504,350.008L500,348.139L496,346.271L492,344.404L488,342.537L484,340.671L480,338.805L476,336.94L472,335.076L468,333.213L464,331.35L460,329.489L456,327.628L452,325.768L448,323.908L444,322.05L440,320.193L436,318.337L432,316.481L428,314.627L424,312.775L420,310.923L416,309.073L412,307.223L408,305.376L404,303.53L400,301.685L396,299.842L392,298L388,296.16L384,294.322L380,292.486L376,290.652L372,288.82L368,286.99L364,285.162L360,283.336L356,281.513L352,279.693L348,277.875L344,276.059L340,274.247L336,272.437L332,270.631L328,268.827L324,267.027L320,265.23L316,263.437L312,261.647L308,259.861L304,258.078L300,256.299L296,254.525L292,252.754L288,250.987L284,249.225L280,247.466L276,245.712L272,243.962L268,242.217L264,240.476L260,238.739L256,237.006L252,235.278L248,233.554L244,231.835L240,230.119L236,228.408L232,226.701L228,224.998L224,223.299L220,221.604L216,219.912L212,218.224L208,216.54L204,214.859L200,213.182L196,211.508L192,209.837L188,208.169L184,206.504L180,204.842L176,203.183L172,201.526L168,199.872L164,198.22L160,196.571L156,194.924L152,193.279L148,191.636L144,189.995L140,188.356L136,186.719L132,185.083L128,183.45L124,181.817L120,180.187L116,178.558L112,176.93L108,175.303L104,173.678L100,172.054L96,170.432L92,168.81L88,167.19L84,165.57L80,163.952L76,162.334L72,160.718L68,159.102L64,157.487L60,155.873L56,154.26L52,152.648L48,151.036L44,149.425L40,147.814Z"></path>
     <path fill="none" d="M40,137.892L620,389.924"></path>
   </g>

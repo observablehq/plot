@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor">
     <path transform="translate(100,35)" d="M0,0L-6,0"></path>
     <path transform="translate(100,55)" d="M0,0L-6,0"></path>
     <path transform="translate(100,75)" d="M0,0L-6,0"></path>
@@ -43,7 +43,7 @@
     <path transform="translate(100,555)" d="M0,0L-6,0"></path>
     <path transform="translate(100,575)" d="M0,0L-6,0"></path>
   </g>
-  <g aria-label="y-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
+  <g aria-label="y-axis tick label" text-anchor="end" transform="translate(-9,0)">
     <text y="0.32em" transform="translate(100,35)">aquatics</text>
     <text y="0.32em" transform="translate(100,55)">archery</text>
     <text y="0.32em" transform="translate(100,75)">athletics</text>
@@ -73,10 +73,10 @@
     <text y="0.32em" transform="translate(100,555)">weightlifting</text>
     <text y="0.32em" transform="translate(100,575)">wrestling</text>
   </g>
-  <g aria-label="y-axis label" transform="translate(-96.5,0.5)">
+  <g aria-label="y-axis label" transform="translate(-97,0)">
     <text y="0.71em" transform="translate(100,305) rotate(-90)">sport</text>
   </g>
-  <g aria-label="x-grid" aria-hidden="true" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+  <g aria-label="x-grid" aria-hidden="true" stroke="currentColor" stroke-opacity="0.1">
     <line x1="133.669" x2="133.669" y1="20" y2="590"></line>
     <line x1="208.489" x2="208.489" y1="20" y2="590"></line>
     <line x1="283.309" x2="283.309" y1="20" y2="590"></line>
@@ -85,7 +85,7 @@
     <line x1="507.77" x2="507.77" y1="20" y2="590"></line>
     <line x1="582.59" x2="582.59" y1="20" y2="590"></line>
   </g>
-  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor">
     <path transform="translate(133.669,590)" d="M0,0L0,6"></path>
     <path transform="translate(208.489,590)" d="M0,0L0,6"></path>
     <path transform="translate(283.309,590)" d="M0,0L0,6"></path>
@@ -94,7 +94,7 @@
     <path transform="translate(507.77,590)" d="M0,0L0,6"></path>
     <path transform="translate(582.59,590)" d="M0,0L0,6"></path>
   </g>
-  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0,9)">
     <text y="0.71em" transform="translate(133.669,590)">40</text>
     <text y="0.71em" transform="translate(208.489,590)">60</text>
     <text y="0.71em" transform="translate(283.309,590)">80</text>
@@ -103,10 +103,10 @@
     <text y="0.71em" transform="translate(507.77,590)">140</text>
     <text y="0.71em" transform="translate(582.59,590)">160</text>
   </g>
-  <g aria-label="x-axis label" text-anchor="end" transform="translate(17.5,27.5)">
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(17,27)">
     <text transform="translate(620,590)">weight →</text>
   </g>
-  <g aria-label="dot" transform="translate(0.5,0.5)">
+  <g aria-label="dot">
     <circle cx="223.453" cy="75" r="5" fill="#d95f02"><title>A Jesus Garcia</title></circle>
     <circle cx="264.604" cy="415" r="5" fill="#d95f02"><title>Aichen Wang</title></circle>
     <circle cx="219.712" cy="175" r="5" fill="#d95f02"><title>Alejandro Valverde Belmonte</title></circle>

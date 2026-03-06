@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor">
     <path transform="translate(44,370)" d="M0,0L-6,0"></path>
     <path transform="translate(44,325.799)" d="M0,0L-6,0"></path>
     <path transform="translate(44,281.598)" d="M0,0L-6,0"></path>
@@ -23,7 +23,7 @@
     <path transform="translate(44,104.793)" d="M0,0L-6,0"></path>
     <path transform="translate(44,60.592)" d="M0,0L-6,0"></path>
   </g>
-  <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
+  <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-9,0)">
     <text y="0.32em" transform="translate(44,370)">0</text>
     <text y="0.32em" transform="translate(44,325.799)">2,000</text>
     <text y="0.32em" transform="translate(44,281.598)">4,000</text>
@@ -33,10 +33,10 @@
     <text y="0.32em" transform="translate(44,104.793)">12,000</text>
     <text y="0.32em" transform="translate(44,60.592)">14,000</text>
   </g>
-  <g aria-label="y-axis label" text-anchor="start" transform="translate(-40.5,-16.5)">
+  <g aria-label="y-axis label" text-anchor="start" transform="translate(-41,-17)">
     <text y="0.71em" transform="translate(44,20)">↑ unemployed</text>
   </g>
-  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor">
     <path transform="translate(44,370)" d="M0,0L0,6"></path>
     <path transform="translate(101.225,370)" d="M0,0L0,6"></path>
     <path transform="translate(158.293,370)" d="M0,0L0,6"></path>
@@ -49,7 +49,7 @@
     <path transform="translate(558.085,370)" d="M0,0L0,6"></path>
     <path transform="translate(615.153,370)" d="M0,0L0,6"></path>
   </g>
-  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0,9)">
     <text y="0.71em" transform="translate(44,370)">2000</text>
     <text y="0.71em" transform="translate(101.225,370)">2001</text>
     <text y="0.71em" transform="translate(158.293,370)">2002</text>

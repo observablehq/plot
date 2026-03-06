@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor">
     <path transform="translate(95,700)" d="M0,0L0,6"></path>
     <path transform="translate(165.2,700)" d="M0,0L0,6"></path>
     <path transform="translate(235.4,700)" d="M0,0L0,6"></path>
@@ -21,7 +21,7 @@
     <path transform="translate(375.8,700)" d="M0,0L0,6"></path>
     <path transform="translate(446,700)" d="M0,0L0,6"></path>
   </g>
-  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0,9)">
     <text y="0.71em" transform="translate(95,700)">0</text>
     <text y="0.71em" transform="translate(165.2,700)">20</text>
     <text y="0.71em" transform="translate(235.4,700)">40</text>
@@ -29,10 +29,10 @@
     <text y="0.71em" transform="translate(375.8,700)">80</text>
     <text y="0.71em" transform="translate(446,700)">100</text>
   </g>
-  <g aria-label="x-axis label" text-anchor="end" transform="translate(51.5,27.5)">
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(51,27)">
     <text transform="translate(446,700)">opinion (%) →</text>
   </g>
-  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,7.5)">
+  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,7)">
     <path transform="translate(95,23)" d="M0,0L-6,0"></path>
     <path transform="translate(95,38)" d="M0,0L-6,0"></path>
     <path transform="translate(95,53)" d="M0,0L-6,0"></path>
@@ -79,7 +79,7 @@
     <path transform="translate(95,668)" d="M0,0L-6,0"></path>
     <path transform="translate(95,683)" d="M0,0L-6,0"></path>
   </g>
-  <g aria-label="y-axis tick label" text-anchor="end" transform="translate(-8.5,7.5)">
+  <g aria-label="y-axis tick label" text-anchor="end" transform="translate(-9,7)">
     <text y="0.32em" transform="translate(95,23)">George W…<title>George Washington</title></text>
     <text y="0.32em" transform="translate(95,38)">John Adams</text>
     <text y="0.32em" transform="translate(95,53)">Thomas J…<title>Thomas Jefferson</title></text>
@@ -126,10 +126,10 @@
     <text y="0.32em" transform="translate(95,668)">Donald Tr…<title>Donald Trump</title></text>
     <text y="0.32em" transform="translate(95,683)">Joe Biden</text>
   </g>
-  <g aria-label="y-axis label" transform="translate(-91.5,0.5)">
+  <g aria-label="y-axis label" transform="translate(-92,0)">
     <text y="0.71em" transform="translate(95,360) rotate(-90)">President</text>
   </g>
-  <g aria-label="y-axis tick label" text-anchor="start" transform="translate(9.5,7.5)">
+  <g aria-label="y-axis tick label" text-anchor="start" transform="translate(9,7)">
     <text y="0.32em" transform="translate(446,23)">1789</text>
     <text y="0.32em" transform="translate(446,38)">1797</text>
     <text y="0.32em" transform="translate(446,53)">1801</text>
@@ -176,7 +176,7 @@
     <text y="0.32em" transform="translate(446,668)">2017</text>
     <text y="0.32em" transform="translate(446,683)">2021</text>
   </g>
-  <g aria-label="y-axis label" transform="translate(51.5,0.5)">
+  <g aria-label="y-axis label" transform="translate(51,0)">
     <text transform="translate(446,360) rotate(-90)">First inauguration date</text>
   </g>
   <g aria-label="bar">
@@ -451,7 +451,7 @@
     <rect x="279.364" width="74.455" y="683" height="14" fill="#91bfdb"><title>Somewhat Favorable 21%</title></rect>
     <rect x="353.818" width="92.182" y="683" height="14" fill="#4575b4"><title>Very Favorable 26%</title></rect>
   </g>
-  <g aria-label="tick" stroke="white" transform="translate(0.5,0)">
+  <g aria-label="tick" stroke="white">
     <line x1="270.5" x2="270.5" y1="20" y2="700"></line>
   </g>
 </svg>
