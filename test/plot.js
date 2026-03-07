@@ -3,9 +3,12 @@ import {createCanvas, loadImage} from "canvas";
 import {max, mean, quantile} from "d3";
 import * as path from "path";
 import beautify from "js-beautify";
+import {setOffset} from "../src/style.js";
 import assert from "./assert.js";
 import it from "./jsdom.js";
 import * as plots from "./plots/index.ts"; // TODO index.js
+
+setOffset(0.5);
 
 for (const [name, plot] of Object.entries(plots)) {
   it(`plot ${name}`, async () => {
