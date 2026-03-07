@@ -1,5 +1,6 @@
 import {map, number, valueof} from "../options.js";
 import {applyPosition} from "../projection.js";
+import {offset} from "../style.js";
 import {sqrt3} from "../symbol.js";
 import {initializer} from "./basic.js";
 import {hasOutput, maybeGroup, maybeGroupOutputs, maybeSubgroup} from "./group.js";
@@ -9,8 +10,8 @@ import {hasOutput, maybeGroup, maybeGroupOutputs, maybeSubgroup} from "./group.j
 // to be rounded up into a floating bin to the right of the plot. Therefore,
 // rather than centering the origin hexagon around ⟨0,0⟩ in screen coordinates,
 // we offset slightly to ⟨0.5,0⟩. The hexgrid mark uses the same origin.
-export const ox = 0.5,
-  oy = 0;
+export const ox = 0.5 - offset;
+export const oy = -offset;
 
 export function hexbin(outputs = {fill: "count"}, {binWidth, ...options} = {}) {
   const {z} = options;
