@@ -3,7 +3,7 @@ import {inferFontVariant} from "../axes.js";
 import {createContext, create} from "../context.js";
 import {map, maybeNumberChannel} from "../options.js";
 import {interpolatePiecewise} from "../scales/quantitative.js";
-import {applyInlineStyles, impliedString, maybeClassName} from "../style.js";
+import {applyInlineStyles, impliedString, maybeClassName, offset} from "../style.js";
 
 export function legendRamp(color, options) {
   let {
@@ -164,6 +164,7 @@ export function legendRamp(color, options) {
         .tickFormat(typeof tickFormat === "function" ? tickFormat : undefined)
         .tickSize(tickSize)
         .tickValues(Array.isArray(ticks) ? ticks : null)
+        .offset(offset)
     )
     .attr("font-size", null)
     .attr("font-family", null)
