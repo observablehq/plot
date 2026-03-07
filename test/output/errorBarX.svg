@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,9.5)">
+  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,9)">
     <path transform="translate(40,26)" d="M0,0L-6,0"></path>
     <path transform="translate(40,46)" d="M0,0L-6,0"></path>
     <path transform="translate(40,66)" d="M0,0L-6,0"></path>
@@ -41,7 +41,7 @@
     <path transform="translate(40,506)" d="M0,0L-6,0"></path>
     <path transform="translate(40,526)" d="M0,0L-6,0"></path>
   </g>
-  <g aria-label="y-axis tick label" text-anchor="end" transform="translate(-8.5,9.5)">
+  <g aria-label="y-axis tick label" text-anchor="end" transform="translate(-9,9)">
     <text y="0.32em" transform="translate(40,26)">E</text>
     <text y="0.32em" transform="translate(40,46)">T</text>
     <text y="0.32em" transform="translate(40,66)">A</text>
@@ -69,59 +69,59 @@
     <text y="0.32em" transform="translate(40,506)">Q</text>
     <text y="0.32em" transform="translate(40,526)">Z</text>
   </g>
-  <g aria-label="y-axis label" transform="translate(-36.5,0.5)">
+  <g aria-label="y-axis label" transform="translate(-37,0)">
     <text y="0.71em" transform="translate(40,285) rotate(-90)">letter</text>
   </g>
-  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor">
     <path transform="translate(40,550)" d="M0,0L0,6"></path>
-    <path transform="translate(123.02200083022001,550)" d="M0,0L0,6"></path>
-    <path transform="translate(206.04400166044002,550)" d="M0,0L0,6"></path>
-    <path transform="translate(289.06600249066,550)" d="M0,0L0,6"></path>
-    <path transform="translate(372.08800332088003,550)" d="M0,0L0,6"></path>
-    <path transform="translate(455.11000415110004,550)" d="M0,0L0,6"></path>
-    <path transform="translate(538.13200498132,550)" d="M0,0L0,6"></path>
+    <path transform="translate(123.022,550)" d="M0,0L0,6"></path>
+    <path transform="translate(206.044,550)" d="M0,0L0,6"></path>
+    <path transform="translate(289.066,550)" d="M0,0L0,6"></path>
+    <path transform="translate(372.088,550)" d="M0,0L0,6"></path>
+    <path transform="translate(455.11,550)" d="M0,0L0,6"></path>
+    <path transform="translate(538.132,550)" d="M0,0L0,6"></path>
   </g>
-  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0,9)">
     <text y="0.71em" transform="translate(40,550)">0.00</text>
-    <text y="0.71em" transform="translate(123.02200083022001,550)">0.02</text>
-    <text y="0.71em" transform="translate(206.04400166044002,550)">0.04</text>
-    <text y="0.71em" transform="translate(289.06600249066,550)">0.06</text>
-    <text y="0.71em" transform="translate(372.08800332088003,550)">0.08</text>
-    <text y="0.71em" transform="translate(455.11000415110004,550)">0.10</text>
-    <text y="0.71em" transform="translate(538.13200498132,550)">0.12</text>
+    <text y="0.71em" transform="translate(123.022,550)">0.02</text>
+    <text y="0.71em" transform="translate(206.044,550)">0.04</text>
+    <text y="0.71em" transform="translate(289.066,550)">0.06</text>
+    <text y="0.71em" transform="translate(372.088,550)">0.08</text>
+    <text y="0.71em" transform="translate(455.11,550)">0.10</text>
+    <text y="0.71em" transform="translate(538.132,550)">0.12</text>
   </g>
-  <g aria-label="x-axis label" text-anchor="end" transform="translate(17.5,27.5)">
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(17,27)">
     <text transform="translate(620,550)">frequency →</text>
   </g>
   <g aria-label="bar" fill="steelblue">
-    <rect x="40" width="527.2727272727271" y="26" height="18"></rect>
-    <rect x="40" width="375.92361975923615" y="46" height="18"></rect>
-    <rect x="40" width="339.0203403902034" y="66" height="18"></rect>
-    <rect x="40" width="311.62308011623077" y="86" height="18"></rect>
-    <rect x="40" width="289.1656288916563" y="106" height="18"></rect>
-    <rect x="40" width="280.15774180157734" y="126" height="18"></rect>
-    <rect x="40" width="262.640099626401" y="146" height="18"></rect>
-    <rect x="40" width="252.96803652968032" y="166" height="18"></rect>
-    <rect x="40" width="248.52635948526358" y="186" height="18"></rect>
-    <rect x="40" width="176.54628476546284" y="206" height="18"></rect>
-    <rect x="40" width="167.08177667081776" y="226" height="18"></rect>
-    <rect x="40" width="115.48360315483603" y="246" height="18"></rect>
-    <rect x="40" width="114.48733914487337" y="266" height="18"></rect>
-    <rect x="40" width="99.87546699875466" y="286" height="18"></rect>
-    <rect x="40" width="97.9659609796596" y="306" height="18"></rect>
-    <rect x="40" width="94.97716894977168" y="326" height="18"></rect>
-    <rect x="40" width="83.64466583644666" y="346" height="18"></rect>
-    <rect x="40" width="81.94271481942715" y="366" height="18"></rect>
-    <rect x="40" width="80.0747198007472" y="386" height="18"></rect>
-    <rect x="40" width="61.93441261934413" y="406" height="18"></rect>
-    <rect x="40" width="40.59775840597757" y="426" height="18"></rect>
-    <rect x="40" width="32.04649232046492" y="446" height="18"></rect>
-    <rect x="40" width="6.351183063511826" y="466" height="18"></rect>
-    <rect x="40" width="6.226650062266501" y="486" height="18"></rect>
-    <rect x="40" width="3.943545039435449" y="506" height="18"></rect>
-    <rect x="40" width="3.071814030718137" y="526" height="18"></rect>
+    <rect x="40" width="527.273" y="26" height="18"></rect>
+    <rect x="40" width="375.924" y="46" height="18"></rect>
+    <rect x="40" width="339.02" y="66" height="18"></rect>
+    <rect x="40" width="311.623" y="86" height="18"></rect>
+    <rect x="40" width="289.166" y="106" height="18"></rect>
+    <rect x="40" width="280.158" y="126" height="18"></rect>
+    <rect x="40" width="262.64" y="146" height="18"></rect>
+    <rect x="40" width="252.968" y="166" height="18"></rect>
+    <rect x="40" width="248.526" y="186" height="18"></rect>
+    <rect x="40" width="176.546" y="206" height="18"></rect>
+    <rect x="40" width="167.082" y="226" height="18"></rect>
+    <rect x="40" width="115.484" y="246" height="18"></rect>
+    <rect x="40" width="114.487" y="266" height="18"></rect>
+    <rect x="40" width="99.875" y="286" height="18"></rect>
+    <rect x="40" width="97.966" y="306" height="18"></rect>
+    <rect x="40" width="94.977" y="326" height="18"></rect>
+    <rect x="40" width="83.645" y="346" height="18"></rect>
+    <rect x="40" width="81.943" y="366" height="18"></rect>
+    <rect x="40" width="80.075" y="386" height="18"></rect>
+    <rect x="40" width="61.934" y="406" height="18"></rect>
+    <rect x="40" width="40.598" y="426" height="18"></rect>
+    <rect x="40" width="32.046" y="446" height="18"></rect>
+    <rect x="40" width="6.351" y="466" height="18"></rect>
+    <rect x="40" width="6.227" y="486" height="18"></rect>
+    <rect x="40" width="3.944" y="506" height="18"></rect>
+    <rect x="40" width="3.072" y="526" height="18"></rect>
   </g>
-  <g aria-label="rule" stroke="currentColor" transform="translate(0,9.5)">
+  <g aria-label="rule" stroke="currentColor" transform="translate(0,9)">
     <marker viewBox="-3 -3 6 6" markerWidth="6" markerHeight="6" orient="auto" stroke="currentColor" id="plot-marker-1">
       <path d="M0,-3v6"></path>
     </marker>
@@ -131,34 +131,34 @@
     <marker viewBox="-3 -3 6 6" markerWidth="6" markerHeight="6" orient="auto" stroke="currentColor" id="plot-marker-3">
       <path d="M0,-3v6"></path>
     </marker>
-    <line x1="514.5454545454545" x2="620" y1="26" y2="26" marker-start="url(#plot-marker-1)" marker-mid="url(#plot-marker-2)" marker-end="url(#plot-marker-3)"></line>
-    <line x1="378.33125778331254" x2="453.5159817351598" y1="46" y2="46" marker-start="url(#plot-marker-1)" marker-mid="url(#plot-marker-2)" marker-end="url(#plot-marker-3)"></line>
-    <line x1="345.1183063511831" x2="412.9223744292238" y1="66" y2="66" marker-start="url(#plot-marker-1)" marker-mid="url(#plot-marker-2)" marker-end="url(#plot-marker-3)"></line>
-    <line x1="320.4607721046077" x2="382.7853881278538" y1="86" y2="86" marker-start="url(#plot-marker-1)" marker-mid="url(#plot-marker-2)" marker-end="url(#plot-marker-3)"></line>
-    <line x1="300.2490660024906" x2="358.08219178082186" y1="106" y2="106" marker-start="url(#plot-marker-1)" marker-mid="url(#plot-marker-2)" marker-end="url(#plot-marker-3)"></line>
-    <line x1="292.1419676214196" x2="348.17351598173514" y1="126" y2="126" marker-start="url(#plot-marker-1)" marker-mid="url(#plot-marker-2)" marker-end="url(#plot-marker-3)"></line>
-    <line x1="276.3760896637609" x2="328.9041095890411" y1="146" y2="146" marker-start="url(#plot-marker-1)" marker-mid="url(#plot-marker-2)" marker-end="url(#plot-marker-3)"></line>
-    <line x1="267.67123287671234" x2="318.2648401826484" y1="166" y2="166" marker-start="url(#plot-marker-1)" marker-mid="url(#plot-marker-2)" marker-end="url(#plot-marker-3)"></line>
-    <line x1="263.6737235367372" x2="313.3789954337899" y1="186" y2="186" marker-start="url(#plot-marker-1)" marker-mid="url(#plot-marker-2)" marker-end="url(#plot-marker-3)"></line>
-    <line x1="198.89165628891655" x2="234.20091324200916" y1="206" y2="206" marker-start="url(#plot-marker-1)" marker-mid="url(#plot-marker-2)" marker-end="url(#plot-marker-3)"></line>
-    <line x1="190.37359900373596" x2="223.78995433789953" y1="226" y2="226" marker-start="url(#plot-marker-1)" marker-mid="url(#plot-marker-2)" marker-end="url(#plot-marker-3)"></line>
-    <line x1="143.93524283935244" x2="167.03196347031965" y1="246" y2="246" marker-start="url(#plot-marker-1)" marker-mid="url(#plot-marker-2)" marker-end="url(#plot-marker-3)"></line>
-    <line x1="143.03860523038605" x2="165.93607305936072" y1="266" y2="266" marker-start="url(#plot-marker-1)" marker-mid="url(#plot-marker-2)" marker-end="url(#plot-marker-3)"></line>
-    <line x1="129.8879202988792" x2="149.86301369863014" y1="286" y2="286" marker-start="url(#plot-marker-1)" marker-mid="url(#plot-marker-2)" marker-end="url(#plot-marker-3)"></line>
-    <line x1="128.16936488169364" x2="147.76255707762556" y1="306" y2="306" marker-start="url(#plot-marker-1)" marker-mid="url(#plot-marker-2)" marker-end="url(#plot-marker-3)"></line>
-    <line x1="125.4794520547945" x2="144.47488584474885" y1="326" y2="326" marker-start="url(#plot-marker-1)" marker-mid="url(#plot-marker-2)" marker-end="url(#plot-marker-3)"></line>
-    <line x1="115.28019925280199" x2="132.00913242009133" y1="346" y2="346" marker-start="url(#plot-marker-1)" marker-mid="url(#plot-marker-2)" marker-end="url(#plot-marker-3)"></line>
-    <line x1="113.74844333748445" x2="130.13698630136986" y1="366" y2="366" marker-start="url(#plot-marker-1)" marker-mid="url(#plot-marker-2)" marker-end="url(#plot-marker-3)"></line>
-    <line x1="112.06724782067249" x2="128.08219178082192" y1="386" y2="386" marker-start="url(#plot-marker-1)" marker-mid="url(#plot-marker-2)" marker-end="url(#plot-marker-3)"></line>
-    <line x1="95.7409713574097" x2="108.12785388127853" y1="406" y2="406" marker-start="url(#plot-marker-1)" marker-mid="url(#plot-marker-2)" marker-end="url(#plot-marker-3)"></line>
-    <line x1="76.53798256537982" x2="84.65753424657535" y1="426" y2="426" marker-start="url(#plot-marker-1)" marker-mid="url(#plot-marker-2)" marker-end="url(#plot-marker-3)"></line>
-    <line x1="68.84184308841843" x2="75.25114155251143" y1="446" y2="446" marker-start="url(#plot-marker-1)" marker-mid="url(#plot-marker-2)" marker-end="url(#plot-marker-3)"></line>
-    <line x1="45.716064757160645" x2="46.986301369863014" y1="466" y2="466" marker-start="url(#plot-marker-1)" marker-mid="url(#plot-marker-2)" marker-end="url(#plot-marker-3)"></line>
-    <line x1="45.603985056039846" x2="46.849315068493155" y1="486" y2="486" marker-start="url(#plot-marker-1)" marker-mid="url(#plot-marker-2)" marker-end="url(#plot-marker-3)"></line>
-    <line x1="43.5491905354919" x2="44.337899543378995" y1="506" y2="506" marker-start="url(#plot-marker-1)" marker-mid="url(#plot-marker-2)" marker-end="url(#plot-marker-3)"></line>
-    <line x1="42.76463262764633" x2="43.37899543378996" y1="526" y2="526" marker-start="url(#plot-marker-1)" marker-mid="url(#plot-marker-2)" marker-end="url(#plot-marker-3)"></line>
+    <line x1="514.545" x2="620" y1="26" y2="26" marker-start="url(#plot-marker-1)" marker-mid="url(#plot-marker-2)" marker-end="url(#plot-marker-3)"></line>
+    <line x1="378.331" x2="453.516" y1="46" y2="46" marker-start="url(#plot-marker-1)" marker-mid="url(#plot-marker-2)" marker-end="url(#plot-marker-3)"></line>
+    <line x1="345.118" x2="412.922" y1="66" y2="66" marker-start="url(#plot-marker-1)" marker-mid="url(#plot-marker-2)" marker-end="url(#plot-marker-3)"></line>
+    <line x1="320.461" x2="382.785" y1="86" y2="86" marker-start="url(#plot-marker-1)" marker-mid="url(#plot-marker-2)" marker-end="url(#plot-marker-3)"></line>
+    <line x1="300.249" x2="358.082" y1="106" y2="106" marker-start="url(#plot-marker-1)" marker-mid="url(#plot-marker-2)" marker-end="url(#plot-marker-3)"></line>
+    <line x1="292.142" x2="348.174" y1="126" y2="126" marker-start="url(#plot-marker-1)" marker-mid="url(#plot-marker-2)" marker-end="url(#plot-marker-3)"></line>
+    <line x1="276.376" x2="328.904" y1="146" y2="146" marker-start="url(#plot-marker-1)" marker-mid="url(#plot-marker-2)" marker-end="url(#plot-marker-3)"></line>
+    <line x1="267.671" x2="318.265" y1="166" y2="166" marker-start="url(#plot-marker-1)" marker-mid="url(#plot-marker-2)" marker-end="url(#plot-marker-3)"></line>
+    <line x1="263.674" x2="313.379" y1="186" y2="186" marker-start="url(#plot-marker-1)" marker-mid="url(#plot-marker-2)" marker-end="url(#plot-marker-3)"></line>
+    <line x1="198.892" x2="234.201" y1="206" y2="206" marker-start="url(#plot-marker-1)" marker-mid="url(#plot-marker-2)" marker-end="url(#plot-marker-3)"></line>
+    <line x1="190.374" x2="223.79" y1="226" y2="226" marker-start="url(#plot-marker-1)" marker-mid="url(#plot-marker-2)" marker-end="url(#plot-marker-3)"></line>
+    <line x1="143.935" x2="167.032" y1="246" y2="246" marker-start="url(#plot-marker-1)" marker-mid="url(#plot-marker-2)" marker-end="url(#plot-marker-3)"></line>
+    <line x1="143.039" x2="165.936" y1="266" y2="266" marker-start="url(#plot-marker-1)" marker-mid="url(#plot-marker-2)" marker-end="url(#plot-marker-3)"></line>
+    <line x1="129.888" x2="149.863" y1="286" y2="286" marker-start="url(#plot-marker-1)" marker-mid="url(#plot-marker-2)" marker-end="url(#plot-marker-3)"></line>
+    <line x1="128.169" x2="147.763" y1="306" y2="306" marker-start="url(#plot-marker-1)" marker-mid="url(#plot-marker-2)" marker-end="url(#plot-marker-3)"></line>
+    <line x1="125.479" x2="144.475" y1="326" y2="326" marker-start="url(#plot-marker-1)" marker-mid="url(#plot-marker-2)" marker-end="url(#plot-marker-3)"></line>
+    <line x1="115.28" x2="132.009" y1="346" y2="346" marker-start="url(#plot-marker-1)" marker-mid="url(#plot-marker-2)" marker-end="url(#plot-marker-3)"></line>
+    <line x1="113.748" x2="130.137" y1="366" y2="366" marker-start="url(#plot-marker-1)" marker-mid="url(#plot-marker-2)" marker-end="url(#plot-marker-3)"></line>
+    <line x1="112.067" x2="128.082" y1="386" y2="386" marker-start="url(#plot-marker-1)" marker-mid="url(#plot-marker-2)" marker-end="url(#plot-marker-3)"></line>
+    <line x1="95.741" x2="108.128" y1="406" y2="406" marker-start="url(#plot-marker-1)" marker-mid="url(#plot-marker-2)" marker-end="url(#plot-marker-3)"></line>
+    <line x1="76.538" x2="84.658" y1="426" y2="426" marker-start="url(#plot-marker-1)" marker-mid="url(#plot-marker-2)" marker-end="url(#plot-marker-3)"></line>
+    <line x1="68.842" x2="75.251" y1="446" y2="446" marker-start="url(#plot-marker-1)" marker-mid="url(#plot-marker-2)" marker-end="url(#plot-marker-3)"></line>
+    <line x1="45.716" x2="46.986" y1="466" y2="466" marker-start="url(#plot-marker-1)" marker-mid="url(#plot-marker-2)" marker-end="url(#plot-marker-3)"></line>
+    <line x1="45.604" x2="46.849" y1="486" y2="486" marker-start="url(#plot-marker-1)" marker-mid="url(#plot-marker-2)" marker-end="url(#plot-marker-3)"></line>
+    <line x1="43.549" x2="44.338" y1="506" y2="506" marker-start="url(#plot-marker-1)" marker-mid="url(#plot-marker-2)" marker-end="url(#plot-marker-3)"></line>
+    <line x1="42.765" x2="43.379" y1="526" y2="526" marker-start="url(#plot-marker-1)" marker-mid="url(#plot-marker-2)" marker-end="url(#plot-marker-3)"></line>
   </g>
-  <g aria-label="rule" stroke="currentColor" transform="translate(0.5,0)">
+  <g aria-label="rule" stroke="currentColor">
     <line x1="40" x2="40" y1="20" y2="550"></line>
   </g>
 </svg>

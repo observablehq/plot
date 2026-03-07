@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor">
     <path transform="translate(104,25)" d="M0,0L-6,0"></path>
     <path transform="translate(104,50)" d="M0,0L-6,0"></path>
     <path transform="translate(104,75)" d="M0,0L-6,0"></path>
@@ -22,7 +22,7 @@
     <path transform="translate(104,150)" d="M0,0L-6,0"></path>
     <path transform="translate(104,175)" d="M0,0L-6,0"></path>
   </g>
-  <g aria-label="y-axis tick label" text-anchor="end" transform="translate(-14.5,0.5)">
+  <g aria-label="y-axis tick label" text-anchor="end" transform="translate(-15,0)">
     <text y="0.32em" transform="translate(104,25)">economy (mpg)</text>
     <text y="0.32em" transform="translate(104,50)">cylinders</text>
     <text y="0.32em" transform="translate(104,75)">displacement (cc)</text>
@@ -31,7 +31,7 @@
     <text y="0.32em" transform="translate(104,150)">0-60 mph (s)</text>
     <text y="0.32em" transform="translate(104,175)">year</text>
   </g>
-  <g aria-label="rule" stroke="currentColor" transform="translate(0,0.5)">
+  <g aria-label="rule" stroke="currentColor">
     <line x1="104" x2="620" y1="25" y2="25"></line>
     <line x1="104" x2="620" y1="50" y2="50"></line>
     <line x1="104" x2="620" y1="75" y2="75"></line>
@@ -40,7 +40,7 @@
     <line x1="104" x2="620" y1="150" y2="150"></line>
     <line x1="104" x2="620" y1="175" y2="175"></line>
   </g>
-  <g aria-label="line" fill="none" stroke="#444" stroke-width="0.5" stroke-opacity="0.5" stroke-linejoin="round" stroke-linecap="round" transform="translate(0.5,0.5)">
+  <g aria-label="line" fill="none" stroke="#444" stroke-width="0.5" stroke-opacity="0.5" stroke-linejoin="round" stroke-linecap="round">
     <path d="M158.894,25L620,50L493.333,75L465.761,100L427.03,125L196.143,150L233,175"></path>
     <path d="M186.34,25L620,50L533.333,75L507.826,100L431.273,125L119.357,150L104,175"></path>
     <path d="M213.787,25L620,50L418.667,75L395.652,100L405.232,125L211.5,150L190,175"></path>
@@ -445,60 +445,60 @@
     <path d="M213.787,25L413.6,50L230.667,75L325.543,100L327.4,125L276,150L448,175"></path>
     <path d="M401.798,25L413.6,50L206.667,75L188.13,100L330.326,125L460.286,150L577,175"></path>
   </g>
-  <g aria-label="text" fill="black" stroke="white" stroke-width="3" stroke-linejoin="round" paint-order="stroke" font-variant="tabular-nums" transform="translate(0.5,0.5)">
-    <text y="0.32em" transform="translate(117.72340425531917,25)">10</text>
-    <text y="0.32em" transform="translate(186.3404255319149,25)">15</text>
-    <text y="0.32em" transform="translate(254.9574468085106,25)">20</text>
-    <text y="0.32em" transform="translate(323.5744680851064,25)">25</text>
-    <text y="0.32em" transform="translate(392.1914893617021,25)">30</text>
-    <text y="0.32em" transform="translate(460.80851063829783,25)">35</text>
-    <text y="0.32em" transform="translate(529.4255319148936,25)">40</text>
-    <text y="0.32em" transform="translate(598.0425531914893,25)">45</text>
+  <g aria-label="text" fill="black" stroke="white" stroke-width="3" stroke-linejoin="round" paint-order="stroke" font-variant="tabular-nums">
+    <text y="0.32em" transform="translate(117.723,25)">10</text>
+    <text y="0.32em" transform="translate(186.34,25)">15</text>
+    <text y="0.32em" transform="translate(254.957,25)">20</text>
+    <text y="0.32em" transform="translate(323.574,25)">25</text>
+    <text y="0.32em" transform="translate(392.191,25)">30</text>
+    <text y="0.32em" transform="translate(460.809,25)">35</text>
+    <text y="0.32em" transform="translate(529.426,25)">40</text>
+    <text y="0.32em" transform="translate(598.043,25)">45</text>
     <text y="0.32em" transform="translate(104,50)">3</text>
     <text y="0.32em" transform="translate(207.2,50)">4</text>
     <text y="0.32em" transform="translate(310.4,50)">5</text>
     <text y="0.32em" transform="translate(413.6,50)">6</text>
     <text y="0.32em" transform="translate(516.8,50)">7</text>
     <text y="0.32em" transform="translate(620,50)">8</text>
-    <text y="0.32em" transform="translate(146.66666666666669,75)">100</text>
-    <text y="0.32em" transform="translate(213.33333333333331,75)">150</text>
+    <text y="0.32em" transform="translate(146.667,75)">100</text>
+    <text y="0.32em" transform="translate(213.333,75)">150</text>
     <text y="0.32em" transform="translate(280,75)">200</text>
-    <text y="0.32em" transform="translate(346.66666666666663,75)">250</text>
-    <text y="0.32em" transform="translate(413.33333333333337,75)">300</text>
+    <text y="0.32em" transform="translate(346.667,75)">250</text>
+    <text y="0.32em" transform="translate(413.333,75)">300</text>
     <text y="0.32em" transform="translate(480,75)">350</text>
-    <text y="0.32em" transform="translate(546.6666666666667,75)">400</text>
-    <text y="0.32em" transform="translate(613.3333333333334,75)">450</text>
-    <text y="0.32em" transform="translate(143.26086956521738,100)">60</text>
-    <text y="0.32em" transform="translate(199.34782608695653,100)">80</text>
-    <text y="0.32em" transform="translate(255.43478260869566,100)">100</text>
-    <text y="0.32em" transform="translate(311.5217391304348,100)">120</text>
-    <text y="0.32em" transform="translate(367.60869565217394,100)">140</text>
-    <text y="0.32em" transform="translate(423.69565217391306,100)">160</text>
-    <text y="0.32em" transform="translate(479.7826086956522,100)">180</text>
-    <text y="0.32em" transform="translate(535.8695652173913,100)">200</text>
-    <text y="0.32em" transform="translate(591.9565217391305,100)">220</text>
-    <text y="0.32em" transform="translate(160.61808902750215,125)">2,000</text>
-    <text y="0.32em" transform="translate(233.7680748511483,125)">2,500</text>
-    <text y="0.32em" transform="translate(306.91806067479445,125)">3,000</text>
-    <text y="0.32em" transform="translate(380.0680464984406,125)">3,500</text>
-    <text y="0.32em" transform="translate(453.2180323220868,125)">4,000</text>
-    <text y="0.32em" transform="translate(526.3680181457329,125)">4,500</text>
-    <text y="0.32em" transform="translate(599.5180039693792,125)">5,000</text>
+    <text y="0.32em" transform="translate(546.667,75)">400</text>
+    <text y="0.32em" transform="translate(613.333,75)">450</text>
+    <text y="0.32em" transform="translate(143.261,100)">60</text>
+    <text y="0.32em" transform="translate(199.348,100)">80</text>
+    <text y="0.32em" transform="translate(255.435,100)">100</text>
+    <text y="0.32em" transform="translate(311.522,100)">120</text>
+    <text y="0.32em" transform="translate(367.609,100)">140</text>
+    <text y="0.32em" transform="translate(423.696,100)">160</text>
+    <text y="0.32em" transform="translate(479.783,100)">180</text>
+    <text y="0.32em" transform="translate(535.87,100)">200</text>
+    <text y="0.32em" transform="translate(591.957,100)">220</text>
+    <text y="0.32em" transform="translate(160.618,125)">2,000</text>
+    <text y="0.32em" transform="translate(233.768,125)">2,500</text>
+    <text y="0.32em" transform="translate(306.918,125)">3,000</text>
+    <text y="0.32em" transform="translate(380.068,125)">3,500</text>
+    <text y="0.32em" transform="translate(453.218,125)">4,000</text>
+    <text y="0.32em" transform="translate(526.368,125)">4,500</text>
+    <text y="0.32em" transform="translate(599.518,125)">5,000</text>
     <text y="0.32em" transform="translate(104,150)">8</text>
-    <text y="0.32em" transform="translate(165.42857142857144,150)">10</text>
-    <text y="0.32em" transform="translate(226.85714285714286,150)">12</text>
-    <text y="0.32em" transform="translate(288.2857142857143,150)">14</text>
-    <text y="0.32em" transform="translate(349.7142857142857,150)">16</text>
-    <text y="0.32em" transform="translate(411.1428571428571,150)">18</text>
-    <text y="0.32em" transform="translate(472.5714285714286,150)">20</text>
+    <text y="0.32em" transform="translate(165.429,150)">10</text>
+    <text y="0.32em" transform="translate(226.857,150)">12</text>
+    <text y="0.32em" transform="translate(288.286,150)">14</text>
+    <text y="0.32em" transform="translate(349.714,150)">16</text>
+    <text y="0.32em" transform="translate(411.143,150)">18</text>
+    <text y="0.32em" transform="translate(472.571,150)">20</text>
     <text y="0.32em" transform="translate(534,150)">22</text>
-    <text y="0.32em" transform="translate(595.4285714285714,150)">24</text>
+    <text y="0.32em" transform="translate(595.429,150)">24</text>
     <text y="0.32em" transform="translate(104,175)">70</text>
     <text y="0.32em" transform="translate(190,175)">72</text>
     <text y="0.32em" transform="translate(276,175)">74</text>
     <text y="0.32em" transform="translate(362,175)">76</text>
     <text y="0.32em" transform="translate(448,175)">78</text>
-    <text y="0.32em" transform="translate(534.0000000000001,175)">80</text>
+    <text y="0.32em" transform="translate(534,175)">80</text>
     <text y="0.32em" transform="translate(620,175)">82</text>
   </g>
 </svg>

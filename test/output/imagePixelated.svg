@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="image" transform="translate(0.5,0.5)">
-    <image x="-0.5" y="-0.5" width="300" height="200" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAACCAYAAACddGYaAAAAAXNSR0IArs4c6QAAACNJREFUGFdjVBaX/s/TdotBLrqfgfHeXaP/Ek3PGGatfcEAAHifCmZc3SIiAAAAAElFTkSuQmCC" image-rendering="pixelated"></image>
+  <g aria-label="image">
+    <image x="0" y="0" width="300" height="200" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAACCAYAAACddGYaAAAAAXNSR0IArs4c6QAAACNJREFUGFdjVBaX/s/TdotBLrqfgfHeXaP/Ek3PGGatfcEAAHifCmZc3SIiAAAAAElFTkSuQmCC" image-rendering="pixelated"></image>
   </g>
 </svg>

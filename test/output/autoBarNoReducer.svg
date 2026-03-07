@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,9.5)">
+  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,9)">
     <path transform="translate(40,26)" d="M0,0L-6,0"></path>
     <path transform="translate(40,46)" d="M0,0L-6,0"></path>
     <path transform="translate(40,66)" d="M0,0L-6,0"></path>
@@ -40,7 +40,7 @@
     <path transform="translate(40,486)" d="M0,0L-6,0"></path>
     <path transform="translate(40,506)" d="M0,0L-6,0"></path>
   </g>
-  <g aria-label="y-axis tick label" text-anchor="end" transform="translate(-8.5,9.5)">
+  <g aria-label="y-axis tick label" text-anchor="end" transform="translate(-9,9)">
     <text y="0.32em" transform="translate(40,26)">1</text>
     <text y="0.32em" transform="translate(40,46)">2</text>
     <text y="0.32em" transform="translate(40,66)">3</text>
@@ -67,10 +67,10 @@
     <text y="0.32em" transform="translate(40,486)">24</text>
     <text y="0.32em" transform="translate(40,506)">25</text>
   </g>
-  <g aria-label="y-axis label" transform="translate(-36.5,0.5)">
+  <g aria-label="y-axis label" transform="translate(-37,0)">
     <text y="0.71em" transform="translate(40,275) rotate(-90)">number_in_season</text>
   </g>
-  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(9.5,0)">
+  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(9,0)">
     <path transform="translate(51,530)" d="M0,0L0,6"></path>
     <path transform="translate(71,530)" d="M0,0L0,6"></path>
     <path transform="translate(91,530)" d="M0,0L0,6"></path>
@@ -100,7 +100,7 @@
     <path transform="translate(571,530)" d="M0,0L0,6"></path>
     <path transform="translate(591,530)" d="M0,0L0,6"></path>
   </g>
-  <g aria-label="x-axis tick label" transform="translate(9.5,9.5)">
+  <g aria-label="x-axis tick label" transform="translate(9,9)">
     <text y="0.71em" transform="translate(51,530)">1</text>
     <text y="0.71em" transform="translate(71,530)">2</text>
     <text y="0.71em" transform="translate(91,530)">3</text>
@@ -130,7 +130,7 @@
     <text y="0.71em" transform="translate(571,530)">27</text>
     <text y="0.71em" transform="translate(591,530)">28</text>
   </g>
-  <g aria-label="x-axis label" transform="translate(0.5,27.5)">
+  <g aria-label="x-axis label" transform="translate(0,27)">
     <text transform="translate(330,530)">season</text>
   </g>
   <g aria-label="cell">
@@ -732,5 +732,5 @@
     <rect x="531" width="18" y="246" height="18" fill="rgb(79, 249, 129)"></rect>
     <rect x="531" width="18" y="366" height="18" fill="rgb(174, 245, 69)"></rect>
   </g>
-  <g aria-label="tip" fill="var(--plot-background)" stroke="currentColor" pointer-events="none" text-anchor="start" transform="translate(9.5,9.5)"></g>
+  <g aria-label="tip" fill="var(--plot-background)" stroke="currentColor" pointer-events="none" text-anchor="start" transform="translate(9,9)"></g>
 </svg>

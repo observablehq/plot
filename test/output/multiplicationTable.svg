@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="fy-axis tick" aria-hidden="true" transform="translate(0,0.5)">
+  <g aria-label="fy-axis tick" aria-hidden="true">
     <g fill="none" stroke="currentColor" transform="translate(3,0)">
       <path transform="translate(40,55)" d="M0,0L-6,0"></path>
     </g>
@@ -39,7 +39,7 @@
       <path transform="translate(40,55)" d="M0,0L-6,0"></path>
     </g>
   </g>
-  <g aria-label="fy-axis tick label" transform="translate(-8.5,0.5)">
+  <g aria-label="fy-axis tick label" transform="translate(-9,0)">
     <g text-anchor="end" transform="translate(3,0)">
       <text y="0.32em" transform="translate(40,55)">2</text>
     </g>
@@ -65,7 +65,7 @@
       <text y="0.32em" transform="translate(40,55)">9</text>
     </g>
   </g>
-  <g aria-label="fx-axis tick" aria-hidden="true" transform="translate(0.5,1)">
+  <g aria-label="fx-axis tick" aria-hidden="true">
     <g fill="none" stroke="currentColor" transform="translate(3,0)">
       <path transform="translate(64,30)" d="M0,0L0,-6"></path>
     </g>
@@ -91,7 +91,7 @@
       <path transform="translate(64,30)" d="M0,0L0,-6"></path>
     </g>
   </g>
-  <g aria-label="fx-axis tick label" transform="translate(0.5,-8.5)">
+  <g aria-label="fx-axis tick label" transform="translate(0,-9)">
     <g transform="translate(3,0)">
       <text transform="translate(64,30)">2</text>
     </g>
@@ -311,7 +311,7 @@
       <rect x="41" y="31" width="46" height="48" fill="#97bbf5"></rect>
     </g>
   </g>
-  <g aria-label="dot" transform="translate(0.5,0.5)">
+  <g aria-label="dot">
     <g stroke="white" stroke-width="1.5" transform="translate(3,0)">
       <circle cx="64" cy="55" r="19" fill="#4269d0"></circle>
     </g>
@@ -505,7 +505,7 @@
       <circle cx="64" cy="55" r="19" fill="#97bbf5"></circle>
     </g>
   </g>
-  <g aria-label="text" transform="translate(0.5,0.5)">
+  <g aria-label="text">
     <g fill="white" font-variant="tabular-nums" transform="translate(3,0)">
       <text y="0.32em" transform="translate(64,55)">4</text>
     </g>
