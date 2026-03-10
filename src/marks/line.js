@@ -103,10 +103,10 @@ export function line(data, {x, y, ...options} = {}) {
   return new Line(data, {...options, x, y});
 }
 
-export function lineX(data, {x = identity, y = indexOf, ...options} = {}) {
-  return new Line(data, maybeDenseIntervalY({...options, x, y}));
+export function lineX(data, {x = identity, y = indexOf, stroke, z = stroke === x ? null : undefined, ...options} = {}) {
+  return new Line(data, maybeDenseIntervalY({...options, x, y, z, stroke}));
 }
 
-export function lineY(data, {x = indexOf, y = identity, ...options} = {}) {
-  return new Line(data, maybeDenseIntervalX({...options, x, y}));
+export function lineY(data, {x = indexOf, y = identity, stroke, z = stroke === y ? null : undefined, ...options} = {}) {
+  return new Line(data, maybeDenseIntervalX({...options, x, y, z, stroke}));
 }
