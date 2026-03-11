@@ -78,10 +78,16 @@ export function area(data, options) {
 
 export function areaX(data, options) {
   const {x, y = indexOf, fill, z = x === fill ? null : undefined, ...rest} = maybeDenseIntervalY(options);
-  return new Area(data, maybeStackX(maybeIdentityX({...rest, x, y1: y, y2: undefined, z, fill}, y === indexOf ? "x2" : "x")));
+  return new Area(
+    data,
+    maybeStackX(maybeIdentityX({...rest, x, y1: y, y2: undefined, z, fill}, y === indexOf ? "x2" : "x"))
+  );
 }
 
 export function areaY(data, options) {
   const {x = indexOf, y, fill, z = y === fill ? null : undefined, ...rest} = maybeDenseIntervalX(options);
-  return new Area(data, maybeStackY(maybeIdentityY({...rest, x1: x, x2: undefined, y, z, fill}, x === indexOf ? "y2" : "y")));
+  return new Area(
+    data,
+    maybeStackY(maybeIdentityY({...rest, x1: x, x2: undefined, y, z, fill}, x === indexOf ? "y2" : "y"))
+  );
 }
