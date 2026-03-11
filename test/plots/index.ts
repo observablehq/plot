@@ -189,6 +189,7 @@ export * from "./npm-versions.js";
 export * from "./offset.js";
 export * from "./opacity.js";
 export * from "./ordinal-bar.js";
+export * from "./ordinal-opacity.js";
 export * from "./pairs.js";
 export * from "./penguin-annotated.js";
 export * from "./penguin-culmen-array.js";
