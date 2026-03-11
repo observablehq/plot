@@ -13,8 +13,8 @@ export async function offsets() {
       grid: color,
       height: 300,
       marks: [
-      Plot.axisX({fill: color, stroke: color}),
-      Plot.axisY({fill: color, stroke: color}),
+        Plot.axisX({fill: color, stroke: color}),
+        Plot.axisY({fill: color, stroke: color}),
         Plot.rect(
           penguins,
           Plot.bin(
