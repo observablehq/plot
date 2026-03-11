@@ -2136,7 +2136,7 @@ it("Plot.plot passes render functions scale descriptors", async () => {
         assert.strictEqual(color(1), "rgb(144, 12, 0)");
         scaleEqual(scales.color, {
           type: "linear",
-          domain: [0.0003394410014152527, 0.999856373295188],
+          domain: [0, 0.999856373295188],
           range: [0, 1],
           clamp: false,
           interpolate: d3.interpolateTurbo
@@ -2167,11 +2167,11 @@ it("Plot.plot passes render functions re-initialized scale descriptors and funct
         assert.ok(Math.abs(x(1) - 426) < 1);
         assert.ok(Math.abs(y(0) - 196) < 1);
         assert.ok(Math.abs(y(1) - 148) < 1);
-        assert.strictEqual(color(1), "rgb(35, 23, 27)");
-        assert.strictEqual(color(10), "rgb(72, 58, 164)");
+        assert.strictEqual(color(1), "rgb(41, 27, 47)");
+        assert.strictEqual(color(10), "rgb(73, 62, 174)");
         scaleEqual(scales.color, {
           type: "linear",
-          domain: [1, 161],
+          domain: [0, 161],
           range: [0, 1],
           clamp: false,
           interpolate: d3.interpolateTurbo
