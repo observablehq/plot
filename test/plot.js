@@ -1,17 +1,17 @@
-import {promises as fs} from "fs";
+import {readFile} from "node:fs/promises";
+import {resolve} from "node:path";
 import {createCanvas, loadImage} from "canvas";
 import {max, mean, quantile} from "d3";
-import * as path from "path";
 import beautify from "js-beautify";
 import {setOffset} from "../src/style.js";
+import {expect, test} from "vitest";
 import assert from "./assert.js";
-import it from "./jsdom.js";
-import * as plots from "./plots/index.ts"; // TODO index.js
+import * as plots from "./plots/index.ts";
 
 setOffset(0.5);
 
 for (const [name, plot] of Object.entries(plots)) {
-  it(`plot ${name}`, async () => {
+  test(`plot ${name}`, async () => {
     const root = await (name.startsWith("warn") ? assert.warnsAsync : assert.doesNotWarnAsync)(plot);
     const ext = root.tagName === "svg" ? "svg" : "html";
     for (const svg of root.tagName === "svg" ? [root] : root.querySelectorAll("svg")) {
@@ -22,44 +22,9 @@ for (const [name, plot] of Object.entries(plots)) {
     reindexMarker(root);
     reindexClip(root);
     reindexPattern(root);
-    let expected;
-    let actual = normalizeHtml(root.outerHTML);
-    const outfile = path.resolve("./test/output", `${path.basename(name, ".js")}.${ext}`);
-    const diffile = path.resolve("./test/output", `${path.basename(name, ".js")}-changed.${ext}`);
-
-    try {
-      expected = normalizeHtml(await fs.readFile(outfile, "utf8")); // TODO remove after regenerating snapshots
-    } catch (error) {
-      if (error.code === "ENOENT" && process.env.CI !== "true") {
-        console.warn(`! generating ${outfile}`);
-        await fs.writeFile(outfile, actual, "utf8");
-        return;
-      } else {
-        throw error;
-      }
-    }
-
-    // node-canvas won’t produce the same output on different architectures, so
-    // we parse and compare pixel values instead of the encoded output.
-    const equal = stripImages(actual) === stripImages(expected) && (await compareImages(actual, expected));
-
-    if (equal) {
-      if (process.env.CI !== "true") {
-        try {
-          await fs.unlink(diffile);
-          console.warn(`! deleted ${diffile}`);
-        } catch (error) {
-          if (error.code !== "ENOENT") {
-            throw error;
-          }
-        }
-      }
-    } else {
-      console.warn(`! generating ${diffile}`);
-      await fs.writeFile(diffile, actual, "utf8");
-    }
-
-    assert.ok(equal, `${name} must match snapshot`);
+    const actual = normalizeHtml(root.outerHTML);
+    const outfile = resolve("./test/output", `${name}.${ext}`);
+    await expect(await withImages(actual, outfile)).toMatchFileSnapshot(`./output/${name}.${ext}`);
   });
 }
 
@@ -140,24 +105,35 @@ function reindexPattern(root) {
 
 const imageRe = /data:image\/png;base64,[^"]+/g;
 
-function stripImages(string) {
-  return string.replace(imageRe, "<replaced>");
+// Replace actual images with expected images when they match approximately.
+// This lets toMatchFileSnapshot's exact comparison pass despite platform
+// differences in PNG encoding.
+async function withImages(html, outfile) {
+  try {
+    const expected = await readFile(outfile, "utf8");
+    const actualImages = Array.from(html.matchAll(imageRe), (m) => m[0]);
+    const expectedImages = Array.from(expected.matchAll(imageRe), (m) => m[0]);
+    if (actualImages.length !== expectedImages.length)
+      throw new Error(`Expected ${expectedImages.length} images, got ${actualImages.length}`);
+    for (let i = 0; i < actualImages.length; ++i) {
+      if (actualImages[i] !== expectedImages[i] && (await compareImage(actualImages[i], expectedImages[i]))) {
+        html = html.replace(actualImages[i], expectedImages[i]);
+      }
+    }
+  } catch (error) {
+    if (error.code !== "ENOENT") throw error;
+  }
+  return html;
 }
 
-async function compareImages(a, b) {
-  const reA = new RegExp(imageRe, "g");
-  const reB = new RegExp(imageRe, "g");
-  let matchA;
-  let matchB;
-  while (((matchA = reA.exec(a)), (matchB = reB.exec(b)))) {
-    const [imageA, imageB] = await Promise.all([getImageData(matchA[0]), getImageData(matchB[0])]);
-    const {width, height} = imageA;
-    if (width !== imageB.width || height !== imageB.height) return false;
-    const E = imageA.data.map((a, i) => Math.abs(a - imageB.data[i]));
-    if (!(quantile(E, 0.95) <= 1)) return false; // at least 95% with almost no error
-    if (!(mean(E) < 0.1)) return false; // no more than 0.1 average error
-    if (!(max(E) < 10)) return false; // no more than 10 maximum error
-  }
+async function compareImage(a, b) {
+  const [imageA, imageB] = await Promise.all([getImageData(a), getImageData(b)]);
+  const {width, height} = imageA;
+  if (width !== imageB.width || height !== imageB.height) return false;
+  const E = Uint8Array.from(imageA.data, (a, i) => Math.abs(a - imageB.data[i]));
+  if (!(quantile(E, 0.95) <= 1)) return false; // at least 95% with almost no error
+  if (!(mean(E) < 0.1)) return false; // no more than 0.1 average error
+  if (!(max(E) < 10)) return false; // no more than 10 maximum error
   return true;
 }
 

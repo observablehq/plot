@@ -1,5 +1,5 @@
+import {assert, it} from "vitest";
 import * as Plot from "@observablehq/plot";
-import * as assert from "assert";
 import {JSDOM} from "jsdom";
 
 it("Plot uses the context’s event", () => {

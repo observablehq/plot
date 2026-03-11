@@ -1,4 +1,7 @@
+import {it} from "vitest";
 import {valueof} from "../src/options.js";
+
+it.skip("type-only tests, checked by tsc", () => {});
 
 // A function is not a valid input data
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
