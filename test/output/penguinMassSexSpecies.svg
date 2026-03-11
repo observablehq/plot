@@ -41,47 +41,47 @@
   <g aria-label="y-axis tick" aria-hidden="true" transform="translate(0,0.5)">
     <g fill="none" stroke="currentColor" transform="translate(1,0)">
       <path transform="translate(40,170)" d="M0,0L-6,0"></path>
-      <path transform="translate(40,136.66666666666666)" d="M0,0L-6,0"></path>
-      <path transform="translate(40,103.33333333333334)" d="M0,0L-6,0"></path>
+      <path transform="translate(40,136.667)" d="M0,0L-6,0"></path>
+      <path transform="translate(40,103.333)" d="M0,0L-6,0"></path>
       <path transform="translate(40,70)" d="M0,0L-6,0"></path>
-      <path transform="translate(40,36.66666666666667)" d="M0,0L-6,0"></path>
+      <path transform="translate(40,36.667)" d="M0,0L-6,0"></path>
     </g>
     <g fill="none" stroke="currentColor" transform="translate(1,155)">
       <path transform="translate(40,170)" d="M0,0L-6,0"></path>
-      <path transform="translate(40,136.66666666666666)" d="M0,0L-6,0"></path>
-      <path transform="translate(40,103.33333333333334)" d="M0,0L-6,0"></path>
+      <path transform="translate(40,136.667)" d="M0,0L-6,0"></path>
+      <path transform="translate(40,103.333)" d="M0,0L-6,0"></path>
       <path transform="translate(40,70)" d="M0,0L-6,0"></path>
-      <path transform="translate(40,36.66666666666667)" d="M0,0L-6,0"></path>
+      <path transform="translate(40,36.667)" d="M0,0L-6,0"></path>
     </g>
     <g fill="none" stroke="currentColor" transform="translate(1,310)">
       <path transform="translate(40,170)" d="M0,0L-6,0"></path>
-      <path transform="translate(40,136.66666666666666)" d="M0,0L-6,0"></path>
-      <path transform="translate(40,103.33333333333334)" d="M0,0L-6,0"></path>
+      <path transform="translate(40,136.667)" d="M0,0L-6,0"></path>
+      <path transform="translate(40,103.333)" d="M0,0L-6,0"></path>
       <path transform="translate(40,70)" d="M0,0L-6,0"></path>
-      <path transform="translate(40,36.66666666666667)" d="M0,0L-6,0"></path>
+      <path transform="translate(40,36.667)" d="M0,0L-6,0"></path>
     </g>
   </g>
   <g aria-label="y-axis tick label" transform="translate(-8.5,0.5)">
     <g text-anchor="end" font-variant="tabular-nums" transform="translate(1,0)">
       <text y="0.32em" transform="translate(40,170)">0</text>
-      <text y="0.32em" transform="translate(40,136.66666666666666)">10</text>
-      <text y="0.32em" transform="translate(40,103.33333333333334)">20</text>
+      <text y="0.32em" transform="translate(40,136.667)">10</text>
+      <text y="0.32em" transform="translate(40,103.333)">20</text>
       <text y="0.32em" transform="translate(40,70)">30</text>
-      <text y="0.32em" transform="translate(40,36.66666666666667)">40</text>
+      <text y="0.32em" transform="translate(40,36.667)">40</text>
     </g>
     <g text-anchor="end" font-variant="tabular-nums" transform="translate(1,155)">
       <text y="0.32em" transform="translate(40,170)">0</text>
-      <text y="0.32em" transform="translate(40,136.66666666666666)">10</text>
-      <text y="0.32em" transform="translate(40,103.33333333333334)">20</text>
+      <text y="0.32em" transform="translate(40,136.667)">10</text>
+      <text y="0.32em" transform="translate(40,103.333)">20</text>
       <text y="0.32em" transform="translate(40,70)">30</text>
-      <text y="0.32em" transform="translate(40,36.66666666666667)">40</text>
+      <text y="0.32em" transform="translate(40,36.667)">40</text>
     </g>
     <g text-anchor="end" font-variant="tabular-nums" transform="translate(1,310)">
       <text y="0.32em" transform="translate(40,170)">0</text>
-      <text y="0.32em" transform="translate(40,136.66666666666666)">10</text>
-      <text y="0.32em" transform="translate(40,103.33333333333334)">20</text>
+      <text y="0.32em" transform="translate(40,136.667)">10</text>
+      <text y="0.32em" transform="translate(40,103.333)">20</text>
       <text y="0.32em" transform="translate(40,70)">30</text>
-      <text y="0.32em" transform="translate(40,36.66666666666667)">40</text>
+      <text y="0.32em" transform="translate(40,36.667)">40</text>
     </g>
   </g>
   <g aria-label="y-axis label" text-anchor="start" transform="translate(-36.5,-26.5)">
@@ -130,46 +130,46 @@
     <g transform="translate(1,0)">
       <rect x="41" y="150" width="20" height="20"></rect>
       <rect x="62" y="30" width="19" height="140"></rect>
-      <rect x="82" y="86.66666666666667" width="20" height="83.33333333333333"></rect>
+      <rect x="82" y="86.667" width="20" height="83.333"></rect>
     </g>
     <g transform="translate(1,155)">
-      <rect x="41" y="163.33333333333331" width="20" height="6.666666666666686"></rect>
-      <rect x="62" y="133.33333333333334" width="19" height="36.66666666666666"></rect>
-      <rect x="82" y="103.33333333333334" width="20" height="66.66666666666666"></rect>
-      <rect x="103" y="166.66666666666666" width="19" height="3.333333333333343"></rect>
+      <rect x="41" y="163.333" width="20" height="6.667"></rect>
+      <rect x="62" y="133.333" width="19" height="36.667"></rect>
+      <rect x="82" y="103.333" width="20" height="66.667"></rect>
+      <rect x="103" y="166.667" width="19" height="3.333"></rect>
     </g>
     <g transform="translate(1,310)">
-      <rect x="82" y="166.66666666666666" width="20" height="3.333333333333343"></rect>
-      <rect x="103" y="123.33333333333334" width="19" height="46.66666666666666"></rect>
-      <rect x="123" y="53.33333333333333" width="20" height="116.66666666666667"></rect>
-      <rect x="144" y="143.33333333333334" width="19" height="26.666666666666657"></rect>
+      <rect x="82" y="166.667" width="20" height="3.333"></rect>
+      <rect x="103" y="123.333" width="19" height="46.667"></rect>
+      <rect x="123" y="53.333" width="20" height="116.667"></rect>
+      <rect x="144" y="143.333" width="19" height="26.667"></rect>
     </g>
     <g transform="translate(183,0)">
       <rect x="62" y="160" width="19" height="10"></rect>
-      <rect x="82" y="63.333333333333336" width="20" height="106.66666666666666"></rect>
+      <rect x="82" y="63.333" width="20" height="106.667"></rect>
       <rect x="103" y="70" width="19" height="100"></rect>
-      <rect x="123" y="143.33333333333334" width="20" height="26.666666666666657"></rect>
+      <rect x="123" y="143.333" width="20" height="26.667"></rect>
     </g>
     <g transform="translate(183,155)">
-      <rect x="62" y="156.66666666666669" width="19" height="13.333333333333314"></rect>
+      <rect x="62" y="156.667" width="19" height="13.333"></rect>
       <rect x="82" y="120" width="20" height="50"></rect>
       <rect x="103" y="130" width="19" height="40"></rect>
       <rect x="123" y="160" width="20" height="10"></rect>
     </g>
     <g transform="translate(183,310)">
-      <rect x="123" y="163.33333333333331" width="20" height="6.666666666666686"></rect>
-      <rect x="144" y="83.33333333333333" width="19" height="86.66666666666667"></rect>
-      <rect x="164" y="73.33333333333334" width="20" height="96.66666666666666"></rect>
-      <rect x="185" y="156.66666666666669" width="19" height="13.333333333333314"></rect>
+      <rect x="123" y="163.333" width="20" height="6.667"></rect>
+      <rect x="144" y="83.333" width="19" height="86.667"></rect>
+      <rect x="164" y="73.333" width="20" height="96.667"></rect>
+      <rect x="185" y="156.667" width="19" height="13.333"></rect>
     </g>
     <g transform="translate(365,0)">
-      <rect x="41" y="166.66666666666666" width="20" height="3.333333333333343"></rect>
-      <rect x="62" y="163.33333333333331" width="19" height="6.666666666666686"></rect>
-      <rect x="82" y="166.66666666666666" width="20" height="3.333333333333343"></rect>
-      <rect x="103" y="166.66666666666666" width="19" height="3.333333333333343"></rect>
+      <rect x="41" y="166.667" width="20" height="3.333"></rect>
+      <rect x="62" y="163.333" width="19" height="6.667"></rect>
+      <rect x="82" y="166.667" width="20" height="3.333"></rect>
+      <rect x="103" y="166.667" width="19" height="3.333"></rect>
     </g>
     <g transform="translate(365,310)">
-      <rect x="103" y="166.66666666666666" width="19" height="3.333333333333343"></rect>
+      <rect x="103" y="166.667" width="19" height="3.333"></rect>
       <rect x="123" y="160" width="20" height="10"></rect>
     </g>
   </g>

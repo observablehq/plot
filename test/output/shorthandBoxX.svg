@@ -14,26 +14,26 @@
     }
   </style>
   <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,0)">
-    <path transform="translate(24.15647921760361,30)" d="M0,0L0,6"></path>
-    <path transform="translate(146.40586797065987,30)" d="M0,0L0,6"></path>
-    <path transform="translate(268.65525672371615,30)" d="M0,0L0,6"></path>
-    <path transform="translate(390.90464547677243,30)" d="M0,0L0,6"></path>
-    <path transform="translate(513.1540342298288,30)" d="M0,0L0,6"></path>
+    <path transform="translate(24.156,30)" d="M0,0L0,6"></path>
+    <path transform="translate(146.406,30)" d="M0,0L0,6"></path>
+    <path transform="translate(268.655,30)" d="M0,0L0,6"></path>
+    <path transform="translate(390.905,30)" d="M0,0L0,6"></path>
+    <path transform="translate(513.154,30)" d="M0,0L0,6"></path>
   </g>
   <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
-    <text y="0.71em" transform="translate(24.15647921760361,30)">155</text>
-    <text y="0.71em" transform="translate(146.40586797065987,30)">160</text>
-    <text y="0.71em" transform="translate(268.65525672371615,30)">165</text>
-    <text y="0.71em" transform="translate(390.90464547677243,30)">170</text>
-    <text y="0.71em" transform="translate(513.1540342298288,30)">175</text>
+    <text y="0.71em" transform="translate(24.156,30)">155</text>
+    <text y="0.71em" transform="translate(146.406,30)">160</text>
+    <text y="0.71em" transform="translate(268.655,30)">165</text>
+    <text y="0.71em" transform="translate(390.905,30)">170</text>
+    <text y="0.71em" transform="translate(513.154,30)">175</text>
   </g>
   <g aria-label="rule" stroke="currentColor" transform="translate(0,0.5)">
     <line x1="20" x2="620" y1="15" y2="15"></line>
   </g>
   <g aria-label="bar" fill="#ccc">
-    <rect x="309.05867970660137" width="232.39608801955984" y="0" height="30"></rect>
+    <rect x="309.059" width="232.396" y="0" height="30"></rect>
   </g>
   <g aria-label="tick" stroke="currentColor" stroke-width="2" transform="translate(0.5,0)">
-    <line x1="452.8850855745719" x2="452.8850855745719" y1="0" y2="30"></line>
+    <line x1="452.885" x2="452.885" y1="0" y2="30"></line>
   </g>
 </svg>
