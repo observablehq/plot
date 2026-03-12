@@ -48,6 +48,7 @@ export * from "./boxplot.js";
 export * from "./caltrain-direction.js";
 export * from "./caltrain.js";
 export * from "./cars-dodge.js";
+export * from "./dense-interval.js";
 export * from "./cars-hexbin.js";
 export * from "./cars-jitter.js";
 export * from "./cars-mpg.js";
