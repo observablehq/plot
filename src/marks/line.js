@@ -1,4 +1,4 @@
-import {line as shapeLine} from "d3";
+import {group, line as shapeLine} from "d3";
 import {create} from "../context.js";
 import {curveAuto, maybeCurveAuto} from "../curve.js";
 import {Mark} from "../mark.js";
@@ -12,6 +12,7 @@ import {
   groupIndex
 } from "../style.js";
 import {maybeDenseIntervalX, maybeDenseIntervalY} from "../transforms/bin.js";
+import {applyHalo, maybeHalo} from "./halo.js";
 
 const defaults = {
   ariaLabel: "line",
@@ -25,7 +26,7 @@ const defaults = {
 
 export class Line extends Mark {
   constructor(data, options = {}) {
-    const {x, y, z, curve, tension} = options;
+    const {x, y, z, curve, tension, halo, haloColor, haloRadius} = options;
     super(
       data,
       {
@@ -38,6 +39,7 @@ export class Line extends Mark {
     );
     this.z = z;
     this.curve = maybeCurveAuto(curve, tension);
+    this.halo = maybeHalo(halo, haloColor, haloRadius);
     markers(this, options);
   }
   filter(index) {
@@ -50,32 +52,43 @@ export class Line extends Mark {
     }
   }
   render(index, scales, channels, dimensions, context) {
-    const {x: X, y: Y} = channels;
+    const {x: X, y: Y, z: Z} = channels;
     const {curve} = this;
-    return create("svg:g", context)
+    const g = create("svg:g", context)
       .call(applyIndirectStyles, this, dimensions, context)
-      .call(applyTransform, this, scales)
-      .call((g) =>
-        g
+      .call(applyTransform, this, scales);
+
+    // When adding a halo to multiple series, nest by series so each
+    // gets its own halo filter; otherwise render paths directly into g.
+    const segments = groupIndex(index, [X, Y], this, channels);
+    (this.halo && Z
+      ? g
           .selectAll()
-          .data(groupIndex(index, [X, Y], this, channels))
+          .data(group(segments, (I) => Z[I.find((i) => i >= 0)]))
           .enter()
-          .append("path")
-          .call(applyDirectStyles, this)
-          .call(applyGroupedChannelStyles, this, channels)
-          .call(applyGroupedMarkers, this, channels, context)
-          .attr(
-            "d",
-            curve === curveAuto && context.projection
-              ? sphereLine(context.path(), X, Y)
-              : shapeLine()
-                  .curve(curve)
-                  .defined((i) => i >= 0)
-                  .x((i) => X[i])
-                  .y((i) => Y[i])
-          )
-      )
-      .node();
+          .append("g")
+      : g.datum([, segments])
+    )
+      .call(applyHalo, this)
+      .selectAll()
+      .data(([, d]) => d)
+      .enter()
+      .append("path")
+      .call(applyDirectStyles, this)
+      .call(applyGroupedChannelStyles, this, channels)
+      .call(applyGroupedMarkers, this, channels, context)
+      .attr(
+        "d",
+        curve === curveAuto && context.projection
+          ? sphereLine(context.path(), X, Y)
+          : shapeLine()
+              .curve(curve)
+              .defined((i) => i >= 0)
+              .x((i) => X[i])
+              .y((i) => Y[i])
+      );
+
+    return g.node();
   }
 }
 

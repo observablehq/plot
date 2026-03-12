@@ -154,6 +154,7 @@ export * from "./letter-frequency-lollipop.js";
 export * from "./letter-frequency-wheel.js";
 export * from "./libor-projections.js";
 export * from "./likert-survey.js";
+export * from "./line-halo.js";
 export * from "./linear-regression-cars.js";
 export * from "./linear-regression-mtcars.js";
 export * from "./linear-regression-penguins.js";
