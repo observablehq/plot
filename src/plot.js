@@ -180,7 +180,7 @@ export function plot(options = {}) {
   context.dispatchValue = (value) => {
     if (figure.value === value) return;
     figure.value = value;
-    figure.dispatchEvent(new context.document.defaultView.Event("input", {bubbles: true}));
+    if (figure.isConnected) figure.dispatchEvent(new context.document.defaultView.Event("input", {bubbles: true}));
   };
 
   // Reinitialize; for deriving channels dependent on other channels.
