@@ -68,6 +68,7 @@ export * from "./curves.js";
 export * from "./d3-survey-2015-comfort.js";
 export * from "./d3-survey-2015-why.js";
 export * from "./darker-dodge.js";
+export * from "./dataset.js";
 export * from "./decathlon.js";
 export * from "./diamonds-boxplot.js";
 export * from "./diamonds-carat-price-dots.js";
