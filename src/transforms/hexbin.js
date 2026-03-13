@@ -64,6 +64,7 @@ export function hexbin(outputs = {fill: "count"}, {binWidth, ...options} = {}) {
       const binFacet = [];
       for (const o of outputs) o.scope("facet", facet);
       for (const [f, I] of maybeGroup(facet, G)) {
+        for (const o of outputs) o.scope("group", I);
         for (const {index: b, extent} of hbin(data, I, X, Y, binWidth)) {
           binFacet.push(++i);
           BX.push(extent.x);

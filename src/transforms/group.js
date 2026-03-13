@@ -103,6 +103,7 @@ function groupn(
         if (sort) sort.scope("facet", facet);
         if (filter) filter.scope("facet", facet);
         for (const [f, I] of maybeGroup(facet, G)) {
+          for (const o of outputs) o.scope("group", I);
           for (const [y, gg] of maybeGroup(I, Y)) {
             for (const [x, g] of maybeGroup(gg, X)) {
               const extent = {data};
@@ -220,6 +221,8 @@ export function maybeReduce(reduce, value, fallback = invalidReduce) {
       return reduceIdentity;
     case "count":
       return reduceCount;
+    case "density":
+      return reduceDensity;
     case "distinct":
       return reduceDistinct;
     case "sum":
@@ -374,6 +377,18 @@ export const reduceCount = {
   label: "Frequency",
   reduceIndex(I) {
     return I.length;
+  }
+};
+
+export const reduceDensity = {
+  label: "Density",
+  scope: "group",
+  reduceIndex(I, V, context, extent) {
+    if (context === undefined) return I.length;
+    let proportion = I.length / context;
+    if ("y2" in extent && !("x2" in extent)) proportion /= extent.y2 - extent.y1;
+    else if ("x2" in extent && !("y2" in extent)) proportion /= extent.x2 - extent.x1;
+    return proportion;
   }
 };
 
