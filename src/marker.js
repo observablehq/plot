@@ -1,6 +1,6 @@
 import {create} from "./context.js";
 import {unset} from "./memoize.js";
-import {keyof} from "./options.js";
+import {isNoneish, keyof} from "./options.js";
 
 export function markers(mark, {marker, markerStart = marker, markerMid = marker, markerEnd = marker} = {}) {
   mark.markerStart = maybeMarker(markerStart);
@@ -144,7 +144,13 @@ function getGroupedOrientation(path, Z) {
   return ([i]) => O[i];
 }
 
-function applyMarkersColor(path, {markerStart, markerMid, markerEnd, stroke}, strokeof = () => stroke, Z, context) {
+function applyMarkersColor(
+  path,
+  {markerStart, markerMid, markerEnd, stroke, strokeDasharray},
+  strokeof = () => stroke,
+  Z,
+  context
+) {
   if (!markerStart && !markerMid && !markerEnd) return;
   const iriByMarkerColor = new Map();
   const orient = Z && getGroupedOrientation(path, Z);
@@ -158,6 +164,7 @@ function applyMarkersColor(path, {markerStart, markerMid, markerEnd, stroke}, st
       let iri = iriByColor.get(color);
       if (!iri) {
         const node = this.parentNode.insertBefore(marker(color, context), this);
+        if (!isNoneish(strokeDasharray)) node.setAttribute("stroke-dasharray", "none");
         const id = `plot-marker-${++nextMarkerId}`;
         node.setAttribute("id", id);
         iriByColor.set(color, (iri = `url(#${id})`));
