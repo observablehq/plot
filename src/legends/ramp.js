@@ -29,6 +29,8 @@ export function legendRamp(color, options) {
   if (tickFormat === null) tickFormat = () => null;
 
   const svg = create("svg", context)
+    .attr("xmlns", "http://www.w3.org/2000/svg")
+    .attr("xmlns:xlink", "http://www.w3.org/1999/xlink")
     .attr("class", `${className}-ramp`)
     .attr("font-family", "system-ui, sans-serif")
     .attr("font-size", 10)
