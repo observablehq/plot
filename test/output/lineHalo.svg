@@ -93,64 +93,28 @@
     <text y="0.32em" transform="translate(346.875,258.656)">← 9 quarters into recession</text>
   </g>
   <g aria-label="line" fill="none" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" transform="translate(0.5,0.5)">
+    <filter id="plot-halo-1">
+      <feMorphology in="SourceAlpha" result="dilated" operator="dilate" radius="2"></feMorphology>
+      <feFlood style="flood-color: var(--plot-background);"></feFlood>
+      <feComposite in2="dilated" operator="in"></feComposite>
+      <feMerge>
+        <feMergeNode></feMergeNode>
+        <feMergeNode in="SourceGraphic"></feMergeNode>
+      </feMerge>
+    </filter>
     <g filter="url(#plot-halo-1)">
-      <filter id="plot-halo-1">
-        <feMorphology in="SourceAlpha" result="dilated" operator="dilate" radius="2"></feMorphology>
-        <feFlood style="flood-color: var(--plot-background);"></feFlood>
-        <feComposite in2="dilated" operator="in"></feComposite>
-        <feMerge>
-          <feMergeNode></feMergeNode>
-          <feMergeNode in="SourceGraphic"></feMergeNode>
-        </feMerge>
-      </filter>
       <path stroke="#9ecae1" d="M60,160.236L91.875,188.472L123.75,190.085L155.625,165.026L187.5,138.709L219.375,148.797L251.25,132.653L283.125,147.51L315,168.745L346.875,162.572L378.75,167.766L410.625,167.225L442.5,149.469L474.375,118.953L506.25,92.11L538.125,64.108L570,37.853"></path>
     </g>
-    <g filter="url(#plot-halo-2)">
-      <filter id="plot-halo-2">
-        <feMorphology in="SourceAlpha" result="dilated" operator="dilate" radius="2"></feMorphology>
-        <feFlood style="flood-color: var(--plot-background);"></feFlood>
-        <feComposite in2="dilated" operator="in"></feComposite>
-        <feMerge>
-          <feMergeNode></feMergeNode>
-          <feMergeNode in="SourceGraphic"></feMergeNode>
-        </feMerge>
-      </filter>
+    <g filter="url(#plot-halo-1)">
       <path stroke="#6baed6" d="M60,160.236L91.875,172.639L123.75,179L155.625,168.466L187.5,161.63L219.375,156.911L251.25,140.772L283.125,126.145L315,112.811L346.875,98.74L378.75,96.478L410.625,88.606L442.5,82.15L474.375,63.829L506.25,50.733L538.125,32.479L570,24.575"></path>
     </g>
-    <g filter="url(#plot-halo-3)">
-      <filter id="plot-halo-3">
-        <feMorphology in="SourceAlpha" result="dilated" operator="dilate" radius="2"></feMorphology>
-        <feFlood style="flood-color: var(--plot-background);"></feFlood>
-        <feComposite in2="dilated" operator="in"></feComposite>
-        <feMerge>
-          <feMergeNode></feMergeNode>
-          <feMergeNode in="SourceGraphic"></feMergeNode>
-        </feMerge>
-      </filter>
+    <g filter="url(#plot-halo-1)">
       <path stroke="#3182bd" d="M60,160.236L91.875,151.835L123.75,157.275L155.625,153.52L187.5,142.334L219.375,134.012L251.25,128.55L283.125,126.779L315,119.79L346.875,107.728L378.75,85.308L410.625,69.746L442.5,61.999L474.375,51.478L506.25,38.773L538.125,24.983L570,10"></path>
     </g>
-    <g filter="url(#plot-halo-4)">
-      <filter id="plot-halo-4">
-        <feMorphology in="SourceAlpha" result="dilated" operator="dilate" radius="2"></feMorphology>
-        <feFlood style="flood-color: var(--plot-background);"></feFlood>
-        <feComposite in2="dilated" operator="in"></feComposite>
-        <feMerge>
-          <feMergeNode></feMergeNode>
-          <feMergeNode in="SourceGraphic"></feMergeNode>
-        </feMerge>
-      </filter>
+    <g filter="url(#plot-halo-1)">
       <path stroke="#08519c" d="M60,160.236L91.875,165.773L123.75,158.034L155.625,165.198L187.5,195.133L219.375,211.036L251.25,213.333L283.125,208.433L315,194.026L346.875,187.261L378.75,174.201L410.625,163.756L442.5,156.727L474.375,159.998L506.25,150.834L538.125,151.36L570,136.232"></path>
     </g>
-    <g filter="url(#plot-halo-5)">
-      <filter id="plot-halo-5">
-        <feMorphology in="SourceAlpha" result="dilated" operator="dilate" radius="2"></feMorphology>
-        <feFlood style="flood-color: var(--plot-background);"></feFlood>
-        <feComposite in2="dilated" operator="in"></feComposite>
-        <feMerge>
-          <feMergeNode></feMergeNode>
-          <feMergeNode in="SourceGraphic"></feMergeNode>
-        </feMerge>
-      </filter>
+    <g filter="url(#plot-halo-1)">
       <path stroke="red" d="M60,160.236L91.875,178.032L123.75,305L155.625,206.32L187.5,191.278L219.375,170.634L251.25,148.563L283.125,140.841L315,118.236L346.875,123.065"></path>
     </g>
   </g>

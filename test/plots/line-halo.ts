@@ -48,7 +48,7 @@ export async function lineHalo() {
         text: ["\u2190 Final quarter before recession", "\u2190 9 quarters into recession"],
         dx: 4
       }),
-      Plot.line(
+      Plot.lineY(
         fredSeries,
         Plot.normalizeY({
           x: "quarters",
@@ -72,6 +72,15 @@ export async function lineHalo() {
         )
       )
     ]
+  });
+}
+
+export async function lineHaloSingle() {
+  const aapl = await d3.csv<any>("data/aapl.csv", d3.autoType);
+  return Plot.plot({
+    x: {nice: 100},
+    y: {nice: true},
+    marks: [Plot.gridX({ticks: 100}), Plot.gridY({tickSpacing: 5}), Plot.lineY(aapl, {x: "Date", y: "Close", halo: 4})]
   });
 }
 

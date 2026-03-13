@@ -60,6 +60,7 @@ export class Line extends Mark {
 
     // When adding a halo to multiple series, nest by series so each
     // gets its own halo filter; otherwise render paths directly into g.
+    const filter = applyHalo(g, this);
     const segments = groupIndex(index, [X, Y], this, channels);
     (this.halo && Z
       ? g
@@ -69,7 +70,7 @@ export class Line extends Mark {
           .append("g")
       : g.datum([, segments])
     )
-      .call(applyHalo, this)
+      .attr("filter", filter)
       .selectAll()
       .data(([, d]) => d)
       .enter()

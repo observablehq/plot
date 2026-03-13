@@ -10,34 +10,22 @@ function getHaloId() {
 }
 
 export function applyHalo(selection, {halo}) {
-  if (!halo) return;
+  if (!halo) return null;
   const {color, radius} = halo;
-  const filters = new WeakMap();
-  selection.attr("filter", function () {
-    const id = getHaloId();
-    filters.set(this, id);
-    return `url(#${id})`;
-  });
-  selection
-    .append("filter")
-    .attr("id", function () {
-      return filters.get(this.parentNode);
-    })
-    .call((filter) =>
-      filter
-        .append("feMorphology")
-        .attr("in", "SourceAlpha")
-        .attr("result", "dilated")
-        .attr("operator", "dilate")
-        .attr("radius", radius)
-    )
-    .call((filter) => filter.append("feFlood").style("flood-color", color))
-    .call((filter) => filter.append("feComposite").attr("in2", "dilated").attr("operator", "in"))
-    .append("feMerge")
-    .call((merge) => {
-      merge.append("feMergeNode");
-      merge.append("feMergeNode").attr("in", "SourceGraphic");
-    });
+  const id = getHaloId();
+  const filter = selection.append("filter").attr("id", id);
+  filter
+    .append("feMorphology")
+    .attr("in", "SourceAlpha")
+    .attr("result", "dilated")
+    .attr("operator", "dilate")
+    .attr("radius", radius);
+  filter.append("feFlood").style("flood-color", color);
+  filter.append("feComposite").attr("in2", "dilated").attr("operator", "in");
+  const merge = filter.append("feMerge");
+  merge.append("feMergeNode");
+  merge.append("feMergeNode").attr("in", "SourceGraphic");
+  return `url(#${id})`;
 }
 
 export function maybeHalo(halo, color, radius) {
