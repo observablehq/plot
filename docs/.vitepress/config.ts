@@ -80,6 +80,7 @@ export default defineConfig({
           {text: "Formats", link: "/features/formats"},
           {text: "Intervals", link: "/features/intervals"},
           {text: "Markers", link: "/features/markers"},
+          {text: "Paints", link: "/features/paints"},
           {text: "Shorthand", link: "/features/shorthand"},
           {text: "Accessibility", link: "/features/accessibility"}
         ]

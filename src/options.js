@@ -527,6 +527,16 @@ export function isEvery(values, is) {
   return every;
 }
 
+// TODO Make isPaint the generic one (either a color or a custom paint
+// implementation), rather than making isColor the generic one?
+export function isPaint(value) {
+  return typeof value?.paint === "function";
+}
+
+// Mostly relies on d3-color, with a few extra color keywords. Currently this
+// strictly requires that the value be a string; we might want to apply string
+// coercion here, though note that d3-color instances would need to support
+// valueOf to work correctly with InternMap.
 const namedColors = new Set("none,currentcolor,transparent,aliceblue,antiquewhite,aqua,aquamarine,azure,beige,bisque,black,blanchedalmond,blue,blueviolet,brown,burlywood,cadetblue,chartreuse,chocolate,coral,cornflowerblue,cornsilk,crimson,cyan,darkblue,darkcyan,darkgoldenrod,darkgray,darkgreen,darkgrey,darkkhaki,darkmagenta,darkolivegreen,darkorange,darkorchid,darkred,darksalmon,darkseagreen,darkslateblue,darkslategray,darkslategrey,darkturquoise,darkviolet,deeppink,deepskyblue,dimgray,dimgrey,dodgerblue,firebrick,floralwhite,forestgreen,fuchsia,gainsboro,ghostwhite,gold,goldenrod,gray,green,greenyellow,grey,honeydew,hotpink,indianred,indigo,ivory,khaki,lavender,lavenderblush,lawngreen,lemonchiffon,lightblue,lightcoral,lightcyan,lightgoldenrodyellow,lightgray,lightgreen,lightgrey,lightpink,lightsalmon,lightseagreen,lightskyblue,lightslategray,lightslategrey,lightsteelblue,lightyellow,lime,limegreen,linen,magenta,maroon,mediumaquamarine,mediumblue,mediumorchid,mediumpurple,mediumseagreen,mediumslateblue,mediumspringgreen,mediumturquoise,mediumvioletred,midnightblue,mintcream,mistyrose,moccasin,navajowhite,navy,oldlace,olive,olivedrab,orange,orangered,orchid,palegoldenrod,palegreen,paleturquoise,palevioletred,papayawhip,peachpuff,peru,pink,plum,powderblue,purple,rebeccapurple,red,rosybrown,royalblue,saddlebrown,salmon,sandybrown,seagreen,seashell,sienna,silver,skyblue,slateblue,slategray,slategrey,snow,springgreen,steelblue,tan,teal,thistle,tomato,turquoise,violet,wheat,white,whitesmoke,yellow".split(",")); // prettier-ignore
 
 // Returns true if value is a valid CSS color string. This is intentionally lax
@@ -535,6 +545,7 @@ const namedColors = new Set("none,currentcolor,transparent,aliceblue,antiquewhit
 // https://www.w3.org/TR/SVG11/painting.html#SpecifyingPaint
 // https://www.w3.org/TR/css-color-5/
 export function isColor(value) {
+  if (isPaint(value)) return true;
   if (typeof value !== "string") return false;
   value = value.toLowerCase().trim();
   return (

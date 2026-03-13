@@ -45,6 +45,7 @@ function getHref(name: string, path: string): string {
     case "features/interval":
     case "features/mark":
     case "features/marker":
+    case "features/paint":
     case "features/plot":
     case "features/projection":
       return `${path}s`;
