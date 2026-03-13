@@ -22,6 +22,7 @@ for (const [name, plot] of Object.entries(plots)) {
     reindexMarker(root);
     reindexClip(root);
     reindexPattern(root);
+    reindexHalo(root);
     let expected;
     let actual = normalizeHtml(root.outerHTML);
     const outfile = path.resolve("./test/output", `${path.basename(name, ".js")}.${ext}`);
@@ -135,6 +136,21 @@ function reindexPattern(root) {
       let id = node.getAttribute(key).slice(5, -1);
       if (map.has(id)) node.setAttribute(key, `url(#${map.get(id)})`);
     }
+  }
+}
+
+function reindexHalo(root) {
+  let index = 0;
+  const map = new Map();
+  for (const node of root.querySelectorAll("[id^=plot-halo-]")) {
+    let id = node.getAttribute("id");
+    if (map.has(id)) id = map.get(id);
+    else map.set(id, (id = `plot-halo-${++index}`));
+    node.setAttribute("id", id);
+  }
+  for (const node of root.querySelectorAll("[filter]")) {
+    let id = node.getAttribute("filter").slice(5, -1);
+    if (map.has(id)) node.setAttribute("filter", `url(#${map.get(id)})`);
   }
 }
 

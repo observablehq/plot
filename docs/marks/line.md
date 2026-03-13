@@ -361,6 +361,12 @@ Points along the line are connected in input order. Likewise, if there are multi
 
 The line mark supports [curve options](../features/curves.md) to control interpolation between points, and [marker options](../features/markers.md) to add a marker (such as a dot or an arrowhead) on each of the control points. The default curve is *auto*, which is equivalent to *linear* if there is no [projection](../features/projections.md), and otherwise uses the associated projection. If any of the **x** or **y** values are invalid (undefined, null, or NaN), the line will be interrupted, resulting in a break that divides the line shape into multiple segments. (See [d3-shape’s *line*.defined](https://d3js.org/d3-shape/line#line_defined) for more.) If a line segment consists of only a single point, it may appear invisible unless rendered with rounded or square line caps. In addition, some curves such as *cardinal-open* only render a visible segment if it contains multiple points.
 
+The line mark supports a **halo** option that draws an outline around each series, increasing legibility when lines overlap. The following halo options are supported:
+
+* **halo** - if true, draws a halo; if a color, sets the halo color; if a number, sets the halo radius
+* **haloColor** - the halo color; defaults to *var(--plot-background)*
+* **haloRadius** - the halo radius in pixels; defaults to 2
+
 ## line(*data*, *options*) {#line}
 
 ```js
