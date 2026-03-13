@@ -415,6 +415,18 @@ export interface Plot {
    */
   legend(name: ScaleName, options?: LegendOptions): SVGSVGElement | HTMLElement | undefined;
 
+  /**
+   * Returns the dimensions of the chart.
+   */
+  dimensions(): {
+    marginTop: number;
+    marginRight: number;
+    marginBottom: number;
+    marginLeft: number;
+    width: number;
+    height: number;
+  };
+
   /** For interactive plots, the current value. */
   value?: any;
 }
