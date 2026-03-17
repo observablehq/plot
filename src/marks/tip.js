@@ -49,7 +49,8 @@ export class Tip extends Mark {
       textPadding = 8,
       title,
       pointerSize = 12,
-      pathFilter = "drop-shadow(0 3px 4px rgba(0,0,0,0.2))"
+      pathFilter = "drop-shadow(0 3px 4px rgba(0,0,0,0.2))",
+      pool = true
     } = options;
     super(
       data,
@@ -84,6 +85,7 @@ export class Tip extends Mark {
     for (const key in defaults) if (key in this.channels) this[key] = defaults[key]; // apply default even if channel
     this.splitLines = splitter(this);
     this.clipLine = clipper(this);
+    this.pool = pool;
     this.format = typeof format === "string" || typeof format === "function" ? {title: format} : {...format}; // defensive copy before mutate; also promote nullish to empty
   }
   render(index, scales, values, dimensions, context) {

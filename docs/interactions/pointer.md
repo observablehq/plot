@@ -176,6 +176,7 @@ The following options control the pointer transform:
 - **x2** - the ending horizontal↔︎ target position; bound to the *x* scale
 - **y2** - the ending vertical↕︎ target position; bound to the *y* scale
 - **maxRadius** - the reach, or maximum distance, in pixels; defaults to 40
+- **pool** - if true, pool with other pointer marks, showing only the closest; defaults to true for the [tip mark](../marks/tip.md)
 - **frameAnchor** - how to position the target within the frame; defaults to *middle*
 
 To resolve the horizontal target position, the pointer transform applies the following order of precedence:

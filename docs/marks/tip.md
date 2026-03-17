@@ -201,7 +201,7 @@ Plot.plot({
 :::
 
 :::tip
-When multiple tips are visible simultaneously, some may collide; consider using the pointer interaction to show only the one closest to the pointer, or use multiple tip marks and adjust the **anchor** option for each to minimize occlusion.
+The tip mark defaults the [**pool**](../interactions/pointer.md#pointer-options) option to true, ensuring multiple marks with the *tip* option don’t collide.
 :::
 
 ## Tip options
