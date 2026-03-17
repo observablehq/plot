@@ -4,6 +4,7 @@ import {isArray} from "../options.js";
 import {applyFrameAnchor} from "../style.js";
 
 const states = new WeakMap();
+const frames = new WeakMap();
 
 function pointerK(kx, ky, {x, y, px, py, maxRadius = 40, channels, render, ...options} = {}) {
   maxRadius = +maxRadius;
@@ -71,32 +72,26 @@ function pointerK(kx, ky, {x, y, px, py, maxRadius = 40, channels, render, ...op
       let i; // currently focused index
       let g; // currently rendered mark
       let s; // currently rendered stickiness
-      let f; // current animation frame
 
-      // When faceting, if more than one pointer would be visible, only show
-      // this one if it is the closest. We defer rendering using an animation
-      // frame to allow all pointer events to be received before deciding which
-      // mark to render; although when hiding, we render immediately.
+      // When pooling or faceting, if more than one pointer would be visible,
+      // only show the closest. We defer rendering using an animation frame to
+      // allow all pointer events to be received before deciding which mark to
+      // render; although when hiding, we render immediately.
+      const pool = this.pool ? context.pointerPool : faceted ? facetState : null;
       function update(ii, ri) {
-        if (faceted) {
-          if (f) f = cancelAnimationFrame(f);
-          if (ii == null) facetState.delete(index.fi);
-          else {
-            facetState.set(index.fi, ri);
-            f = requestAnimationFrame(() => {
-              f = null;
-              for (const [fi, r] of facetState) {
-                if (r < ri || (r === ri && fi < index.fi)) {
-                  ii = null;
-                  break;
-                }
-              }
-              render(ii);
-            });
-            return;
-          }
-        }
-        render(ii);
+        if (ii == null) render(ii);
+        if (!pool) return void render(ii);
+        pool.set(render, {ii, ri, render});
+        if (frames.has(pool)) cancelAnimationFrame(frames.get(pool));
+        frames.set(
+          pool,
+          requestAnimationFrame(() => {
+            frames.delete(pool);
+            let best = null;
+            for (const [, c] of pool) if (!best || c.ri < best.ri) best = c;
+            for (const [, c] of pool) c.render(c === best ? c.ii : null);
+          })
+        );
       }
 
       function render(ii) {

@@ -18,6 +18,13 @@ export interface PointerOptions {
   py?: ChannelValue;
 
   /**
+   * Whether this mark participates in the pointer pool, which ensures that
+   * only the closest point is shown when multiple pointer marks are present.
+   * Defaults to true for the tip mark.
+   */
+  pool?: boolean;
+
+  /**
    * The fallback horizontal target position channel, typically bound to the *x*
    * scale; used if **px** is not specified.
    */
