@@ -30,7 +30,7 @@ function pointerK(kx, ky, {x, y, px, py, maxRadius = 40, channels, render, ...op
       // Isolate state per-pointer, per-plot; if the pointer is reused by
       // multiple marks, they will share the same state (e.g., sticky modality).
       let state = states.get(svg);
-      if (!state) states.set(svg, (state = {sticky: false, roots: [], renders: []}));
+      if (!state) states.set(svg, (state = {sticky: false, roots: [], renders: [], pool: new Map()}));
 
       // This serves as a unique identifier of the rendered mark per-plot; it is
       // used to record the currently-rendered elements (state.roots) so that we
@@ -77,7 +77,7 @@ function pointerK(kx, ky, {x, y, px, py, maxRadius = 40, channels, render, ...op
       // only show the closest. We defer rendering using an animation frame to
       // allow all pointer events to be received before deciding which mark to
       // render; although when hiding, we render immediately.
-      const pool = this.pool ? context.pointerPool : faceted ? facetState : null;
+      const pool = this.pool ? state.pool : faceted ? facetState : null;
       function update(ii, ri) {
         if (ii == null) render(ii);
         if (!pool) return void render(ii);

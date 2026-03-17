@@ -157,7 +157,6 @@ export function plot(options = {}) {
   let figure = svg; // replaced with the figure element, if any
   context.ownerSVGElement = svg;
   context.className = className;
-  context.pointerPool = new Map();
   context.projection = createProjection(options, subdimensions);
 
   // A path generator for marks that want to draw GeoJSON.
