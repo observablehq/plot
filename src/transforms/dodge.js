@@ -71,6 +71,7 @@ function dodge(y, x, anchor, padding, r, options) {
     if (!channels[x]) throw new Error(`missing channel: ${x}`);
     ({[x]: X} = applyPosition(channels, scales, context));
     const cr = R ? undefined : r !== undefined ? number(r) : this.r !== undefined ? this.r : 3;
+    if (cr !== undefined && !(cr > 0)) throw new Error(`invalid dodge radius: ${cr}`);
     if (R) R = valueof(R.value, scales[R.scale] || identity, Float64Array);
     let [ky, ty] = anchor(dimensions);
     const compare = ky ? compareAscending : compareSymmetric;
