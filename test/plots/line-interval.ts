@@ -10,8 +10,19 @@ export async function lineInterval() {
     height: 200,
     marks: [
       Plot.ruleY([0]),
-      Plot.areaY(activity, {x: "date", interval: "day", fill: "login", order: "-sum", fillOpacity: 0.3, y: 1, curve: "catmull-rom"}),
-      Plot.lineY(activity, Plot.stackY({x: "date", interval: "day", stroke: "login", order: "-sum", curve: "catmull-rom"})),
+      Plot.areaY(activity, {
+        x: "date",
+        interval: "day",
+        fill: "login",
+        order: "-sum",
+        fillOpacity: 0.3,
+        y: 1,
+        curve: "catmull-rom"
+      }),
+      Plot.lineY(
+        activity,
+        Plot.stackY({x: "date", interval: "day", stroke: "login", order: "-sum", curve: "catmull-rom"})
+      ),
       Plot.dot(activity, Plot.stackY({x: "date", interval: "day", z: "login", fill: "login", order: "-sum"}))
     ]
   });
