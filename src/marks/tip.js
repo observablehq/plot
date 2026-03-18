@@ -225,9 +225,15 @@ export class Tip extends Mark {
               : fitTop && fitBottom
               ? fitLeft
                 ? "left"
-                : "right"
+                : fitRight
+                ? "right"
+                : "bottom"
               : (fitLeft || fitRight) && (fitTop || fitBottom)
               ? `${fitBottom ? "bottom" : "top"}-${fitLeft ? "left" : "right"}`
+              : fitLeft
+              ? "left"
+              : fitRight
+              ? "right"
               : mark.preferredAnchor;
         }
         const path = this.firstChild; // note: assumes exactly two children!
