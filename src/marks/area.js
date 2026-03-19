@@ -8,7 +8,8 @@ import {
   applyIndirectStyles,
   applyTransform,
   applyGroupedChannelStyles,
-  groupIndex
+  groupIndex,
+  offset
 } from "../style.js";
 import {maybeDenseIntervalX, maybeDenseIntervalY} from "../transforms/bin.js";
 import {maybeIdentityX, maybeIdentityY} from "../transforms/identity.js";
@@ -71,10 +72,12 @@ export class Area extends Mark {
           );
         if (this.line) {
           area.attr("stroke", "none");
-          enter.append("path")
+          enter
+            .append("path")
             .call(applyDirectStyles, this)
             .call(applyGroupedChannelStyles, this, channels)
             .attr("fill", "none")
+            .attr("transform", offset ? `translate(${offset},${offset})` : null)
             .attr(
               "d",
               shapeLine()
