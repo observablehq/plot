@@ -35,7 +35,7 @@ export class Area extends Mark {
         z: {value: maybeZ(options), optional: true}
       },
       options,
-      line ? {...defaults, stroke: "currentColor"} : defaults
+      line ? {...defaults, stroke: "currentColor", strokeWidth: 1.5} : defaults
     );
     this.z = z;
     this.curve = maybeCurve(curve, tension);
