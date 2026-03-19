@@ -261,14 +261,6 @@ Plot.plot((() => {
 ```
 :::
 
-The **line** option draws a line connecting the points with coordinates **x2** and **y2** (the “top of the area”).
-
-:::plot
-```js
-Plot.areaY(aapl, {x: "Date", y: "Close", fillOpacity: 0.3, line: true}).plot({y: {grid: true}})
-```
-:::
-
 See also the [ridgeline chart](https://observablehq.com/@observablehq/plot-ridgeline) example.
 
 Interpolation is controlled by the [**curve** option](../features/curves.md). The default curve is *linear*, which draws straight line segments between pairs of adjacent points. A *step* curve is nice for emphasizing when the value changes, while *basis* and *catmull–rom* are nice for smoothing.
