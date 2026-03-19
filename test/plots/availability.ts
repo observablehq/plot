@@ -13,15 +13,12 @@ export async function availability() {
         curve: "step",
         fill: "#f2f2fe"
       }),
-      Plot.lineY(
-        data,
-        Plot.stackY2({
-          x: "date",
-          y: "value",
-          interval: "day",
-          curve: "step"
-        })
-      ),
+      Plot.lineY(data, {
+        x: "date",
+        y: "value",
+        interval: "day",
+        curve: "step"
+      }),
       Plot.ruleY([0])
     ]
   });
