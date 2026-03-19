@@ -299,6 +299,7 @@ export * from "./single-value-bin.js";
 export * from "./software-versions.js";
 export * from "./sparse-cell.js";
 export * from "./sparse-title.js";
+export * from "./stack-nan.js";
 export * from "./stacked-bar.js";
 export * from "./stacked-rect.js";
 export * from "./stargazers-binned.js";
