@@ -117,37 +117,37 @@
     </g>
   </g>
   <g aria-label="bar">
-    <g fill="#ccc" transform="translate(0,1)">
+    <g fill="color-mix(in srgb, currentColor 20%, var(--plot-background, white))" transform="translate(0,1)">
       <rect x="277.841726618705" width="0" y="20" height="19"></rect>
     </g>
-    <g fill="#ccc" transform="translate(0,22)">
+    <g fill="color-mix(in srgb, currentColor 20%, var(--plot-background, white))" transform="translate(0,22)">
       <rect x="334.1726618705036" width="56.330935251798564" y="20" height="19"></rect>
     </g>
-    <g fill="#ccc" transform="translate(0,43)">
+    <g fill="color-mix(in srgb, currentColor 20%, var(--plot-background, white))" transform="translate(0,43)">
       <rect x="302.8776978417266" width="58.41726618705036" y="20" height="19"></rect>
     </g>
-    <g fill="#ccc" transform="translate(0,64)">
+    <g fill="color-mix(in srgb, currentColor 20%, var(--plot-background, white))" transform="translate(0,64)">
       <rect x="256.978417266187" width="58.41726618705036" y="20" height="19"></rect>
     </g>
-    <g fill="#ccc" transform="translate(0,85)">
+    <g fill="color-mix(in srgb, currentColor 20%, var(--plot-background, white))" transform="translate(0,85)">
       <rect x="215.25179856115108" width="50.07194244604318" y="20" height="19"></rect>
     </g>
-    <g fill="#ccc" transform="translate(0,106)">
+    <g fill="color-mix(in srgb, currentColor 20%, var(--plot-background, white))" transform="translate(0,106)">
       <rect x="169.3525179856115" width="45.899280575539564" y="20" height="19"></rect>
     </g>
-    <g fill="#ccc" transform="translate(0,127)">
+    <g fill="color-mix(in srgb, currentColor 20%, var(--plot-background, white))" transform="translate(0,127)">
       <rect x="135.97122302158274" width="37.55395683453236" y="20" height="19"></rect>
     </g>
-    <g fill="#ccc" transform="translate(0,148)">
+    <g fill="color-mix(in srgb, currentColor 20%, var(--plot-background, white))" transform="translate(0,148)">
       <rect x="110.93525179856115" width="37.553956834532386" y="20" height="19"></rect>
     </g>
-    <g fill="#ccc" transform="translate(0,169)">
+    <g fill="color-mix(in srgb, currentColor 20%, var(--plot-background, white))" transform="translate(0,169)">
       <rect x="75.46762589928059" width="35.46762589928056" y="20" height="19"></rect>
     </g>
-    <g fill="#ccc" transform="translate(0,190)">
+    <g fill="color-mix(in srgb, currentColor 20%, var(--plot-background, white))" transform="translate(0,190)">
       <rect x="71.29496402877697" width="66.76258992805757" y="20" height="19"></rect>
     </g>
-    <g fill="#ccc" transform="translate(0,211)">
+    <g fill="color-mix(in srgb, currentColor 20%, var(--plot-background, white))" transform="translate(0,211)">
       <rect x="106.76258992805755" width="0" y="20" height="19"></rect>
     </g>
   </g>
