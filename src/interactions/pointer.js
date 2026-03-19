@@ -3,9 +3,9 @@ import {composeRender} from "../mark.js";
 import {isArray} from "../options.js";
 import {applyFrameAnchor} from "../style.js";
 
+// Pointer state on the current plot: {sticky, roots, renders, pool, …}.
 const states = new WeakMap();
 const handledEvents = new WeakSet();
-const frames = new WeakMap();
 
 function pointerK(kx, ky, {x, y, px, py, maxRadius = 40, channels, render, ...options} = {}) {
   maxRadius = +maxRadius;
@@ -83,16 +83,13 @@ function pointerK(kx, ky, {x, y, px, py, maxRadius = 40, channels, render, ...op
         if (ii == null) render(ii);
         if (!pool) return void render(ii);
         pool.set(render, {ii, ri, render});
-        if (frames.has(pool)) cancelAnimationFrame(frames.get(pool));
-        frames.set(
-          pool,
-          requestAnimationFrame(() => {
-            frames.delete(pool);
-            let best = null;
-            for (const [, c] of pool) if (!best || c.ri < best.ri) best = c;
-            for (const [, c] of pool) c.render(c === best ? c.ii : null);
-          })
-        );
+        if (pool.frame !== undefined) cancelAnimationFrame(pool.frame);
+        pool.frame = requestAnimationFrame(() => {
+          pool.frame = undefined;
+          let best = null;
+          for (const [, c] of pool) if (!best || c.ri < best.ri) best = c;
+          for (const [, c] of pool) c.render(c === best ? c.ii : null);
+        });
       }
 
       function render(ii) {
