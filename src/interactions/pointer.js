@@ -3,8 +3,7 @@ import {composeRender} from "../mark.js";
 import {isArray} from "../options.js";
 import {applyFrameAnchor} from "../style.js";
 
-// Pointer state on the current plot: {sticky, roots, renders, pool, …}.
-const states = new WeakMap();
+const states = new WeakMap(); // ownerSVGElement → per-plot pointer state
 const handledEvents = new WeakSet();
 
 function pointerK(kx, ky, {x, y, px, py, maxRadius = 40, channels, render, ...options} = {}) {
@@ -32,7 +31,7 @@ function pointerK(kx, ky, {x, y, px, py, maxRadius = 40, channels, render, ...op
       // multiple marks, they will share the same state (e.g., sticky modality).
       // The pool groups various marks (_e.g._ tip) to compete for the closest point.
       let state = states.get(svg);
-      if (!state) states.set(svg, (state = {sticky: false, roots: [], renders: [], pool: new Map()}));
+      if (!state) states.set(svg, (state = {sticky: false, roots: [], renders: [], pool: this.pool ? new Map() : null}));
 
       // This serves as a unique identifier of the rendered mark per-plot; it is
       // used to record the currently-rendered elements (state.roots) so that we
@@ -79,7 +78,7 @@ function pointerK(kx, ky, {x, y, px, py, maxRadius = 40, channels, render, ...op
       // only show the closest. We defer rendering using an animation frame to
       // allow all pointer events to be received before deciding which mark to
       // render; although when hiding, we render immediately.
-      const pool = this.pool ? state.pool : faceted ? facetState : null;
+      const pool = state.pool ?? facetPool;
       function update(ii, ri) {
         if (ii == null) render(ii);
         if (!pool) return void render(ii);
