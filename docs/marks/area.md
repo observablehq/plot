@@ -20,7 +20,7 @@ Plot.areaY(aapl, {x: "Date", y: "Close"}).plot()
 
 The area mark has three constructors: [areaY](#areaY) for when the baseline and topline share *x* values, as in a time-series area chart where time goes right→ (or ←left); [areaX](#areaX) for when the baseline and topline share *y* values, as in a time-series area chart where time goes up↑ (or down↓); and lastly the rarely-used [area](#area) where the baseline and topline share neither *x* nor *y* values.
 
-The area mark is often paired with a [rule](./rule.md) to accentuate the baseline, and the [**line** option](#area-options) to accentuate the topline.
+The area mark is often paired with a [rule](./rule.md) to accentuate the baseline, and the [**line** option](#area-options) to delineate the topline.
 
 :::plot https://observablehq.com/@observablehq/plot-area-and-line
 ```js
