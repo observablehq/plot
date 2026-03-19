@@ -81,8 +81,8 @@ function pointerK(kx, ky, {x, y, px, py, maxRadius = 40, channels, render, ...op
       // render; although when hiding, we render immediately.
       const pool = state.pool ?? facetPool;
       function update(ii, ri) {
-        if (ii == null) render(ii);
         if (!pool) return void render(ii);
+        if (ii == null) render(ii);
         pool.set(renderIndex, {ii, ri, render});
         if (pool.frame !== undefined) cancelAnimationFrame(pool.frame);
         pool.frame = requestAnimationFrame(() => {
