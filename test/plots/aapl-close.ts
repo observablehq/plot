@@ -6,10 +6,17 @@ export async function aaplClose() {
   return Plot.plot({
     y: {grid: true},
     marks: [
-      Plot.areaY(aapl, {x: "Date", y: "Close", fillOpacity: 0.1}),
-      Plot.lineY(aapl, {x: "Date", y: "Close"}),
+      Plot.areaY(aapl, {x: "Date", y: "Close", fillOpacity: 0.1, line: true}),
       Plot.ruleY([0])
     ]
+  });
+}
+
+export async function aaplCloseLine() {
+  const aapl = (await d3.csv<any>("data/aapl.csv", d3.autoType)).slice(-120);
+  return Plot.plot({
+    y: {grid: true},
+    marks: [Plot.areaY(aapl, {x: "Date", y: "Close", fillOpacity: 0.1, line: true, stroke: "red"}), Plot.ruleY([0])]
   });
 }
 
@@ -20,8 +27,7 @@ export async function aaplCloseClip() {
     x: {domain: [new Date(Date.UTC(2015, 0, 1)), new Date(Date.UTC(2015, 3, 1))]},
     y: {grid: true},
     marks: [
-      Plot.areaY(aapl, {x: "Date", y: "Close", fillOpacity: 0.1}),
-      Plot.lineY(aapl, {x: "Date", y: "Close"}),
+      Plot.areaY(aapl, {x: "Date", y: "Close", fillOpacity: 0.1, line: true}),
       Plot.ruleY([0], {clip: false})
     ]
   });

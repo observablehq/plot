@@ -20,7 +20,7 @@ Plot.areaY(aapl, {x: "Date", y: "Close"}).plot()
 
 The area mark has three constructors: [areaY](#areaY) for when the baseline and topline share *x* values, as in a time-series area chart where time goes right→ (or ←left); [areaX](#areaX) for when the baseline and topline share *y* values, as in a time-series area chart where time goes up↑ (or down↓); and lastly the rarely-used [area](#area) where the baseline and topline share neither *x* nor *y* values.
 
-The area mark is often paired with a [line](./line.md) and [rule](./rule.md) mark to accentuate the topline and baseline.
+The area mark is often paired with a [rule](./rule.md) to accentuate the baseline, and the [**line** option](#area-options) to delineate the topline.
 
 :::plot https://observablehq.com/@observablehq/plot-area-and-line
 ```js
@@ -29,8 +29,7 @@ Plot.plot({
     grid: true
   },
   marks: [
-    Plot.areaY(aapl, {x: "Date", y: "Close", fillOpacity: 0.3}),
-    Plot.lineY(aapl, {x: "Date", y: "Close"}),
+    Plot.areaY(aapl, {x: "Date", y: "Close", fillOpacity: 0.3, line: true}),
     Plot.ruleY([0])
   ]
 })
@@ -94,8 +93,7 @@ Plot.plot({
     reverse: true
   },
   marks: [
-    Plot.areaY(aapl, {x: "Date", y: "Close", fillOpacity: 0.3}),
-    Plot.lineY(aapl, {x: "Date", y: "Close"}),
+    Plot.areaY(aapl, {x: "Date", y: "Close", fillOpacity: 0.3, line: true}),
     Plot.ruleY([0])
   ]
 })
@@ -111,8 +109,7 @@ Plot.plot({
     grid: true
   },
   marks: [
-    Plot.areaX(aapl, {y: "Date", x: "Close", fillOpacity: 0.3}),
-    Plot.lineX(aapl, {y: "Date", x: "Close"}),
+    Plot.areaX(aapl, {y: "Date", x: "Close", fillOpacity: 0.3, line: true}),
     Plot.ruleX([0])
   ]
 })
@@ -128,8 +125,7 @@ Plot.plot({
     grid: true
   },
   marks: [
-    Plot.areaY(aapl, {x: "Date", y: (d) => d.Date.getUTCMonth() < 3 ? NaN : d.Close, fillOpacity: 0.3}),
-    Plot.lineY(aapl, {x: "Date", y: (d) => d.Date.getUTCMonth() < 3 ? NaN : d.Close}),
+    Plot.areaY(aapl, {x: "Date", y: (d) => d.Date.getUTCMonth() < 3 ? NaN : d.Close, fillOpacity: 0.3, line: true}),
     Plot.ruleY([0])
   ]
 })
@@ -291,6 +287,8 @@ The **stroke** defaults to *none*. The **fill** defaults to *currentColor* if th
 Points along the baseline and topline are connected in input order. Likewise, if there are multiple series via the **z**, **fill**, or **stroke** channel, the series are drawn in input order such that the last series is drawn on top. Typically, the data is already in sorted order, such as chronological for time series; if sorting is needed, consider a [sort transform](../transforms/sort.md).
 
 The area mark supports [curve options](../features/curves.md) to control interpolation between points. If any of the **x1**, **y1**, **x2**, or **y2** values are invalid (undefined, null, or NaN), the baseline and topline will be interrupted, resulting in a break that divides the area shape into multiple segments. (See [d3-shape’s *area*.defined](https://d3js.org/d3-shape/area#area_defined) for more.) If an area segment consists of only a single point, it may appear invisible unless rendered with rounded or square line caps. In addition, some curves such as *cardinal-open* only render a visible segment if it contains multiple points.
+
+The **line** option <VersionBadge pr=”2133” /> (boolean, defaults to false) draws a line on the area along the topline (**x2**, **y2**). The **stroke** defaults to *currentColor*, the **strokeWidth** to 1.5, and both are only visible on the line (the area has no stroke); all other options apply to both.
 
 ## areaY(*data*, *options*) {#areaY}
 
