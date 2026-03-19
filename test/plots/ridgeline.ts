@@ -20,7 +20,8 @@ export async function ridgeline() {
         curve: "basis",
         sort: "date",
         fill: "color-mix(in oklab, var(--plot-background), currentColor 20%)",
-        line: true
+        line: true,
+        strokeWidth: 1
       })
     ]
   });

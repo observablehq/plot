@@ -3,12 +3,6 @@ import * as d3 from "d3";
 
 export async function musicRevenue() {
   const riaa = await d3.csv<any>("data/riaa-us-revenue.csv", d3.autoType);
-  const stack: Plot.AreaYOptions = {
-    x: "year",
-    y: "revenue",
-    z: "format",
-    order: "-appearance"
-  };
   return Plot.plot({
     y: {
       grid: true,
@@ -16,8 +10,7 @@ export async function musicRevenue() {
       transform: (d) => d / 1000
     },
     marks: [
-      Plot.areaY(riaa, Plot.stackY({...stack, fill: "group", title: (d) => `${d.format}\n${d.group}`})),
-      Plot.lineY(riaa, Plot.stackY2({...stack, stroke: "white", strokeWidth: 1})),
+      Plot.areaY(riaa, {x: "year", y: "revenue", z: "format", order: "-appearance", fill: "group", title: (d: any) => `${d.format}\n${d.group}`, line: true, stroke: "white", strokeWidth: 1}),
       Plot.ruleY([0])
     ]
   });

@@ -6,8 +6,7 @@ export async function aaplClose() {
   return Plot.plot({
     y: {grid: true},
     marks: [
-      Plot.areaY(aapl, {x: "Date", y: "Close", fillOpacity: 0.1}),
-      Plot.lineY(aapl, {x: "Date", y: "Close"}),
+      Plot.areaY(aapl, {x: "Date", y: "Close", fillOpacity: 0.1, line: true}),
       Plot.ruleY([0])
     ]
   });
@@ -28,8 +27,7 @@ export async function aaplCloseClip() {
     x: {domain: [new Date(Date.UTC(2015, 0, 1)), new Date(Date.UTC(2015, 3, 1))]},
     y: {grid: true},
     marks: [
-      Plot.areaY(aapl, {x: "Date", y: "Close", fillOpacity: 0.1}),
-      Plot.lineY(aapl, {x: "Date", y: "Close"}),
+      Plot.areaY(aapl, {x: "Date", y: "Close", fillOpacity: 0.1, line: true}),
       Plot.ruleY([0], {clip: false})
     ]
   });
