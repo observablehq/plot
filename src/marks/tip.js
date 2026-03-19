@@ -19,7 +19,7 @@ const defaults = {
 };
 
 // These channels are not displayed in the default tip; see formatChannels.
-const ignoreChannels = new Set(["geometry", "href", "src", "ariaLabel", "scales"]);
+const ignoreChannels = new Set(["geometry", "href", "src", "ariaLabel", "scales", "contours"]);
 
 export class Tip extends Mark {
   constructor(data, options = {}) {
