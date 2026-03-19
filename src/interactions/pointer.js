@@ -30,6 +30,7 @@ function pointerK(kx, ky, {x, y, px, py, maxRadius = 40, channels, render, ...op
 
       // Isolate state per-pointer, per-plot; if the pointer is reused by
       // multiple marks, they will share the same state (e.g., sticky modality).
+      // The pool groups various marks (_e.g._ tip) to compete for the closest point.
       let state = states.get(svg);
       if (!state) states.set(svg, (state = {sticky: false, roots: [], renders: [], pool: new Map()}));
 
