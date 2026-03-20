@@ -73,7 +73,7 @@
     <line x1="172.2222222222222" x2="424.66666666666663" y1="87" y2="87"></line>
     <line x1="197.46666666666664" x2="462.5333333333333" y1="108" y2="108"></line>
   </g>
-  <g aria-label="bar" fill="#ccc">
+  <g aria-label="bar" fill="color-mix(in srgb, currentColor 20%, var(--plot-background))">
     <rect x="336.3111111111111" width="164.08888888888896" y="24" height="19"></rect>
     <rect x="273.20000000000005" width="107.28888888888883" y="45" height="19"></rect>
     <rect x="323.68888888888887" width="50.48888888888888" y="66" height="19"></rect>
