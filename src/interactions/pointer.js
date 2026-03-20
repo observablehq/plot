@@ -3,7 +3,7 @@ import {composeRender} from "../mark.js";
 import {isArray} from "../options.js";
 import {applyFrameAnchor} from "../style.js";
 
-const states = new WeakMap();
+const states = new WeakMap(); // ownerSVGElement → per-plot pointer state
 
 function pointerK(kx, ky, {x, y, px, py, maxRadius = 40, channels, render, ...options} = {}) {
   maxRadius = +maxRadius;
@@ -28,8 +28,11 @@ function pointerK(kx, ky, {x, y, px, py, maxRadius = 40, channels, render, ...op
 
       // Isolate state per-pointer, per-plot; if the pointer is reused by
       // multiple marks, they will share the same state (e.g., sticky modality).
+      // The pool maps renderIndex → {ii, ri, render} for marks competing for
+      // the pointer (e.g., tips); only the closest point is shown.
       let state = states.get(svg);
-      if (!state) states.set(svg, (state = {sticky: false, roots: [], renders: []}));
+      if (!state)
+        states.set(svg, (state = {sticky: false, roots: [], renders: [], pool: this.pool ? new Map() : null}));
 
       // This serves as a unique identifier of the rendered mark per-plot; it is
       // used to record the currently-rendered elements (state.roots) so that we
@@ -52,12 +55,12 @@ function pointerK(kx, ky, {x, y, px, py, maxRadius = 40, channels, render, ...op
       // mark (!), since each facet has its own pointer event listeners; we only
       // want the closest point across facets to be visible.
       const faceted = index.fi != null;
-      let facetState;
+      let facetPool;
       if (faceted) {
-        let facetStates = state.facetStates;
-        if (!facetStates) state.facetStates = facetStates = new Map();
-        facetState = facetStates.get(this);
-        if (!facetState) facetStates.set(this, (facetState = new Map()));
+        let facetPools = state.facetPools;
+        if (!facetPools) state.facetPools = facetPools = new Map();
+        facetPool = facetPools.get(this);
+        if (!facetPool) facetPools.set(this, (facetPool = new Map()));
       }
 
       // The order of precedence for the pointer position is: px & py; the
@@ -71,32 +74,23 @@ function pointerK(kx, ky, {x, y, px, py, maxRadius = 40, channels, render, ...op
       let i; // currently focused index
       let g; // currently rendered mark
       let s; // currently rendered stickiness
-      let f; // current animation frame
 
-      // When faceting, if more than one pointer would be visible, only show
-      // this one if it is the closest. We defer rendering using an animation
-      // frame to allow all pointer events to be received before deciding which
-      // mark to render; although when hiding, we render immediately.
+      // When pooling or faceting, if more than one pointer would be visible,
+      // only show the closest. We defer rendering using an animation frame to
+      // allow all pointer events to be received before deciding which mark to
+      // render; although when hiding, we render immediately.
+      const pool = state.pool ?? facetPool;
       function update(ii, ri) {
-        if (faceted) {
-          if (f) f = cancelAnimationFrame(f);
-          if (ii == null) facetState.delete(index.fi);
-          else {
-            facetState.set(index.fi, ri);
-            f = requestAnimationFrame(() => {
-              f = null;
-              for (const [fi, r] of facetState) {
-                if (r < ri || (r === ri && fi < index.fi)) {
-                  ii = null;
-                  break;
-                }
-              }
-              render(ii);
-            });
-            return;
-          }
-        }
-        render(ii);
+        if (!pool) return void render(ii);
+        if (ii == null) render(ii);
+        pool.set(renderIndex, {ii, ri, render});
+        if (pool.frame !== undefined) cancelAnimationFrame(pool.frame);
+        pool.frame = requestAnimationFrame(() => {
+          pool.frame = undefined;
+          let best = null;
+          for (const [, c] of pool) if (!best || c.ri < best.ri) best = c;
+          for (const [, c] of pool) c.render(c === best ? c.ii : null);
+        });
       }
 
       function render(ii) {
@@ -127,7 +121,7 @@ function pointerK(kx, ky, {x, y, px, py, maxRadius = 40, channels, render, ...op
 
         // Dispatch the value. When simultaneously exiting this facet and
         // entering a new one, prioritize the entering facet.
-        if (!(i == null && facetState?.size > 1)) {
+        if (!(i == null && facetPool?.size > 1)) {
           const value = i == null ? null : isArray(data) ? data[i] : data.get(i);
           context.dispatchValue(value);
         }
