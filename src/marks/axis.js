@@ -1,5 +1,5 @@
 import {InternSet, extent, format, utcFormat} from "d3";
-import {formatDefault} from "../format.js";
+import {formatDefault, formatYear} from "../format.js";
 import {marks} from "../mark.js";
 import {radians} from "../math.js";
 import {arrayify, constant, identity, keyword, number, range, valueof} from "../options.js";
@@ -670,6 +670,8 @@ export function inferTickFormat(scale, data, ticks, tickFormat, anchor) {
     ? tickFormat
     : tickFormat === undefined && data && isTemporal(data)
     ? inferTimeFormat(scale.type, data, anchor) ?? formatDefault
+    : tickFormat === undefined && scale.year
+    ? formatYear
     : scale.tickFormat
     ? scale.tickFormat(typeof ticks === "number" ? ticks : null, tickFormat)
     : typeof tickFormat === "string" && scale.domain().length > 0

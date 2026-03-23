@@ -1,0 +1,126 @@
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="400" viewBox="0 0 640 400" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style>
+    :where(.plot) {
+      --plot-background: white;
+      display: block;
+      height: auto;
+      height: intrinsic;
+      max-width: 100%;
+    }
+
+    :where(.plot text),
+    :where(.plot tspan) {
+      white-space: pre;
+    }
+  </style>
+  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+    <path transform="translate(40,370)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,339.789)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,309.577)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,279.366)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,249.154)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,218.943)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,188.731)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,158.52)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,128.308)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,98.097)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,67.885)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,37.674)" d="M0,0L-6,0"></path>
+  </g>
+  <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
+    <text y="0.32em" transform="translate(40,370)">0</text>
+    <text y="0.32em" transform="translate(40,339.789)">200</text>
+    <text y="0.32em" transform="translate(40,309.577)">400</text>
+    <text y="0.32em" transform="translate(40,279.366)">600</text>
+    <text y="0.32em" transform="translate(40,249.154)">800</text>
+    <text y="0.32em" transform="translate(40,218.943)">1,000</text>
+    <text y="0.32em" transform="translate(40,188.731)">1,200</text>
+    <text y="0.32em" transform="translate(40,158.52)">1,400</text>
+    <text y="0.32em" transform="translate(40,128.308)">1,600</text>
+    <text y="0.32em" transform="translate(40,98.097)">1,800</text>
+    <text y="0.32em" transform="translate(40,67.885)">2,000</text>
+    <text y="0.32em" transform="translate(40,37.674)">2,200</text>
+  </g>
+  <g aria-label="y-axis label" text-anchor="start" transform="translate(-36.5,-16.5)">
+    <text y="0.71em" transform="translate(40,20)">↑ unemployed</text>
+  </g>
+  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+    <path transform="translate(40,370)" d="M0,0L0,6"></path>
+    <path transform="translate(98,370)" d="M0,0L0,6"></path>
+    <path transform="translate(156,370)" d="M0,0L0,6"></path>
+    <path transform="translate(214,370)" d="M0,0L0,6"></path>
+    <path transform="translate(272,370)" d="M0,0L0,6"></path>
+    <path transform="translate(330,370)" d="M0,0L0,6"></path>
+    <path transform="translate(388,370)" d="M0,0L0,6"></path>
+    <path transform="translate(446,370)" d="M0,0L0,6"></path>
+    <path transform="translate(504,370)" d="M0,0L0,6"></path>
+    <path transform="translate(562,370)" d="M0,0L0,6"></path>
+    <path transform="translate(620,370)" d="M0,0L0,6"></path>
+  </g>
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+    <text y="0.71em" transform="translate(40,370)">2000</text>
+    <text y="0.71em" transform="translate(98,370)">2001</text>
+    <text y="0.71em" transform="translate(156,370)">2002</text>
+    <text y="0.71em" transform="translate(214,370)">2003</text>
+    <text y="0.71em" transform="translate(272,370)">2004</text>
+    <text y="0.71em" transform="translate(330,370)">2005</text>
+    <text y="0.71em" transform="translate(388,370)">2006</text>
+    <text y="0.71em" transform="translate(446,370)">2007</text>
+    <text y="0.71em" transform="translate(504,370)">2008</text>
+    <text y="0.71em" transform="translate(562,370)">2009</text>
+    <text y="0.71em" transform="translate(620,370)">2010</text>
+  </g>
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(17.5,27.5)">
+    <text transform="translate(620,370)">year →</text>
+  </g>
+  <g aria-label="line" fill="none" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" transform="translate(0.5,0.5)">
+    <marker viewBox="-5 -5 10 10" markerWidth="6.67" markerHeight="6.67" fill="#6cc5b0" stroke="var(--plot-background)" stroke-width="1.5" id="plot-marker-1">
+      <circle r="3"></circle>
+    </marker>
+    <path stroke="#6cc5b0" marker-start="url(#plot-marker-1)" marker-mid="url(#plot-marker-1)" marker-end="url(#plot-marker-1)" d="M40,248.097L98,228.233L156,186.918L214,186.465L272,192.885L330,198.097L388,215.921L446,219.849L504,185.937L562,90.695L620,50.891"></path>
+    <marker viewBox="-5 -5 10 10" markerWidth="6.67" markerHeight="6.67" fill="#9c6b4e" stroke="var(--plot-background)" stroke-width="1.5" id="plot-marker-2">
+      <circle r="3"></circle>
+    </marker>
+    <path stroke="#9c6b4e" marker-start="url(#plot-marker-2)" marker-mid="url(#plot-marker-2)" marker-end="url(#plot-marker-2)" d="M40,265.921L98,222.568L156,190.619L214,190.317L272,224.758L330,249.683L388,265.695L446,258.897L504,235.03L562,85.559L620,88.127"></path>
+    <marker viewBox="-5 -5 10 10" markerWidth="6.67" markerHeight="6.67" fill="#97bbf5" stroke="var(--plot-background)" stroke-width="1.5" id="plot-marker-3">
+      <circle r="3"></circle>
+    </marker>
+    <path stroke="#97bbf5" marker-start="url(#plot-marker-3)" marker-mid="url(#plot-marker-3)" marker-end="url(#plot-marker-3)" d="M40,265.393L98,246.284L156,224.305L214,218.187L272,223.323L330,228.459L388,239.94L446,233.822L504,200.211L562,134.124L620,113.127"></path>
+    <marker viewBox="-5 -5 10 10" markerWidth="6.67" markerHeight="6.67" fill="#efb118" stroke="var(--plot-background)" stroke-width="1.5" id="plot-marker-4">
+      <circle r="3"></circle>
+    </marker>
+    <path stroke="#efb118" marker-start="url(#plot-marker-4)" marker-mid="url(#plot-marker-4)" marker-end="url(#plot-marker-4)" d="M40,285.03L98,259.35L156,219.698L214,211.616L272,244.32L330,253.988L388,257.538L446,259.35L504,235.332L562,141.299L620,116.677"></path>
+    <marker viewBox="-5 -5 10 10" markerWidth="6.67" markerHeight="6.67" fill="#ff725c" stroke="var(--plot-background)" stroke-width="1.5" id="plot-marker-5">
+      <circle r="3"></circle>
+    </marker>
+    <path stroke="#ff725c" marker-start="url(#plot-marker-5)" marker-mid="url(#plot-marker-5)" marker-end="url(#plot-marker-5)" d="M40,302.553L98,284.577L156,261.39L214,262.372L272,267.054L330,283.973L388,273.323L446,270.227L504,208.746L562,106.556L620,20"></path>
+    <path stroke="#6cc5b0" marker-start="url(#plot-marker-1)" marker-mid="url(#plot-marker-1)" marker-end="url(#plot-marker-1)" d="M40,314.562L98,299.607L156,285.408L214,274.909L272,280.725L330,274.607L388,285.332L446,285.559L504,262.976L562,192.432L620,190.619"></path>
+    <marker viewBox="-5 -5 10 10" markerWidth="6.67" markerHeight="6.67" fill="#ff8ab7" stroke="var(--plot-background)" stroke-width="1.5" id="plot-marker-6">
+      <circle r="3"></circle>
+    </marker>
+    <path stroke="#ff8ab7" marker-start="url(#plot-marker-6)" marker-mid="url(#plot-marker-6)" marker-end="url(#plot-marker-6)" d="M40,309.653L98,305.876L156,295.604L214,289.335L272,291.148L330,294.773L388,303.082L446,297.644L504,291.601L562,254.215L620,231.934"></path>
+    <marker viewBox="-5 -5 10 10" markerWidth="6.67" markerHeight="6.67" fill="#3ca951" stroke="var(--plot-background)" stroke-width="1.5" id="plot-marker-7">
+      <circle r="3"></circle>
+    </marker>
+    <path stroke="#3ca951" marker-start="url(#plot-marker-7)" marker-mid="url(#plot-marker-7)" marker-end="url(#plot-marker-7)" d="M40,338.807L98,331.858L156,321.662L214,322.341L272,321.133L330,330.045L388,329.894L446,324.834L504,316.299L562,280.121L620,269.471"></path>
+    <path stroke="#efb118" marker-start="url(#plot-marker-4)" marker-mid="url(#plot-marker-4)" marker-end="url(#plot-marker-4)" d="M40,337.447L98,337.9L156,330.196L214,325.136L272,324.456L330,326.118L388,325.438L446,322.719L504,314.864L562,281.027L620,263.505"></path>
+    <marker viewBox="-5 -5 10 10" markerWidth="6.67" markerHeight="6.67" fill="#4269d0" stroke="var(--plot-background)" stroke-width="1.5" id="plot-marker-8">
+      <circle r="3"></circle>
+    </marker>
+    <path stroke="#4269d0" marker-start="url(#plot-marker-8)" marker-mid="url(#plot-marker-8)" marker-end="url(#plot-marker-8)" d="M40,336.39L98,334.728L156,325.589L214,317.432L272,321.057L330,323.776L388,324.909L446,333.369L504,320.453L562,297.039L620,278.459"></path>
+    <path stroke="#ff725c" marker-start="url(#plot-marker-5)" marker-mid="url(#plot-marker-5)" marker-end="url(#plot-marker-5)" d="M40,341.073L98,335.408L156,329.819L214,328.535L272,335.181L330,334.653L388,335.937L446,334.804L504,322.795L562,289.94L620,275.74"></path>
+    <marker viewBox="-5 -5 10 10" markerWidth="6.67" markerHeight="6.67" fill="#a463f2" stroke="var(--plot-background)" stroke-width="1.5" id="plot-marker-9">
+      <circle r="3"></circle>
+    </marker>
+    <path stroke="#a463f2" marker-start="url(#plot-marker-9)" marker-mid="url(#plot-marker-9)" marker-end="url(#plot-marker-9)" d="M40,350.74L98,342.054L156,330.952L214,332.915L272,341.903L330,345.076L388,352.251L446,351.571L504,344.773L562,327.402L620,323.701"></path>
+    <path stroke="#4269d0" marker-start="url(#plot-marker-8)" marker-mid="url(#plot-marker-8)" marker-end="url(#plot-marker-8)" d="M40,350.438L98,348.776L156,351.495L214,348.474L272,352.024L330,354.366L388,357.915L446,360.106L504,353.082L562,342.659L620,324.456"></path>
+    <marker viewBox="-5 -5 10 10" markerWidth="6.67" markerHeight="6.67" fill="#9498a0" stroke="var(--plot-background)" stroke-width="1.5" id="plot-marker-10">
+      <circle r="3"></circle>
+    </marker>
+    <path stroke="#9498a0" marker-start="url(#plot-marker-10)" marker-mid="url(#plot-marker-10)" marker-end="url(#plot-marker-10)" d="M40,366.979L98,366.45L156,365.015L214,364.26L272,366.677L330,366.903L388,366.45L446,366.299L504,365.77L562,355.801L620,358.897"></path>
+  </g>
+  <g aria-label="rule" stroke="currentColor" transform="translate(0,0.5)">
+    <line x1="40" x2="620" y1="370" y2="370"></line>
+  </g>
+  <g aria-label="tip" fill="var(--plot-background)" stroke="currentColor" pointer-events="none" text-anchor="start" transform="translate(0.5,0.5)"></g>
+</svg>

@@ -2,7 +2,7 @@ import {select, format as numberFormat, utcFormat} from "d3";
 import {getSource} from "../channel.js";
 import {create} from "../context.js";
 import {defined} from "../defined.js";
-import {formatDefault} from "../format.js";
+import {formatDefault, formatYear, isYearDomain} from "../format.js";
 import {anchorX, anchorY} from "../interactions/pointer.js";
 import {Mark} from "../mark.js";
 import {maybeAnchor, maybeFrameAnchor, maybeTuple, number, string} from "../options.js";
@@ -369,7 +369,16 @@ function getSourceChannels(channels, scales) {
       // For ordinal scales, the inferred tick format can be more concise, such
       // as only showing the year for yearly data.
       const scale = scales[key];
-      this.format[key] = scale?.bandwidth ? inferTickFormat(scale, scale.domain()) : formatDefault;
+      const value = sources[key]?.value;
+      this.format[key] = scale
+        ? scale.year
+          ? formatYear
+          : scale.bandwidth
+          ? inferTickFormat(scale, scale.domain())
+          : formatDefault
+        : value && isYearDomain(value)
+        ? formatYear
+        : formatDefault;
     }
   }
 

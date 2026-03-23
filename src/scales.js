@@ -9,6 +9,7 @@ import {
   coerceNumbers,
   coerceDates
 } from "./options.js";
+import {isYearDomain} from "./format.js";
 import {orderof} from "./order.js";
 import {registry, color, position, radius, opacity, symbol, length} from "./scales/index.js";
 import {
@@ -83,6 +84,13 @@ export function createScales(
       if (transform == null) transform = undefined;
       else if (typeof transform !== "function") throw new Error("invalid scale transform; not a function");
       scale.percent = !!percent;
+      if (scale.type === "linear" || scale.bandwidth) {
+        if (
+          channels.some(({value}) => value !== undefined) &&
+          channels.every(({value}) => value === undefined || isYearDomain(value))
+        )
+          scale.year = true;
+      }
       scale.label = label === undefined ? inferScaleLabel(channels, scale) : label;
       scale.transform = transform;
       if (key === "x" || key === "fx") {
@@ -109,6 +117,7 @@ export function createScaleFunctions(descriptors) {
     scale.type = type;
     if (interval != null) scale.interval = interval;
     if (label != null) scale.label = label;
+    if (descriptor.year) scale.year = true;
   }
   return scaleFunctions;
 }

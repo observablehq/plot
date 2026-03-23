@@ -1,4 +1,5 @@
 import * as Plot from "@observablehq/plot";
+import {formatYear, isYearDomain} from "../../src/format.js";
 import assert from "assert";
 
 it("formatNumber(locale) does the right thing", () => {
@@ -82,4 +83,39 @@ it("formatWeekday() handles undefined input", () => {
   assert.strictEqual(Plot.formatWeekday()(NaN), undefined);
   assert.strictEqual(Plot.formatWeekday()(Infinity), undefined);
   assert.strictEqual(Plot.formatWeekday()(1e32), undefined);
+});
+
+it("formatYear formats year-like integers without commas", () => {
+  assert.strictEqual(formatYear(2000), "2000");
+  assert.strictEqual(formatYear(2020), "2020");
+  assert.strictEqual(formatYear(0), "0");
+  assert.strictEqual(formatYear(9999), "9999");
+});
+
+it("formatYear falls back to formatNumber for non-year values", () => {
+  assert.strictEqual(formatYear(10000), "10,000");
+  assert.strictEqual(formatYear(-1), "-1");
+  assert.strictEqual(formatYear(2000.5), "2,000.5");
+  assert.strictEqual(formatYear(NaN), "NaN");
+  assert.strictEqual(formatYear(Infinity), "∞");
+});
+
+it("isYearDomain returns true for year-like integer domains", () => {
+  assert.strictEqual(isYearDomain([2000, 2020]), true);
+  assert.strictEqual(isYearDomain([1000, 3000]), true);
+  assert.strictEqual(isYearDomain([1990, null, 2020]), true);
+  assert.strictEqual(isYearDomain([1990, NaN, 2020]), true);
+});
+
+it("isYearDomain returns false for non-year domains", () => {
+  assert.strictEqual(isYearDomain([0, 100]), false);
+  assert.strictEqual(isYearDomain([999, 2000]), false);
+  assert.strictEqual(isYearDomain([2000, 3001]), false);
+  assert.strictEqual(isYearDomain([10000, 20000]), false);
+  assert.strictEqual(isYearDomain([-1, 100]), false);
+  assert.strictEqual(isYearDomain([2000.5, 2001.5]), false);
+  assert.strictEqual(isYearDomain(["a", "b"]), false);
+  assert.strictEqual(isYearDomain(["2000", 2020]), false);
+  assert.strictEqual(isYearDomain([]), false);
+  assert.strictEqual(isYearDomain([null, undefined]), false);
 });
