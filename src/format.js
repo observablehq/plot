@@ -6,6 +6,10 @@ const numberFormat = memoize1((locale) => {
   return new Intl.NumberFormat(locale);
 });
 
+const yearFormat = memoize1((locale) => {
+  return new Intl.NumberFormat(locale, {useGrouping: false});
+});
+
 const monthFormat = memoize1((locale, month) => {
   return new Intl.DateTimeFormat(locale, {timeZone: "UTC", ...(month && {month})});
 });
@@ -43,11 +47,11 @@ export function formatAuto(locale = "en-US") {
 // used instead whenever possible.
 export const formatDefault = formatAuto();
 
-// Formats a number as a plain integer (no thousands separator); otherwise falls
-// back to the locale-aware number format.
+// Formats a number without thousands separator; falls back to the
+// locale-aware number format for values outside [0, 10000).
 export function formatYear(value) {
-  return typeof value === "number" && isFinite(value) && value >= 0 && value <= 9999 && value % 1 === 0
-    ? `${value}`
+  return typeof value === "number" && value >= 0 && value < 10000
+    ? yearFormat("en-US").format(value)
     : Number.isNaN(value)
     ? "NaN"
     : formatNumber()(value);

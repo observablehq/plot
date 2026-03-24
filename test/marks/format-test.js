@@ -85,17 +85,18 @@ it("formatWeekday() handles undefined input", () => {
   assert.strictEqual(Plot.formatWeekday()(1e32), undefined);
 });
 
-it("formatYear formats year-like integers without commas", () => {
+it("formatYear formats numbers in [0, 10000) without commas", () => {
   assert.strictEqual(formatYear(2000), "2000");
   assert.strictEqual(formatYear(2020), "2020");
   assert.strictEqual(formatYear(0), "0");
   assert.strictEqual(formatYear(9999), "9999");
+  assert.strictEqual(formatYear(2023.56), "2023.56");
+  assert.strictEqual(formatYear(2023.5678901234568), "2023.568");
 });
 
-it("formatYear falls back to formatNumber for non-year values", () => {
+it("formatYear falls back to formatNumber for other values", () => {
   assert.strictEqual(formatYear(10000), "10,000");
   assert.strictEqual(formatYear(-1), "-1");
-  assert.strictEqual(formatYear(2000.5), "2,000.5");
   assert.strictEqual(formatYear(NaN), "NaN");
   assert.strictEqual(formatYear(Infinity), "∞");
 });
