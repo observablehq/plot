@@ -91,7 +91,7 @@ it("formatYear formats numbers in [0, 10000) without commas", () => {
   assert.strictEqual(formatYear(0), "0");
   assert.strictEqual(formatYear(9999), "9999");
   assert.strictEqual(formatYear(2023.56), "2023.56");
-  assert.strictEqual(formatYear(2023.5678901234568), "2023.568");
+  assert.strictEqual(formatYear(2023.5678901234), "2023.568");
 });
 
 it("formatYear falls back to formatNumber for other values", () => {
