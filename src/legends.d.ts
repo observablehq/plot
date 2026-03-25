@@ -85,6 +85,14 @@ export interface SymbolLegendOptions extends SwatchesLegendOptions {
 /** Options for generating a scale legend. */
 export interface LegendOptions extends ColorLegendOptions, SymbolLegendOptions, OpacityLegendOptions {
   /**
+   * A [BCP 47 language tag][1] used for the legend’s default locale-sensitive
+   * formatting of numbers and dates. Defaults to U.S. English.
+   *
+   * [1]: https://tools.ietf.org/html/bcp47
+   */
+  locale?: string;
+
+  /**
    * The desired legend type; one of:
    *
    * - *ramp* - place labels underneath with a connecting line, and no wrapping

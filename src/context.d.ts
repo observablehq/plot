@@ -9,6 +9,9 @@ export interface Context {
    */
   document: Document;
 
+  /** The plot locale, if specified. */
+  locale?: string;
+
   /** The current owner SVG element. */
   ownerSVGElement: SVGSVGElement;
 

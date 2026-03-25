@@ -106,6 +106,7 @@ The **fill** and **stroke** symbol legend options can be specified as “color�
 Continuous color legends are rendered as a ramp, and can be configured with the following options:
 
 * **label** - the scale’s label
+* **locale** - a locale used for default tick formatting
 * **ticks** - the desired number of ticks, or an array of tick values
 * **tickFormat** - a format function for the legend’s ticks
 * **tickSize** - the tick size
@@ -119,6 +120,8 @@ Continuous color legends are rendered as a ramp, and can be configured with the 
 * **opacity** - the ramp’s fill opacity
 
 The **style** legend option allows custom styles to override Plot’s defaults; it has the same behavior as in Plot’s top-level [plot options](./plots.md). The **className** option is suffixed with *-ramp* or *-swatches*, reflecting the **legend** type.
+
+If **locale** is specified, Plot uses it for the legend’s default numeric and temporal labels. You can still override formatting explicitly with **tickFormat**.
 
 ## legend(*options*) {#legend}
 

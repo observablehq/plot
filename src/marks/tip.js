@@ -2,7 +2,7 @@ import {select, format as numberFormat, utcFormat} from "d3";
 import {getSource} from "../channel.js";
 import {create} from "../context.js";
 import {defined} from "../defined.js";
-import {formatDefault} from "../format.js";
+import {formatAuto} from "../format.js";
 import {anchorX, anchorY} from "../interactions/pointer.js";
 import {Mark} from "../mark.js";
 import {maybeAnchor, maybeFrameAnchor, maybeTuple, number, string} from "../options.js";
@@ -88,6 +88,7 @@ export class Tip extends Mark {
   }
   render(index, scales, values, dimensions, context) {
     const mark = this;
+    mark.locale = context.locale;
     const {x, y, fx, fy} = scales;
     const {ownerSVGElement: svg, document} = context;
     const {anchor, monospace, lineHeight, lineWidth} = this;
@@ -369,7 +370,10 @@ function getSourceChannels(channels, scales) {
       // For ordinal scales, the inferred tick format can be more concise, such
       // as only showing the year for yearly data.
       const scale = scales[key];
-      this.format[key] = scale?.bandwidth ? inferTickFormat(scale, scale.domain()) : formatDefault;
+      this.format[key] =
+        scale?.bandwidth
+          ? inferTickFormat(scale, scale.domain(), undefined, undefined, undefined, this.locale)
+          : formatAuto(this.locale);
     }
   }
 

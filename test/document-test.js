@@ -58,3 +58,30 @@ it("plot.legend supports the document option for categorical color scales", () =
   }).legend("color");
   assert.strictEqual(svg.ownerDocument, window.document);
 });
+
+it("Plot.plot derives lang and dir from locale on svg output", () => {
+  const {window} = new JSDOM("");
+  const svg = Plot.plot({document: window.document, locale: "ar-SA", marks: [Plot.barY([1, 2, 4, 3])]});
+  assert.strictEqual(svg.getAttribute("lang"), "ar");
+  assert.strictEqual(svg.getAttribute("dir"), "rtl");
+});
+
+it("Plot.plot applies explicit lang and dir on figure output", () => {
+  const {window} = new JSDOM("");
+  const figure = Plot.plot({
+    document: window.document,
+    figure: true,
+    lang: "ar",
+    dir: "rtl",
+    marks: [Plot.barY([1, 2, 4, 3])]
+  });
+  assert.strictEqual(figure.tagName, "FIGURE");
+  assert.strictEqual(figure.getAttribute("lang"), "ar");
+  assert.strictEqual(figure.getAttribute("dir"), "rtl");
+});
+
+it("Plot.plot resolves dir:auto from lang", () => {
+  const {window} = new JSDOM("");
+  const svg = Plot.plot({document: window.document, lang: "ar", dir: "auto", marks: [Plot.barY([1, 2, 4, 3])]});
+  assert.strictEqual(svg.getAttribute("dir"), "rtl");
+});

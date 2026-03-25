@@ -212,7 +212,8 @@ export function generalizeTimeInterval(interval, n) {
   return (interval[intervalType] === "time" ? timeInterval : utcInterval)(i);
 }
 
-function formatTimeInterval(name, type, anchor) {
+function formatTimeInterval(name, type, anchor, locale) {
+  if (locale !== undefined) return formatLocaleTimeInterval(name, type, anchor, locale);
   const format = type === "time" ? timeFormat : utcFormat;
   // For tips and legends, use a format that doesn’t require context.
   if (anchor == null) {
@@ -251,6 +252,97 @@ function formatTimeInterval(name, type, anchor) {
   throw new Error("unable to format time ticks");
 }
 
+function formatLocaleTimeInterval(name, type, anchor, locale) {
+  const timeZone = type === "utc" ? "UTC" : undefined;
+  const format = (options) => new Intl.DateTimeFormat(locale, {timeZone, ...options});
+
+  // For tips and legends, prefer a single localized label.
+  if (anchor == null) {
+    switch (name) {
+      case "millisecond":
+        return (d) =>
+          format({
+            year: "numeric",
+            month: "short",
+            day: "numeric",
+            hour: "numeric",
+            minute: "2-digit",
+            second: "2-digit",
+            fractionalSecondDigits: 3
+          }).format(d);
+      case "second":
+        return (d) =>
+          format({
+            year: "numeric",
+            month: "short",
+            day: "numeric",
+            hour: "numeric",
+            minute: "2-digit",
+            second: "2-digit"
+          }).format(d);
+      case "minute":
+      case "hour":
+        return (d) =>
+          format({
+            year: "numeric",
+            month: "short",
+            day: "numeric",
+            hour: "numeric",
+            minute: "2-digit"
+          }).format(d);
+      case "day":
+        return (d) => format({year: "numeric", month: "short", day: "numeric"}).format(d);
+      case "month":
+        return (d) => format({year: "numeric", month: "short"}).format(d);
+      case "year":
+        return (d) => format({year: "numeric"}).format(d);
+    }
+  }
+
+  const template = getTimeTemplate(anchor);
+  switch (name) {
+    case "millisecond":
+      return formatConditional(
+        (d) => format({hour: "numeric", minute: "2-digit", second: "2-digit", fractionalSecondDigits: 3}).format(d),
+        (d) => format({month: "short", day: "numeric"}).format(d),
+        template
+      );
+    case "second":
+      return formatConditional(
+        (d) => format({hour: "numeric", minute: "2-digit", second: "2-digit"}).format(d),
+        (d) => format({month: "short", day: "numeric"}).format(d),
+        template
+      );
+    case "minute":
+      return formatConditional(
+        (d) => format({hour: "numeric", minute: "2-digit"}).format(d),
+        (d) => format({month: "short", day: "numeric"}).format(d),
+        template
+      );
+    case "hour":
+      return formatConditional(
+        (d) => format({hour: "numeric"}).format(d),
+        (d) => format({month: "short", day: "numeric"}).format(d),
+        template
+      );
+    case "day":
+      return formatConditional(
+        (d) => format({day: "numeric"}).format(d),
+        (d) => format({month: "short"}).format(d),
+        template
+      );
+    case "month":
+      return formatConditional(
+        (d) => format({month: "short"}).format(d),
+        (d) => format({year: "numeric"}).format(d),
+        template
+      );
+    case "year":
+      return (d) => format({year: "numeric"}).format(d);
+  }
+  throw new Error("unable to format localized time ticks");
+}
+
 function getTimeTemplate(anchor) {
   return anchor === "left" || anchor === "right"
     ? (f1, f2) => `\n${f1}\n${f2}` // extra newline to keep f1 centered
@@ -266,13 +358,13 @@ function getFormatIntervals(type) {
 // Given an array of dates, returns the largest compatible standard time
 // interval. If no standard interval is compatible (other than milliseconds,
 // which is universally compatible), returns undefined.
-export function inferTimeFormat(type, dates, anchor) {
+export function inferTimeFormat(type, dates, anchor, locale) {
   const step = max(pairs(dates, (a, b) => Math.abs(b - a))); // maybe undefined!
-  if (step < 1000) return formatTimeInterval("millisecond", "utc", anchor);
+  if (step < 1000) return formatTimeInterval("millisecond", "utc", anchor, locale);
   for (const [name, interval, intervalType, maxStep] of getFormatIntervals(type)) {
     if (step > maxStep) break; // e.g., 52 weeks
     if (name === "hour" && !step) break; // e.g., domain with a single date
-    if (dates.every((d) => interval.floor(d) >= d)) return formatTimeInterval(name, intervalType, anchor);
+    if (dates.every((d) => interval.floor(d) >= d)) return formatTimeInterval(name, intervalType, anchor, locale);
   }
 }
 

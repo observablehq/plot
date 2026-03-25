@@ -1,5 +1,5 @@
 import {InternSet, extent, format, utcFormat} from "d3";
-import {formatDefault} from "../format.js";
+import {formatAuto, formatDefault} from "../format.js";
 import {marks} from "../mark.js";
 import {radians} from "../math.js";
 import {arrayify, constant, identity, keyword, number, range, valueof} from "../options.js";
@@ -393,9 +393,9 @@ function axisTextKy(
       ...options,
       dx: anchor === "left" ? +dx - tickSize - tickPadding + +insetLeft : +dx + +tickSize + +tickPadding - insetRight
     },
-    function (scale, data, ticks, tickFormat, channels) {
+    function (scale, data, ticks, tickFormat, channels, context) {
       if (fontVariant === undefined) this.fontVariant = inferFontVariant(scale);
-      if (text === undefined) channels.text = inferTextChannel(scale, data, ticks, tickFormat, anchor);
+      if (text === undefined) channels.text = inferTextChannel(scale, data, ticks, tickFormat, anchor, context.locale);
     }
   );
 }
@@ -440,9 +440,9 @@ function axisTextKx(
       ...options,
       dy: anchor === "bottom" ? +dy + +tickSize + +tickPadding - insetBottom : +dy - tickSize - tickPadding + +insetTop
     },
-    function (scale, data, ticks, tickFormat, channels) {
+    function (scale, data, ticks, tickFormat, channels, context) {
       if (fontVariant === undefined) this.fontVariant = inferFontVariant(scale);
-      if (text === undefined) channels.text = inferTextChannel(scale, data, ticks, tickFormat, anchor);
+      if (text === undefined) channels.text = inferTextChannel(scale, data, ticks, tickFormat, anchor, context.locale);
     }
   );
 }
@@ -626,7 +626,7 @@ function axisMark(mark, k, data, properties, options, initialize) {
         channels[k] = {scale: k, value: identity};
       }
     }
-    initialize?.call(this, scale, data, ticks, tickFormat, channels);
+    initialize?.call(this, scale, data, ticks, tickFormat, channels, context);
     const initializedChannels = Object.fromEntries(
       Object.entries(channels).map(([name, channel]) => {
         return [name, {...channel, value: valueof(data, channel.value)}];
@@ -655,8 +655,8 @@ function inferTickCount(scale, tickSpacing) {
   return (max - min) / tickSpacing;
 }
 
-function inferTextChannel(scale, data, ticks, tickFormat, anchor) {
-  return {value: inferTickFormat(scale, data, ticks, tickFormat, anchor)};
+function inferTextChannel(scale, data, ticks, tickFormat, anchor, locale) {
+  return {value: inferTickFormat(scale, data, ticks, tickFormat, anchor, locale)};
 }
 
 // D3’s ordinal scales simply use toString by default, but if the ordinal scale
@@ -665,17 +665,20 @@ function inferTextChannel(scale, data, ticks, tickFormat, anchor) {
 // time ticks, we want to use the multi-line time format (e.g., Jan 26) if
 // possible, or the default ISO format (2014-01-26). TODO We need a better way
 // to infer whether the ordinal scale is UTC or local time.
-export function inferTickFormat(scale, data, ticks, tickFormat, anchor) {
+export function inferTickFormat(scale, data, ticks, tickFormat, anchor, locale) {
+  const fallback = locale === undefined ? formatDefault : formatAuto(locale);
   return typeof tickFormat === "function" && !(scale.type === "log" && scale.tickFormat)
     ? tickFormat
     : tickFormat === undefined && data && isTemporal(data)
-    ? inferTimeFormat(scale.type, data, anchor) ?? formatDefault
+    ? inferTimeFormat(scale.type, data, anchor, locale) ?? fallback
+    : tickFormat === undefined && locale !== undefined
+    ? fallback
     : scale.tickFormat
     ? scale.tickFormat(typeof ticks === "number" ? ticks : null, tickFormat)
     : typeof tickFormat === "string" && scale.domain().length > 0
     ? (isTemporal(scale.domain()) ? utcFormat : format)(tickFormat)
     : tickFormat === undefined
-    ? formatDefault
+    ? fallback
     : constant(tickFormat);
 }
 
