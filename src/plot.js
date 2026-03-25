@@ -340,6 +340,8 @@ export function plot(options = {}) {
     if ("value" in svg) (figure.value = svg.value), delete svg.value;
   }
 
+  applyLanguageAttributes(figured ? figure : svg, options);
+
   figure.scale = exposeScales(scales.scales);
   figure.legend = exposeLegends(scaleDescriptors, context, options);
 
@@ -358,6 +360,27 @@ export function plot(options = {}) {
   }
 
   return figure;
+}
+
+const rtlLanguages = new Set(["ar", "fa", "he", "ps", "sd", "ug", "ur", "yi", "ku", "ckb"]);
+
+function resolveLang({lang, locale}) {
+  return lang ?? locale?.split("-")[0];
+}
+
+function resolveDir({dir, lang, locale}) {
+  if (dir === "ltr" || dir === "rtl") return dir;
+  const resolvedLang = resolveLang({lang, locale});
+  if (dir === "auto" || resolvedLang !== undefined) return resolvedLang && rtlLanguages.has(resolvedLang) ? "rtl" : "ltr";
+}
+
+function applyLanguageAttributes(element, options) {
+  const lang = resolveLang(options);
+  const dir = resolveDir(options);
+  if (lang === undefined) element.removeAttribute("lang");
+  else element.setAttribute("lang", lang);
+  if (dir === undefined) element.removeAttribute("dir");
+  else element.setAttribute("dir", dir);
 }
 
 function createTitleElement(document, contents, tag) {

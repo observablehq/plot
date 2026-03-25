@@ -186,6 +186,27 @@ export interface PlotOptions extends ScaleDefaults {
    */
   document?: Document;
 
+  /**
+   * A [BCP 47 language tag][1] used for Plot’s default locale-sensitive
+   * formatting of numbers and dates in axes, legends, and tips. Defaults to
+   * U.S. English.
+   *
+   * [1]: https://tools.ietf.org/html/bcp47
+   */
+  locale?: string;
+
+  /**
+   * The language of the generated plot content. Defaults to the language
+   * subtag of **locale**, if specified.
+   */
+  lang?: string;
+
+  /**
+   * The text direction of the generated plot content. If **auto**, derives
+   * direction from **lang**.
+   */
+  dir?: "ltr" | "rtl" | "auto";
+
   /** The default clip for all marks. */
   clip?: MarkOptions["clip"];
 

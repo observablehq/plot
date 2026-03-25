@@ -23,3 +23,12 @@ it("Plot.legend({}) throws an error", () => {
 it("Plot.legend({color: {}}) throws an error", () => {
   assert.throws(() => Plot.legend({color: {}}), /unknown legend type/);
 });
+
+it("Plot.legend({... locale}) localizes swatch labels", () => {
+  const legend = Plot.legend({
+    locale: "fr",
+    color: {type: "ordinal", domain: [12345], range: ["red"]},
+    legend: "swatches"
+  });
+  assert.ok(legend.textContent.includes("12\u202f345"));
+});

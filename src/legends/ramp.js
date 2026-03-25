@@ -1,6 +1,7 @@
 import {quantize, interpolateNumber, piecewise, format, scaleBand, scaleLinear, axisBottom} from "d3";
 import {inferFontVariant} from "../axes.js";
 import {createContext, create} from "../context.js";
+import {formatAuto} from "../format.js";
 import {map, maybeNumberChannel} from "../options.js";
 import {interpolatePiecewise} from "../scales/quantitative.js";
 import {applyInlineStyles, impliedString, maybeClassName, offset} from "../style.js";
@@ -24,6 +25,7 @@ export function legendRamp(color, options) {
     className
   } = options;
   const context = createContext(options);
+  const defaultTickFormat = context.locale === undefined ? undefined : formatAuto(context.locale);
   className = maybeClassName(className);
   opacity = maybeNumberChannel(opacity)[1];
   if (tickFormat === null) tickFormat = () => null;
@@ -112,7 +114,11 @@ export function legendRamp(color, options) {
     const thresholds = domain;
 
     const thresholdFormat =
-      tickFormat === undefined ? (d) => d : typeof tickFormat === "string" ? format(tickFormat) : tickFormat;
+      tickFormat === undefined
+        ? defaultTickFormat ?? ((d) => d)
+        : typeof tickFormat === "string"
+        ? format(tickFormat)
+        : tickFormat;
 
     // Construct a linear scale with evenly-spaced ticks for each of the
     // thresholds; the domain extends one beyond the threshold extent.
@@ -155,17 +161,17 @@ export function legendRamp(color, options) {
     tickAdjust = () => {};
   }
 
+  const axis = axisBottom(x)
+    .ticks(Array.isArray(ticks) ? null : ticks, typeof tickFormat === "string" ? tickFormat : undefined)
+    .tickFormat(typeof tickFormat === "function" ? tickFormat : defaultTickFormat)
+    .tickSize(tickSize)
+    .tickValues(Array.isArray(ticks) ? ticks : null)
+    .offset(offset);
+
   svg
     .append("g")
     .attr("transform", `translate(0,${height - marginBottom})`)
-    .call(
-      axisBottom(x)
-        .ticks(Array.isArray(ticks) ? null : ticks, typeof tickFormat === "string" ? tickFormat : undefined)
-        .tickFormat(typeof tickFormat === "function" ? tickFormat : undefined)
-        .tickSize(tickSize)
-        .tickValues(Array.isArray(ticks) ? ticks : null)
-        .offset(offset)
-    )
+    .call(axis)
     .attr("font-size", null)
     .attr("font-family", null)
     .attr("font-variant", impliedString(fontVariant, "normal"))

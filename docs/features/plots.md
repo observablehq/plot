@@ -258,6 +258,50 @@ By default, [plot](#plot) returns an SVG element; however, if the plot includes 
 
 The **title** & **subtitle** options <VersionBadge version="0.6.10" pr="1761" /> and the **caption** option accept either a string or an HTML element. If given an HTML element, say using the [`html` tagged template literal](http://github.com/observablehq/htl), the title and subtitle are used as-is while the caption is wrapped in a figcaption element; otherwise, the specified text will be escaped and wrapped in an h2, h3, or figcaption, respectively.
 
+## Localization
+
+Plot supports a top-level **locale** option for default locale-sensitive formatting of axes, legends, and tips.
+
+:::plot
+```js
+Plot.plot({
+  locale: "fr-FR",
+  x: {type: "utc", domain: [new Date("2023-01-01"), new Date("2024-01-01")]},
+  marks: [
+    Plot.lineY(
+      [
+        {date: new Date("2023-01-01"), value: 12345.67},
+        {date: new Date("2023-07-01"), value: 23456.78},
+        {date: new Date("2024-01-01"), value: 34567.89}
+      ],
+      {x: "date", y: "value", tip: true}
+    )
+  ]
+})
+```
+:::
+
+When **locale** is specified, Plot’s default formatters use that locale for:
+
+* numeric axis ticks
+* time axis ticks
+* legend labels
+* default tip values
+
+User-provided strings such as **title**, **subtitle**, **caption**, **ariaLabel**, and scale **label** are not translated automatically; pass those in the desired language from your application.
+
+The **lang** option sets the language of the generated plot element, while **dir** sets text direction. If **lang** is omitted, it defaults to the language subtag of **locale**. If **dir** is omitted or set to **auto**, Plot infers left-to-right or right-to-left direction from **lang**.
+
+```js
+Plot.plot({
+  locale: "ar-SA",
+  lang: "ar",
+  dir: "rtl",
+  title: "الإيرادات الشهرية",
+  marks: [...]
+})
+```
+
 :::plot https://observablehq.com/@observablehq/plot-caption
 ```js
 Plot.plot({
