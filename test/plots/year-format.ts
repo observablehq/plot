@@ -19,6 +19,15 @@ export async function yearFormat() {
 export async function yearFormatExplicit() {
   return Plot.plot({
     x: {tickFormat: "year"},
-    marks: [Plot.dot([{x: 4000, y: 1}, {x: 5000, y: 2}, {x: 6000, y: 3}], {x: "x", y: "y", tip: true})]
+    marks: [
+      Plot.dot(
+        [
+          {x: 4000, y: 1},
+          {x: 5000, y: 2},
+          {x: 6000, y: 3}
+        ],
+        {x: "x", y: "y", tip: true}
+      )
+    ]
   });
 }
