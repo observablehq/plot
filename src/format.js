@@ -60,13 +60,13 @@ export function formatYear(value) {
 // Returns true if all finite values in the given domain are integers in
 // [1000, 3000], indicating they might represent years.
 export function isYearDomain(domain) {
-  let one = false;
+  let check = false;
   for (const d of domain) {
     if (d == null) continue;
     if (typeof d !== "number") return false;
     if (!isFinite(d)) continue;
     if (d < 1000 || d > 3000 || d % 1 !== 0) return false;
-    one = true;
+    check = true;
   }
-  return one;
+  return check;
 }
