@@ -15,3 +15,10 @@ export async function yearFormat() {
     marks: [Plot.line(data, {x: "year", y: "unemployed", stroke: "industry", marker: true, tip: true}), Plot.ruleY([0])]
   });
 }
+
+export async function yearFormatExplicit() {
+  return Plot.plot({
+    x: {tickFormat: "year"},
+    marks: [Plot.dot([{x: 4000, y: 1}, {x: 5000, y: 2}, {x: 6000, y: 3}], {x: "x", y: "y", tip: true})]
+  });
+}

@@ -362,7 +362,9 @@ function getSourceChannels(channels, scales) {
   // Promote shorthand string formats, and materialize default formats.
   for (const key in sources) {
     const format = this.format[key];
-    if (typeof format === "string") {
+    if (typeof format === "string" && format.toLowerCase() === "year") {
+      this.format[key] = formatYear;
+    } else if (typeof format === "string") {
       const value = sources[key]?.value ?? scales[key]?.domain() ?? [];
       this.format[key] = (isTemporal(value) ? utcFormat : numberFormat)(format);
     } else if (format === undefined || format === true) {

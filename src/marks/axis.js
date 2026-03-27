@@ -670,6 +670,10 @@ export function inferTickFormat(scale, data, ticks, tickFormat, anchor) {
     ? tickFormat
     : tickFormat === undefined && data && isTemporal(data)
     ? inferTimeFormat(scale.type, data, anchor) ?? formatDefault
+    : typeof tickFormat === "string" && tickFormat.toLowerCase() === "year"
+    ? (data && isTemporal(data)) || (scale.domain && isTemporal(scale.domain()))
+      ? utcFormat("%Y")
+      : formatYear
     : tickFormat === undefined && scale.year
     ? formatYear
     : scale.tickFormat

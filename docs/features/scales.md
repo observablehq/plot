@@ -177,7 +177,7 @@ Plot.plot({x: {type: "log", domain: [1e0, 1e5], grid: true}})
 
 If you prefer conventional notation, you can specify the **tickFormat** option to change the behavior of the axis. The **tickFormat** option can either be a [d3.format](https://d3js.org/d3-format) string or a function that takes a tick value and returns the corresponding string. Note, however, that this may result in overlapping text.
 
-For linear and ordinal scales, if the data values are all integers between 1,000 and 3,000, Plot assumes they represent years and defaults to a **tickFormat** without thousands separators — for example, `2026` instead of `2,026`. This also applies to the [tip mark](../marks/tip.md).
+For linear and ordinal scales, if the data values are all integers between 1,000 and 3,000, Plot assumes they represent years and defaults to a **tickFormat** without thousands separators — for example, `2026` instead of `2,026`. You can opt into this behavior explicitly with `tickFormat: "year"`. <VersionBadge pr="2395" />
 
 :::plot https://observablehq.com/@observablehq/plot-continuous-scales
 ```js

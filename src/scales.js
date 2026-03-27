@@ -75,6 +75,7 @@ export function createScales(
         label = key === "fx" || key === "fy" ? facetLabel : globalLabel,
         percent,
         transform,
+        tickFormat,
         inset,
         insetTop = inset !== undefined ? inset : key === "y" ? globalInsetTop : 0, // not fy
         insetRight = inset !== undefined ? inset : key === "x" ? globalInsetRight : 0, // not fx
@@ -84,7 +85,9 @@ export function createScales(
       if (transform == null) transform = undefined;
       else if (typeof transform !== "function") throw new Error("invalid scale transform; not a function");
       scale.percent = !!percent;
-      if (scale.type === "linear" || scale.bandwidth) {
+      if (typeof tickFormat === "string" && tickFormat.toLowerCase() === "year") {
+        scale.year = true;
+      } else if (scale.type === "linear" || scale.bandwidth) {
         if (
           channels.some(({value}) => value !== undefined) &&
           channels.every(({value}) => value === undefined || isYearDomain(value))

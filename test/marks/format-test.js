@@ -1,5 +1,6 @@
 import * as Plot from "@observablehq/plot";
 import {formatYear, isYearDomain} from "../../src/format.js";
+import {inferTickFormat} from "../../src/marks/axis.js";
 import assert from "assert";
 
 it("formatNumber(locale) does the right thing", () => {
@@ -106,6 +107,20 @@ it("isYearDomain returns true for year-like integer domains", () => {
   assert.strictEqual(isYearDomain([1000, 3000]), true);
   assert.strictEqual(isYearDomain([1990, null, 2020]), true);
   assert.strictEqual(isYearDomain([1990, NaN, 2020]), true);
+});
+
+it("tickFormat 'year' opts into year formatting", () => {
+  const scale = {type: "linear", domain: () => [0, 100]};
+  assert.strictEqual(inferTickFormat(scale, [0, 100], null, "year"), formatYear);
+  assert.strictEqual(inferTickFormat(scale, [0, 100], null, "Year"), formatYear);
+  assert.strictEqual(inferTickFormat(scale, [0, 100], null, "YEAR"), formatYear);
+});
+
+it("tickFormat 'year' on temporal data uses %Y", () => {
+  const dates = [new Date("2020-01-01"), new Date("2025-01-01")];
+  const scale = {type: "utc", domain: () => dates};
+  const fmt = inferTickFormat(scale, dates, null, "year");
+  assert.strictEqual(fmt(new Date("2023-06-15")), "2023");
 });
 
 it("isYearDomain returns false for non-year domains", () => {
