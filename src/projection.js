@@ -63,6 +63,8 @@ export function createProjection(
     if (projection == null) return;
   }
 
+  const type = projection; // save before namedProjection overwrites it
+
   // For named projections, retrieve the corresponding projection initializer.
   if (typeof projection !== "function") ({type: projection} = namedProjection(projection));
 
@@ -74,17 +76,18 @@ export function createProjection(
 
   // The projection initializer might decide to not use a projection.
   if (projection == null) return;
-  clip = maybePostClip(clip, marginLeft, marginTop, width - marginRight, height - marginBottom);
+  const postClip = maybePostClip(clip, marginLeft, marginTop, width - marginRight, height - marginBottom);
 
   // Translate the origin to the top-left corner, respecting margins and insets.
   let tx = marginLeft + insetLeft;
   let ty = marginTop + insetTop;
   let transform;
+  let k;
 
   // If a domain is specified, fit the projection to the frame.
   if (domain != null) {
     const [[x0, y0], [x1, y1]] = geoPath(projection).bounds(domain);
-    const k = Math.min(dx / (x1 - x0), dy / (y1 - y0));
+    k = Math.min(dx / (x1 - x0), dy / (y1 - y0));
     if (k > 0) {
       tx -= (k * (x0 + x1) - dx) / 2;
       ty -= (k * (y0 + y1) - dy) / 2;
@@ -94,6 +97,7 @@ export function createProjection(
         }
       });
     } else {
+      k = undefined;
       warn(`Warning: the projection could not be fit to the specified domain; using the default scale.`);
     }
   }
@@ -107,7 +111,38 @@ export function createProjection(
           }
         });
 
-  return {stream: (s) => projection.stream(transform.stream(clip(s)))};
+  const stream = (s) => projection.stream(transform.stream(postClip(s)));
+
+  return {
+    type,
+    ...(domain != null && {domain}),
+    ...(options?.rotate != null && {rotate: options.rotate}),
+    ...(options?.parallels != null && {parallels: options.parallels}),
+    ...(options?.precision != null && {precision: options.precision}),
+    ...(clip !== "frame" && {clip}),
+    ...(insetTop && {insetTop}),
+    ...(insetRight && {insetRight}),
+    ...(insetBottom && {insetBottom}),
+    ...(insetLeft && {insetLeft}),
+    stream,
+    apply([x, y] = []) {
+      let result;
+      const s = projection.stream(
+        transform.stream({
+          point(x, y) {
+            result = [x, y];
+          }
+        })
+      );
+      s.point(x, y);
+      return result;
+    },
+    invert([x, y] = []) {
+      const px = (x - tx) / (k ?? 1);
+      const py = (y - ty) / (k ?? 1);
+      return projection.invert ? projection.invert([px, py]) : [px, py];
+    }
+  };
 }
 
 function namedProjection(projection) {
@@ -195,15 +230,16 @@ function conicProjection(createProjection, kx, ky) {
   };
 }
 
-const identity = constant({stream: (stream) => stream});
+const identity = constant({stream: (stream) => stream, invert: (point) => point});
 
-const reflectY = constant(
-  geoTransform({
+const reflectY = constant({
+  ...geoTransform({
     point(x, y) {
       this.stream.point(x, -y);
     }
-  })
-);
+  }),
+  invert: ([x, y]) => [x, -y]
+});
 
 // Applies a point-wise projection to the given paired x and y channels.
 // Note: mutates values!

@@ -2309,3 +2309,172 @@ function scaleApply(x, pairs) {
     assert.strictEqual(+x.invert(output).toFixed(10), input);
   }
 }
+
+describe("plot(…).scale('projection')", () => {
+  it("returns undefined when no projection is used", () => {
+    const plot = Plot.frame().plot();
+    assert.strictEqual(plot.scale("projection"), undefined);
+  });
+
+  it("returns the projection for a named projection", () => {
+    const plot = Plot.plot({projection: "mercator", marks: [Plot.graticule()]});
+    const p = plot.scale("projection");
+    assert.strictEqual(p.type, "mercator");
+    assert.strictEqual(typeof p.apply, "function");
+    assert.strictEqual(typeof p.invert, "function");
+    assert.strictEqual("stream" in p, false);
+    assert.strictEqual("clip" in p, false); // default omitted
+    assert.strictEqual("precision" in p, false); // default omitted
+    assert.strictEqual("insetTop" in p, false); // default omitted
+  });
+
+  it("is the same for 'mercator' and {type: 'mercator'}", () => {
+    const p1 = Plot.plot({projection: "mercator", marks: [Plot.graticule()]}).scale("projection");
+    const p2 = Plot.plot({projection: {type: "mercator"}, marks: [Plot.graticule()]}).scale("projection");
+    assert.strictEqual(p1.type, p2.type);
+    assert.inDelta(p1.apply([-1.55, 47.22]), p2.apply([-1.55, 47.22]));
+  });
+
+  it("exposes apply and invert that round-trip", () => {
+    const plot = Plot.plot({projection: "mercator", marks: [Plot.graticule()]});
+    const p = plot.scale("projection");
+    const point = [-1.55, 47.22];
+    const px = p.apply(point);
+    assert.ok(Array.isArray(px));
+    assert.strictEqual(px.length, 2);
+    assert.inDelta(p.invert(px), point);
+  });
+
+  it("exposes parallels for conic projections", () => {
+    const plot = Plot.plot({projection: {type: "conic-equal-area", parallels: [30, 40]}, marks: [Plot.graticule()]});
+    const p = plot.scale("projection");
+    assert.strictEqual(p.type, "conic-equal-area");
+    assert.inDelta(p.parallels, [30, 40]);
+  });
+
+  it("exposes rotate", () => {
+    const plot = Plot.plot({projection: {type: "orthographic", rotate: [90, -30]}, marks: [Plot.graticule()]});
+    const p = plot.scale("projection");
+    assert.deepStrictEqual(p.rotate, [90, -30]);
+  });
+
+  it("exposes apply and invert for identity", () => {
+    const domain = {
+      type: "Polygon",
+      coordinates: [
+        [
+          [0, 0],
+          [200, 0],
+          [200, 100],
+          [0, 100],
+          [0, 0]
+        ]
+      ]
+    };
+    const plot = Plot.plot({
+      width: 400,
+      height: 200,
+      margin: 0,
+      projection: {type: "identity", domain},
+      marks: [Plot.frame()]
+    });
+    const p = plot.scale("projection");
+    assert.strictEqual(p.type, "identity");
+    assert.strictEqual(typeof p.apply, "function");
+    assert.strictEqual(typeof p.invert, "function");
+    assert.inDelta(p.apply([0, 0]), [0, 0]);
+    assert.inDelta(p.apply([200, 100]), [400, 200]);
+    assert.inDelta(p.apply([100, 50]), [200, 100]);
+    assert.inDelta(p.invert([0, 0]), [0, 0]);
+    assert.inDelta(p.invert([400, 200]), [200, 100]);
+    assert.inDelta(p.invert([200, 100]), [100, 50]);
+  });
+
+  it("exposes apply and invert for reflect-y", () => {
+    const domain = {
+      type: "Polygon",
+      coordinates: [
+        [
+          [0, 0],
+          [200, 0],
+          [200, 100],
+          [0, 100],
+          [0, 0]
+        ]
+      ]
+    };
+    const plot = Plot.plot({
+      width: 400,
+      height: 200,
+      margin: 0,
+      projection: {type: "reflect-y", domain},
+      marks: [Plot.frame()]
+    });
+    const p = plot.scale("projection");
+    assert.strictEqual(p.type, "reflect-y");
+    assert.strictEqual(typeof p.apply, "function");
+    assert.strictEqual(typeof p.invert, "function");
+    assert.inDelta(p.apply([0, 0]), [0, 200]);
+    assert.inDelta(p.apply([200, 100]), [400, 0]);
+    assert.inDelta(p.apply([100, 50]), [200, 100]);
+    assert.inDelta(p.invert([0, 200]), [0, 0]);
+    assert.inDelta(p.invert([400, 0]), [200, 100]);
+    assert.inDelta(p.invert([200, 100]), [100, 50]);
+  });
+
+  it("round-trips to a second plot", () => {
+    const plot1 = Plot.plot({projection: "mercator", marks: [Plot.graticule()]});
+    const p1 = plot1.scale("projection");
+    const plot2 = Plot.plot({projection: p1, marks: [Plot.graticule()]});
+    const p2 = plot2.scale("projection");
+    assert.strictEqual(p2.type, "mercator");
+    // Same dimensions, so pixel coordinates match
+    const point = [-1.55, 47.22];
+    assert.inDelta(p1.apply(point), p2.apply(point));
+  });
+
+  it("round-trips with different dimensions", () => {
+    const plot1 = Plot.plot({width: 640, projection: "mercator", marks: [Plot.graticule()]});
+    const p1 = plot1.scale("projection");
+    const plot2 = Plot.plot({width: 300, projection: p1, marks: [Plot.graticule()]});
+    const p2 = plot2.scale("projection");
+    assert.strictEqual(p2.type, "mercator");
+    // Different dimensions, so pixel coordinates differ but projection type is preserved
+    const point = [-1.55, 47.22];
+    assert.notDeepStrictEqual(p1.apply(point), p2.apply(point));
+    // But invert still round-trips
+    assert.inDelta(p2.invert(p2.apply(point)), point);
+  });
+
+  it("exposes domain when specified", () => {
+    const domain = {type: "Sphere"};
+    const plot = Plot.plot({
+      projection: {type: "orthographic", domain},
+      marks: [Plot.graticule()]
+    });
+    const p = plot.scale("projection");
+    assert.strictEqual(p.domain, domain);
+  });
+
+  it("exposes non-default clip and precision", () => {
+    const plot = Plot.plot({
+      projection: {type: "orthographic", clip: 85, precision: 0.5},
+      marks: [Plot.graticule()]
+    });
+    const p = plot.scale("projection");
+    assert.strictEqual(p.clip, 85);
+    assert.strictEqual(p.precision, 0.5);
+  });
+
+  it("exposes insets", () => {
+    const plot = Plot.plot({
+      projection: {type: "mercator", inset: 10},
+      marks: [Plot.graticule()]
+    });
+    const p = plot.scale("projection");
+    assert.strictEqual(p.insetTop, 10);
+    assert.strictEqual(p.insetRight, 10);
+    assert.strictEqual(p.insetBottom, 10);
+    assert.strictEqual(p.insetLeft, 10);
+  });
+});

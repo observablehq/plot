@@ -1,7 +1,13 @@
 import type {ChannelValue} from "./channel.js";
 import type {ColorLegendOptions, LegendOptions, OpacityLegendOptions, SymbolLegendOptions} from "./legends.js";
 import type {Data, MarkOptions, Markish} from "./mark.js";
-import type {ProjectionFactory, ProjectionImplementation, ProjectionName, ProjectionOptions} from "./projection.js";
+import type {
+  ProjectionFactory,
+  ProjectionImplementation,
+  ProjectionName,
+  ProjectionOptions,
+  ProjectionScale
+} from "./projection.js";
 import type {Scale, ScaleDefaults, ScaleName, ScaleOptions} from "./scales.js";
 
 export interface PlotOptions extends ScaleDefaults {
@@ -401,10 +407,19 @@ export interface PlotFacetOptions {
  */
 export interface Plot {
   /**
+   * Returns this plot’s projection, or undefined if this plot does not use a
+   * projection. The returned object includes the resolved projection options
+   * (*type*, *domain*, *rotate*, etc.), an **apply** method for projecting
+   * [longitude, latitude] to [x, y] pixels, and when supported, an **invert**
+   * method for the reverse transformation. The object can be passed as the
+   * **projection** option of another plot to reuse the same projection.
+   */
+  scale(name: "projection"): ProjectionScale | undefined;
+  /**
    * Returns this plot’s scale with the given *name*, or undefined if this plot
    * does not use the specified scale.
    */
-  scale(name: ScaleName): Scale | undefined;
+  scale(name: ScaleName | "projection"): Scale | ProjectionScale | undefined;
 
   /**
    * Generates a legend for the scale with the specified *name* and the given

@@ -274,3 +274,33 @@ The following projection clipping methods are supported for **clip**:
 * null or false - do not clip
 
 Whereas the **clip** [mark option](./marks.md#mark-options) is implemented using SVG clipping, the **clip** projection option affects the generated geometry and typically produces smaller SVG output.
+
+## Materialized projection
+
+After rendering, you can retrieve the materialized projection from a plot using [*plot*.scale](./plots.md#plot_scale):
+
+```js
+const plot = Plot.plot({projection: "mercator", marks: [Plot.graticule()]});
+const projection = plot.scale("projection");
+```
+
+The returned object exposes the resolved projection options, reflecting the actual values used to construct the projection.
+
+The projection object also exposes an **apply** method that projects a [*longitude*, *latitude*] point to [*x*, *y*] pixel coordinates:
+
+```js
+projection.apply([-122.42, 37.78]) // San Francisco → [x, y]
+```
+
+An **invert** method is also available to convert [*x*, *y*] pixels back to coordinates:
+
+```js
+projection.invert([320, 240]) // [x, y] → [longitude, latitude]
+```
+
+To reuse a projection across plots, pass the projection object as the **projection** option of another plot. The projection is reconstructed from the resolved options to fit the new plot's dimensions:
+
+```js
+const plot1 = Plot.plot({projection: "mercator", marks: [Plot.graticule()]});
+const plot2 = Plot.plot({projection: plot1.scale("projection"), marks: [Plot.geo(land)]});
+```

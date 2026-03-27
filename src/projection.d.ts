@@ -112,3 +112,42 @@ export interface ProjectionOptions extends InsetOptions {
    */
   clip?: boolean | number | "frame" | null;
 }
+
+/** A materialized projection, as returned by plot.scale("projection"). */
+export interface ProjectionScale {
+  /** The projection type name or factory function. */
+  type: ProjectionName | ProjectionFactory;
+
+  /** The GeoJSON domain, if specified. */
+  domain?: GeoPermissibleObjects;
+
+  /** The projection rotation [lambda, phi, gamma]. */
+  rotate?: [number, number, number?];
+
+  /** The standard parallels (conic projections). */
+  parallels?: [number, number];
+
+  /** The sampling threshold. */
+  precision?: number;
+
+  /** The clipping method. */
+  clip?: boolean | number | "frame" | null;
+
+  /** Top inset in pixels. */
+  insetTop: number;
+
+  /** Right inset in pixels. */
+  insetRight: number;
+
+  /** Bottom inset in pixels. */
+  insetBottom: number;
+
+  /** Left inset in pixels. */
+  insetLeft: number;
+
+  /** Project [longitude, latitude] to [x, y] pixel coordinates. */
+  apply(point: [number, number]): [number, number] | undefined;
+
+  /** Invert [x, y] pixel coordinates to [longitude, latitude]. */
+  invert?(point: [number, number]): [number, number] | undefined;
+}

@@ -58,10 +58,22 @@ async function doesNotWarnAsync(run) {
   return result;
 }
 
+function inDelta(actual, expected, delta = 1e-6) {
+  if (Array.isArray(expected)) {
+    assert.strictEqual(actual.length, expected.length);
+    for (let i = 0; i < expected.length; i++) {
+      inDelta(actual[i], expected[i], delta);
+    }
+  } else {
+    assert.ok(Math.abs(actual - expected) < delta, `${actual} is not within ${delta} of ${expected}`);
+  }
+}
+
 export default {
   ...assert,
   warns,
   warnsAsync,
   doesNotWarn,
-  doesNotWarnAsync
+  doesNotWarnAsync,
+  inDelta
 };

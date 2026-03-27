@@ -340,6 +340,10 @@ export function plot(options = {}) {
     if ("value" in svg) (figure.value = svg.value), delete svg.value;
   }
 
+  if (context.projection) {
+    const {stream: _, ...projection} = context.projection;
+    scales.scales.projection = projection;
+  }
   figure.scale = exposeScales(scales.scales);
   figure.legend = exposeLegends(scaleDescriptors, context, options);
 
