@@ -31,7 +31,7 @@ export interface WaffleYOptions extends BarYOptions, WaffleOptions {}
  *
  * If neither **y1** nor **y2** nor **interval** is specified, an implicit
  * stackY transform is applied and **y** defaults to the identity function,
- * assuming that *data* = [*y₀*, *y₁*, *y₂*, …]. Otherwise if an **interval** is
+ * assuming that *data* = [*y₀*, *y₁*, *y₂*, …]. Otherwise, if an **interval** is
  * specified, then **y1** and **y2** are derived from **y**, representing the
  * lower and upper bound of the containing interval, respectively. Otherwise, if
  * only one of **y1** or **y2** is specified, the other defaults to **y**, which
@@ -64,7 +64,7 @@ export function waffleY(data?: Data, options?: WaffleYOptions): WaffleY;
  *
  * If neither **x1** nor **x2** nor **interval** is specified, an implicit
  * stackX transform is applied and **x** defaults to the identity function,
- * assuming that *data* = [*x₀*, *x₁*, *x₂*, …]. Otherwise if an **interval** is
+ * assuming that *data* = [*x₀*, *x₁*, *x₂*, …]. Otherwise, if an **interval** is
  * specified, then **x1** and **x2** are derived from **x**, representing the
  * lower and upper bound of the containing interval, respectively. Otherwise, if
  * only one of **x1** or **x2** is specified, the other defaults to **x**, which

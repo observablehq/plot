@@ -528,7 +528,7 @@ export interface ScaleOptions extends ScaleDefaults {
    *
    * A symmetric diverging color scale may not use all of its output **range**;
    * this reduces contrast but ensures that deviations both below and above the
-   * **pivot** are represented proportionally. Otherwise if false, the full
+   * **pivot** are represented proportionally. Otherwise, if false, the full
    * output **range** will be used; this increases contrast but values on
    * opposite sides of the **pivot** may not be meaningfully compared.
    */
