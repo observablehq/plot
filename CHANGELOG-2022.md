@@ -367,7 +367,7 @@ Plot.plot({
 })
 ```
 
-The [line](https://observablehq.com/plot/marks/line) and [area](https://observablehq.com/plot/marks/area) marks (specifically lineX, lineY, areaX, and areaY) now support an implicit [bin transform](https://observablehq.com/plot/transforms/bin) with the **interval** option. This can be used to “regularize” time series data, say to show gaps or default to zero when data is missing, rather than interpolating across missing data. This is also useful for stacking time series data that is sampled at irregular intervals or with missing samples.
+The [line](https://observablehq.com/plot/marks/line) and [area](https://observablehq.com/plot/marks/area) marks (specifically lineX, lineY, areaX, and areaY) now support an implicit [bin transform](https://observablehq.com/plot/transforms/bin) with the **interval** option. This can be used to “regularize” time series data, say to show gaps or default to zero when data is missing, rather than interpolating across missing data. This is also useful for stacking time series data that is sampled at irregular intervals or missing samples.
 
 <img src="./img/sparse-series.png" width="640" alt="a time-series area chart showing downloads per day with gaps for missing data">
 
