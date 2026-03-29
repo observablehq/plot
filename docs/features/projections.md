@@ -163,7 +163,7 @@ Plot.plot({
 circle = d3.geoCircle().center([9, 34]).radius(radius)()
 ```
 
-If none of Plot’s built-in projections meet your needs, you can use any of [D3’s extended projections](https://github.com/d3/d3-geo-projection) by specifying the **projection** option as a function that returns a D3 projection. Below, a map of Antarctica in a polar aspect of the *azimuthal-equidistant* projection.
+If none of Plot’s built-in projections meet your needs, you can use any of [D3’s extended projections](https://github.com/d3/d3-geo-projection) by specifying the **projection** option as a function that returns a D3 projection. Below is a map of Antarctica in a polar aspect of the *azimuthal-equidistant* projection.
 
 :::plot defer https://observablehq.com/@observablehq/plot-polar-projection
 ```js
