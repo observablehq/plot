@@ -71,7 +71,7 @@ export interface ProjectionOptions extends InsetOptions {
 
   /**
    * A GeoJSON object to fit to the plot’s frame (minus insets); defaults to a
-   * Sphere for spherical projections (outline of the the whole globe).
+   * Sphere for spherical projections (outline of the whole globe).
    */
   domain?: GeoPermissibleObjects;
 
