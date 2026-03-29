@@ -53,7 +53,7 @@ export interface WaffleYOptions extends BarYOptions, WaffleOptions {}
 export function waffleY(data?: Data, options?: WaffleYOptions): WaffleY;
 
 /**
- * Returns a new horizonta waffle mark for the given *data* and *options*; the
+ * Returns a new horizontal waffle mark for the given *data* and *options*; the
  * required *x* values should be quantitative, and the optional *y* values
  * should be ordinal. For example, for a horizontal waffle chart of Olympic
  * athletes by sport:
