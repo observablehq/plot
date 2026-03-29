@@ -429,7 +429,7 @@ function Likert(
 
 The new [_quantize_ scale type](https://observablehq.com/plot/features/scales#color-scale-options) transforms a continuous domain into discrete, evenly-spaced thresholds. The _threshold_ scale type now supports domains in descending order (in addition to ascending order), such as [20, 10, 5, 0] instead of [0, 5, 10, 20].
 
-<img src="./img/quantize.png" width="640" alt="a scatterplot of Simpsons episodes showing the correlation between number of U.S. viewers and IMDb rating; the decline of the Simspons over time is shown with a quantized color encoding by season">
+<img src="./img/quantize.png" width="640" alt="a scatterplot of Simpsons episodes showing the correlation between number of U.S. viewers and IMDb rating; the decline of the Simpsons over time is shown with a quantized color encoding by season">
 
 ```js
 Plot.plot({

@@ -29,7 +29,7 @@ export interface CellOptions extends MarkOptions, InsetOptions, RectCornerOption
 /**
  * Returns a rectangular cell mark for the given *data* and *options*. Along
  * with **x** and/or **y**, a **fill** channel is typically specified to encode
- * value as color. For example, for a heatmap of the IMDb ratings of Simpons
+ * value as color. For example, for a heatmap of the IMDb ratings of Simpsons
  * episodes by season:
  *
  * ```js
