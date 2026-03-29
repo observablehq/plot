@@ -697,7 +697,7 @@ Plot.plot({
 
 The *x* and *y* axes are now automatically repeated in empty facets, improving readability by reducing eye travel to read tick values. Below, note that the *x* axis for culmen depth (with ticks at 15 and 20 mm) is rendered below the Adelie/null-sex facet in the top-right.
 
-[<img src="./img/facet-axes.webp" width="640" alt="A scatterplot showing the culmen length and depth of various penguins, faceted by species and sex; the facets are arranged in a grid, with the y-axis on the left and the x-axis on the bottom.">](ttps://observablehq.com/plot/marks/axis)
+[<img src="./img/facet-axes.webp" width="640" alt="A scatterplot showing the culmen length and depth of various penguins, faceted by species and sex; the facets are arranged in a grid, with the y-axis on the left and the x-axis on the bottom.">](https://observablehq.com/plot/marks/axis)
 
 ```js
 Plot.plot({
