@@ -65,7 +65,7 @@ export interface BarXOptions extends BarOptions {
   x2?: ChannelValueSpec;
 
   /**
-   * The optional vertical position of the bar; a ordinal channel typically
+   * The optional vertical position of the bar; an ordinal channel typically
    * bound to the *y* scale. If not specified, the bar spans the vertical extent
    * of the frame; otherwise the *y* scale must be a *band* scale.
    *
@@ -110,7 +110,7 @@ export interface BarYOptions extends BarOptions {
   y2?: ChannelValueSpec;
 
   /**
-   * The optional horizontal position of the bar; a ordinal channel typically
+   * The optional horizontal position of the bar; an ordinal channel typically
    * bound to the *x* scale. If not specified, the bar spans the horizontal
    * extent of the frame; otherwise the *x* scale must be a *band* scale.
    *

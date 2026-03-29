@@ -1270,7 +1270,7 @@ it("plot(…).scale('color') promotes a reversed ordinal scale to an ordinal sca
   });
 });
 
-it("plot(…).scale('color') can return a ordinal scale with an explicit range", async () => {
+it("plot(…).scale('color') can return an ordinal scale with an explicit range", async () => {
   const penguins = await d3.csv("data/penguins.csv", d3.autoType);
   const range = ["yellow", "lime", "black", "red"];
   const plot = Plot.dot(penguins, {x: "body_mass_g", fill: "island"}).plot({color: {range}});

@@ -12,7 +12,7 @@ import type {AxisOptions} from "./marks/axis.js";
  * - *hcl* - hue, chroma, perceptual lightness (CIELCh_ab; cylindrical CIELAB)
  * - *lab* - perceptual lightness and opponent colors (L\*a\*b\*, CIELAB)
  * - an interpolator function that takes a parameter *t* in [0, 1] and returns a value
- * - a interpolator factory that returns an interpolator function for values *a* and *b*
+ * - an interpolator factory that returns an interpolator function for values *a* and *b*
  */
 export type Interpolate =
   | "number"
