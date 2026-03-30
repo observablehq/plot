@@ -9,7 +9,7 @@ vi.stubGlobal("fetch", async function fetch(path: string) {
 
 // JSDOM doesn't implement getBBox; stub it to avoid uncaught errors from
 // postrender callbacks (e.g., tip marks using requestAnimationFrame).
-if (SVGElement.prototype["getBBox"] === undefined) {
+if (typeof SVGElement !== "undefined" && SVGElement.prototype["getBBox"] === undefined) {
   SVGElement.prototype["getBBox"] = function getBBox() {
     return {x: 0, y: 0, width: 0, height: 0};
   };

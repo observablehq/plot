@@ -1,3 +1,5 @@
+// @vitest-environment node
+
 import {assert, it} from "vitest";
 import * as Plot from "@observablehq/plot";
 import {JSDOM} from "jsdom";
@@ -57,4 +59,17 @@ it("plot.legend supports the document option for categorical color scales", () =
     marks: [Plot.cellX([1, 2, 4, 3])]
   }).legend("color");
   assert.strictEqual(svg.ownerDocument, window.document);
+});
+
+it("context.dispatchValue respects the document option", () => {
+  const document = new JSDOM("").window.document;
+  const events = [];
+  document.defaultView.Event = class TestEvent extends document.defaultView.Event {
+    constructor(type, options) {
+      super(type, options);
+      events.push(this);
+    }
+  };
+  Plot.lineY([1, 2, 3], {tip: true}).plot({document});
+  assert.strictEqual(events.length, 1);
 });
