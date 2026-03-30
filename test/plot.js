@@ -1,4 +1,4 @@
-import {readFile} from "node:fs/promises";
+import {access, constants, readFile, writeFile} from "node:fs/promises";
 import {resolve} from "node:path";
 import {createCanvas, loadImage} from "canvas";
 import {max, mean, quantile} from "d3";
@@ -24,7 +24,14 @@ for (const [name, plot] of Object.entries(plots)) {
     reindexPattern(root);
     const actual = normalizeHtml(root.outerHTML);
     const outfile = resolve("./test/output", `${name}.${ext}`);
-    await expect(await withImages(actual, outfile)).toMatchFileSnapshot(`./output/${name}.${ext}`);
+    try {
+      if (shouldUpdateSnapshot()) throw new Error("update snapshot");
+      await access(outfile, constants.F_OK);
+    } catch {
+      await writeFile(outfile, actual, "utf-8");
+    }
+    const expected = normalizeHtml(await readFile(outfile, "utf-8")); // TODO toMatchFileSnapshot
+    await expect(withImages(actual, outfile)).resolves.toEqual(expected);
   });
 }
 
@@ -39,6 +46,10 @@ function normalizeHtml(html) {
       indent_inner_html: false
     }
   );
+}
+
+function shouldUpdateSnapshot() {
+  return expect.getState().snapshotState["_updateSnapshot"] === "all";
 }
 
 function reindexStyle(root) {
