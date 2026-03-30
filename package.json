@@ -64,7 +64,7 @@
     "globals": "^15.15.0",
     "htl": "^0.3.0",
     "js-beautify": "1",
-    "jsdom": "^26.0.0",
+    "jsdom": "^29.0.1",
     "markdown-it-container": "^4.0.0",
     "prettier": "~3.0.0",
     "rollup": "^4.9.1",
