@@ -127,7 +127,7 @@ async function withImages(html, outfile) {
     if (actualImages.length !== expectedImages.length)
       throw new Error(`Expected ${expectedImages.length} images, got ${actualImages.length}`);
     for (let i = 0; i < actualImages.length; ++i) {
-      if (actualImages[i] !== expectedImages[i] && (await compareImage(actualImages[i], expectedImages[i]))) {
+      if (await compareImage(actualImages[i], expectedImages[i])) {
         html = html.replace(actualImages[i], expectedImages[i]);
       }
     }
@@ -138,6 +138,7 @@ async function withImages(html, outfile) {
 }
 
 async function compareImage(a, b) {
+  if (a === b) return false;
   const [imageA, imageB] = await Promise.all([getImageData(a), getImageData(b)]);
   const {width, height} = imageA;
   if (width !== imageB.width || height !== imageB.height) return false;
