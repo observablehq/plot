@@ -16,7 +16,7 @@ jobs:
           node-version: 22
           cache: yarn
       - run: yarn --frozen-lockfile
-      - run: yarn test:mocha
+      - run: yarn test:vitest
       - run: yarn test:tsc
       - run: yarn test:lint
       - run: yarn test:prettier
