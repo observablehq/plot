@@ -1,7 +1,8 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
+import {test} from "test/plot";
 
-export async function travelersCovidDrop() {
+test(async function travelersCovidDrop() {
   const travelers = await d3.csv<any>("data/travelers.csv", d3.autoType);
   return Plot.plot({
     width: 960,
@@ -20,4 +21,4 @@ export async function travelersCovidDrop() {
       )
     ]
   });
-}
+});

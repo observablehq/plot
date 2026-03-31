@@ -1,4 +1,4 @@
-import assert from "assert";
+import {assert} from "vitest";
 
 function warns(run, expected = /warning/i) {
   const actual = [];

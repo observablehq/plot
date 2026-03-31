@@ -14,38 +14,38 @@
     }
   </style>
   <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,0.5)">
-    <path transform="translate(40,332.16802174993666)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,283.9902437787918)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,235.8124658076469)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,187.63468783650205)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,139.45690986535718)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,91.2791318942123)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,43.10135392306742)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,332.168)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,283.99)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,235.812)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,187.635)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,139.457)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,91.279)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,43.101)" d="M0,0L-6,0"></path>
   </g>
   <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
-    <text y="0.32em" transform="translate(40,332.16802174993666)">1.5</text>
-    <text y="0.32em" transform="translate(40,283.9902437787918)">2.0</text>
-    <text y="0.32em" transform="translate(40,235.8124658076469)">2.5</text>
-    <text y="0.32em" transform="translate(40,187.63468783650205)">3.0</text>
-    <text y="0.32em" transform="translate(40,139.45690986535718)">3.5</text>
-    <text y="0.32em" transform="translate(40,91.2791318942123)">4.0</text>
-    <text y="0.32em" transform="translate(40,43.10135392306742)">4.5</text>
+    <text y="0.32em" transform="translate(40,332.168)">1.5</text>
+    <text y="0.32em" transform="translate(40,283.99)">2.0</text>
+    <text y="0.32em" transform="translate(40,235.812)">2.5</text>
+    <text y="0.32em" transform="translate(40,187.635)">3.0</text>
+    <text y="0.32em" transform="translate(40,139.457)">3.5</text>
+    <text y="0.32em" transform="translate(40,91.279)">4.0</text>
+    <text y="0.32em" transform="translate(40,43.101)">4.5</text>
   </g>
   <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,0)">
     <path transform="translate(40,370)" d="M0,0L0,6"></path>
-    <path transform="translate(138.3050847457627,370)" d="M0,0L0,6"></path>
-    <path transform="translate(236.61016949152543,370)" d="M0,0L0,6"></path>
-    <path transform="translate(334.91525423728814,370)" d="M0,0L0,6"></path>
-    <path transform="translate(433.22033898305085,370)" d="M0,0L0,6"></path>
-    <path transform="translate(531.5254237288135,370)" d="M0,0L0,6"></path>
+    <path transform="translate(138.305,370)" d="M0,0L0,6"></path>
+    <path transform="translate(236.61,370)" d="M0,0L0,6"></path>
+    <path transform="translate(334.915,370)" d="M0,0L0,6"></path>
+    <path transform="translate(433.22,370)" d="M0,0L0,6"></path>
+    <path transform="translate(531.525,370)" d="M0,0L0,6"></path>
   </g>
   <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
     <text y="0.71em" transform="translate(40,370)">0</text>
-    <text y="0.71em" transform="translate(138.3050847457627,370)">10</text>
-    <text y="0.71em" transform="translate(236.61016949152543,370)">20</text>
-    <text y="0.71em" transform="translate(334.91525423728814,370)">30</text>
-    <text y="0.71em" transform="translate(433.22033898305085,370)">40</text>
-    <text y="0.71em" transform="translate(531.5254237288135,370)">50</text>
+    <text y="0.71em" transform="translate(138.305,370)">10</text>
+    <text y="0.71em" transform="translate(236.61,370)">20</text>
+    <text y="0.71em" transform="translate(334.915,370)">30</text>
+    <text y="0.71em" transform="translate(433.22,370)">40</text>
+    <text y="0.71em" transform="translate(531.525,370)">50</text>
   </g>
   <g aria-label="positive difference" fill="#3ca951">
     <clipPath id="plot-clip-1">

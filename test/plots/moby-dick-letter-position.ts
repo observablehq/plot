@@ -1,7 +1,8 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
+import {test} from "test/plot";
 
-export async function mobyDickLetterPosition() {
+test(async function mobyDickLetterPosition() {
   // First compute a set of “words” from the text. As with any natural language
   // task, this is messy and approximate.
   const words = (await d3.text("data/moby-dick-chapter-1.txt"))
@@ -29,4 +30,4 @@ export async function mobyDickLetterPosition() {
     },
     marks: [Plot.cell(positions, Plot.group({fill: "count"}, {inset: 0.5}))]
   });
-}
+});

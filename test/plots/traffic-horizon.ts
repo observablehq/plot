@@ -1,7 +1,8 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
+import {test} from "test/plot";
 
-export async function trafficHorizon() {
+test(async function trafficHorizon() {
   const data = d3.sort(await d3.csv<any>("data/traffic.csv", d3.autoType), (d) => d.date);
   const bands = 5; // just a hint; not guaranteed
   const max = d3.max(data, (d) => d.vehicles);
@@ -34,4 +35,4 @@ export async function trafficHorizon() {
       Plot.axisX({anchor: "top", filter: (d, i) => i > 0}) // drop first tick
     ]
   });
-}
+});

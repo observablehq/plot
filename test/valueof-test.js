@@ -1,4 +1,4 @@
-import assert from "node:assert";
+import {assert, describe, it} from "vitest";
 import * as Arrow from "apache-arrow";
 import {valueof} from "../src/index.js";
 
