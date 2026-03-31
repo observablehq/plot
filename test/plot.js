@@ -31,7 +31,7 @@ for (const [name, plot] of Object.entries(plots)) {
       await writeFile(outfile, actual, "utf-8");
     }
     const expected = normalizeHtml(await readFile(outfile, "utf-8")); // TODO toMatchFileSnapshot
-    await expect(withImages(actual, outfile)).resolves.toEqual(expected);
+    await expect(withImages(actual, expected)).resolves.toEqual(expected);
   });
 }
 
@@ -119,22 +119,17 @@ const imageRe = /data:image\/png;base64,[^"]+/g;
 // Replace actual images with expected images when they match approximately.
 // This lets toMatchFileSnapshot's exact comparison pass despite platform
 // differences in PNG encoding.
-async function withImages(html, outfile) {
-  try {
-    const expected = await readFile(outfile, "utf8");
-    const actualImages = Array.from(html.matchAll(imageRe), (m) => m[0]);
-    const expectedImages = Array.from(expected.matchAll(imageRe), (m) => m[0]);
-    if (actualImages.length !== expectedImages.length)
-      throw new Error(`Expected ${expectedImages.length} images, got ${actualImages.length}`);
-    for (let i = 0; i < actualImages.length; ++i) {
-      if (await compareImage(actualImages[i], expectedImages[i])) {
-        html = html.replace(actualImages[i], expectedImages[i]);
-      }
+async function withImages(actual, expected) {
+  const actualImages = Array.from(actual.matchAll(imageRe), (m) => m[0]);
+  const expectedImages = Array.from(expected.matchAll(imageRe), (m) => m[0]);
+  if (actualImages.length !== expectedImages.length)
+    throw new Error(`Expected ${expectedImages.length} images, got ${actualImages.length}`);
+  for (let i = 0; i < actualImages.length; ++i) {
+    if (await compareImage(actualImages[i], expectedImages[i])) {
+      actual = actual.replace(actualImages[i], expectedImages[i]);
     }
-  } catch (error) {
-    if (error.code !== "ENOENT") throw error;
   }
-  return html;
+  return actual;
 }
 
 async function compareImage(a, b) {
