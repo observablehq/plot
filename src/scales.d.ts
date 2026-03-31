@@ -379,7 +379,7 @@ export interface ScaleOptions extends ScaleDefaults {
    * Linear scales have a default domain of [0, 1]. Log scales have a default
    * domain of [1, 10] and cannot include zero. Radius scales have a default
    * domain from 0 to the median first quartile of associated channels. Length
-   * have a default domain from 0 to the median of associated channels.
+   * have a default domain from 0 to the median of medians of associated channels.
    * Opacity scales have a default domain from 0 to the maximum value of
    * associated channels.
    */

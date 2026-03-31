@@ -12,7 +12,7 @@ export const color = Symbol("color");
 export const radius = Symbol("radius");
 
 // Length scales default to the linear type, have a default range of [0, 12],
-// and a default domain from 0 to the median of associated channels.
+// and a default domain from 0 to the median of medians of associated channels.
 export const length = Symbol("length");
 
 // Opacity scales have a default range of [0, 1], and a default domain from 0 to
