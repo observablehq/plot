@@ -11,17 +11,20 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
       - uses: actions/setup-node@v6
         with:
           node-version: 24
-          cache: yarn
-      - run: yarn --frozen-lockfile
-      - run: yarn test:vitest
-      - run: yarn test:tsc
-      - run: yarn test:lint
-      - run: yarn test:prettier
-      - run: yarn prepublishOnly
-      - run: yarn docs:build
+          cache: pnpm
+      - run: pnpm install
+      - run: pnpm run test:vitest
+      - run: pnpm run test:tsc
+      - run: pnpm run test:lint
+      - run: pnpm run test:prettier
+      - run: pnpm run prepublishOnly
+      - run: pnpm run docs:build
       - uses: actions/upload-artifact@v7
         if: failure()
         with:
