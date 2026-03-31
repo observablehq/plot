@@ -1,6 +1,10 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 
+if (import.meta.vitest) {
+  await import("../plot.js").then((_) => _.declareTests(import.meta.filename));
+}
+
 export function colorPiecewiseLinearDomain() {
   return Plot.cellX(d3.range(11), {fill: Plot.identity}).plot({
     color: {legend: true, type: "linear", domain: [0, 10, 20], range: ["red", "blue"]}

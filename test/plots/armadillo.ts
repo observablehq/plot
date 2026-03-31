@@ -3,6 +3,10 @@ import * as d3 from "d3";
 import {geoArmadillo} from "d3-geo-projection";
 import {feature} from "topojson-client";
 
+if (import.meta.vitest) {
+  await import("../plot.js").then((_) => _.declareTests(import.meta.filename));
+}
+
 export async function armadillo() {
   const world = await d3.json<any>("data/countries-50m.json");
   const land = feature(world, world.objects.land);

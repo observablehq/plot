@@ -2,6 +2,10 @@ import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 import {remap} from "../transforms/remap.js";
 
+if (import.meta.vitest) {
+  await import("../plot.js").then((_) => _.declareTests(import.meta.filename));
+}
+
 function darker(outputs: {[name: string]: number}, inputs) {
   return remap(
     Object.fromEntries(Object.entries(outputs).map(([name, value]) => [name, (v) => d3.lab(v).darker(value)])),

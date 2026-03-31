@@ -2,6 +2,10 @@ import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 import {feature} from "topojson-client";
 
+if (import.meta.vitest) {
+  await import("../plot.js").then((_) => _.declareTests(import.meta.filename));
+}
+
 export async function geoText() {
   const london = feature(await d3.json("data/london.json"), "boroughs");
   return Plot.plot({

@@ -2,6 +2,10 @@ import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 import {mesh} from "topojson-client";
 
+if (import.meta.vitest) {
+  await import("../plot.js").then((_) => _.declareTests(import.meta.filename));
+}
+
 export async function walmartsDensity() {
   const [walmarts, statemesh] = await Promise.all([
     d3.tsv<any>("data/walmarts.tsv", d3.autoType),

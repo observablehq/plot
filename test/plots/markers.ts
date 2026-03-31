@@ -1,5 +1,9 @@
 import * as Plot from "@observablehq/plot";
 
+if (import.meta.vitest) {
+  await import("../plot.js").then((_) => _.declareTests(import.meta.filename));
+}
+
 export async function markerRuleX() {
   return Plot.ruleX([1, 2, 3], {marker: "arrow-reverse", inset: 3}).plot();
 }

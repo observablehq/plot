@@ -1,6 +1,10 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 
+if (import.meta.vitest) {
+  await import("../plot.js").then((_) => _.declareTests(import.meta.filename));
+}
+
 const dates = new Array(1e6);
 const start = +new Date("2020-01-01");
 const end = +new Date("2021-01-01");

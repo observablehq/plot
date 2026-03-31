@@ -2,6 +2,10 @@ import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 import {feature, mesh} from "topojson-client";
 
+if (import.meta.vitest) {
+  await import("../plot.js").then((_) => _.declareTests(import.meta.filename));
+}
+
 async function rasterWalmart(options) {
   const [walmarts, [outline, statemesh]] = await Promise.all([
     d3.tsv<any>("data/walmarts.tsv", d3.autoType),

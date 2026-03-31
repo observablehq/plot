@@ -2,6 +2,10 @@ import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 import {feature} from "topojson-client";
 
+if (import.meta.vitest) {
+  await import("../plot.js").then((_) => _.declareTests(import.meta.filename));
+}
+
 const transform = (data, facets) => ({data, facets: facets.map((I) => I.slice(1))});
 
 export async function usCountyVoronoi() {

@@ -1,6 +1,10 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 
+if (import.meta.vitest) {
+  await import("../plot.js").then((_) => _.declareTests(import.meta.filename));
+}
+
 export async function faithfulDensity() {
   const faithful = await d3.tsv<any>("data/faithful.tsv", d3.autoType);
   return Plot.plot({

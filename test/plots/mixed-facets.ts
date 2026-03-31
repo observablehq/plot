@@ -1,5 +1,9 @@
 import * as Plot from "@observablehq/plot";
 
+if (import.meta.vitest) {
+  await import("../plot.js").then((_) => _.declareTests(import.meta.filename));
+}
+
 export async function mixedFacets() {
   const data = [
     {date: new Date("2024-01-01"), name: "a", value: 1},

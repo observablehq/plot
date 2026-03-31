@@ -2,6 +2,10 @@ import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 import {feature} from "topojson-client";
 
+if (import.meta.vitest) {
+  await import("../plot.js").then((_) => _.declareTests(import.meta.filename));
+}
+
 export async function usStateCapitalsVoronoi() {
   const [capitals, nation] = await Promise.all([
     d3.csv<any>("data/us-state-capitals.csv", d3.autoType),

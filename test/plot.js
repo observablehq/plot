@@ -3,36 +3,35 @@ import {resolve} from "node:path";
 import {createCanvas, loadImage} from "canvas";
 import {max, mean, quantile} from "d3";
 import beautify from "js-beautify";
-import {setOffset} from "../src/style.js";
 import {expect, test} from "vitest";
 import assert from "./assert.js";
-import * as plots from "./plots/index.ts";
 
-setOffset(0.5);
-
-for (const [name, plot] of Object.entries(plots)) {
-  test(`plot ${name}`, async () => {
-    const root = await (name.startsWith("warn") ? assert.warnsAsync : assert.doesNotWarnAsync)(plot);
-    const ext = root.tagName === "svg" ? "svg" : "html";
-    for (const svg of root.tagName === "svg" ? [root] : root.querySelectorAll("svg")) {
-      svg.setAttributeNS("http://www.w3.org/2000/xmlns/", "xmlns", "http://www.w3.org/2000/svg");
-      svg.setAttributeNS("http://www.w3.org/2000/xmlns/", "xmlns:xlink", "http://www.w3.org/1999/xlink");
-    }
-    reindexStyle(root);
-    reindexMarker(root);
-    reindexClip(root);
-    reindexPattern(root);
-    const actual = normalizeHtml(root.outerHTML);
-    const outfile = resolve("./test/output", `${name}.${ext}`);
-    try {
-      if (shouldUpdateSnapshot()) throw new Error("update snapshot");
-      await access(outfile, constants.F_OK);
-    } catch {
-      await writeFile(outfile, actual, "utf-8");
-    }
-    const expected = normalizeHtml(await readFile(outfile, "utf-8")); // TODO toMatchFileSnapshot
-    await expect(withImages(actual, expected)).resolves.toEqual(expected);
-  });
+export async function declareTests(filename) {
+  const tests = await import(filename);
+  for (const [name, plot] of Object.entries(tests)) {
+    test(name, async () => {
+      const root = await (name.startsWith("warn") ? assert.warnsAsync : assert.doesNotWarnAsync)(plot);
+      const ext = root.tagName === "svg" ? "svg" : "html";
+      for (const svg of root.tagName === "svg" ? [root] : root.querySelectorAll("svg")) {
+        svg.setAttributeNS("http://www.w3.org/2000/xmlns/", "xmlns", "http://www.w3.org/2000/svg");
+        svg.setAttributeNS("http://www.w3.org/2000/xmlns/", "xmlns:xlink", "http://www.w3.org/1999/xlink");
+      }
+      reindexStyle(root);
+      reindexMarker(root);
+      reindexClip(root);
+      reindexPattern(root);
+      const actual = normalizeHtml(root.outerHTML);
+      const outfile = resolve("./test/output", `${name}.${ext}`);
+      try {
+        if (shouldUpdateSnapshot()) throw new Error("update snapshot");
+        await access(outfile, constants.F_OK);
+      } catch {
+        await writeFile(outfile, actual, "utf-8");
+      }
+      const expected = normalizeHtml(await readFile(outfile, "utf-8")); // TODO toMatchFileSnapshot
+      await expect(withImages(actual, expected)).resolves.toEqual(expected);
+    });
+  }
 }
 
 function normalizeHtml(html) {

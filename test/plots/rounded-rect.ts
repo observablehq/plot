@@ -1,6 +1,10 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 
+if (import.meta.vitest) {
+  await import("../plot.js").then((_) => _.declareTests(import.meta.filename));
+}
+
 export function roundedBarYR() {
   const xy = {y1: 0, y2: 1, inset: 4, insetLeft: 2, insetRight: 2};
   return Plot.plot({

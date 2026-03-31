@@ -1,5 +1,9 @@
 import * as Plot from "@observablehq/plot";
 
+if (import.meta.vitest) {
+  await import("../plot.js").then((_) => _.declareTests(import.meta.filename));
+}
+
 async function kitten({
   x = (d, i) => i % 5,
   y = (d, i) => Math.floor(i / 5),

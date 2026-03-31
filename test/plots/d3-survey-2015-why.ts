@@ -1,6 +1,10 @@
 import * as d3 from "d3";
 import {chooseMany} from "./d3-survey-2015.js";
 
+if (import.meta.vitest) {
+  await import("../plot.js").then((_) => _.declareTests(import.meta.filename));
+}
+
 export async function d3Survey2015Why() {
   const responses = await d3.json<any>("data/d3-survey-2015.json");
   return chooseMany(responses, "why", "Why do you want to learn d3?");

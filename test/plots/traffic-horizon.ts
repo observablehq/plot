@@ -1,6 +1,10 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 
+if (import.meta.vitest) {
+  await import("../plot.js").then((_) => _.declareTests(import.meta.filename));
+}
+
 export async function trafficHorizon() {
   const data = d3.sort(await d3.csv<any>("data/traffic.csv", d3.autoType), (d) => d.date);
   const bands = 5; // just a hint; not guaranteed

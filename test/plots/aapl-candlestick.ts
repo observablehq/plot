@@ -1,6 +1,10 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 
+if (import.meta.vitest) {
+  await import("../plot.js").then((_) => _.declareTests(import.meta.filename));
+}
+
 export async function aaplCandlestick() {
   const AAPL = (await d3.csv<any>("data/aapl.csv", d3.autoType)).slice(-120);
   return Plot.plot({

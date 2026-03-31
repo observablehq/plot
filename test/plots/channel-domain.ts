@@ -1,6 +1,10 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 
+if (import.meta.vitest) {
+  await import("../plot.js").then((_) => _.declareTests(import.meta.filename));
+}
+
 async function countNationality(sort: Plot.ChannelDomainSort) {
   const athletes = await d3.csv<any>("data/athletes.csv", d3.autoType);
   return Plot.barX(athletes, Plot.groupY({x: "count"}, {y: "nationality", sort})).plot();

@@ -1,6 +1,10 @@
 import * as Plot from "@observablehq/plot";
 import {range} from "d3";
 
+if (import.meta.vitest) {
+  await import("../plot.js").then((_) => _.declareTests(import.meta.filename));
+}
+
 export async function groupMarker() {
   return Plot.plot({
     aspectRatio: 1,

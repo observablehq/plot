@@ -3,6 +3,10 @@ import * as d3 from "d3";
 import {geoBertin1953} from "d3-geo-projection";
 import {merge} from "topojson-client";
 
+if (import.meta.vitest) {
+  await import("../plot.js").then((_) => _.declareTests(import.meta.filename));
+}
+
 export async function projectionFitBertin1953() {
   const world = await d3.json<any>("data/countries-110m.json");
   const land = merge(

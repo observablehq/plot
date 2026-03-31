@@ -2,6 +2,10 @@ import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 import {feature} from "topojson-client";
 
+if (import.meta.vitest) {
+  await import("../plot.js").then((_) => _.declareTests(import.meta.filename));
+}
+
 export async function beagle() {
   const world = await d3.json<any>("data/countries-50m.json");
   // note: this returns strings; we should clean it up to make a better example,

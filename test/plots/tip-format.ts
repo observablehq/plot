@@ -1,5 +1,9 @@
 import * as Plot from "@observablehq/plot";
 
+if (import.meta.vitest) {
+  await import("../plot.js").then((_) => _.declareTests(import.meta.filename));
+}
+
 function tip(
   data: Plot.Data,
   {x = 0, frameAnchor = "bottom", anchor = "bottom", ...tipOptions}: Plot.TipOptions = {},

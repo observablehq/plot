@@ -1,6 +1,10 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 
+if (import.meta.vitest) {
+  await import("../plot.js").then((_) => _.declareTests(import.meta.filename));
+}
+
 async function penguinNA(tickFormat: (x: number) => any = undefined) {
   const sample = await d3.csv<any>("data/penguins.csv", d3.autoType);
   const V = Plot.valueof(sample, "body_mass_g");

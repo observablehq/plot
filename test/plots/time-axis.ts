@@ -2,6 +2,10 @@ import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 import {svg} from "htl";
 
+if (import.meta.vitest) {
+  await import("../plot.js").then((_) => _.declareTests(import.meta.filename));
+}
+
 const domains = [
   [new Date("2023-01-01"), new Date("2023-01-01T00:00:01Z")], // 100ms
   [new Date("2023-01-01"), new Date("2023-01-01T00:00:05Z")], // 500ms

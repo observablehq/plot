@@ -10,9 +10,8 @@ export default defineConfig({
   test: {
     environment: "jsdom",
     setupFiles: ["./test/setup.js"],
-    include: ["test/**/*-test.*", "test/plot.*"],
-    coverage: {
-      include: ["src/**/*.js"]
-    }
+    include: ["test/**/*-test.{js,ts}"],
+    includeSource: ["test/plots/**.{js,ts}"],
+    coverage: {include: ["src/**/*.js"]}
   }
 });

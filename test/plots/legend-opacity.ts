@@ -1,5 +1,9 @@
 import * as Plot from "@observablehq/plot";
 
+if (import.meta.vitest) {
+  await import("../plot.js").then((_) => _.declareTests(import.meta.filename));
+}
+
 export function opacityLegend() {
   return Plot.legend({opacity: {domain: [0, 10], label: "Quantitative"}});
 }

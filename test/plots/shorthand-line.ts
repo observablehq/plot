@@ -1,5 +1,9 @@
 import * as Plot from "@observablehq/plot";
 
+if (import.meta.vitest) {
+  await import("../plot.js").then((_) => _.declareTests(import.meta.filename));
+}
+
 export async function shorthandLine() {
   const timeSeries = [
     [new Date("2018-01-02"), 170.160004],

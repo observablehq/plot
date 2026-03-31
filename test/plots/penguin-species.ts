@@ -2,6 +2,10 @@ import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 import {svg} from "htl";
 
+if (import.meta.vitest) {
+  await import("../plot.js").then((_) => _.declareTests(import.meta.filename));
+}
+
 export async function penguinSpeciesCheysson() {
   const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
   return Plot.plot({

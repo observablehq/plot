@@ -1,5 +1,9 @@
 import * as Plot from "@observablehq/plot";
 
+if (import.meta.vitest) {
+  await import("../plot.js").then((_) => _.declareTests(import.meta.filename));
+}
+
 export async function emptyFacet() {
   const data = [
     {PERIOD: 1, VALUE: 3, TYPE: "c"},

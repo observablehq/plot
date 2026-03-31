@@ -1,6 +1,9 @@
 import {readFile} from "node:fs/promises";
 import {resolve} from "node:path";
 import {vi} from "vitest";
+import {setOffset} from "../src/style.js";
+
+setOffset(0.5);
 
 // Mock fetch to load local test data files.
 vi.stubGlobal("fetch", async function fetch(path: string) {

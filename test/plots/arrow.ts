@@ -3,6 +3,10 @@ import * as d3 from "d3";
 import * as Arrow from "apache-arrow";
 import {html} from "htl";
 
+if (import.meta.vitest) {
+  await import("../plot.js").then((_) => _.declareTests(import.meta.filename));
+}
+
 /**
  * An arrow table dataset supports direct (getChild) accessors.
  */

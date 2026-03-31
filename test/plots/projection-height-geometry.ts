@@ -1,5 +1,9 @@
 import * as Plot from "@observablehq/plot";
 
+if (import.meta.vitest) {
+  await import("../plot.js").then((_) => _.declareTests(import.meta.filename));
+}
+
 const shape = {
   type: "LineString",
   coordinates: Array.from({length: 201}, (_, i) => {

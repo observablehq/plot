@@ -1,5 +1,9 @@
 import * as Plot from "@observablehq/plot";
 
+if (import.meta.vitest) {
+  await import("../plot.js").then((_) => _.declareTests(import.meta.filename));
+}
+
 const requests = [
   [new Date("2002-01-01"), 9],
   [new Date("2003-01-01"), 17],

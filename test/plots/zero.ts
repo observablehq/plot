@@ -1,5 +1,9 @@
 import * as Plot from "@observablehq/plot";
 
+if (import.meta.vitest) {
+  await import("../plot.js").then((_) => _.declareTests(import.meta.filename));
+}
+
 export async function zeroNegativeY() {
   return Plot.lineY([-0.25, -0.15, -0.05]).plot({y: {zero: true}});
 }

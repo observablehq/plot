@@ -1,6 +1,10 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 
+if (import.meta.vitest) {
+  await import("../plot.js").then((_) => _.declareTests(import.meta.filename));
+}
+
 export async function stargazersBinned() {
   const stargazers = await d3.csv<any>("data/stargazers.csv", d3.autoType);
   const format = d3.utcFormat("%Y-%m-%d");

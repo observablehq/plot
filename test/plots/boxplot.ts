@@ -1,6 +1,10 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 
+if (import.meta.vitest) {
+  await import("../plot.js").then((_) => _.declareTests(import.meta.filename));
+}
+
 export async function boxplot() {
   return Plot.boxX([0, 3, 4.4, 4.5, 4.6, 5, 7]).plot();
 }

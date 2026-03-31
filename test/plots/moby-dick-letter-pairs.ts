@@ -1,6 +1,10 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 
+if (import.meta.vitest) {
+  await import("../plot.js").then((_) => _.declareTests(import.meta.filename));
+}
+
 export async function mobyDickLetterPairs() {
   const mobydick = await d3.text("data/moby-dick-chapter-1.txt");
   const letters = [...mobydick].map((d) => (/\w/.test(d) ? d.toUpperCase() : "*"));

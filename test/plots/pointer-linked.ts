@@ -1,6 +1,10 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 
+if (import.meta.vitest) {
+  await import("../plot.js").then((_) => _.declareTests(import.meta.filename));
+}
+
 export async function pointerLinkedRectInterval() {
   const a = d3.range(10).map((i) => ({series: "A", time: i, value: 15 + i - 0.3 * (i * i)}));
   const b = d3.range(12).map((i) => ({series: "B", time: i, value: 12 * i - i * i}));

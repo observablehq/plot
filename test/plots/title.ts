@@ -2,6 +2,10 @@ import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 import {html} from "htl";
 
+if (import.meta.vitest) {
+  await import("../plot.js").then((_) => _.declareTests(import.meta.filename));
+}
+
 export async function title() {
   const penguins = await d3.csv("data/penguins.csv", d3.autoType);
   return Plot.dotX(penguins, {x: "body_mass_g", stroke: "species"}).plot({

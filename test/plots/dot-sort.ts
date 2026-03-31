@@ -1,6 +1,10 @@
 import * as Plot from "@observablehq/plot";
 import {html} from "htl";
 
+if (import.meta.vitest) {
+  await import("../plot.js").then((_) => _.declareTests(import.meta.filename));
+}
+
 export async function dotSort() {
   const x = [..."ABDCEFGH"];
   const r = [30, 60, 20, 20, 35, 22, 20, 28];
