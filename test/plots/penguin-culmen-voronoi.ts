@@ -1,11 +1,8 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
+import {test} from "test/plot";
 
-if (import.meta.vitest) {
-  await import("../plot.js").then((_) => _.declareTests(import.meta.filename));
-}
-
-export async function penguinCulmenVoronoi() {
+test(async function penguinCulmenVoronoi() {
   const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
   return Plot.plot({
     marks: [
@@ -13,9 +10,9 @@ export async function penguinCulmenVoronoi() {
       Plot.voronoi(penguins, {x: "culmen_depth_mm", y: "culmen_length_mm", stroke: "species", tip: true})
     ]
   });
-}
+});
 
-export async function penguinCulmenVoronoiExclude() {
+test(async function penguinCulmenVoronoiExclude() {
   const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
   const xy = {fx: "species", x: "culmen_depth_mm", y: "culmen_length_mm"};
   return Plot.plot({
@@ -38,9 +35,9 @@ export async function penguinCulmenVoronoiExclude() {
       )
     ]
   });
-}
+});
 
-export async function penguinCulmenVoronoiExcludeHex() {
+test(async function penguinCulmenVoronoiExcludeHex() {
   const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
   const xy = {fx: "species", x: "culmen_depth_mm", y: "culmen_length_mm"};
   return Plot.plot({
@@ -55,4 +52,4 @@ export async function penguinCulmenVoronoiExcludeHex() {
       )
     ]
   });
-}
+});

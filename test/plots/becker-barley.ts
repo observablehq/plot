@@ -1,11 +1,8 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
+import {test} from "test/plot";
 
-if (import.meta.vitest) {
-  await import("../plot.js").then((_) => _.declareTests(import.meta.filename));
-}
-
-export async function beckerBarley() {
+test(async function beckerBarley() {
   const barley = await d3.csv<any>("data/barley.csv", d3.autoType);
   return Plot.plot({
     marginLeft: 110,
@@ -40,4 +37,4 @@ export async function beckerBarley() {
       })
     ]
   });
-}
+});

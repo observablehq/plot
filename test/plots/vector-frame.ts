@@ -1,10 +1,7 @@
 import * as Plot from "@observablehq/plot";
+import {test} from "test/plot";
 
-if (import.meta.vitest) {
-  await import("../plot.js").then((_) => _.declareTests(import.meta.filename));
-}
-
-export async function vectorFrame() {
+test(async function vectorFrame() {
   return Plot.plot({
     inset: 12,
     width: 200,
@@ -50,4 +47,4 @@ export async function vectorFrame() {
       })
     ]
   });
-}
+});

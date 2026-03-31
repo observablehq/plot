@@ -6,7 +6,8 @@
     "module": "Node16",
     "baseUrl": "./src",
     "paths": {
-      "@observablehq/plot": ["index"]
+      "@observablehq/plot": ["index"],
+      "test/plot": ["../test/plot.js"]
     },
     "types": [
       "vitest/importMeta"

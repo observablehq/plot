@@ -1,12 +1,9 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 import {mesh} from "topojson-client";
+import {test} from "test/plot";
 
-if (import.meta.vitest) {
-  await import("../plot.js").then((_) => _.declareTests(import.meta.filename));
-}
-
-export async function walmartsDensity() {
+test(async function walmartsDensity() {
   const [walmarts, statemesh] = await Promise.all([
     d3.tsv<any>("data/walmarts.tsv", d3.autoType),
     d3.json<any>("data/us-counties-10m.json").then((us) =>
@@ -29,4 +26,4 @@ export async function walmartsDensity() {
       Plot.geo(statemesh, {strokeOpacity: 0.3})
     ]
   });
-}
+});

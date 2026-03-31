@@ -1,9 +1,6 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
-
-if (import.meta.vitest) {
-  await import("../plot.js").then((_) => _.declareTests(import.meta.filename));
-}
+import {test} from "test/plot";
 
 function Likert(
   responses: [string, number][] = [
@@ -34,7 +31,7 @@ function Likert(
   };
 }
 
-export async function likertSurvey() {
+test(async function likertSurvey() {
   const survey = await d3.csv<any>("data/survey.csv");
   const {order, offset} = Likert();
   return Plot.plot({
@@ -56,4 +53,4 @@ export async function likertSurvey() {
       Plot.ruleX([0])
     ]
   });
-}
+});

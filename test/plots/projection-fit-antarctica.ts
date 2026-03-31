@@ -1,12 +1,9 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 import {feature} from "topojson-client";
+import {test} from "test/plot";
 
-if (import.meta.vitest) {
-  await import("../plot.js").then((_) => _.declareTests(import.meta.filename));
-}
-
-export async function projectionFitAntarctica() {
+test(async function projectionFitAntarctica() {
   const world = await d3.json<any>("data/countries-50m.json");
   const domain = feature(
     world,
@@ -32,4 +29,4 @@ export async function projectionFitAntarctica() {
       Plot.text({length: 1}, {x: -90, y: -63, text: ["Do not render"]})
     ]
   });
-}
+});

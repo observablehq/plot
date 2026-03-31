@@ -1,11 +1,8 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
+import {test} from "test/plot";
 
-if (import.meta.vitest) {
-  await import("../plot.js").then((_) => _.declareTests(import.meta.filename));
-}
-
-export async function seattleTemperatureAmplitude() {
+test(async function seattleTemperatureAmplitude() {
   const data = await d3.csv<any>("data/seattle-weather.csv", d3.autoType);
   const delta = (d) => d.temp_max - d.temp_min;
   return Plot.plot({
@@ -24,4 +21,4 @@ export async function seattleTemperatureAmplitude() {
       Plot.text(data, Plot.selectMaxY({x: "temp_min", y: delta, text: "date", lineAnchor: "bottom", dy: -10}))
     ]
   });
-}
+});

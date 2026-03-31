@@ -1,9 +1,6 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
-
-if (import.meta.vitest) {
-  await import("../plot.js").then((_) => _.declareTests(import.meta.filename));
-}
+import {test} from "test/plot";
 
 async function penguinNA(tickFormat: (x: number) => any = undefined) {
   const sample = await d3.csv<any>("data/penguins.csv", d3.autoType);
@@ -14,14 +11,14 @@ async function penguinNA(tickFormat: (x: number) => any = undefined) {
   });
 }
 
-export async function penguinNA1() {
+test(async function penguinNA1() {
   return penguinNA();
-}
+});
 
-export async function penguinNA2() {
+test(async function penguinNA2() {
   return penguinNA((d) => (isNaN(d) ? "N/A" : d));
-}
+});
 
-export async function penguinNA3() {
+test(async function penguinNA3() {
   return penguinNA((d) => d);
-}
+});

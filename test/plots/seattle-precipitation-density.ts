@@ -1,11 +1,8 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
+import {test} from "test/plot";
 
-if (import.meta.vitest) {
-  await import("../plot.js").then((_) => _.declareTests(import.meta.filename));
-}
-
-export async function seattlePrecipitationDensity() {
+test(async function seattlePrecipitationDensity() {
   const data = await d3.csv<any>("data/seattle-weather.csv", d3.autoType);
   return Plot.plot({
     marks: [
@@ -13,4 +10,4 @@ export async function seattlePrecipitationDensity() {
       Plot.dot(data, {x: "temp_min", y: "wind", r: "precipitation", fill: "steelblue", fillOpacity: 0.5})
     ]
   });
-}
+});

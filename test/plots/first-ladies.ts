@@ -1,11 +1,8 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
+import {test} from "test/plot";
 
-if (import.meta.vitest) {
-  await import("../plot.js").then((_) => _.declareTests(import.meta.filename));
-}
-
-export async function firstLadies() {
+test(async function firstLadies() {
   const data = await d3.csv<any>("data/first-ladies.csv", d3.autoType);
   const now = new Date("2021-07-19");
   return Plot.plot({
@@ -23,4 +20,4 @@ export async function firstLadies() {
       Plot.text(data, {x: (d) => d.death ?? now, y: "name", text: "name", textAnchor: "start", dx: 5})
     ]
   });
-}
+});

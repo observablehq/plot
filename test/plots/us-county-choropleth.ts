@@ -1,12 +1,9 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 import {feature, mesh} from "topojson-client";
+import {test} from "test/plot";
 
-if (import.meta.vitest) {
-  await import("../plot.js").then((_) => _.declareTests(import.meta.filename));
-}
-
-export async function usCountyChoropleth() {
+test(async function usCountyChoropleth() {
   const [[counties, statemesh], unemployment] = await Promise.all([
     d3
       .json<any>("data/us-counties-10m.json")
@@ -31,4 +28,4 @@ export async function usCountyChoropleth() {
       Plot.geo(statemesh, {stroke: "white"})
     ]
   });
-}
+});

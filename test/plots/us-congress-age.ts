@@ -1,11 +1,8 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
+import {test} from "test/plot";
 
-if (import.meta.vitest) {
-  await import("../plot.js").then((_) => _.declareTests(import.meta.filename));
-}
-
-export async function usCongressAge() {
+test(async function usCongressAge() {
   const data = await d3.csv<any>("data/us-congress-members.csv", d3.autoType);
   return Plot.plot({
     height: 300,
@@ -16,4 +13,4 @@ export async function usCongressAge() {
       Plot.ruleY([0])
     ]
   });
-}
+});

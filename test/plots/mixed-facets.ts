@@ -1,10 +1,7 @@
 import * as Plot from "@observablehq/plot";
+import {test} from "test/plot";
 
-if (import.meta.vitest) {
-  await import("../plot.js").then((_) => _.declareTests(import.meta.filename));
-}
-
-export async function mixedFacets() {
+test(async function mixedFacets() {
   const data = [
     {date: new Date("2024-01-01"), name: "a", value: 1},
     {date: new Date("2024-01-01"), name: "b", value: 2},
@@ -21,4 +18,4 @@ export async function mixedFacets() {
       Plot.ruleY([0])
     ]
   });
-}
+});

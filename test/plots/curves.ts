@@ -1,11 +1,8 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
+import {test} from "test/plot";
 
-if (import.meta.vitest) {
-  await import("../plot.js").then((_) => _.declareTests(import.meta.filename));
-}
-
-export async function curves() {
+test(async function curves() {
   const random = d3.randomLcg(42);
   const values = d3.ticks(0, 1, 11).map((t) => {
     const r = 1 + 2 * random();
@@ -27,4 +24,4 @@ export async function curves() {
       Plot.dot(values, {stroke: "white", fill: "black"})
     ]
   });
-}
+});

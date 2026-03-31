@@ -1,11 +1,8 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
+import {test} from "test/plot";
 
-if (import.meta.vitest) {
-  await import("../plot.js").then((_) => _.declareTests(import.meta.filename));
-}
-
-export async function caltrainDirection() {
+test(async function caltrainDirection() {
   const caltrain = await d3.csv<any>("data/caltrain.csv");
   return Plot.plot({
     x: {
@@ -28,4 +25,4 @@ export async function caltrainDirection() {
       })
     ]
   });
-}
+});

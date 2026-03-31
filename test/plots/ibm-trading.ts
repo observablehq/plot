@@ -1,11 +1,8 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
+import {test} from "test/plot";
 
-if (import.meta.vitest) {
-  await import("../plot.js").then((_) => _.declareTests(import.meta.filename));
-}
-
-export async function ibmTrading() {
+test(async function ibmTrading() {
   const ibm = await d3.csv<any>("data/ibm.csv", d3.autoType).then((data) => data.slice(-20));
   return Plot.plot({
     x: {interval: "day"},
@@ -16,4 +13,4 @@ export async function ibmTrading() {
     },
     marks: [Plot.barY(ibm, {x: "Date", y: "Volume"})]
   });
-}
+});

@@ -1,10 +1,7 @@
 import * as Plot from "@observablehq/plot";
+import {test} from "test/plot";
 
-if (import.meta.vitest) {
-  await import("../plot.js").then((_) => _.declareTests(import.meta.filename));
-}
-
-export async function yearlyRequestsLine() {
+test(async function yearlyRequestsLine() {
   const requests = [
     [2002, 9],
     [2003, 17],
@@ -31,4 +28,4 @@ export async function yearlyRequestsLine() {
     },
     marks: [Plot.line(requests)]
   });
-}
+});

@@ -1,9 +1,6 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
-
-if (import.meta.vitest) {
-  await import("../plot.js").then((_) => _.declareTests(import.meta.filename));
-}
+import {test} from "test/plot";
 
 const format = d3.format("+d");
 
@@ -16,7 +13,7 @@ async function loadSymbol(name) {
   return d3.csv(`data/${name}.csv`, (d) => ({Symbol, ...d3.autoType(d)}));
 }
 
-export async function stocksIndex() {
+test(async function stocksIndex() {
   const stocks = (await Promise.all(["aapl", "amzn", "goog", "ibm"].map(loadSymbol))).flat();
   return Plot.plot({
     style: "overflow: visible;",
@@ -51,4 +48,4 @@ export async function stocksIndex() {
       )
     ]
   });
-}
+});

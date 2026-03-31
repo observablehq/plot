@@ -1,11 +1,8 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
+import {test} from "test/plot";
 
-if (import.meta.vitest) {
-  await import("../plot.js").then((_) => _.declareTests(import.meta.filename));
-}
-
-export async function wordCloud() {
+test(async function wordCloud() {
   const random = d3.randomLcg(32);
 
   // Compute a set of “words” from the text. As with any natural language task,
@@ -38,4 +35,4 @@ export async function wordCloud() {
       )
     ]
   });
-}
+});

@@ -1,10 +1,7 @@
 import * as Plot from "@observablehq/plot";
+import {test} from "test/plot";
 
-if (import.meta.vitest) {
-  await import("../plot.js").then((_) => _.declareTests(import.meta.filename));
-}
-
-export async function npmVersions() {
+test(async function npmVersions() {
   const versions = [
     {version: "0.5.0", downloads: 7},
     {version: "0.5.1", downloads: 6},
@@ -92,4 +89,4 @@ export async function npmVersions() {
       Plot.ruleX([0])
     ]
   });
-}
+});

@@ -1,10 +1,7 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 import {svg} from "htl";
-
-if (import.meta.vitest) {
-  await import("../plot.js").then((_) => _.declareTests(import.meta.filename));
-}
+import {test} from "test/plot";
 
 function* collatz(n) {
   yield n;
@@ -14,7 +11,7 @@ function* collatz(n) {
   }
 }
 
-export async function arcCollatz() {
+test(async function arcCollatz() {
   return Plot.plot({
     height: 520,
     axis: null,
@@ -34,9 +31,9 @@ export async function arcCollatz() {
       Plot.dot(collatz(12), {x: Plot.identity, r: 10})
     ]
   });
-}
+});
 
-export async function arcCollatzUp() {
+test(async function arcCollatzUp() {
   return Plot.plot({
     height: 260,
     x: {ticks: 20, tickSize: 0},
@@ -65,9 +62,9 @@ export async function arcCollatzUp() {
         </linearGradient>`
     ]
   });
-}
+});
 
-export async function arcMiserables() {
+test(async function arcMiserables() {
   const {nodes, links} = await d3.json<any>("data/miserables.json");
   const darker = (options) =>
     Plot.initializer(options, (data, facets, {fill: {value: F}}, {color}) => ({
@@ -126,4 +123,4 @@ export async function arcMiserables() {
       )
     ]
   });
-}
+});

@@ -1,10 +1,7 @@
 import * as Plot from "@observablehq/plot";
+import {test} from "test/plot";
 
-if (import.meta.vitest) {
-  await import("../plot.js").then((_) => _.declareTests(import.meta.filename));
-}
-
-export async function emptyX() {
+test(async function emptyX() {
   return Plot.plot({
     grid: true,
     x: {
@@ -13,4 +10,4 @@ export async function emptyX() {
     },
     marks: [Plot.frame()]
   });
-}
+});

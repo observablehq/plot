@@ -1,11 +1,8 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
+import {test} from "test/plot";
 
-if (import.meta.vitest) {
-  await import("../plot.js").then((_) => _.declareTests(import.meta.filename));
-}
-
-export async function athletesBirthdays() {
+test(async function athletesBirthdays() {
   const athletes = await d3.csv<any>("data/athletes.csv", d3.autoType);
   return Plot.plot({
     marginRight: 40,
@@ -21,4 +18,4 @@ export async function athletesBirthdays() {
       Plot.ruleX([0])
     ]
   });
-}
+});

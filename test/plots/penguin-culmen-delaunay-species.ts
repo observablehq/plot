@@ -1,11 +1,8 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
+import {test} from "test/plot";
 
-if (import.meta.vitest) {
-  await import("../plot.js").then((_) => _.declareTests(import.meta.filename));
-}
-
-export async function penguinCulmenDelaunaySpecies() {
+test(async function penguinCulmenDelaunaySpecies() {
   const data = await d3.csv<any>("data/penguins.csv", d3.autoType);
   return Plot.plot({
     marks: [
@@ -19,4 +16,4 @@ export async function penguinCulmenDelaunaySpecies() {
       Plot.hull(data, {x: "culmen_depth_mm", y: "culmen_length_mm", stroke: "species", strokeWidth: 3})
     ]
   });
-}
+});

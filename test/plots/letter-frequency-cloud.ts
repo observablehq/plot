@@ -1,11 +1,8 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
+import {test} from "test/plot";
 
-if (import.meta.vitest) {
-  await import("../plot.js").then((_) => _.declareTests(import.meta.filename));
-}
-
-export async function letterFrequencyCloud() {
+test(async function letterFrequencyCloud() {
   const alphabet = await d3.csv<any>("data/alphabet.csv", d3.autoType);
   const random = d3.randomLcg(3);
   const max = d3.max(alphabet, (d) => d.frequency);
@@ -22,4 +19,4 @@ export async function letterFrequencyCloud() {
       Plot.text(alphabet, {x: random, y: random, text: "letter", fontSize: (d) => 10 + 200 * (d.frequency / max)})
     ]
   });
-}
+});

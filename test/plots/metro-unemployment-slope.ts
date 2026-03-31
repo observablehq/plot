@@ -1,11 +1,8 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
+import {test} from "test/plot";
 
-if (import.meta.vitest) {
-  await import("../plot.js").then((_) => _.declareTests(import.meta.filename));
-}
-
-export async function metroUnemploymentSlope() {
+test(async function metroUnemploymentSlope() {
   const bls = await d3.csv<any>("data/bls-metro-unemployment.csv", d3.autoType);
   return Plot.plot({
     y: {
@@ -26,4 +23,4 @@ export async function metroUnemploymentSlope() {
       Plot.ruleY([0])
     ]
   });
-}
+});

@@ -1,10 +1,7 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 import {svg} from "htl";
-
-if (import.meta.vitest) {
-  await import("../plot.js").then((_) => _.declareTests(import.meta.filename));
-}
+import {test} from "test/plot";
 
 const demographics = d3.csvParse(
   `group,label,freq
@@ -16,11 +13,11 @@ Elderly 65+,65+,12456`,
   d3.autoType
 );
 
-export function waffleSquished() {
+test(function waffleSquished() {
   return Plot.waffleX([10]).plot();
-}
+});
 
-export function waffleMultiple() {
+test(function waffleMultiple() {
   return Plot.plot({
     y: {inset: 12},
     marks: [
@@ -28,9 +25,9 @@ export function waffleMultiple() {
       Plot.waffleY([-4, -9, -24, -46, -66, -7], {multiple: 10, fill: "red"})
     ]
   });
-}
+});
 
-export function waffleShorthand() {
+test(function waffleShorthand() {
   return Plot.plot({
     y: {inset: 12},
     marks: [
@@ -38,9 +35,9 @@ export function waffleShorthand() {
       Plot.waffleY([-4, -9, -24, -46, -66, -7], {fill: "red"})
     ]
   });
-}
+});
 
-export function waffleStroke() {
+test(function waffleStroke() {
   return Plot.plot({
     y: {inset: 12},
     marks: [
@@ -48,9 +45,9 @@ export function waffleStroke() {
       Plot.waffleY([-4, -9, -24, -46, -66, -7], {fill: "red", stroke: "currentColor", gap: 0})
     ]
   });
-}
+});
 
-export function waffleRound() {
+test(function waffleRound() {
   return Plot.plot({
     y: {inset: 12},
     marks: [
@@ -58,9 +55,9 @@ export function waffleRound() {
       Plot.waffleY([-4, -9, -24, -46, -66, -7], {fill: "red", rx: "100%"})
     ]
   });
-}
+});
 
-export function waffleStrokeMixed() {
+test(function waffleStrokeMixed() {
   return Plot.plot({
     y: {insetBottom: 16},
     marks: [
@@ -89,9 +86,9 @@ export function waffleStrokeMixed() {
       Plot.ruleY([0])
     ]
   });
-}
+});
 
-export function waffleStrokeNegative() {
+test(function waffleStrokeNegative() {
   return Plot.plot({
     x: {axis: "top"},
     marks: [
@@ -141,9 +138,9 @@ export function waffleStrokeNegative() {
       Plot.ruleY([0])
     ]
   });
-}
+});
 
-export function waffleStrokePositive() {
+test(function waffleStrokePositive() {
   return Plot.plot({
     marks: [
       Plot.waffleY(
@@ -192,9 +189,9 @@ export function waffleStrokePositive() {
       Plot.ruleY([0])
     ]
   });
-}
+});
 
-export function waffleX() {
+test(function waffleX() {
   return Plot.plot({
     marginLeft: 80,
     y: {label: null},
@@ -205,9 +202,9 @@ export function waffleX() {
       Plot.ruleX([0])
     ]
   });
-}
+});
 
-export function waffleXStacked() {
+test(function waffleXStacked() {
   return Plot.plot({
     height: 240,
     color: {scheme: "cool"},
@@ -217,9 +214,9 @@ export function waffleXStacked() {
       Plot.ruleX([0])
     ]
   });
-}
+});
 
-export function waffleY() {
+test(function waffleY() {
   return Plot.plot({
     x: {label: null},
     color: {scheme: "cool"},
@@ -229,9 +226,9 @@ export function waffleY() {
       Plot.ruleY([0])
     ]
   });
-}
+});
 
-export function waffleYStacked() {
+test(function waffleYStacked() {
   return Plot.plot({
     y: {insetTop: 10},
     color: {scheme: "cool", legend: true},
@@ -241,18 +238,18 @@ export function waffleYStacked() {
       Plot.ruleY([0])
     ]
   });
-}
+});
 
-export async function waffleYGrouped() {
+test(async function waffleYGrouped() {
   const athletes = await d3.csv<any>("data/athletes.csv", d3.autoType);
   return Plot.plot({
     marginBottom: 100,
     x: {tickRotate: -90, label: null},
     marks: [Plot.waffleY(athletes, Plot.groupX({y: "count"}, {x: "sport", unit: 10})), Plot.ruleY([0])]
   });
-}
+});
 
-export function wafflePointer() {
+test(function wafflePointer() {
   const random = d3.randomLcg(42);
   const data = Array.from({length: 100}, (_, i) => ({x: i % 3, fill: random()}));
   return Plot.plot({
@@ -262,9 +259,9 @@ export function wafflePointer() {
       Plot.waffleY(data, Plot.pointer({x: "x", y: 1, fill: "fill"}))
     ]
   });
-}
+});
 
-export function wafflePointerFractional() {
+test(function wafflePointerFractional() {
   const values = [0.51, 0.99, 0.5, 6, 0.3, 1.6, 9.1, 2, 18, 6, 0.5, 2.5, 46, 34, 20, 7, 0.5, 0.1, 0, 2.5, 1, 0.1, 0.8];
   const multiple = 16;
   return Plot.plot({
@@ -299,32 +296,32 @@ export function wafflePointerFractional() {
       })
     ]
   });
-}
+});
 
-export function waffleTip() {
+test(function waffleTip() {
   return Plot.plot({
     color: {type: "sqrt", scheme: "spectral"},
     y: {inset: 12},
     marks: [Plot.waffleY([1, 4, 9, 24, 46, 66, 7], {x: null, fill: Plot.identity, tip: true})]
   });
-}
+});
 
-export function waffleTipUnit() {
+test(function waffleTipUnit() {
   return Plot.plot({
     y: {inset: 12},
     marks: [Plot.waffleY({length: 100}, {x: (d, i) => i % 3, y: 1, fill: d3.randomLcg(42), tip: true})]
   });
-}
+});
 
-export function waffleTipFacet() {
+test(function waffleTipFacet() {
   return Plot.plot({
     marks: [
       Plot.waffleY({length: 500}, {x: (d, i) => i % 3, fx: (d, i) => i % 2, y: 1, fill: d3.randomLcg(42), tip: true})
     ]
   });
-}
+});
 
-export function waffleTipX() {
+test(function waffleTipX() {
   return Plot.plot({
     style: {overflow: "visible"},
     color: {type: "sqrt", scheme: "spectral"},
@@ -332,9 +329,9 @@ export function waffleTipX() {
     y: {inset: 12},
     marks: [Plot.waffleX([1, 4, 9, 24, 46, 66, 7], {y: null, fill: Plot.identity, tip: true})]
   });
-}
+});
 
-export function waffleTipUnitX() {
+test(function waffleTipUnitX() {
   return Plot.plot({
     height: 300,
     y: {inset: 12},
@@ -345,9 +342,9 @@ export function waffleTipUnitX() {
       )
     ]
   });
-}
+});
 
-export function waffleHref() {
+test(function waffleHref() {
   return Plot.plot({
     inset: 10,
     marks: [
@@ -363,41 +360,41 @@ export function waffleHref() {
       )
     ]
   });
-}
+});
 
-export function waffleStrokeWidth() {
+test(function waffleStrokeWidth() {
   return Plot.plot({
     inset: 10,
     marks: [Plot.waffleY({length: 77}, {y: 1, stroke: (d, i) => i % 7, gap: 15, strokeWidth: 15, strokeOpacity: 0.8})]
   });
-}
+});
 
-export function waffleStrokeWidthConst() {
+test(function waffleStrokeWidthConst() {
   return Plot.plot({
     inset: 10,
     marks: [Plot.waffleY({length: 77}, {y: 1, stroke: "black", gap: 15, strokeWidth: 15, strokeOpacity: 0.8})]
   });
-}
+});
 
-export function waffleTipFacetX() {
+test(function waffleTipFacetX() {
   return Plot.plot({
     height: 500,
     marks: [
       Plot.waffleX({length: 500}, {y: (d, i) => i % 3, fx: (d, i) => i % 2, x: 1, fill: d3.randomLcg(42), tip: true})
     ]
   });
-}
+});
 
-export function waffleTipFacetXY() {
+test(function waffleTipFacetXY() {
   return Plot.plot({
     height: 600,
     marks: [
       Plot.waffleX({length: 500}, {fx: (d, i) => i % 3, fy: (d, i) => i % 2, x: 1, fill: d3.randomLcg(42), tip: true})
     ]
   });
-}
+});
 
-export function waffleShapes() {
+test(function waffleShapes() {
   const k = 10;
   let offset = 0;
   const waffle = (y1, y2) => {
@@ -433,4 +430,4 @@ export function waffleShapes() {
       waffle(7.6, 22.4)
     ]
   });
-}
+});

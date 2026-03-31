@@ -1,11 +1,8 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
+import {test} from "test/plot";
 
-if (import.meta.vitest) {
-  await import("../plot.js").then((_) => _.declareTests(import.meta.filename));
-}
-
-export async function faithfulDensity() {
+test(async function faithfulDensity() {
   const faithful = await d3.tsv<any>("data/faithful.tsv", d3.autoType);
   return Plot.plot({
     inset: 20,
@@ -15,12 +12,12 @@ export async function faithfulDensity() {
       Plot.dot(faithful, {x: "waiting", y: "eruptions", fill: "currentColor", r: 1.5})
     ]
   });
-}
+});
 
-export async function faithfulDensityFill() {
+test(async function faithfulDensityFill() {
   const faithful = await d3.tsv<any>("data/faithful.tsv", d3.autoType);
   return Plot.plot({
     inset: 30,
     marks: [Plot.frame({fill: 0}), Plot.density(faithful, {x: "waiting", y: "eruptions", fill: "density"})]
   });
-}
+});

@@ -1,11 +1,8 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
+import {test} from "test/plot";
 
-if (import.meta.vitest) {
-  await import("../plot.js").then((_) => _.declareTests(import.meta.filename));
-}
-
-export async function letterFrequencyColumn() {
+test(async function letterFrequencyColumn() {
   const alphabet = await d3.csv<any>("data/alphabet.csv", d3.autoType);
   return Plot.plot({
     x: {
@@ -18,4 +15,4 @@ export async function letterFrequencyColumn() {
     },
     marks: [Plot.barY(alphabet, {x: "letter", y: "frequency"}), Plot.ruleY([0])]
   });
-}
+});

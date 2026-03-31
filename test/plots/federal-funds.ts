@@ -1,11 +1,8 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
+import {test} from "test/plot";
 
-if (import.meta.vitest) {
-  await import("../plot.js").then((_) => _.declareTests(import.meta.filename));
-}
-
-export async function federalFunds() {
+test(async function federalFunds() {
   const h15 = d3.csvParse((await d3.text("data/federal-funds.csv")).split("\n").slice(5).join("\n"), d3.autoType);
   return Plot.plot({
     marginLeft: 0, // don’t need left-margin since labels are inset
@@ -29,4 +26,4 @@ export async function federalFunds() {
       Plot.line(h15, {x: "Time Period", y: "RIFSPFF_N.BWAW", markerEnd: "dot"})
     ]
   });
-}
+});

@@ -1,11 +1,8 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
+import {test} from "test/plot";
 
-if (import.meta.vitest) {
-  await import("../plot.js").then((_) => _.declareTests(import.meta.filename));
-}
-
-export async function sparseCell() {
+test(async function sparseCell() {
   const simpsons = d3.sort(await d3.csv<any>("data/simpsons.csv", d3.autoType), (d) => d.number_in_series);
   const data = [...simpsons.slice(0, 26), ...simpsons.slice(-10)];
   return Plot.plot({
@@ -40,4 +37,4 @@ export async function sparseCell() {
       })
     ]
   });
-}
+});

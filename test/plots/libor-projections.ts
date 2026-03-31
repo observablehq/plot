@@ -1,11 +1,8 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
+import {test} from "test/plot";
 
-if (import.meta.vitest) {
-  await import("../plot.js").then((_) => _.declareTests(import.meta.filename));
-}
-
-export async function liborProjections() {
+test(async function liborProjections() {
   const libor = await d3.csv<any>("data/libor-projections.csv", d3.autoType);
   const pc = d3.format(".2%");
   return Plot.plot({
@@ -27,9 +24,9 @@ export async function liborProjections() {
     ],
     y: {grid: true, line: true}
   });
-}
+});
 
-export async function liborProjectionsFacet() {
+test(async function liborProjectionsFacet() {
   const libor = await d3.csv<any>("data/libor-projections.csv", d3.autoType);
   return Plot.plot({
     fy: {tickFormat: "d"},
@@ -47,4 +44,4 @@ export async function liborProjectionsFacet() {
       })
     ]
   });
-}
+});

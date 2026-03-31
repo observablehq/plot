@@ -1,11 +1,8 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
+import {test} from "test/plot";
 
-if (import.meta.vitest) {
-  await import("../plot.js").then((_) => _.declareTests(import.meta.filename));
-}
-
-export async function gistempAnomaly() {
+test(async function gistempAnomaly() {
   const data = await d3.csv<any>("data/gistemp.csv", d3.autoType);
   return Plot.plot({
     y: {
@@ -18,4 +15,4 @@ export async function gistempAnomaly() {
     },
     marks: [Plot.ruleY([0]), Plot.dot(data, {x: "Date", y: "Anomaly", stroke: "Anomaly"})]
   });
-}
+});

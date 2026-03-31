@@ -1,10 +1,7 @@
 import * as Plot from "@observablehq/plot";
+import {test} from "test/plot";
 
-if (import.meta.vitest) {
-  await import("../plot.js").then((_) => _.declareTests(import.meta.filename));
-}
-
-export async function thisIsJustToSay() {
+test(async function thisIsJustToSay() {
   return Plot.plot({
     height: 200,
     marks: [
@@ -17,4 +14,4 @@ export async function thisIsJustToSay() {
       )
     ]
   });
-}
+});

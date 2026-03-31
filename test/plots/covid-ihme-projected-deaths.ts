@@ -1,11 +1,8 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
+import {test} from "test/plot";
 
-if (import.meta.vitest) {
-  await import("../plot.js").then((_) => _.declareTests(import.meta.filename));
-}
-
-export async function covidIhmeProjectedDeaths() {
+test(async function covidIhmeProjectedDeaths() {
   const data = await d3.csv<any>("data/covid-ihme-projected-deaths.csv", d3.autoType);
   const i = data.findIndex((d) => d.projected) - 1;
   return Plot.plot({
@@ -51,4 +48,4 @@ export async function covidIhmeProjectedDeaths() {
       })
     ]
   });
-}
+});

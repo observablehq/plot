@@ -1,20 +1,17 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
+import {test} from "test/plot";
 
-if (import.meta.vitest) {
-  await import("../plot.js").then((_) => _.declareTests(import.meta.filename));
-}
-
-export async function mobyDickLetterFrequency() {
+test(async function mobyDickLetterFrequency() {
   const mobydick = await d3.text("data/moby-dick-chapter-1.txt");
   const letters = [...mobydick].filter((c) => /[a-z]/i.test(c)).map((c) => c.toUpperCase());
   return Plot.plot({
     y: {grid: true},
     marks: [Plot.barY(letters, Plot.groupX({y: "count"})), Plot.ruleY([0])]
   });
-}
+});
 
-export async function mobyDickLetterFrequencyFillX() {
+test(async function mobyDickLetterFrequencyFillX() {
   const mobydick = await d3.text("data/moby-dick-chapter-1.txt");
   const letters = [...mobydick].filter((c) => /[a-z]/i.test(c)).map((c) => c.toUpperCase());
   return Plot.plot({
@@ -22,4 +19,4 @@ export async function mobyDickLetterFrequencyFillX() {
     color: {scheme: "spectral"},
     marks: [Plot.barY(letters, Plot.groupX({y: "count", fill: "x"})), Plot.ruleY([0])]
   });
-}
+});

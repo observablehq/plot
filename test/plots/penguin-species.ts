@@ -1,12 +1,9 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 import {svg} from "htl";
+import {test} from "test/plot";
 
-if (import.meta.vitest) {
-  await import("../plot.js").then((_) => _.declareTests(import.meta.filename));
-}
-
-export async function penguinSpeciesCheysson() {
+test(async function penguinSpeciesCheysson() {
   const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
   return Plot.plot({
     color: {
@@ -31,9 +28,9 @@ export async function penguinSpeciesCheysson() {
       Plot.ruleY([0])
     ]
   });
-}
+});
 
-export async function penguinSpeciesGradient() {
+test(async function penguinSpeciesGradient() {
   const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
   return Plot.plot({
     marks: [
@@ -48,9 +45,9 @@ export async function penguinSpeciesGradient() {
       Plot.ruleY([0])
     ]
   });
-}
+});
 
-export async function penguinSpeciesGroup() {
+test(async function penguinSpeciesGroup() {
   const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
   return Plot.plot({
     marks: [
@@ -59,9 +56,9 @@ export async function penguinSpeciesGroup() {
       Plot.ruleX([0, 1])
     ]
   });
-}
+});
 
-export async function penguinSpeciesImageFilter() {
+test(async function penguinSpeciesImageFilter() {
   const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
   return Plot.plot({
     marks: [
@@ -79,4 +76,4 @@ export async function penguinSpeciesImageFilter() {
       Plot.ruleY([0])
     ]
   });
-}
+});

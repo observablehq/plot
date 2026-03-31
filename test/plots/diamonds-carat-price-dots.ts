@@ -1,11 +1,8 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
+import {test} from "test/plot";
 
-if (import.meta.vitest) {
-  await import("../plot.js").then((_) => _.declareTests(import.meta.filename));
-}
-
-export async function diamondsCaratPriceDots() {
+test(async function diamondsCaratPriceDots() {
   const data = await d3.csv<any>("data/diamonds.csv", d3.autoType);
   return Plot.plot({
     height: 640,
@@ -23,4 +20,4 @@ export async function diamondsCaratPriceDots() {
     },
     marks: [Plot.dot(data, Plot.bin({r: "count"}, {x: "carat", y: "price", thresholds: 100}))]
   });
-}
+});

@@ -1,11 +1,8 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
+import {test} from "test/plot";
 
-if (import.meta.vitest) {
-  await import("../plot.js").then((_) => _.declareTests(import.meta.filename));
-}
-
-export async function linearRegressionCars() {
+test(async function linearRegressionCars() {
   const cars = await d3.csv<any>("data/cars.csv", d3.autoType);
   return Plot.plot({
     marks: [
@@ -13,4 +10,4 @@ export async function linearRegressionCars() {
       Plot.linearRegressionY(cars, {x: "weight (lb)", y: "economy (mpg)", ci: 0.99})
     ]
   });
-}
+});

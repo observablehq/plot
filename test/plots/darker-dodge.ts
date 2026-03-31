@@ -1,10 +1,7 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 import {remap} from "../transforms/remap.js";
-
-if (import.meta.vitest) {
-  await import("../plot.js").then((_) => _.declareTests(import.meta.filename));
-}
+import {test} from "test/plot";
 
 function darker(outputs: {[name: string]: number}, inputs) {
   return remap(
@@ -13,7 +10,7 @@ function darker(outputs: {[name: string]: number}, inputs) {
   );
 }
 
-export async function darkerDodge() {
+test(async function darkerDodge() {
   const random = d3.randomLogNormal.source(d3.randomLcg(42))();
   return Plot.plot({
     height: 170,
@@ -25,4 +22,4 @@ export async function darkerDodge() {
       )
     ]
   });
-}
+});

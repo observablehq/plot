@@ -1,11 +1,8 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
+import {test} from "test/plot";
 
-if (import.meta.vitest) {
-  await import("../plot.js").then((_) => _.declareTests(import.meta.filename));
-}
-
-export async function moviesProfitByGenre() {
+test(async function moviesProfitByGenre() {
   const movies = await d3.json<any>("data/movies.json");
   const Genre = (d) => d["Major Genre"] || "Other";
   const Profit = (d) => (d["Worldwide Gross"] - d["Production Budget"]) / 1e6;
@@ -50,4 +47,4 @@ export async function moviesProfitByGenre() {
       )
     ]
   });
-}
+});

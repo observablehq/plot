@@ -1,11 +1,8 @@
 import * as Plot from "@observablehq/plot";
 import {svg} from "htl";
+import {test} from "test/plot";
 
-if (import.meta.vitest) {
-  await import("../plot.js").then((_) => _.declareTests(import.meta.filename));
-}
-
-export async function empty() {
+test(async function empty() {
   return Plot.plot({
     grid: true,
     inset: 6,
@@ -20,4 +17,4 @@ export async function empty() {
       () => svg`<circle cx=50% cy=50% r=5 fill=green>`
     ]
   });
-}
+});

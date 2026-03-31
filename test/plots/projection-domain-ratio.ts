@@ -1,10 +1,7 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 import {feature, mesh} from "topojson-client";
-
-if (import.meta.vitest) {
-  await import("../plot.js").then((_) => _.declareTests(import.meta.filename));
-}
+import {test} from "test/plot";
 
 type Prj = {type: Plot.ProjectionName | (() => any); parallels?: [number, number]; rotate?: [number, number]};
 
@@ -22,19 +19,19 @@ async function stateMap(id: string, prj: Prj) {
   });
 }
 
-export async function projectionDomainRatioME() {
+test(async function projectionDomainRatioME() {
   return stateMap("23", {type: "transverse-mercator", rotate: [68 + 30 / 60, -43 - 40 / 60]});
-}
+});
 
-export async function projectionDomainRatioMN() {
+test(async function projectionDomainRatioMN() {
   return stateMap("27", {type: "conic-conformal", parallels: [45 + 37 / 60, 47 + 3 / 60], rotate: [94 + 15 / 60, 0]});
-}
+});
 
-export async function projectionDomainRatioNC() {
+test(async function projectionDomainRatioNC() {
   return stateMap("37", {type: "conic-conformal", parallels: [34 + 20 / 60, 36 + 10 / 60], rotate: [79, 0]});
-}
+});
 
-export async function projectionDomainRatioNCManual() {
+test(async function projectionDomainRatioNCManual() {
   return stateMap("37", {
     type: () =>
       d3
@@ -42,4 +39,4 @@ export async function projectionDomainRatioNCManual() {
         .parallels([34 + 20 / 60, 36 + 10 / 60])
         .rotate([79, 0])
   });
-}
+});

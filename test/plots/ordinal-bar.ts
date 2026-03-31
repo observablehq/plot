@@ -1,14 +1,11 @@
 import * as Plot from "@observablehq/plot";
+import {test} from "test/plot";
 
-if (import.meta.vitest) {
-  await import("../plot.js").then((_) => _.declareTests(import.meta.filename));
-}
-
-export async function ordinalBar() {
+test(async function ordinalBar() {
   return Plot.plot({
     y: {
       grid: true
     },
     marks: [Plot.barY("ABCDEF"), Plot.ruleY([0])]
   });
-}
+});

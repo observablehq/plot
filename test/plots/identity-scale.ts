@@ -1,11 +1,8 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
+import {test} from "test/plot";
 
-if (import.meta.vitest) {
-  await import("../plot.js").then((_) => _.declareTests(import.meta.filename));
-}
-
-export async function identityScale() {
+test(async function identityScale() {
   const random = d3.randomLcg(42);
   return Plot.plot({
     x: {
@@ -29,4 +26,4 @@ export async function identityScale() {
       )
     ]
   });
-}
+});

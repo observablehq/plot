@@ -1,11 +1,8 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
+import {test} from "test/plot";
 
-if (import.meta.vitest) {
-  await import("../plot.js").then((_) => _.declareTests(import.meta.filename));
-}
-
-export async function usStatePopulationChange() {
+test(async function usStatePopulationChange() {
   const data = await d3.csv<any>("data/us-state-population-2010-2019.csv", d3.autoType);
   return Plot.plot({
     height: 800,
@@ -36,9 +33,9 @@ export async function usStatePopulationChange() {
       Plot.ruleX([0])
     ]
   });
-}
+});
 
-export async function usStatePopulationChangeRelative() {
+test(async function usStatePopulationChangeRelative() {
   const statepop = await d3.csv<any>("data/us-state-population-2010-2019.csv", d3.autoType);
   const change = new Map(statepop.map((d) => [d.State, (d[2019] - d[2010]) / d[2010]]));
   return Plot.plot({
@@ -69,4 +66,4 @@ export async function usStatePopulationChangeRelative() {
       Plot.ruleX([0])
     ]
   });
-}
+});

@@ -1,11 +1,8 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
+import {test} from "test/plot";
 
-if (import.meta.vitest) {
-  await import("../plot.js").then((_) => _.declareTests(import.meta.filename));
-}
-
-export async function frameFillCategorical() {
+test(async function frameFillCategorical() {
   return Plot.plot({
     color: {legend: true},
     marks: [
@@ -15,9 +12,9 @@ export async function frameFillCategorical() {
       Plot.frame({fill: "white", inset: 15}) // literal color
     ]
   });
-}
+});
 
-export async function frameFillQuantitative() {
+test(async function frameFillQuantitative() {
   return Plot.plot({
     color: {type: "linear", legend: true},
     marks: [
@@ -25,20 +22,20 @@ export async function frameFillQuantitative() {
       Plot.frame({fill: "white", inset: 11}) // literal color
     ]
   });
-}
+});
 
-export async function frameFacet() {
+test(async function frameFacet() {
   const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
   return Plot.plot({
     marginLeft: 80,
     inset: 10,
     marks: [Plot.frame({fy: "Gentoo"}), Plot.dot(penguins, {x: "body_mass_g", fy: "species"})]
   });
-}
+});
 
-export async function frameCorners() {
+test(async function frameCorners() {
   return Plot.frame({rx: 16, ry: 10}).plot();
-}
+});
 
 const marks = [
   Plot.frame({anchor: "left", stroke: "red", strokeWidth: 4}),
@@ -47,23 +44,23 @@ const marks = [
   Plot.frame({anchor: "bottom", stroke: "black", strokeWidth: 4})
 ];
 
-export async function frameSides() {
+test(async function frameSides() {
   return Plot.plot({width: 350, height: 250, margin: 2, marks});
-}
+});
 
-export async function frameSidesXY() {
+test(async function frameSidesXY() {
   return Plot.plot({width: 350, height: 250, x: {domain: [0, 1]}, y: {domain: [0, 1]}, marks});
-}
+});
 
-export async function frameSidesX() {
+test(async function frameSidesX() {
   return Plot.plot({width: 350, height: 250, x: {domain: [0, 1]}, marks});
-}
+});
 
-export async function frameSidesY() {
+test(async function frameSidesY() {
   return Plot.plot({width: 350, height: 250, y: {domain: [0, 1]}, marks});
-}
+});
 
-export async function futureSplom() {
+test(async function futureSplom() {
   const data = {columns: ["A", "B", "C"]};
   return Plot.plot({
     width: 400,
@@ -85,4 +82,4 @@ export async function futureSplom() {
       Plot.frame({facetAnchor: "empty"})
     ]
   });
-}
+});

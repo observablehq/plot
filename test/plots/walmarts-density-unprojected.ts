@@ -1,11 +1,8 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
+import {test} from "test/plot";
 
-if (import.meta.vitest) {
-  await import("../plot.js").then((_) => _.declareTests(import.meta.filename));
-}
-
-export async function walmartsDensityUnprojected() {
+test(async function walmartsDensityUnprojected() {
   const walmarts = await d3.tsv<any>("data/walmarts.tsv", d3.autoType);
   return Plot.plot({
     width: 960,
@@ -19,4 +16,4 @@ export async function walmartsDensityUnprojected() {
       Plot.geo({type: "MultiPoint", coordinates: walmarts.map((d) => [d.longitude, d.latitude])})
     ]
   });
-}
+});

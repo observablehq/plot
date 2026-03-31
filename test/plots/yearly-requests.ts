@@ -1,8 +1,5 @@
 import * as Plot from "@observablehq/plot";
-
-if (import.meta.vitest) {
-  await import("../plot.js").then((_) => _.declareTests(import.meta.filename));
-}
+import {test} from "test/plot";
 
 const requests = [
   [new Date("2002-01-01"), 9],
@@ -19,18 +16,18 @@ const requests = [
   [new Date("2019-01-01"), 20]
 ];
 
-export async function yearlyRequests() {
+test(async function yearlyRequests() {
   return Plot.plot({
     label: null,
     x: {interval: 1, tickFormat: ""}, // TODO https://github.com/observablehq/plot/issues/768
     marks: [Plot.barY(requests, {x: ([date]) => date.getUTCFullYear(), y: "1"})]
   });
-}
+});
 
-export async function yearlyRequestsDate() {
+test(async function yearlyRequestsDate() {
   return Plot.plot({
     label: null,
     x: {interval: "year"},
     marks: [Plot.barY(requests, {x: "0", y: "1"})]
   });
-}
+});

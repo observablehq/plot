@@ -1,11 +1,8 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
+import {test} from "test/plot";
 
-if (import.meta.vitest) {
-  await import("../plot.js").then((_) => _.declareTests(import.meta.filename));
-}
-
-export async function hexbinR() {
+test(async function hexbinR() {
   const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
   const xy = {fx: "sex", x: "culmen_depth_mm", y: "culmen_length_mm"};
   return Plot.plot({
@@ -24,4 +21,4 @@ export async function hexbinR() {
       Plot.dot(penguins, Plot.hexbin({title: "count", r: "count", fill: "proportion-facet"}, xy))
     ]
   });
-}
+});

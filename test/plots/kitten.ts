@@ -1,8 +1,5 @@
 import * as Plot from "@observablehq/plot";
-
-if (import.meta.vitest) {
-  await import("../plot.js").then((_) => _.declareTests(import.meta.filename));
-}
+import {test} from "test/plot";
 
 async function kitten({
   x = (d, i) => i % 5,
@@ -20,26 +17,26 @@ async function kitten({
   });
 }
 
-export async function kittenConstant() {
+test(async function kittenConstant() {
   return kitten({r: 49});
-}
+});
 
-export async function kittenConstantWidthHeight() {
+test(async function kittenConstantWidthHeight() {
   return kitten({r: 49, width: 200, height: 200});
-}
+});
 
-export async function kittenConstantRotate() {
+test(async function kittenConstantRotate() {
   return kitten({r: 49, rotate: 10});
-}
+});
 
-export async function kittenVariable() {
+test(async function kittenVariable() {
   return kitten({r: (d, i) => i});
-}
+});
 
-export async function kittenVariableDodge() {
+test(async function kittenVariableDodge() {
   return kitten(Plot.dodgeY({r: (d, i) => i}));
-}
+});
 
-export async function kittenVariableRotate() {
+test(async function kittenVariableRotate() {
   return kitten({r: 49, rotate: (d, i) => (i - 12) * 20});
-}
+});

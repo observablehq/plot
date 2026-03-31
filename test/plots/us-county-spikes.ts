@@ -1,12 +1,9 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 import {feature, mesh} from "topojson-client";
+import {test} from "test/plot";
 
-if (import.meta.vitest) {
-  await import("../plot.js").then((_) => _.declareTests(import.meta.filename));
-}
-
-export async function usCountySpikes() {
+test(async function usCountySpikes() {
   const [[nation, counties, statemesh], population] = await Promise.all([
     d3
       .json<any>("data/us-counties-10m.json")
@@ -32,4 +29,4 @@ export async function usCountySpikes() {
       Plot.spike(counties.features, Plot.geoCentroid({stroke: "red", length: (d) => population.get(d.id)}))
     ]
   });
-}
+});

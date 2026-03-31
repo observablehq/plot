@@ -1,11 +1,8 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
+import {test} from "test/plot";
 
-if (import.meta.vitest) {
-  await import("../plot.js").then((_) => _.declareTests(import.meta.filename));
-}
-
-export async function athletesSportWeight() {
+test(async function athletesSportWeight() {
   const athletes = await d3.csv<any>("data/athletes.csv", d3.autoType);
   return Plot.plot({
     marginLeft: 100,
@@ -16,4 +13,4 @@ export async function athletesSportWeight() {
       Plot.frame({anchor: "bottom", facetAnchor: "bottom"})
     ]
   });
-}
+});

@@ -1,10 +1,7 @@
 import * as Plot from "@observablehq/plot";
+import {test} from "test/plot";
 
-if (import.meta.vitest) {
-  await import("../plot.js").then((_) => _.declareTests(import.meta.filename));
-}
-
-export async function axisLabelX() {
+test(async function axisLabelX() {
   return Plot.plot({
     inset: 6,
     x: {type: "linear"},
@@ -19,9 +16,9 @@ export async function axisLabelX() {
       Plot.axisX({anchor: "bottom", label: "bottom-right", labelAnchor: "right", ticks: []})
     ]
   });
-}
+});
 
-export async function axisLabelY() {
+test(async function axisLabelY() {
   return Plot.plot({
     inset: 6,
     x: {type: "linear", axis: null},
@@ -36,43 +33,43 @@ export async function axisLabelY() {
       Plot.axisY({anchor: "right", label: "right-bottom", labelAnchor: "bottom", ticks: []})
     ]
   });
-}
+});
 
-export async function axisLabelBoth() {
+test(async function axisLabelBoth() {
   return Plot.plot({
     inset: 6,
     x: {type: "linear", axis: "both", labelAnchor: "center"},
     y: {type: "linear", axis: "both", labelAnchor: "center"},
     marks: [Plot.ruleX([{x: 0}, {x: 1}], {x: "x"}), Plot.ruleY([{y: 0}, {y: 1}], {y: "y"})]
   });
-}
+});
 
-export async function axisLabelBothReverse() {
+test(async function axisLabelBothReverse() {
   return Plot.plot({
     inset: 6,
     x: {type: "linear", reverse: true, axis: "both", labelAnchor: "center"},
     y: {type: "linear", reverse: true, axis: "both", labelAnchor: "center"},
     marks: [Plot.ruleX([{x: 0}, {x: 1}], {x: "x"}), Plot.ruleY([{y: 0}, {y: 1}], {y: "y"})]
   });
-}
+});
 
-export async function axisLabelFontVariant() {
+test(async function axisLabelFontVariant() {
   return Plot.plot({
     x: {domain: "abcde"},
     marks: [Plot.axisX({label: "Letter", fontVariant: "small-caps"})]
   });
-}
+});
 
-export async function axisLabelVaryingFill() {
+test(async function axisLabelVaryingFill() {
   return Plot.plot({
     x: {domain: "ABCDEF"},
     marks: [Plot.axisX({label: "Letter", fill: (d, i) => i})]
   });
-}
+});
 
-export async function axisLabelHref() {
+test(async function axisLabelHref() {
   return Plot.plot({
     x: {domain: "ABCDEF"},
     marks: [Plot.axisX({label: "Letter", href: (d) => `https://en.wikipedia.org/wiki/${d}`})]
   });
-}
+});

@@ -1,11 +1,8 @@
 import * as Plot from "@observablehq/plot";
 import {range} from "d3";
+import {test} from "test/plot";
 
-if (import.meta.vitest) {
-  await import("../plot.js").then((_) => _.declareTests(import.meta.filename));
-}
-
-export async function groupMarker() {
+test(async function groupMarker() {
   return Plot.plot({
     aspectRatio: 1,
     axis: null,
@@ -20,9 +17,9 @@ export async function groupMarker() {
       })
     ]
   });
-}
+});
 
-export async function groupMarkerStart() {
+test(async function groupMarkerStart() {
   return Plot.plot({
     aspectRatio: 1,
     axis: null,
@@ -37,9 +34,9 @@ export async function groupMarkerStart() {
       })
     ]
   });
-}
+});
 
-export async function groupMarkerMid() {
+test(async function groupMarkerMid() {
   return Plot.plot({
     aspectRatio: 1,
     axis: null,
@@ -54,9 +51,9 @@ export async function groupMarkerMid() {
       })
     ]
   });
-}
+});
 
-export async function groupMarkerEnd() {
+test(async function groupMarkerEnd() {
   return Plot.plot({
     aspectRatio: 1,
     axis: null,
@@ -71,4 +68,4 @@ export async function groupMarkerEnd() {
       })
     ]
   });
-}
+});

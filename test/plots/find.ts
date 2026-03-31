@@ -1,11 +1,8 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
+import {test} from "test/plot";
 
-if (import.meta.vitest) {
-  await import("../plot.js").then((_) => _.declareTests(import.meta.filename));
-}
-
-export async function findArrow() {
+test(async function findArrow() {
   const ages = ["Y16-19", "Y20-24", "Y25-29"];
   const sexes = ["M", "F"];
   const ilc = await d3.csv<any>("data/ilc_lvps08.csv", (d) =>
@@ -39,4 +36,4 @@ export async function findArrow() {
       )
     ]
   });
-}
+});

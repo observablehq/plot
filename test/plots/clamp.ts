@@ -1,11 +1,8 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
+import {test} from "test/plot";
 
-if (import.meta.vitest) {
-  await import("../plot.js").then((_) => _.declareTests(import.meta.filename));
-}
-
-export async function clamp() {
+test(async function clamp() {
   const data = await d3.csv<any>("data/bls-industry-unemployment.csv", d3.autoType);
   return Plot.plot({
     clamp: true,
@@ -22,4 +19,4 @@ export async function clamp() {
       )
     ]
   });
-}
+});

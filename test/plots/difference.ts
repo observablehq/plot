@@ -1,9 +1,6 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
-
-if (import.meta.vitest) {
-  await import("../plot.js").then((_) => _.declareTests(import.meta.filename));
-}
+import {test} from "test/plot";
 
 async function readStocks(start = 0, end = Infinity) {
   return (
@@ -19,7 +16,7 @@ async function readStocks(start = 0, end = Infinity) {
 
 // Here we compare the normalized performance of Apple and Google stock; green
 // represents Apple outperforming, while blue represents Google outperforming.
-export async function differenceY() {
+test(async function differenceY() {
   const stocks = await readStocks();
   return Plot.plot({
     marks: [
@@ -34,16 +31,16 @@ export async function differenceY() {
       )
     ]
   });
-}
+});
 
-export async function differenceYRandom() {
+test(async function differenceYRandom() {
   const random = d3.randomLcg(42);
   let sum = 3;
   const cumsum = () => (sum += random() - 0.5);
   return Plot.differenceY({length: 60}, {y1: cumsum, y2: cumsum, curve: "natural", tip: true}).plot();
-}
+});
 
-export async function differenceYCurve() {
+test(async function differenceYCurve() {
   const stocks = await readStocks(60, 100);
   return Plot.plot({
     marks: [
@@ -58,9 +55,9 @@ export async function differenceYCurve() {
       )
     ]
   });
-}
+});
 
-export async function differenceYVariable() {
+test(async function differenceYVariable() {
   const stocks = await readStocks();
   return Plot.plot({
     marks: [
@@ -75,16 +72,16 @@ export async function differenceYVariable() {
       )
     ]
   });
-}
+});
 
-export async function differenceYClip() {
+test(async function differenceYClip() {
   const gistemp = await d3.csv<any>("data/gistemp.csv", d3.autoType);
   return Plot.differenceY(gistemp, Plot.windowY(28, {x: "Date", y: "Anomaly", clip: "frame"})).plot({
     x: {insetLeft: -50}
   });
-}
+});
 
-export async function differenceYClipVariable() {
+test(async function differenceYClipVariable() {
   const stocks = await readStocks();
   return Plot.plot({
     marks: [
@@ -99,14 +96,14 @@ export async function differenceYClipVariable() {
       )
     ]
   });
-}
+});
 
-export async function differenceYConstant() {
+test(async function differenceYConstant() {
   const aapl = await d3.csv<any>("data/aapl.csv", d3.autoType);
   return Plot.differenceY(aapl, {x: "Date", y1: 115, y2: "Close"}).plot();
-}
+});
 
-export async function differenceYOrdinal() {
+test(async function differenceYOrdinal() {
   const random = d3.randomLcg(42);
   return Plot.plot({
     marks: [
@@ -119,9 +116,9 @@ export async function differenceYOrdinal() {
       )
     ]
   });
-}
+});
 
-export async function differenceYOrdinalFlip() {
+test(async function differenceYOrdinalFlip() {
   const random = d3.randomLcg(42);
   return Plot.plot({
     y: {reverse: true},
@@ -135,24 +132,24 @@ export async function differenceYOrdinalFlip() {
       )
     ]
   });
-}
+});
 
-export async function differenceYReverse() {
+test(async function differenceYReverse() {
   const gistemp = await d3.csv<any>("data/gistemp.csv", d3.autoType);
   return Plot.differenceY(gistemp, Plot.windowY(28, {x: "Date", y: "Anomaly"})).plot({y: {reverse: true}});
-}
+});
 
-export async function differenceYZero() {
+test(async function differenceYZero() {
   const gistemp = await d3.csv<any>("data/gistemp.csv", d3.autoType);
   return Plot.differenceY(gistemp, Plot.windowY(28, {x: "Date", y: "Anomaly"})).plot();
-}
+});
 
-export async function differenceYNegative() {
+test(async function differenceYNegative() {
   const gistemp = await d3.csv<any>("data/gistemp.csv", d3.autoType);
   return Plot.differenceY(gistemp, Plot.windowY(28, {x: "Date", positiveFill: "none", y: "Anomaly"})).plot();
-}
+});
 
-export async function differenceY1() {
+test(async function differenceY1() {
   const aapl = await d3.csv<any>("data/aapl.csv", d3.autoType);
   return Plot.differenceY(
     aapl,
@@ -165,39 +162,39 @@ export async function differenceY1() {
       negativeFill: "red"
     })
   ).plot();
-}
+});
 
-export async function differenceFilterX() {
+test(async function differenceFilterX() {
   const aapl = await d3.csv<any>("data/aapl.csv", d3.autoType);
   const goog = await d3.csv<any>("data/goog.csv", d3.autoType);
   const x = aapl.map((d, i) => (200 <= i && i < 400 ? NaN : d.Date));
   const y1 = goog.map((d, i, data) => d.Close / data[0].Close);
   const y2 = aapl.map((d, i, data) => d.Close / data[0].Close);
   return Plot.differenceY(aapl, {x, y1, y2}).plot();
-}
+});
 
-export async function differenceFilterY1() {
+test(async function differenceFilterY1() {
   const aapl = await d3.csv<any>("data/aapl.csv", d3.autoType);
   const goog = await d3.csv<any>("data/goog.csv", d3.autoType);
   const x = aapl.map((d) => d.Date);
   const y1 = goog.map((d, i, data) => d.Close / data[0].Close);
   const y2 = aapl.map((d, i, data) => (200 <= i && i < 400 ? NaN : d.Close / data[0].Close));
   return Plot.differenceY(aapl, {x, y1, y2}).plot();
-}
+});
 
-export async function differenceFilterY2() {
+test(async function differenceFilterY2() {
   const aapl = await d3.csv<any>("data/aapl.csv", d3.autoType);
   const goog = await d3.csv<any>("data/goog.csv", d3.autoType);
   const x = aapl.map((d) => d.Date);
   const y1 = goog.map((d, i, data) => (200 <= i && i < 400 ? NaN : d.Close / data[0].Close));
   const y2 = aapl.map((d, i, data) => d.Close / data[0].Close);
   return Plot.differenceY(aapl, {x, y1, y2}).plot();
-}
+});
 
-export async function differenceX() {
+test(async function differenceX() {
   const random = d3.randomNormal.source(d3.randomLcg(22))();
   return Plot.differenceX({length: 100}, Plot.mapX("cumsum", {x1: random, x2: random, curve: "basis"})).plot({
     height: 600,
     y: {reverse: true}
   });
-}
+});

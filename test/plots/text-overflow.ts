@@ -1,11 +1,8 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
+import {test} from "test/plot";
 
-if (import.meta.vitest) {
-  await import("../plot.js").then((_) => _.declareTests(import.meta.filename));
-}
-
-export async function textOverflow() {
+test(async function textOverflow() {
   const names = [
     "The Best Years of Our Lives",
     "The Ballad of Gregorio Cortez",
@@ -82,23 +79,23 @@ export async function textOverflow() {
       Plot.frame()
     ]
   });
-}
+});
 
-export async function textOverflowClip() {
+test(async function textOverflowClip() {
   return textOverflowPlot("clip");
-}
+});
 
-export async function textOverflowEllipsis() {
+test(async function textOverflowEllipsis() {
   return textOverflowPlot("ellipsis");
-}
+});
 
-export async function textOverflowMonospace() {
+test(async function textOverflowMonospace() {
   return textOverflowPlot("ellipsis", {monospace: true});
-}
+});
 
-export async function textOverflowNone() {
+test(async function textOverflowNone() {
   return textOverflowPlot(null);
-}
+});
 
 async function textOverflowPlot(textOverflow, {monospace = false} = {}) {
   const presidents = await d3.csv<any>("data/us-president-favorability.csv", d3.autoType);

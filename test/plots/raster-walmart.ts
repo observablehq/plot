@@ -1,10 +1,7 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 import {feature, mesh} from "topojson-client";
-
-if (import.meta.vitest) {
-  await import("../plot.js").then((_) => _.declareTests(import.meta.filename));
-}
+import {test} from "test/plot";
 
 async function rasterWalmart(options) {
   const [walmarts, [outline, statemesh]] = await Promise.all([
@@ -20,18 +17,18 @@ async function rasterWalmart(options) {
   });
 }
 
-export async function rasterWalmartBarycentric() {
+test(async function rasterWalmartBarycentric() {
   return rasterWalmart({interpolate: "barycentric", fill: "date"});
-}
+});
 
-export async function rasterWalmartBarycentricOpacity() {
+test(async function rasterWalmartBarycentricOpacity() {
   return rasterWalmart({interpolate: "barycentric", fillOpacity: "date"});
-}
+});
 
-export async function rasterWalmartRandomWalk() {
+test(async function rasterWalmartRandomWalk() {
   return rasterWalmart({interpolate: "random-walk", fill: "date"});
-}
+});
 
-export async function rasterWalmartWalkOpacity() {
+test(async function rasterWalmartWalkOpacity() {
   return rasterWalmart({interpolate: "random-walk", fillOpacity: "date"});
-}
+});

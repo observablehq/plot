@@ -1,11 +1,8 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
+import {test} from "test/plot";
 
-if (import.meta.vitest) {
-  await import("../plot.js").then((_) => _.declareTests(import.meta.filename));
-}
-
-export async function usPopulationStateAge() {
+test(async function usPopulationStateAge() {
   const states = await d3.csv<any>("data/us-population-state-age.csv", d3.autoType);
   const ages = states.columns.slice(1);
   const stateage = ages.flatMap((age) => states.map((d) => ({state: d.name, age, population: d[age]})));
@@ -23,9 +20,9 @@ export async function usPopulationStateAge() {
     },
     marks: [Plot.ruleX([0]), Plot.tickX(stateage, Plot.normalizeX("sum", {z: "state", x: "population", y: "age"}))]
   });
-}
+});
 
-export async function usPopulationStateAgeGrouped() {
+test(async function usPopulationStateAgeGrouped() {
   const states = await d3.csv<any>("data/us-population-state-age.csv", d3.autoType);
   const ages = states.columns.slice(1);
   const stateage = ages.flatMap((age) => states.map((d) => ({state: d.name, age, population: d[age]})));
@@ -58,4 +55,4 @@ export async function usPopulationStateAgeGrouped() {
       Plot.ruleY([0])
     ]
   });
-}
+});

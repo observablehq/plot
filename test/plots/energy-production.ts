@@ -1,9 +1,6 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
-
-if (import.meta.vitest) {
-  await import("../plot.js").then((_) => _.declareTests(import.meta.filename));
-}
+import {test} from "test/plot";
 
 // This dataset is hierarchical:
 //
@@ -29,7 +26,7 @@ const types = new Map([
   ["Total Renewable Energy Production", "Renewable"]
 ]);
 
-export async function energyProduction() {
+test(async function energyProduction() {
   const energy = (await d3.csv<any>("data/energy-production.csv"))
     .filter((d) => d.YYYYMM.slice(-2) === "13") // only take annual data
     .filter((d) => types.has(d.Description)) // don’t double-count categories
@@ -51,4 +48,4 @@ export async function energyProduction() {
       Plot.ruleY([0])
     ]
   });
-}
+});

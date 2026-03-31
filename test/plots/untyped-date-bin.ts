@@ -1,11 +1,8 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
+import {test} from "test/plot";
 
-if (import.meta.vitest) {
-  await import("../plot.js").then((_) => _.declareTests(import.meta.filename));
-}
-
-export async function untypedDateBin() {
+test(async function untypedDateBin() {
   const aapl = await d3.csv<any>("data/aapl.csv");
   return Plot.plot({
     y: {
@@ -13,4 +10,4 @@ export async function untypedDateBin() {
     },
     marks: [Plot.rectY(aapl, Plot.binX({y: "sum"}, {x: "Date", thresholds: "month", y: "Volume"})), Plot.ruleY([0])]
   });
-}
+});

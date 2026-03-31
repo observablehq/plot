@@ -1,11 +1,8 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
+import {test} from "test/plot";
 
-if (import.meta.vitest) {
-  await import("../plot.js").then((_) => _.declareTests(import.meta.filename));
-}
-
-export async function usPopulationStateAgeDots() {
+test(async function usPopulationStateAgeDots() {
   const states = await d3.csv<any>("data/us-population-state-age.csv", d3.autoType);
   const ages = states.columns.slice(1);
   const stateage = ages.flatMap((age) => states.map((d) => ({state: d.name, age, population: d[age]})));
@@ -41,4 +38,4 @@ export async function usPopulationStateAgeDots() {
       )
     ]
   });
-}
+});

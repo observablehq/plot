@@ -1,11 +1,8 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
+import {test} from "test/plot";
 
-if (import.meta.vitest) {
-  await import("../plot.js").then((_) => _.declareTests(import.meta.filename));
-}
-
-export async function aaplCloseUntyped() {
+test(async function aaplCloseUntyped() {
   const AAPL = await d3.csv<any>("data/aapl.csv");
   return Plot.plot({
     x: {
@@ -17,4 +14,4 @@ export async function aaplCloseUntyped() {
     },
     marks: [Plot.line(AAPL, {x: "Date", y: "Close"}), Plot.ruleY([0])]
   });
-}
+});

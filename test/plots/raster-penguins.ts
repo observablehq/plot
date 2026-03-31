@@ -1,9 +1,6 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
-
-if (import.meta.vitest) {
-  await import("../plot.js").then((_) => _.declareTests(import.meta.filename));
-}
+import {test} from "test/plot";
 
 async function rasterPenguins(options) {
   const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
@@ -15,18 +12,18 @@ async function rasterPenguins(options) {
   });
 }
 
-export async function rasterPenguinsBarycentric() {
+test(async function rasterPenguinsBarycentric() {
   return rasterPenguins({interpolate: "barycentric"});
-}
+});
 
-export async function rasterPenguinsBarycentricBlur() {
+test(async function rasterPenguinsBarycentricBlur() {
   return rasterPenguins({interpolate: "barycentric", blur: 7});
-}
+});
 
-export async function rasterPenguinsRandomWalk() {
+test(async function rasterPenguinsRandomWalk() {
   return rasterPenguins({interpolate: "random-walk"});
-}
+});
 
-export async function rasterPenguinsBlur() {
+test(async function rasterPenguinsBlur() {
   return rasterPenguins({interpolate: "random-walk", blur: 7});
-}
+});

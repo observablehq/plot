@@ -1,11 +1,8 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
+import {test} from "test/plot";
 
-if (import.meta.vitest) {
-  await import("../plot.js").then((_) => _.declareTests(import.meta.filename));
-}
-
-export async function longLabels() {
+test(async function longLabels() {
   const responses = d3.tsvParse(`name\tvalue
 Family in feud with Zucker\u00adbergs\t.17
 Committed 671 birthdays to memory\t.19
@@ -28,4 +25,4 @@ Not enough politics\t.12
       Plot.ruleY([0])
     ]
   });
-}
+});

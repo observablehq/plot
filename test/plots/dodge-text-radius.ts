@@ -1,11 +1,8 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
+import {test} from "test/plot";
 
-if (import.meta.vitest) {
-  await import("../plot.js").then((_) => _.declareTests(import.meta.filename));
-}
-
-export async function dodgeTextRadius() {
+test(async function dodgeTextRadius() {
   const random = d3.randomLcg(42);
   const length = 100;
   const X = Float64Array.from({length}, random);
@@ -18,4 +15,4 @@ export async function dodgeTextRadius() {
     },
     marks: [Plot.dot({length}, Plot.dodgeY({x: X, r: R})), Plot.text({length}, Plot.dodgeY({x: X, r: R}))]
   });
-}
+});

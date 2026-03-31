@@ -1,9 +1,6 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
-
-if (import.meta.vitest) {
-  await import("../plot.js").then((_) => _.declareTests(import.meta.filename));
-}
+import {test} from "test/plot";
 
 // https://observablehq.com/@mbostock/evenly-spaced-sampling
 function samples(array, m) {
@@ -18,7 +15,7 @@ function sample(n, options) {
   return Plot.transform(options, (data, facets) => ({data, facets: Array.from(facets, (I) => samples(I, n))}));
 }
 
-export async function diamondsCaratSampling() {
+test(async function diamondsCaratSampling() {
   const data = await d3.csv<any>("data/diamonds.csv", d3.autoType);
   return Plot.plot({
     marginLeft: 44,
@@ -34,4 +31,4 @@ export async function diamondsCaratSampling() {
       )
     ]
   });
-}
+});

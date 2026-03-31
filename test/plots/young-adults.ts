@@ -1,11 +1,8 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
+import {test} from "test/plot";
 
-if (import.meta.vitest) {
-  await import("../plot.js").then((_) => _.declareTests(import.meta.filename));
-}
-
-export async function youngAdults() {
+test(async function youngAdults() {
   const ages = ["Y16-19", "Y20-24", "Y25-29"];
   const geos = ["SE", "FR", "DE", "TR", "IT"];
   const ilc_lvps08 = await d3.csv<any>("data/ilc_lvps08.csv", (d) =>
@@ -45,4 +42,4 @@ export async function youngAdults() {
       )
     ]
   });
-}
+});

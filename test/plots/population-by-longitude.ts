@@ -1,12 +1,9 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 import {feature} from "topojson-client";
+import {test} from "test/plot";
 
-if (import.meta.vitest) {
-  await import("../plot.js").then((_) => _.declareTests(import.meta.filename));
-}
-
-export async function populationByLongitude() {
+test(async function populationByLongitude() {
   const world = await d3.json<any>("data/countries-110m.json");
   const land = feature(world, world.objects.land);
   const cities = await d3.csv<any>("data/cities-10k.csv", d3.autoType);
@@ -24,4 +21,4 @@ export async function populationByLongitude() {
       Plot.frame()
     ]
   });
-}
+});

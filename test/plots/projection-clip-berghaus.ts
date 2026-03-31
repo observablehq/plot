@@ -2,12 +2,9 @@ import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 import {geoBerghaus} from "d3-geo-projection";
 import {feature} from "topojson-client";
+import {test} from "test/plot";
 
-if (import.meta.vitest) {
-  await import("../plot.js").then((_) => _.declareTests(import.meta.filename));
-}
-
-export async function projectionClipBerghaus() {
+test(async function projectionClipBerghaus() {
   const world = await d3.json<any>("data/countries-110m.json");
   const land = feature(world, world.objects.land);
   return Plot.plot({
@@ -16,4 +13,4 @@ export async function projectionClipBerghaus() {
     projection: {type: geoBerghaus, domain: {type: "Sphere"}},
     marks: [Plot.graticule({clip: "sphere"}), Plot.geo(land, {fill: "currentColor", clip: "sphere"}), Plot.sphere()]
   });
-}
+});

@@ -1,10 +1,7 @@
 import * as Plot from "@observablehq/plot";
+import {test} from "test/plot";
 
-if (import.meta.vitest) {
-  await import("../plot.js").then((_) => _.declareTests(import.meta.filename));
-}
-
-export async function shorthandDot() {
+test(async function shorthandDot() {
   const timeSeries = [
     [new Date("2018-01-02"), 170.160004],
     [new Date("2018-01-03"), 172.529999],
@@ -48,4 +45,4 @@ export async function shorthandDot() {
     [new Date("2018-02-28"), 179.259995]
   ];
   return Plot.dot(timeSeries).plot();
-}
+});
