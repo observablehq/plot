@@ -15,26 +15,26 @@
   </style>
   <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,0.5)">
     <path transform="translate(40,370)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,331.1111111111111)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,292.22222222222223)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,253.33333333333334)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,214.44444444444446)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,175.55555555555554)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,136.66666666666669)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,97.77777777777777)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,58.88888888888891)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,331.111)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,292.222)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,253.333)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,214.444)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,175.556)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,136.667)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,97.778)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,58.889)" d="M0,0L-6,0"></path>
     <path transform="translate(40,20)" d="M0,0L-6,0"></path>
   </g>
   <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
     <text y="0.32em" transform="translate(40,370)">0</text>
-    <text y="0.32em" transform="translate(40,331.1111111111111)">2</text>
-    <text y="0.32em" transform="translate(40,292.22222222222223)">4</text>
-    <text y="0.32em" transform="translate(40,253.33333333333334)">6</text>
-    <text y="0.32em" transform="translate(40,214.44444444444446)">8</text>
-    <text y="0.32em" transform="translate(40,175.55555555555554)">10</text>
-    <text y="0.32em" transform="translate(40,136.66666666666669)">12</text>
-    <text y="0.32em" transform="translate(40,97.77777777777777)">14</text>
-    <text y="0.32em" transform="translate(40,58.88888888888891)">16</text>
+    <text y="0.32em" transform="translate(40,331.111)">2</text>
+    <text y="0.32em" transform="translate(40,292.222)">4</text>
+    <text y="0.32em" transform="translate(40,253.333)">6</text>
+    <text y="0.32em" transform="translate(40,214.444)">8</text>
+    <text y="0.32em" transform="translate(40,175.556)">10</text>
+    <text y="0.32em" transform="translate(40,136.667)">12</text>
+    <text y="0.32em" transform="translate(40,97.778)">14</text>
+    <text y="0.32em" transform="translate(40,58.889)">16</text>
     <text y="0.32em" transform="translate(40,20)">18</text>
   </g>
   <g aria-label="y-axis label" text-anchor="start" transform="translate(-36.5,-16.5)">
@@ -57,12 +57,12 @@
     <text y="0.71em" transform="translate(620,370)">30</text>
   </g>
   <g aria-label="rect">
-    <rect x="41" y="272.77777777777777" width="115" height="97.22222222222223" fill="#ff725c"></rect>
-    <rect x="273" y="233.8888888888889" width="115" height="136.1111111111111" fill="#ff725c"></rect>
-    <rect x="389" y="292.22222222222223" width="115" height="77.77777777777777" fill="#ff725c"></rect>
-    <rect x="157" y="233.8888888888889" width="115" height="136.1111111111111" fill="#4269d0"></rect>
-    <rect x="273" y="20" width="115" height="213.8888888888889" fill="#4269d0"></rect>
-    <rect x="505" y="272.77777777777777" width="115" height="97.22222222222223" fill="#efb118"></rect>
+    <rect x="41" y="272.778" width="115" height="97.222" fill="#ff725c"></rect>
+    <rect x="273" y="233.889" width="115" height="136.111" fill="#ff725c"></rect>
+    <rect x="389" y="292.222" width="115" height="77.778" fill="#ff725c"></rect>
+    <rect x="157" y="233.889" width="115" height="136.111" fill="#4269d0"></rect>
+    <rect x="273" y="20" width="115" height="213.889" fill="#4269d0"></rect>
+    <rect x="505" y="272.778" width="115" height="97.222" fill="#efb118"></rect>
   </g>
   <g aria-label="rule" stroke="currentColor" transform="translate(0,0.5)">
     <line x1="40" x2="620" y1="370" y2="370"></line>

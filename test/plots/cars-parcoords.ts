@@ -1,7 +1,8 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
+import {test} from "test/plot";
 
-export async function carsParcoords() {
+test(async function carsParcoords() {
   const cars = await d3.csv<any>("data/cars.csv", d3.autoType);
   const dimensions = cars.columns.slice(1);
 
@@ -59,4 +60,4 @@ export async function carsParcoords() {
       })
     ]
   });
-}
+});

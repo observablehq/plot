@@ -1,7 +1,8 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
+import {test} from "test/plot";
 
-export async function aaplFancyAxis() {
+test(async function aaplFancyAxis() {
   const AAPL = await d3.csv<{Close: number; Date: Date}>("data/aapl.csv", d3.autoType);
   return Plot.plot({
     marks: [
@@ -11,4 +12,4 @@ export async function aaplFancyAxis() {
       Plot.axisY({x: (y) => AAPL.find((d) => d.Close >= y)?.Date, insetLeft: -6, textStroke: "white"})
     ]
   });
-}
+});
