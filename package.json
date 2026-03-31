@@ -29,7 +29,7 @@
   "scripts": {
     "test": "yarn test:vitest && yarn test:tsc && yarn test:lint && yarn test:prettier",
     "test:coverage": "TZ=America/Los_Angeles vitest run --coverage",
-    "test:vitest": "TZ=America/Los_Angeles vitest",
+    "test:vitest": "TZ=America/Los_Angeles vitest --typecheck",
     "test:lint": "eslint src test",
     "test:prettier": "prettier --check src test",
     "test:tsc": "tsc",
