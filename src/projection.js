@@ -124,22 +124,13 @@ export function createProjection(
       return projection.stream(transform.stream(postClip(s)));
     },
     apply([x, y]) {
-      let result;
-      const s = projection.stream(
-        transform.stream({
-          point(x, y) {
-            result = [x, y];
-          }
-        })
-      );
-      s.point(x, y);
+      let result = null;
+      projection.stream(transform.stream({point: (x, y) => void (result = [x, y])})).point(x, y);
       return result;
     },
     ...(projection.invert && {
       invert([x, y]) {
-        const px = (x - tx) / (k ?? 1);
-        const py = (y - ty) / (k ?? 1);
-        return projection.invert([px, py]);
+        return projection.invert([(x - tx) / (k ?? 1), (y - ty) / (k ?? 1)]);
       }
     })
   };

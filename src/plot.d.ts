@@ -2,7 +2,7 @@ import type {ChannelValue} from "./channel.js";
 import type {ColorLegendOptions, LegendOptions, OpacityLegendOptions, SymbolLegendOptions} from "./legends.js";
 import type {Data, MarkOptions, Markish} from "./mark.js";
 import type {ProjectionFactory, ProjectionImplementation, ProjectionName} from "./projection.js";
-import type {ProjectionOptions, ProjectionScale} from "./projection.js";
+import type {ProjectionOptions, Projection} from "./projection.js";
 import type {Scale, ScaleDefaults, ScaleName, ScaleOptions} from "./scales.js";
 
 export interface PlotOptions extends ScaleDefaults {
@@ -415,7 +415,7 @@ export interface Plot {
    * method for the reverse transformation. The object can be passed as the
    * **projection** option of another plot to reuse the same projection.
    */
-  scale(name: "projection"): ProjectionScale | undefined;
+  scale(name: "projection"): Projection | undefined;
 
   /**
    * Generates a legend for the scale with the specified *name* and the given

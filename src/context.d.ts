@@ -1,5 +1,6 @@
-import type {GeoPath, GeoStreamWrapper} from "d3";
+import type {GeoPath} from "d3";
 import type {MarkOptions} from "./mark.js";
+import type {Projection} from "./projection.js";
 
 /** Additional rendering context provided to marks and initializers. */
 export interface Context {
@@ -16,7 +17,7 @@ export interface Context {
   className: string;
 
   /** The current projection, if any. */
-  projection?: GeoStreamWrapper;
+  projection?: Projection;
 
   /** A function to draw GeoJSON with the current projection, if any, otherwise with the x and y scales. */
   path: () => GeoPath;

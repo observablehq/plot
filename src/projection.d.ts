@@ -114,40 +114,10 @@ export interface ProjectionOptions extends InsetOptions {
 }
 
 /** A materialized projection, as returned by plot.scale("projection"). */
-export interface ProjectionScale {
-  /** The projection type name or factory function. */
-  type: ProjectionName | ProjectionFactory;
+export interface Projection extends ProjectionOptions, ProjectionImplementation {
+  /** Returns the projected [x, y] coordinates for the given [longitude, latitude], if possible. */
+  apply(point: [longitude: number, latitude: number]): [x: number, y: number] | null;
 
-  /** The GeoJSON domain, if specified. */
-  domain?: GeoPermissibleObjects;
-
-  /** The projection rotation [lambda, phi, gamma]. */
-  rotate?: [number, number, number?];
-
-  /** The standard parallels (conic projections). */
-  parallels?: [number, number];
-
-  /** The sampling threshold. */
-  precision?: number;
-
-  /** The clipping method. */
-  clip?: boolean | number | "frame" | null;
-
-  /** Top inset in pixels. */
-  insetTop: number;
-
-  /** Right inset in pixels. */
-  insetRight: number;
-
-  /** Bottom inset in pixels. */
-  insetBottom: number;
-
-  /** Left inset in pixels. */
-  insetLeft: number;
-
-  /** Project [longitude, latitude] to [x, y] pixel coordinates. */
-  apply(point: [number, number]): [number, number] | undefined;
-
-  /** Invert [x, y] pixel coordinates to [longitude, latitude]. */
-  invert?(point: [number, number]): [number, number] | undefined;
+  /** Returns the the unprojected [longitude, latitude] for the given [x, y] coordinates, if possible. */
+  invert?(point: [x: number, y: number]): [longitude: number, latitude: number] | null;
 }
