@@ -2444,7 +2444,7 @@ describe("plot(…).scale('projection')", () => {
     const projection2 = plot2.scale("projection");
     assert.strictEqual(projection2.type, "mercator");
     // Different dimensions, so pixel coordinates differ but projection type is preserved
-    assert.allCloseTo(projection1.apply([-1.55, 47.22]), [316.748750, 224.179291]);
+    assert.allCloseTo(projection1.apply([-1.55, 47.22]), [316.74875, 224.179291]);
     assert.allCloseTo(projection2.apply([-1.55, 47.22]), [148.212639, 104.897665]);
     // But invert still round-trips
     assert.allCloseTo(projection2.invert(projection2.apply([-1.55, 47.22])), [-1.55, 47.22]);
