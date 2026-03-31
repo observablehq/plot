@@ -58,15 +58,18 @@ async function doesNotWarnAsync(run) {
   return result;
 }
 
-function inDelta(actual, expected, delta = 1e-6) {
-  if (Array.isArray(expected)) {
-    assert.strictEqual(actual.length, expected.length);
-    for (let i = 0; i < expected.length; i++) {
-      inDelta(actual[i], expected[i], delta);
-    }
-  } else {
-    assert.ok(Math.abs(actual - expected) < delta, `${actual} is not within ${delta} of ${expected}`);
-  }
+function allCloseTo(actual, expected, delta = 1e-6) {
+  delta = Number(delta);
+  actual = [...actual].map(Number);
+  expected = [...expected].map(Number);
+  assert(
+    actual.length === expected.length && actual.every((a, i) => Math.abs(expected[i] - a) <= delta),
+    `expected ${formatNumbers(actual)} to be close to ${formatNumbers(expected)} ±${delta}`
+  );
+}
+
+function formatNumbers(numbers) {
+  return `[${numbers.map((n) => n.toFixed(6)).join(", ")}]`;
 }
 
 export default {
@@ -75,5 +78,5 @@ export default {
   warnsAsync,
   doesNotWarn,
   doesNotWarnAsync,
-  inDelta
+  allCloseTo
 };

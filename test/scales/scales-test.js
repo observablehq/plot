@@ -1,7 +1,7 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 import assert from "../assert.js";
-import {it} from "vitest";
+import {describe, it} from "vitest";
 
 // TODO Expose as d3.schemeObservable10, or Plot.scheme("observable10")?
 const schemeObservable10 = [
@@ -2318,21 +2318,25 @@ describe("plot(…).scale('projection')", () => {
 
   it("returns the projection for a named projection", () => {
     const plot = Plot.plot({projection: "mercator", marks: [Plot.graticule()]});
-    const p = plot.scale("projection");
-    assert.strictEqual(p.type, "mercator");
-    assert.strictEqual(typeof p.apply, "function");
-    assert.strictEqual(typeof p.invert, "function");
-    assert.strictEqual("stream" in p, false);
-    assert.strictEqual("clip" in p, false); // default omitted
-    assert.strictEqual("precision" in p, false); // default omitted
-    assert.strictEqual("insetTop" in p, false); // default omitted
+    const projection = plot.scale("projection");
+    const {apply, invert, ...rest} = projection;
+    assert.strictEqual(typeof apply, "function");
+    assert.strictEqual(typeof invert, "function");
+    assert.deepStrictEqual(rest, {
+      type: "mercator",
+      clip: "frame",
+      insetTop: 0,
+      insetRight: 0,
+      insetBottom: 0,
+      insetLeft: 0
+    });
   });
 
   it("is the same for 'mercator' and {type: 'mercator'}", () => {
     const p1 = Plot.plot({projection: "mercator", marks: [Plot.graticule()]}).scale("projection");
     const p2 = Plot.plot({projection: {type: "mercator"}, marks: [Plot.graticule()]}).scale("projection");
     assert.strictEqual(p1.type, p2.type);
-    assert.inDelta(p1.apply([-1.55, 47.22]), p2.apply([-1.55, 47.22]));
+    assert.allCloseTo(p1.apply([-1.55, 47.22]), p2.apply([-1.55, 47.22]));
   });
 
   it("exposes apply and invert that round-trip", () => {
@@ -2342,14 +2346,14 @@ describe("plot(…).scale('projection')", () => {
     const px = p.apply(point);
     assert.ok(Array.isArray(px));
     assert.strictEqual(px.length, 2);
-    assert.inDelta(p.invert(px), point);
+    assert.allCloseTo(p.invert(px), point);
   });
 
   it("exposes parallels for conic projections", () => {
     const plot = Plot.plot({projection: {type: "conic-equal-area", parallels: [30, 40]}, marks: [Plot.graticule()]});
     const p = plot.scale("projection");
     assert.strictEqual(p.type, "conic-equal-area");
-    assert.inDelta(p.parallels, [30, 40]);
+    assert.allCloseTo(p.parallels, [30, 40]);
   });
 
   it("exposes rotate", () => {
@@ -2382,12 +2386,12 @@ describe("plot(…).scale('projection')", () => {
     assert.strictEqual(p.type, "identity");
     assert.strictEqual(typeof p.apply, "function");
     assert.strictEqual(typeof p.invert, "function");
-    assert.inDelta(p.apply([0, 0]), [0, 0]);
-    assert.inDelta(p.apply([200, 100]), [400, 200]);
-    assert.inDelta(p.apply([100, 50]), [200, 100]);
-    assert.inDelta(p.invert([0, 0]), [0, 0]);
-    assert.inDelta(p.invert([400, 200]), [200, 100]);
-    assert.inDelta(p.invert([200, 100]), [100, 50]);
+    assert.allCloseTo(p.apply([0, 0]), [0, 0]);
+    assert.allCloseTo(p.apply([200, 100]), [400, 200]);
+    assert.allCloseTo(p.apply([100, 50]), [200, 100]);
+    assert.allCloseTo(p.invert([0, 0]), [0, 0]);
+    assert.allCloseTo(p.invert([400, 200]), [200, 100]);
+    assert.allCloseTo(p.invert([200, 100]), [100, 50]);
   });
 
   it("exposes apply and invert for reflect-y", () => {
@@ -2414,12 +2418,12 @@ describe("plot(…).scale('projection')", () => {
     assert.strictEqual(p.type, "reflect-y");
     assert.strictEqual(typeof p.apply, "function");
     assert.strictEqual(typeof p.invert, "function");
-    assert.inDelta(p.apply([0, 0]), [0, 200]);
-    assert.inDelta(p.apply([200, 100]), [400, 0]);
-    assert.inDelta(p.apply([100, 50]), [200, 100]);
-    assert.inDelta(p.invert([0, 200]), [0, 0]);
-    assert.inDelta(p.invert([400, 0]), [200, 100]);
-    assert.inDelta(p.invert([200, 100]), [100, 50]);
+    assert.allCloseTo(p.apply([0, 0]), [0, 200]);
+    assert.allCloseTo(p.apply([200, 100]), [400, 0]);
+    assert.allCloseTo(p.apply([100, 50]), [200, 100]);
+    assert.allCloseTo(p.invert([0, 200]), [0, 0]);
+    assert.allCloseTo(p.invert([400, 0]), [200, 100]);
+    assert.allCloseTo(p.invert([200, 100]), [100, 50]);
   });
 
   it("round-trips to a second plot", () => {
@@ -2430,20 +2434,20 @@ describe("plot(…).scale('projection')", () => {
     assert.strictEqual(p2.type, "mercator");
     // Same dimensions, so pixel coordinates match
     const point = [-1.55, 47.22];
-    assert.inDelta(p1.apply(point), p2.apply(point));
+    assert.allCloseTo(p1.apply(point), p2.apply(point));
   });
 
   it("round-trips with different dimensions", () => {
     const plot1 = Plot.plot({width: 640, projection: "mercator", marks: [Plot.graticule()]});
-    const p1 = plot1.scale("projection");
-    const plot2 = Plot.plot({width: 300, projection: p1, marks: [Plot.graticule()]});
-    const p2 = plot2.scale("projection");
-    assert.strictEqual(p2.type, "mercator");
+    const projection1 = plot1.scale("projection");
+    const plot2 = Plot.plot({width: 300, projection: projection1, marks: [Plot.graticule()]});
+    const projection2 = plot2.scale("projection");
+    assert.strictEqual(projection2.type, "mercator");
     // Different dimensions, so pixel coordinates differ but projection type is preserved
-    const point = [-1.55, 47.22];
-    assert.notDeepStrictEqual(p1.apply(point), p2.apply(point));
+    assert.allCloseTo(projection1.apply([-1.55, 47.22]), [316.748750, 224.179291]);
+    assert.allCloseTo(projection2.apply([-1.55, 47.22]), [148.212639, 104.897665]);
     // But invert still round-trips
-    assert.inDelta(p2.invert(p2.apply(point)), point);
+    assert.allCloseTo(projection2.invert(projection2.apply([-1.55, 47.22])), [-1.55, 47.22]);
   });
 
   it("exposes domain when specified", () => {

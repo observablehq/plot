@@ -111,21 +111,19 @@ export function createProjection(
           }
         });
 
-  const stream = (s) => projection.stream(transform.stream(postClip(s)));
-
   return {
+    ...options,
     type,
-    ...(domain != null && {domain}),
-    ...(options?.rotate != null && {rotate: options.rotate}),
-    ...(options?.parallels != null && {parallels: options.parallels}),
-    ...(options?.precision != null && {precision: options.precision}),
-    ...(clip !== "frame" && {clip}),
-    ...(insetTop && {insetTop}),
-    ...(insetRight && {insetRight}),
-    ...(insetBottom && {insetBottom}),
-    ...(insetLeft && {insetLeft}),
-    stream,
-    apply([x, y] = []) {
+    ...(domain && {domain}),
+    insetTop,
+    insetRight,
+    insetBottom,
+    insetLeft,
+    clip,
+    stream(s) {
+      return projection.stream(transform.stream(postClip(s)));
+    },
+    apply([x, y]) {
       let result;
       const s = projection.stream(
         transform.stream({
@@ -137,11 +135,13 @@ export function createProjection(
       s.point(x, y);
       return result;
     },
-    invert([x, y] = []) {
-      const px = (x - tx) / (k ?? 1);
-      const py = (y - ty) / (k ?? 1);
-      return projection.invert ? projection.invert([px, py]) : [px, py];
-    }
+    ...(projection.invert && {
+      invert([x, y]) {
+        const px = (x - tx) / (k ?? 1);
+        const py = (y - ty) / (k ?? 1);
+        return projection.invert([px, py]);
+      }
+    })
   };
 }
 
