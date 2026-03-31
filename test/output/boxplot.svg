@@ -36,7 +36,7 @@
   <g aria-label="rule" stroke="currentColor" transform="translate(0,0.5)">
     <line x1="277.143" x2="448.571" y1="15" y2="15"></line>
   </g>
-  <g aria-label="bar" fill="#ccc">
+  <g aria-label="bar" fill="color-mix(in srgb, currentColor 20%, var(--plot-background))">
     <rect x="337.143" width="94.286" y="0" height="30"></rect>
   </g>
   <g aria-label="tick" stroke="currentColor" stroke-width="2" transform="translate(0.5,0)">

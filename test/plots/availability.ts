@@ -7,7 +7,6 @@ if (import.meta.vitest) {
 
 export async function availability() {
   const data = await d3.csv<any>("data/availability.csv", d3.autoType);
-  const sum = (d) => (d.length ? d3.sum(d) : NaN); // force gaps
   return Plot.plot({
     height: 180,
     marks: [
@@ -15,7 +14,6 @@ export async function availability() {
         x: "date",
         y: "value",
         interval: "day",
-        reduce: sum,
         curve: "step",
         fill: "#f2f2fe"
       }),
@@ -23,7 +21,6 @@ export async function availability() {
         x: "date",
         y: "value",
         interval: "day",
-        reduce: sum,
         curve: "step"
       }),
       Plot.ruleY([0])
