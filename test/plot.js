@@ -1,5 +1,5 @@
-import {access, constants, readFile, writeFile} from "node:fs/promises";
-import {resolve} from "node:path";
+import {readFile} from "node:fs/promises";
+import {join} from "node:path";
 import {createCanvas, loadImage} from "canvas";
 import {max, mean, quantile} from "d3";
 import beautify from "js-beautify";
@@ -21,15 +21,8 @@ export async function declareTests(filename) {
       reindexClip(root);
       reindexPattern(root);
       const actual = normalizeHtml(root.outerHTML);
-      const outfile = resolve("./test/output", `${name}.${ext}`);
-      try {
-        if (shouldUpdateSnapshot()) throw new Error("update snapshot");
-        await access(outfile, constants.F_OK);
-      } catch {
-        await writeFile(outfile, actual, "utf-8");
-      }
-      const expected = normalizeHtml(await readFile(outfile, "utf-8")); // TODO toMatchFileSnapshot
-      await expect(withImages(actual, expected)).resolves.toEqual(expected);
+      const outfile = join("output", `${name}.${ext}`);
+      await expect(maybeWithImages(actual, join("test", outfile))).resolves.toMatchFileSnapshot(join("..", outfile));
     });
   }
 }
@@ -45,10 +38,6 @@ function normalizeHtml(html) {
       indent_inner_html: false
     }
   );
-}
-
-function shouldUpdateSnapshot() {
-  return expect.getState().snapshotState["_updateSnapshot"] === "all";
 }
 
 function reindexStyle(root) {
@@ -114,6 +103,17 @@ function reindexPattern(root) {
 }
 
 const imageRe = /data:image\/png;base64,[^"]+/g;
+
+async function maybeWithImages(actual, outfile) {
+  let expected;
+  try {
+    expected = await readFile(outfile, "utf-8");
+  } catch (error) {
+    if (error.code === "ENOENT") return actual;
+    throw error;
+  }
+  return withImages(actual, expected);
+}
 
 // Replace actual images with expected images when they match approximately.
 // This lets toMatchFileSnapshot's exact comparison pass despite platform
