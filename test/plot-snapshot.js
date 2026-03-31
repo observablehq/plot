@@ -1,4 +1,4 @@
-import {readFile} from "node:fs/promises";
+import {readFile, unlink, writeFile} from "node:fs/promises";
 import {join} from "node:path";
 import {createCanvas, loadImage} from "canvas";
 import {max, mean, quantile} from "d3";
@@ -20,8 +20,21 @@ export function test(plot) {
     reindexClip(root);
     reindexPattern(root);
     const actual = normalizeHtml(root.outerHTML);
-    const outfile = join("output", `${name}.${ext}`);
-    await expect(maybeWithImages(actual, join("test", outfile))).resolves.toMatchFileSnapshot(join("..", outfile));
+    const outfile = join("test", "output", `${name}.${ext}`);
+    const diffile = join("test", "output", `${name}-changed.${ext}`);
+    try {
+      await expect(maybeWithImages(actual, outfile)).resolves.toMatchFileSnapshot(join("..", "..", outfile));
+      if (process.env.CI !== "true") {
+        try {
+          await unlink(diffile);
+        } catch (error) {
+          if (error.code !== "ENOENT") throw error;
+        }
+      }
+    } catch (error) {
+      await writeFile(diffile, actual, "utf-8");
+      throw error;
+    }
   });
 }
 

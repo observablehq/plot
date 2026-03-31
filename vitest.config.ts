@@ -17,6 +17,7 @@ export default defineConfig({
       "!test/plots/d3-survey-2015.ts",
       "!test/plots/index.ts"
     ],
+    exclude: ["test/output/**"],
     coverage: {include: ["src/**/*.js"]}
   }
 });
