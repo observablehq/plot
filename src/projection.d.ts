@@ -112,3 +112,12 @@ export interface ProjectionOptions extends InsetOptions {
    */
   clip?: boolean | number | "frame" | null;
 }
+
+/** A materialized projection, as returned by plot.scale("projection"). */
+export interface Projection extends ProjectionImplementation {
+  /** Returns the projected [x, y] coordinates for the given [longitude, latitude], if possible. */
+  apply(point: [longitude: number, latitude: number]): [x: number, y: number] | null;
+
+  /** Returns the the unprojected [longitude, latitude] for the given [x, y] coordinates, if possible. */
+  invert?(point: [x: number, y: number]): [longitude: number, latitude: number] | null;
+}
