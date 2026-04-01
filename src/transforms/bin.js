@@ -67,24 +67,22 @@ export function bin(outputs = {fill: "count"}, options = {}) {
   return binn(x, y, null, null, outputs, maybeInsetX(maybeInsetY(options)));
 }
 
-function maybeDenseInterval(x, options) {
-  options = withTip(options, x);
-  if (options.interval == null) return options;
+function maybeDenseInterval(bin, x, y, options) {
+  if (options?.interval == null) return options;
   const {reduce = reduceFirst} = options;
   const outputs = {filter: null, [x]: `${x}1`};
-  const y = x === "x" ? "y" : "x";
   if (options[y] != null) outputs[y] = reduce;
   if (options[`${y}1`] != null) outputs[`${y}1`] = reduce;
   if (options[`${y}2`] != null) outputs[`${y}2`] = reduce;
-  return (x === "x" ? binX : binY)(outputs, options);
+  return bin(outputs, options);
 }
 
 export function maybeDenseIntervalX(options = {}) {
-  return maybeDenseInterval("x", options);
+  return maybeDenseInterval(binX, "x", "y", withTip(options, "x"));
 }
 
 export function maybeDenseIntervalY(options = {}) {
-  return maybeDenseInterval("y", options);
+  return maybeDenseInterval(binY, "y", "x", withTip(options, "y"));
 }
 
 function binn(
