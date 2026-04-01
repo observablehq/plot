@@ -2320,7 +2320,7 @@ describe("plot(…).scale('projection')", () => {
     const plot = Plot.plot({projection: "mercator", marks: [Plot.graticule()]});
     const projection = plot.scale("projection");
     assert.strictEqual(typeof projection.stream, "function");
-    assert.allCloseTo(applyProjection(projection, [-1.55, 47.22]), [316.748750, 224.179291]);
+    assert.allCloseTo(applyProjection(projection, [-1.55, 47.22]), [316.74875, 224.179291]);
   });
 
   function applyProjection(projection, [x, y]) {
