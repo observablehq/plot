@@ -114,8 +114,8 @@ function dodge(y, x, anchor, padding, r, options) {
           break;
         }
 
-        // Insert the placed circle into the interval tree.
-        tree.insert([l, h, i]);
+        // Insert the placed circle (if valid) into the interval tree.
+        if (h >= l) tree.insert([l, h, i]);
       }
     }
     if (!ky) ky = 1;
