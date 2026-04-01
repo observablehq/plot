@@ -92,8 +92,8 @@ function stack(x, y = one, kx, ky, {offset, order, reverse}, options) {
       const Z = valueof(data, z);
       const compare = order && order(data, X, Y, Z);
       const n = lengthof(data);
-      const Y1 = setY1(new Float64Array(n));
-      const Y2 = setY2(new Float64Array(n));
+      const Y1 = setY1(new Float64Array(n).fill(NaN));
+      const Y2 = setY2(new Float64Array(n).fill(NaN));
       const facetstacks = [];
       for (const facet of facets) {
         const stacks = X ? Array.from(group(facet, (i) => X[i]).values()) : [facet];
@@ -106,7 +106,6 @@ function stack(x, y = one, kx, ky, {offset, order, reverse}, options) {
             const y = Y[i];
             if (y < 0) yn = Y2[i] = (Y1[i] = yn) + y;
             else if (y >= 0) yp = Y2[i] = (Y1[i] = yp) + y;
-            else Y2[i] = Y1[i] = NaN;
           }
         }
         facetstacks.push(stacks);
