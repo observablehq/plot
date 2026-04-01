@@ -299,6 +299,7 @@ import "./single-value-bin.js";
 import "./software-versions.js";
 import "./sparse-cell.js";
 import "./sparse-title.js";
+import "./stack-nan.js";
 import "./stacked-bar.js";
 import "./stacked-rect.js";
 import "./stargazers-binned.js";
