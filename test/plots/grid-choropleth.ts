@@ -1,7 +1,8 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
+import {test} from "test/plot";
 
-export async function gridChoropleth() {
+test(async function gridChoropleth() {
   const [grid, data] = await Promise.all([
     await d3.csv<any>("data/us-state-grid.csv", d3.autoType).then(gridmap),
     await d3.csv<any>("data/us-state-population-2010-2019.csv", d3.autoType)
@@ -34,9 +35,9 @@ export async function gridChoropleth() {
       })
     ]
   });
-}
+});
 
-export async function gridChoroplethDx() {
+test(async function gridChoroplethDx() {
   const [grid, data] = await Promise.all([
     await d3.csv<any>("data/us-state-grid.csv", d3.autoType).then(gridmap),
     await d3.csv<any>("data/us-state-population-2010-2019.csv", d3.autoType)
@@ -70,9 +71,9 @@ export async function gridChoroplethDx() {
       })
     ]
   });
-}
+});
 
-export async function gridReduceIdentity() {
+test(async function gridReduceIdentity() {
   const grid = await d3.csv<any>("data/us-state-grid.csv", d3.autoType);
   return Plot.plot({
     axis: null,
@@ -90,7 +91,7 @@ export async function gridReduceIdentity() {
       )
     ]
   });
-}
+});
 
 function gridmap(states: {name: string}[]) {
   return new Map(states.map((state) => [state.name, state]));

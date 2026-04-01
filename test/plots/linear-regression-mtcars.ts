@@ -1,7 +1,8 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
+import {test} from "test/plot";
 
-export async function linearRegressionMtcars() {
+test(async function linearRegressionMtcars() {
   const mtcars = await d3.csv<any>("data/mtcars.csv", d3.autoType);
   return Plot.plot({
     marks: [
@@ -10,4 +11,4 @@ export async function linearRegressionMtcars() {
       Plot.linearRegressionY(mtcars, {x: "wt", y: "hp"})
     ]
   });
-}
+});

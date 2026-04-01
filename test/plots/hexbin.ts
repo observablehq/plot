@@ -1,7 +1,8 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
+import {test} from "test/plot";
 
-export async function hexbin() {
+test(async function hexbin() {
   const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
   return Plot.plot({
     marks: [
@@ -10,9 +11,9 @@ export async function hexbin() {
       Plot.dot(penguins, Plot.hexbin({r: "count"}, {x: "culmen_depth_mm", y: "culmen_length_mm"}))
     ]
   });
-}
+});
 
-export async function hexbinFillX() {
+test(async function hexbinFillX() {
   const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
   return Plot.plot({
     marks: [
@@ -21,4 +22,4 @@ export async function hexbinFillX() {
       Plot.dot(penguins, Plot.hexbin({r: "count", fill: "x"}, {x: "culmen_depth_mm", y: "culmen_length_mm"}))
     ]
   });
-}
+});

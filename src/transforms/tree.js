@@ -65,7 +65,7 @@ export function treeLink({
   path = identity, // the delimited path
   delimiter, // how the path is separated
   curve = "bump-x",
-  stroke = "#555",
+  stroke = "color-mix(in srgb, currentColor 33%, var(--plot-background))",
   strokeWidth = 1.5,
   strokeOpacity = 0.5,
   treeLayout = tree,
