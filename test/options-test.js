@@ -1,5 +1,34 @@
 import {assert, it} from "vitest";
 import {identity, isNumericString, valueof} from "../src/options.js";
+import {isYearInteger, isYearIntegers} from "../src/options.js";
+
+it("isYearInteger returns true for integers in [1500, 2500]", () => {
+  assert.strictEqual(isYearInteger(1500), true);
+  assert.strictEqual(isYearInteger(1999), true);
+  assert.strictEqual(isYearInteger(2000), true);
+  assert.strictEqual(isYearInteger(2001), true);
+  assert.strictEqual(isYearInteger(2500), true);
+});
+
+it("isYearInteger returns false for non-integers, or numbers outside [1500, 2500]", () => {
+  assert.strictEqual(isYearInteger(-2000), false);
+  assert.strictEqual(isYearInteger(-1500), false);
+  assert.strictEqual(isYearInteger(0), false);
+  assert.strictEqual(isYearInteger("1000"), false);
+  assert.strictEqual(isYearInteger(null), false);
+  assert.strictEqual(isYearInteger(2000.5), false);
+  assert.strictEqual(isYearInteger(NaN), false);
+  assert.strictEqual(isYearInteger(undefined), false);
+});
+
+it("isYearIntegers requires every value to be a year integer", () => {
+  assert.strictEqual(isYearIntegers([]), undefined);
+  assert.strictEqual(isYearIntegers([1]), false);
+  assert.strictEqual(isYearIntegers([2000]), true);
+  assert.strictEqual(isYearIntegers([2000, 1]), false);
+  assert.strictEqual(isYearIntegers([2000, "2000"]), false);
+  assert.strictEqual(isYearIntegers([2000, 1999]), true);
+});
 
 it("isNumericString detects numeric strings", () => {
   assert.strictEqual(isNumericString(["42"]), true);
