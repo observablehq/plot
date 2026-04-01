@@ -176,7 +176,7 @@ Plot.plot({
 Here the [normalize transform](../transforms/normalize.md) normalizes each time series (**z**) relative to its initial value, while the [select transform](../transforms/select.md) extracts the last point for labeling. A custom tick format converts multiples to percentage change (*e.g.*, 1.6× = +60%).
 :::
 
-Varying-color lines are supported. If the **stroke** value varies within series, the line will be segmented by color. (The same behavior applies to other channels, such as **strokeWidth** and **title**.) Specifying the **z** channel (say to null for a single series) is recommended.
+Varying-color lines are supported. If the **stroke** value varies within series, the line will be segmented by color. (The same behavior applies to other channels, such as **strokeWidth** and **title**.) The **z** channel determines how data is grouped into series.
 
 :::plot defer https://observablehq.com/@observablehq/plot-varying-stroke-line
 ```js
@@ -198,6 +198,14 @@ Plot.plot({
     })
   ]
 })
+```
+:::
+
+If the **stroke** and **y** channels are strictly equal, as when the color encoding is redundant with position, **z** defaults to null, producing a single varying-color line.
+
+:::plot
+```js
+Plot.lineY(aapl, {x: "Date", y: "Close", stroke: "Close"}).plot({y: {grid: true}})
 ```
 :::
 
