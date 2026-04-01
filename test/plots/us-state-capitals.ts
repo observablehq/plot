@@ -1,8 +1,9 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 import {feature, mesh} from "topojson-client";
+import {test} from "test/plot";
 
-export async function usStateCapitals() {
+test(async function usStateCapitals() {
   const [[states, statemesh], capitals] = await Promise.all([
     d3
       .json<any>("data/us-counties-10m.json")
@@ -26,4 +27,4 @@ export async function usStateCapitals() {
       })
     ]
   });
-}
+});

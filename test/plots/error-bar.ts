@@ -1,7 +1,8 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
+import {test} from "test/plot";
 
-export async function errorBarX() {
+test(async function errorBarX() {
   const alphabet = await d3.csv<any>("data/alphabet.csv", d3.autoType);
   return Plot.plot({
     marks: [
@@ -10,9 +11,9 @@ export async function errorBarX() {
       Plot.ruleX([0])
     ]
   });
-}
+});
 
-export async function errorBarY() {
+test(async function errorBarY() {
   const alphabet = await d3.csv<any>("data/alphabet.csv", d3.autoType);
   return Plot.plot({
     marks: [
@@ -21,4 +22,4 @@ export async function errorBarY() {
       Plot.ruleY([0])
     ]
   });
-}
+});

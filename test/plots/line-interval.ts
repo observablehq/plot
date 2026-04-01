@@ -1,7 +1,8 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
+import {test} from "test/plot";
 
-export async function lineInterval() {
+test(async function lineInterval() {
   const random = d3.randomLcg(42);
   const logins = ["Alice", "Bob", "Carol", "Dave", "Eve"];
   const dates = d3.utcDays(new Date("2024-01-01"), new Date("2024-01-15"));
@@ -26,4 +27,4 @@ export async function lineInterval() {
       Plot.dot(activity, Plot.stackY({x: "date", interval: "day", z: "login", fill: "login", order: "-sum"}))
     ]
   });
-}
+});
