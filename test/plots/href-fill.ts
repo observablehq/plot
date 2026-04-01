@@ -1,6 +1,7 @@
 import * as Plot from "@observablehq/plot";
+import {test} from "test/plot";
 
-export async function hrefFill() {
+test(async function hrefFill() {
   return Plot.text(
     {length: 1},
     {
@@ -11,4 +12,4 @@ export async function hrefFill() {
       href: [`https://google.com/search?q=12345`]
     }
   ).plot();
-}
+});

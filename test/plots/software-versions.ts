@@ -1,7 +1,8 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
+import {test} from "test/plot";
 
-export async function softwareVersions() {
+test(async function softwareVersions() {
   const data = await d3.csv<any>("data/software-versions.csv");
 
   function stack({text = undefined, fill = undefined, ...options}) {
@@ -37,4 +38,4 @@ export async function softwareVersions() {
       Plot.ruleX([0, 1])
     ]
   });
-}
+});

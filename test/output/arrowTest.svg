@@ -15,26 +15,26 @@
   </style>
   <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,0.5)">
     <path transform="translate(40,370)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,331.1111111111111)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,292.22222222222223)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,253.33333333333334)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,214.44444444444446)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,175.55555555555554)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,136.66666666666669)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,97.77777777777777)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,58.88888888888891)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,331.111)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,292.222)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,253.333)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,214.444)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,175.556)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,136.667)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,97.778)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,58.889)" d="M0,0L-6,0"></path>
     <path transform="translate(40,20)" d="M0,0L-6,0"></path>
   </g>
   <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
     <text y="0.32em" transform="translate(40,370)">0</text>
-    <text y="0.32em" transform="translate(40,331.1111111111111)">5</text>
-    <text y="0.32em" transform="translate(40,292.22222222222223)">10</text>
-    <text y="0.32em" transform="translate(40,253.33333333333334)">15</text>
-    <text y="0.32em" transform="translate(40,214.44444444444446)">20</text>
-    <text y="0.32em" transform="translate(40,175.55555555555554)">25</text>
-    <text y="0.32em" transform="translate(40,136.66666666666669)">30</text>
-    <text y="0.32em" transform="translate(40,97.77777777777777)">35</text>
-    <text y="0.32em" transform="translate(40,58.88888888888891)">40</text>
+    <text y="0.32em" transform="translate(40,331.111)">5</text>
+    <text y="0.32em" transform="translate(40,292.222)">10</text>
+    <text y="0.32em" transform="translate(40,253.333)">15</text>
+    <text y="0.32em" transform="translate(40,214.444)">20</text>
+    <text y="0.32em" transform="translate(40,175.556)">25</text>
+    <text y="0.32em" transform="translate(40,136.667)">30</text>
+    <text y="0.32em" transform="translate(40,97.778)">35</text>
+    <text y="0.32em" transform="translate(40,58.889)">40</text>
     <text y="0.32em" transform="translate(40,20)">45</text>
   </g>
   <g aria-label="y-axis label" text-anchor="start" transform="translate(-36.5,-16.5)">
@@ -54,8 +54,8 @@
     <text transform="translate(330,370)">name</text>
   </g>
   <g aria-label="bar">
-    <rect x="59" width="168" y="97.77777777777777" height="272.22222222222223"></rect>
-    <rect x="246" width="168" y="175.55555555555554" height="194.44444444444446"></rect>
+    <rect x="59" width="168" y="97.778" height="272.222"></rect>
+    <rect x="246" width="168" y="175.556" height="194.444"></rect>
     <rect x="433" width="168" y="20" height="350"></rect>
   </g>
 </svg>

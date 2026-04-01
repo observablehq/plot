@@ -19,7 +19,7 @@ export interface DotOptions extends MarkOptions {
 
   /**
    * The radius of dots; either a channel or constant. When a number, it is
-   * interpreted as a constant radius in pixels. Otherwise it is interpreted as
+   * interpreted as a constant radius in pixels. Otherwise, it is interpreted as
    * a channel, typically bound to the *r* channel, which defaults to the *sqrt*
    * type for proportional symbols. The radius defaults to 4.5 pixels when using
    * the **symbol** channel, and otherwise 3 pixels. Dots with a nonpositive

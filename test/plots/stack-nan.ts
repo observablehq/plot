@@ -1,7 +1,8 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
+import {test} from "test/plot";
 
-export async function stackNaN() {
+test(async function stackNaN() {
   const industries = await d3.csv<any>("data/bls-industry-unemployment.csv", d3.autoType);
   const gaps = new Map(
     [...new Set(industries.map((d) => d.industry))].map((name, i) => [
@@ -20,4 +21,4 @@ export async function stackNaN() {
       Plot.lineY(industries, Plot.stackY({x: "date", y: "unemployed", stroke: "industry"}))
     ]
   });
-}
+});
