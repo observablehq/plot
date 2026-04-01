@@ -2319,38 +2319,25 @@ describe("plot(…).scale('projection')", () => {
   it("returns the projection for a named projection", () => {
     const plot = Plot.plot({projection: "mercator", marks: [Plot.graticule()]});
     const projection = plot.scale("projection");
-    assert.strictEqual(typeof projection.stream, "function");
+    assert.strictEqual(d3.geoPath(projection)({type: "Point", coordinates: [-1.55, 47.22]}), "M316.749,224.179m0,4.5a4.5,4.5 0 1,1 0,-9a4.5,4.5 0 1,1 0,9z"); // prettier-ignore
     assert.allCloseTo(projection.apply([-1.55, 47.22]), [316.74875, 224.179291]);
+    assert.allCloseTo(projection.invert([316.74875, 224.179291]), [-1.55, 47.22]);
+  });
+
+  it("returns the projection for a projection implementation", () => {
+    const plot = Plot.plot({projection: d3.geoMercator(), marks: [Plot.graticule()]});
+    const projection = plot.scale("projection");
+    assert.strictEqual(d3.geoPath(projection)({type: "Point", coordinates: [-1.55, 47.22]}), "M475.862,106.646m0,4.5a4.5,4.5 0 1,1 0,-9a4.5,4.5 0 1,1 0,9z"); // prettier-ignore
+    assert.allCloseTo(projection.apply([-1.55, 47.22]), [475.862361, 106.646008]);
+    assert.allCloseTo(projection.invert([475.862361, 106.646008]), [-1.55, 47.22]);
   });
 
   it("is the same for 'mercator' and {type: 'mercator'}", () => {
-    const p1 = Plot.plot({projection: "mercator", marks: [Plot.graticule()]}).scale("projection");
-    const p2 = Plot.plot({projection: {type: "mercator"}, marks: [Plot.graticule()]}).scale("projection");
-    assert.allCloseTo(p1.apply([-1.55, 47.22]), p2.apply([-1.55, 47.22]));
+    const projection1 = Plot.plot({projection: "mercator", marks: [Plot.graticule()]}).scale("projection");
+    const projection2 = Plot.plot({projection: {type: "mercator"}, marks: [Plot.graticule()]}).scale("projection");
+    assert.allCloseTo(projection1.apply([-1.55, 47.22]), projection2.apply([-1.55, 47.22]));
+    assert.allCloseTo(projection1.invert([316.74875, 224.179291]), projection2.invert([316.74875, 224.179291]));
   });
-
-  it("exposes apply and invert that round-trip", () => {
-    const plot = Plot.plot({projection: "mercator", marks: [Plot.graticule()]});
-    const p = plot.scale("projection");
-    const point = [-1.55, 47.22];
-    const px = p.apply(point);
-    assert.ok(Array.isArray(px));
-    assert.strictEqual(px.length, 2);
-    assert.allCloseTo(p.invert(px), point);
-  });
-
-  // it("exposes parallels for conic projections", () => {
-  //   const plot = Plot.plot({projection: {type: "conic-equal-area", parallels: [30, 40]}, marks: [Plot.graticule()]});
-  //   const p = plot.scale("projection");
-  //   assert.strictEqual(p.type, "conic-equal-area");
-  //   assert.allCloseTo(p.parallels, [30, 40]);
-  // });
-
-  // it("exposes rotate", () => {
-  //   const plot = Plot.plot({projection: {type: "orthographic", rotate: [90, -30]}, marks: [Plot.graticule()]});
-  //   const p = plot.scale("projection");
-  //   assert.deepStrictEqual(p.rotate, [90, -30]);
-  // });
 
   it("exposes apply and invert for identity", () => {
     const domain = {
@@ -2373,11 +2360,9 @@ describe("plot(…).scale('projection')", () => {
       marks: [Plot.frame()]
     });
     const p = plot.scale("projection");
-    assert.strictEqual(typeof p.apply, "function");
     assert.allCloseTo(p.apply([0, 0]), [0, 0]);
     assert.allCloseTo(p.apply([200, 100]), [400, 200]);
     assert.allCloseTo(p.apply([100, 50]), [200, 100]);
-    assert.strictEqual(typeof p.invert, "function");
     assert.allCloseTo(p.invert([0, 0]), [0, 0]);
     assert.allCloseTo(p.invert([400, 200]), [200, 100]);
     assert.allCloseTo(p.invert([200, 100]), [100, 50]);
@@ -2404,11 +2389,9 @@ describe("plot(…).scale('projection')", () => {
       marks: [Plot.frame()]
     });
     const p = plot.scale("projection");
-    assert.strictEqual(typeof p.apply, "function");
     assert.allCloseTo(p.apply([0, 0]), [0, 200]);
     assert.allCloseTo(p.apply([200, 100]), [400, 0]);
     assert.allCloseTo(p.apply([100, 50]), [200, 100]);
-    assert.strictEqual(typeof p.invert, "function");
     assert.allCloseTo(p.invert([0, 200]), [0, 0]);
     assert.allCloseTo(p.invert([400, 0]), [200, 100]);
     assert.allCloseTo(p.invert([200, 100]), [100, 50]);
@@ -2419,7 +2402,6 @@ describe("plot(…).scale('projection')", () => {
     const p1 = plot1.scale("projection");
     const plot2 = Plot.plot({projection: p1, marks: [Plot.graticule()]});
     const p2 = plot2.scale("projection");
-    // assert.strictEqual(p2.type, "mercator");
     // Same dimensions, so pixel coordinates match
     const point = [-1.55, 47.22];
     assert.allCloseTo(p1.apply(point), p2.apply(point));
@@ -2430,43 +2412,10 @@ describe("plot(…).scale('projection')", () => {
     const projection1 = plot1.scale("projection");
     const plot2 = Plot.plot({width: 300, projection: projection1, marks: [Plot.graticule()]});
     const projection2 = plot2.scale("projection");
-    // assert.strictEqual(projection2.type, "mercator");
-    // Different dimensions, so pixel coordinates differ but projection type is preserved
+    // Different dimensions, but pixel coordinates still match
     assert.allCloseTo(projection1.apply([-1.55, 47.22]), [316.74875, 224.179291]);
     assert.allCloseTo(projection2.apply([-1.55, 47.22]), [316.74875, 224.179291]);
     // But invert still round-trips
     assert.allCloseTo(projection2.invert(projection2.apply([-1.55, 47.22])), [-1.55, 47.22]);
   });
-
-  // it("exposes domain when specified", () => {
-  //   const domain = {type: "Sphere"};
-  //   const plot = Plot.plot({
-  //     projection: {type: "orthographic", domain},
-  //     marks: [Plot.graticule()]
-  //   });
-  //   const p = plot.scale("projection");
-  //   assert.strictEqual(p.domain, domain);
-  // });
-
-  // it("exposes non-default clip and precision", () => {
-  //   const plot = Plot.plot({
-  //     projection: {type: "orthographic", clip: 85, precision: 0.5},
-  //     marks: [Plot.graticule()]
-  //   });
-  //   const p = plot.scale("projection");
-  //   assert.strictEqual(p.clip, 85);
-  //   assert.strictEqual(p.precision, 0.5);
-  // });
-
-  // it("exposes insets", () => {
-  //   const plot = Plot.plot({
-  //     projection: {type: "mercator", inset: 10},
-  //     marks: [Plot.graticule()]
-  //   });
-  //   const p = plot.scale("projection");
-  //   assert.strictEqual(p.insetTop, 10);
-  //   assert.strictEqual(p.insetRight, 10);
-  //   assert.strictEqual(p.insetBottom, 10);
-  //   assert.strictEqual(p.insetLeft, 10);
-  // });
 });
