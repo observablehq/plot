@@ -7,7 +7,7 @@ import {anchorX, anchorY} from "../interactions/pointer.js";
 import {Mark} from "../mark.js";
 import {maybeAnchor, maybeFrameAnchor, maybeTuple, number, string} from "../options.js";
 import {applyDirectStyles, applyFrameAnchor, applyIndirectStyles, applyTransform, impliedString} from "../style.js";
-import {identity, isIterable, isTemporal, isTextual} from "../options.js";
+import {identity, isIterable, isTemporal, isTextual, isYearIntegers} from "../options.js";
 import {inferTickFormat} from "./axis.js";
 import {applyIndirectTextStyles, defaultWidth, ellipsis, monospaceWidth} from "./text.js";
 import {cut, clipper, splitter, maybeTextOverflow} from "./text.js";
@@ -362,14 +362,19 @@ function getSourceChannels(channels, scales) {
   // Promote shorthand string formats, and materialize default formats.
   for (const key in sources) {
     const format = this.format[key];
+    const scale = scales[key];
+    const value = sources[key]?.value ?? scale?.domain() ?? [];
     if (typeof format === "string") {
-      const value = sources[key]?.value ?? scales[key]?.domain() ?? [];
       this.format[key] = (isTemporal(value) ? utcFormat : numberFormat)(format);
     } else if (format === undefined || format === true) {
       // For ordinal scales, the inferred tick format can be more concise, such
-      // as only showing the year for yearly data.
-      const scale = scales[key];
-      this.format[key] = scale?.bandwidth ? inferTickFormat(scale, scale.domain()) : formatDefault;
+      // as only showing the year for yearly data. Similarly if all the values
+      // look like years, we can avoid the thousands comma.
+      this.format[key] = scale?.bandwidth
+        ? inferTickFormat(scale, scale.domain())
+        : isYearIntegers(value)
+        ? String
+        : formatDefault;
     }
   }
 
