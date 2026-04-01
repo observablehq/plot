@@ -284,21 +284,7 @@ const plot = Plot.plot({projection: "mercator", marks: [Plot.graticule()]});
 const projection = plot.scale("projection");
 ```
 
-The returned object exposes the resolved projection options, reflecting the actual values used to construct the projection.
-
-The projection object also exposes an **apply** method that projects a [*longitude*, *latitude*] point to [*x*, *y*] pixel coordinates:
-
-```js
-projection.apply([-122.42, 37.78]) // San Francisco → [x, y]
-```
-
-An **invert** method is also available to convert [*x*, *y*] pixels back to coordinates:
-
-```js
-projection.invert([320, 240]) // [x, y] → [longitude, latitude]
-```
-
-To reuse a projection across plots, pass the projection object as the **projection** option of another plot. The projection is reconstructed from the resolved options to fit the new plot's dimensions:
+The returned object exposes a *projection*.stream method (see d3-geo) that can be used to project geometry. To reuse a projection across plots, pass the projection object as the **projection** option of another plot:
 
 ```js
 const plot1 = Plot.plot({projection: "mercator", marks: [Plot.graticule()]});

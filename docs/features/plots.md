@@ -313,7 +313,7 @@ const color = plot.scale("color"); // get the color scale
 console.log(color.range); // inspect the scale’s range
 ```
 
-Returns the [scale object](./scales.md#scale-options) for the scale with the specified *name* (such as *x*, *color*, or *projection*) on the given *plot*, where *plot* is a rendered plot element returned by [plot](#plot). If the associated *plot* has no scale with the given *name*, returns undefined.
+Given a rendered *plot* element returned by [plot](#plot), returns the *plot*’s [scale object](./scales.md#scale-options) for the scale with the specified *name* (such as *x* or *color*), or the [projection](./projections.md) if the *name* is *projection*. If the associated *plot* has no scale (or projection) with the given *name*, returns undefined.
 
 ## *plot*.legend(*name*, *options*) {#plot_legend}
 
