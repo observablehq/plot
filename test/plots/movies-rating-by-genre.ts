@@ -1,7 +1,8 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
+import {test} from "test/plot";
 
-export async function moviesRatingByGenre() {
+test(async function moviesRatingByGenre() {
   const movies = await d3.json<any>("data/movies.json");
   return Plot.plot({
     width: 960,
@@ -43,4 +44,4 @@ export async function moviesRatingByGenre() {
       )
     ]
   });
-}
+});

@@ -209,34 +209,34 @@
   </g>
   <g aria-label="x-axis tick" aria-hidden="true" transform="translate(0.5,1)">
     <g fill="none" stroke="currentColor" transform="translate(0,30)">
-      <path transform="translate(166.42857142857144,30)" d="M0,0L0,-6"></path>
-      <path transform="translate(232.85714285714286,30)" d="M0,0L0,-6"></path>
+      <path transform="translate(166.429,30)" d="M0,0L0,-6"></path>
+      <path transform="translate(232.857,30)" d="M0,0L0,-6"></path>
       <path transform="translate(295,30)" d="M0,0L0,-6"></path>
-      <path transform="translate(361.42857142857144,30)" d="M0,0L0,-6"></path>
-      <path transform="translate(425.71428571428567,30)" d="M0,0L0,-6"></path>
-      <path transform="translate(492.1428571428571,30)" d="M0,0L0,-6"></path>
-      <path transform="translate(556.4285714285714,30)" d="M0,0L0,-6"></path>
-      <path transform="translate(622.8571428571429,30)" d="M0,0L0,-6"></path>
-      <path transform="translate(689.2857142857143,30)" d="M0,0L0,-6"></path>
-      <path transform="translate(753.5714285714286,30)" d="M0,0L0,-6"></path>
+      <path transform="translate(361.429,30)" d="M0,0L0,-6"></path>
+      <path transform="translate(425.714,30)" d="M0,0L0,-6"></path>
+      <path transform="translate(492.143,30)" d="M0,0L0,-6"></path>
+      <path transform="translate(556.429,30)" d="M0,0L0,-6"></path>
+      <path transform="translate(622.857,30)" d="M0,0L0,-6"></path>
+      <path transform="translate(689.286,30)" d="M0,0L0,-6"></path>
+      <path transform="translate(753.571,30)" d="M0,0L0,-6"></path>
       <path transform="translate(820,30)" d="M0,0L0,-6"></path>
-      <path transform="translate(884.2857142857143,30)" d="M0,0L0,-6"></path>
+      <path transform="translate(884.286,30)" d="M0,0L0,-6"></path>
     </g>
   </g>
   <g aria-label="x-axis tick label" transform="translate(0.5,-8.5)">
     <g font-variant="tabular-nums" transform="translate(0,30)">
-      <text transform="translate(166.42857142857144,30)"><tspan x="0" y="-1em">2020</tspan><tspan x="0" dy="1em">Jan</tspan></text>
-      <text transform="translate(232.85714285714286,30)">Feb</text>
+      <text transform="translate(166.429,30)"><tspan x="0" y="-1em">2020</tspan><tspan x="0" dy="1em">Jan</tspan></text>
+      <text transform="translate(232.857,30)">Feb</text>
       <text transform="translate(295,30)">Mar</text>
-      <text transform="translate(361.42857142857144,30)">Apr</text>
-      <text transform="translate(425.71428571428567,30)">May</text>
-      <text transform="translate(492.1428571428571,30)">Jun</text>
-      <text transform="translate(556.4285714285714,30)">Jul</text>
-      <text transform="translate(622.8571428571429,30)">Aug</text>
-      <text transform="translate(689.2857142857143,30)">Sep</text>
-      <text transform="translate(753.5714285714286,30)">Oct</text>
+      <text transform="translate(361.429,30)">Apr</text>
+      <text transform="translate(425.714,30)">May</text>
+      <text transform="translate(492.143,30)">Jun</text>
+      <text transform="translate(556.429,30)">Jul</text>
+      <text transform="translate(622.857,30)">Aug</text>
+      <text transform="translate(689.286,30)">Sep</text>
+      <text transform="translate(753.571,30)">Oct</text>
       <text transform="translate(820,30)">Nov</text>
-      <text transform="translate(884.2857142857143,30)">Dec</text>
+      <text transform="translate(884.286,30)">Dec</text>
     </g>
   </g>
   <g aria-label="area">

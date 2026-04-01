@@ -1,7 +1,8 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
+import {test} from "test/plot";
 
-export async function simpsonsViews() {
+test(async function simpsonsViews() {
   const data = await d3.csv<any>("data/simpsons.csv", d3.autoType);
   return Plot.plot({
     height: 640,
@@ -27,4 +28,4 @@ export async function simpsonsViews() {
       })
     ]
   });
-}
+});
