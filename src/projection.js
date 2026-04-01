@@ -38,7 +38,7 @@ export function createProjection(
   dimensions
 ) {
   if (projection == null) return;
-  if (typeof projection.stream === "function") return projection; // d3 projection
+  if (typeof projection.stream === "function") return exposeProjection(projection); // projection implementation
   let options;
   let domain;
   let clip = "frame";
@@ -88,26 +88,35 @@ export function createProjection(
     if (k > 0) {
       tx -= (k * (x0 + x1) - dx) / 2;
       ty -= (k * (y0 + y1) - dy) / 2;
-      transform = geoTransform({
-        point(x, y) {
-          this.stream.point(x * k + tx, y * k + ty);
-        }
-      });
+      transform = scaleAndTranslate(k, tx, ty);
     } else {
       warn(`Warning: the projection could not be fit to the specified domain; using the default scale.`);
     }
   }
 
-  transform ??=
-    tx === 0 && ty === 0
-      ? identity()
-      : geoTransform({
-          point(x, y) {
-            this.stream.point(x + tx, y + ty);
-          }
-        });
+  transform ??= translate(tx, ty);
 
-  return {stream: (s) => projection.stream(transform.stream(clip(s)))};
+  return {
+    stream(s) {
+      return projection.stream(transform.stream(clip(s)));
+    },
+    apply(p) {
+      let result = null;
+      this.stream({point: (...p) => (result = p)}).point(...p);
+      return result;
+    }
+    // TODO invert
+  };
+}
+
+function exposeProjection(projection) {
+  return typeof projection === "function"
+    ? {
+        stream: (s) => projection.stream(s),
+        apply: (p) => projection(p),
+        ...(projection.invert && {invert: (p) => projection.invert(p)})
+      }
+    : projection;
 }
 
 function namedProjection(projection) {
@@ -204,6 +213,24 @@ const reflectY = constant(
     }
   })
 );
+
+function scaleAndTranslate(k, tx, ty) {
+  return geoTransform({
+    point(x, y) {
+      this.stream.point(x * k + tx, y * k + ty);
+    }
+  });
+}
+
+function translate(tx, ty) {
+  return tx === 0 && ty === 0
+    ? identity()
+    : geoTransform({
+        point(x, y) {
+          this.stream.point(x + tx, y + ty);
+        }
+      });
+}
 
 // Applies a point-wise projection to the given paired x and y channels.
 // Note: mutates values!

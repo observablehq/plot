@@ -2320,27 +2320,21 @@ describe("plot(…).scale('projection')", () => {
     const plot = Plot.plot({projection: "mercator", marks: [Plot.graticule()]});
     const projection = plot.scale("projection");
     assert.strictEqual(typeof projection.stream, "function");
-    assert.allCloseTo(applyProjection(projection, [-1.55, 47.22]), [316.74875, 224.179291]);
+    assert.allCloseTo(projection.apply([-1.55, 47.22]), [316.74875, 224.179291]);
   });
-
-  function applyProjection(projection, [x, y]) {
-    let result = null;
-    projection.stream({point: (x, y) => void (result = [x, y])}).point(x, y);
-    return result;
-  }
 
   it("is the same for 'mercator' and {type: 'mercator'}", () => {
     const p1 = Plot.plot({projection: "mercator", marks: [Plot.graticule()]}).scale("projection");
     const p2 = Plot.plot({projection: {type: "mercator"}, marks: [Plot.graticule()]}).scale("projection");
     assert.strictEqual(p1.type, p2.type);
-    assert.allCloseTo(applyProjection(p1, [-1.55, 47.22]), applyProjection(p2, [-1.55, 47.22]));
+    assert.allCloseTo(p1.apply([-1.55, 47.22]), p2.apply([-1.55, 47.22]));
   });
 
   it("exposes apply and invert that round-trip", () => {
     const plot = Plot.plot({projection: "mercator", marks: [Plot.graticule()]});
     const p = plot.scale("projection");
     const point = [-1.55, 47.22];
-    const px = applyProjection(p, point);
+    const px = p.apply(point);
     assert.ok(Array.isArray(px));
     assert.strictEqual(px.length, 2);
     // assert.allCloseTo(p.invert(px), point);
@@ -2381,11 +2375,11 @@ describe("plot(…).scale('projection')", () => {
     });
     const p = plot.scale("projection");
     // assert.strictEqual(p.type, "identity");
-    // assert.strictEqual(typeof p.apply, "function");
+    assert.strictEqual(typeof p.apply, "function");
+    assert.allCloseTo(p.apply([0, 0]), [0, 0]);
+    assert.allCloseTo(p.apply([200, 100]), [400, 200]);
+    assert.allCloseTo(p.apply([100, 50]), [200, 100]);
     // assert.strictEqual(typeof p.invert, "function");
-    assert.allCloseTo(applyProjection(p, [0, 0]), [0, 0]);
-    assert.allCloseTo(applyProjection(p, [200, 100]), [400, 200]);
-    assert.allCloseTo(applyProjection(p, [100, 50]), [200, 100]);
     // assert.allCloseTo(p.invert([0, 0]), [0, 0]);
     // assert.allCloseTo(p.invert([400, 200]), [200, 100]);
     // assert.allCloseTo(p.invert([200, 100]), [100, 50]);
@@ -2413,11 +2407,11 @@ describe("plot(…).scale('projection')", () => {
     });
     const p = plot.scale("projection");
     // assert.strictEqual(p.type, "reflect-y");
-    // assert.strictEqual(typeof p.apply, "function");
+    assert.strictEqual(typeof p.apply, "function");
+    assert.allCloseTo(p.apply([0, 0]), [0, 200]);
+    assert.allCloseTo(p.apply([200, 100]), [400, 0]);
+    assert.allCloseTo(p.apply([100, 50]), [200, 100]);
     // assert.strictEqual(typeof p.invert, "function");
-    assert.allCloseTo(applyProjection(p, [0, 0]), [0, 200]);
-    assert.allCloseTo(applyProjection(p, [200, 100]), [400, 0]);
-    assert.allCloseTo(applyProjection(p, [100, 50]), [200, 100]);
     // assert.allCloseTo(p.invert([0, 200]), [0, 0]);
     // assert.allCloseTo(p.invert([400, 0]), [200, 100]);
     // assert.allCloseTo(p.invert([200, 100]), [100, 50]);
@@ -2431,7 +2425,7 @@ describe("plot(…).scale('projection')", () => {
     // assert.strictEqual(p2.type, "mercator");
     // Same dimensions, so pixel coordinates match
     const point = [-1.55, 47.22];
-    assert.allCloseTo(applyProjection(p1, point), applyProjection(p2, point));
+    assert.allCloseTo(p1.apply(point), p2.apply(point));
   });
 
   it("round-trips with different dimensions", () => {
@@ -2441,8 +2435,8 @@ describe("plot(…).scale('projection')", () => {
     const projection2 = plot2.scale("projection");
     // assert.strictEqual(projection2.type, "mercator");
     // Different dimensions, so pixel coordinates differ but projection type is preserved
-    assert.allCloseTo(applyProjection(projection1, [-1.55, 47.22]), [316.74875, 224.179291]);
-    assert.allCloseTo(applyProjection(projection2, [-1.55, 47.22]), [316.74875, 224.179291]);
+    assert.allCloseTo(projection1.apply([-1.55, 47.22]), [316.74875, 224.179291]);
+    assert.allCloseTo(projection2.apply([-1.55, 47.22]), [316.74875, 224.179291]);
     // But invert still round-trips
     // assert.allCloseTo(projection2.invert(projection2.apply([-1.55, 47.22])), [-1.55, 47.22]);
   });
