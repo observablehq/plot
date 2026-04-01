@@ -354,6 +354,7 @@ import "./wealth-britain-bar.js";
 import "./wealth-britain-proportion-plot.js";
 import "./word-cloud.js";
 import "./word-length-moby-dick.js";
+import "./year-format.js";
 import "./yearly-requests-dot.js";
 import "./yearly-requests-line.js";
 import "./yearly-requests.js";

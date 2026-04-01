@@ -513,6 +513,14 @@ export function isNumeric(values) {
   }
 }
 
+export function isYearIntegers(values) {
+  return isEvery(values, isYearInteger);
+}
+
+export function isYearInteger(value) {
+  return typeof value === "number" && Number.isInteger(value) && 1500 <= value && value <= 2500;
+}
+
 // Returns true if every non-null value in the specified iterable of values
 // passes the specified predicate, and there is at least one non-null value;
 // returns false if at least one non-null value does not pass the specified
