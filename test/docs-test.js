@@ -1,4 +1,4 @@
-import assert from "assert";
+import {assert, it} from "vitest";
 import {readMarkdownFiles, readMarkdownSource, getAnchors, getLinks} from "../docs/components/links.js";
 
 it("documentation links point to existing internal anchors", async () => {

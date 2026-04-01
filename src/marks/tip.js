@@ -19,7 +19,7 @@ const defaults = {
 };
 
 // These channels are not displayed in the default tip; see formatChannels.
-const ignoreChannels = new Set(["geometry", "href", "src", "ariaLabel", "scales"]);
+const ignoreChannels = new Set(["geometry", "href", "src", "ariaLabel", "scales", "contours"]);
 
 export class Tip extends Mark {
   constructor(data, options = {}) {
@@ -97,7 +97,7 @@ export class Tip extends Mark {
     // The anchor position is the middle of x1 & y1 and x2 & y2, if available,
     // or x & y; the former is considered more specific because it’s how we
     // disable the implicit stack and interval transforms. If any dimension is
-    // unspecified, we fallback to the frame anchor. We also need to know the
+    // unspecified, we fall back to the frame anchor. We also need to know the
     // facet offsets to detect when the tip would draw outside the plot, and
     // thus we need to change the orientation.
     const {x1: X1, y1: Y1, x2: X2, y2: Y2, x: X = X1 ?? X2, y: Y = Y1 ?? Y2} = values;
@@ -341,7 +341,7 @@ function getSourceChannels(channels, scales) {
     }
   }
 
-  // Then fallback to all other (non-ignored) channels.
+  // Then fall back to all other (non-ignored) channels.
   for (const key in channels) {
     if (key in sources || key in format || ignoreChannels.has(key)) continue;
     if ((key === "x" || key === "y") && channels.geometry) continue; // ignore x & y on geo

@@ -1,6 +1,7 @@
 import * as Plot from "@observablehq/plot";
+import {test} from "test/plot";
 
-export async function projectionFitIdentity() {
+test(async function projectionFitIdentity() {
   return Plot.plot({
     width: 640,
     height: 400,
@@ -21,4 +22,4 @@ export async function projectionFitIdentity() {
       })
     ]
   });
-}
+});

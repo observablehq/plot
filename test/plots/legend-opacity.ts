@@ -1,25 +1,26 @@
 import * as Plot from "@observablehq/plot";
+import {test} from "test/plot";
 
-export function opacityLegend() {
+test(function opacityLegend() {
   return Plot.legend({opacity: {domain: [0, 10], label: "Quantitative"}});
-}
+});
 
-export function opacityLegendRange() {
+test(function opacityLegendRange() {
   return Plot.legend({opacity: {domain: [0, 1], range: [0.5, 1], label: "Range"}});
-}
+});
 
-export function opacityLegendLinear() {
+test(function opacityLegendLinear() {
   return Plot.legend({opacity: {type: "linear", domain: [0, 10], label: "Linear"}});
-}
+});
 
-export function opacityLegendColor() {
+test(function opacityLegendColor() {
   return Plot.legend({opacity: {type: "linear", domain: [0, 10], label: "Linear"}, color: "steelblue"});
-}
+});
 
-export function opacityLegendLog() {
+test(function opacityLegendLog() {
   return Plot.legend({opacity: {type: "log", domain: [1, 10], label: "Log"}});
-}
+});
 
-export function opacityLegendSqrt() {
+test(function opacityLegendSqrt() {
   return Plot.legend({opacity: {type: "sqrt", domain: [0, 1], label: "Sqrt"}});
-}
+});

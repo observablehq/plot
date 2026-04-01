@@ -15,12 +15,12 @@
   </style>
   <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,0)">
     <path transform="translate(20,30)" d="M0,0L0,6"></path>
-    <path transform="translate(79.99999999999999,30)" d="M0,0L0,6"></path>
-    <path transform="translate(139.99999999999997,30)" d="M0,0L0,6"></path>
-    <path transform="translate(200.00000000000003,30)" d="M0,0L0,6"></path>
+    <path transform="translate(80,30)" d="M0,0L0,6"></path>
+    <path transform="translate(140,30)" d="M0,0L0,6"></path>
+    <path transform="translate(200,30)" d="M0,0L0,6"></path>
     <path transform="translate(260,30)" d="M0,0L0,6"></path>
     <path transform="translate(320,30)" d="M0,0L0,6"></path>
-    <path transform="translate(380.00000000000006,30)" d="M0,0L0,6"></path>
+    <path transform="translate(380,30)" d="M0,0L0,6"></path>
     <path transform="translate(440,30)" d="M0,0L0,6"></path>
     <path transform="translate(500,30)" d="M0,0L0,6"></path>
     <path transform="translate(560,30)" d="M0,0L0,6"></path>
@@ -28,12 +28,12 @@
   </g>
   <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
     <text y="0.71em" transform="translate(20,30)">1.0</text>
-    <text y="0.71em" transform="translate(79.99999999999999,30)">1.2</text>
-    <text y="0.71em" transform="translate(139.99999999999997,30)">1.4</text>
-    <text y="0.71em" transform="translate(200.00000000000003,30)">1.6</text>
+    <text y="0.71em" transform="translate(80,30)">1.2</text>
+    <text y="0.71em" transform="translate(140,30)">1.4</text>
+    <text y="0.71em" transform="translate(200,30)">1.6</text>
     <text y="0.71em" transform="translate(260,30)">1.8</text>
     <text y="0.71em" transform="translate(320,30)">2.0</text>
-    <text y="0.71em" transform="translate(380.00000000000006,30)">2.2</text>
+    <text y="0.71em" transform="translate(380,30)">2.2</text>
     <text y="0.71em" transform="translate(440,30)">2.4</text>
     <text y="0.71em" transform="translate(500,30)">2.6</text>
     <text y="0.71em" transform="translate(560,30)">2.8</text>

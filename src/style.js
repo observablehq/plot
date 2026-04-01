@@ -6,7 +6,7 @@ import {isNone, isNoneish, isRound, maybeColorChannel, maybeNumberChannel} from 
 import {keyof, number, string} from "./options.js";
 import {warn} from "./warnings.js";
 
-export let offset = typeof window === "undefined" || window.devicePixelRatio > 1 ? 0 : 0.5;
+export let offset = typeof window !== "undefined" && !(window.devicePixelRatio > 1) ? 0.5 : 0;
 
 export function setOffset(o) {
   offset = o;

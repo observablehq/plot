@@ -1,5 +1,6 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
+import {test} from "test/plot";
 
 const times = [
   "2013-04-05T00:00Z",
@@ -23,7 +24,7 @@ const events = [
   {date: "2013-04-23T14:00Z", text: "Shutdown"}
 ].map((d) => ({text: d.text, date: d3.isoParse(d.date)}));
 
-export async function polylinear() {
+test(async function polylinear() {
   return Plot.plot({
     height: 90,
     grid: true,
@@ -46,4 +47,4 @@ export async function polylinear() {
       Plot.textX(events, {x: "date", text: "text", dx: -5, dy: -10, fill: "white", textAnchor: "start"})
     ]
   });
-}
+});

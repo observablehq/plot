@@ -31,7 +31,8 @@
   }
 </style>
 <script type="module">
-  import * as tests from "./index.ts";
+  import "./index.js";
+  import {tests} from "../plot.js";
 
   if (location.pathname !== "/") {
     location = `/${location.search}${location.hash}`;

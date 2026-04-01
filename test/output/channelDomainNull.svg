@@ -62,43 +62,43 @@
   </g>
   <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,0)">
     <path transform="translate(40,430)" d="M0,0L0,6"></path>
-    <path transform="translate(142.29276895943562,430)" d="M0,0L0,6"></path>
-    <path transform="translate(244.58553791887124,430)" d="M0,0L0,6"></path>
-    <path transform="translate(346.8783068783069,430)" d="M0,0L0,6"></path>
-    <path transform="translate(449.1710758377425,430)" d="M0,0L0,6"></path>
-    <path transform="translate(551.463844797178,430)" d="M0,0L0,6"></path>
+    <path transform="translate(142.293,430)" d="M0,0L0,6"></path>
+    <path transform="translate(244.586,430)" d="M0,0L0,6"></path>
+    <path transform="translate(346.878,430)" d="M0,0L0,6"></path>
+    <path transform="translate(449.171,430)" d="M0,0L0,6"></path>
+    <path transform="translate(551.464,430)" d="M0,0L0,6"></path>
   </g>
   <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
     <text y="0.71em" transform="translate(40,430)">0</text>
-    <text y="0.71em" transform="translate(142.29276895943562,430)">100</text>
-    <text y="0.71em" transform="translate(244.58553791887124,430)">200</text>
-    <text y="0.71em" transform="translate(346.8783068783069,430)">300</text>
-    <text y="0.71em" transform="translate(449.1710758377425,430)">400</text>
-    <text y="0.71em" transform="translate(551.463844797178,430)">500</text>
+    <text y="0.71em" transform="translate(142.293,430)">100</text>
+    <text y="0.71em" transform="translate(244.586,430)">200</text>
+    <text y="0.71em" transform="translate(346.878,430)">300</text>
+    <text y="0.71em" transform="translate(449.171,430)">400</text>
+    <text y="0.71em" transform="translate(551.464,430)">500</text>
   </g>
   <g aria-label="x-axis label" text-anchor="end" transform="translate(17.5,27.5)">
     <text transform="translate(620,430)">Frequency →</text>
   </g>
   <g aria-label="bar">
-    <rect x="40" width="320.1763668430336" y="26" height="18"></rect>
-    <rect x="40" width="217.88359788359787" y="46" height="18"></rect>
-    <rect x="40" width="328.3597883597884" y="66" height="18"></rect>
-    <rect x="40" width="23.52733686067019" y="86" height="18"></rect>
-    <rect x="40" width="212.7689594356261" y="106" height="18"></rect>
-    <rect x="40" width="440.88183421516754" y="126" height="18"></rect>
+    <rect x="40" width="320.176" y="26" height="18"></rect>
+    <rect x="40" width="217.884" y="46" height="18"></rect>
+    <rect x="40" width="328.36" y="66" height="18"></rect>
+    <rect x="40" width="23.527" y="86" height="18"></rect>
+    <rect x="40" width="212.769" y="106" height="18"></rect>
+    <rect x="40" width="440.882" y="126" height="18"></rect>
     <rect x="40" width="580" y="146" height="18"></rect>
-    <rect x="40" width="38.871252204585545" y="166" height="18"></rect>
-    <rect x="40" width="34.7795414462081" y="186" height="18"></rect>
-    <rect x="40" width="9.20634920634921" y="206" height="18"></rect>
-    <rect x="40" width="382.5749559082892" y="226" height="18"></rect>
-    <rect x="40" width="71.60493827160494" y="246" height="18"></rect>
-    <rect x="40" width="149.347442680776" y="266" height="18"></rect>
-    <rect x="40" width="124.79717813051147" y="286" height="18"></rect>
-    <rect x="40" width="50.12345679012347" y="306" height="18"></rect>
-    <rect x="40" width="39.8941798941799" y="326" height="18"></rect>
-    <rect x="40" width="6.1375661375661394" y="346" height="18"></rect>
-    <rect x="40" width="69.55908289241623" y="366" height="18"></rect>
-    <rect x="40" width="130.9347442680776" y="386" height="18"></rect>
-    <rect x="40" width="254.70899470899468" y="406" height="18"></rect>
+    <rect x="40" width="38.871" y="166" height="18"></rect>
+    <rect x="40" width="34.78" y="186" height="18"></rect>
+    <rect x="40" width="9.206" y="206" height="18"></rect>
+    <rect x="40" width="382.575" y="226" height="18"></rect>
+    <rect x="40" width="71.605" y="246" height="18"></rect>
+    <rect x="40" width="149.347" y="266" height="18"></rect>
+    <rect x="40" width="124.797" y="286" height="18"></rect>
+    <rect x="40" width="50.123" y="306" height="18"></rect>
+    <rect x="40" width="39.894" y="326" height="18"></rect>
+    <rect x="40" width="6.138" y="346" height="18"></rect>
+    <rect x="40" width="69.559" y="366" height="18"></rect>
+    <rect x="40" width="130.935" y="386" height="18"></rect>
+    <rect x="40" width="254.709" y="406" height="18"></rect>
   </g>
 </svg>

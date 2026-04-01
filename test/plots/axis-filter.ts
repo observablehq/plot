@@ -1,6 +1,7 @@
 import * as Plot from "@observablehq/plot";
+import {test} from "test/plot";
 
-export async function axisFilter() {
+test(async function axisFilter() {
   return Plot.plot({
     height: 100,
     marks: [
@@ -15,4 +16,4 @@ export async function axisFilter() {
       Plot.axisY({filter: (d) => d})
     ]
   });
-}
+});

@@ -1,4 +1,5 @@
 import * as Plot from "@observablehq/plot";
+import {test} from "test/plot";
 
 const shape = {
   type: "LineString",
@@ -9,15 +10,15 @@ const shape = {
   })
 } as const;
 
-export async function projectionHeightGeometry() {
+test(async function projectionHeightGeometry() {
   return Plot.plot({
     facet: {data: [0, 1], y: [0, 1]},
     projection: "identity",
     marks: [Plot.geo(shape), Plot.frame({stroke: "red", strokeDasharray: 4})]
   });
-}
+});
 
-export async function projectionHeightDegenerate() {
+test(async function projectionHeightDegenerate() {
   return Plot.plot({
     style: "border: #777 1px solid;",
     projection: "mercator",
@@ -25,20 +26,20 @@ export async function projectionHeightDegenerate() {
     inset: 199.5,
     marks: [Plot.graticule(), Plot.sphere()]
   });
-}
+});
 
-export async function projectionHeightGeometryDomain() {
+test(async function projectionHeightGeometryDomain() {
   return Plot.plot({
     projection: {type: "identity", domain: shape},
     marks: [Plot.geo(shape), Plot.frame({stroke: "red", strokeDasharray: 4})]
   });
-}
+});
 
-export async function projectionHeightGeometryNull() {
+test(async function projectionHeightGeometryNull() {
   return Plot.plot({
     aspectRatio: true,
     width: 400,
     facet: {data: [0, 1], y: [0, 1]},
     marks: [Plot.geo(shape), Plot.frame({stroke: "red", strokeDasharray: 4})]
   });
-}
+});

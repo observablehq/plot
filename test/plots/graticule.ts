@@ -1,6 +1,7 @@
 import * as Plot from "@observablehq/plot";
+import {test} from "test/plot";
 
-export async function graticule() {
+test(async function graticule() {
   return Plot.plot({
     width: 960,
     height: 470,
@@ -10,4 +11,4 @@ export async function graticule() {
     },
     marks: [Plot.sphere(), Plot.graticule()]
   });
-}
+});

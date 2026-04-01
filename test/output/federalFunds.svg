@@ -14,43 +14,43 @@
     }
   </style>
   <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,0)">
-    <path transform="translate(61.22448979591836,370)" d="M0,0L0,6"></path>
-    <path transform="translate(134.76136054421767,370)" d="M0,0L0,6"></path>
-    <path transform="translate(208.29823129251702,370)" d="M0,0L0,6"></path>
-    <path transform="translate(281.8351020408163,370)" d="M0,0L0,6"></path>
-    <path transform="translate(355.41224489795917,370)" d="M0,0L0,6"></path>
-    <path transform="translate(428.9491156462585,370)" d="M0,0L0,6"></path>
-    <path transform="translate(502.4859863945578,370)" d="M0,0L0,6"></path>
-    <path transform="translate(576.0228571428572,370)" d="M0,0L0,6"></path>
+    <path transform="translate(61.224,370)" d="M0,0L0,6"></path>
+    <path transform="translate(134.761,370)" d="M0,0L0,6"></path>
+    <path transform="translate(208.298,370)" d="M0,0L0,6"></path>
+    <path transform="translate(281.835,370)" d="M0,0L0,6"></path>
+    <path transform="translate(355.412,370)" d="M0,0L0,6"></path>
+    <path transform="translate(428.949,370)" d="M0,0L0,6"></path>
+    <path transform="translate(502.486,370)" d="M0,0L0,6"></path>
+    <path transform="translate(576.023,370)" d="M0,0L0,6"></path>
   </g>
   <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
-    <text y="0.71em" transform="translate(61.22448979591836,370)">1985</text>
-    <text y="0.71em" transform="translate(134.76136054421767,370)">1990</text>
-    <text y="0.71em" transform="translate(208.29823129251702,370)">1995</text>
-    <text y="0.71em" transform="translate(281.8351020408163,370)">2000</text>
-    <text y="0.71em" transform="translate(355.41224489795917,370)">2005</text>
-    <text y="0.71em" transform="translate(428.9491156462585,370)">2010</text>
-    <text y="0.71em" transform="translate(502.4859863945578,370)">2015</text>
-    <text y="0.71em" transform="translate(576.0228571428572,370)">2020</text>
+    <text y="0.71em" transform="translate(61.224,370)">1985</text>
+    <text y="0.71em" transform="translate(134.761,370)">1990</text>
+    <text y="0.71em" transform="translate(208.298,370)">1995</text>
+    <text y="0.71em" transform="translate(281.835,370)">2000</text>
+    <text y="0.71em" transform="translate(355.412,370)">2005</text>
+    <text y="0.71em" transform="translate(428.949,370)">2010</text>
+    <text y="0.71em" transform="translate(502.486,370)">2015</text>
+    <text y="0.71em" transform="translate(576.023,370)">2020</text>
   </g>
   <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(23.5,-5.5)">
     <text transform="translate(0,370)">0 </text>
-    <text transform="translate(0,309.810834049871)">2 </text>
-    <text transform="translate(0,249.6216680997421)">4 </text>
-    <text transform="translate(0,189.43250214961307)">6 </text>
-    <text transform="translate(0,129.2433361994841)">8 </text>
-    <text transform="translate(0,69.05417024935514)">10%</text>
+    <text transform="translate(0,309.811)">2 </text>
+    <text transform="translate(0,249.622)">4 </text>
+    <text transform="translate(0,189.433)">6 </text>
+    <text transform="translate(0,129.243)">8 </text>
+    <text transform="translate(0,69.054)">10%</text>
   </g>
   <g aria-label="y-axis label" text-anchor="start" transform="translate(3.5,-16.5)">
     <text y="0.71em" transform="translate(0,20)">↑ Federal funds rate (% per year)</text>
   </g>
   <g aria-label="y-grid" aria-hidden="true" stroke="currentColor" stroke-opacity="0.4" stroke-dasharray="1.5" transform="translate(0,0.5)">
     <line x1="0" x2="620" y1="370" y2="370"></line>
-    <line x1="0" x2="620" y1="309.810834049871" y2="309.810834049871"></line>
-    <line x1="0" x2="620" y1="249.6216680997421" y2="249.6216680997421"></line>
-    <line x1="0" x2="620" y1="189.43250214961307" y2="189.43250214961307"></line>
-    <line x1="0" x2="620" y1="129.2433361994841" y2="129.2433361994841"></line>
-    <line x1="0" x2="620" y1="69.05417024935514" y2="69.05417024935514"></line>
+    <line x1="0" x2="620" y1="309.811" y2="309.811"></line>
+    <line x1="0" x2="620" y1="249.622" y2="249.622"></line>
+    <line x1="0" x2="620" y1="189.433" y2="189.433"></line>
+    <line x1="0" x2="620" y1="129.243" y2="129.243"></line>
+    <line x1="0" x2="620" y1="69.054" y2="69.054"></line>
   </g>
   <g aria-label="rule" stroke="currentColor" transform="translate(0,0.5)">
     <line x1="0" x2="620" y1="370" y2="370"></line>

@@ -532,10 +532,10 @@ export function scale(options = {}) {
   return scale;
 }
 
-export function exposeScales(scales) {
+export function exposeScales(scales, context) {
   return (key) => {
     if (!registry.has((key = `${key}`))) throw new Error(`unknown scale: ${key}`);
-    return scales[key];
+    return (key === "projection" ? context : scales)[key];
   };
 }
 

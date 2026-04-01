@@ -1,6 +1,7 @@
 import * as Plot from "@observablehq/plot";
+import {test} from "test/plot";
 
-export async function emptyFacet() {
+test(async function emptyFacet() {
   const data = [
     {PERIOD: 1, VALUE: 3, TYPE: "c"},
     {PERIOD: 2, VALUE: 4, TYPE: "c"}
@@ -10,4 +11,4 @@ export async function emptyFacet() {
     fx: {domain: ["a", "b"]},
     marks: [Plot.barY(data, {x: "PERIOD", y: "VALUE"})]
   });
-}
+});
