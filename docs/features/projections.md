@@ -274,3 +274,19 @@ The following projection clipping methods are supported for **clip**:
 * null or false - do not clip
 
 Whereas the **clip** [mark option](./marks.md#mark-options) is implemented using SVG clipping, the **clip** projection option affects the generated geometry and typically produces smaller SVG output.
+
+## Materialized projection
+
+After rendering, you can retrieve the materialized projection from a plot using [*plot*.scale](./plots.md#plot_scale):
+
+```js
+const plot = Plot.plot({projection: "mercator", marks: [Plot.graticule()]});
+const projection = plot.scale("projection");
+```
+
+The returned object exposes a *projection*.stream method (see d3-geo) that can be used to project geometry, as well as *projection*.apply(*point*) and (if supported) *projection*.invert(*point*). To reuse a projection across plots, pass the projection object as the **projection** option of another plot:
+
+```js
+const plot1 = Plot.plot({projection: "mercator", marks: [Plot.graticule()]});
+const plot2 = Plot.plot({projection: plot1.scale("projection"), marks: [Plot.geo(land)]});
+```

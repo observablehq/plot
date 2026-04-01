@@ -340,7 +340,7 @@ export function plot(options = {}) {
     if ("value" in svg) (figure.value = svg.value), delete svg.value;
   }
 
-  figure.scale = exposeScales(scales.scales);
+  figure.scale = exposeScales(scales.scales, context);
   figure.legend = exposeLegends(scaleDescriptors, context, options);
 
   const w = consumeWarnings();

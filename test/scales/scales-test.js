@@ -1,7 +1,7 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 import assert from "../assert.js";
-import {it} from "vitest";
+import {describe, it} from "vitest";
 
 // TODO Expose as d3.schemeObservable10, or Plot.scheme("observable10")?
 const schemeObservable10 = [
@@ -2309,3 +2309,113 @@ function scaleApply(x, pairs) {
     assert.strictEqual(+x.invert(output).toFixed(10), input);
   }
 }
+
+describe("plot(…).scale('projection')", () => {
+  it("returns undefined when no projection is used", () => {
+    const plot = Plot.frame().plot();
+    assert.strictEqual(plot.scale("projection"), undefined);
+  });
+
+  it("returns the projection for a named projection", () => {
+    const plot = Plot.plot({projection: "mercator", marks: [Plot.graticule()]});
+    const projection = plot.scale("projection");
+    assert.strictEqual(d3.geoPath(projection)({type: "Point", coordinates: [-1.55, 47.22]}), "M316.749,224.179m0,4.5a4.5,4.5 0 1,1 0,-9a4.5,4.5 0 1,1 0,9z"); // prettier-ignore
+    assert.allCloseTo(projection.apply([-1.55, 47.22]), [316.74875, 224.179291]);
+    assert.allCloseTo(projection.invert([316.74875, 224.179291]), [-1.55, 47.22]);
+  });
+
+  it("returns the projection for a projection implementation", () => {
+    const plot = Plot.plot({projection: d3.geoMercator(), marks: [Plot.graticule()]});
+    const projection = plot.scale("projection");
+    assert.strictEqual(d3.geoPath(projection)({type: "Point", coordinates: [-1.55, 47.22]}), "M475.862,106.646m0,4.5a4.5,4.5 0 1,1 0,-9a4.5,4.5 0 1,1 0,9z"); // prettier-ignore
+    assert.allCloseTo(projection.apply([-1.55, 47.22]), [475.862361, 106.646008]);
+    assert.allCloseTo(projection.invert([475.862361, 106.646008]), [-1.55, 47.22]);
+  });
+
+  it("is the same for 'mercator' and {type: 'mercator'}", () => {
+    const projection1 = Plot.plot({projection: "mercator", marks: [Plot.graticule()]}).scale("projection");
+    const projection2 = Plot.plot({projection: {type: "mercator"}, marks: [Plot.graticule()]}).scale("projection");
+    assert.allCloseTo(projection1.apply([-1.55, 47.22]), projection2.apply([-1.55, 47.22]));
+    assert.allCloseTo(projection1.invert([316.74875, 224.179291]), projection2.invert([316.74875, 224.179291]));
+  });
+
+  it("exposes apply and invert for identity", () => {
+    const domain = {
+      type: "Polygon",
+      coordinates: [
+        [
+          [0, 0],
+          [200, 0],
+          [200, 100],
+          [0, 100],
+          [0, 0]
+        ]
+      ]
+    };
+    const plot = Plot.plot({
+      width: 400,
+      height: 200,
+      margin: 0,
+      projection: {type: "identity", domain},
+      marks: [Plot.frame()]
+    });
+    const p = plot.scale("projection");
+    assert.allCloseTo(p.apply([0, 0]), [0, 0]);
+    assert.allCloseTo(p.apply([200, 100]), [400, 200]);
+    assert.allCloseTo(p.apply([100, 50]), [200, 100]);
+    assert.allCloseTo(p.invert([0, 0]), [0, 0]);
+    assert.allCloseTo(p.invert([400, 200]), [200, 100]);
+    assert.allCloseTo(p.invert([200, 100]), [100, 50]);
+  });
+
+  it("exposes apply and invert for reflect-y", () => {
+    const domain = {
+      type: "Polygon",
+      coordinates: [
+        [
+          [0, 0],
+          [200, 0],
+          [200, 100],
+          [0, 100],
+          [0, 0]
+        ]
+      ]
+    };
+    const plot = Plot.plot({
+      width: 400,
+      height: 200,
+      margin: 0,
+      projection: {type: "reflect-y", domain},
+      marks: [Plot.frame()]
+    });
+    const p = plot.scale("projection");
+    assert.allCloseTo(p.apply([0, 0]), [0, 200]);
+    assert.allCloseTo(p.apply([200, 100]), [400, 0]);
+    assert.allCloseTo(p.apply([100, 50]), [200, 100]);
+    assert.allCloseTo(p.invert([0, 200]), [0, 0]);
+    assert.allCloseTo(p.invert([400, 0]), [200, 100]);
+    assert.allCloseTo(p.invert([200, 100]), [100, 50]);
+  });
+
+  it("round-trips to a second plot", () => {
+    const plot1 = Plot.plot({projection: "mercator", marks: [Plot.graticule()]});
+    const p1 = plot1.scale("projection");
+    const plot2 = Plot.plot({projection: p1, marks: [Plot.graticule()]});
+    const p2 = plot2.scale("projection");
+    // Same dimensions, so pixel coordinates match
+    const point = [-1.55, 47.22];
+    assert.allCloseTo(p1.apply(point), p2.apply(point));
+  });
+
+  it("round-trips with different dimensions", () => {
+    const plot1 = Plot.plot({width: 640, projection: "mercator", marks: [Plot.graticule()]});
+    const projection1 = plot1.scale("projection");
+    const plot2 = Plot.plot({width: 300, projection: projection1, marks: [Plot.graticule()]});
+    const projection2 = plot2.scale("projection");
+    // Different dimensions, but pixel coordinates still match
+    assert.allCloseTo(projection1.apply([-1.55, 47.22]), [316.74875, 224.179291]);
+    assert.allCloseTo(projection2.apply([-1.55, 47.22]), [316.74875, 224.179291]);
+    // But invert still round-trips
+    assert.allCloseTo(projection2.invert(projection2.apply([-1.55, 47.22])), [-1.55, 47.22]);
+  });
+});
