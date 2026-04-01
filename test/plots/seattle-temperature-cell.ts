@@ -1,7 +1,8 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
+import {test} from "test/plot";
 
-export async function seattleTemperatureCell() {
+test(async function seattleTemperatureCell() {
   const seattle = await d3.csv<any>("data/seattle-weather.csv", d3.autoType);
   return Plot.plot({
     height: 300,
@@ -24,4 +25,4 @@ export async function seattleTemperatureCell() {
       )
     ]
   });
-}
+});

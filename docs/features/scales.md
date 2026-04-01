@@ -842,7 +842,7 @@ Plot.plot({
 
 Picking a diverging color scheme name defaults the scale type to *diverging*; set the scale type to *linear* to treat the color scheme as sequential instead. Diverging color scales support a *scale*.**pivot** option, which defaults to zero. Values below the pivot will use the lower half of the color scheme (*e.g.*, reds for the *rdgy* scheme), while values above the pivot will use the upper half (grays for *rdgy*).
 
-The following cylical color schemes are supported:
+The following cyclical color schemes are supported:
 
 :::plot defer hidden
 ```js

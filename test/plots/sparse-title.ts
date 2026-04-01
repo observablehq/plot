@@ -1,7 +1,8 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
+import {test} from "test/plot";
 
-export async function sparseTitle() {
+test(async function sparseTitle() {
   const olympians = await d3.csv<any>("data/athletes.csv", d3.autoType);
   return Plot.plot({
     grid: true,
@@ -18,9 +19,9 @@ export async function sparseTitle() {
       })
     ]
   });
-}
+});
 
-export async function sparseTitleTip() {
+test(async function sparseTitleTip() {
   const olympians = await d3.csv<any>("data/athletes.csv", d3.autoType);
   return Plot.plot({
     grid: true,
@@ -43,4 +44,4 @@ export async function sparseTitleTip() {
       )
     ]
   });
-}
+});

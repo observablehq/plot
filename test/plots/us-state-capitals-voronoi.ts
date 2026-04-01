@@ -1,8 +1,9 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 import {feature} from "topojson-client";
+import {test} from "test/plot";
 
-export async function usStateCapitalsVoronoi() {
+test(async function usStateCapitalsVoronoi() {
   const [capitals, nation] = await Promise.all([
     d3.csv<any>("data/us-state-capitals.csv", d3.autoType),
     d3.json<any>("data/us-counties-10m.json").then((us) => feature(us, us.objects.nation))
@@ -34,7 +35,7 @@ export async function usStateCapitalsVoronoi() {
       Plot.sphere({strokeWidth: 2})
     ]
   });
-}
+});
 
 async function voronoiMap(centroid, clipNation = false) {
   const [nation, states] = await d3
@@ -77,14 +78,14 @@ async function voronoiMap(centroid, clipNation = false) {
   });
 }
 
-export async function usStateCentroidVoronoi() {
+test(async function usStateCentroidVoronoi() {
   return voronoiMap(Plot.centroid);
-}
+});
 
-export async function usStateClipVoronoi() {
+test(async function usStateClipVoronoi() {
   return voronoiMap(Plot.centroid, true);
-}
+});
 
-export async function usStateGeoCentroidVoronoi() {
+test(async function usStateGeoCentroidVoronoi() {
   return voronoiMap(Plot.geoCentroid);
-}
+});

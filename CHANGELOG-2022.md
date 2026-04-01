@@ -367,7 +367,7 @@ Plot.plot({
 })
 ```
 
-The [line](https://observablehq.com/plot/marks/line) and [area](https://observablehq.com/plot/marks/area) marks (specifically lineX, lineY, areaX, and areaY) now support an implicit [bin transform](https://observablehq.com/plot/transforms/bin) with the **interval** option. This can be used to “regularize” time series data, say to show gaps or default to zero when data is missing, rather than interpolating across missing data. This is also useful for stacking time series data that is sampled at irregular intervals or with missing samples.
+The [line](https://observablehq.com/plot/marks/line) and [area](https://observablehq.com/plot/marks/area) marks (specifically lineX, lineY, areaX, and areaY) now support an implicit [bin transform](https://observablehq.com/plot/transforms/bin) with the **interval** option. This can be used to “regularize” time series data, say to show gaps or default to zero when data is missing, rather than interpolating across missing data. This is also useful for stacking time series data that is sampled at irregular intervals or missing samples.
 
 <img src="./img/sparse-series.png" width="640" alt="a time-series area chart showing downloads per day with gaps for missing data">
 
@@ -429,7 +429,7 @@ function Likert(
 
 The new [_quantize_ scale type](https://observablehq.com/plot/features/scales#color-scale-options) transforms a continuous domain into discrete, evenly-spaced thresholds. The _threshold_ scale type now supports domains in descending order (in addition to ascending order), such as [20, 10, 5, 0] instead of [0, 5, 10, 20].
 
-<img src="./img/quantize.png" width="640" alt="a scatterplot of Simpsons episodes showing the correlation between number of U.S. viewers and IMDb rating; the decline of the Simspons over time is shown with a quantized color encoding by season">
+<img src="./img/quantize.png" width="640" alt="a scatterplot of Simpsons episodes showing the correlation between number of U.S. viewers and IMDb rating; the decline of the Simpsons over time is shown with a quantized color encoding by season">
 
 ```js
 Plot.plot({
@@ -471,7 +471,7 @@ Plot.boxX(morley, {x: "Speed", y: "Expt"}).plot({x: {grid: true, inset: 6}})
 Plot.barY(d3.range(20).map(Math.random)).plot()
 ```
 
-The mark [sort option](https://observablehq.com/plot/features/scales#sort-mark-option) now supports implicit “width” and “height” channels, defined as |*x2* - *x1*| and |*y2* - *y1*| respectively. These channels are useful for sorting rects and bars by length. The *reverse* option defaults to true when sorting by these channels. When sorting by *y* and no *y* channel is available, sorting will now fallback to *y2* if available; the same fallback logic applies to *x* and *x2*. (This behavior was previously supported on marks that support implicit stacking but now applies universally to all marks.)
+The mark [sort option](https://observablehq.com/plot/features/scales#sort-mark-option) now supports implicit “width” and “height” channels, defined as |*x2* - *x1*| and |*y2* - *y1*| respectively. These channels are useful for sorting rects and bars by length. The *reverse* option defaults to true when sorting by these channels. When sorting by *y* and no *y* channel is available, sorting will now fall back to *y2* if available; the same fallback logic applies to *x* and *x2*. (This behavior was previously supported on marks that support implicit stacking but now applies universally to all marks.)
 
 <img src="./img/sort-length.png" width="640" alt="a bar chart of energy production by source from 1949 to present, with categorical colors assigned in order of the tallest bar">
 
@@ -583,7 +583,7 @@ Plot.vector((T => d3.cross(T, T))(d3.ticks(0, 2 * Math.PI, 20)), {
 })
 ```
 
-The [dot mark](https://observablehq.com/plot/marks/dot) now supports a *symbol* option to control the displayed shape, which defaults to *circle*. The *symbol* channel (and associated *symbol* scale) can also be used as an categorical encoding. The default symbol set is based on whether symbols are stroked or filled, improving differentiability and giving uniform weight. Plot supports all of D3’s built-in symbol types: *circle*, *cross*, *diamond*, *square*, *star*, *triangle*, and *wye* (for fill) and *circle*, *plus*, *times*, *triangle2*, *asterisk*, *square2*, and *diamond2* (for stroke, based on [Heman Robinson’s research](https://www.tandfonline.com/doi/abs/10.1080/10618600.2019.1637746)); you can also implement a [custom symbol type](https://d3js.org/d3-shape/symbol#custom-symbols).
+The [dot mark](https://observablehq.com/plot/marks/dot) now supports a *symbol* option to control the displayed shape, which defaults to *circle*. The *symbol* channel (and associated *symbol* scale) can also be used as a categorical encoding. The default symbol set is based on whether symbols are stroked or filled, improving differentiability and giving uniform weight. Plot supports all of D3’s built-in symbol types: *circle*, *cross*, *diamond*, *square*, *star*, *triangle*, and *wye* (for fill) and *circle*, *plus*, *times*, *triangle2*, *asterisk*, *square2*, and *diamond2* (for stroke, based on [Heman Robinson’s research](https://www.tandfonline.com/doi/abs/10.1080/10618600.2019.1637746)); you can also implement a [custom symbol type](https://d3js.org/d3-shape/symbol#custom-symbols).
 
 [<img src="./img/symbol.png" width="660" alt="a scatterplot of penguins by mass and flipper length">](https://observablehq.com/plot/marks/dot)
 

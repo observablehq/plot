@@ -1,8 +1,9 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 import {feature} from "topojson-client";
+import {test} from "test/plot";
 
-export async function beagle() {
+test(async function beagle() {
   const world = await d3.json<any>("data/countries-50m.json");
   // note: this returns strings; we should clean it up to make a better example,
   // but we keep it to help test the projection’s robustness
@@ -19,4 +20,4 @@ export async function beagle() {
       Plot.sphere()
     ]
   });
-}
+});

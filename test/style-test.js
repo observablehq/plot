@@ -1,4 +1,4 @@
-import assert from "assert";
+import {assert, it} from "vitest";
 import {maybeClassName} from "../src/style.js";
 
 it("maybeClassName allows typical class names", () => {

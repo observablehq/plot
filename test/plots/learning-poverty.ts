@@ -1,7 +1,8 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
+import {test} from "test/plot";
 
-export async function learningPoverty() {
+test(async function learningPoverty() {
   const data = await d3.csv<any>("data/learning-poverty.csv", d3.autoType);
   const values = data.flatMap((d) => [
     {...d, type: "ok", share: 100 - d["Learning Poverty"]},
@@ -35,4 +36,4 @@ export async function learningPoverty() {
       Plot.ruleX([0])
     ]
   });
-}
+});
