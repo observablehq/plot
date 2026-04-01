@@ -2,16 +2,10 @@ import {area as shapeArea} from "d3";
 import {create} from "../context.js";
 import {maybeCurve} from "../curve.js";
 import {Mark} from "../mark.js";
-import {first, indexOf, maybeZ, second} from "../options.js";
-import {
-  applyDirectStyles,
-  applyIndirectStyles,
-  applyTransform,
-  applyGroupedChannelStyles,
-  groupIndex
-} from "../style.js";
+import {first, maybeZ, second} from "../options.js";
+import {applyDirectStyles, applyIndirectStyles, applyTransform, applyGroupedChannelStyles} from "../style.js";
+import {groupIndex} from "../style.js";
 import {maybeDenseIntervalX, maybeDenseIntervalY} from "../transforms/bin.js";
-import {maybeIdentityX, maybeIdentityY} from "../transforms/identity.js";
 import {maybeStackX, maybeStackY} from "../transforms/stack.js";
 
 const defaults = {
@@ -78,10 +72,10 @@ export function area(data, options) {
 
 export function areaX(data, options) {
   const {y, ...rest} = maybeDenseIntervalY(options);
-  return new Area(data, maybeStackX(maybeIdentityX({...rest, y1: y, y2: undefined}, y === indexOf ? "x2" : "x")));
+  return new Area(data, maybeStackX({...rest, y1: y, y2: undefined}));
 }
 
 export function areaY(data, options) {
   const {x, ...rest} = maybeDenseIntervalX(options);
-  return new Area(data, maybeStackY(maybeIdentityY({...rest, x1: x, x2: undefined}, x === indexOf ? "y2" : "y")));
+  return new Area(data, maybeStackY({...rest, x1: x, x2: undefined}));
 }
