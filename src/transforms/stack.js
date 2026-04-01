@@ -105,8 +105,8 @@ function stack(x, y = one, kx, ky, {offset, order, reverse}, options) {
           for (const i of stack) {
             const y = Y[i];
             if (y < 0) yn = Y2[i] = (Y1[i] = yn) + y;
-            else if (y > 0) yp = Y2[i] = (Y1[i] = yp) + y;
-            else Y2[i] = Y1[i] = y === 0 ? yp : NaN;
+            else if (y >= 0) yp = Y2[i] = (Y1[i] = yp) + y;
+            else Y2[i] = Y1[i] = NaN;
           }
         }
         facetstacks.push(stacks);
