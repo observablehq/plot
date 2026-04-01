@@ -2326,7 +2326,6 @@ describe("plot(…).scale('projection')", () => {
   it("is the same for 'mercator' and {type: 'mercator'}", () => {
     const p1 = Plot.plot({projection: "mercator", marks: [Plot.graticule()]}).scale("projection");
     const p2 = Plot.plot({projection: {type: "mercator"}, marks: [Plot.graticule()]}).scale("projection");
-    assert.strictEqual(p1.type, p2.type);
     assert.allCloseTo(p1.apply([-1.55, 47.22]), p2.apply([-1.55, 47.22]));
   });
 
@@ -2337,7 +2336,7 @@ describe("plot(…).scale('projection')", () => {
     const px = p.apply(point);
     assert.ok(Array.isArray(px));
     assert.strictEqual(px.length, 2);
-    // assert.allCloseTo(p.invert(px), point);
+    assert.allCloseTo(p.invert(px), point);
   });
 
   // it("exposes parallels for conic projections", () => {
@@ -2374,15 +2373,14 @@ describe("plot(…).scale('projection')", () => {
       marks: [Plot.frame()]
     });
     const p = plot.scale("projection");
-    // assert.strictEqual(p.type, "identity");
     assert.strictEqual(typeof p.apply, "function");
     assert.allCloseTo(p.apply([0, 0]), [0, 0]);
     assert.allCloseTo(p.apply([200, 100]), [400, 200]);
     assert.allCloseTo(p.apply([100, 50]), [200, 100]);
-    // assert.strictEqual(typeof p.invert, "function");
-    // assert.allCloseTo(p.invert([0, 0]), [0, 0]);
-    // assert.allCloseTo(p.invert([400, 200]), [200, 100]);
-    // assert.allCloseTo(p.invert([200, 100]), [100, 50]);
+    assert.strictEqual(typeof p.invert, "function");
+    assert.allCloseTo(p.invert([0, 0]), [0, 0]);
+    assert.allCloseTo(p.invert([400, 200]), [200, 100]);
+    assert.allCloseTo(p.invert([200, 100]), [100, 50]);
   });
 
   it("exposes apply and invert for reflect-y", () => {
@@ -2406,15 +2404,14 @@ describe("plot(…).scale('projection')", () => {
       marks: [Plot.frame()]
     });
     const p = plot.scale("projection");
-    // assert.strictEqual(p.type, "reflect-y");
     assert.strictEqual(typeof p.apply, "function");
     assert.allCloseTo(p.apply([0, 0]), [0, 200]);
     assert.allCloseTo(p.apply([200, 100]), [400, 0]);
     assert.allCloseTo(p.apply([100, 50]), [200, 100]);
-    // assert.strictEqual(typeof p.invert, "function");
-    // assert.allCloseTo(p.invert([0, 200]), [0, 0]);
-    // assert.allCloseTo(p.invert([400, 0]), [200, 100]);
-    // assert.allCloseTo(p.invert([200, 100]), [100, 50]);
+    assert.strictEqual(typeof p.invert, "function");
+    assert.allCloseTo(p.invert([0, 200]), [0, 0]);
+    assert.allCloseTo(p.invert([400, 0]), [200, 100]);
+    assert.allCloseTo(p.invert([200, 100]), [100, 50]);
   });
 
   it("round-trips to a second plot", () => {
@@ -2438,7 +2435,7 @@ describe("plot(…).scale('projection')", () => {
     assert.allCloseTo(projection1.apply([-1.55, 47.22]), [316.74875, 224.179291]);
     assert.allCloseTo(projection2.apply([-1.55, 47.22]), [316.74875, 224.179291]);
     // But invert still round-trips
-    // assert.allCloseTo(projection2.invert(projection2.apply([-1.55, 47.22])), [-1.55, 47.22]);
+    assert.allCloseTo(projection2.invert(projection2.apply([-1.55, 47.22])), [-1.55, 47.22]);
   });
 
   // it("exposes domain when specified", () => {

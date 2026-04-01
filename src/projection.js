@@ -80,11 +80,12 @@ export function createProjection(
   let tx = marginLeft + insetLeft;
   let ty = marginTop + insetTop;
   let transform;
+  let k = 1;
 
   // If a domain is specified, fit the projection to the frame.
   if (domain != null) {
     const [[x0, y0], [x1, y1]] = geoPath(projection).bounds(domain);
-    const k = Math.min(dx / (x1 - x0), dy / (y1 - y0));
+    k = Math.min(dx / (x1 - x0), dy / (y1 - y0));
     if (k > 0) {
       tx -= (k * (x0 + x1) - dx) / 2;
       ty -= (k * (y0 + y1) - dy) / 2;
@@ -104,8 +105,12 @@ export function createProjection(
       let result = null;
       this.stream({point: (...p) => (result = p)}).point(...p);
       return result;
-    }
-    // TODO invert
+    },
+    ...(projection.invert && {
+      invert(p) {
+        return projection.invert(transform.invert(p));
+      }
+    })
   };
 }
 
@@ -204,32 +209,44 @@ function conicProjection(createProjection, kx, ky) {
   };
 }
 
-const identity = constant({stream: (stream) => stream});
+const identity = constant({
+  stream: (stream) => stream,
+  invert: (point) => point
+});
 
-const reflectY = constant(
-  geoTransform({
+const reflectY = constant({
+  ...geoTransform({
     point(x, y) {
       this.stream.point(x, -y);
     }
-  })
-);
-
-function scaleAndTranslate(k, tx, ty) {
-  return geoTransform({
-    point(x, y) {
-      this.stream.point(x * k + tx, y * k + ty);
-    }
-  });
-}
+  }),
+  invert: ([x, y]) => [x, -y]
+});
 
 function translate(tx, ty) {
   return tx === 0 && ty === 0
     ? identity()
-    : geoTransform({
-        point(x, y) {
-          this.stream.point(x + tx, y + ty);
-        }
-      });
+    : {
+        ...geoTransform({
+          point(x, y) {
+            this.stream.point(x + tx, y + ty);
+          }
+        }),
+        invert: ([x, y]) => [x - tx, y - ty]
+      };
+}
+
+function scaleAndTranslate(k, tx, ty) {
+  return k === 1
+    ? translate(tx, ty)
+    : {
+        ...geoTransform({
+          point(x, y) {
+            this.stream.point(x * k + tx, y * k + ty);
+          }
+        }),
+        invert: ([x, y]) => [(x - tx) / k, (y - ty) / k]
+      };
 }
 
 // Applies a point-wise projection to the given paired x and y channels.

@@ -284,7 +284,7 @@ const plot = Plot.plot({projection: "mercator", marks: [Plot.graticule()]});
 const projection = plot.scale("projection");
 ```
 
-The returned object exposes a *projection*.stream method (see d3-geo) that can be used to project geometry. To reuse a projection across plots, pass the projection object as the **projection** option of another plot:
+The returned object exposes a *projection*.stream method (see d3-geo) that can be used to project geometry, as well as *projection*.apply(*point*) and (if supported) *projection*.invert(*point*). To reuse a projection across plots, pass the projection object as the **projection** option of another plot:
 
 ```js
 const plot1 = Plot.plot({projection: "mercator", marks: [Plot.graticule()]});
