@@ -75,12 +75,6 @@
     <text y="0.71em" transform="translate(620,370)">31</text>
   </g>
   <g aria-label="rect">
-    <rect x="-124.714" y="370" width="26.619" height="0"></rect>
-    <rect x="-97.095" y="370" width="26.619" height="0"></rect>
-    <rect x="-69.476" y="370" width="26.619" height="0"></rect>
-    <rect x="-41.857" y="370" width="26.619" height="0"></rect>
-    <rect x="-14.238" y="370" width="26.619" height="0"></rect>
-    <rect x="13.381" y="370" width="26.619" height="0"></rect>
     <rect x="41" y="30" width="26.619" height="340"></rect>
     <rect x="68.619" y="34.336" width="26.619" height="335.664"></rect>
     <rect x="96.238" y="33.571" width="26.619" height="336.429"></rect>

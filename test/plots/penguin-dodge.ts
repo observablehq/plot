@@ -9,3 +9,11 @@ test(async function penguinDodge() {
     marks: [Plot.dot(penguins, Plot.dodgeY({x: "body_mass_g"}))]
   });
 });
+
+test(async function penguinDodgeNegativeRadius() {
+  const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
+  return Plot.plot({
+    height: 200,
+    marks: [Plot.dot(penguins, Plot.dodgeY({x: "body_mass_g", r: -1}))]
+  });
+});
