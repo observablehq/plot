@@ -201,7 +201,7 @@ Plot.plot({
 ```
 :::
 
-If the **stroke** and **y** channels are strictly equal, as when the color encoding is redundant with position, **z** defaults to null, producing a single varying-color line.
+If the **stroke** and **y** channels are strictly equal, as when the color encoding is redundant with position, **z** defaults to null, producing a single varying-color line. <VersionBadge pr="2379" />
 
 :::plot
 ```js
