@@ -1,6 +1,6 @@
 import {create} from "./context.js";
 import {unset} from "./memoize.js";
-import {isNoneish, keyof} from "./options.js";
+import {keyof} from "./options.js";
 
 export function markers(mark, {marker, markerStart = marker, markerMid = marker, markerEnd = marker} = {}) {
   mark.markerStart = maybeMarker(markerStart);
