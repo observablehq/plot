@@ -167,6 +167,14 @@ Plot.plot({x: {type: "time", domain: [new Date(2021, 0, 1), new Date(2022, 0, 1)
 ```
 :::
 
+If the tick values are all integers between 1,500 and 2,500 (inclusive), Plot assumes the values represent years and formats ticks by default without thousand separators, such as 1996 instead of 1,996. You can explicitly suppress thousand separators with `tickFormat: "d"`, or enable them with `tickFormat: ",d"`. <VersionBadge pr="2403" />
+
+:::plot
+```js
+Plot.plot({x: {domain: [1992, 2003], grid: true}})
+```
+:::
+
 When plotting values that vary widely, such as the luminosity of stars in an [HR diagram](https://observablehq.com/@mbostock/hertzsprung-russell-diagram), a *log* scale may improve readability. Log scales default to base-10 ticks with SI-prefix notation.
 
 :::plot https://observablehq.com/@observablehq/plot-continuous-scales
@@ -293,6 +301,14 @@ Plot.plot({
 :::
 
 Position scales also have a **round** option which forces the scale to snap to integer pixels. This defaults to true for point and band scales, and false for quantitative scales. Use caution with high-cardinality ordinal domains (*i.e.*, a point or band scale used to encode many different values), as rounding can lead to “wasted” space or even zero-width bands.
+
+If the domain values are all integers between 1,500 and 2,500 (inclusive), Plot assumes the values represent years and formats ticks by default without thousand separators, such as 1996 instead of 1,996. You can explicitly suppress thousand separators with `tickFormat: "d"`, or enable them with `tickFormat: ",d"`. <VersionBadge pr="2403" />
+
+:::plot
+```js
+Plot.plot({x: {type: "band", domain: d3.range(1992, 2003), grid: true}})
+```
+:::
 
 ## Color scales
 
