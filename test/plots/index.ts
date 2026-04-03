@@ -90,6 +90,7 @@ import "./empty-x.js";
 import "./empty.js";
 import "./energy-production.js";
 import "./error-bar.js";
+import "./explicit-symbol.js";
 import "./facet-reindex.js";
 import "./faithful-density-1d.js";
 import "./faithful-density.js";

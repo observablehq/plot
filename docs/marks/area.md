@@ -205,7 +205,7 @@ Plot.plot({
 ```
 :::
 
-To vary **fill** within a single series, set the **z** option to null.
+To vary **fill** within a single series, set the **z** option to null. For areaY, **z** defaults to null if the **fill** and **y** channels are strictly equal, as when the color encoding is redundant with position; for areaX, **z** defaults to null if **fill** and **x** are strictly equal. <VersionBadge pr="2379" />
 
 :::plot defer https://observablehq.com/@observablehq/plot-variable-fill-area
 ```js

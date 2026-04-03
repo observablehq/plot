@@ -14,6 +14,18 @@ test(async function aaplClose() {
   });
 });
 
+test(async function aaplCloseVaryingColor() {
+  const aapl = await d3.csv<any>("data/aapl.csv", d3.autoType);
+  return Plot.plot({
+    y: {grid: true},
+    marks: [
+      Plot.areaY(aapl, {x: "Date", y: "Close", fill: "Close", fillOpacity: 0.2}),
+      Plot.lineY(aapl, {x: "Date", y: "Close", stroke: "Close"}),
+      Plot.ruleY([0])
+    ]
+  });
+});
+
 test(async function aaplCloseClip() {
   const aapl = await d3.csv<any>("data/aapl.csv", d3.autoType);
   return Plot.plot({
