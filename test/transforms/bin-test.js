@@ -1,5 +1,5 @@
+import {assert, it} from "vitest";
 import * as Plot from "@observablehq/plot";
-import assert from "assert";
 
 it("Plot.bin does not return unspecified options", () => {
   const A = Plot.bin({});

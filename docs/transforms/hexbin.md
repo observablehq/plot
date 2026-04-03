@@ -101,7 +101,7 @@ Plot
 ```
 :::
 
-The hexbin transform also works with Plot’s [projection system](../features/projections.md). Below, hexagon size represents the number of nearby Walmart stores, while color represents the date the first nearby Walmart store opened. (The first Walmart opened in Rogers, Arkansas.)
+The hexbin transform also works with Plot’s [projection system](../features/projections.md). Below, hexagon size represents the number of nearby Walmart stores, while color represents the date that the first nearby Walmart store opened. (The first Walmart opened in Rogers, Arkansas.)
 
 :::plot defer https://observablehq.com/@observablehq/plot-hexbin-map
 ```js

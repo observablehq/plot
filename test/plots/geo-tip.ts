@@ -1,8 +1,9 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 import {feature} from "topojson-client";
+import {test} from "test/plot";
 
-export async function geoText() {
+test(async function geoText() {
   const london = feature(await d3.json("data/london.json"), "boroughs");
   return Plot.plot({
     projection: {type: "transverse-mercator", rotate: [2, 0, 0], domain: london},
@@ -11,10 +12,10 @@ export async function geoText() {
       Plot.text(london.features, Plot.centroid({text: "id", stroke: "var(--plot-background)", fill: "currentColor"}))
     ]
   });
-}
+});
 
 /** The geo mark with the tip option. */
-export async function geoTip() {
+test(async function geoTip() {
   const [london, boroughs] = await getLondonBoroughs();
   const access = await getLondonAccess();
   return Plot.plot({
@@ -33,10 +34,10 @@ export async function geoTip() {
       })
     ]
   });
-}
+});
 
 /** The geo mark with the tip option and the centroid transform. */
-export async function geoTipCentroid() {
+test(async function geoTipCentroid() {
   const [london, boroughs] = await getLondonBoroughs();
   const access = await getLondonAccess();
   return Plot.plot({
@@ -58,10 +59,10 @@ export async function geoTipCentroid() {
       )
     ]
   });
-}
+});
 
 /** The geo mark with the tip option and the geoCentroid transform. */
-export async function geoTipGeoCentroid() {
+test(async function geoTipGeoCentroid() {
   const [london, boroughs] = await getLondonBoroughs();
   const access = await getLondonAccess();
   return Plot.plot({
@@ -83,7 +84,7 @@ export async function geoTipGeoCentroid() {
       )
     ]
   });
-}
+});
 
 function getFirstPoint(feature) {
   return feature.geometry.type === "Polygon"
@@ -91,8 +92,8 @@ function getFirstPoint(feature) {
     : feature.geometry.coordinates[0][0][0];
 }
 
-/** The geo mark with the tip option and x and y channels. */
-export async function geoTipXY() {
+/** The geo mark with the tip option, x and y channels and a projection. */
+test(async function geoTipXY() {
   const [london, boroughs] = await getLondonBoroughs();
   const access = await getLondonAccess();
   return Plot.plot({
@@ -113,7 +114,32 @@ export async function geoTipXY() {
       })
     ]
   });
-}
+});
+
+/** The geo mark with the tip option, and scaled x and y channels. */
+test(async function geoTipScaled() {
+  const [, boroughs] = await getLondonBoroughs();
+  const access = await getLondonAccess();
+  return Plot.plot({
+    width: 900,
+    height: 265,
+    color: {scheme: "RdYlBu", pivot: 0.5},
+    marks: [
+      Plot.geo(
+        access,
+        Plot.centroid({
+          fx: "year",
+          geometry: (d) => boroughs.get(d.borough),
+          fill: "access",
+          stroke: "var(--plot-background)",
+          strokeWidth: 0.75,
+          channels: {borough: "borough"},
+          tip: true
+        })
+      )
+    ]
+  });
+});
 
 async function getLondonBoroughs() {
   const london = feature(await d3.json("data/london.json"), "boroughs");

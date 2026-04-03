@@ -1,3 +1,9 @@
+---
+prev:
+  text: Getting started
+  link: /getting-started
+---
+
 <script setup>
 
 import * as Plot from "@observablehq/plot";
@@ -218,7 +224,7 @@ The default **width** is 640. On Observable, the width can be set to the [standa
 Plot does not adjust margins automatically to make room for long tick labels. If your *y* axis labels are too long, you can increase the **marginLeft** to make more room. Also consider using a different **tickFormat** for short labels (*e.g.*, `s` for SI prefix notation), or a scale **transform** (say to convert units to millions or billions).
 :::
 
-The **aspectRatio** option<a id="aspectRatio" href="#aspectRatio" aria-label="Permalink to &quot;aspectRatio&quot;"></a> <VersionBadge version="0.6.4" />, if not null, computes a default **height** such that a variation of one unit in the *x* dimension is represented by the corresponding number of pixels as a variation in the *y* dimension of one unit.
+The **aspectRatio** option<a id="aspectRatio" href="#aspectRatio" aria-label="Permalink to &quot;aspectRatio&quot;"></a> <VersionBadge version="0.6.4" />, if not null, computes a default **height** such that a variation of one unit in the *x* dimension is represented by the corresponding number of pixels as a variation in the *y* dimension of one unit. The **aspectRatio** option is recommended only when *x* and *y* domains share the same units, such as millimeters. When a position scale is [ordinal](./scales.md#discrete-scales) (*point* or *band*), consecutive domain values are treated as one unit length apart; for example, if both *x* and *y* are ordinal, then an aspect ratio of one produces a square grid.
 
 <p>
   <label class="label-input">
@@ -307,7 +313,7 @@ const color = plot.scale("color"); // get the color scale
 console.log(color.range); // inspect the scale’s range
 ```
 
-Returns the [scale object](./scales.md#scale-options) for the scale with the specified *name* (such as *x* or *color*) on the given *plot*, where *plot* is a rendered plot element returned by [plot](#plot). If the associated *plot* has no scale with the given *name*, returns undefined.
+Given a rendered *plot* element returned by [plot](#plot), returns the *plot*’s [scale object](./scales.md#scale-options) for the scale with the specified *name* (such as *x* or *color*), or the [projection](./projections.md) if the *name* is *projection*. If the associated *plot* has no scale (or projection) with the given *name*, returns undefined.
 
 ## *plot*.legend(*name*, *options*) {#plot_legend}
 

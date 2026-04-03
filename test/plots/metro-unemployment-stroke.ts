@@ -1,7 +1,8 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
+import {test} from "test/plot";
 
-export async function metroUnemploymentStroke() {
+test(async function metroUnemploymentStroke() {
   const data = await d3.csv<any>("data/bls-metro-unemployment.csv", d3.autoType);
   return Plot.plot({
     marks: [Plot.line(data, {x: "date", y: "unemployment", stroke: "division"}), Plot.ruleY([0])],
@@ -10,4 +11,4 @@ export async function metroUnemploymentStroke() {
       range: [0.4, 1]
     }
   });
-}
+});

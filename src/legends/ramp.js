@@ -3,7 +3,7 @@ import {inferFontVariant} from "../axes.js";
 import {createContext, create} from "../context.js";
 import {map, maybeNumberChannel} from "../options.js";
 import {interpolatePiecewise} from "../scales/quantitative.js";
-import {applyInlineStyles, impliedString, maybeClassName} from "../style.js";
+import {applyInlineStyles, impliedString, maybeClassName, offset} from "../style.js";
 
 export function legendRamp(color, options) {
   let {
@@ -29,14 +29,14 @@ export function legendRamp(color, options) {
   if (tickFormat === null) tickFormat = () => null;
 
   const svg = create("svg", context)
-    .attr("xmlns", "http://www.w3.org/2000/svg")
-    .attr("xmlns:xlink", "http://www.w3.org/1999/xlink")
     .attr("class", `${className}-ramp`)
     .attr("font-family", "system-ui, sans-serif")
     .attr("font-size", 10)
     .attr("width", width)
     .attr("height", height)
     .attr("viewBox", `0 0 ${width} ${height}`)
+    .attr("xmlns", "http://www.w3.org/2000/svg")
+    .attr("xmlns:xlink", "http://www.w3.org/1999/xlink")
     .call((svg) =>
       // Warning: if you edit this, change defaultClassName.
       svg.append("style").text(
@@ -166,6 +166,7 @@ export function legendRamp(color, options) {
         .tickFormat(typeof tickFormat === "function" ? tickFormat : undefined)
         .tickSize(tickSize)
         .tickValues(Array.isArray(ticks) ? ticks : null)
+        .offset(offset)
     )
     .attr("font-size", null)
     .attr("font-family", null)

@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="430" viewBox="0 0 640 430">
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="430" viewBox="0 0 640 430" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <style>
     :where(.plot) {
       --plot-background: white;
@@ -23,16 +23,6 @@
   </g>
   <g aria-label="fx-axis label" transform="translate(0.5,-26.5)">
     <text y="0.71em" transform="translate(330,30)">TYPE</text>
-  </g>
-  <g aria-label="y-axis tick" aria-hidden="true" transform="translate(0,0.5)">
-    <g fill="none" stroke="currentColor" transform="translate(0,0)">
-      <path transform="translate(40,215)" d="M0,0L-6,0"></path>
-    </g>
-  </g>
-  <g aria-label="y-axis tick label" transform="translate(-8.5,0.5)">
-    <g text-anchor="end" font-variant="tabular-nums" transform="translate(0,0)">
-      <text y="0.32em" transform="translate(40,215)">0</text>
-    </g>
   </g>
   <g aria-label="y-axis label" text-anchor="start" transform="translate(-36.5,-26.5)">
     <text y="0.71em" transform="translate(40,30)">VALUE</text>

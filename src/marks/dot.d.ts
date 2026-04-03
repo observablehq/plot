@@ -19,7 +19,7 @@ export interface DotOptions extends MarkOptions {
 
   /**
    * The radius of dots; either a channel or constant. When a number, it is
-   * interpreted as a constant radius in pixels. Otherwise it is interpreted as
+   * interpreted as a constant radius in pixels. Otherwise, it is interpreted as
    * a channel, typically bound to the *r* channel, which defaults to the *sqrt*
    * type for proportional symbols. The radius defaults to 4.5 pixels when using
    * the **symbol** channel, and otherwise 3 pixels. Dots with a nonpositive
@@ -138,10 +138,10 @@ export function dotX(data?: Data, options?: DotXOptions): Dot;
 export function dotY(data?: Data, options?: DotYOptions): Dot;
 
 /** Like dot, except that the **symbol** option is set to *circle*. */
-export function circle(data?: Data, options?: Exclude<DotOptions, "symbol">): Dot;
+export function circle(data?: Data, options?: Omit<DotOptions, "symbol">): Dot;
 
 /** Like dot, except that the **symbol** option is set to *hexagon*. */
-export function hexagon(data?: Data, options?: Exclude<DotOptions, "symbol">): Dot;
+export function hexagon(data?: Data, options?: Omit<DotOptions, "symbol">): Dot;
 
 /** The dot mark. */
 export class Dot extends RenderableMark {}

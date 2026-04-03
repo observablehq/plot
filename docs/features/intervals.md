@@ -21,7 +21,7 @@ The *interval*.**offset** method takes a *value* and returns the corresponding v
 
 ```js
 Plot.utcInterval("day").offset(new Date("2013-04-12T12:34:56Z"), 1) // 2013-04-13T12:34:56Z
-Plot.utcInterval("day").offset(new Date("2013-04-12T12:34:56Z"), -2) // 2013-03-22T12:34:56Z
+Plot.utcInterval("day").offset(new Date("2013-04-12T12:34:56Z"), -2) // 2013-04-10T12:34:56Z
 ```
 
 The *interval*.**range** method returns an array of values representing every interval boundary greater than or equal to *start* (inclusive) and less than *stop* (exclusive). The first value in the returned array is the least boundary greater than or equal to *start*; subsequent values are offset by intervals and floored.

@@ -1,9 +1,12 @@
 import * as Plot from "@observablehq/plot";
 import {h, withDirectives} from "vue";
 
+class Event {}
+
 class Document {
   constructor() {
     this.documentElement = new Element(this, "html");
+    this.defaultView = {Event};
   }
   createElementNS(namespace, tagName) {
     return new Element(this, tagName);

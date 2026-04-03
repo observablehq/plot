@@ -12,7 +12,7 @@ import type {AxisOptions} from "./marks/axis.js";
  * - *hcl* - hue, chroma, perceptual lightness (CIELCh_ab; cylindrical CIELAB)
  * - *lab* - perceptual lightness and opponent colors (L\*a\*b\*, CIELAB)
  * - an interpolator function that takes a parameter *t* in [0, 1] and returns a value
- * - a interpolator factory that returns an interpolator function for values *a* and *b*
+ * - an interpolator factory that returns an interpolator function for values *a* and *b*
  */
 export type Interpolate =
   | "number"
@@ -324,6 +324,17 @@ export interface ScaleDefaults extends InsetOptions {
   grid?: boolean | string | RangeInterval | Iterable<any>;
 
   /**
+   * If true, produces a legend for the scale. For quantitative color scales,
+   * the legend defaults to *ramp* but may be set to *swatches* for discrete
+   * scale types such as *threshold*. An opacity scale is treated as a color
+   * scale with varying transparency. The symbol legend is combined with color
+   * if they encode the same channels.
+   *
+   * For *color*, *opacity*, and *symbol* scales only. See also *plot*.legend.
+   */
+  legend?: LegendOptions["legend"] | boolean | null;
+
+  /**
    * A textual label to show on the axis or legend; if null, show no label. By
    * default the scale label is inferred from channel definitions, possibly with
    * an arrow (↑, →, ↓, or ←) to indicate the direction of increasing value.
@@ -368,7 +379,7 @@ export interface ScaleOptions extends ScaleDefaults {
    * Linear scales have a default domain of [0, 1]. Log scales have a default
    * domain of [1, 10] and cannot include zero. Radius scales have a default
    * domain from 0 to the median first quartile of associated channels. Length
-   * have a default domain from 0 to the median median of associated channels.
+   * have a default domain from 0 to the median of medians of associated channels.
    * Opacity scales have a default domain from 0 to the maximum value of
    * associated channels.
    */
@@ -517,7 +528,7 @@ export interface ScaleOptions extends ScaleDefaults {
    *
    * A symmetric diverging color scale may not use all of its output **range**;
    * this reduces contrast but ensures that deviations both below and above the
-   * **pivot** are represented proportionally. Otherwise if false, the full
+   * **pivot** are represented proportionally. Otherwise, if false, the full
    * output **range** will be used; this increases contrast but values on
    * opposite sides of the **pivot** may not be meaningfully compared.
    */
@@ -533,17 +544,6 @@ export interface ScaleOptions extends ScaleDefaults {
    * last bands.
    */
   paddingOuter?: number;
-
-  /**
-   * If true, produces a legend for the scale. For quantitative color scales,
-   * the legend defaults to *ramp* but may be set to *swatches* for discrete
-   * scale types such as *threshold*. An opacity scale is treated as a color
-   * scale with varying transparency. The symbol legend is combined with color
-   * if they encode the same channels.
-   *
-   * For *color*, *opacity*, and *symbol* scales only. See also *plot*.legend.
-   */
-  legend?: LegendOptions["legend"] | boolean | null;
 
   /**
    * The desired approximate number of axis ticks, or an explicit array of tick

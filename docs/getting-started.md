@@ -1,3 +1,9 @@
+---
+next:
+  text: Plots
+  link: /features/plots
+---
+
 <script setup>
 
 import * as Plot from "@observablehq/plot";
@@ -89,20 +95,20 @@ Then, create an `index.html` file as shown above in the **UMD + local** tab. If 
 
 ## Installing from npm
 
-If you’re developing a web application using Node, you can install Plot via yarn, npm, pnpm, or your preferred package manager.
+If you’re developing a web application using Node, you can install Plot via pnpm, npm, yarn, or your preferred package manager.
 
 :::code-group
 
-```bash [yarn]
-yarn add @observablehq/plot
+```bash [pnpm]
+pnpm add @observablehq/plot
 ```
 
 ```bash [npm]
 npm install @observablehq/plot
 ```
 
-```bash [pnpm]
-pnpm add @observablehq/plot
+```bash [yarn]
+yarn add @observablehq/plot
 ```
 
 :::
@@ -296,29 +302,29 @@ Here’s an example of client-side rendering in Svelte. For server-side renderin
 
 :::code-group
 ```svelte [App.svelte]
-<script>
+<script lang="ts">
   import * as Plot from '@observablehq/plot';
   import * as d3 from 'd3';
 
-  let div;
-  let data = d3.ticks(-2, 2, 200).map(Math.sin);
+  let div: HTMLElement | undefined = $state();
+  let data = $state(d3.ticks(-2, 2, 200).map(Math.sin));
 
-  function onMousemove(event) {
+  function onMousemove(event: MouseEvent) {
     const [x, y] = d3.pointer(event);
     data = data.slice(-200).concat(Math.atan2(x, y));
   }
 
-  $: {
+  $effect(() => {
     div?.firstChild?.remove(); // remove old chart, if any
-    div?.append(Plot.lineY(data).plot({grid: true})); // add the new chart
-  }
+    div?.append(Plot.lineY(data).plot({ grid: true })); // add the new chart
+  });
 </script>
 
-<div on:mousemove={onMousemove} bind:this={div} role="img"></div>
+<div onmousemove={onMousemove} bind:this={div} role="img"></div>
 ```
 :::
 
-See our [Plot + Svelte REPL](https://svelte.dev/repl/ebf78a6a6c1145ecb84cf9345a7f82ae?version=4.2.0) for details.
+See our [Plot + Svelte REPL](https://svelte.dev/playground/e65b5c87ae7e44239cef41ec3df28f52?version=5.2.7) for details.
 
 ## Plot in Node.js
 

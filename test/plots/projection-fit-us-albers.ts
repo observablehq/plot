@@ -1,8 +1,9 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 import {mesh} from "topojson-client";
+import {test} from "test/plot";
 
-export async function projectionFitUsAlbers() {
+test(async function projectionFitUsAlbers() {
   const [conus, countymesh] = await d3
     .json<any>("data/us-counties-10m.json")
     .then((us) => [
@@ -20,7 +21,7 @@ export async function projectionFitUsAlbers() {
     },
     marks: [Plot.geo(conus, {strokeWidth: 1.5}), Plot.geo(countymesh, {strokeOpacity: 0.1})]
   });
-}
+});
 
 // Removes Alaska, Hawaii, Puerto Rico, and U.S. territories.
 function filter48({geometries}) {
