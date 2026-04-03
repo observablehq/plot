@@ -14,7 +14,7 @@
     }
   </style>
   <g aria-label="link" fill="none" stroke-width="1.5" stroke-opacity="0.5" stroke-miterlimit="1" transform="translate(0.5,0.5)">
-    <marker viewBox="-5 -5 10 10" markerWidth="6.67" markerHeight="6.67" orient="auto" fill="none" stroke="#636363" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" id="plot-marker-1">
+    <marker viewBox="-5 -5 10 10" markerWidth="6.67" markerHeight="6.67" orient="auto" fill="none" stroke="#636363" stroke-dasharray="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" id="plot-marker-1">
       <path d="M-1.5,-3l3,3l-3,3"></path>
     </marker>
     <path d="M30,729.485C91.125,729.485,91.125,71.6,152.25,71.6" stroke="#636363" marker-end="url(#plot-marker-1)"></path>
@@ -30,7 +30,7 @@
     <path d="M152.25,71.6C213.375,71.6,213.375,24.784,274.5,24.784" stroke="#636363" marker-end="url(#plot-marker-1)"></path>
     <path d="M152.25,71.6C213.375,71.6,213.375,78.992,274.5,78.992" stroke="#636363" marker-end="url(#plot-marker-1)"></path>
     <path d="M152.25,71.6C213.375,71.6,213.375,118.416,274.5,118.416" stroke="#636363" marker-end="url(#plot-marker-1)"></path>
-    <marker viewBox="-5 -5 10 10" markerWidth="6.67" markerHeight="6.67" orient="auto" fill="none" stroke="#bdbdbd" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" id="plot-marker-2">
+    <marker viewBox="-5 -5 10 10" markerWidth="6.67" markerHeight="6.67" orient="auto" fill="none" stroke="#bdbdbd" stroke-dasharray="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" id="plot-marker-2">
       <path d="M-1.5,-3l3,3l-3,3"></path>
     </marker>
     <path d="M152.25,212.047C213.375,212.047,213.375,157.839,274.5,157.839" stroke="#bdbdbd" marker-end="url(#plot-marker-2)"></path>
