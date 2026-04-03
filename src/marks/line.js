@@ -3,7 +3,7 @@ import {create} from "../context.js";
 import {curveAuto, maybeCurveAuto} from "../curve.js";
 import {Mark} from "../mark.js";
 import {applyGroupedMarkers, markers} from "../marker.js";
-import {coerceNumbers, indexOf, identity, maybeTuple, maybeZ} from "../options.js";
+import {coerceNumbers, maybeTuple, maybeZ} from "../options.js";
 import {
   applyDirectStyles,
   applyIndirectStyles,
@@ -103,10 +103,12 @@ export function line(data, {x, y, ...options} = {}) {
   return new Line(data, {...options, x, y});
 }
 
-export function lineX(data, {x = identity, y = indexOf, stroke, z = stroke === x ? null : undefined, ...options} = {}) {
-  return new Line(data, maybeDenseIntervalY({...options, x, y, z, stroke}));
+export function lineX(data, options) {
+  const {x, y, stroke, z = stroke === x ? null : undefined, ...rest} = maybeDenseIntervalY(options);
+  return new Line(data, {...rest, x, y, z, stroke});
 }
 
-export function lineY(data, {x = indexOf, y = identity, stroke, z = stroke === y ? null : undefined, ...options} = {}) {
-  return new Line(data, maybeDenseIntervalX({...options, x, y, z, stroke}));
+export function lineY(data, options) {
+  const {x, y, stroke, z = stroke === y ? null : undefined, ...rest} = maybeDenseIntervalX(options);
+  return new Line(data, {...rest, x, y, z, stroke});
 }
