@@ -45,6 +45,7 @@ function markerArrow(orient) {
       .attr("orient", orient)
       .attr("fill", "none")
       .attr("stroke", color)
+      .attr("stroke-dasharray", "none")
       .attr("stroke-width", 1.5)
       .attr("stroke-linecap", "round")
       .attr("stroke-linejoin", "round")
@@ -70,6 +71,7 @@ function markerCircleFill(color, context) {
     .attr("markerHeight", 6.67)
     .attr("fill", color)
     .attr("stroke", "var(--plot-background)")
+    .attr("stroke-dasharray", "none")
     .attr("stroke-width", 1.5)
     .call((marker) => marker.append("circle").attr("r", 3))
     .node();
@@ -82,6 +84,7 @@ function markerCircleStroke(color, context) {
     .attr("markerHeight", 6.67)
     .attr("fill", "var(--plot-background)")
     .attr("stroke", color)
+    .attr("stroke-dasharray", "none")
     .attr("stroke-width", 1.5)
     .call((marker) => marker.append("circle").attr("r", 3))
     .node();
@@ -95,6 +98,7 @@ function markerTick(orient) {
       .attr("markerHeight", 6)
       .attr("orient", orient)
       .attr("stroke", color)
+      .attr("stroke-dasharray", "none")
       .call((marker) => marker.append("path").attr("d", "M0,-3v6"))
       .node();
 }
@@ -144,13 +148,7 @@ function getGroupedOrientation(path, Z) {
   return ([i]) => O[i];
 }
 
-function applyMarkersColor(
-  path,
-  {markerStart, markerMid, markerEnd, stroke, strokeDasharray},
-  strokeof = () => stroke,
-  Z,
-  context
-) {
+function applyMarkersColor(path, {markerStart, markerMid, markerEnd, stroke}, strokeof = () => stroke, Z, context) {
   if (!markerStart && !markerMid && !markerEnd) return;
   const iriByMarkerColor = new Map();
   const orient = Z && getGroupedOrientation(path, Z);
@@ -164,7 +162,6 @@ function applyMarkersColor(
       let iri = iriByColor.get(color);
       if (!iri) {
         const node = this.parentNode.insertBefore(marker(color, context), this);
-        if (!isNoneish(strokeDasharray)) node.setAttribute("stroke-dasharray", "none");
         const id = `plot-marker-${++nextMarkerId}`;
         node.setAttribute("id", id);
         iriByColor.set(color, (iri = `url(#${id})`));

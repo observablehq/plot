@@ -136,13 +136,13 @@
     <rect x="595" width="20" y="368.146" height="1.854"></rect>
   </g>
   <g aria-label="rule" stroke="currentColor" transform="translate(10.5,0)">
-    <marker viewBox="-3 -3 6 6" markerWidth="6" markerHeight="6" orient="auto" stroke="currentColor" id="plot-marker-1">
+    <marker viewBox="-3 -3 6 6" markerWidth="6" markerHeight="6" orient="auto" stroke="currentColor" stroke-dasharray="none" id="plot-marker-1">
       <path d="M0,-3v6"></path>
     </marker>
-    <marker viewBox="-3 -3 6 6" markerWidth="6" markerHeight="6" orient="auto" stroke="currentColor" id="plot-marker-2">
+    <marker viewBox="-3 -3 6 6" markerWidth="6" markerHeight="6" orient="auto" stroke="currentColor" stroke-dasharray="none" id="plot-marker-2">
       <path d="M0,-3v6"></path>
     </marker>
-    <marker viewBox="-3 -3 6 6" markerWidth="6" markerHeight="6" orient="auto" stroke="currentColor" id="plot-marker-3">
+    <marker viewBox="-3 -3 6 6" markerWidth="6" markerHeight="6" orient="auto" stroke="currentColor" stroke-dasharray="none" id="plot-marker-3">
       <path d="M0,-3v6"></path>
     </marker>
     <line x1="45" x2="45" y1="83.636" y2="20" marker-start="url(#plot-marker-1)" marker-mid="url(#plot-marker-2)" marker-end="url(#plot-marker-3)"></line>

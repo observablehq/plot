@@ -14,13 +14,13 @@
     }
   </style>
   <g aria-label="line" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" stroke-dasharray="1,10" transform="translate(0.5,0.5)">
-    <marker viewBox="-5 -5 10 10" markerWidth="6.67" markerHeight="6.67" fill="currentColor" stroke="none" stroke-dasharray="none" id="plot-marker-1">
+    <marker viewBox="-5 -5 10 10" markerWidth="6.67" markerHeight="6.67" fill="currentColor" stroke="none" id="plot-marker-1">
       <circle r="2.5"></circle>
     </marker>
-    <marker viewBox="-5 -5 10 10" markerWidth="6.67" markerHeight="6.67" orient="auto" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="none" id="plot-marker-2">
+    <marker viewBox="-5 -5 10 10" markerWidth="6.67" markerHeight="6.67" orient="auto" fill="none" stroke="currentColor" stroke-dasharray="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" id="plot-marker-2">
       <path d="M-1.5,-3l3,3l-3,3"></path>
     </marker>
-    <marker viewBox="-5 -5 10 10" markerWidth="6.67" markerHeight="6.67" fill="var(--plot-background)" stroke="currentColor" stroke-width="1.5" stroke-dasharray="none" id="plot-marker-3">
+    <marker viewBox="-5 -5 10 10" markerWidth="6.67" markerHeight="6.67" fill="var(--plot-background)" stroke="currentColor" stroke-dasharray="none" stroke-width="1.5" id="plot-marker-3">
       <circle r="3"></circle>
     </marker>
     <path marker-start="url(#plot-marker-1)" marker-mid="url(#plot-marker-2)" marker-end="url(#plot-marker-3)" d="M20,20L319.5,235.4L619,379"></path>
