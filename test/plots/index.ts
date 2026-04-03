@@ -69,6 +69,7 @@ import "./d3-survey-2015-comfort.js";
 import "./d3-survey-2015-why.js";
 import "./darker-dodge.js";
 import "./decathlon.js";
+import "./dense-interval.js";
 import "./diamonds-boxplot.js";
 import "./diamonds-carat-price-dots.js";
 import "./diamonds-carat-price.js";
