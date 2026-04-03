@@ -3,9 +3,14 @@ import {create} from "../context.js";
 import {curveAuto, maybeCurveAuto} from "../curve.js";
 import {Mark} from "../mark.js";
 import {applyGroupedMarkers, markers} from "../marker.js";
-import {coerceNumbers, identity, indexOf, maybeTuple, maybeZ} from "../options.js";
-import {applyDirectStyles, applyIndirectStyles, applyTransform, applyGroupedChannelStyles} from "../style.js";
-import {groupIndex} from "../style.js";
+import {coerceNumbers, indexOf, identity, maybeTuple, maybeZ} from "../options.js";
+import {
+  applyDirectStyles,
+  applyIndirectStyles,
+  applyTransform,
+  applyGroupedChannelStyles,
+  groupIndex
+} from "../style.js";
 import {maybeDenseIntervalX, maybeDenseIntervalY} from "../transforms/bin.js";
 
 const defaults = {

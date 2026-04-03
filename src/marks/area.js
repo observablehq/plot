@@ -3,8 +3,13 @@ import {create} from "../context.js";
 import {maybeCurve} from "../curve.js";
 import {Mark} from "../mark.js";
 import {first, maybeZ, second} from "../options.js";
-import {applyDirectStyles, applyIndirectStyles, applyTransform, applyGroupedChannelStyles} from "../style.js";
-import {groupIndex} from "../style.js";
+import {
+  applyDirectStyles,
+  applyIndirectStyles,
+  applyTransform,
+  applyGroupedChannelStyles,
+  groupIndex
+} from "../style.js";
 import {maybeDenseIntervalX, maybeDenseIntervalY} from "../transforms/bin.js";
 import {maybeStackX, maybeStackY} from "../transforms/stack.js";
 
