@@ -1,6 +1,7 @@
 import * as Plot from "@observablehq/plot";
+import {test} from "test/plot";
 
-export async function greekGods() {
+test(async function greekGods() {
   const gods = `Chaos Gaia Mountains
 Chaos Gaia Pontus
 Chaos Gaia Uranus
@@ -17,9 +18,9 @@ Chaos Tartarus`
     insetRight: 120,
     marks: [Plot.tree(gods)]
   });
-}
+});
 
-export async function greekGodsTip() {
+test(async function greekGodsTip() {
   const gods = `Chaos Gaia Mountains
 Chaos Gaia Pontus
 Chaos Gaia Uranus
@@ -36,9 +37,9 @@ Chaos Tartarus`
     insetRight: 120,
     marks: [Plot.tree(gods, {tip: true})]
   });
-}
+});
 
-export async function greekGodsExplicit() {
+test(async function greekGodsExplicit() {
   const gods = `Chaos Gaia Mountains
 Chaos Gaia Pontus
 Chaos Gaia Uranus
@@ -57,4 +58,4 @@ Chaos Tartarus`.split("\n");
       Plot.text(gods, Plot.treeNode({text: "node:name", stroke: "white", fill: "currentColor", dx: 6, delimiter: " "}))
     ]
   });
-}
+});

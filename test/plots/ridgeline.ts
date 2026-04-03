@@ -1,7 +1,8 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
+import {test} from "test/plot";
 
-export async function ridgeline() {
+test(async function ridgeline() {
   const traffic = d3.sort(await d3.csv<any>("data/traffic.csv", d3.autoType), (d) => d.date);
   const overlap = 4.5;
   return Plot.plot({
@@ -25,4 +26,4 @@ export async function ridgeline() {
       })
     ]
   });
-}
+});

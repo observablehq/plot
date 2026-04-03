@@ -1,7 +1,8 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
+import {test} from "test/plot";
 
-export async function musicRevenue() {
+test(async function musicRevenue() {
   const riaa = await d3.csv<any>("data/riaa-us-revenue.csv", d3.autoType);
   return Plot.plot({
     y: {
@@ -14,9 +15,9 @@ export async function musicRevenue() {
       Plot.ruleY([0])
     ]
   });
-}
+});
 
-export async function musicRevenueCustomOrder() {
+test(async function musicRevenueCustomOrder() {
   const riaa = await d3.csv<any>("data/riaa-us-revenue.csv", d3.autoType);
   return Plot.plot({
     y: {
@@ -40,4 +41,4 @@ export async function musicRevenueCustomOrder() {
       Plot.ruleY([0])
     ]
   });
-}
+});

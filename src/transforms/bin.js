@@ -13,6 +13,7 @@ import {
   coerceDate,
   coerceNumbers,
   identity,
+  indexOf,
   isInterval,
   isIterable,
   isTemporal,
@@ -77,12 +78,12 @@ function maybeDenseInterval(bin, k, options = {}) {
   return bin(outputs, options);
 }
 
-export function maybeDenseIntervalX(options = {}) {
-  return maybeDenseInterval(binX, "y", withTip(options, "x"));
+export function maybeDenseIntervalX({y = identity, x = indexOf, ...options} = {}) {
+  return maybeDenseInterval(binX, "y", withTip({x, y, ...options}, "x"));
 }
 
-export function maybeDenseIntervalY(options = {}) {
-  return maybeDenseInterval(binY, "x", withTip(options, "y"));
+export function maybeDenseIntervalY({x = identity, y = indexOf, ...options} = {}) {
+  return maybeDenseInterval(binY, "x", withTip({x, y, ...options}, "y"));
 }
 
 function binn(

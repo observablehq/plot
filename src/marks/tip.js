@@ -7,7 +7,7 @@ import {anchorX, anchorY} from "../interactions/pointer.js";
 import {Mark} from "../mark.js";
 import {maybeAnchor, maybeFrameAnchor, maybeTuple, number, string} from "../options.js";
 import {applyDirectStyles, applyFrameAnchor, applyIndirectStyles, applyTransform, impliedString} from "../style.js";
-import {identity, isIterable, isTemporal, isTextual} from "../options.js";
+import {identity, isIterable, isTemporal, isTextual, isYearIntegers} from "../options.js";
 import {inferTickFormat} from "./axis.js";
 import {applyIndirectTextStyles, defaultWidth, ellipsis, monospaceWidth} from "./text.js";
 import {cut, clipper, splitter, maybeTextOverflow} from "./text.js";
@@ -19,7 +19,7 @@ const defaults = {
 };
 
 // These channels are not displayed in the default tip; see formatChannels.
-const ignoreChannels = new Set(["geometry", "href", "src", "ariaLabel", "scales"]);
+const ignoreChannels = new Set(["geometry", "href", "src", "ariaLabel", "scales", "contours"]);
 
 export class Tip extends Mark {
   constructor(data, options = {}) {
@@ -97,7 +97,7 @@ export class Tip extends Mark {
     // The anchor position is the middle of x1 & y1 and x2 & y2, if available,
     // or x & y; the former is considered more specific because it’s how we
     // disable the implicit stack and interval transforms. If any dimension is
-    // unspecified, we fallback to the frame anchor. We also need to know the
+    // unspecified, we fall back to the frame anchor. We also need to know the
     // facet offsets to detect when the tip would draw outside the plot, and
     // thus we need to change the orientation.
     const {x1: X1, y1: Y1, x2: X2, y2: Y2, x: X = X1 ?? X2, y: Y = Y1 ?? Y2} = values;
@@ -341,14 +341,14 @@ function getSourceChannels(channels, scales) {
     }
   }
 
-  // Then fallback to all other (non-ignored) channels.
+  // Then fall back to all other (non-ignored) channels.
   for (const key in channels) {
     if (key in sources || key in format || ignoreChannels.has(key)) continue;
     if ((key === "x" || key === "y") && channels.geometry) continue; // ignore x & y on geo
     const source = getSource(channels, key);
     if (source) {
-      // Ignore color channels if the values are all literal colors.
-      if (source.scale == null && source.defaultScale === "color") continue;
+      // Ignore (e.g., color) channels if the values are all literal.
+      if (source.scale == null && source.defaultScale) continue;
       sources[key] = source;
     }
   }
@@ -362,14 +362,19 @@ function getSourceChannels(channels, scales) {
   // Promote shorthand string formats, and materialize default formats.
   for (const key in sources) {
     const format = this.format[key];
+    const scale = scales[key];
+    const value = sources[key]?.value ?? scale?.domain() ?? [];
     if (typeof format === "string") {
-      const value = sources[key]?.value ?? scales[key]?.domain() ?? [];
       this.format[key] = (isTemporal(value) ? utcFormat : numberFormat)(format);
     } else if (format === undefined || format === true) {
       // For ordinal scales, the inferred tick format can be more concise, such
-      // as only showing the year for yearly data.
-      const scale = scales[key];
-      this.format[key] = scale?.bandwidth ? inferTickFormat(scale, scale.domain()) : formatDefault;
+      // as only showing the year for yearly data. Similarly if all the values
+      // look like years, we can avoid the thousands comma.
+      this.format[key] = scale?.bandwidth
+        ? inferTickFormat(scale, scale.domain())
+        : isYearIntegers(value)
+        ? String
+        : formatDefault;
     }
   }
 

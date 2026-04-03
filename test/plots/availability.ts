@@ -1,7 +1,8 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
+import {test} from "test/plot";
 
-export async function availability() {
+test(async function availability() {
   const data = await d3.csv<any>("data/availability.csv", d3.autoType);
   return Plot.plot({
     height: 180,
@@ -10,4 +11,4 @@ export async function availability() {
       Plot.ruleY([0])
     ]
   });
-}
+});

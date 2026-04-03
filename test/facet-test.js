@@ -1,7 +1,7 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 import assert from "./assert.js";
-import it from "./jsdom.js";
+import {it} from "vitest";
 
 it("mark data parallel to facet data triggers a warning", async () => {
   const data = await d3.csv("data/anscombe.csv", d3.autoType);
