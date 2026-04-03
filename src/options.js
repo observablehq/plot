@@ -169,11 +169,24 @@ export function dataify(data) {
 export function arrayify(values) {
   if (values == null || isArray(values)) return values;
   if (isArrowVector(values)) return maybeTypedArrowify(values);
-  switch (values.type) {
+  if (isGeoJSON(values)) {
+    switch (values.type) {
+      case "FeatureCollection":
+        return values.features;
+      case "GeometryCollection":
+        return values.geometries;
+      default:
+        return [values];
+    }
+  }
+  return Array.from(values);
+}
+
+// Duck typing test for GeoJSON
+function isGeoJSON(x) {
+  switch (x?.type) {
     case "FeatureCollection":
-      return values.features;
     case "GeometryCollection":
-      return values.geometries;
     case "Feature":
     case "LineString":
     case "MultiLineString":
@@ -182,9 +195,10 @@ export function arrayify(values) {
     case "Point":
     case "Polygon":
     case "Sphere":
-      return [values];
+      return true;
+    default:
+      return false;
   }
-  return Array.from(values);
 }
 
 // An optimization of type.from(values, f): if the given values are already an
@@ -602,12 +616,13 @@ export function maybeNamed(things) {
   return isIterable(things) ? named(things) : things;
 }
 
-// TODO Accept other types of clips (paths, urls, x, y, other marks…)?
-// https://github.com/observablehq/plot/issues/181
 export function maybeClip(clip) {
   if (clip === true) clip = "frame";
   else if (clip === false) clip = null;
-  else if (clip != null) clip = keyword(clip, "clip", ["frame", "sphere"]);
+  else if (!isGeoJSON(clip) && clip != null) {
+    clip = keyword(clip, "clip", ["frame", "sphere"]);
+    if (clip === "sphere") clip = {type: "Sphere"};
+  }
   return clip;
 }
 

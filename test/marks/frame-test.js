@@ -1,5 +1,5 @@
+import {assert, it} from "vitest";
 import * as Plot from "@observablehq/plot";
-import assert from "assert";
 
 it("frame(options) has the expected defaults", () => {
   const frame = Plot.frame();

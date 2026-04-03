@@ -1,8 +1,9 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
+import {test} from "test/plot";
 
 // A channel of explicit symbols does not show in the tip nor has a legend.
-export async function explicitSymbol() {
+test(async function explicitSymbol() {
   const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
   return Plot.plot({
     height: 220,
@@ -18,4 +19,4 @@ export async function explicitSymbol() {
       )
     ]
   });
-}
+});

@@ -1,4 +1,4 @@
-import assert from "assert";
+import {assert, it} from "vitest";
 import {identity, isNumericString, valueof} from "../src/options.js";
 
 it("isNumericString detects numeric strings", () => {

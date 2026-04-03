@@ -1,6 +1,7 @@
 import * as Plot from "@observablehq/plot";
+import {test} from "test/plot";
 
-export async function yearlyRequestsDot() {
+test(async function yearlyRequestsDot() {
   const requests = [
     [new Date("2002-01-01"), 9],
     [new Date("2003-01-01"), 17],
@@ -11,4 +12,4 @@ export async function yearlyRequestsDot() {
     y: {zero: true},
     marks: [Plot.ruleY([0]), Plot.dot(requests)]
   });
-}
+});

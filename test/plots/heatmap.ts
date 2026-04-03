@@ -1,7 +1,8 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
+import {test} from "test/plot";
 
-export async function heatmap() {
+test(async function heatmap() {
   return Plot.plot({
     color: {
       type: "diverging"
@@ -18,9 +19,9 @@ export async function heatmap() {
       Plot.frame()
     ]
   });
-}
+});
 
-export async function heatmapArray() {
+test(async function heatmapArray() {
   const x1 = 0;
   const y1 = 0;
   const x2 = 4 * Math.PI;
@@ -49,9 +50,9 @@ export async function heatmapArray() {
       Plot.frame()
     ]
   });
-}
+});
 
-export async function heatmapLog() {
+test(async function heatmapLog() {
   return Plot.plot({
     height: 630,
     x: {ticks: 10, tickFormat: "+f"},
@@ -73,9 +74,9 @@ export async function heatmapLog() {
       Plot.frame()
     ]
   });
-}
+});
 
-export async function heatmapPartial() {
+test(async function heatmapPartial() {
   return Plot.plot({
     axis: null,
     marks: [
@@ -83,9 +84,9 @@ export async function heatmapPartial() {
       Plot.rect({length: 1}, {x1: -10, x2: 10, y1: -10, y2: 10, stroke: "currentColor"})
     ]
   });
-}
+});
 
-export async function heatmapFillOpacity() {
+test(async function heatmapFillOpacity() {
   return Plot.plot({
     axis: null,
     marks: [
@@ -100,9 +101,9 @@ export async function heatmapFillOpacity() {
       })
     ]
   });
-}
+});
 
-export async function heatmapOpacity() {
+test(async function heatmapOpacity() {
   return Plot.plot({
     axis: null,
     marks: [
@@ -117,9 +118,9 @@ export async function heatmapOpacity() {
       })
     ]
   });
-}
+});
 
-export async function heatmapConstantOpacity() {
+test(async function heatmapConstantOpacity() {
   return Plot.plot({
     axis: null,
     marks: [
@@ -134,9 +135,9 @@ export async function heatmapConstantOpacity() {
       })
     ]
   });
-}
+});
 
-export async function heatmapFaceted() {
+test(async function heatmapFaceted() {
   function lin(x) {
     return x / (4 * Math.PI);
   }
@@ -159,9 +160,9 @@ export async function heatmapFaceted() {
       Plot.frame()
     ]
   });
-}
+});
 
-export function mandelbrot() {
+test(function mandelbrot() {
   return Plot.plot({
     height: 500,
     marks: [
@@ -179,4 +180,36 @@ export function mandelbrot() {
       })
     ]
   });
-}
+});
+
+test(function mandelbrotClip() {
+  return Plot.plot({
+    height: 500,
+    clip: {
+      type: "Polygon",
+      coordinates: [
+        [
+          [-2, 0],
+          [0, 1.5],
+          [1, 0],
+          [0, -1.5],
+          [-2, 0]
+        ]
+      ]
+    },
+    marks: [
+      Plot.raster({
+        fill: (x, y) => {
+          for (let n = 0, zr = 0, zi = 0; n < 80; ++n) {
+            [zr, zi] = [zr * zr - zi * zi + x, 2 * zr * zi + y];
+            if (zr * zr + zi * zi > 4) return n;
+          }
+        },
+        x1: -2,
+        y1: -1.164,
+        x2: 1,
+        y2: 1.164
+      })
+    ]
+  });
+});

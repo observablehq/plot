@@ -1,7 +1,8 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
+import {test} from "test/plot";
 
-export async function wordLengthMobyDick() {
+test(async function wordLengthMobyDick() {
   // Compute a set of “words” from the text. As with any natural language task,
   // this is messy and approximate.
   const words = (await d3.text("data/moby-dick-chapter-1.txt"))
@@ -15,4 +16,4 @@ export async function wordLengthMobyDick() {
     y: {grid: true, percent: true},
     marks: [Plot.barY(words, Plot.groupX({y: "proportion", title: "mode"}, {x: "length", title: (d) => d}))]
   });
-}
+});

@@ -21,9 +21,9 @@
     <path transform="translate(40,230)" d="M0,0L-6,0"></path>
     <path transform="translate(40,195)" d="M0,0L-6,0"></path>
     <path transform="translate(40,160)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,125.00000000000001)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,89.99999999999999)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,54.99999999999999)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,125)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,90)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,55)" d="M0,0L-6,0"></path>
     <path transform="translate(40,20)" d="M0,0L-6,0"></path>
   </g>
   <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
@@ -34,9 +34,9 @@
     <text y="0.32em" transform="translate(40,230)">4</text>
     <text y="0.32em" transform="translate(40,195)">5</text>
     <text y="0.32em" transform="translate(40,160)">6</text>
-    <text y="0.32em" transform="translate(40,125.00000000000001)">7</text>
-    <text y="0.32em" transform="translate(40,89.99999999999999)">8</text>
-    <text y="0.32em" transform="translate(40,54.99999999999999)">9</text>
+    <text y="0.32em" transform="translate(40,125)">7</text>
+    <text y="0.32em" transform="translate(40,90)">8</text>
+    <text y="0.32em" transform="translate(40,55)">9</text>
     <text y="0.32em" transform="translate(40,20)">10</text>
   </g>
   <g aria-label="y-axis label" text-anchor="start" transform="translate(-36.5,-16.5)">
@@ -60,8 +60,8 @@
   </g>
   <g aria-label="bar">
     <rect x="50" width="86" y="195" height="175" fill="#ff725c"></rect>
-    <rect x="145" width="86" y="125.00000000000001" height="245" fill="#4269d0"></rect>
-    <rect x="240" width="86" y="89.99999999999999" height="280" fill="#4269d0"></rect>
+    <rect x="145" width="86" y="125" height="245" fill="#4269d0"></rect>
+    <rect x="240" width="86" y="90" height="280" fill="#4269d0"></rect>
     <rect x="335" width="86" y="265" height="105" fill="#4269d0"></rect>
     <rect x="335" width="86" y="20" height="245" fill="#ff725c"></rect>
     <rect x="430" width="86" y="230" height="140" fill="#ff725c"></rect>

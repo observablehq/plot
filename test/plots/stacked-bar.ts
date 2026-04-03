@@ -1,6 +1,7 @@
 import * as Plot from "@observablehq/plot";
+import {test} from "test/plot";
 
-export async function stackedBar() {
+test(async function stackedBar() {
   return Plot.plot({
     x: {
       tickFormat: "%"
@@ -17,4 +18,4 @@ export async function stackedBar() {
       )
     ]
   });
-}
+});

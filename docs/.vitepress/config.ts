@@ -60,7 +60,8 @@ export default defineConfig({
         items: [
           {text: "What is Plot?", link: "/what-is-plot"},
           {text: "Why Plot?", link: "/why-plot"},
-          {text: "Getting started", link: "/getting-started"}
+          {text: "Getting started", link: "/getting-started"},
+          {text: "Examples", link: "https://observablehq.com/@observablehq/plot-gallery"}
         ]
       },
       {
