@@ -4,13 +4,8 @@ import {curveAuto, maybeCurveAuto} from "../curve.js";
 import {Mark} from "../mark.js";
 import {applyGroupedMarkers, markers} from "../marker.js";
 import {coerceNumbers, maybeTuple, maybeZ} from "../options.js";
-import {
-  applyDirectStyles,
-  applyIndirectStyles,
-  applyTransform,
-  applyGroupedChannelStyles,
-  groupIndex
-} from "../style.js";
+import {applyDirectStyles, applyIndirectStyles, applyTransform, applyGroupedChannelStyles} from "../style.js";
+import {groupIndex} from "../style.js";
 import {maybeDenseIntervalX, maybeDenseIntervalY} from "../transforms/bin.js";
 
 const defaults = {
