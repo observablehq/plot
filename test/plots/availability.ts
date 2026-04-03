@@ -7,7 +7,15 @@ test(async function availability() {
   return Plot.plot({
     height: 180,
     marks: [
-      Plot.areaY(data, {x: "date", y: "value", interval: "day", curve: "step", fill: "#f2f2fe", line: true}),
+      Plot.areaY(data, {
+        x: "date",
+        y: "value",
+        interval: "day",
+        curve: "step",
+        stroke: "red",
+        fill: "blue",
+        line: true
+      }),
       Plot.ruleY([0])
     ]
   });

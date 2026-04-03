@@ -11,7 +11,17 @@ test(async function musicRevenue() {
       transform: (d) => d / 1000
     },
     marks: [
-      Plot.areaY(riaa, {x: "year", y: "revenue", z: "format", order: "-appearance", fill: "group", title: (d: any) => `${d.format}\n${d.group}`, line: true, stroke: "white", strokeWidth: 1}),
+      Plot.areaY(riaa, {
+        x: "year",
+        y: "revenue",
+        z: "format",
+        order: "-appearance",
+        fill: "group",
+        title: (d: any) => `${d.format}\n${d.group}`,
+        line: true,
+        stroke: "white",
+        strokeWidth: 1
+      }),
       Plot.ruleY([0])
     ]
   });
