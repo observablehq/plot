@@ -24,14 +24,14 @@
     <path transform="translate(605.481,30)" d="M0,0L0,6"></path>
   </g>
   <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
-    <text transform="translate(80.481,30)"><tspan x="0" y="0.71em">8:30</tspan><tspan x="0" dy="1em">AM</tspan></text>
-    <text y="0.71em" transform="translate(155.481,30)">9:00</text>
-    <text y="0.71em" transform="translate(230.481,30)">9:30</text>
-    <text y="0.71em" transform="translate(305.481,30)">10:00</text>
-    <text y="0.71em" transform="translate(380.481,30)">10:30</text>
-    <text y="0.71em" transform="translate(455.481,30)">11:00</text>
-    <text y="0.71em" transform="translate(530.481,30)">11:30</text>
-    <text transform="translate(605.481,30)"><tspan x="0" y="0.71em">12:00</tspan><tspan x="0" dy="1em">PM</tspan></text>
+    <text transform="translate(80.481,30)"><tspan x="0" y="0.71em">5:30</tspan><tspan x="0" dy="1em">PM</tspan></text>
+    <text y="0.71em" transform="translate(155.481,30)">6:00</text>
+    <text y="0.71em" transform="translate(230.481,30)">6:30</text>
+    <text y="0.71em" transform="translate(305.481,30)">7:00</text>
+    <text y="0.71em" transform="translate(380.481,30)">7:30</text>
+    <text y="0.71em" transform="translate(455.481,30)">8:00</text>
+    <text y="0.71em" transform="translate(530.481,30)">8:30</text>
+    <text y="0.71em" transform="translate(605.481,30)">9:00</text>
   </g>
   <g aria-label="dot" fill="none" stroke="currentColor" stroke-width="1.5" transform="translate(0.5,0.5)">
     <circle cx="20" cy="15" r="3"></circle>
