@@ -10,6 +10,7 @@ import "./aapl-volume-rect.js";
 import "./aapl-volume.js";
 import "./anscombe-quartet.js";
 import "./arc.js";
+import "./area-line.js";
 import "./armadillo.js";
 import "./arrow.js";
 import "./arrow-dates.js";
