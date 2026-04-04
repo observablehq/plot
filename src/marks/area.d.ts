@@ -1,11 +1,12 @@
 import type {ChannelValue, ChannelValueDenseBinSpec, ChannelValueSpec} from "../channel.js";
 import type {CurveOptions} from "../curve.js";
 import type {Data, MarkOptions, RenderableMark} from "../mark.js";
+import type {MarkerOptions} from "../marker.js";
 import type {BinOptions, BinReducer} from "../transforms/bin.js";
 import type {StackOptions} from "../transforms/stack.js";
 
 /** Options for the area, areaX, and areaY marks. */
-export interface AreaOptions extends MarkOptions, StackOptions, CurveOptions {
+export interface AreaOptions extends MarkOptions, StackOptions, CurveOptions, MarkerOptions {
   /**
    * The required primary (starting, often left) horizontal position channel,
    * representing the area’s baseline, typically bound to the *x* scale. For
@@ -45,7 +46,9 @@ export interface AreaOptions extends MarkOptions, StackOptions, CurveOptions {
 
   /**
    * Whether a line should be drawn connecting the points with coordinates *x2*,
-   * *y2*; the **stroke** then applies to that line and defaults to *currentColor*.
+   * *y2*; the **stroke** then applies to that line and defaults to
+   * *currentColor*, and **fillOpacity** defaults to 0.3. Marker options are
+   * applied to the line path.
    */
   line?: boolean;
 }
