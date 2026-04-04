@@ -71,8 +71,7 @@ export class Area extends Mark {
           group
             .append("path")
             .call(applyDirectStyles, this)
-            .attr("fill", "none")
-            .call(applyIndirectStyles, {...this, ...noFill}, dimensions, context)
+            .call(applyIndirectStyles, {...this, ...noFill, fill: "none"}, dimensions, context)
             .call(applyGroupedChannelStyles, this, {...channels, ...noFill})
             .call(applyGroupedMarkers, this, channels, context)
             .attr("transform", offset ? `translate(${offset},${offset})` : null)

@@ -51,7 +51,7 @@
       <marker viewBox="-5 -5 10 10" markerWidth="6.67" markerHeight="6.67" orient="auto" fill="none" stroke="steelblue" stroke-dasharray="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" id="plot-marker-2">
         <path d="M-1.5,-3l3,3l-3,3"></path>
       </marker>
-      <path fill="none" aria-label="area" stroke="steelblue" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" marker-start="url(#plot-marker-1)" marker-mid="url(#plot-marker-1)" marker-end="url(#plot-marker-2)" transform="translate(0.5,0.5)" d="M40,154.444L66.667,123.333L93.333,138.889L120,92.222L146.667,45.556L173.333,76.667L200,107.778L226.667,61.111L253.333,30L280,123.333"></path>
+      <path aria-label="area" fill="none" stroke="steelblue" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" marker-start="url(#plot-marker-1)" marker-mid="url(#plot-marker-1)" marker-end="url(#plot-marker-2)" transform="translate(0.5,0.5)" d="M40,154.444L66.667,123.333L93.333,138.889L120,92.222L146.667,45.556L173.333,76.667L200,107.778L226.667,61.111L253.333,30L280,123.333"></path>
     </g>
   </g>
 </svg>
