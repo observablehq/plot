@@ -19,6 +19,7 @@ test(async function musicRevenue() {
         fill: "group",
         title: (d: any) => `${d.format}\n${d.group}`,
         line: true,
+        fillOpacity: 1,
         stroke: "white",
         strokeWidth: 1
       }),

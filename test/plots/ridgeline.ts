@@ -22,6 +22,7 @@ test(async function ridgeline() {
         sort: "date",
         fill: "color-mix(in oklab, var(--plot-background), currentColor 20%)",
         line: true,
+        fillOpacity: 1,
         strokeWidth: 1
       })
     ]

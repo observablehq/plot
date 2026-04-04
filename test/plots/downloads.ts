@@ -12,7 +12,6 @@ test(async function downloads() {
         interval: "day",
         y: "downloads",
         curve: "step",
-        fill: "#ccc",
         line: true,
         strokeWidth: 1
       })
