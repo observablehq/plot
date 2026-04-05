@@ -127,6 +127,11 @@ export class Tip extends Mark {
       format = formatChannels;
     }
 
+    // Format the tip text, skipping any nulls.
+    const T = new Array(index.length);
+    for (const i of index) T[i] = format.call(mark, i, index, sources, scales, values);
+    index = index.filter((i) => T[i] != null);
+
     // We don’t call applyChannelStyles because we only use the channels to
     // derive the content of the tip, not its aesthetics.
     const g = create("svg:g", context)
@@ -150,7 +155,7 @@ export class Tip extends Mark {
               this.setAttribute("fill-opacity", 1);
               this.setAttribute("stroke", "none");
               // iteratively render each channel value
-              const lines = format.call(mark, i, index, sources, scales, values);
+              const lines = T[i];
               if (typeof lines === "string") {
                 for (const line of mark.splitLines(lines)) {
                   renderLine(that, {value: mark.clipLine(line)});
