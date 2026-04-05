@@ -1,12 +1,12 @@
-import type {Data} from "../mark.js";
+import type {ColorOptions, Data} from "../mark.js";
 import {MarkerOptions} from "../marker.js";
 import {Area, AreaXOptions, AreaYOptions} from "./area.js";
 
 /** Options for the areaLineX mark. */
-export interface AreaLineXOptions extends AreaXOptions, MarkerOptions {}
+export interface AreaLineXOptions extends AreaXOptions, ColorOptions, MarkerOptions {}
 
 /** Options for the areaLineY mark. */
-export interface AreaLineYOptions extends AreaYOptions, MarkerOptions {}
+export interface AreaLineYOptions extends AreaYOptions, ColorOptions, MarkerOptions {}
 
 /**
  * Returns a new vertically-oriented arealine mark for the given *data* and

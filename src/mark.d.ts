@@ -473,6 +473,11 @@ export interface MarkOptions {
   channels?: Record<string, Channel | ChannelValue>;
 }
 
+export interface ColorOptions {
+  /** Shorthand for setting both the fill and the stroke. */
+  color?: ChannelValueSpec;
+}
+
 /** The abstract base class for Mark implementations. */
 export class Mark {
   /**

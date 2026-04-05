@@ -70,11 +70,11 @@ export class AreaLine extends Area {
 }
 
 export function areaLineX(data, options) {
-  const {x, y, fill, z = x === fill ? null : undefined, ...rest} = maybeDenseIntervalY(options);
-  return new AreaLine(data, maybeStackX({...rest, x, y1: y, y2: undefined, z, fill}));
+  const {x, y, color, stroke = color, fill = color, z = x === fill || x === stroke ? null : undefined, ...rest} = maybeDenseIntervalY(options); // prettier-ignore
+  return new AreaLine(data, maybeStackX({...rest, x, y1: y, y2: undefined, z, fill, stroke}));
 }
 
 export function areaLineY(data, options) {
-  const {x, y, fill, z = y === fill ? null : undefined, ...rest} = maybeDenseIntervalX(options);
-  return new AreaLine(data, maybeStackY({...rest, x1: x, x2: undefined, y, z, fill}));
+  const {x, y, color, stroke = color, fill = color, z = y === fill || y === stroke ? null : undefined, ...rest} = maybeDenseIntervalX(options); // prettier-ignore
+  return new AreaLine(data, maybeStackY({...rest, x1: x, x2: undefined, y, z, fill, stroke}));
 }
