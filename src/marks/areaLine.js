@@ -3,7 +3,7 @@ import {Area} from "./area.js";
 import {create} from "../context.js";
 import {applyGroupedMarkers, markers} from "../marker.js";
 import {applyDirectStyles, applyIndirectStyles, applyTransform, applyGroupedChannelStyles} from "../style.js";
-import {groupIndex} from "../style.js";
+import {groupIndex, offset} from "../style.js";
 import {maybeDenseIntervalX, maybeDenseIntervalY} from "../transforms/bin.js";
 import {maybeStackX, maybeStackY} from "../transforms/stack.js";
 
@@ -55,6 +55,7 @@ export class AreaLine extends Area {
               .append("path")
               .call(applyGroupedMarkers, this, channels, context)
               .attr("fill", "none")
+              .attr("transform", offset ? `translate(${offset},${offset})` : null)
               .attr(
                 "d",
                 shapeLine()
