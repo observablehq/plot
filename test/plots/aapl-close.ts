@@ -7,8 +7,7 @@ test(async function aaplClose() {
   return Plot.plot({
     y: {grid: true},
     marks: [
-      Plot.areaY(aapl, {x: "Date", y: "Close", fillOpacity: 0.1}),
-      Plot.lineY(aapl, {x: "Date", y: "Close"}),
+      Plot.areaLineY(aapl, {x: "Date", y: "Close"}),
       Plot.ruleY([0])
     ]
   });

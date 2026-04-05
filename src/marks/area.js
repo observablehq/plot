@@ -8,7 +8,7 @@ import {groupIndex} from "../style.js";
 import {maybeDenseIntervalX, maybeDenseIntervalY} from "../transforms/bin.js";
 import {maybeStackX, maybeStackY} from "../transforms/stack.js";
 
-const defaults = {
+const areaDefaults = {
   ariaLabel: "area",
   strokeWidth: 1,
   strokeLinecap: "round",
@@ -17,7 +17,7 @@ const defaults = {
 };
 
 export class Area extends Mark {
-  constructor(data, options = {}) {
+  constructor(data, options = {}, defaults = areaDefaults) {
     const {x1, y1, x2, y2, z, curve, tension} = options;
     super(
       data,
