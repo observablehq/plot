@@ -301,6 +301,7 @@ test(async function tipDispatch() {
       clientY: 200
     })
   );
+  await new Promise((resolve) => setTimeout(resolve, 100)); // postrender
   return plot;
 });
 
