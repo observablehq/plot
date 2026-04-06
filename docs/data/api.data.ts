@@ -50,7 +50,7 @@ function getHref(name: string, path: string): string {
       return `${path}s`;
     case "features/options":
       return "features/transforms";
-    case "marks/areaLine":
+    case "marks/area-line":
       return "marks/area";
     case "marks/axis": {
       switch (name) {
