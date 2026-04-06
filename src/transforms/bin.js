@@ -45,6 +45,7 @@ import {
   reduceIdentity,
   reduceZ
 } from "./group.js";
+import {maybeIdentityX, maybeIdentityY} from "./identity.js";
 import {maybeInsetX, maybeInsetY} from "./inset.js";
 
 // Group on {z, fill, stroke}, then optionally on y, then bin x.
@@ -78,12 +79,12 @@ function maybeDenseInterval(bin, k, options = {}) {
   return bin(outputs, options);
 }
 
-export function maybeDenseIntervalX({y = identity, x = indexOf, ...options} = {}) {
-  return maybeDenseInterval(binX, "y", withTip({x, y, ...options}, "x"));
+export function maybeDenseIntervalX({x = indexOf, ...options} = {}) {
+  return maybeDenseInterval(binX, "y", withTip({x, ...maybeIdentityY(options)}, "x"));
 }
 
-export function maybeDenseIntervalY({x = identity, y = indexOf, ...options} = {}) {
-  return maybeDenseInterval(binY, "x", withTip({x, y, ...options}, "y"));
+export function maybeDenseIntervalY({y = indexOf, ...options} = {}) {
+  return maybeDenseInterval(binY, "x", withTip({y, ...maybeIdentityX(options)}, "y"));
 }
 
 function binn(
