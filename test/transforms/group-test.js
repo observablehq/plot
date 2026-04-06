@@ -1,5 +1,5 @@
+import {assert, it} from "vitest";
 import * as Plot from "@observablehq/plot";
-import assert from "assert";
 import * as d3 from "d3";
 
 it("Plot.group does not return unspecified options", () => {

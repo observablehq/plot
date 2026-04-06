@@ -1,10 +1,11 @@
 import * as Plot from "@observablehq/plot";
+import {test} from "test/plot";
 
-export async function highCardinalityOrdinal() {
+test(async function highCardinalityOrdinal() {
   return Plot.plot({
     color: {
       type: "ordinal"
     },
     marks: [Plot.cellX("ABCDEFGHIJKLMNOPQRSTUVWXYZ")]
   });
-}
+});

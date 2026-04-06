@@ -1,7 +1,8 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
+import {test} from "test/plot";
 
-export async function letterFrequencyBar() {
+test(async function letterFrequencyBar() {
   const alphabet = await d3.csv<any>("data/alphabet.csv", d3.autoType);
   return Plot.plot({
     ariaLabel: "letter-frequency chart",
@@ -28,4 +29,4 @@ export async function letterFrequencyBar() {
     ],
     height: 580
   });
-}
+});

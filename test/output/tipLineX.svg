@@ -14,36 +14,36 @@
     }
   </style>
   <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,0.5)">
-    <path transform="translate(40,325.29057017543863)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,255.25219298245614)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,185.21381578947367)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,114.98355263157896)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,44.9451754385965)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,325.291)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,255.252)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,185.214)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,114.984)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,44.945)" d="M0,0L-6,0"></path>
   </g>
   <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
-    <text y="0.32em" transform="translate(40,325.29057017543863)">2014</text>
-    <text y="0.32em" transform="translate(40,255.25219298245614)">2015</text>
-    <text y="0.32em" transform="translate(40,185.21381578947367)">2016</text>
-    <text y="0.32em" transform="translate(40,114.98355263157896)">2017</text>
-    <text y="0.32em" transform="translate(40,44.9451754385965)">2018</text>
+    <text y="0.32em" transform="translate(40,325.291)">2014</text>
+    <text y="0.32em" transform="translate(40,255.252)">2015</text>
+    <text y="0.32em" transform="translate(40,185.214)">2016</text>
+    <text y="0.32em" transform="translate(40,114.984)">2017</text>
+    <text y="0.32em" transform="translate(40,44.945)">2018</text>
   </g>
   <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,0)">
-    <path transform="translate(56.23876941893697,370)" d="M0,0L0,6"></path>
-    <path transform="translate(142.9445923854244,370)" d="M0,0L0,6"></path>
-    <path transform="translate(229.65041535191176,370)" d="M0,0L0,6"></path>
-    <path transform="translate(316.35623831839916,370)" d="M0,0L0,6"></path>
-    <path transform="translate(403.06206128488657,370)" d="M0,0L0,6"></path>
-    <path transform="translate(489.767884251374,370)" d="M0,0L0,6"></path>
-    <path transform="translate(576.4737072178615,370)" d="M0,0L0,6"></path>
+    <path transform="translate(56.239,370)" d="M0,0L0,6"></path>
+    <path transform="translate(142.945,370)" d="M0,0L0,6"></path>
+    <path transform="translate(229.65,370)" d="M0,0L0,6"></path>
+    <path transform="translate(316.356,370)" d="M0,0L0,6"></path>
+    <path transform="translate(403.062,370)" d="M0,0L0,6"></path>
+    <path transform="translate(489.768,370)" d="M0,0L0,6"></path>
+    <path transform="translate(576.474,370)" d="M0,0L0,6"></path>
   </g>
   <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
-    <text y="0.71em" transform="translate(56.23876941893697,370)">60</text>
-    <text y="0.71em" transform="translate(142.9445923854244,370)">80</text>
-    <text y="0.71em" transform="translate(229.65041535191176,370)">100</text>
-    <text y="0.71em" transform="translate(316.35623831839916,370)">120</text>
-    <text y="0.71em" transform="translate(403.06206128488657,370)">140</text>
-    <text y="0.71em" transform="translate(489.767884251374,370)">160</text>
-    <text y="0.71em" transform="translate(576.4737072178615,370)">180</text>
+    <text y="0.71em" transform="translate(56.239,370)">60</text>
+    <text y="0.71em" transform="translate(142.945,370)">80</text>
+    <text y="0.71em" transform="translate(229.65,370)">100</text>
+    <text y="0.71em" transform="translate(316.356,370)">120</text>
+    <text y="0.71em" transform="translate(403.062,370)">140</text>
+    <text y="0.71em" transform="translate(489.768,370)">160</text>
+    <text y="0.71em" transform="translate(576.474,370)">180</text>
   </g>
   <g aria-label="x-axis label" text-anchor="end" transform="translate(17.5,27.5)">
     <text transform="translate(620,370)">Close →</text>

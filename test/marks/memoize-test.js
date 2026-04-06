@@ -1,5 +1,5 @@
+import {assert, describe, it} from "vitest";
 import {memoize1} from "../../src/memoize.js";
-import assert from "assert";
 
 describe("memoize1(compute)", () => {
   it("returns the cached value with repeated calls", () => {

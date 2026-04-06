@@ -1,11 +1,12 @@
 import * as d3 from "d3";
 import * as Plot from "@observablehq/plot";
+import {test} from "test/plot";
 
-export function colorLegendCategorical() {
+test(function colorLegendCategorical() {
   return Plot.legend({color: {domain: "ABCDEFGHIJ"}});
-}
+});
 
-export function colorLegendCategoricalColumns() {
+test(function colorLegendCategoricalColumns() {
   return Plot.legend({
     color: {
       domain: [
@@ -24,49 +25,49 @@ export function colorLegendCategoricalColumns() {
     label: "Hello",
     columns: "180px"
   });
-}
+});
 
-export function colorLegendCategoricalScheme() {
+test(function colorLegendCategoricalScheme() {
   return Plot.legend({color: {domain: "ABCDEFGHIJ", scheme: "category10"}});
-}
+});
 
-export function colorLegendCategoricalReverse() {
+test(function colorLegendCategoricalReverse() {
   return Plot.legend({color: {domain: "ABCDEFGHIJ", reverse: true}});
-}
+});
 
-export function colorLegendDomainUnary() {
+test(function colorLegendDomainUnary() {
   return Plot.legend({color: {domain: [0]}});
-}
+});
 
-export function colorLegendDomainEmpty() {
+test(function colorLegendDomainEmpty() {
   return Plot.legend({color: {domain: []}});
-}
+});
 
-export function colorLegendLinearDomainUnary() {
+test(function colorLegendLinearDomainUnary() {
   return Plot.legend({color: {type: "linear", domain: [0]}});
-}
+});
 
-export function colorLegendLinearDomainEmpty() {
+test(function colorLegendLinearDomainEmpty() {
   return Plot.legend({color: {type: "linear", domain: []}});
-}
+});
 
-export function colorLegendOrdinal() {
+test(function colorLegendOrdinal() {
   return Plot.legend({color: {type: "ordinal", domain: "ABCDEFGHIJ"}});
-}
+});
 
-export function colorLegendOrdinalRamp() {
+test(function colorLegendOrdinalRamp() {
   return Plot.legend({color: {type: "ordinal", domain: "ABCDEFGHIJ"}, legend: "ramp"});
-}
+});
 
-export function colorLegendOrdinalRampInline() {
+test(function colorLegendOrdinalRampInline() {
   return Plot.plot({
     legend: "ramp",
     color: {type: "ordinal", domain: "ABCDEFGHIJ"},
     marks: [Plot.cellX("ABCDEFGHIJ")]
   });
-}
+});
 
-export function colorLegendOrdinalRampTickSize() {
+test(function colorLegendOrdinalRampTickSize() {
   return Plot.legend({
     color: {
       domain: ["<20", "20-29", "30-39", "40-49", "50-59", "60-69", "≥70"],
@@ -76,89 +77,89 @@ export function colorLegendOrdinalRampTickSize() {
     legend: "ramp",
     tickSize: 0
   });
-}
+});
 
-export function colorLegendOrdinalReverseRamp() {
+test(function colorLegendOrdinalReverseRamp() {
   return Plot.legend({color: {type: "ordinal", domain: "ABCDEFGHIJ", reverse: true}, legend: "ramp"});
-}
+});
 
-export function colorLegendOrdinalScheme() {
+test(function colorLegendOrdinalScheme() {
   return Plot.legend({color: {type: "ordinal", domain: "ABCDEFGHIJ", scheme: "rainbow"}});
-}
+});
 
-export function colorLegendOrdinalSchemeRamp() {
+test(function colorLegendOrdinalSchemeRamp() {
   return Plot.legend({color: {type: "ordinal", domain: "ABCDEFGHIJ", scheme: "rainbow"}, legend: "ramp"});
-}
+});
 
-export function colorLegendOrdinalTicks() {
+test(function colorLegendOrdinalTicks() {
   return Plot.legend({color: {type: "categorical", domain: [0, 1, 2, 3, 4], ticks: [0, 1, 4]}, legend: "ramp"});
-}
+});
 
-export function colorLegendOrdinalTickFormat() {
+test(function colorLegendOrdinalTickFormat() {
   return Plot.legend({color: {type: "ordinal", domain: [1, 2, 3, 4, 5], tickFormat: ".1f"}});
-}
+});
 
-export function colorLegendOrdinalTickFormatFunction() {
+test(function colorLegendOrdinalTickFormatFunction() {
   return Plot.legend({color: {type: "ordinal", domain: [1, 2, 3, 4, 5], tickFormat: (d) => d.toFixed(1)}});
-}
+});
 
-export function colorLegendQuantitative() {
+test(function colorLegendQuantitative() {
   return Plot.legend({color: {domain: [0, 10]}});
-}
+});
 
-export function colorLegendQuantitativeScheme() {
+test(function colorLegendQuantitativeScheme() {
   return Plot.legend({color: {scheme: "blues", domain: [0, 1]}});
-}
+});
 
-export function colorLegendLinear() {
+test(function colorLegendLinear() {
   return Plot.legend({color: {type: "linear", domain: [0, 10]}});
-}
+});
 
-export function colorLegendLinearNoTicks() {
+test(function colorLegendLinearNoTicks() {
   return Plot.legend({color: {type: "linear", tickFormat: null, domain: [0, 10]}});
-}
+});
 
-export function colorLegendLinearTruncatedScheme() {
+test(function colorLegendLinearTruncatedScheme() {
   return Plot.legend({color: {scheme: "rainbow", domain: [0, 1], range: [0.5, 1]}});
-}
+});
 
-export function colorLegendSqrt() {
+test(function colorLegendSqrt() {
   return Plot.legend({color: {type: "sqrt", domain: [0, 10]}});
-}
+});
 
-export function colorLegendSqrtPiecewise() {
+test(function colorLegendSqrtPiecewise() {
   return Plot.legend({color: {type: "sqrt", domain: [-100, 0, 100], range: ["blue", "white", "red"]}});
-}
+});
 
-export function colorLegendInterpolate() {
+test(function colorLegendInterpolate() {
   return Plot.legend({color: {domain: [0, 10], range: ["steelblue", "orange"], interpolate: "hcl"}});
-}
+});
 
-export function colorLegendInterpolateSqrt() {
+test(function colorLegendInterpolateSqrt() {
   return Plot.legend({color: {type: "sqrt", domain: [0, 10]}});
-}
+});
 
-export function colorLegendLog() {
+test(function colorLegendLog() {
   return Plot.legend({color: {type: "log", domain: [1, 10]}});
-}
+});
 
-export function colorLegendLogTicks() {
+test(function colorLegendLogTicks() {
   return Plot.legend({color: {type: "log", domain: [1, 10], ticks: 10}});
-}
+});
 
-export function colorLegendLabelScale() {
+test(function colorLegendLabelScale() {
   return Plot.legend({color: {type: "linear", domain: [0, 10], label: "Scale"}});
-}
+});
 
-export function colorLegendLabelLegend() {
+test(function colorLegendLabelLegend() {
   return Plot.legend({color: {type: "linear", domain: [0, 10]}, label: "Legend"});
-}
+});
 
-export function colorLegendLabelBoth() {
+test(function colorLegendLabelBoth() {
   return Plot.legend({color: {type: "linear", domain: [0, 10], label: "Scale"}, label: "Legend"});
-}
+});
 
-export function colorLegendMargins() {
+test(function colorLegendMargins() {
   return Plot.legend({
     color: {
       type: "sqrt",
@@ -169,9 +170,9 @@ export function colorLegendMargins() {
     marginLeft: 150,
     marginRight: 50
   });
-}
+});
 
-export function colorLegendThreshold() {
+test(function colorLegendThreshold() {
   return Plot.legend({
     color: {
       type: "threshold",
@@ -180,9 +181,9 @@ export function colorLegendThreshold() {
       label: "Viridis"
     }
   });
-}
+});
 
-export function colorLegendThresholdTickSize() {
+test(function colorLegendThresholdTickSize() {
   return Plot.legend({
     color: {
       type: "threshold",
@@ -192,10 +193,10 @@ export function colorLegendThresholdTickSize() {
     },
     tickSize: 0
   });
-}
+});
 
 // Quantile scales are implicitly converted to threshold scales.
-export function colorLegendQuantile() {
+test(function colorLegendQuantile() {
   return Plot.legend({
     color: {
       type: "quantile",
@@ -206,9 +207,9 @@ export function colorLegendQuantile() {
     },
     tickFormat: ",d"
   });
-}
+});
 
-export function colorLegendQuantileImplicit() {
+test(function colorLegendQuantileImplicit() {
   return Plot.plot({
     color: {
       type: "quantile",
@@ -219,9 +220,9 @@ export function colorLegendQuantileImplicit() {
     },
     marks: [Plot.dot(d3.range(100), {fill: (i) => i ** 2})]
   }).legend("color");
-}
+});
 
-export function colorLegendQuantileSwatches() {
+test(function colorLegendQuantileSwatches() {
   return Plot.legend({
     legend: "swatches",
     color: {
@@ -233,10 +234,10 @@ export function colorLegendQuantileSwatches() {
     },
     tickFormat: ",d"
   });
-}
+});
 
 // Quantize scales are implicitly converted to threshold scales.
-export function colorLegendQuantize() {
+test(function colorLegendQuantize() {
   return Plot.legend({
     color: {
       type: "quantize",
@@ -245,9 +246,9 @@ export function colorLegendQuantize() {
       label: "quantize scale"
     }
   });
-}
+});
 
-export function colorLegendQuantizeDescending() {
+test(function colorLegendQuantizeDescending() {
   return Plot.legend({
     color: {
       type: "quantize",
@@ -255,9 +256,9 @@ export function colorLegendQuantizeDescending() {
       label: "quantize descending"
     }
   });
-}
+});
 
-export function colorLegendQuantizeDescendingReversed() {
+test(function colorLegendQuantizeDescendingReversed() {
   return Plot.legend({
     color: {
       type: "quantize",
@@ -266,9 +267,9 @@ export function colorLegendQuantizeDescendingReversed() {
       label: "quantize descending reversed"
     }
   });
-}
+});
 
-export function colorLegendQuantizeRange() {
+test(function colorLegendQuantizeRange() {
   return Plot.legend({
     color: {
       type: "quantize",
@@ -277,9 +278,9 @@ export function colorLegendQuantizeRange() {
       label: "quantize scale"
     }
   });
-}
+});
 
-export function colorLegendQuantizeReverse() {
+test(function colorLegendQuantizeReverse() {
   return Plot.legend({
     color: {
       type: "quantize",
@@ -288,9 +289,9 @@ export function colorLegendQuantizeReverse() {
       label: "quantize reversed"
     }
   });
-}
+});
 
-export function colorLegendImplicitLabel() {
+test(function colorLegendImplicitLabel() {
   return Plot.plot({
     color: {scheme: "viridis"},
     marks: [
@@ -300,9 +301,9 @@ export function colorLegendImplicitLabel() {
       )
     ]
   }).legend("color");
-}
+});
 
-export function colorLegendDiverging() {
+test(function colorLegendDiverging() {
   return Plot.legend({
     color: {
       domain: [-0.1, 0.1],
@@ -311,9 +312,9 @@ export function colorLegendDiverging() {
     },
     tickFormat: "+%"
   });
-}
+});
 
-export function colorLegendDivergingPivot() {
+test(function colorLegendDivergingPivot() {
   return Plot.legend({
     color: {
       domain: [1, 4],
@@ -321,9 +322,9 @@ export function colorLegendDivergingPivot() {
       scheme: "PiYG"
     }
   });
-}
+});
 
-export function colorLegendDivergingPivotAsymmetric() {
+test(function colorLegendDivergingPivotAsymmetric() {
   return Plot.legend({
     color: {
       symmetric: false,
@@ -332,9 +333,9 @@ export function colorLegendDivergingPivotAsymmetric() {
       scheme: "PiYG"
     }
   });
-}
+});
 
-export function colorLegendDivergingSqrt() {
+test(function colorLegendDivergingSqrt() {
   return Plot.legend({
     color: {
       type: "diverging-sqrt",
@@ -344,9 +345,9 @@ export function colorLegendDivergingSqrt() {
     },
     tickFormat: "+%"
   });
-}
+});
 
-export function colorSchemesOrdinal() {
+test(function colorSchemesOrdinal() {
   const div = document.createElement("DIV");
   for (const scheme of [
     "accent",
@@ -409,9 +410,9 @@ export function colorSchemesOrdinal() {
     );
   }
   return div;
-}
+});
 
-export function colorSchemesQuantitative() {
+test(function colorSchemesQuantitative() {
   const div = document.createElement("DIV");
   for (const scheme of [
     "brbg",
@@ -458,16 +459,16 @@ export function colorSchemesQuantitative() {
     div.append(Plot.legend({color: {type: "linear", scheme}, label: scheme, ticks: 0, tickSize: 0, marginBottom: 10}));
   }
   return div;
-}
+});
 
-export async function colorLegendOpacity() {
+test(async function colorLegendOpacity() {
   return Plot.legend({color: {domain: ["Dream", "Torgersen", "Biscoe"]}, opacity: 0.5});
-}
+});
 
-export async function colorLegendOpacityRamp() {
+test(async function colorLegendOpacityRamp() {
   return Plot.legend({color: {domain: [0, 1000]}, opacity: 0.5});
-}
+});
 
-export function colorLegendOpacityOrdinalRamp() {
+test(function colorLegendOpacityOrdinalRamp() {
   return Plot.legend({color: {type: "ordinal", domain: "ABCDEFGHIJ"}, legend: "ramp", opacity: 0.5});
-}
+});

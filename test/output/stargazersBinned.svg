@@ -15,94 +15,94 @@
   </style>
   <g aria-label="y-grid" aria-hidden="true" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
     <line x1="40" x2="620" y1="370" y2="370"></line>
-    <line x1="40" x2="620" y1="341.9551282051282" y2="341.9551282051282"></line>
-    <line x1="40" x2="620" y1="313.91025641025647" y2="313.91025641025647"></line>
-    <line x1="40" x2="620" y1="285.86538461538464" y2="285.86538461538464"></line>
-    <line x1="40" x2="620" y1="257.8205128205128" y2="257.8205128205128"></line>
-    <line x1="40" x2="620" y1="229.77564102564102" y2="229.77564102564102"></line>
-    <line x1="40" x2="620" y1="201.7307692307692" y2="201.7307692307692"></line>
-    <line x1="40" x2="620" y1="173.68589743589746" y2="173.68589743589746"></line>
-    <line x1="40" x2="620" y1="145.6410256410256" y2="145.6410256410256"></line>
-    <line x1="40" x2="620" y1="117.59615384615384" y2="117.59615384615384"></line>
-    <line x1="40" x2="620" y1="89.55128205128203" y2="89.55128205128203"></line>
-    <line x1="40" x2="620" y1="61.50641025641026" y2="61.50641025641026"></line>
-    <line x1="40" x2="620" y1="33.46153846153845" y2="33.46153846153845"></line>
+    <line x1="40" x2="620" y1="341.955" y2="341.955"></line>
+    <line x1="40" x2="620" y1="313.91" y2="313.91"></line>
+    <line x1="40" x2="620" y1="285.865" y2="285.865"></line>
+    <line x1="40" x2="620" y1="257.821" y2="257.821"></line>
+    <line x1="40" x2="620" y1="229.776" y2="229.776"></line>
+    <line x1="40" x2="620" y1="201.731" y2="201.731"></line>
+    <line x1="40" x2="620" y1="173.686" y2="173.686"></line>
+    <line x1="40" x2="620" y1="145.641" y2="145.641"></line>
+    <line x1="40" x2="620" y1="117.596" y2="117.596"></line>
+    <line x1="40" x2="620" y1="89.551" y2="89.551"></line>
+    <line x1="40" x2="620" y1="61.506" y2="61.506"></line>
+    <line x1="40" x2="620" y1="33.462" y2="33.462"></line>
   </g>
   <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,0.5)">
     <path transform="translate(40,370)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,341.9551282051282)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,313.91025641025647)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,285.86538461538464)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,257.8205128205128)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,229.77564102564102)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,201.7307692307692)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,173.68589743589746)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,145.6410256410256)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,117.59615384615384)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,89.55128205128203)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,61.50641025641026)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,33.46153846153845)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,341.955)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,313.91)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,285.865)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,257.821)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,229.776)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,201.731)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,173.686)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,145.641)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,117.596)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,89.551)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,61.506)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,33.462)" d="M0,0L-6,0"></path>
   </g>
   <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
     <text y="0.32em" transform="translate(40,370)">0</text>
-    <text y="0.32em" transform="translate(40,341.9551282051282)">50</text>
-    <text y="0.32em" transform="translate(40,313.91025641025647)">100</text>
-    <text y="0.32em" transform="translate(40,285.86538461538464)">150</text>
-    <text y="0.32em" transform="translate(40,257.8205128205128)">200</text>
-    <text y="0.32em" transform="translate(40,229.77564102564102)">250</text>
-    <text y="0.32em" transform="translate(40,201.7307692307692)">300</text>
-    <text y="0.32em" transform="translate(40,173.68589743589746)">350</text>
-    <text y="0.32em" transform="translate(40,145.6410256410256)">400</text>
-    <text y="0.32em" transform="translate(40,117.59615384615384)">450</text>
-    <text y="0.32em" transform="translate(40,89.55128205128203)">500</text>
-    <text y="0.32em" transform="translate(40,61.50641025641026)">550</text>
-    <text y="0.32em" transform="translate(40,33.46153846153845)">600</text>
+    <text y="0.32em" transform="translate(40,341.955)">50</text>
+    <text y="0.32em" transform="translate(40,313.91)">100</text>
+    <text y="0.32em" transform="translate(40,285.865)">150</text>
+    <text y="0.32em" transform="translate(40,257.821)">200</text>
+    <text y="0.32em" transform="translate(40,229.776)">250</text>
+    <text y="0.32em" transform="translate(40,201.731)">300</text>
+    <text y="0.32em" transform="translate(40,173.686)">350</text>
+    <text y="0.32em" transform="translate(40,145.641)">400</text>
+    <text y="0.32em" transform="translate(40,117.596)">450</text>
+    <text y="0.32em" transform="translate(40,89.551)">500</text>
+    <text y="0.32em" transform="translate(40,61.506)">550</text>
+    <text y="0.32em" transform="translate(40,33.462)">600</text>
   </g>
   <g aria-label="y-axis label" text-anchor="start" transform="translate(-36.5,-16.5)">
     <text y="0.71em" transform="translate(40,20)">↑ Stargazers added per week</text>
   </g>
   <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,0)">
     <path transform="translate(40,370)" d="M0,0L0,6"></path>
-    <path transform="translate(115.32467532467531,370)" d="M0,0L0,6"></path>
-    <path transform="translate(193.16017316017314,370)" d="M0,0L0,6"></path>
-    <path transform="translate(270.995670995671,370)" d="M0,0L0,6"></path>
-    <path transform="translate(341.29870129870125,370)" d="M0,0L0,6"></path>
-    <path transform="translate(419.13419913419915,370)" d="M0,0L0,6"></path>
-    <path transform="translate(494.45887445887445,370)" d="M0,0L0,6"></path>
-    <path transform="translate(572.2943722943724,370)" d="M0,0L0,6"></path>
+    <path transform="translate(115.325,370)" d="M0,0L0,6"></path>
+    <path transform="translate(193.16,370)" d="M0,0L0,6"></path>
+    <path transform="translate(270.996,370)" d="M0,0L0,6"></path>
+    <path transform="translate(341.299,370)" d="M0,0L0,6"></path>
+    <path transform="translate(419.134,370)" d="M0,0L0,6"></path>
+    <path transform="translate(494.459,370)" d="M0,0L0,6"></path>
+    <path transform="translate(572.294,370)" d="M0,0L0,6"></path>
   </g>
   <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
     <text transform="translate(40,370)"><tspan x="0" y="0.71em">Nov</tspan><tspan x="0" dy="1em">2020</tspan></text>
-    <text y="0.71em" transform="translate(115.32467532467531,370)">Dec</text>
-    <text transform="translate(193.16017316017314,370)"><tspan x="0" y="0.71em">Jan</tspan><tspan x="0" dy="1em">2021</tspan></text>
-    <text y="0.71em" transform="translate(270.995670995671,370)">Feb</text>
-    <text y="0.71em" transform="translate(341.29870129870125,370)">Mar</text>
-    <text y="0.71em" transform="translate(419.13419913419915,370)">Apr</text>
-    <text y="0.71em" transform="translate(494.45887445887445,370)">May</text>
-    <text y="0.71em" transform="translate(572.2943722943724,370)">Jun</text>
+    <text y="0.71em" transform="translate(115.325,370)">Dec</text>
+    <text transform="translate(193.16,370)"><tspan x="0" y="0.71em">Jan</tspan><tspan x="0" dy="1em">2021</tspan></text>
+    <text y="0.71em" transform="translate(270.996,370)">Feb</text>
+    <text y="0.71em" transform="translate(341.299,370)">Mar</text>
+    <text y="0.71em" transform="translate(419.134,370)">Apr</text>
+    <text y="0.71em" transform="translate(494.459,370)">May</text>
+    <text y="0.71em" transform="translate(572.294,370)">Jun</text>
   </g>
   <g aria-label="rect">
-    <rect x="41" y="368.8782051282051" width="16.575757575757578" height="1.1217948717949184"><title>2020-11-01 to 2020-11-08
+    <rect x="41" y="368.878" width="16.576" height="1.122"><title>2020-11-01 to 2020-11-08
         2</title></rect>
-    <rect x="76.15151515151516" y="369.43910256410254" width="16.575757575757564" height="0.5608974358974592"><title>2020-11-15 to 2020-11-22
+    <rect x="76.152" y="369.439" width="16.576" height="0.561"><title>2020-11-15 to 2020-11-22
         1</title></rect>
-    <rect x="497.96969696969694" y="20" width="16.575757575757677" height="350"><title>2021-05-02 to 2021-05-09
+    <rect x="497.97" y="20" width="16.576" height="350"><title>2021-05-02 to 2021-05-09
         624</title></rect>
-    <rect x="515.5454545454546" y="292.5961538461538" width="16.575757575757507" height="77.40384615384619"><title>2021-05-09 to 2021-05-16
+    <rect x="515.545" y="292.596" width="16.576" height="77.404"><title>2021-05-09 to 2021-05-16
         138</title></rect>
-    <rect x="533.1212121212121" y="331.2980769230769" width="16.57575757575762" height="38.701923076923094"><title>2021-05-16 to 2021-05-23
+    <rect x="533.121" y="331.298" width="16.576" height="38.702"><title>2021-05-16 to 2021-05-23
         69</title></rect>
-    <rect x="550.6969696969697" y="347.56410256410254" width="16.575757575757507" height="22.43589743589746"><title>2021-05-23 to 2021-05-30
+    <rect x="550.697" y="347.564" width="16.576" height="22.436"><title>2021-05-23 to 2021-05-30
         40</title></rect>
-    <rect x="568.2727272727273" y="342.51602564102564" width="16.57575757575762" height="27.483974358974365"><title>2021-05-30 to 2021-06-06
+    <rect x="568.273" y="342.516" width="16.576" height="27.484"><title>2021-05-30 to 2021-06-06
         49</title></rect>
-    <rect x="585.8484848484849" y="300.44871794871796" width="16.57575757575762" height="69.55128205128204"><title>2021-06-06 to 2021-06-13
+    <rect x="585.848" y="300.449" width="16.576" height="69.551"><title>2021-06-06 to 2021-06-13
         124</title></rect>
-    <rect x="603.4242424242425" y="341.9551282051282" width="16.575757575757507" height="28.044871794871824"><title>2021-06-13 to 2021-06-20
+    <rect x="603.424" y="341.955" width="16.576" height="28.045"><title>2021-06-13 to 2021-06-20
         50</title></rect>
   </g>
   <g aria-label="rule" stroke="red" transform="translate(0,0.5)">
-    <line x1="41" x2="620" y1="341.9551282051282" y2="341.9551282051282"></line>
+    <line x1="41" x2="620" y1="341.955" y2="341.955"></line>
   </g>
   <g aria-label="rule" stroke="currentColor" transform="translate(0,0.5)">
     <line x1="40" x2="620" y1="370" y2="370"></line>
