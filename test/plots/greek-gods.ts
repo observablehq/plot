@@ -20,6 +20,29 @@ Chaos Tartarus`
   });
 });
 
+test(async function greekGodsDefaults() {
+  const gods = `Chaos Gaia Mountains
+Chaos Gaia Pontus
+Chaos Gaia Uranus
+Chaos Eros
+Chaos Erebus
+Chaos Tartarus`
+    .split("\n")
+    .map((d) => d.replace(/\s+/g, "/"));
+  return Plot.plot({
+    axis: null,
+    insetLeft: 35,
+    insetTop: 20,
+    insetBottom: 20,
+    insetRight: 120,
+    marks: [
+      Plot.link(gods, Plot.treeLink()),
+      Plot.dot(gods, Plot.treeNode()),
+      Plot.text(gods, Plot.treeNode())
+    ]
+  });
+});
+
 test(async function greekGodsTip() {
   const gods = `Chaos Gaia Mountains
 Chaos Gaia Pontus
