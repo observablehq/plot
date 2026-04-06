@@ -35,11 +35,7 @@ Chaos Tartarus`
     insetTop: 20,
     insetBottom: 20,
     insetRight: 120,
-    marks: [
-      Plot.link(gods, Plot.treeLink()),
-      Plot.dot(gods, Plot.treeNode()),
-      Plot.text(gods, Plot.treeNode())
-    ]
+    marks: [Plot.link(gods, Plot.treeLink()), Plot.dot(gods, Plot.treeNode()), Plot.text(gods, Plot.treeNode())]
   });
 });
 
