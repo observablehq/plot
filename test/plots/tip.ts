@@ -281,3 +281,47 @@ test(async function tipColorLiteral() {
     ]
   });
 });
+
+test(async function tipDispatch() {
+  const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
+  const plot = Plot.plot({
+    marks: [
+      Plot.dot(penguins, {
+        x: "culmen_length_mm",
+        y: "culmen_depth_mm",
+        title: "island",
+        tip: true
+      })
+    ]
+  });
+  plot.dispatchEvent(
+    new PointerEvent("pointermove", {
+      pointerType: "mouse",
+      clientX: 200,
+      clientY: 200
+    })
+  );
+  return Object.assign(plot, {ready: new Promise((resolve) => setTimeout(resolve, 100))}); // postrender
+});
+
+test(async function tipNull() {
+  const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
+  const plot = Plot.plot({
+    marks: [
+      Plot.dot(penguins, {
+        x: "culmen_length_mm",
+        y: "culmen_depth_mm",
+        title: (d) => (d.island === "Torgersen" ? null : d.island),
+        tip: true
+      })
+    ]
+  });
+  plot.dispatchEvent(
+    new PointerEvent("pointermove", {
+      pointerType: "mouse",
+      clientX: 200,
+      clientY: 200
+    })
+  );
+  return plot;
+});
