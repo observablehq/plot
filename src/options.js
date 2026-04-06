@@ -547,7 +547,7 @@ export function isColor(value) {
   value = value.toLowerCase().trim();
   return (
     /^#[0-9a-f]{3,8}$/.test(value) || // hex rgb, rgba, rrggbb, rrggbbaa
-    /^(?:url|var|rgb|rgba|hsl|hsla|hwb|lab|lch|oklab|oklch|color|color-mix)\(.*\)$/.test(value) || // <funciri>, CSS variable, color, etc.
+    /^(?:url|var|rgb|rgba|hsl|hsla|hwb|lab|lch|oklab|oklch|color|color-mix|light-dark)\(.*\)$/.test(value) || // <funciri>, CSS variable, color, etc.
     namedColors.has(value) // currentColor, red, etc.
   );
 }
