@@ -71,7 +71,7 @@
     <line x1="40.596" x2="334.782" y1="146" y2="146"></line>
     <line x1="41.348" x2="173.892" y1="26" y2="26"></line>
   </g>
-  <g aria-label="bar" fill="color-mix(in srgb, currentColor 20%, var(--plot-background))">
+  <g aria-label="bar" fill="light-dark(#ccc, #555)">
     <rect x="100.769" width="110.163" y="166" height="18"></rect>
     <rect x="63.925" width="130.474" y="126" height="18"></rect>
     <rect x="57.246" width="161.392" y="86" height="18"></rect>

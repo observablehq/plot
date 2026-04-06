@@ -117,37 +117,37 @@
     </g>
   </g>
   <g aria-label="bar">
-    <g fill="color-mix(in srgb, currentColor 20%, var(--plot-background))" transform="translate(0,1)">
+    <g fill="light-dark(#ccc, #555)" transform="translate(0,1)">
       <rect x="277.842" width="0" y="20" height="19"></rect>
     </g>
-    <g fill="color-mix(in srgb, currentColor 20%, var(--plot-background))" transform="translate(0,22)">
+    <g fill="light-dark(#ccc, #555)" transform="translate(0,22)">
       <rect x="334.173" width="56.331" y="20" height="19"></rect>
     </g>
-    <g fill="color-mix(in srgb, currentColor 20%, var(--plot-background))" transform="translate(0,43)">
+    <g fill="light-dark(#ccc, #555)" transform="translate(0,43)">
       <rect x="302.878" width="58.417" y="20" height="19"></rect>
     </g>
-    <g fill="color-mix(in srgb, currentColor 20%, var(--plot-background))" transform="translate(0,64)">
+    <g fill="light-dark(#ccc, #555)" transform="translate(0,64)">
       <rect x="256.978" width="58.417" y="20" height="19"></rect>
     </g>
-    <g fill="color-mix(in srgb, currentColor 20%, var(--plot-background))" transform="translate(0,85)">
+    <g fill="light-dark(#ccc, #555)" transform="translate(0,85)">
       <rect x="215.252" width="50.072" y="20" height="19"></rect>
     </g>
-    <g fill="color-mix(in srgb, currentColor 20%, var(--plot-background))" transform="translate(0,106)">
+    <g fill="light-dark(#ccc, #555)" transform="translate(0,106)">
       <rect x="169.353" width="45.899" y="20" height="19"></rect>
     </g>
-    <g fill="color-mix(in srgb, currentColor 20%, var(--plot-background))" transform="translate(0,127)">
+    <g fill="light-dark(#ccc, #555)" transform="translate(0,127)">
       <rect x="135.971" width="37.554" y="20" height="19"></rect>
     </g>
-    <g fill="color-mix(in srgb, currentColor 20%, var(--plot-background))" transform="translate(0,148)">
+    <g fill="light-dark(#ccc, #555)" transform="translate(0,148)">
       <rect x="110.935" width="37.554" y="20" height="19"></rect>
     </g>
-    <g fill="color-mix(in srgb, currentColor 20%, var(--plot-background))" transform="translate(0,169)">
+    <g fill="light-dark(#ccc, #555)" transform="translate(0,169)">
       <rect x="75.468" width="35.468" y="20" height="19"></rect>
     </g>
-    <g fill="color-mix(in srgb, currentColor 20%, var(--plot-background))" transform="translate(0,190)">
+    <g fill="light-dark(#ccc, #555)" transform="translate(0,190)">
       <rect x="71.295" width="66.763" y="20" height="19"></rect>
     </g>
-    <g fill="color-mix(in srgb, currentColor 20%, var(--plot-background))" transform="translate(0,211)">
+    <g fill="light-dark(#ccc, #555)" transform="translate(0,211)">
       <rect x="106.763" width="0" y="20" height="19"></rect>
     </g>
   </g>
