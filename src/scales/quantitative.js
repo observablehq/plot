@@ -283,23 +283,20 @@ export function inferDomain(channels, f = finite) {
 }
 
 function inferAutoDomain(key, channels, zero, type) {
-  const domain = inferDomain(channels, undefined);
+  const [min, max] = inferDomain(channels, undefined);
 
-  if (zero === undefined && domain[0] * domain[1] > 0) {
+  if (zero === undefined && min * max > 0) {
     // Default to zero for radius, opacity, and length scales
     const scale = registry.get(key);
     if (scale === radius || scale === opacity || scale === length) zero = true;
     // If the zero option is not specified, then implicitly extend the domain to
     // include zero if the minimum is less than 7% of the spread (and similarly
     // for negative domains).
-    else if (type === "linear") {
-      const [min, max] = extent(domain);
-      zero = min > 0 ? min < 0.07 * (max - min) : max < 0 ? max > 0.07 * (min - max) : false;
-    }
-    if (zero) return [Math.min(0, domain[0]), Math.max(0, domain[1])];
+    else if (type === "linear") zero = min > 0 ? min < 0.07 * (max - min) : max < 0 ? max > 0.07 * (min - max) : false;
+    if (zero) return [Math.min(0, min), Math.max(0, max)];
   }
 
-  return domain;
+  return [min, max];
 }
 
 // We don’t want the upper bound of the radial domain to be zero, as this would
