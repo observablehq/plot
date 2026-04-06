@@ -55,7 +55,16 @@ Chaos Tartarus`.split("\n");
     marks: [
       Plot.link(gods, Plot.treeLink({stroke: "node:internal", delimiter: " "})),
       Plot.dot(gods, Plot.treeNode({fill: "node:internal", delimiter: " "})),
-      Plot.text(gods, Plot.treeNode({text: "node:name", stroke: "var(--plot-background)", fill: "currentColor", dx: 6, delimiter: " "}))
+      Plot.text(
+        gods,
+        Plot.treeNode({
+          text: "node:name",
+          stroke: "var(--plot-background)",
+          fill: "currentColor",
+          dx: 6,
+          delimiter: " "
+        })
+      )
     ]
   });
 });
