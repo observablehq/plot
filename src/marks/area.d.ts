@@ -1,12 +1,12 @@
 import type {ChannelValue, ChannelValueDenseBinSpec, ChannelValueSpec} from "../channel.js";
 import type {CurveOptions} from "../curve.js";
-import type {ColorOptions, Data, MarkOptions, RenderableMark} from "../mark.js";
+import type {Data, MarkOptions, RenderableMark} from "../mark.js";
 import {MarkerOptions} from "../marker.js";
 import type {BinOptions, BinReducer} from "../transforms/bin.js";
 import type {StackOptions} from "../transforms/stack.js";
 
 /** Options for the area, areaX, and areaY marks. */
-export interface AreaOptions extends MarkOptions, StackOptions, ColorOptions, CurveOptions {
+export interface AreaOptions extends MarkOptions, StackOptions, CurveOptions {
   /**
    * The required primary (starting, often left) horizontal position channel,
    * representing the area’s baseline, typically bound to the *x* scale. For
@@ -43,6 +43,9 @@ export interface AreaOptions extends MarkOptions, StackOptions, ColorOptions, Cu
    * **stroke** if a channel.
    */
   z?: ChannelValue;
+
+  /** Shorthand for setting both the fill and the stroke. */
+  color?: ChannelValueSpec;
 }
 
 /** Options for the areaX mark. */
