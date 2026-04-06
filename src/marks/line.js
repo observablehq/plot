@@ -1,16 +1,11 @@
-import {geoPath, line as shapeLine} from "d3";
+import {line as shapeLine} from "d3";
 import {create} from "../context.js";
 import {curveAuto, maybeCurveAuto} from "../curve.js";
 import {Mark} from "../mark.js";
 import {applyGroupedMarkers, markers} from "../marker.js";
-import {coerceNumbers, indexOf, identity, maybeTuple, maybeZ} from "../options.js";
-import {
-  applyDirectStyles,
-  applyIndirectStyles,
-  applyTransform,
-  applyGroupedChannelStyles,
-  groupIndex
-} from "../style.js";
+import {coerceNumbers, maybeTuple, maybeZ} from "../options.js";
+import {applyDirectStyles, applyIndirectStyles, applyTransform, applyGroupedChannelStyles} from "../style.js";
+import {groupIndex} from "../style.js";
 import {maybeDenseIntervalX, maybeDenseIntervalY} from "../transforms/bin.js";
 
 const defaults = {
@@ -67,7 +62,7 @@ export class Line extends Mark {
           .attr(
             "d",
             curve === curveAuto && context.projection
-              ? sphereLine(context.projection, X, Y)
+              ? sphereLine(context.path(), X, Y)
               : shapeLine()
                   .curve(curve)
                   .defined((i) => i >= 0)
@@ -79,8 +74,7 @@ export class Line extends Mark {
   }
 }
 
-function sphereLine(projection, X, Y) {
-  const path = geoPath(projection);
+function sphereLine(path, X, Y) {
   X = coerceNumbers(X);
   Y = coerceNumbers(Y);
   return (I) => {
@@ -104,10 +98,12 @@ export function line(data, {x, y, ...options} = {}) {
   return new Line(data, {...options, x, y});
 }
 
-export function lineX(data, {x = identity, y = indexOf, ...options} = {}) {
-  return new Line(data, maybeDenseIntervalY({...options, x, y}));
+export function lineX(data, options) {
+  const {x, y, stroke, z = stroke === x ? null : undefined, ...rest} = maybeDenseIntervalY(options);
+  return new Line(data, {...rest, x, y, z, stroke});
 }
 
-export function lineY(data, {x = indexOf, y = identity, ...options} = {}) {
-  return new Line(data, maybeDenseIntervalX({...options, x, y}));
+export function lineY(data, options) {
+  const {x, y, stroke, z = stroke === y ? null : undefined, ...rest} = maybeDenseIntervalX(options);
+  return new Line(data, {...rest, x, y, z, stroke});
 }

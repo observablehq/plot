@@ -1,7 +1,8 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
+import {test} from "test/plot";
 
-export async function usPresidentialElection2020() {
+test(async function usPresidentialElection2020() {
   const data = await d3.csv<any>("data/us-presidential-election-2020.csv", d3.autoType);
   return Plot.plot({
     width: 960,
@@ -43,10 +44,10 @@ ${[
       )
     ]
   });
-}
+});
 
-function recase(hypenated) {
-  return hypenated
+function recase(hyphenated) {
+  return hyphenated
     .split(/-/g)
     .map((part) => `${part[0].toUpperCase()}${part.substring(1)}`)
     .join(" ");

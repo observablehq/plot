@@ -190,7 +190,7 @@ Plot.plot({
 ```
 :::
 
-The **z** channel determines how data is grouped: if the **z** channel is not specified, but a varying **fill** channel is, the **fill** channel is used for **z**; the **z** channel will further fallback to a varying **stroke** channel if needed.
+The **z** channel determines how data is grouped: if the **z** channel is not specified, but a varying **fill** channel is, the **fill** channel is used for **z**; the **z** channel will further fall back to a varying **stroke** channel if needed.
 
 The **z** channel (either implicitly or explicitly) is typically used with the [stack transform](../transforms/stack.md) for a stacked area chart or streamgraph. You can disable the implicit stack transform and produce overlapping areas by setting **y2** instead of **y**.
 
@@ -205,7 +205,7 @@ Plot.plot({
 ```
 :::
 
-To vary **fill** within a single series, set the **z** option to null.
+To vary **fill** within a single series, set the **z** option to null. For areaY, **z** defaults to null if the **fill** and **y** channels are strictly equal, as when the color encoding is redundant with position; for areaX, **z** defaults to null if **fill** and **x** are strictly equal. <VersionBadge pr="2379" />
 
 :::plot defer https://observablehq.com/@observablehq/plot-variable-fill-area
 ```js

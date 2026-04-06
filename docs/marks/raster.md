@@ -303,7 +303,7 @@ Returns a new raster mark with the given (optional) *data* and *options*.
 
 ## Spatial interpolators
 
-The [raster](#raster-mark) and [contour](./contour.md) marks use **spatial interpolators** to populate a raster grid from a discrete set of (often ungridded) spatial samples. The **interpolate** option controls how these marks compute the raster grid. The following built-in methods are provided:
+The [raster](#raster-mark) and [contour](./contour.md) marks use **spatial interpolators** to populate a raster grid from a discrete set of (often gridless) spatial samples. The **interpolate** option controls how these marks compute the raster grid. The following built-in methods are provided:
 
 * *none* (or null) - assign each sample to the containing pixel
 * *nearest* - assign each pixel to the closest sample’s value (Voronoi diagram)

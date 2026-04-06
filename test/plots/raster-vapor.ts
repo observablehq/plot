@@ -1,5 +1,7 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
+import {feature} from "topojson-client";
+import {test} from "test/plot";
 
 async function vapor() {
   return d3
@@ -8,16 +10,16 @@ async function vapor() {
     .map((x) => (x === "99999.0" ? NaN : +x));
 }
 
-export async function rasterVapor() {
+test(async function rasterVapor() {
   return Plot.plot({
     color: {scheme: "blues"},
     x: {transform: (x) => x - 180},
     y: {transform: (y) => 90 - y},
     marks: [Plot.raster(await vapor(), {width: 360, height: 180})]
   });
-}
+});
 
-export async function rasterVapor2() {
+test(async function rasterVapor2() {
   return Plot.plot({
     color: {scheme: "blues", legend: true},
     x: {transform: (x) => x - 180},
@@ -34,9 +36,9 @@ export async function rasterVapor2() {
       })
     ]
   });
-}
+});
 
-export async function contourVapor() {
+test(async function contourVapor() {
   return Plot.plot({
     width: 960,
     projection: "equal-earth",
@@ -59,12 +61,12 @@ export async function contourVapor() {
       Plot.sphere()
     ]
   });
-}
+});
 
-export async function rasterVaporP3() {
+test(async function rasterVaporP3() {
   return Plot.plot({
-    x: {transform: (x) => x - 180},
-    y: {transform: (y) => 90 - y},
+    x: { transform: (x) => x - 180 },
+    y: { transform: (y) => 90 - y },
     color: {
       type: "sqrt",
       interpolate: (t: number) => `oklch(50% 0.25 ${220 + t * 140}deg)`
@@ -77,9 +79,50 @@ export async function rasterVaporP3() {
       })
     ]
   });
-}
+});
 
-export async function rasterVaporPeters() {
+test(async function contourVaporClip() {
+  const [world, data] = await Promise.all([d3.json<any>("data/countries-50m.json"), vapor()]);
+  const land = feature(world, world.objects.land);
+  return Plot.plot({
+    width: 960,
+    projection: {type: "orthographic", rotate: [0, -90]},
+    color: {scheme: "blues"},
+    marks: [
+      Plot.sphere({fill: "#eee"}),
+      Plot.raster(data, {
+        fill: Plot.identity,
+        interpolate: "random-walk",
+        width: 360,
+        height: 180,
+        x1: -180,
+        y1: 90,
+        x2: 180,
+        y2: -90,
+        blur: 1,
+        pixelSize: 3,
+        clip: land
+      }),
+      Plot.contour(data, {
+        value: Plot.identity,
+        width: 360,
+        height: 180,
+        x1: -180,
+        y1: 90,
+        x2: 180,
+        y2: -90,
+        blur: 0.5,
+        stroke: "black",
+        strokeWidth: 0.5,
+        clip: land
+      }),
+      Plot.geo(land, {stroke: "black"}),
+      Plot.sphere({stroke: "black"})
+    ]
+  });
+});
+
+test(async function rasterVaporPeters() {
   const radians = Math.PI / 180;
   const sin = (y) => Math.sin(y * radians);
   const asin = (y) => Math.asin(y) / radians;
@@ -108,9 +151,9 @@ export async function rasterVaporPeters() {
       })
     ]
   });
-}
+});
 
-export async function rasterVaporEqualEarth() {
+test(async function rasterVaporEqualEarth() {
   return Plot.plot({
     projection: "equal-earth",
     color: {scheme: "blues"},
@@ -128,9 +171,9 @@ export async function rasterVaporEqualEarth() {
       Plot.sphere()
     ]
   });
-}
+});
 
-export async function rasterVaporEqualEarthBarycentric() {
+test(async function rasterVaporEqualEarthBarycentric() {
   return Plot.plot({
     projection: "equal-earth",
     color: {scheme: "blues"},
@@ -148,4 +191,4 @@ export async function rasterVaporEqualEarthBarycentric() {
       Plot.sphere()
     ]
   });
-}
+});

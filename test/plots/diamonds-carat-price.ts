@@ -1,7 +1,8 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
+import {test} from "test/plot";
 
-export async function diamondsCaratPrice() {
+test(async function diamondsCaratPrice() {
   const data = await d3.csv<any>("data/diamonds.csv", d3.autoType);
   return Plot.plot({
     height: 640,
@@ -12,4 +13,4 @@ export async function diamondsCaratPrice() {
     },
     marks: [Plot.rect(data, Plot.bin({fill: "count"}, {x: "carat", y: "price", thresholds: 100}))]
   });
-}
+});

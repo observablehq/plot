@@ -1,8 +1,9 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
+import {test} from "test/plot";
 
 // Test for floating point precision issue in interpolateBarycentric.
-export async function rasterPrecision() {
+test(async function rasterPrecision() {
   const data = d3.range(4).map((i) => {
     const x = i % 2;
     const y = Math.floor(i / 2);
@@ -20,9 +21,9 @@ export async function rasterPrecision() {
       Plot.dot(data, {fill: (d, i) => i, stroke: "white"})
     ]
   });
-}
+});
 
-export async function rasterFacet() {
+test(async function rasterFacet() {
   const points = d3.range(0, 2 * Math.PI, Math.PI / 10).map((d) => [Math.cos(d), Math.sin(d)]);
   return Plot.plot({
     aspectRatio: 1,
@@ -37,4 +38,4 @@ export async function rasterFacet() {
       Plot.dot(points, {fx: (d, i) => i % 2, fill: "0", stroke: "white"})
     ]
   });
-}
+});
