@@ -9,7 +9,6 @@ Mark.prototype.plot = function ({marks = [], ...options} = {}) {
 export {plot} from "./plot.js";
 export {Mark, marks} from "./mark.js";
 export {Area, area, areaX, areaY} from "./marks/area.js";
-export {AreaLine, areaLineX, areaLineY} from "./marks/areaLine.js";
 export {Arrow, arrow} from "./marks/arrow.js";
 export {auto, autoSpec} from "./marks/auto.js";
 export {axisX, axisY, axisFx, axisFy, gridX, gridY, gridFx, gridFy} from "./marks/axis.js";

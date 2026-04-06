@@ -10,7 +10,6 @@ export * from "./legends.js";
 export * from "./mark.js";
 export * from "./marker.js";
 export * from "./marks/area.js";
-export * from "./marks/areaLine.js";
 export * from "./marks/arrow.js";
 export * from "./marks/auto.js";
 export * from "./marks/axis.js";

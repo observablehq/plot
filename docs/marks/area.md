@@ -20,7 +20,7 @@ Plot.areaY(aapl, {x: "Date", y: "Close"}).plot()
 
 The area mark has three constructors: [areaY](#areaY) for when the baseline and topline share *x* values, as in a time-series area chart where time goes right→ (or ←left); [areaX](#areaX) for when the baseline and topline share *y* values, as in a time-series area chart where time goes up↑ (or down↓); and lastly the rarely-used [area](#area) where the baseline and topline share neither *x* nor *y* values.
 
-The **area line mark** <VersionBadge pr="2407" /> is a variant of the area mark that accentuates the topline. It is often paired with a [rule](./rule.md) mark for the baseline.
+The **line** option <VersionBadge pr="2407" /> strokes the topline. It is often paired with a [rule](./rule.md) mark to denote the baseline.
 
 :::plot https://observablehq.com/@observablehq/plot-area-and-line
 ```js
@@ -29,7 +29,7 @@ Plot.plot({
     grid: true
   },
   marks: [
-    Plot.areaLineY(aapl, {x: "Date", y: "Close"}),
+    Plot.areaY(aapl, {x: "Date", y: "Close", line: true}),
     Plot.ruleY([0])
   ]
 })
@@ -93,7 +93,7 @@ Plot.plot({
     reverse: true
   },
   marks: [
-    Plot.areaLineY(aapl, {x: "Date", y: "Close"}),
+    Plot.areaY(aapl, {x: "Date", y: "Close", line: true}),
     Plot.ruleY([0])
   ]
 })
@@ -109,7 +109,7 @@ Plot.plot({
     grid: true
   },
   marks: [
-    Plot.areaLineX(aapl, {y: "Date", x: "Close"}),
+    Plot.areaX(aapl, {y: "Date", x: "Close", line: true}),
     Plot.ruleX([0])
   ]
 })
@@ -125,7 +125,7 @@ Plot.plot({
     grid: true
   },
   marks: [
-    Plot.areaLineY(aapl, {x: "Date", y: (d) => d.Date.getUTCMonth() < 3 ? NaN : d.Close}),
+    Plot.areaY(aapl, {x: "Date", y: (d) => d.Date.getUTCMonth() < 3 ? NaN : d.Close, line: true}),
     Plot.ruleY([0])
   ]
 })
@@ -304,7 +304,7 @@ Plot.areaY(observations, {x: "date", y: "temperature", interval: "day"})
 
 The **interval** option is recommended to “regularize” sampled data; for example, if your data represents timestamped temperature measurements and you expect one sample per day, use "day" as the interval.
 
-The **areaY** mark draws the region between a baseline (*y1*) and a topline (*y2*) as in an area chart. When the baseline is *y* = 0, the *y* channel can be specified instead of *y1* and *y2*.
+The **areaY** mark draws the region between a vertically-separated baseline (*y1*) and topline (*y2*) as in an area chart. When the baseline is *y* = 0, the *y* channel can be specified instead of *y1* and *y2*. If the **line** option <VersionBadge pr="2407" /> is true, the **stroke** applies exclusively to the topline, and the **fillOpacity** defaults to 0.3.
 
 ## areaX(*data*, *options*) {#areaX}
 
@@ -322,21 +322,7 @@ Plot.areaX(observations, {y: "date", x: "temperature", interval: "day"})
 
 The **interval** option is recommended to “regularize” sampled data; for example, if your data represents timestamped temperature measurements and you expect one sample per day, use "day" as the interval.
 
-## areaLineY(*data*, *options*) {#areaLineY}
-
-```js
-Plot.areaLineY(aapl, {x: "Date", y: "Close"})
-```
-
-A variant of [areaY](#areaY) that accentuates the topline.
-
-## areaLineX(*data*, *options*) {#areaLineX}
-
-```js
-Plot.areaLineX(aapl, {y: "Date", x: "Close"})
-```
-
-A variant of [areaX](#areaX) that accentuates the topline.
+The **areaX** mark draws the region between a horizontally-separated baseline (*x1*) and topline (*x2*) as in a vertical area chart. When the baseline is *x* = 0, the *x* channel can be specified instead of *x1* and *x2*. If the **line** option <VersionBadge pr="2407" /> is true, the **stroke** applies exclusively to the topline, and the **fillOpacity** defaults to 0.3.
 
 ## area(*data*, *options*) {#area}
 
