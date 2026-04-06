@@ -155,6 +155,7 @@ import "./letter-frequency-dot.js";
 import "./letter-frequency-lollipop.js";
 import "./letter-frequency-wheel.js";
 import "./libor-projections.js";
+import "./light-dark.js";
 import "./likert-survey.js";
 import "./linear-regression-cars.js";
 import "./linear-regression-mtcars.js";
