@@ -135,11 +135,11 @@ export function area(data, options) {
 }
 
 export function areaX(data, options) {
-  const {x, y, line, color, stroke = color, fill = color, z = x === fill || (line && x === stroke) ? null : undefined, ...rest} = maybeDenseIntervalY(options); // prettier-ignore
+  const {x, y, line, color, stroke = color, fill = color, z = x === fill || x === stroke ? null : undefined, ...rest} = maybeDenseIntervalY(options); // prettier-ignore
   return new (line ? AreaLine : Area)(data, maybeStackX({...rest, x, y1: y, y2: undefined, z, stroke, fill}));
 }
 
 export function areaY(data, options) {
-  const {x, y, line, color, stroke = color, fill = color, z = y === fill || (line && y === stroke) ? null : undefined, ...rest} = maybeDenseIntervalX(options); // prettier-ignore
+  const {x, y, line, color, stroke = color, fill = color, z = y === fill || y === stroke ? null : undefined, ...rest} = maybeDenseIntervalX(options); // prettier-ignore
   return new (line ? AreaLine : Area)(data, maybeStackY({...rest, x1: x, x2: undefined, y, z, stroke, fill}));
 }
