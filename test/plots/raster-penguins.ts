@@ -31,5 +31,5 @@ test(async function rasterPenguinsBlur() {
 test(async function rasterPenguinsCSS4() {
   // observable10 converted to oklch
   const scale = d3.scaleOrdinal(["oklch(71.83% 0.176 30.86)", "oklch(54.8% 0.165 265.62)", "oklch(79.71% 0.16 82.35)"]);
-  return rasterPenguins({interpolate: "random-walk", fill: (d: string) => scale(d.island)});
+  return rasterPenguins({interpolate: "random-walk", fill: (d: any) => scale(d.island)});
 });
