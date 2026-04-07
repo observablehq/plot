@@ -1,7 +1,8 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
+import {test} from "test/plot";
 
-export async function repelXPaths() {
+test(async function repelXPaths() {
   const random = d3.randomNormal.source(d3.randomLcg(42))(5, 2);
   const data = [];
   const points = [];
@@ -22,9 +23,9 @@ export async function repelXPaths() {
       )
     ]
   });
-}
+});
 
-export async function repelYPaths() {
+test(async function repelYPaths() {
   const random = d3.randomLcg(42);
   const data = [];
   const points = [];
@@ -43,14 +44,14 @@ export async function repelYPaths() {
       Plot.dot(points, Plot.repelY({x: "x", fill: "e", r: (d) => d.x === d.e, y: "y"}))
     ]
   });
-}
+});
 
 async function loadSymbol(name) {
   const Symbol = name.toUpperCase();
   return d3.csv(`data/${name}.csv`, (d) => ({Symbol, ...d3.autoType(d)}));
 }
 
-export async function repelStocks() {
+test(async function repelStocks() {
   const stocks = (await Promise.all(["aapl", "amzn", "goog", "ibm"].map(loadSymbol))).flat();
   return Plot.plot({
     insetTop: 4,
@@ -102,9 +103,9 @@ export async function repelStocks() {
       )
     ]
   });
-}
+});
 
-export async function repelCancer() {
+test(async function repelCancer() {
   const cancer = await d3.csv<any>("data/cancer.csv", d3.autoType);
   return Plot.plot({
     width: 460,
@@ -156,4 +157,4 @@ export async function repelCancer() {
     ],
     caption: "Estimates of survival rate (%), per type of cancer"
   });
-}
+});
