@@ -137,8 +137,9 @@ export class Raster extends AbstractRaster {
     const context2d = canvas.getContext("2d", {colorSpace: this.colorSpace});
     const image = context2d.createImageData(w, h);
     const imageData = image.data;
-    let {r, g, b} = colorBytes(this.fill) ?? {r: 0, g: 0, b: 0};
-    let a = (this.fillOpacity ?? 1) * 255;
+    const fo = this.fillOpacity ?? 1;
+    let {r, g, b, opacity: co = 1} = colorBytes(this.fill) ?? {r: 0, g: 0, b: 0};
+    let a = co * fo * 255;
     for (let i = 0; i < n; ++i) {
       const j = i << 2;
       if (F) {
@@ -147,9 +148,10 @@ export class Raster extends AbstractRaster {
           imageData[j + 3] = 0;
           continue;
         }
-        ({r, g, b} = colorBytes(fi));
+        ({r, g, b, opacity: co = 1} = colorBytes(fi));
+        if (!FO) a = co * fo * 255;
       }
-      if (FO) a = FO[i + offset] * 255;
+      if (FO) a = co * FO[i + offset] * 255;
       imageData[j + 0] = r;
       imageData[j + 1] = g;
       imageData[j + 2] = b;
@@ -520,9 +522,10 @@ export function converter(colorSpace) {
     context.fillStyle = c;
     context.clearRect(0, 0, 1, 1);
     context.fillRect(0, 0, 1, 1);
-    const [r, g, b] = context.getImageData(0, 0, 1, 1).data;
-    if (mem.size < 256) mem.set(c, {r, g, b});
-    return {r, g, b};
+    const [r, g, b, a] = context.getImageData(0, 0, 1, 1).data;
+    const color = {r, g, b, opacity: a / 255};
+    if (mem.size < 256) mem.set(c, color);
+    return color;
   };
   let p;
   return colorSpace === "srgb" ? (c) => (isNaN((p = rgb(c)).opacity) ? canvasConverter(c) : p) : canvasConverter;

@@ -69,7 +69,7 @@ test(async function rasterVaporP3() {
     y: { transform: (y) => 90 - y },
     color: {
       type: "sqrt",
-      interpolate: (t: number) => `oklch(50% 0.25 ${220 + t * 140}deg)`
+      interpolate: (t: number) => `oklch(50% 0.25 ${220 + t * 140}deg / ${0.5 + t * 0.5})`
     },
     marks: [
       Plot.raster(await vapor(), {
