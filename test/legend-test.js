@@ -1,6 +1,5 @@
 import * as Plot from "@observablehq/plot";
-import * as assert from "assert";
-import it from "./jsdom.js";
+import {assert, it} from "vitest";
 
 it(`Plot.legend({color: {type: "identity"}}) returns undefined`, () => {
   assert.strictEqual(Plot.legend({color: {type: "identity"}}), undefined);

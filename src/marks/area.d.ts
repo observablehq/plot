@@ -1,6 +1,7 @@
 import type {ChannelValue, ChannelValueDenseBinSpec, ChannelValueSpec} from "../channel.js";
 import type {CurveOptions} from "../curve.js";
 import type {Data, MarkOptions, RenderableMark} from "../mark.js";
+import {MarkerOptions} from "../marker.js";
 import type {BinOptions, BinReducer} from "../transforms/bin.js";
 import type {StackOptions} from "../transforms/stack.js";
 
@@ -42,6 +43,9 @@ export interface AreaOptions extends MarkOptions, StackOptions, CurveOptions {
    * **stroke** if a channel.
    */
   z?: ChannelValue;
+
+  /** Shorthand for setting both the fill and the stroke. */
+  color?: ChannelValueSpec;
 }
 
 /** Options for the areaX mark. */
@@ -124,6 +128,9 @@ export interface AreaYOptions extends Omit<AreaOptions, "x1" | "x2">, BinOptions
   reduce?: BinReducer;
 }
 
+/** The area mark’s line option. */
+export type AreaLineOptions = {line?: false} | ({line: true} & MarkerOptions);
+
 /**
  * Returns a new area mark with the given *data* and *options*. The area mark is
  * rarely used directly; it is only needed when the baseline and topline have
@@ -163,7 +170,7 @@ export function area(data?: Data, options?: AreaOptions): Area;
  * channels. When any of these channels are used, setting an explicit **z**
  * channel (possibly to null) is strongly recommended.
  */
-export function areaX(data?: Data, options?: AreaXOptions): Area;
+export function areaX(data?: Data, options?: AreaXOptions & AreaLineOptions): Area;
 
 /**
  * Returns a new horizontally-oriented area mark for the given *data* and
@@ -195,7 +202,7 @@ export function areaX(data?: Data, options?: AreaXOptions): Area;
  * channels. When any of these channels are used, setting an explicit **z**
  * channel (possibly to null) is strongly recommended.
  */
-export function areaY(data?: Data, options?: AreaYOptions): Area;
+export function areaY(data?: Data, options?: AreaYOptions & AreaLineOptions): Area;
 
 /** The area mark. */
 export class Area extends RenderableMark {}

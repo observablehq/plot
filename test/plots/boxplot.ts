@@ -1,11 +1,12 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
+import {test} from "test/plot";
 
-export async function boxplot() {
+test(async function boxplot() {
   return Plot.boxX([0, 3, 4.4, 4.5, 4.6, 5, 7]).plot();
-}
+});
 
-export async function boxplotFacetInterval() {
+test(async function boxplotFacetInterval() {
   const olympians = await d3.csv<any>("data/athletes.csv", d3.autoType);
   return Plot.plot({
     fy: {
@@ -21,9 +22,9 @@ export async function boxplotFacetInterval() {
       )
     ]
   });
-}
+});
 
-export async function boxplotFacetNegativeInterval() {
+test(async function boxplotFacetNegativeInterval() {
   const olympians = await d3.csv<any>("data/athletes.csv", d3.autoType);
   return Plot.plot({
     fy: {
@@ -39,4 +40,4 @@ export async function boxplotFacetNegativeInterval() {
       )
     ]
   });
-}
+});

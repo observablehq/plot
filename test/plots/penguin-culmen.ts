@@ -1,7 +1,8 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
+import {test} from "test/plot";
 
-export async function penguinCulmen() {
+test(async function penguinCulmen() {
   const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
   return Plot.plot({
     height: 600,
@@ -18,4 +19,4 @@ export async function penguinCulmen() {
       Plot.dot(penguins, {x: "culmen_depth_mm", y: "culmen_length_mm"})
     ]
   });
-}
+});
