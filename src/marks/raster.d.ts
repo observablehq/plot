@@ -154,6 +154,15 @@ export interface RasterOptions extends Omit<MarkOptions, "fill" | "fillOpacity">
   colorSpace?: "srgb" | "display-p3" | string;
 
   /**
+   * How color strings are converted into image data values for use with the
+   * underlying canvas; typically each value is an integer in [0, 255]. If the
+   * colorSpace is sRGB, defaults to colorParser, a fast d3-color implementation
+   * that only supports CSS3 color strings; otherwise defaults to the slower but
+   * more complete colorCanvas implementation.
+   */
+  colorConverter?: ColorConverter;
+
+  /**
    * The fill, typically bound to the *color* scale. Can be specified as a
    * constant, a channel based on the sample *data*, or as a function *f*(*x*,
    * *y*) to be evaluated at each pixel if the *data* is not provided.
@@ -257,6 +266,14 @@ export function interpolatorRandomWalk(options?: {
    */
   maxSteps?: number;
 }): RasterInterpolateFunction;
+
+export type ColorConverter = (color: string) => [r: number, g: number, b: number, a: number];
+
+/** Converts the given color string to RGBA using d3-color; only supports CSS3. */
+export const colorParser: ColorConverter;
+
+/** Converts the given color string to RGBA using a Canvas 2D context. */
+export const colorCanvas: (colorSpace: string) => ColorConverter;
 
 /** The raster mark. */
 export class Raster extends RenderableMark {}

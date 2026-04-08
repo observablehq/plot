@@ -37,6 +37,7 @@ export class AbstractRaster extends Mark {
       x2 = x == null ? width : undefined,
       y2 = y == null ? height : undefined,
       colorSpace = "srgb",
+      colorConverter,
       pixelSize = defaults.pixelSize,
       blur = 0,
       interpolate
@@ -80,7 +81,8 @@ export class AbstractRaster extends Mark {
     this.pixelSize = number(pixelSize, "pixelSize");
     this.blur = number(blur, "blur");
     this.interpolate = x == null || y == null ? null : maybeInterpolate(interpolate); // interpolation requires x & y
-    this.colorSpace = String(colorSpace);
+    this.colorSpace = String(colorSpace).toLowerCase();
+    this.colorConverter = colorConverter === undefined ? getDefaultColorConverter(this.colorSpace) : colorConverter;
   }
 }
 
@@ -127,9 +129,6 @@ export class Raster extends AbstractRaster {
     // function, offset into the dense grid based on the current facet index.
     else if (this.data == null && index) offset = index.fi * n;
 
-    // Color space and CSS4 color conversion
-    const colorBytes = converter(this.colorSpace);
-
     // Render the raster grid to the canvas, blurring if needed.
     const canvas = document.createElement("canvas");
     canvas.width = w;
@@ -138,20 +137,16 @@ export class Raster extends AbstractRaster {
     const image = context2d.createImageData(w, h);
     const imageData = image.data;
     const fo = this.fillOpacity ?? 1;
-    let {r, g, b, opacity: co = 1} = colorBytes(this.fill) ?? {r: 0, g: 0, b: 0};
-    let a = co * fo * 255;
+    let [r, g, b, co] = this.colorConverter(this.fill);
+    let a = co * fo;
     for (let i = 0; i < n; ++i) {
       const j = i << 2;
       if (F) {
         const fi = color(F[i + offset]);
-        if (fi == null) {
-          imageData[j + 3] = 0;
-          continue;
-        }
-        ({r, g, b, opacity: co = 1} = colorBytes(fi));
-        if (!FO) a = co * fo * 255;
+        [r, g, b, co] = this.colorConverter(fi); // TODO memoize?
+        if (!FO) a = co * fo;
       }
-      if (FO) a = co * FO[i + offset] * 255;
+      if (FO) a = co * FO[i + offset];
       imageData[j + 0] = r;
       imageData[j + 1] = g;
       imageData[j + 2] = b;
@@ -510,23 +505,24 @@ function denseY(y1, y2, width, height) {
   };
 }
 
-// Color space and CSS4 conversions
-export function converter(colorSpace) {
+function getDefaultColorConverter(colorSpace) {
+  return colorSpace === "srgb" ? colorParser : colorCanvas(colorSpace);
+}
+
+export function colorParser(color) {
+  const c = rgb(color);
+  return c ? [c.r, c.g, c.b, c.opacity * 255] : [0, 0, 0, 0];
+}
+
+export function colorCanvas(colorSpace) {
   const canvas = document.createElement("canvas");
   canvas.width = 1;
   canvas.height = 1;
   const context = canvas.getContext("2d", {colorSpace, willReadFrequently: true});
-  const mem = new Map();
-  const canvasConverter = (c) => {
-    if (mem.has((c = String(c)))) return mem.get(c);
-    context.fillStyle = c;
+  return (color) => {
     context.clearRect(0, 0, 1, 1);
+    context.fillStyle = color;
     context.fillRect(0, 0, 1, 1);
-    const [r, g, b, a] = context.getImageData(0, 0, 1, 1).data;
-    const color = {r, g, b, opacity: a / 255};
-    if (mem.size < 256) mem.set(c, color);
-    return color;
+    return context.getImageData(0, 0, 1, 1).data;
   };
-  let p;
-  return colorSpace === "srgb" ? (c) => (isNaN((p = rgb(c)).opacity) ? canvasConverter(c) : p) : canvasConverter;
 }
