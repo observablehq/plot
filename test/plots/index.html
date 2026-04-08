@@ -73,12 +73,14 @@
   };
 
   select.append(
-    ...Object.keys(tests).map((key) => {
-      const option = document.createElement("option");
-      option.value = key;
-      option.textContent = key;
-      return option;
-    })
+    ...Object.keys(tests)
+      .sort()
+      .map((key) => {
+        const option = document.createElement("option");
+        option.value = key;
+        option.textContent = key;
+        return option;
+      })
   );
 
   addEventListener("popstate", (event) => {

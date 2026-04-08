@@ -151,7 +151,7 @@ export interface RasterOptions extends Omit<MarkOptions, "fill" | "fillOpacity">
    *
    * [1]: https://developer.mozilla.org/en-US/docs/Web/API/ImageData/colorSpace
    */
-  colorSpace?: "srgb" | "display-p3" | string;
+  colorSpace?: ColorSpace;
 
   /**
    * How color strings are converted into image data values for use with the
@@ -267,13 +267,14 @@ export function interpolatorRandomWalk(options?: {
   maxSteps?: number;
 }): RasterInterpolateFunction;
 
+export type ColorSpace = "srgb" | "display-p3" | (string & Record<never, never>);
 export type ColorConverter = (color: string) => [r: number, g: number, b: number, a: number];
 
 /** Converts the given color string to RGBA using d3-color; only supports CSS3. */
 export const colorParser: ColorConverter;
 
 /** Converts the given color string to RGBA using a Canvas 2D context. */
-export const colorCanvas: (colorSpace: string) => ColorConverter;
+export const colorCanvas: (colorSpace?: ColorSpace) => ColorConverter;
 
 /** The raster mark. */
 export class Raster extends RenderableMark {}
