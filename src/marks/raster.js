@@ -105,7 +105,6 @@ export class Raster extends AbstractRaster {
     const dx = x2 - x1;
     const dy = y2 - y1;
     const {pixelSize: k, width: w = Math.round(Math.abs(dx) / k), height: h = Math.round(Math.abs(dy) / k)} = this;
-    const n = w * h;
 
     // Interpolate the samples to fill the raster grid. If interpolate is null,
     // then a continuous function is being sampled, and the raster grid is
@@ -123,35 +122,29 @@ export class Raster extends AbstractRaster {
 
     // When faceting without interpolation, as when sampling a continuous
     // function, offset into the dense grid based on the current facet index.
-    else if (this.data == null && index) offset = index.fi * n;
+    else if (this.data == null && index) offset = index.fi * w * h;
 
-    // Render the raster grid to the canvas, blurring if needed.
+    // Render the raster grid to the canvas.
     const canvas = document.createElement("canvas");
     canvas.width = w;
     canvas.height = h;
     const context2d = canvas.getContext("2d");
-    const image = context2d.createImageData(w, h);
-    const imageData = image.data;
-    let {r, g, b} = rgb(this.fill) ?? {r: 0, g: 0, b: 0};
-    let a = (this.fillOpacity ?? 1) * 255;
-    for (let i = 0; i < n; ++i) {
-      const j = i << 2;
-      if (F) {
-        const fi = color(F[i + offset]);
-        if (fi == null) {
-          imageData[j + 3] = 0;
-          continue;
-        }
-        ({r, g, b} = rgb(fi));
+    if (!F) context2d.fillStyle = this.fill ?? "black";
+    if (!FO) context2d.globalAlpha = this.fillOpacity ?? 1;
+    for (let i = offset, y = 0; y < h; ++y) {
+      for (let x = 0; x < w; ++x, ++i) {
+        if (F) context2d.fillStyle = color(F[i]);
+        if (FO) context2d.globalAlpha = FO[i];
+        context2d.fillRect(x, y, 1, 1);
       }
-      if (FO) a = FO[i + offset] * 255;
-      imageData[j + 0] = r;
-      imageData[j + 1] = g;
-      imageData[j + 2] = b;
-      imageData[j + 3] = a;
     }
-    if (this.blur > 0) blurImage(image, this.blur);
-    context2d.putImageData(image, 0, 0);
+
+    // Blur if needed.
+    if (this.blur > 0) {
+      const image = context2d.getImageData(0, 0, w, h);
+      blurImage(image, this.blur);
+      context2d.putImageData(image, 0, 0);
+    }
 
     return create("svg:g", context)
       .call(applyIndirectStyles, this, dimensions, context)
