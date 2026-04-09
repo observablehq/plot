@@ -1,4 +1,4 @@
-import {blurImage, Delaunay, randomLcg, rgb} from "d3";
+import {blurImage, Delaunay, randomLcg} from "d3";
 import {valueObject} from "../channel.js";
 import {create} from "../context.js";
 import {map, first, second, third, isTuples, isNumeric, isTemporal, identity} from "../options.js";
