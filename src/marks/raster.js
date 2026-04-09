@@ -133,8 +133,16 @@ export class Raster extends AbstractRaster {
     if (!FO) context2d.globalAlpha = this.fillOpacity ?? 1;
     for (let i = offset, y = 0; y < h; ++y) {
       for (let x = 0; x < w; ++x, ++i) {
-        if (F) context2d.fillStyle = color(F[i]);
-        if (FO) context2d.globalAlpha = FO[i];
+        if (F) {
+          const f = color(F[i]);
+          if (f == null) continue;
+          context2d.fillStyle = f;
+        }
+        if (FO) {
+          const o = FO[i];
+          if (o == null) continue;
+          context2d.globalAlpha = o;
+        }
         context2d.fillRect(x, y, 1, 1);
       }
     }
