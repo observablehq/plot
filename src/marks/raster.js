@@ -139,7 +139,7 @@ export class Raster extends AbstractRaster {
     let a = this.fillOpacity ?? 1;
     for (let i = 0; i < n; ++i) {
       const j = i << 2;
-      if (F) rgba = this.colorConverter(F[i + offset], color);
+      if (F) rgba = this.colorConverter(color(F[i + offset]));
       if (FO) a = FO[i + offset];
       imageData[j + 0] = rgba[0];
       imageData[j + 1] = rgba[1];
@@ -507,19 +507,15 @@ function getColorConverter(colorSpace) {
   canvas.width = 1;
   canvas.height = 1;
   const context = canvas.getContext("2d", {colorSpace, willReadFrequently: true});
-  return (value, color = (value) => value) => {
-    let data = cache.get(value);
+  return (color) => {
+    if (color == null) return transparent;
+    let data = cache.get(color);
     if (data !== undefined) return data;
-    const fill = color(value);
-    if (fill == null) {
-      data = transparent;
-    } else {
-      context.clearRect(0, 0, 1, 1);
-      context.fillStyle = fill;
-      context.fillRect(0, 0, 1, 1);
-      data = context.getImageData(0, 0, 1, 1).data;
-    }
-    cache.set(value, data);
+    context.clearRect(0, 0, 1, 1);
+    context.fillStyle = color;
+    context.fillRect(0, 0, 1, 1);
+    data = context.getImageData(0, 0, 1, 1).data;
+    cache.set(color, data);
     return data;
   };
 }
