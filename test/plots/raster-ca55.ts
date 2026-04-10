@@ -27,7 +27,7 @@ test(async function rasterCa55Barycentric() {
 });
 
 test(async function rasterCa55RandomWalk() {
-  return rasterCa55({interpolate: "random-walk", colorConverter: Plot.colorCanvas()});
+  return rasterCa55({interpolate: "random-walk"});
 });
 
 test(async function rasterCa55Nearest() {

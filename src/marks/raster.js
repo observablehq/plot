@@ -37,7 +37,6 @@ export class AbstractRaster extends Mark {
       x2 = x == null ? width : undefined,
       y2 = y == null ? height : undefined,
       colorSpace = "srgb",
-      colorConverter,
       pixelSize = defaults.pixelSize,
       blur = 0,
       interpolate
@@ -82,20 +81,8 @@ export class AbstractRaster extends Mark {
     this.blur = number(blur, "blur");
     this.interpolate = x == null || y == null ? null : maybeInterpolate(interpolate); // interpolation requires x & y
     this.colorSpace = String(colorSpace).toLowerCase();
-    this.colorConverter = memoize(
-      colorConverter === undefined ? getDefaultColorConverter(this.colorSpace) : colorConverter
-    );
+    this.colorConverter = getColorConverter(this.colorSpace);
   }
-}
-
-function memoize(convert) {
-  const map = new Map();
-  return (input) => {
-    let output = map.get(input);
-    if (output !== undefined) return output;
-    map.set(input, (output = convert(input)));
-    return output;
-  };
 }
 
 export class Raster extends AbstractRaster {
@@ -148,21 +135,21 @@ export class Raster extends AbstractRaster {
     const context2d = canvas.getContext("2d", {colorSpace: this.colorSpace});
     const image = context2d.createImageData(w, h);
     const imageData = image.data;
-    const fo = this.fillOpacity ?? 1;
-    let [r, g, b, co] = this.colorConverter(this.fill);
-    let a = co * fo;
+    // const fo = this.fillOpacity ?? 1;
+    let rgba = this.colorConverter(this.fill);
+    // let a = co * fo;
     for (let i = 0; i < n; ++i) {
       const j = i << 2;
       if (F) {
         const fi = color(F[i + offset]);
-        [r, g, b, co] = this.colorConverter(fi); // TODO memoize?
-        if (!FO) a = co * fo;
+        rgba = this.colorConverter(fi);
+        // if (!FO) a = co * fo;
       }
-      if (FO) a = co * FO[i + offset];
-      imageData[j + 0] = r;
-      imageData[j + 1] = g;
-      imageData[j + 2] = b;
-      imageData[j + 3] = a;
+      // if (FO) a = co * FO[i + offset];
+      imageData[j + 0] = rgba[0];
+      imageData[j + 1] = rgba[1];
+      imageData[j + 2] = rgba[2];
+      imageData[j + 3] = rgba[3];
     }
     if (this.blur > 0) blurImage(image, this.blur);
     context2d.putImageData(image, 0, 0);
@@ -517,24 +504,29 @@ function denseY(y1, y2, width, height) {
   };
 }
 
-function getDefaultColorConverter(colorSpace) {
-  return colorSpace === "srgb" ? colorParser : colorCanvas(colorSpace);
-}
+// function getDefaultColorConverter(colorSpace) {
+//   return colorSpace === "srgb" ? colorParser : colorCanvas(colorSpace);
+// }
 
-export function colorParser(color) {
-  const c = rgb(color);
-  return c ? [c.r, c.g, c.b, c.opacity * 255] : [0, 0, 0, 0];
-}
+// export function colorParser(color) {
+//   const c = rgb(color);
+//   return c ? [c.r, c.g, c.b, c.opacity * 255] : [0, 0, 0, 0];
+// }
 
-export function colorCanvas(colorSpace) {
+function getColorConverter(colorSpace) {
+  const cache = new Map();
   const canvas = document.createElement("canvas");
   canvas.width = 1;
   canvas.height = 1;
   const context = canvas.getContext("2d", {colorSpace, willReadFrequently: true});
   return (color) => {
+    let data = cache.get(color);
+    if (data !== undefined) return data;
     context.clearRect(0, 0, 1, 1);
     context.fillStyle = color;
     context.fillRect(0, 0, 1, 1);
-    return context.getImageData(0, 0, 1, 1).data;
+    data = context.getImageData(0, 0, 1, 1).data;
+    cache.set(color, data);
+    return data;
   };
 }
