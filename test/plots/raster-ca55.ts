@@ -2,7 +2,7 @@ import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 import {test} from "test/plot";
 
-async function plotCa55(mark) {
+async function plotCa55(mark: (data: any[]) => Plot.Markish) {
   const ca55 = await d3.csv<any>("data/ca55-south.csv", d3.autoType);
   const domain = {type: "MultiPoint", coordinates: ca55.map((d) => [d.GRID_EAST, d.GRID_NORTH])} as const;
   return Plot.plot({
@@ -14,7 +14,7 @@ async function plotCa55(mark) {
   });
 }
 
-async function rasterCa55(options) {
+async function rasterCa55(options: Plot.RasterOptions) {
   return plotCa55((ca55) => Plot.raster(ca55, {x: "GRID_EAST", y: "GRID_NORTH", fill: "MAG_IGRF90", ...options}));
 }
 
@@ -27,7 +27,7 @@ test(async function rasterCa55Barycentric() {
 });
 
 test(async function rasterCa55RandomWalk() {
-  return rasterCa55({interpolate: "random-walk"});
+  return rasterCa55({interpolate: "random-walk", colorConverter: Plot.colorCanvas()});
 });
 
 test(async function rasterCa55Nearest() {

@@ -82,8 +82,20 @@ export class AbstractRaster extends Mark {
     this.blur = number(blur, "blur");
     this.interpolate = x == null || y == null ? null : maybeInterpolate(interpolate); // interpolation requires x & y
     this.colorSpace = String(colorSpace).toLowerCase();
-    this.colorConverter = colorConverter === undefined ? getDefaultColorConverter(this.colorSpace) : colorConverter;
+    this.colorConverter = memoize(
+      colorConverter === undefined ? getDefaultColorConverter(this.colorSpace) : colorConverter
+    );
   }
+}
+
+function memoize(convert) {
+  const map = new Map();
+  return (input) => {
+    let output = map.get(input);
+    if (output !== undefined) return output;
+    map.set(input, (output = convert(input)));
+    return output;
+  };
 }
 
 export class Raster extends AbstractRaster {
