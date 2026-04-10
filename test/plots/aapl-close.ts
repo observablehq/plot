@@ -6,11 +6,7 @@ test(async function aaplClose() {
   const aapl = await d3.csv<any>("data/aapl.csv", d3.autoType);
   return Plot.plot({
     y: {grid: true},
-    marks: [
-      Plot.areaY(aapl, {x: "Date", y: "Close", fillOpacity: 0.1}),
-      Plot.lineY(aapl, {x: "Date", y: "Close"}),
-      Plot.ruleY([0])
-    ]
+    marks: [Plot.areaY(aapl, {x: "Date", y: "Close", line: true}), Plot.ruleY([0])]
   });
 });
 
