@@ -1,8 +1,9 @@
-import {rgb} from "d3";
+import {select} from "d3";
 import {createContext} from "./context.js";
 import {legendRamp} from "./legends/ramp.js";
 import {isSymbolColorLegend, legendSwatches, legendSymbols} from "./legends/swatches.js";
 import {inherit, isScaleOptions} from "./options.js";
+import {getFilterId} from "./style.js";
 import {normalizeScale} from "./scales.js";
 
 const legendRegistry = new Map([
@@ -56,16 +57,30 @@ function legendColor(color, {legend = true, ...options}) {
   }
 }
 
-function legendOpacity({type, interpolate, ...scale}, {legend = true, color = rgb(0, 0, 0), ...options}) {
+function legendOpacity({type, interpolate, ...scale}, {legend = true, color = "currentColor", ...options}) {
   if (!interpolate) throw new Error(`${type} opacity scales are not supported`);
   if (legend === true) legend = "ramp";
   if (`${legend}`.toLowerCase() !== "ramp") throw new Error(`${legend} opacity legends are not supported`);
-  return legendColor({type, ...scale, interpolate: interpolateOpacity(color)}, {legend, ...options});
-}
+  const svg = legendColor({type, ...scale, interpolate: (t) => `rgba(0,0,0,${t})`}, {legend, ...options});
+  if (!svg) return;
+  const s = select(svg);
+  const image = s.select("image");
+  const x = +image.attr("x");
+  const y = +image.attr("y");
+  const w = +image.attr("width");
+  const h = +image.attr("height");
+  const pid = getFilterId();
+  const fid = getFilterId();
 
-function interpolateOpacity(color) {
-  const {r, g, b} = rgb(color) || rgb(0, 0, 0); // treat invalid color as black
-  return (t) => `rgba(${r},${g},${b},${t})`;
+  // Checkerboard
+  const pattern = s.append("pattern").attr("id", pid).attr("y", y).attr("width", h).attr("height", h).attr("patternUnits", "userSpaceOnUse"); // prettier-ignore
+  pattern.append("path").attr("d", `M0,0h${h / 2}v${h / 2}H0ZM${h / 2},${h / 2}h${h / 2}v${h / 2}H${h / 2}Z`).attr("fill", "color-mix(in srgb, var(--plot-background), currentColor 20%)"); // prettier-ignore
+  s.insert("rect", "image").attr("x", x).attr("y", y).attr("width", w).attr("height", h).attr("fill", `url(#${pid})`); // prettier-ignore
+
+  // Color
+  image.attr("filter", `url(#${fid})`);
+  s.append("filter").attr("id", fid).call((f) => { f.append("feFlood").attr("flood-color", color); f.append("feComposite").attr("in2", "SourceGraphic").attr("operator", "in"); }); // prettier-ignore
+  return svg;
 }
 
 export function createLegends(scales, context, options) {
