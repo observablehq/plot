@@ -86,3 +86,11 @@ test(async function aaplCloseNormalize() {
     ]
   });
 });
+
+test(async function applCloseGap() {
+  const aapl = await d3.csv<any>("data/aapl.csv", d3.autoType);
+  return Plot.plot({
+    y: {grid: true},
+    marks: [Plot.areaY(aapl, {x: "Date", y: (d) => (d.Date.getUTCMonth() < 3 ? NaN : d.Close), line: "y"})]
+  });
+});

@@ -80,9 +80,27 @@ class AreaLine extends Area {
   constructor(data, options = {}) {
     super(data, options, areaLineDefaults);
     markers(this, options);
+    this.line = options.line; // TODO refine
   }
   render(index, scales, channels, dimensions, context) {
     const {x1: X1, y1: Y1, x2: X2 = X1, y2: Y2 = Y1} = channels;
+    const area = shapeArea()
+      .curve(this.curve)
+      .defined((i) => i >= 0)
+      .x0((i) => X1[i])
+      .y0((i) => Y1[i])
+      .x1((i) => X2[i])
+      .y1((i) => Y2[i]);
+    const lineY1 = shapeLine()
+      .curve(this.curve)
+      .defined((i) => i >= 0)
+      .x((i) => X1[i])
+      .y((i) => Y1[i]);
+    const lineY2 = shapeLine()
+      .curve(this.curve)
+      .defined((i) => i >= 0)
+      .x((i) => X2[i])
+      .y((i) => Y2[i]);
     return create("svg:g", context)
       .call(applyIndirectStyles, this, dimensions, context)
       .call(applyTransform, this, scales, 0, 0)
@@ -94,35 +112,14 @@ class AreaLine extends Area {
           .append("g")
           .call(applyDirectStyles, this)
           .call(applyGroupedChannelStyles, this, channels)
-          .call((e) =>
-            e
-              .append("path")
-              .attr("stroke", "none")
-              .attr(
-                "d",
-                shapeArea()
-                  .curve(this.curve)
-                  .defined((i) => i >= 0)
-                  .x0((i) => X1[i])
-                  .y0((i) => Y1[i])
-                  .x1((i) => X2[i])
-                  .y1((i) => Y2[i])
-              )
-          )
+          .call((e) => e.append("path").attr("stroke", "none").attr("d", area))
           .call((e) =>
             e
               .append("path")
               .call(applyGroupedMarkers, this, channels, context)
               .attr("fill", "none")
               .attr("transform", offset ? `translate(${offset},${offset})` : null)
-              .attr(
-                "d",
-                shapeLine()
-                  .curve(this.curve)
-                  .defined((i) => i >= 0)
-                  .x((i) => X2[i])
-                  .y((i) => Y2[i])
-              )
+              .attr("d", this.line === "y" ? (d) => `${lineY2(d)}${lineY1(d)}` : (d) => lineY2(d))
           )
       )
       .node();
@@ -135,11 +132,11 @@ export function area(data, options) {
 }
 
 export function areaX(data, options) {
-  const {x, y, line, color, stroke = color, fill = color, z = x === fill || x === stroke ? null : undefined, ...rest} = maybeDenseIntervalY(options); // prettier-ignore
-  return new (line ? AreaLine : Area)(data, maybeStackX({...rest, x, y1: y, y2: undefined, z, stroke, fill}));
+  const {x, y, color, stroke = color, fill = color, z = x === fill || x === stroke ? null : undefined, ...rest} = maybeDenseIntervalY(options); // prettier-ignore
+  return new (rest.line ? AreaLine : Area)(data, maybeStackX({...rest, x, y1: y, y2: undefined, z, stroke, fill}));
 }
 
 export function areaY(data, options) {
-  const {x, y, line, color, stroke = color, fill = color, z = y === fill || y === stroke ? null : undefined, ...rest} = maybeDenseIntervalX(options); // prettier-ignore
-  return new (line ? AreaLine : Area)(data, maybeStackY({...rest, x1: x, x2: undefined, y, z, stroke, fill}));
+  const {x, y, color, stroke = color, fill = color, z = y === fill || y === stroke ? null : undefined, ...rest} = maybeDenseIntervalX(options); // prettier-ignore
+  return new (rest.line ? AreaLine : Area)(data, maybeStackY({...rest, x1: x, x2: undefined, y, z, stroke, fill}));
 }
