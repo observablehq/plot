@@ -499,6 +499,8 @@ function denseY(y1, y2, width, height) {
   };
 }
 
+const transparent = new Uint8ClampedArray(4);
+
 function getColorConverter(colorSpace) {
   const cache = new Map();
   const canvas = document.createElement("canvas");
@@ -508,10 +510,15 @@ function getColorConverter(colorSpace) {
   return (value, color = (value) => value) => {
     let data = cache.get(value);
     if (data !== undefined) return data;
-    context.clearRect(0, 0, 1, 1);
-    context.fillStyle = color(value);
-    context.fillRect(0, 0, 1, 1);
-    data = context.getImageData(0, 0, 1, 1).data;
+    const fill = color(value);
+    if (fill == null) {
+      data = transparent;
+    } else {
+      context.clearRect(0, 0, 1, 1);
+      context.fillStyle = fill;
+      context.fillRect(0, 0, 1, 1);
+      data = context.getImageData(0, 0, 1, 1).data;
+    }
     cache.set(value, data);
     return data;
   };
