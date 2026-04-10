@@ -135,21 +135,16 @@ export class Raster extends AbstractRaster {
     const context2d = canvas.getContext("2d", {colorSpace: this.colorSpace});
     const image = context2d.createImageData(w, h);
     const imageData = image.data;
-    // const fo = this.fillOpacity ?? 1;
-    let rgba = this.colorConverter(this.fill);
-    // let a = co * fo;
+    let rgba = this.colorConverter(this.fill ?? "black");
+    let a = this.fillOpacity ?? 1;
     for (let i = 0; i < n; ++i) {
       const j = i << 2;
-      if (F) {
-        const fi = color(F[i + offset]);
-        rgba = this.colorConverter(fi);
-        // if (!FO) a = co * fo;
-      }
-      // if (FO) a = co * FO[i + offset];
+      if (F) rgba = this.colorConverter(F[i + offset], color);
+      if (FO) a = FO[i + offset];
       imageData[j + 0] = rgba[0];
       imageData[j + 1] = rgba[1];
       imageData[j + 2] = rgba[2];
-      imageData[j + 3] = rgba[3];
+      imageData[j + 3] = rgba[3] * a;
     }
     if (this.blur > 0) blurImage(image, this.blur);
     context2d.putImageData(image, 0, 0);
@@ -504,29 +499,20 @@ function denseY(y1, y2, width, height) {
   };
 }
 
-// function getDefaultColorConverter(colorSpace) {
-//   return colorSpace === "srgb" ? colorParser : colorCanvas(colorSpace);
-// }
-
-// export function colorParser(color) {
-//   const c = rgb(color);
-//   return c ? [c.r, c.g, c.b, c.opacity * 255] : [0, 0, 0, 0];
-// }
-
 function getColorConverter(colorSpace) {
   const cache = new Map();
   const canvas = document.createElement("canvas");
   canvas.width = 1;
   canvas.height = 1;
   const context = canvas.getContext("2d", {colorSpace, willReadFrequently: true});
-  return (color) => {
-    let data = cache.get(color);
+  return (value, color = (value) => value) => {
+    let data = cache.get(value);
     if (data !== undefined) return data;
     context.clearRect(0, 0, 1, 1);
-    context.fillStyle = color;
+    context.fillStyle = color(value);
     context.fillRect(0, 0, 1, 1);
     data = context.getImageData(0, 0, 1, 1).data;
-    cache.set(color, data);
+    cache.set(value, data);
     return data;
   };
 }
