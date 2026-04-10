@@ -81,7 +81,6 @@ export class AbstractRaster extends Mark {
     this.blur = number(blur, "blur");
     this.interpolate = x == null || y == null ? null : maybeInterpolate(interpolate); // interpolation requires x & y
     this.colorSpace = String(colorSpace).toLowerCase();
-    this.colorConverter = getColorConverter(this.colorSpace);
   }
 }
 
@@ -129,17 +128,18 @@ export class Raster extends AbstractRaster {
     else if (this.data == null && index) offset = index.fi * n;
 
     // Render the raster grid to the canvas, blurring if needed.
+    const colorConverter = (this.colorConverter ??= getColorConverter(this.colorSpace, context));
     const canvas = document.createElement("canvas");
     canvas.width = w;
     canvas.height = h;
     const context2d = canvas.getContext("2d", {colorSpace: this.colorSpace});
     const image = context2d.createImageData(w, h);
     const imageData = image.data;
-    let rgba = this.colorConverter(this.fill ?? "black");
+    let rgba = colorConverter(this.fill);
     let a = this.fillOpacity ?? 1;
     for (let i = 0; i < n; ++i) {
       const j = i << 2;
-      if (F) rgba = this.colorConverter(color(F[i + offset]));
+      if (F) rgba = colorConverter(color(F[i + offset]));
       if (FO) a = FO[i + offset];
       imageData[j + 0] = rgba[0];
       imageData[j + 1] = rgba[1];
@@ -501,7 +501,7 @@ function denseY(y1, y2, width, height) {
 
 const transparent = new Uint8ClampedArray(4);
 
-function getColorConverter(colorSpace) {
+function getColorConverter(colorSpace, {document}) {
   const cache = new Map();
   const canvas = document.createElement("canvas");
   canvas.width = 1;
