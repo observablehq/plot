@@ -1,6 +1,7 @@
 import * as Plot from "@observablehq/plot";
+import {test} from "test/plot";
 
-export async function interpolateBarycentric4() {
+test(async function interpolateBarycentric4() {
   const I = [0, 1, 2, 3];
   const X = [297, 295, 80, 59];
   const Y = [269, 266, 275, 265];
@@ -15,9 +16,9 @@ export async function interpolateBarycentric4() {
       Plot.dot(I, {x: X, y: Y, r: 2, fill: "black"})
     ]
   });
-}
+});
 
-export async function interpolateBarycentric4k() {
+test(async function interpolateBarycentric4k() {
   const {x, y, v} = await fetch("data/4kpoints.json").then((d) => d.json());
   return Plot.plot({
     color: {scheme: "rdbu", range: [0.2, 0.8]},
@@ -28,4 +29,4 @@ export async function interpolateBarycentric4k() {
       Plot.raster({length: x.length}, {x, y, fill: v, interpolate: "barycentric", imageRendering: "pixelated"})
     ]
   });
-}
+});

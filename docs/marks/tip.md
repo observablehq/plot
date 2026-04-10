@@ -250,7 +250,7 @@ These [standard text options](./text.md#text-options) control the display of tex
 - **fontWeight** - the [font weight](https://developer.mozilla.org/en-US/docs/Web/CSS/font-weight); defaults to *normal*
 - **textAnchor** - the [text anchor](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/text-anchor) for horizontal position; *start*, *end*, or *middle*
 - **lineHeight** - the line height in ems; defaults to 1
-- **lineWidth** - the line width in ems, for wrapping; defaults to Infinity
+- **lineWidth** - the line width in ems, for wrapping; defaults to 20
 - **textOverflow** - how to wrap or clip lines longer than the specified line width
 
 ## tip(*data*, *options*) {#tip}

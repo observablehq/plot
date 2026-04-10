@@ -9,7 +9,7 @@ We request that you abide by our [code of conduct](https://observablehq.com/@obs
 To contribute to Observable Plot, you’ll need a local development environment to make and test changes to Plot’s source code. To get started, follow GitHub’s tutorial on [forking (and cloning) a repository](https://docs.github.com/en/get-started/quickstart/fork-a-repo). Once you’ve cloned your fork of the Plot repository, open a terminal and `cd` in your forked repository. Then run Yarn to install dependencies:
 
 ```bash
-yarn
+pnpm install
 ```
 
 You may encounter an error installing [node-canvas](https://github.com/Automattic/node-canvas), such as:
@@ -28,10 +28,10 @@ brew install pkg-config cairo pango libpng jpeg giflib librsvg
 
 ## Testing
 
-After making changes to Plot’s source code, run Plot’s test suite to verify that your code is doing what you expect and that you haven’t introduced any other unexpected changes in behavior. Plot has two types of tests: **unit tests** and **snapshot tests**. Tests are run automatically on pull requests (via GitHub Actions), but you’ll want to run them locally to verify your changes before opening a pull request. To run the tests, use Yarn:
+After making changes to Plot’s source code, run Plot’s test suite to verify that your code is doing what you expect and that you haven’t introduced any other unexpected changes in behavior. Plot has two types of tests: **unit tests** and **snapshot tests**. Tests are run automatically on pull requests (via GitHub Actions), but you’ll want to run them locally to verify your changes before opening a pull request. To run the tests:
 
 ```bash
-yarn test
+pnpm run test
 ```
 
 This will also run ESLint on Plot’s source to help catch simple mistakes, such as unused imports.
@@ -39,13 +39,13 @@ This will also run ESLint on Plot’s source to help catch simple mistakes, such
 Please run Prettier before submitting any pull request. Check “format on save” in your code editor, or run:
 
 ```bash
-yarn prettier --write .
+pnpm exec prettier --write .
 ```
 
 A test coverage report can be generated with [c8](https://github.com/bcoe/c8), in text and lcov formats, to help you identify which lines of code are not (yet!) covered by tests. Just run:
 
 ```bash
-yarn test:coverage
+pnpm run test:coverage
 ```
 
 ### Unit tests
@@ -65,7 +65,7 @@ Plot’s unit tests are written with [Mocha](https://mochajs.org).
 If you like, you can also run Mocha in watch mode for a specific file, so that unit tests re-run automatically when you make changes. For example:
 
 ```bash
-yarn run mocha --conditions=mocha --parallel --watch test/marks/bar-test.js
+pnpm run test:vitest test/marks/bar-test.js
 ```
 
 ### Snapshot tests
@@ -98,7 +98,7 @@ export * from "./moby-dick.ts";
 The best thing about snapshot tests is that you can see the live result in your browser as you make changes to Plot’s source code! This lets you immediately assess visually what Plot is doing. To preview snapshot tests during development, Plot uses [Vite](https://vitejs.dev). To start Vite:
 
 ```bash
-yarn dev
+pnpm run dev
 ```
 
 This will open http://localhost:8008/ in your browser where you can choose a snapshot test. As you edit the source, the current test will update live in your browser as you save changes. You can change the selected test from the drop-down menu. When the drop-down menu is focused, the left and right arrow keys cycle between tests.
@@ -111,17 +111,17 @@ Running Plot’s snapshot tests will automatically generate any missing snapshot
 
 ```
 rm -rf test/output
-yarn test
+pnpm run test:vitest
 ```
 
 ## Documentation
 
 When submitting a pull request, please remember to update Plot’s documentation to reflect changes to the public API. You are also welcome to edit Plot’s [CHANGELOG.md](./CHANGELOG.md) to assist with writing future release notes. In addition, please reference any related [issues](https://github.com/observablehq/plot/issues) (or discussions) in your pull request description.
 
-If you’d like to share a live demonstration or motivating example of your change to Plot, you can regenerate Plot’s release bundle using Yarn:
+If you’d like to share a live demonstration or motivating example of your change to Plot, you can regenerate Plot’s release bundle like so:
 
 ```bash
-yarn prepublishOnly
+pnpm run prepublishOnly
 ```
 
 The generated bundle `dist/plot.umd.js` can then be loaded like so:

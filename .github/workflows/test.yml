@@ -10,21 +10,22 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v6
+      - uses: pnpm/action-setup@v5
         with:
-          node-version: 20
-          cache: yarn
-      - run: yarn --frozen-lockfile
-      - run: yarn test:mocha
-      - run: yarn test:tsc
-      - run: |
-          echo ::add-matcher::.github/eslint.json
-          yarn run eslint src test --format=compact
-      - run: yarn test:prettier
-      - run: yarn prepublishOnly
-      - run: yarn docs:build
-      - uses: actions/upload-artifact@v4
+          version: 10
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: pnpm
+      - run: pnpm install
+      - run: pnpm run test:vitest
+      - run: pnpm run test:tsc
+      - run: pnpm run test:lint
+      - run: pnpm run test:prettier
+      - run: pnpm run prepublishOnly
+      - run: pnpm run docs:build
+      - uses: actions/upload-artifact@v7
         if: failure()
         with:
           name: test-output-changes

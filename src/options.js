@@ -68,8 +68,12 @@ function maybeTypedArrowify(vector, type) {
   return vector == null
     ? vector
     : (type === undefined || type === Array) && isArrowDateType(vector.type)
-    ? coerceDates(vector.toArray())
-    : maybeTypedArrayify(vector.toArray(), type);
+    ? coerceDates(vectorToArray(vector))
+    : maybeTypedArrayify(vectorToArray(vector), type);
+}
+
+function vectorToArray(vector) {
+  return vector.nullCount ? vector.toJSON() : vector.toArray();
 }
 
 export const singleton = [null]; // for data-less decoration marks, e.g. frame
@@ -165,11 +169,24 @@ export function dataify(data) {
 export function arrayify(values) {
   if (values == null || isArray(values)) return values;
   if (isArrowVector(values)) return maybeTypedArrowify(values);
-  switch (values.type) {
+  if (isGeoJSON(values)) {
+    switch (values.type) {
+      case "FeatureCollection":
+        return values.features;
+      case "GeometryCollection":
+        return values.geometries;
+      default:
+        return [values];
+    }
+  }
+  return Array.from(values);
+}
+
+// Duck typing test for GeoJSON
+function isGeoJSON(x) {
+  switch (x?.type) {
     case "FeatureCollection":
-      return values.features;
     case "GeometryCollection":
-      return values.geometries;
     case "Feature":
     case "LineString":
     case "MultiLineString":
@@ -178,9 +195,10 @@ export function arrayify(values) {
     case "Point":
     case "Polygon":
     case "Sphere":
-      return [values];
+      return true;
+    default:
+      return false;
   }
-  return Array.from(values);
 }
 
 // An optimization of type.from(values, f): if the given values are already an
@@ -196,18 +214,18 @@ export function slice(values, type = Array) {
 }
 
 // Returns true if any of x, x1, or x2 is not (strictly) undefined.
-export function hasX({x, x1, x2}) {
-  return x !== undefined || x1 !== undefined || x2 !== undefined;
+export function hasX(options) {
+  return options?.x !== undefined || options?.x1 !== undefined || options?.x2 !== undefined;
 }
 
 // Returns true if any of y, y1, or y2 is not (strictly) undefined.
-export function hasY({y, y1, y2}) {
-  return y !== undefined || y1 !== undefined || y2 !== undefined;
+export function hasY(options) {
+  return options?.y !== undefined || options?.y1 !== undefined || options?.y2 !== undefined;
 }
 
 // Returns true if has x or y, or if interval is not (strictly) undefined.
 export function hasXY(options) {
-  return hasX(options) || hasY(options) || options.interval !== undefined;
+  return hasX(options) || hasY(options) || options?.interval !== undefined;
 }
 
 // Disambiguates an options object (e.g., {y: "x2"}) from a primitive value.
@@ -495,6 +513,14 @@ export function isNumeric(values) {
   }
 }
 
+export function isYearIntegers(values) {
+  return isEvery(values, isYearInteger);
+}
+
+export function isYearInteger(value) {
+  return typeof value === "number" && Number.isInteger(value) && 1500 <= value && value <= 2500;
+}
+
 // Returns true if every non-null value in the specified iterable of values
 // passes the specified predicate, and there is at least one non-null value;
 // returns false if at least one non-null value does not pass the specified
@@ -521,7 +547,7 @@ export function isColor(value) {
   value = value.toLowerCase().trim();
   return (
     /^#[0-9a-f]{3,8}$/.test(value) || // hex rgb, rgba, rrggbb, rrggbbaa
-    /^(?:url|var|rgb|rgba|hsl|hsla|hwb|lab|lch|oklab|oklch|color|color-mix)\(.*\)$/.test(value) || // <funciri>, CSS variable, color, etc.
+    /^(?:url|var|rgb|rgba|hsl|hsla|hwb|lab|lch|oklab|oklch|color|color-mix|light-dark)\(.*\)$/.test(value) || // <funciri>, CSS variable, color, etc.
     namedColors.has(value) // currentColor, red, etc.
   );
 }
@@ -598,12 +624,13 @@ export function maybeNamed(things) {
   return isIterable(things) ? named(things) : things;
 }
 
-// TODO Accept other types of clips (paths, urls, x, y, other marks…)?
-// https://github.com/observablehq/plot/issues/181
 export function maybeClip(clip) {
   if (clip === true) clip = "frame";
   else if (clip === false) clip = null;
-  else if (clip != null) clip = keyword(clip, "clip", ["frame", "sphere"]);
+  else if (!isGeoJSON(clip) && clip != null) {
+    clip = keyword(clip, "clip", ["frame", "sphere"]);
+    if (clip === "sphere") clip = {type: "Sphere"};
+  }
   return clip;
 }
 

@@ -1,4 +1,4 @@
-import {creator, select} from "d3";
+import {creator, geoPath, select} from "d3";
 import {createChannel, inferChannelScale} from "./channel.js";
 import {createContext} from "./context.js";
 import {createDimensions} from "./dimensions.js";
@@ -11,7 +11,7 @@ import {frame} from "./marks/frame.js";
 import {tip} from "./marks/tip.js";
 import {isColor, isIterable, isNone, isScaleOptions} from "./options.js";
 import {dataify, lengthof, map, yes, maybeIntervalTransform, subarray} from "./options.js";
-import {createProjection, getGeometryChannels, hasProjection} from "./projection.js";
+import {createProjection, getGeometryChannels, hasProjection, xyProjection} from "./projection.js";
 import {createScales, createScaleFunctions, autoScaleRange, exposeScales} from "./scales.js";
 import {innerDimensions, outerDimensions} from "./scales.js";
 import {isPosition, registry as scaleRegistry} from "./scales/index.js";
@@ -139,7 +139,7 @@ export function plot(options = {}) {
     stateByMark.set(mark, {data, facets, channels});
   }
 
-  // Initalize the scales and dimensions.
+  // Initialize the scales and dimensions.
   const scaleDescriptors = createScales(addScaleChannels(channelsByScale, stateByMark, options), options);
   const dimensions = createDimensions(scaleDescriptors, marks, options);
 
@@ -159,6 +159,11 @@ export function plot(options = {}) {
   context.className = className;
   context.projection = createProjection(options, subdimensions);
 
+  // A path generator for marks that want to draw GeoJSON.
+  context.path = function () {
+    return geoPath(this.projection ?? xyProjection(scales));
+  };
+
   // Allows e.g. the axis mark to determine faceting lazily.
   context.filterFacets = (data, channels) => {
     return facetFilter(facets, {channels, groups: facetGroups(data, channels)});
@@ -175,7 +180,7 @@ export function plot(options = {}) {
   context.dispatchValue = (value) => {
     if (figure.value === value) return;
     figure.value = value;
-    figure.dispatchEvent(new Event("input", {bubbles: true}));
+    figure.dispatchEvent(new context.document.defaultView.Event("input", {bubbles: true}));
   };
 
   // Reinitialize; for deriving channels dependent on other channels.
@@ -317,7 +322,7 @@ export function plot(options = {}) {
           }
         }
       }
-      g?.selectChildren().attr("transform", facetTranslate);
+      g?.selectChildren().each(facetTranslate);
     }
   }
 
@@ -335,7 +340,7 @@ export function plot(options = {}) {
     if ("value" in svg) (figure.value = svg.value), delete svg.value;
   }
 
-  figure.scale = exposeScales(scales.scales);
+  figure.scale = exposeScales(scales.scales, context);
   figure.legend = exposeLegends(scaleDescriptors, context, options);
 
   const w = consumeWarnings();

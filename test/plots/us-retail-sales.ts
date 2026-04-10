@@ -1,9 +1,10 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
+import {test} from "test/plot";
 
 const parseDate = d3.utcParse("%b-%Y");
 
-export async function usRetailSales() {
+test(async function usRetailSales() {
   const data = await d3.csv<any>("data/us-retail-sales.csv", ({Date, ...d}) => ({
     Date: parseDate(Date),
     ...d3.autoType(d)
@@ -27,4 +28,4 @@ export async function usRetailSales() {
       Plot.ruleY([0])
     ]
   });
-}
+});

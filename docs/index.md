@@ -90,7 +90,7 @@ features:
 
 :root {
   --vp-home-hero-name-color: transparent;
-  --vp-home-hero-name-background: linear-gradient(-30deg, hsl(200deg 100% 65%), var(--vp-c-purple));
+  --vp-home-hero-name-background: linear-gradient(-30deg, var(--hero-brand-contrast), var(--vp-c-brand-1));
 }
 
 :root.dark .VPHero .VPImage {

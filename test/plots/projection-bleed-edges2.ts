@@ -1,8 +1,9 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 import {feature} from "topojson-client";
+import {test} from "test/plot";
 
-export async function projectionBleedEdges2() {
+test(async function projectionBleedEdges2() {
   const world = await d3.json<any>("data/countries-110m.json");
   const land = feature(world, world.objects.land);
   return Plot.plot({
@@ -18,4 +19,4 @@ export async function projectionBleedEdges2() {
     },
     marks: [Plot.graticule(), Plot.geo(land, {fill: "#ccc", stroke: "currentColor"}), Plot.frame({stroke: "white"})]
   });
-}
+});

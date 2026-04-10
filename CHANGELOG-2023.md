@@ -1,6 +1,6 @@
 # Observable Plot - Changelog [2023]
 
-Year: [Current (2024)](./CHANGELOG.md) · **2023** · [2022](./CHANGELOG-2022.md) · [2021](./CHANGELOG-2021.md)
+Year: [Current (2025)](./CHANGELOG.md) · [2024](./CHANGELOG-2024.md) · **2023** · [2022](./CHANGELOG-2022.md) · [2021](./CHANGELOG-2021.md)
 
 ## 0.6.13
 
@@ -233,7 +233,7 @@ Plot.bollingerY(aapl, {x: "Date", y: "Close", n: 20, k: 2}).plot()
 
 The [arrow mark](https://observablehq.com/plot/marks/arrow) supports a new **sweep** option to control the bend orientation. Below, we set this option to *-y* to draw arrows bulging right, independent of the relative vertical positions of its source and target.
 
-[<img src="./img/arc-diagram.png" width="521" alt="Detail of an arc diagram connecting characters in Les Misérables that appear in the same chapters.">](https://observablehq.com/@observablehq/plot-arc-diagram?intent=fork)
+[<img src="./img/arc-diagram.png" width="521" alt="Detail of an arc diagram connecting characters in Les Misérables that appear in the same chapters.">](https://observablehq.com/@observablehq/plot-arc-diagram)
 
 ```js
 Plot.plot({
@@ -315,7 +315,7 @@ The [barycentric interpolator](https://observablehq.com/plot/marks/raster#interp
 
 <img src="./img/barycentric-before-after.png" width="640" alt="A before-and-after comparison of the barycentric interpolator applied to three sample points; in the new algorithm, lines radiate outward perpendicular from the triangle’s sides, producing a more coherent and understandable image.">
 
-The [tip mark](https://observablehq.com/plot/marks/tip) now automatically sets the pointer-events attribute to *none* when associated with the [pointer transform](https://observablehq.com/plot/interactions/pointer) when the the pointer is not sticky, as when hovering a chart without clicking to lock the pointer. This prevents the tip mark from interfering with interaction on other marks, such as clickable links.
+The [tip mark](https://observablehq.com/plot/marks/tip) now automatically sets the pointer-events attribute to *none* when associated with the [pointer transform](https://observablehq.com/plot/interactions/pointer) when the pointer is not sticky, as when hovering a chart without clicking to lock the pointer. This prevents the tip mark from interfering with interaction on other marks, such as clickable links.
 
 The [auto mark](https://observablehq.com/plot/marks/auto) now renders as a cell, instead of a degenerate invisible rect, when **x** and **y** are both ordinal and the **mark** option is set to *bar*. The [tree mark](https://observablehq.com/plot/marks/tree) no longer produces duplicate tips with the **tip** option. The [rule mark](https://observablehq.com/plot/marks/rule) now respects the top-level **document** option, if any, when using the **clip** option. The [axis mark](https://observablehq.com/plot/marks/axis) now correctly handles the **sort**, **filter**, **reverse**, and **initializer** options.
 
@@ -697,7 +697,7 @@ Plot.plot({
 
 The *x* and *y* axes are now automatically repeated in empty facets, improving readability by reducing eye travel to read tick values. Below, note that the *x* axis for culmen depth (with ticks at 15 and 20 mm) is rendered below the Adelie/null-sex facet in the top-right.
 
-[<img src="./img/facet-axes.webp" width="640" alt="A scatterplot showing the culmen length and depth of various penguins, faceted by species and sex; the facets are arranged in a grid, with the y-axis on the left and the x-axis on the bottom.">](ttps://observablehq.com/plot/marks/axis)
+[<img src="./img/facet-axes.webp" width="640" alt="A scatterplot showing the culmen length and depth of various penguins, faceted by species and sex; the facets are arranged in a grid, with the y-axis on the left and the x-axis on the bottom.">](https://observablehq.com/plot/marks/axis)
 
 ```js
 Plot.plot({

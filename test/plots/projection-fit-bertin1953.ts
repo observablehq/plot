@@ -2,8 +2,9 @@ import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 import {geoBertin1953} from "d3-geo-projection";
 import {merge} from "topojson-client";
+import {test} from "test/plot";
 
-export async function projectionFitBertin1953() {
+test(async function projectionFitBertin1953() {
   const world = await d3.json<any>("data/countries-110m.json");
   const land = merge(
     world,
@@ -19,4 +20,4 @@ export async function projectionFitBertin1953() {
     marks: [Plot.frame({stroke: "red"}), Plot.geo(land, {fill: "currentColor"})],
     style: "border: solid 1px blue"
   });
-}
+});

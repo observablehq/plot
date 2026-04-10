@@ -1,9 +1,10 @@
 import * as Plot from "@observablehq/plot";
+import {test} from "test/plot";
 
-export async function logTickFormatFunction() {
+test(async function logTickFormatFunction() {
   return Plot.plot({x: {type: "log", domain: [1, 4200], tickFormat: Plot.formatNumber()}});
-}
+});
 
-export async function logTickFormatFunctionSv() {
+test(async function logTickFormatFunctionSv() {
   return Plot.plot({x: {type: "log", domain: [1, 4200], tickFormat: Plot.formatNumber("sv-SE")}});
-}
+});
