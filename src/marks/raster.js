@@ -135,7 +135,7 @@ export class Raster extends AbstractRaster {
     const context2d = canvas.getContext("2d", {colorSpace: this.colorSpace});
     const image = context2d.createImageData(w, h);
     const imageData = image.data;
-    let rgba = colorConverter(this.fill);
+    let rgba = colorConverter(this.fill ?? "black");
     let a = this.fillOpacity ?? 1;
     for (let i = 0; i < n; ++i) {
       const j = i << 2;
