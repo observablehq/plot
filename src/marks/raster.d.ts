@@ -151,7 +151,7 @@ export interface RasterOptions extends Omit<MarkOptions, "fill" | "fillOpacity">
    *
    * [1]: https://developer.mozilla.org/en-US/docs/Web/API/ImageData/colorSpace
    */
-  colorSpace?: "srgb" | "display-p3" | string;
+  colorSpace?: ImageData["colorSpace"];
 
   /**
    * The fill, typically bound to the *color* scale. Can be specified as a

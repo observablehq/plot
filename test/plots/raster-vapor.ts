@@ -63,6 +63,24 @@ test(async function contourVapor() {
   });
 });
 
+test(async function rasterVaporP3() {
+  return Plot.plot({
+    x: {transform: (x) => x - 180},
+    y: {transform: (y) => 90 - y},
+    color: {
+      type: "sqrt",
+      interpolate: (t: number) => `oklch(50% 0.25 ${220 + t * 140}deg / ${0.5 + t * 0.5})`
+    },
+    marks: [
+      Plot.raster(await vapor(), {
+        width: 360,
+        height: 180,
+        colorSpace: "display-p3"
+      })
+    ]
+  });
+});
+
 test(async function contourVaporClip() {
   const [world, data] = await Promise.all([d3.json<any>("data/countries-50m.json"), vapor()]);
   const land = feature(world, world.objects.land);

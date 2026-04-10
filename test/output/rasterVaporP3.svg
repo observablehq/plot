@@ -1,0 +1,59 @@
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="400" viewBox="0 0 640 400" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style>
+    :where(.plot) {
+      --plot-background: white;
+      display: block;
+      height: auto;
+      height: intrinsic;
+      max-width: 100%;
+    }
+
+    :where(.plot text),
+    :where(.plot tspan) {
+      white-space: pre;
+    }
+  </style>
+  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+    <path transform="translate(40,350.556)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,311.667)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,272.778)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,233.889)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,195)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,156.111)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,117.222)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,78.333)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,39.444)" d="M0,0L-6,0"></path>
+  </g>
+  <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
+    <text y="0.32em" transform="translate(40,350.556)">−80</text>
+    <text y="0.32em" transform="translate(40,311.667)">−60</text>
+    <text y="0.32em" transform="translate(40,272.778)">−40</text>
+    <text y="0.32em" transform="translate(40,233.889)">−20</text>
+    <text y="0.32em" transform="translate(40,195)">0</text>
+    <text y="0.32em" transform="translate(40,156.111)">20</text>
+    <text y="0.32em" transform="translate(40,117.222)">40</text>
+    <text y="0.32em" transform="translate(40,78.333)">60</text>
+    <text y="0.32em" transform="translate(40,39.444)">80</text>
+  </g>
+  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+    <path transform="translate(88.333,370)" d="M0,0L0,6"></path>
+    <path transform="translate(168.889,370)" d="M0,0L0,6"></path>
+    <path transform="translate(249.444,370)" d="M0,0L0,6"></path>
+    <path transform="translate(330,370)" d="M0,0L0,6"></path>
+    <path transform="translate(410.556,370)" d="M0,0L0,6"></path>
+    <path transform="translate(491.111,370)" d="M0,0L0,6"></path>
+    <path transform="translate(571.667,370)" d="M0,0L0,6"></path>
+  </g>
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+    <text y="0.71em" transform="translate(88.333,370)">−150</text>
+    <text y="0.71em" transform="translate(168.889,370)">−100</text>
+    <text y="0.71em" transform="translate(249.444,370)">−50</text>
+    <text y="0.71em" transform="translate(330,370)">0</text>
+    <text y="0.71em" transform="translate(410.556,370)">50</text>
+    <text y="0.71em" transform="translate(491.111,370)">100</text>
+    <text y="0.71em" transform="translate(571.667,370)">150</text>
+  </g>
+  <g aria-label="raster" transform="translate(0.5,0.5)">
+    <image transform="translate(40,20) scale(1,1)" width="580" height="350" preserveAspectRatio="none" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAWgAAAC0CAYAAAC5brY1AAAABmJLR0QA/wD/AP+gvaeTAAAClElEQVR4nO3UMQEAIAzAsIF/z2CAnx6Jgl5dM3MGgJz9OwCAN4MGiDJogCiDBogyaIAogwaIMmiAKIMGiDJogCiDBogyaIAogwaIMmiAKIMGiDJogCiDBogyaIAogwaIMmiAKIMGiDJogCiDBogyaIAogwaIMmiAKIMGiDJogCiDBogyaIAogwaIMmiAKIMGiDJogCiDBogyaIAogwaIMmiAKIMGiDJogCiDBogyaIAogwaIMmiAKIMGiDJogCiDBogyaIAogwaIMmiAKIMGiDJogCiDBogyaIAogwaIMmiAKIMGiDJogCiDBogyaIAogwaIMmiAKIMGiDJogCiDBogyaIAogwaIMmiAKIMGiDJogCiDBogyaIAogwaIMmiAKIMGiDJogCiDBogyaIAogwaIMmiAKIMGiDJogCiDBogyaIAogwaIMmiAKIMGiDJogCiDBogyaIAogwaIMmiAKIMGiDJogCiDBogyaIAogwaIMmiAKIMGiDJogCiDBogyaIAogwaIMmiAKIMGiDJogCiDBogyaIAogwaIMmiAKIMGiDJogCiDBogyaIAogwaIMmiAKIMGiDJogCiDBogyaIAogwaIMmiAKIMGiDJogCiDBogyaIAogwaIMmiAKIMGiDJogCiDBogyaIAogwaIMmiAKIMGiDJogCiDBogyaIAogwaIMmiAKIMGiDJogCiDBogyaIAogwaIMmiAKIMGiDJogCiDBogyaIAogwaIMmiAKIMGiDJogCiDBogyaIAogwaIMmiAKIMGiDJogCiDBogyaIAogwaIMmiAKIMGiDJogCiDBogyaIAogwaIMmiAKIMGiDJogCiDBogyaIAogwaIMmiAKIMGiDJogCiDBogyaICoC/2nAmcCAtYpAAAAAElFTkSuQmCC"></image>
+  </g>
+</svg>

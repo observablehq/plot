@@ -80,7 +80,8 @@ export class AbstractRaster extends Mark {
     this.pixelSize = number(pixelSize, "pixelSize");
     this.blur = number(blur, "blur");
     this.interpolate = x == null || y == null ? null : maybeInterpolate(interpolate); // interpolation requires x & y
-    this.colorSpace = String(colorSpace);
+    this.colorSpace = String(colorSpace).toLowerCase();
+    this.colorConverter = getColorConverter(this.colorSpace);
   }
 }
 
@@ -134,23 +135,16 @@ export class Raster extends AbstractRaster {
     const context2d = canvas.getContext("2d", {colorSpace: this.colorSpace});
     const image = context2d.createImageData(w, h);
     const imageData = image.data;
-    let {r, g, b} = rgb(this.fill) ?? {r: 0, g: 0, b: 0};
-    let a = (this.fillOpacity ?? 1) * 255;
+    let rgba = this.colorConverter(this.fill ?? "black");
+    let a = this.fillOpacity ?? 1;
     for (let i = 0; i < n; ++i) {
       const j = i << 2;
-      if (F) {
-        const fi = color(F[i + offset]);
-        if (fi == null) {
-          imageData[j + 3] = 0;
-          continue;
-        }
-        ({r, g, b} = rgb(fi));
-      }
-      if (FO) a = FO[i + offset] * 255;
-      imageData[j + 0] = r;
-      imageData[j + 1] = g;
-      imageData[j + 2] = b;
-      imageData[j + 3] = a;
+      if (F) rgba = this.colorConverter(F[i + offset], color);
+      if (FO) a = FO[i + offset];
+      imageData[j + 0] = rgba[0];
+      imageData[j + 1] = rgba[1];
+      imageData[j + 2] = rgba[2];
+      imageData[j + 3] = rgba[3] * a;
     }
     if (this.blur > 0) blurImage(image, this.blur);
     context2d.putImageData(image, 0, 0);
@@ -502,5 +496,23 @@ function denseY(y1, y2, width, height) {
       for (let i = 0; i < n; ++i) Y[i] = (Math.floor(i / width) % height) * ky + y0;
       return Y;
     }
+  };
+}
+
+function getColorConverter(colorSpace) {
+  const cache = new Map();
+  const canvas = document.createElement("canvas");
+  canvas.width = 1;
+  canvas.height = 1;
+  const context = canvas.getContext("2d", {colorSpace, willReadFrequently: true});
+  return (value, color = (value) => value) => {
+    let data = cache.get(value);
+    if (data !== undefined) return data;
+    context.clearRect(0, 0, 1, 1);
+    context.fillStyle = color(value);
+    context.fillRect(0, 0, 1, 1);
+    data = context.getImageData(0, 0, 1, 1).data;
+    cache.set(value, data);
+    return data;
   };
 }
