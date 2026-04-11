@@ -15,7 +15,8 @@ import {cut, clipper, splitter, maybeTextOverflow} from "./text.js";
 const defaults = {
   ariaLabel: "tip",
   fill: "var(--plot-background)",
-  stroke: "currentColor"
+  stroke: "currentColor",
+  pool: true
 };
 
 // These channels are not displayed in the default tip; see formatChannels.
@@ -49,8 +50,7 @@ export class Tip extends Mark {
       textPadding = 8,
       title,
       pointerSize = 12,
-      pathFilter = "drop-shadow(0 3px 4px rgba(0,0,0,0.2))",
-      pool = true
+      pathFilter = "drop-shadow(0 3px 4px rgba(0,0,0,0.2))"
     } = options;
     super(
       data,
@@ -85,7 +85,6 @@ export class Tip extends Mark {
     for (const key in defaults) if (key in this.channels) this[key] = defaults[key]; // apply default even if channel
     this.splitLines = splitter(this);
     this.clipLine = clipper(this);
-    this.pool = pool;
     this.format = typeof format === "string" || typeof format === "function" ? {title: format} : {...format}; // defensive copy before mutate; also promote nullish to empty
   }
   render(index, scales, values, dimensions, context) {
