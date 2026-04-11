@@ -55,11 +55,6 @@ export interface RampLegendOptions {
    * crisp edges when rendering.
    */
   round?: ScaleOptions["round"];
-}
-
-export interface OpacityLegendOptions extends RampLegendOptions {
-  /** The constant color the ramp; defaults to black. */
-  color?: string;
 
   /**
    * The [color space][1] of the backing canvas. Defaults to *srgb*; set to
@@ -68,6 +63,11 @@ export interface OpacityLegendOptions extends RampLegendOptions {
    * [1]: https://developer.mozilla.org/en-US/docs/Web/API/ImageData/colorSpace
    */
   colorSpace?: ImageData["colorSpace"];
+}
+
+export interface OpacityLegendOptions extends RampLegendOptions {
+  /** The constant color the ramp; defaults to black. */
+  color?: string;
 }
 
 export interface ColorLegendOptions extends SwatchesLegendOptions, RampLegendOptions {
