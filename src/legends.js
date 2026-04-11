@@ -1,8 +1,9 @@
-import {rgb} from "d3";
+import {select} from "d3";
 import {createContext} from "./context.js";
 import {legendRamp} from "./legends/ramp.js";
 import {isSymbolColorLegend, legendSwatches, legendSymbols} from "./legends/swatches.js";
 import {inherit, isScaleOptions} from "./options.js";
+import {getFilterId} from "./style.js";
 import {normalizeScale} from "./scales.js";
 
 const legendRegistry = new Map([
@@ -56,16 +57,23 @@ function legendColor(color, {legend = true, ...options}) {
   }
 }
 
-function legendOpacity({type, interpolate, ...scale}, {legend = true, color = rgb(0, 0, 0), ...options}) {
+function legendOpacity({type, interpolate, ...scale}, {legend = true, color = "currentColor", ...options}) {
   if (!interpolate) throw new Error(`${type} opacity scales are not supported`);
   if (legend === true) legend = "ramp";
   if (`${legend}`.toLowerCase() !== "ramp") throw new Error(`${legend} opacity legends are not supported`);
-  return legendColor({type, ...scale, interpolate: interpolateOpacity(color)}, {legend, ...options});
+  const node = legendColor({type, ...scale, interpolate: interpolateOpacity}, {legend, ...options});
+  if (!node) return;
+  const fid = getFilterId();
+  const svg = select(node);
+  svg.select("image").attr("filter", `url(#${fid})`);
+  const filter = svg.append("filter").attr("id", fid);
+  filter.append("feFlood").attr("flood-color", color);
+  filter.append("feComposite").attr("in2", "SourceGraphic").attr("operator", "in");
+  return node;
 }
 
-function interpolateOpacity(color) {
-  const {r, g, b} = rgb(color) || rgb(0, 0, 0); // treat invalid color as black
-  return (t) => `rgba(${r},${g},${b},${t})`;
+function interpolateOpacity(t) {
+  return `rgba(0,0,0,${t})`;
 }
 
 export function createLegends(scales, context, options) {

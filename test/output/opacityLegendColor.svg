@@ -12,7 +12,7 @@
       white-space: pre;
     }
   </style>
-  <image x="0" y="18" width="240" height="10" preserveAspectRatio="none" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQAAAAABCAYAAAAxWXB3AAAABmJLR0QA/wD/AP+gvaeTAAABbElEQVQ4jXWQS24UQRBE38vpHg8WXniBhLgGZ+GSnIwNYoFkxjPdFSyqej429Co7MzIyXsn1k2/fC+Dr8686fnn29ecPAT5NnwvgaXes08eD55cHl8ffPv3Zu3yYXY6z6+HFx9fJ9WEWYM+51tPOdT+5no4e9pMAZ5YCmNhXO59sc7lfdrapBFhYa162utU8lW3RTIutyrmVrRbTFKCYKrXYWjmVpq0CrFRNtdpamdq0rTL+d2299FuqdmlGTXpPUvG6B9CoStroVcU2tBZASFXsPmOW6Kat4KbbvB2epRKMMcFSkyZDl6ikbu9hbDhuNolGrMSIvGHpvhkZLDNqrU3HaISU0t9DdWTJYBBGBsyWa+wBfQVrBL+wXTKJgTIM3+a2hDFx7Omg6TNi0B6h50i3u7ztHUtfK4mAXRt7f3jkysLGFXr+7vBPFgcLdyxsvgrjTkbNTYZ3M7iwvNU6uP8/u/d9N+P2DW61fwF639N9+dGgcwAAAABJRU5ErkJggg=="></image>
+  <image x="0" y="18" width="240" height="10" preserveAspectRatio="none" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQAAAAABCAYAAAAxWXB3AAAABmJLR0QA/wD/AP+gvaeTAAAAWUlEQVQ4jd2SSwoAIAhEx+5/6DZCg/gZqFWBoCZPRzScZwCW+8tjozjmO6tqJxbnlX4K57Y2m3n6Z44h36eqMXK4X2SrO+rmV7hZbeVPepR7UrX9pOWllewNAjMBAXvLNnYAAAAASUVORK5CYII=" filter="url(#plot-filter-1)"></image>
   <g transform="translate(0,28)" fill="none" text-anchor="middle" font-variant="tabular-nums">
     <g class="tick" opacity="1" transform="translate(0.5,0)">
       <line stroke="currentColor" y2="6" y1="-10"></line>
@@ -40,4 +40,8 @@
     </g>
   </g>
   <text x="0" y="12" fill="currentColor" font-weight="bold">Linear</text>
+  <filter id="plot-filter-1">
+    <feFlood flood-color="steelblue"></feFlood>
+    <feComposite in2="SourceGraphic" operator="in"></feComposite>
+  </filter>
 </svg>
