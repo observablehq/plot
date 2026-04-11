@@ -507,11 +507,11 @@ function getColorConverter(colorSpace, {document}) {
   canvas.width = 1;
   canvas.height = 1;
   const context = canvas.getContext("2d", {colorSpace, willReadFrequently: true});
+  context.globalCompositeOperation = "copy";
   return (color) => {
     if (color == null) return transparent;
     let data = cache.get(color);
     if (data !== undefined) return data;
-    context.clearRect(0, 0, 1, 1);
     context.fillStyle = color;
     context.fillRect(0, 0, 1, 1);
     data = context.getImageData(0, 0, 1, 1).data;
