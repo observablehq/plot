@@ -182,26 +182,43 @@ test(async function tipLineY() {
   return Plot.lineY(aapl, {x: "Date", y: "Close", tip: true}).plot();
 });
 
-test(async function tipLongText() {
-  return Plot.tip([{x: "Long sentence that gets cropped after a certain length"}], {x: "x"}).plot();
-});
-
-test(async function tipLongTextEllipsisEnd() {
-  return Plot.tip([{x: "Long sentence that gets clipped at the end after a certain length"}], {
+test(async function tipTextOverflowNull() {
+  return Plot.tip([{x: "Long sentence that does not get clipped no matter how long it gets; it can be really long"}], {
     x: "x",
-    textOverflow: "ellipsis" // "ellipsis-end"
+    textOverflow: null,
+    anchor: "top" // otherwise it would be bottom
   }).plot();
 });
 
-test(async function tipLongTextEllipsisMiddle() {
-  return Plot.tip([{x: "Long sentence that gets clipped in the middle after a certain length"}], {
+test(async function tipTextOverflowClipEnd() {
+  return Plot.tip([{x: "Long sentence that gets clipped at the end"}], {
+    x: "x",
+    textOverflow: "clip" // shorthand for "clip-end"
+  }).plot();
+});
+
+test(async function tipTextOverflowDefault() {
+  return Plot.tip([{x: "Long sentence that gets an ellipsis at the end"}], {
+    x: "x"
+  }).plot();
+});
+
+test(async function tipTextOverflowEllipsisEnd() {
+  return Plot.tip([{x: "Long sentence that gets an ellipsis at the end"}], {
+    x: "x",
+    textOverflow: "ellipsis" // shorthand for "ellipsis-end"
+  }).plot();
+});
+
+test(async function tipTextOverflowEllipsisMiddle() {
+  return Plot.tip([{x: "Long sentence that gets an ellipsis in the middle"}], {
     x: "x",
     textOverflow: "ellipsis-middle"
   }).plot();
 });
 
-test(async function tipLongTextEllipsisStart() {
-  return Plot.tip([{x: "Long sentence that gets clipped at the start after a certain length"}], {
+test(async function tipTextOverflowEllipsisStart() {
+  return Plot.tip([{x: "Long sentence that gets an ellipsis at the start"}], {
     x: "x",
     textOverflow: "ellipsis-start"
   }).plot();
