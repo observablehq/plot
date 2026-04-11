@@ -21,6 +21,7 @@ export function legendRamp(color, options) {
     fontVariant = inferFontVariant(color),
     round = true,
     opacity,
+    colorSpace,
     className
   } = options;
   const context = createContext(options);
@@ -90,7 +91,7 @@ export function legendRamp(color, options) {
     const canvas = context.document.createElement("canvas");
     canvas.width = n;
     canvas.height = 1;
-    const context2 = canvas.getContext("2d");
+    const context2 = canvas.getContext("2d", {colorSpace});
     for (let i = 0, j = n - 1; i < n; ++i) {
       context2.fillStyle = interpolator(i / j);
       context2.fillRect(i, 0, 1, 1);
