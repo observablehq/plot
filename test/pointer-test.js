@@ -1,6 +1,8 @@
+// @vitest-environment node
+
 import * as Plot from "@observablehq/plot";
-import assert from "assert";
 import {JSDOM} from "jsdom";
+import {afterEach, assert, beforeEach, describe, it} from "vitest";
 
 function setup() {
   const jsdom = new JSDOM("");
@@ -49,10 +51,12 @@ function visibleTips(svg) {
 }
 
 describe("pointer pool", () => {
+  let pointer, flushAnimationFrame;
+
+  beforeEach(() => ({pointer, flushAnimationFrame} = setup()));
   afterEach(teardown);
 
   it("multiple tip: true marks show only one tip", () => {
-    const {pointer, flushAnimationFrame} = setup();
     const svg = Plot.plot({
       marks: [
         Plot.dot([{x: 1, y: 1}, {x: 2, y: 2}], {x: "x", y: "y", tip: true}), // prettier-ignore
@@ -66,7 +70,6 @@ describe("pointer pool", () => {
   });
 
   it("compound marks with tip: true show only one tip", () => {
-    const {pointer, flushAnimationFrame} = setup();
     const svg = Plot.boxX([1, 2, 3, 4, 5, 10, 20], {tip: true}).plot();
     const tips = svg.querySelectorAll("[aria-label=tip]");
     assert.ok(tips.length > 1, "boxX should create multiple tip marks");
@@ -77,7 +80,6 @@ describe("pointer pool", () => {
   });
 
   it("crosshair renders all sub-marks (does not pool)", () => {
-    const {pointer, flushAnimationFrame} = setup();
     const svg = Plot.plot({
       marks: [Plot.crosshair([{x: 1, y: 1}, {x: 2, y: 2}], {x: "x", y: "y"})] // prettier-ignore
     });
@@ -91,7 +93,6 @@ describe("pointer pool", () => {
   });
 
   it("crosshair and tip: true coexist", () => {
-    const {pointer, flushAnimationFrame} = setup();
     const svg = Plot.plot({
       marks: [
         Plot.dot([{x: 1, y: 1}, {x: 2, y: 2}], {x: "x", y: "y", tip: true}), // prettier-ignore
@@ -115,7 +116,6 @@ describe("pointer pool", () => {
   });
 
   it("explicit tip(pointer) pools with tip: true", () => {
-    const {pointer, flushAnimationFrame} = setup();
     const data = [{x: 1, y: 1}, {x: 2, y: 2}]; // prettier-ignore
     const svg = Plot.plot({
       marks: [Plot.dot(data, {x: "x", y: "y", tip: true}), Plot.tip(data, Plot.pointer({x: "x", y: "y", pool: true}))]
@@ -127,7 +127,6 @@ describe("pointer pool", () => {
   });
 
   it("pointerleave hides all tips", () => {
-    const {pointer, flushAnimationFrame} = setup();
     const svg = Plot.plot({
       marks: [
         Plot.dot([{x: 1, y: 1}, {x: 2, y: 2}], {x: "x", y: "y", tip: true}), // prettier-ignore

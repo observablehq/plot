@@ -62,7 +62,7 @@
     <line x1="168.889" x2="426.667" y1="87" y2="87"></line>
     <line x1="194.667" x2="465.333" y1="108" y2="108"></line>
   </g>
-  <g aria-label="bar" fill="#ccc">
+  <g aria-label="bar" fill="light-dark(#ccc, #555)">
     <rect x="336.444" width="167.556" y="24" height="19"></rect>
     <rect x="272" width="109.556" y="45" height="19"></rect>
     <rect x="323.556" width="51.556" y="66" height="19"></rect>
