@@ -1,7 +1,8 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
+import {test} from "test/plot";
 
-export function roundedBarYR() {
+test(function roundedBarYR() {
   const xy = {y1: 0, y2: 1, inset: 4, insetLeft: 2, insetRight: 2};
   return Plot.plot({
     x: {inset: 2},
@@ -15,9 +16,9 @@ export function roundedBarYR() {
       Plot.barY({length: 1}, {x: 3, ...xy, r: 100})
     ]
   });
-}
+});
 
-export function roundedBarYRx() {
+test(function roundedBarYRx() {
   const xy = {y1: 0, y2: 1, inset: 4, insetLeft: 2, insetRight: 2};
   return Plot.plot({
     x: {inset: 2},
@@ -31,9 +32,9 @@ export function roundedBarYRx() {
       Plot.barY({length: 1}, {x: 3, ...xy, rx: 100})
     ]
   });
-}
+});
 
-export function roundedBarYRy() {
+test(function roundedBarYRy() {
   const xy = {y1: 0, y2: 1, inset: 4, insetLeft: 2, insetRight: 2};
   return Plot.plot({
     x: {inset: 2},
@@ -47,9 +48,9 @@ export function roundedBarYRy() {
       Plot.barY({length: 1}, {x: 3, ...xy, ry: 100})
     ]
   });
-}
+});
 
-export function roundedRectR() {
+test(function roundedRectR() {
   const xy = {y1: 0, y2: 1, inset: 4, insetLeft: 2, insetRight: 2};
   return Plot.plot({
     x: {inset: 2},
@@ -63,9 +64,9 @@ export function roundedRectR() {
       Plot.rect({length: 1}, {x: 3, ...xy, r: 100})
     ]
   });
-}
+});
 
-export function roundedRectRx() {
+test(function roundedRectRx() {
   const xy = {y1: 0, y2: 1, inset: 4, insetLeft: 2, insetRight: 2};
   return Plot.plot({
     x: {inset: 2},
@@ -79,9 +80,9 @@ export function roundedRectRx() {
       Plot.rect({length: 1}, {x: 3, ...xy, rx: 100})
     ]
   });
-}
+});
 
-export function roundedRectRy() {
+test(function roundedRectRy() {
   const xy = {y1: 0, y2: 1, inset: 4, insetLeft: 2, insetRight: 2};
   return Plot.plot({
     x: {inset: 2},
@@ -95,9 +96,9 @@ export function roundedRectRy() {
       Plot.rect({length: 1}, {x: 3, ...xy, ry: 100})
     ]
   });
-}
+});
 
-export function roundedRectAsymmetricX() {
+test(function roundedRectAsymmetricX() {
   const xy = {y1: 0, y2: 1, inset: 4, insetLeft: 2, insetRight: 2};
   return Plot.plot({
     x: {inset: 2},
@@ -111,9 +112,9 @@ export function roundedRectAsymmetricX() {
       Plot.rect({length: 1}, {x: 3, ...xy, rx1y2: 500, rx2y2: 50})
     ]
   });
-}
+});
 
-export function roundedRectAsymmetricY() {
+test(function roundedRectAsymmetricY() {
   const xy = {x1: 0, x2: 1, inset: 4, insetTop: 2, insetBottom: 2};
   return Plot.plot({
     y: {inset: 2},
@@ -127,9 +128,9 @@ export function roundedRectAsymmetricY() {
       Plot.rect({length: 1}, {y: 3, ...xy, rx1y2: 500, rx1y1: 50})
     ]
   });
-}
+});
 
-export function roundedRectCorners() {
+test(function roundedRectCorners() {
   return Plot.plot({
     y: {reverse: true},
     inset: 4,
@@ -153,9 +154,9 @@ export function roundedRectCorners() {
       Plot.rect({length: 1}, {x1: 4, x2: 3, y1: 4, y2: 3, inset: 4, rx1y2: 20})
     ]
   });
-}
+});
 
-export function roundedRectBand() {
+test(function roundedRectBand() {
   return Plot.plot({
     x: {inset: 2},
     y: {reverse: true},
@@ -167,22 +168,22 @@ export function roundedRectBand() {
       Plot.rect({length: 1}, {x: 3, y1: 0, y2: 1, inset: 4, insetLeft: 2, insetRight: 2, ry1: 20})
     ]
   });
-}
+});
 
-export function roundedRectCollapsedX() {
+test(function roundedRectCollapsedX() {
   return Plot.plot({
     y: {reverse: true},
     marks: [Plot.frame(), Plot.rect({length: 1}, {x2: 1, y1: 0, y2: 1, inset: 4, ry1: 20})]
   });
-}
+});
 
-export function roundedRectCollapsedY() {
+test(function roundedRectCollapsedY() {
   return Plot.plot({
     marks: [Plot.frame(), Plot.rect({length: 1}, {x1: 0, x2: 1, y2: 1, inset: 4, ry1: 20})]
   });
-}
+});
 
-export function roundedRectSides() {
+test(function roundedRectSides() {
   return Plot.plot({
     y: {reverse: true},
     inset: 4,
@@ -206,9 +207,9 @@ export function roundedRectSides() {
       Plot.rect({length: 1}, {x1: 4, x2: 3, y1: 4, y2: 3, inset: 4, ry2: 20})
     ]
   });
-}
+});
 
-export async function roundedRectNegativeX() {
+test(async function roundedRectNegativeX() {
   const olympians = await d3.csv<any>("data/athletes.csv", d3.autoType);
   return Plot.plot({
     color: {legend: true},
@@ -218,9 +219,9 @@ export async function roundedRectNegativeX() {
       Plot.ruleX([0])
     ]
   });
-}
+});
 
-export async function roundedRectNegativeY() {
+test(async function roundedRectNegativeY() {
   const olympians = await d3.csv<any>("data/athletes.csv", d3.autoType);
   return Plot.plot({
     color: {legend: true},
@@ -229,9 +230,9 @@ export async function roundedRectNegativeY() {
       Plot.ruleY([0])
     ]
   });
-}
+});
 
-export async function roundedRectNegativeY1() {
+test(async function roundedRectNegativeY1() {
   const olympians = await d3.csv<any>("data/athletes.csv", d3.autoType);
   return Plot.plot({
     color: {legend: true},
@@ -240,9 +241,9 @@ export async function roundedRectNegativeY1() {
       Plot.ruleY([0])
     ]
   });
-}
+});
 
-export function roundedRectOpposing() {
+test(function roundedRectOpposing() {
   return Plot.plot({
     height: 400,
     padding: 0,
@@ -268,4 +269,4 @@ export function roundedRectOpposing() {
       Plot.cell({length: 1}, {x: 3, y: 3, inset: 10, rx1y1: -20, rx2y1: -20, rx2y2: -20, rx1y2: -20})
     ]
   });
-}
+});

@@ -1,7 +1,8 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
+import {test} from "test/plot";
 
-export async function usPresidentGallery() {
+test(async function usPresidentGallery() {
   const presidents = await d3.csv<any>("data/us-president-favorability.csv", d3.autoType);
   return Plot.plot({
     inset: 30,
@@ -20,9 +21,9 @@ export async function usPresidentGallery() {
       )
     ]
   });
-}
+});
 
-export async function usPresidentGalleryAlt() {
+test(async function usPresidentGalleryAlt() {
   const presidents = await d3.csv<any>("data/us-president-favorability.csv", d3.autoType);
   return Plot.plot({
     inset: 30,
@@ -48,4 +49,4 @@ export async function usPresidentGalleryAlt() {
       )
     ]
   });
-}
+});

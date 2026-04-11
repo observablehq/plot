@@ -1,5 +1,5 @@
+import {assert, it} from "vitest";
 import * as Plot from "@observablehq/plot";
-import assert from "assert";
 
 it("formatNumber(locale) does the right thing", () => {
   assert.strictEqual(Plot.formatNumber()(Math.PI), "3.142");

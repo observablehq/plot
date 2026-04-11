@@ -1,4 +1,4 @@
-<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="500" height="547.8103861691175" viewBox="0 0 500 547.8103861691175" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="500" height="547.81" viewBox="0 0 500 547.81" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <style>
     :where(.plot) {
       --plot-background: white;
@@ -68,16 +68,16 @@
     <path style="mix-blend-mode: multiply;" d="M290.717,163.416C266.595,118.584,286.691,20.759,258.422,10C231.915,-0.089,177.014,65.85,132.731,86.241C97.68,102.381,35.608,100.797,23.094,125.222C9.82,151.131,64.887,203.243,64.396,241.539C63.851,284.07,-4.569,345.661,10,367.369C23.837,387.986,102.38,360.522,140.001,374.463C201.783,397.358,224.43,528.072,279.13,536.81C330.808,545.066,421.502,489.454,456.453,440.076C491.266,390.894,524.667,268.206,489,241.539C464.927,223.54,388.694,261.889,353.213,241.539C327.071,226.545,306.11,192.025,290.717,163.416"></path>
   </g>
   <g aria-label="dot" fill="black" stroke="white" stroke-width="1.5" transform="translate(0.5,0.5)">
-    <circle cx="353.21262342068263" cy="241.53853534222978" r="3"></circle>
-    <circle cx="290.7170864350532" cy="163.41601683398784" r="3"></circle>
-    <circle cx="258.4220949482437" cy="10" r="3"></circle>
-    <circle cx="132.7314238538552" cy="86.24096148075077" r="3"></circle>
-    <circle cx="23.094425207758558" cy="125.22180901087079" r="3"></circle>
-    <circle cx="64.39624674281998" cy="241.53853534222978" r="3"></circle>
-    <circle cx="10" cy="367.3689184668107" r="3"></circle>
-    <circle cx="140.00079815916465" cy="374.4632755786931" r="3"></circle>
-    <circle cx="279.1303044554346" cy="536.8103861691175" r="3"></circle>
-    <circle cx="456.4534290958848" cy="440.0755552296352" r="3"></circle>
-    <circle cx="489" cy="241.53853534222984" r="3"></circle>
+    <circle cx="353.213" cy="241.539" r="3"></circle>
+    <circle cx="290.717" cy="163.416" r="3"></circle>
+    <circle cx="258.422" cy="10" r="3"></circle>
+    <circle cx="132.731" cy="86.241" r="3"></circle>
+    <circle cx="23.094" cy="125.222" r="3"></circle>
+    <circle cx="64.396" cy="241.539" r="3"></circle>
+    <circle cx="10" cy="367.369" r="3"></circle>
+    <circle cx="140.001" cy="374.463" r="3"></circle>
+    <circle cx="279.13" cy="536.81" r="3"></circle>
+    <circle cx="456.453" cy="440.076" r="3"></circle>
+    <circle cx="489" cy="241.539" r="3"></circle>
   </g>
 </svg>

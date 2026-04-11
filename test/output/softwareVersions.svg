@@ -44,21 +44,21 @@
   </g>
   <g aria-label="bar">
     <rect x="20.5" width="299" y="0" height="30" fill="#c6dbef"></rect>
-    <rect x="320.5" width="135.7441860465117" y="0" height="30" fill="#6baed6"></rect>
-    <rect x="457.2441860465117" width="65.9767441860464" y="0" height="30" fill="#084594"></rect>
-    <rect x="524.2209302325581" width="35.27906976744191" y="0" height="30" fill="#9ecae1"></rect>
-    <rect x="560.5" width="28.30232558139528" y="0" height="30" fill="#4292c6"></rect>
-    <rect x="589.8023255813953" width="15.7441860465118" y="0" height="30" fill="#2171b5"></rect>
-    <rect x="606.5465116279071" width="12.95348837209292" y="0" height="30" fill="#eff3ff"></rect>
+    <rect x="320.5" width="135.744" y="0" height="30" fill="#6baed6"></rect>
+    <rect x="457.244" width="65.977" y="0" height="30" fill="#084594"></rect>
+    <rect x="524.221" width="35.279" y="0" height="30" fill="#9ecae1"></rect>
+    <rect x="560.5" width="28.302" y="0" height="30" fill="#4292c6"></rect>
+    <rect x="589.802" width="15.744" y="0" height="30" fill="#2171b5"></rect>
+    <rect x="606.547" width="12.953" y="0" height="30" fill="#eff3ff"></rect>
   </g>
   <g aria-label="text" transform="translate(0.5,0.5)">
     <text y="0.32em" transform="translate(170,15)">348</text>
-    <text y="0.32em" transform="translate(388.3720930232558,15)">368</text>
-    <text y="0.32em" transform="translate(490.2325581395348,15)">429</text>
-    <text y="0.32em" transform="translate(541.860465116279,15)">359</text>
-    <text y="0.32em" transform="translate(574.6511627906978,15)">369</text>
-    <text y="0.32em" transform="translate(597.6744186046511,15)">381</text>
-    <text y="0.32em" transform="translate(613.0232558139534,15)">324</text>
+    <text y="0.32em" transform="translate(388.372,15)">368</text>
+    <text y="0.32em" transform="translate(490.233,15)">429</text>
+    <text y="0.32em" transform="translate(541.86,15)">359</text>
+    <text y="0.32em" transform="translate(574.651,15)">369</text>
+    <text y="0.32em" transform="translate(597.674,15)">381</text>
+    <text y="0.32em" transform="translate(613.023,15)">324</text>
   </g>
   <g aria-label="rule" stroke="currentColor" transform="translate(0.5,0)">
     <line x1="20" x2="20" y1="0" y2="30"></line>

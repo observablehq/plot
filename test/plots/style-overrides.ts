@@ -1,7 +1,8 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
+import {test} from "test/plot";
 
-export function styleOverrideLegendCategorical() {
+test(function styleOverrideLegendCategorical() {
   const className = "style-override";
   const wrapper = d3
     .create("div")
@@ -28,4 +29,4 @@ export function styleOverrideLegendCategorical() {
   wrapper.append(Plot.legend({...options, className}));
 
   return wrapper;
-}
+});

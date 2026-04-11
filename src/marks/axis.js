@@ -3,7 +3,7 @@ import {formatDefault} from "../format.js";
 import {marks} from "../mark.js";
 import {radians} from "../math.js";
 import {arrayify, constant, identity, keyword, number, range, valueof} from "../options.js";
-import {isIterable, isNoneish, isTemporal, isInterval} from "../options.js";
+import {isIterable, isNoneish, isYearIntegers, isTemporal, isInterval} from "../options.js";
 import {maybeColorChannel, maybeNumberChannel, maybeRangeInterval} from "../options.js";
 import {inferScaleOrder} from "../scales.js";
 import {offset} from "../style.js";
@@ -670,6 +670,8 @@ export function inferTickFormat(scale, data, ticks, tickFormat, anchor) {
     ? tickFormat
     : tickFormat === undefined && data && isTemporal(data)
     ? inferTimeFormat(scale.type, data, anchor) ?? formatDefault
+    : tickFormat === undefined && data && isYearIntegers(data)
+    ? String
     : scale.tickFormat
     ? scale.tickFormat(typeof ticks === "number" ? ticks : null, tickFormat)
     : typeof tickFormat === "string" && scale.domain().length > 0

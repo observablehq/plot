@@ -1,6 +1,6 @@
+import {assert, it} from "vitest";
 import * as Plot from "@observablehq/plot";
 import {clipEnd, clipMiddle, clipStart, defaultWidth, readCharacter} from "../../src/marks/text.js";
-import assert from "assert";
 
 it("text() has the expected defaults", () => {
   const text = Plot.text();
