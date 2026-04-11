@@ -33,7 +33,7 @@ function pointerK(kx, ky, {x, y, px, py, maxRadius = 40, channels, render, ...op
       // the pointer (e.g., tips); only the closest point is shown.
       let state = states.get(svg);
       if (!state) {
-        state = {sticky: false, roots: [], renders: [], pool: this.pool ? new Map() : null};
+        state = {sticky: false, roots: [], renders: [], pool: this.pool ? {map: new Map()} : null};
         states.set(svg, state);
       }
 
@@ -63,7 +63,7 @@ function pointerK(kx, ky, {x, y, px, py, maxRadius = 40, channels, render, ...op
         let facetPools = state.facetPools;
         if (!facetPools) state.facetPools = facetPools = new Map();
         facetPool = facetPools.get(this);
-        if (!facetPool) facetPools.set(this, (facetPool = new Map()));
+        if (!facetPool) facetPools.set(this, (facetPool = {map: new Map()}));
       }
 
       // The order of precedence for the pointer position is: px & py; the
@@ -86,13 +86,13 @@ function pointerK(kx, ky, {x, y, px, py, maxRadius = 40, channels, render, ...op
       function update(ii, ri) {
         if (!pool) return void render(ii);
         if (ii == null) render(ii);
-        pool.set(renderIndex, {ii, ri, render});
+        pool.map.set(renderIndex, {ii, ri, render});
         if (pool.frame !== undefined) cancelAnimationFrame(pool.frame);
         pool.frame = requestAnimationFrame(() => {
           pool.frame = undefined;
           let best = null;
-          for (const [, c] of pool) if (!best || c.ri < best.ri) best = c;
-          for (const [, c] of pool) c.render(c === best ? c.ii : null);
+          for (const c of pool.map.values()) if (!best || c.ri < best.ri) best = c;
+          for (const c of pool.map.values()) c.render(c === best ? c.ii : null);
         });
       }
 
@@ -124,7 +124,7 @@ function pointerK(kx, ky, {x, y, px, py, maxRadius = 40, channels, render, ...op
 
         // Dispatch the value. When simultaneously exiting this facet and
         // entering a new one, prioritize the entering facet.
-        if (!(i == null && facetPool?.size > 1)) {
+        if (!(i == null && facetPool?.map.size > 1)) {
           const value = i == null ? null : isArray(data) ? data[i] : data.get(i);
           context.dispatchValue(value);
         }
