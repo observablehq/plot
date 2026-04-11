@@ -32,8 +32,10 @@ function pointerK(kx, ky, {x, y, px, py, maxRadius = 40, channels, render, ...op
       // The pool maps renderIndex → {ii, ri, render} for marks competing for
       // the pointer (e.g., tips); only the closest point is shown.
       let state = states.get(svg);
-      if (!state)
-        states.set(svg, (state = {sticky: false, roots: [], renders: [], pool: this.pool ? new Map() : null}));
+      if (!state) {
+        state = {sticky: false, roots: [], renders: [], pool: this.pool ? new Map() : null};
+        states.set(svg, state);
+      }
 
       // This serves as a unique identifier of the rendered mark per-plot; it is
       // used to record the currently-rendered elements (state.roots) so that we
