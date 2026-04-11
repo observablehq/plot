@@ -48,5 +48,5 @@ test(function opacityLegendSqrt() {
 });
 
 test(function opacityLegendCSS4() {
-  return opacityLegends({opacity: {type: "linear", domain: [0, 1], label: "oklch"}, color: "oklch(70% 0.35 145)"});
+  return opacityLegends({opacity: {type: "linear", domain: [0, 1], label: "p3"}, color: "color(display-p3 0 1 0)"});
 });
