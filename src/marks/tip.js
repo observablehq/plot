@@ -191,10 +191,9 @@ export class Tip extends Mark {
         value = "";
       } else {
         const space = label || (!value && !swatch) ? " " : "";
-        const text = clipper({monospace, lineWidth: lineWidth - widthof(label + space) / 100, textOverflow})(value);
-        // value is truncated
-        if (text !== value) title = value.trim();
-        value = space + text;
+        const clipped = clipper({monospace, lineWidth: lineWidth - widthof(label + space) / 100, textOverflow})(value);
+        if (clipped !== value) title = value.trim(); // show untruncated value in title
+        value = space + clipped;
       }
       const line = selection.append("tspan").attr("x", 0).attr("dy", `${lineHeight}em`).text("\u200b"); // zwsp for double-click
       if (label) line.append("tspan").attr("font-weight", "bold").text(label);
