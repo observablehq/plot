@@ -19,7 +19,7 @@ export function test(plot) {
     reindexStyle(root);
     reindexIri(root, "clip", ["clip-path"]);
     reindexIri(root, "filter", ["filter"]);
-    reindexIri(root, "marker", ["marker-start", "marker-mid", "marker-end"])
+    reindexIri(root, "marker", ["marker-start", "marker-mid", "marker-end"]);
     reindexIri(root, "pattern", ["fill", "stroke"]);
     const actual = normalizeHtml(root.outerHTML);
     const outfile = join("test", "output", `${name}.${ext}`);
