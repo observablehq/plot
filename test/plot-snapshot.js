@@ -17,9 +17,10 @@ export function test(plot) {
       svg.setAttributeNS("http://www.w3.org/2000/xmlns/", "xmlns:xlink", "http://www.w3.org/1999/xlink");
     }
     reindexStyle(root);
-    reindexMarker(root);
-    reindexClip(root);
-    reindexPattern(root);
+    reindexIri(root, "clip", ["clip-path"]);
+    reindexIri(root, "filter", ["filter"]);
+    reindexIri(root, "marker", ["marker-start", "marker-mid", "marker-end"])
+    reindexIri(root, "pattern", ["fill", "stroke"]);
     const actual = normalizeHtml(root.outerHTML);
     const outfile = join("test", "output", `${name}.${ext}`);
     const diffile = join("test", "output", `${name}-changed.${ext}`);
@@ -63,50 +64,16 @@ function reindexStyle(root) {
   }
 }
 
-function reindexMarker(root) {
+function reindexIri(root, name, attributes) {
   let index = 0;
   const map = new Map();
-  for (const node of root.querySelectorAll("[id^=plot-marker-]")) {
+  for (const node of root.querySelectorAll(`[id^=plot-${name}-]`)) {
     let id = node.getAttribute("id");
     if (map.has(id)) id = map.get(id);
-    else map.set(id, (id = `plot-marker-${++index}`));
+    else map.set(id, (id = `plot-${name}-${++index}`));
     node.setAttribute("id", id);
   }
-  for (const key of ["marker-start", "marker-mid", "marker-end"]) {
-    for (const node of root.querySelectorAll(`[${key}]`)) {
-      let id = node.getAttribute(key).slice(5, -1);
-      if (map.has(id)) node.setAttribute(key, `url(#${map.get(id)})`);
-    }
-  }
-}
-
-function reindexClip(root) {
-  let index = 0;
-  const map = new Map();
-  for (const node of root.querySelectorAll("[id^=plot-clip-]")) {
-    let id = node.getAttribute("id");
-    if (map.has(id)) id = map.get(id);
-    else map.set(id, (id = `plot-clip-${++index}`));
-    node.setAttribute("id", id);
-  }
-  for (const key of ["clip-path"]) {
-    for (const node of root.querySelectorAll(`[${key}]`)) {
-      let id = node.getAttribute(key).slice(5, -1);
-      if (map.has(id)) node.setAttribute(key, `url(#${map.get(id)})`);
-    }
-  }
-}
-
-function reindexPattern(root) {
-  let index = 0;
-  const map = new Map();
-  for (const node of root.querySelectorAll("[id^=plot-pattern-]")) {
-    let id = node.getAttribute("id");
-    if (map.has(id)) id = map.get(id);
-    else map.set(id, (id = `plot-pattern-${++index}`));
-    node.setAttribute("id", id);
-  }
-  for (const key of ["fill", "stroke"]) {
+  for (const key of attributes) {
     for (const node of root.querySelectorAll(`[${key}]`)) {
       let id = node.getAttribute(key).slice(5, -1);
       if (map.has(id)) node.setAttribute(key, `url(#${map.get(id)})`);
