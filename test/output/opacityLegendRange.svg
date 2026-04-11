@@ -12,8 +12,7 @@
       white-space: pre;
     }
   </style>
-  <rect x="0" y="18" width="240" height="10" fill="url(#plot-filter-3)"></rect>
-  <image x="0" y="18" width="240" height="10" preserveAspectRatio="none" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQAAAAABCAYAAAAxWXB3AAAABmJLR0QA/wD/AP+gvaeTAAAAOElEQVQ4jWNkYGCoZ4AARihmwMNHFyeVJtZcUsVJtZ9Sf1CLJuQOdHlcfELmjMYLee4ZaHfQ3N0AAL4BATXN4EIAAAAASUVORK5CYII=" filter="url(#plot-filter-4)"></image>
+  <image x="0" y="18" width="240" height="10" preserveAspectRatio="none" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQAAAAABCAYAAAAxWXB3AAAABmJLR0QA/wD/AP+gvaeTAAAAOElEQVQ4jWNkYGCoZ4AARihmwMNHFyeVJtZcUsVJtZ9Sf1CLJuQOdHlcfELmjMYLee4ZaHfQ3N0AAL4BATXN4EIAAAAASUVORK5CYII=" filter="url(#plot-filter-2)"></image>
   <g transform="translate(0,28)" fill="none" text-anchor="middle" font-variant="tabular-nums">
     <g class="tick" opacity="1" transform="translate(0.5,0)">
       <line stroke="currentColor" y2="6" y1="-10"></line>
@@ -41,10 +40,7 @@
     </g>
   </g>
   <text x="0" y="12" fill="currentColor" font-weight="bold">Range</text>
-  <pattern id="plot-filter-3" y="18" width="10" height="10" patternUnits="userSpaceOnUse">
-    <path d="M0,0h5v5H0ZM5,5h5v5H5Z" fill="color-mix(in srgb, var(--plot-background), currentColor 20%)"></path>
-  </pattern>
-  <filter id="plot-filter-4">
+  <filter id="plot-filter-2">
     <feFlood flood-color="currentColor"></feFlood>
     <feComposite in2="SourceGraphic" operator="in"></feComposite>
   </filter>

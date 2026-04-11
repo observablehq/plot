@@ -61,26 +61,19 @@ function legendOpacity({type, interpolate, ...scale}, {legend = true, color = "c
   if (!interpolate) throw new Error(`${type} opacity scales are not supported`);
   if (legend === true) legend = "ramp";
   if (`${legend}`.toLowerCase() !== "ramp") throw new Error(`${legend} opacity legends are not supported`);
-  const svg = legendColor({type, ...scale, interpolate: (t) => `rgba(0,0,0,${t})`}, {legend, ...options});
-  if (!svg) return;
-  const s = select(svg);
-  const image = s.select("image");
-  const x = +image.attr("x");
-  const y = +image.attr("y");
-  const w = +image.attr("width");
-  const h = +image.attr("height");
-  const pid = getFilterId();
+  const node = legendColor({type, ...scale, interpolate: interpolateOpacity}, {legend, ...options});
+  if (!node) return;
   const fid = getFilterId();
+  const svg = select(node);
+  svg.select("image").attr("filter", `url(#${fid})`);
+  const filter = svg.append("filter").attr("id", fid);
+  filter.append("feFlood").attr("flood-color", color);
+  filter.append("feComposite").attr("in2", "SourceGraphic").attr("operator", "in");
+  return node;
+}
 
-  // Checkerboard
-  const pattern = s.append("pattern").attr("id", pid).attr("y", y).attr("width", h).attr("height", h).attr("patternUnits", "userSpaceOnUse"); // prettier-ignore
-  pattern.append("path").attr("d", `M0,0h${h / 2}v${h / 2}H0ZM${h / 2},${h / 2}h${h / 2}v${h / 2}H${h / 2}Z`).attr("fill", "color-mix(in srgb, var(--plot-background), currentColor 20%)"); // prettier-ignore
-  s.insert("rect", "image").attr("x", x).attr("y", y).attr("width", w).attr("height", h).attr("fill", `url(#${pid})`); // prettier-ignore
-
-  // Color
-  image.attr("filter", `url(#${fid})`);
-  s.append("filter").attr("id", fid).call((f) => { f.append("feFlood").attr("flood-color", color); f.append("feComposite").attr("in2", "SourceGraphic").attr("operator", "in"); }); // prettier-ignore
-  return svg;
+function interpolateOpacity(t) {
+  return `rgba(0,0,0,${t})`;
 }
 
 export function createLegends(scales, context, options) {
