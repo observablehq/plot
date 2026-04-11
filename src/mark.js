@@ -26,7 +26,7 @@ export class Mark {
       clip = defaults?.clip,
       channels: extraChannels,
       tip,
-      pool = defaults.pool,
+      pool = defaults?.pool,
       render
     } = options;
     this.data = data;
