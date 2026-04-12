@@ -3,7 +3,7 @@ import {inferFontVariant} from "../axes.js";
 import {createContext, create} from "../context.js";
 import {map, maybeNumberChannel} from "../options.js";
 import {interpolatePiecewise} from "../scales/quantitative.js";
-import {applyInlineStyles, impliedString, maybeClassName} from "../style.js";
+import {applyInlineStyles, impliedString, maybeClassName, offset} from "../style.js";
 
 export function legendRamp(color, options) {
   let {
@@ -99,7 +99,7 @@ export function legendRamp(color, options) {
     const canvas = context.document.createElement("canvas");
     canvas.width = n;
     canvas.height = 1;
-    const context2 = canvas.getContext("2d");
+    const context2 = canvas.getContext("2d", {colorSpace: "display-p3"}); // allow wide gamut
     for (let i = 0, j = n - 1; i < n; ++i) {
       context2.fillStyle = interpolator(i / j);
       context2.fillRect(i, 0, 1, 1);
@@ -173,6 +173,7 @@ export function legendRamp(color, options) {
         .tickFormat(typeof tickFormat === "function" ? tickFormat : undefined)
         .tickSize(tickSize)
         .tickValues(Array.isArray(ticks) ? ticks : null)
+        .offset(offset)
     )
     .attr("font-size", null)
     .attr("font-family", null)

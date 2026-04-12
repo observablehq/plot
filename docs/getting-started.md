@@ -95,20 +95,20 @@ Then, create an `index.html` file as shown above in the **UMD + local** tab. If 
 
 ## Installing from npm
 
-If you’re developing a web application using Node, you can install Plot via yarn, npm, pnpm, or your preferred package manager.
+If you’re developing a web application using Node, you can install Plot via pnpm, npm, yarn, or your preferred package manager.
 
 :::code-group
 
-```bash [yarn]
-yarn add @observablehq/plot
+```bash [pnpm]
+pnpm add @observablehq/plot
 ```
 
 ```bash [npm]
 npm install @observablehq/plot
 ```
 
-```bash [pnpm]
-pnpm add @observablehq/plot
+```bash [yarn]
+yarn add @observablehq/plot
 ```
 
 :::

@@ -53,7 +53,7 @@
   <g aria-label="dot" stroke="white" stroke-width="1.5" transform="translate(0.5,0.5)">
     <circle cx="49.4" cy="150.4" r="3" fill="rgb(255, 64, 64)"></circle>
     <circle cx="149.4" cy="250.4" r="3" fill="rgb(64, 255, 64)"></circle>
-    <circle cx="149.4" cy="50.400000000000006" r="3" fill="rgb(64, 64, 255)"></circle>
+    <circle cx="149.4" cy="50.4" r="3" fill="rgb(64, 64, 255)"></circle>
     <circle cx="249.4" cy="150.4" r="3" fill="rgb(255, 64, 64)"></circle>
   </g>
 </svg>

@@ -71,7 +71,7 @@ export interface ProjectionOptions extends InsetOptions {
 
   /**
    * A GeoJSON object to fit to the plot’s frame (minus insets); defaults to a
-   * Sphere for spherical projections (outline of the the whole globe).
+   * Sphere for spherical projections (outline of the whole globe).
    */
   domain?: GeoPermissibleObjects;
 
@@ -111,4 +111,13 @@ export interface ProjectionOptions extends InsetOptions {
    * [2]: https://observablehq.com/@d3/berghaus-star
    */
   clip?: boolean | number | "frame" | null;
+}
+
+/** A materialized projection, as returned by plot.scale("projection"). */
+export interface Projection extends ProjectionImplementation {
+  /** Returns the projected [x, y] coordinates for the given [longitude, latitude], if possible. */
+  apply(point: [longitude: number, latitude: number]): [x: number, y: number] | null;
+
+  /** Returns the the unprojected [longitude, latitude] for the given [x, y] coordinates, if possible. */
+  invert?(point: [x: number, y: number]): [longitude: number, latitude: number] | null;
 }

@@ -1,4 +1,3 @@
-import {rgb} from "d3";
 import {createContext} from "./context.js";
 import {legendRamp} from "./legends/ramp.js";
 import {isSymbolColorLegend, legendSwatches, legendSymbols} from "./legends/swatches.js";
@@ -56,17 +55,21 @@ function legendColor(color, {legend = true, ...options}) {
   }
 }
 
-function legendOpacity(opacity, {legend = true, color = "black", ...options}) {
+function legendOpacity(opacity, {legend = true, color = "currentColor", ...options}) {
   if (legend === true) legend = opacity.type === "ordinal" ? "swatches" : "ramp";
-  const {r, g, b} = rgb(color) || rgb(0, 0, 0); // treat invalid color as black
+  const interpolate = interpolateOpacity(color);
   switch (`${legend}`.toLowerCase()) {
     case "swatches":
-      return legendSwatches({...opacity, scale: (x) => String(rgb(r, g, b, opacity.scale(x)))}, options);
+      return legendSwatches({...opacity, scale: (x) => interpolate(opacity.scale(x))}, options);
     case "ramp":
-      return legendRamp({...opacity, interpolate: (a) => String(rgb(r, g, b, a))}, options);
+      return legendRamp({...opacity, interpolate}, options);
     default:
       throw new Error(`unknown opacity legend type: ${legend}`);
   }
+}
+
+function interpolateOpacity(color) {
+  return (t) => `color-mix(in srgb, transparent, ${color} ${(t * 100).toFixed(1)}%)`;
 }
 
 export function createLegends(scales, context, options) {

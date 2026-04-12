@@ -8,7 +8,6 @@ function isInternalInterface(name) {
   return (
     name === "AutoSpec" ||
     name === "Channel" ||
-    name === "ChannelDomainOptions" || // TODO
     name === "ChannelTransform" ||
     name === "Context" ||
     name === "Dimensions" ||
@@ -106,6 +105,8 @@ export default {
             if (property.getJsDocs().some((d) => d.getTags().some((d) => Node.isJSDocDeprecatedTag(d)))) continue;
             if (name === "InsetOptions") {
               allOptions.push({name: property.getName(), context: {name: "mark", href: "features/marks"}});
+              allOptions.push({name: property.getName(), context: {name: "scale", href: "features/scales"}});
+            } else if (name === "ChannelDomainOptions") {
               allOptions.push({name: property.getName(), context: {name: "scale", href: "features/scales"}});
             } else {
               const path = index.getRelativePathTo(declaration.getSourceFile());
