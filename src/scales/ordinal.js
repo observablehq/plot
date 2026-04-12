@@ -44,9 +44,9 @@ export function createScaleOrdinal(key, channels, {type, interval, domain, range
     if (scheme !== undefined) {
       if (range !== undefined) {
         const interpolate = quantitativeScheme(scheme);
-        const t0 = range[0],
-          d = range[1] - range[0];
-        range = ({length: n}) => quantize((t) => interpolate(t0 + d * t), n);
+        const t0 = range[0];
+        const dt = range[1] - range[0];
+        range = ({length: n}) => quantize((t) => interpolate(t0 + dt * t), n);
       } else {
         range = ordinalScheme(scheme);
       }
