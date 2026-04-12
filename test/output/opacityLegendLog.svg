@@ -12,7 +12,7 @@
       white-space: pre;
     }
   </style>
-  <image x="0" y="18" width="240" height="10" preserveAspectRatio="none" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQAAAAABCAYAAAAxWXB3AAAABmJLR0QA/wD/AP+gvaeTAAAAFUlEQVQ4jWNkYGD4zzAKRsEoGJEAAAFBAQFQiFUuAAAAAElFTkSuQmCC"></image>
+  <image x="0" y="18" width="240" height="10" preserveAspectRatio="none" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQAAAAABCAYAAAAxWXB3AAAABmJLR0QA/wD/AP+gvaeTAAAAE0lEQVQ4jWNkgADGUTyKR/HIwwADIwEBBh3i+QAAAABJRU5ErkJggg==" filter="url(#plot-filter-1)"></image>
   <g transform="translate(0,28)" fill="none" text-anchor="middle" font-variant="tabular-nums">
     <g class="tick" opacity="1" transform="translate(0.5,0)">
       <line stroke="currentColor" y2="6" y1="-10"></line>
@@ -56,4 +56,8 @@
     </g>
   </g>
   <text x="0" y="12" fill="currentColor" font-weight="bold">Log</text>
+  <filter id="plot-filter-1">
+    <feFlood flood-color="currentColor"></feFlood>
+    <feComposite in2="SourceGraphic" operator="in"></feComposite>
+  </filter>
 </svg>
