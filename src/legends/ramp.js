@@ -71,11 +71,6 @@ export function legendRamp(color, options) {
     const interpolator =
       range === undefined
         ? interpolate
-        : type === "threshold"
-        ? scaleThreshold(
-            Array.from(domain, (_, i) => (i + 1) / (domain.length + 1)),
-            Array.from(range, interpolate)
-          )
         : piecewise(interpolate.length === 1 ? interpolatePiecewise(interpolate) : interpolate, range);
 
     // Construct a D3 scale of the same type, but with a range that evenly
