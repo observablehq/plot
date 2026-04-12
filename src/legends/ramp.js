@@ -77,16 +77,12 @@ export function legendRamp(color, options) {
     // divides the horizontal extent of the legend. (In the common case, the
     // domain.length is two, and so the range is simply the extent.) For a
     // diverging scale, we need an extra point in the range for the pivot such
-    // that the pivot is always drawn in the middle. For a threshold scale, we
-    // add some space below and above.
+    // that the pivot is always drawn in the middle.
     x = applyRange(
       scale.copy(),
       quantize(
         interpolateNumber(marginLeft, width - marginRight),
-        Math.min(
-          domain.length + (pivot !== undefined) + 2 * (type === "threshold"),
-          range === undefined ? Infinity : range.length + +(type === "threshold")
-        )
+        Math.min(domain.length + (pivot !== undefined), range === undefined ? Infinity : range.length)
       )
     );
 
