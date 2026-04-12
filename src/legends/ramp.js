@@ -1,5 +1,4 @@
-import {quantize, interpolateNumber, piecewise, format, axisBottom} from "d3";
-import {scaleBand, scaleLinear} from "d3";
+import {quantize, interpolateNumber, piecewise, format, scaleBand, scaleLinear, axisBottom} from "d3";
 import {inferFontVariant} from "../axes.js";
 import {createContext, create} from "../context.js";
 import {map, maybeNumberChannel} from "../options.js";
