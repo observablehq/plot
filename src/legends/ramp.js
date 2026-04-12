@@ -1,5 +1,5 @@
 import {quantize, interpolateNumber, piecewise, format, axisBottom} from "d3";
-import {scaleBand, scaleLinear, scaleThreshold} from "d3";
+import {scaleBand, scaleLinear} from "d3";
 import {inferFontVariant} from "../axes.js";
 import {createContext, create} from "../context.js";
 import {map, maybeNumberChannel} from "../options.js";
@@ -59,7 +59,7 @@ export function legendRamp(color, options) {
 
   // Some D3 scales use scale.interpolate, some scale.interpolator, and some
   // scale.round; this normalizes the API so it works with all scale types.
-  const applyRange = round ? (x, range) => (x.rangeRound ?? x.range)(range) : (x, range) => x.range(range);
+  const applyRange = round ? (x, range) => x.rangeRound(range) : (x, range) => x.range(range);
 
   const {type, domain, range, interpolate, scale, pivot} = color;
 
