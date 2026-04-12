@@ -21,7 +21,6 @@ export function legendRamp(color, options) {
     fontVariant = inferFontVariant(color),
     round = true,
     opacity,
-    colorSpace = "display-p3", // shouldn’t affect srgb, and allows wide gamut
     className
   } = options;
   const context = createContext(options);
@@ -91,7 +90,7 @@ export function legendRamp(color, options) {
     const canvas = context.document.createElement("canvas");
     canvas.width = n;
     canvas.height = 1;
-    const context2 = canvas.getContext("2d", {colorSpace});
+    const context2 = canvas.getContext("2d", {colorSpace: "display-p3"}); // allow wide gamut
     for (let i = 0, j = n - 1; i < n; ++i) {
       context2.fillStyle = interpolator(i / j);
       context2.fillRect(i, 0, 1, 1);

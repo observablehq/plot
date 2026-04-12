@@ -55,14 +55,6 @@ export interface RampLegendOptions {
    * crisp edges when rendering.
    */
   round?: ScaleOptions["round"];
-
-  /**
-   * The [color space][1] of the backing canvas. Defaults to *display-p3*,
-   * allowing wide gamut colors; set to *srgb* if needed.
-   *
-   * [1]: https://developer.mozilla.org/en-US/docs/Web/API/ImageData/colorSpace
-   */
-  colorSpace?: ImageData["colorSpace"];
 }
 
 export interface OpacityLegendOptions extends RampLegendOptions {
