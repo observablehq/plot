@@ -1,8 +1,10 @@
+import {select} from "d3";
 import {createContext} from "./context.js";
 import {legendRamp} from "./legends/ramp.js";
 import {isSymbolColorLegend, legendSwatches, legendSymbols} from "./legends/swatches.js";
 import {inherit, isScaleOptions} from "./options.js";
 import {normalizeScale} from "./scales.js";
+import {getFilterId} from "./style.js";
 
 const legendRegistry = new Map([
   ["symbol", legendSymbols],
@@ -63,15 +65,27 @@ function legendOpacity(opacity, {legend = true, color = "currentColor", ...optio
       ? {...opacity, range: opacity.range.map(interpolate)}
       : opacity.type === "ordinal"
       ? {...opacity, scale: (x) => interpolate(opacity.scale(x))}
-      : {...opacity, interpolate}; // assume continuous
+      : {...opacity, interpolate: interpolateTransparent}; // assume continuous
   switch (`${legend}`.toLowerCase()) {
     case "swatches":
       return legendSwatches(scale, options);
-    case "ramp":
-      return legendRamp(scale, options);
+    case "ramp": {
+      const legend = legendRamp(scale, options);
+      const fid = getFilterId();
+      const svg = select(legend);
+      svg.select("image").attr("filter", `url(#${fid})`);
+      const filter = svg.append("filter").attr("id", fid);
+      filter.append("feFlood").attr("flood-color", color);
+      filter.append("feComposite").attr("in2", "SourceGraphic").attr("operator", "in");
+      return legend;
+    }
     default:
       throw new Error(`unknown opacity legend type: ${legend}`);
   }
+}
+
+function interpolateTransparent(t) {
+  return `rgba(0, 255, 0, ${t})`;
 }
 
 function interpolateOpacity(color) {
