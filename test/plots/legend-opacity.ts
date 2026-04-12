@@ -26,9 +26,5 @@ test(function opacityLegendSqrt() {
 });
 
 test(function opacityLegendCSS4() {
-  return Plot.legend({
-    opacity: {type: "linear", domain: [0, 1], label: "p3"},
-    color: "color(display-p3 0 1 0)",
-    colorSpace: "display-p3"
-  });
+  return Plot.legend({opacity: {type: "linear", domain: [0, 1], label: "p3"}, color: "color(display-p3 0 1 0)"});
 });
