@@ -57,8 +57,8 @@ export interface RampLegendOptions {
   round?: ScaleOptions["round"];
 
   /**
-   * The [color space][1] of the backing canvas. Defaults to *srgb*; set to
-   * *display-p3* for the Display P3 color space.
+   * The [color space][1] of the backing canvas. Defaults to *display-p3*,
+   * allowing wide gamut colors; set to *srgb* if needed.
    *
    * [1]: https://developer.mozilla.org/en-US/docs/Web/API/ImageData/colorSpace
    */

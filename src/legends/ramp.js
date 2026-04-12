@@ -21,7 +21,7 @@ export function legendRamp(color, options) {
     fontVariant = inferFontVariant(color),
     round = true,
     opacity,
-    colorSpace,
+    colorSpace = "display-p3", // shouldn’t affect srgb, and allows wide gamut
     className
   } = options;
   const context = createContext(options);
