@@ -85,7 +85,7 @@ function legendOpacity(opacity, {legend = true, color = "currentColor", ...optio
 }
 
 function interpolateTransparent(t) {
-  return `rgba(0, 255, 0, ${t})`;
+  return `rgba(0, 0, 0, ${t})`;
 }
 
 function interpolateOpacity(color) {
