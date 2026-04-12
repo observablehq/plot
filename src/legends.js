@@ -58,18 +58,17 @@ function legendColor(color, {legend = true, ...options}) {
 function legendOpacity(opacity, {legend = true, color = "currentColor", ...options}) {
   if (legend === true) legend = opacity.type === "ordinal" ? "swatches" : "ramp";
   const interpolate = interpolateOpacity(color);
+  const scale =
+    opacity.type === "threshold"
+      ? {...opacity, range: opacity.range.map(interpolate)}
+      : opacity.type === "ordinal"
+      ? {...opacity, scale: (x) => interpolate(opacity.scale(x))}
+      : {...opacity, interpolate}; // assume continuous
   switch (`${legend}`.toLowerCase()) {
     case "swatches":
-      return legendSwatches({...opacity, scale: (x) => interpolate(opacity.scale(x))}, options);
+      return legendSwatches(scale, options);
     case "ramp":
-      return legendRamp(
-        opacity.type === "threshold"
-          ? {...opacity, range: opacity.range.map(interpolate)}
-          : opacity.type === "ordinal"
-          ? {...opacity, scale: (x) => interpolate(opacity.scale(x))}
-          : {...opacity, interpolate},
-        options
-      );
+      return legendRamp(scale, options);
     default:
       throw new Error(`unknown opacity legend type: ${legend}`);
   }
