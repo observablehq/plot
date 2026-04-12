@@ -59,18 +59,13 @@ function legendColor(color, {legend = true, ...options}) {
 
 function legendOpacity(opacity, {legend = true, color = "currentColor", ...options}) {
   if (legend === true) legend = opacity.type === "ordinal" ? "swatches" : "ramp";
-  const interpolate = interpolateOpacity(color);
-  const scale =
-    opacity.type === "threshold"
-      ? {...opacity, range: opacity.range.map(interpolate)}
-      : opacity.type === "ordinal"
-      ? {...opacity, scale: (x) => interpolate(opacity.scale(x))}
-      : {...opacity, interpolate: interpolateTransparent}; // assume continuous
+  opacity = {...opacity, color, key: "opacity"};
   switch (`${legend}`.toLowerCase()) {
-    case "swatches":
-      return legendSwatches(scale, options);
+    case "swatches": {
+      return legendSwatches(opacity, options);
+    }
     case "ramp": {
-      const legend = legendRamp(scale, options);
+      const legend = legendRamp(opacity, options);
       const fid = getFilterId();
       const svg = select(legend);
       svg.select("image").attr("filter", `url(#${fid})`);
@@ -82,14 +77,6 @@ function legendOpacity(opacity, {legend = true, color = "currentColor", ...optio
     default:
       throw new Error(`unknown opacity legend type: ${legend}`);
   }
-}
-
-function interpolateTransparent(t) {
-  return `rgba(0, 0, 0, ${t})`;
-}
-
-function interpolateOpacity(color) {
-  return (t) => `color-mix(in srgb, transparent, ${color} ${(t * 100).toFixed(1)}%)`;
 }
 
 export function createLegends(scales, context, options) {
