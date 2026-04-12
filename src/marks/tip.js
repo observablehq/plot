@@ -15,7 +15,8 @@ import {cut, clipper, splitter, maybeTextOverflow} from "./text.js";
 const defaults = {
   ariaLabel: "tip",
   fill: "var(--plot-background)",
-  stroke: "currentColor"
+  stroke: "currentColor",
+  pool: true
 };
 
 // These channels are not displayed in the default tip; see formatChannels.

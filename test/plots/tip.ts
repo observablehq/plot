@@ -182,6 +182,51 @@ test(async function tipLineY() {
   return Plot.lineY(aapl, {x: "Date", y: "Close", tip: true}).plot();
 });
 
+test(async function tipPool() {
+  const cars = await d3.csv<any>("data/cars.csv", d3.autoType);
+  return Plot.plot({
+    marks: [
+      Plot.hexagon(cars, Plot.hexbin({fill: "count"}, {x: "power (hp)", y: "economy (mpg)", tip: true})),
+      Plot.dot(cars, {x: "power (hp)", y: "economy (mpg)", tip: true})
+    ]
+  });
+});
+
+test(async function tipCrosshair() {
+  const aapl = await d3.csv<any>("data/aapl.csv", d3.autoType);
+  return Plot.plot({
+    y: {grid: true},
+    marks: [Plot.lineY(aapl, {x: "Date", y: "Close", tip: true}), Plot.crosshairX(aapl, {x: "Date", y: "Close"})]
+  });
+});
+
+test(async function tipCrosshairFacet() {
+  const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
+  return Plot.plot({
+    grid: true,
+    marks: [
+      Plot.dot(penguins, {x: "culmen_length_mm", y: "culmen_depth_mm", fy: "species"}),
+      Plot.crosshair(penguins, {x: "culmen_length_mm", y: "culmen_depth_mm", fy: "species"})
+    ]
+  });
+});
+
+test(async function tipPoolFacet() {
+  const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
+  return Plot.plot({
+    grid: true,
+    marks: [
+      Plot.dot(penguins, Plot.hexbin({}, {x: "culmen_length_mm", y: "culmen_depth_mm", fy: "species", tip: true})),
+      Plot.dot(penguins, {x: "culmen_length_mm", y: "culmen_depth_mm", fy: "species", fill: "sex", tip: true})
+    ]
+  });
+});
+
+test(async function tipBoxX() {
+  const morley = await d3.csv<any>("data/morley.csv", d3.autoType);
+  return Plot.boxX(morley, {x: "Speed", y: "Expt", tip: true}).plot();
+});
+
 test(async function tipLongText() {
   return Plot.tip([{x: "Long sentence that gets cropped after a certain length"}], {x: "x"}).plot();
 });

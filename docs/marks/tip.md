@@ -46,6 +46,8 @@ Plot.plot({
 })
 ```
 
+The tip mark defaults the [**pool** option](../interactions/pointer.md#pointer-options) <VersionBadge pr="2382" /> to true, such that if there are multiple tip marks and pointer transforms, at most one tip will be visible at a time. Setting the **pool** option to false allows multiple tips to be visible simultaneously; in this case, beware that tips may collide.
+
 The tip mark can also be used for static annotations, say to draw attention to elements of interest or to add context. The tip text is supplied via the **title** channel. If the tip mark‘s data is an array of strings, the **title** channel defaults to [identity](../features/transforms.md#identity).
 
 :::plot defer https://observablehq.com/@observablehq/plot-static-annotations
