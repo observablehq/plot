@@ -4,7 +4,7 @@ import {feature, mesh} from "topojson-client";
 import {test} from "test/plot";
 
 test(async function tipAnchors() {
-  return Plot.plot({
+  const plot = Plot.plot({
     style: "overflow: visible;",
     height: 160,
     marks: [
@@ -27,6 +27,7 @@ test(async function tipAnchors() {
       ])
     ]
   });
+  return Object.assign(plot, {ready: new Promise((resolve) => setTimeout(resolve, 100))}); // postrender
 });
 
 test(async function tipAreaBand() {
