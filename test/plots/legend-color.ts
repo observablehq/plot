@@ -67,6 +67,20 @@ test(function colorLegendOrdinalRampInline() {
   });
 });
 
+test(function colorLegendFontSize() {
+  return Plot.plot({
+    color: {
+      legend: true,
+      type: "ordinal",
+      scheme: "rainbow",
+      className: "legend",
+      style: {fontSize: "16px"}
+    },
+    style: {fontSize: "7px"},
+    marks: [Plot.cell("ABCDEFGHIJ", {x: Plot.identity, fill: Plot.identity})]
+  });
+});
+
 test(function colorLegendOrdinalRampTickSize() {
   return Plot.legend({
     color: {
