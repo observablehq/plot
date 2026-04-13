@@ -86,7 +86,11 @@ export function waffleY(data?: Data, options?: WaffleYOptions): WaffleY;
 export function waffleX(data?: Data, options?: WaffleXOptions): WaffleX;
 
 /** The waffleX mark. */
-export class WaffleX extends RenderableMark {}
+export class WaffleX extends RenderableMark {
+  constructor(data?: Data, options?: WaffleXOptions);
+}
 
 /** The waffleY mark. */
-export class WaffleY extends RenderableMark {}
+export class WaffleY extends RenderableMark {
+  constructor(data?: Data, options?: WaffleYOptions);
+}

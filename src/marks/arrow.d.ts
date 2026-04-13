@@ -111,4 +111,6 @@ export interface ArrowOptions extends MarkOptions {
 export function arrow(data?: Data, options?: ArrowOptions): Arrow;
 
 /** The arrow mark. */
-export class Arrow extends RenderableMark {}
+export class Arrow extends RenderableMark {
+  constructor(data?: Data, options?: ArrowOptions);
+}

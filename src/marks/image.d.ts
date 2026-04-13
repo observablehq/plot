@@ -104,4 +104,6 @@ export interface ImageOptions extends MarkOptions {
 export function image(data?: Data, options?: ImageOptions): Image;
 
 /** The image mark. */
-export class Image extends RenderableMark {}
+export class Image extends RenderableMark {
+  constructor(data?: Data, options?: ImageOptions);
+}

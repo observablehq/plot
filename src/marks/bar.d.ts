@@ -203,7 +203,11 @@ export function barX(data?: Data, options?: BarXOptions): BarX;
 export function barY(data?: Data, options?: BarYOptions): BarY;
 
 /** The barX mark. */
-export class BarX extends RenderableMark {}
+export class BarX extends RenderableMark {
+  constructor(data?: Data, options?: BarXOptions);
+}
 
 /** The barY mark. */
-export class BarY extends RenderableMark {}
+export class BarY extends RenderableMark {
+  constructor(data?: Data, options?: BarYOptions);
+}

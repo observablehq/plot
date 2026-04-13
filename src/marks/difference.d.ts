@@ -97,4 +97,6 @@ export function differenceX(data?: Data, options?: DifferenceOptions): Differenc
 export function differenceY(data?: Data, options?: DifferenceOptions): Difference;
 
 /** The difference mark. */
-export class Difference extends RenderableMark {}
+export class Difference extends RenderableMark {
+  constructor(data?: Data, options?: DifferenceOptions);
+}

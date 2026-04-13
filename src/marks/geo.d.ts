@@ -72,4 +72,6 @@ export function sphere(options?: GeoOptions): Geo;
 export function graticule(options?: GeoOptions): Geo;
 
 /** The geo mark. */
-export class Geo extends RenderableMark {}
+export class Geo extends RenderableMark {
+  constructor(data?: Data | GeoPermissibleObjects, options?: GeoOptions);
+}

@@ -20,4 +20,6 @@ export interface FrameOptions extends MarkOptions, InsetOptions, RectCornerOptio
 export function frame(options?: FrameOptions): Frame;
 
 /** The frame decoration mark. */
-export class Frame extends RenderableMark {}
+export class Frame extends RenderableMark {
+  constructor(options?: FrameOptions);
+}

@@ -239,4 +239,6 @@ export function textX(data?: Data, options?: TextXOptions): Text;
 export function textY(data?: Data, options?: TextYOptions): Text;
 
 /** The text mark. */
-export class Text extends RenderableMark {}
+export class Text extends RenderableMark {
+  constructor(data?: Data, options?: TextOptions);
+}

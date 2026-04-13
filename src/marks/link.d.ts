@@ -74,4 +74,6 @@ export interface LinkOptions extends MarkOptions, MarkerOptions, CurveAutoOption
 export function link(data?: Data, options?: LinkOptions): Link;
 
 /** The link mark. */
-export class Link extends RenderableMark {}
+export class Link extends RenderableMark {
+  constructor(data?: Data, options?: LinkOptions);
+}

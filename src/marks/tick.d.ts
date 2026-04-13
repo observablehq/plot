@@ -72,7 +72,11 @@ export function tickX(data?: Data, options?: TickXOptions): TickX;
 export function tickY(data?: Data, options?: TickYOptions): TickY;
 
 /** The tickX mark. */
-export class TickX extends RenderableMark {}
+export class TickX extends RenderableMark {
+  constructor(data?: Data, options?: TickXOptions);
+}
 
 /** The tickY mark. */
-export class TickY extends RenderableMark {}
+export class TickY extends RenderableMark {
+  constructor(data?: Data, options?: TickYOptions);
+}
