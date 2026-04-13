@@ -2,6 +2,7 @@ import type {InsetOptions} from "./inset.js";
 import type {NiceInterval, RangeInterval} from "./interval.js";
 import type {LegendOptions} from "./legends.js";
 import type {AxisOptions} from "./marks/axis.js";
+import type {Projection, ProjectionOptions} from "./projection.js";
 
 /**
  * How to interpolate range (output) values for continuous scales; one of:
@@ -673,3 +674,4 @@ export interface Scale extends ScaleOptions {
  * ```
  */
 export function scale(options?: {[name in ScaleName]?: ScaleOptions}): Scale;
+export function scale(options: {projection: ProjectionOptions & {width?: number; height?: number}}): Projection;

@@ -1,5 +1,6 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
+import * as topojson from "topojson-client";
 import assert from "../assert.js";
 import {describe, it} from "vitest";
 
@@ -2417,5 +2418,88 @@ describe("plot(…).scale('projection')", () => {
     assert.allCloseTo(projection2.apply([-1.55, 47.22]), [316.74875, 224.179291]);
     // But invert still round-trips
     assert.allCloseTo(projection2.invert(projection2.apply([-1.55, 47.22])), [-1.55, 47.22]);
+  });
+});
+
+describe("Plot.scale({projection})", () => {
+  it("round-trips", () => {
+    for (const type of ["mercator", "equal-earth", "equirectangular"]) {
+      const projection = Plot.scale({projection: {type}});
+      assert.allCloseTo(projection.invert(projection.apply([-1.55, 47.22])), [-1.55, 47.22]);
+    }
+  });
+
+  it("matches plot.scale('projection') given explicit dimensions", () => {
+    for (const [type, height] of [
+      ["mercator", 640],
+      ["equal-earth", 311],
+      ["equirectangular", 320]
+    ]) {
+      const plot = Plot.plot({width: 640, height, margin: 0, projection: type, marks: [Plot.graticule()]});
+      const p1 = plot.scale("projection");
+      const p2 = Plot.scale({projection: {type, width: 640, height}});
+      assert.allCloseTo(p1.apply([-1.55, 47.22]), p2.apply([-1.55, 47.22]));
+    }
+  });
+
+  it("respects margins and insets", () => {
+    // standalone projection
+    const p1 = Plot.scale({projection: {type: "mercator", width: 640, height: 640, margin: 40, inset: 10}});
+    assert.allCloseTo(p1.invert(p1.apply([-1.55, 47.22])), [-1.55, 47.22]);
+    // equivalent plot-based projection
+    const p2 = Plot.plot({
+      width: 640,
+      height: 640,
+      margin: 40,
+      projection: {type: "mercator", inset: 10},
+      marks: [Plot.graticule()]
+    }).scale("projection");
+    assert.allCloseTo(p1.apply([-1.55, 47.22]), p2.apply([-1.55, 47.22]));
+    // reuse the standalone projection in a plot
+    const p3 = Plot.plot({projection: p1, marks: [Plot.graticule()]}).scale("projection");
+    assert.allCloseTo(p1.apply([-1.55, 47.22]), p3.apply([-1.55, 47.22]));
+  });
+
+  it("supports domain", async () => {
+    const us = await d3.json("data/us-counties-10m.json");
+    const domain = topojson.feature(us, us.objects.nation);
+    const p1 = Plot.scale({projection: {type: "albers-usa", domain, width: 640, height: 400}});
+    const p2 = Plot.plot({
+      width: 640,
+      height: 400,
+      margin: 0,
+      projection: {type: "albers-usa", domain},
+      marks: [Plot.graticule()]
+    }).scale("projection");
+    assert.allCloseTo(p1.apply([-98, 39]), p2.apply([-98, 39])); // center of the US
+    assert.allCloseTo(p1.invert(p1.apply([-98, 39])), [-98, 39]);
+  });
+
+  it("supports a metric domain with reflect-y", async () => {
+    const house = await d3.json("data/westport-house.json");
+    const p1 = Plot.scale({projection: {type: "reflect-y", domain: house, width: 640, height: 400}});
+    const p2 = Plot.plot({
+      width: 640,
+      height: 400,
+      margin: 0,
+      projection: {type: "reflect-y", domain: house},
+      marks: [Plot.geo(house)]
+    }).scale("projection");
+    assert.allCloseTo(p1.apply([200, 120]), p2.apply([200, 120]));
+    assert.allCloseTo(p1.invert(p1.apply([200, 120])), [200, 120]);
+  });
+
+  it("supports a metric domain with identity", async () => {
+    const house = await d3.json("data/westport-house.json");
+    const p1 = Plot.scale({projection: {type: "identity", domain: house, width: 640, height: 400}});
+    const p2 = Plot.plot({
+      width: 640,
+      height: 400,
+      margin: 0,
+      projection: {type: "identity", domain: house},
+      marks: [Plot.geo(house)]
+    }).scale("projection");
+    assert.allCloseTo(p1.apply([200, 120]), p2.apply([200, 120]));
+    assert.allCloseTo(p1.invert(p1.apply([200, 120])), [200, 120]);
   });
 });

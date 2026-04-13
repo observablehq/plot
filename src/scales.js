@@ -10,6 +10,7 @@ import {
   coerceDates
 } from "./options.js";
 import {orderof} from "./order.js";
+import {createProjection, projectionAspectRatio} from "./projection.js";
 import {registry, color, position, radius, opacity, symbol, length} from "./scales/index.js";
 import {
   createScaleLinear,
@@ -526,10 +527,26 @@ export function scale(options = {}) {
     if (!registry.has(key)) continue; // ignore unknown properties
     if (!isScaleOptions(options[key])) continue; // e.g., ignore {color: "red"}
     if (scale !== undefined) throw new Error("ambiguous scale definition; multiple scales found");
-    scale = exposeScale(normalizeScale(key, options[key]));
+    scale = key === "projection" ? scaleProjection(options[key]) : exposeScale(normalizeScale(key, options[key]));
   }
   if (scale === undefined) throw new Error("invalid scale definition; no scale found");
   return scale;
+}
+
+function scaleProjection({
+  width = 640,
+  height,
+  margin = 0,
+  marginTop = margin,
+  marginRight = margin,
+  marginBottom = margin,
+  marginLeft = margin,
+  ...projection
+}) {
+  if (height === undefined) height = width * projectionAspectRatio(projection);
+  const p = createProjection({projection}, {width, height, marginTop, marginRight, marginBottom, marginLeft});
+  if (p === undefined) throw new Error("invalid scale definition; unknown projection");
+  return p;
 }
 
 export function exposeScales(scales, context) {
