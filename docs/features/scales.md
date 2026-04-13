@@ -1066,7 +1066,7 @@ const plot1 = Plot.plot({...options1});
 const plot2 = Plot.plot({...options2, color: plot1.scale("color")});
 ```
 
-Plot.scale also supports projections. <VersionBadge version="0.6.18" /> The returned projection object exposes *apply* and *invert* methods for converting between geographic and pixel coordinates, and can be passed as the **projection** option of another plot.
+Plot.scale also supports projections. <VersionBadge pr="2427" /> The returned projection object exposes *apply* and *invert* methods for converting between geographic and pixel coordinates, and can be passed as the **projection** option of another plot.
 
 ```js
 const projection = Plot.scale({projection: {type: "mercator"}});
