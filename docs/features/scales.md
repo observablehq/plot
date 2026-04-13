@@ -1065,3 +1065,16 @@ As another example, below are two plots with different options where the second 
 const plot1 = Plot.plot({...options1});
 const plot2 = Plot.plot({...options2, color: plot1.scale("color")});
 ```
+
+Plot.scale also supports projections. <VersionBadge version="0.6.18" /> The returned projection object exposes *apply* and *invert* methods for converting between geographic and pixel coordinates, and can be passed as the **projection** option of another plot.
+
+```js
+const projection = Plot.scale({projection: {type: "mercator"}});
+projection.apply([-1.55, 47.22]) // [316.7, 224.2]
+```
+
+The projection's **width** defaults to 640, and its **height** defaults to the width times the projection's natural aspect ratio. You can override these with the **width** and **height** options, and inset the projection with the **margin** and **inset** options.
+
+```js
+const projection = Plot.scale({projection: {type: "albers-usa", domain, width: 960, height: 600}});
+```
