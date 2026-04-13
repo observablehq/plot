@@ -31,4 +31,6 @@ export interface HexgridOptions extends MarkOptions {
 export function hexgrid(options?: HexgridOptions): Hexgrid;
 
 /** The hexgrid mark. */
-export class Hexgrid extends RenderableMark {}
+export class Hexgrid extends RenderableMark {
+  constructor(options?: HexgridOptions);
+}

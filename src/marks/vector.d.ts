@@ -116,4 +116,6 @@ export function vectorY(data?: Data, options?: VectorOptions): Vector;
 export function spike(data?: Data, options?: VectorOptions): Vector;
 
 /** The vector mark. */
-export class Vector extends RenderableMark {}
+export class Vector extends RenderableMark {
+  constructor(data?: Data, options?: VectorOptions);
+}

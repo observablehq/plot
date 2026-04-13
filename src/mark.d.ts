@@ -482,6 +482,7 @@ export interface MarkOptions {
 
 /** The abstract base class for Mark implementations. */
 export class Mark {
+  constructor(data?: Data, channels?: Record<string, Channel>, options?: MarkOptions, defaults?: MarkOptions);
   /**
    * Renders a new plot, prepending this mark as the first element of **marks**
    * of the specified *options*, and returns the corresponding SVG element, or
@@ -492,8 +493,10 @@ export class Mark {
 
 /** A concrete Mark implementation. */
 export class RenderableMark extends Mark {
+  // Declared as a method rather than a property so that subclasses can override
+  // it and call super.render(). See https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-3.html#checks-for-super-property-accesses-on-instance-fields
   /** Renders this mark, returning a new SVGElement (or null). */
-  render: RenderFunction;
+  render(...args: Parameters<RenderFunction>): ReturnType<RenderFunction>;
 }
 
 /** A compound Mark, comprising other marks. */
