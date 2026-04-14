@@ -3,8 +3,8 @@ import {createContext} from "./context.js";
 import {legendRamp} from "./legends/ramp.js";
 import {isSymbolColorLegend, legendSwatches, legendSymbols} from "./legends/swatches.js";
 import {inherit, isScaleOptions} from "./options.js";
-import {getFilterId} from "./style.js";
 import {normalizeScale} from "./scales.js";
+import {getFilterId} from "./style.js";
 
 const legendRegistry = new Map([
   ["symbol", legendSymbols],
@@ -53,27 +53,30 @@ function legendColor(color, {legend = true, ...options}) {
     case "ramp":
       return legendRamp(color, options);
     default:
-      throw new Error(`unknown legend type: ${legend}`);
+      throw new Error(`unknown color legend type: ${legend}`);
   }
 }
 
-function legendOpacity({type, interpolate, ...scale}, {legend = true, color = "currentColor", ...options}) {
-  if (!interpolate) throw new Error(`${type} opacity scales are not supported`);
-  if (legend === true) legend = "ramp";
-  if (`${legend}`.toLowerCase() !== "ramp") throw new Error(`${legend} opacity legends are not supported`);
-  const node = legendColor({type, ...scale, interpolate: interpolateOpacity}, {legend, ...options});
-  if (!node) return;
-  const fid = getFilterId();
-  const svg = select(node);
-  svg.select("image").attr("filter", `url(#${fid})`);
-  const filter = svg.append("filter").attr("id", fid);
-  filter.append("feFlood").attr("flood-color", color);
-  filter.append("feComposite").attr("in2", "SourceGraphic").attr("operator", "in");
-  return node;
-}
-
-function interpolateOpacity(t) {
-  return `rgba(0,0,0,${t})`;
+function legendOpacity(opacity, {legend = true, color = "currentColor", ...options}) {
+  if (legend === true) legend = opacity.type === "ordinal" ? "swatches" : "ramp";
+  opacity = {...opacity, color, key: "opacity"};
+  switch (`${legend}`.toLowerCase()) {
+    case "swatches": {
+      return legendSwatches(opacity, options);
+    }
+    case "ramp": {
+      const legend = legendRamp(opacity, options);
+      const fid = getFilterId();
+      const svg = select(legend);
+      svg.select("image").attr("filter", `url(#${fid})`);
+      const filter = svg.append("filter").attr("id", fid);
+      filter.append("feFlood").attr("flood-color", color);
+      filter.append("feComposite").attr("in2", "SourceGraphic").attr("operator", "in");
+      return legend;
+    }
+    default:
+      throw new Error(`unknown opacity legend type: ${legend}`);
+  }
 }
 
 export function createLegends(scales, context, options) {

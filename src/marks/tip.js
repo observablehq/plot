@@ -15,7 +15,8 @@ import {cut, clipper, splitter, maybeTextOverflow} from "./text.js";
 const defaults = {
   ariaLabel: "tip",
   fill: "var(--plot-background)",
-  stroke: "currentColor"
+  stroke: "currentColor",
+  pool: true
 };
 
 // These channels are not displayed in the default tip; see formatChannels.
@@ -277,19 +278,19 @@ function getTextTranslate(anchor, m, r, width, height) {
     case "middle":
       return [-width / 2, height / 2];
     case "top-left":
-      return [r, m + r];
+      return [r, m / 2 + r];
     case "top":
       return [-width / 2, m / 2 + r];
     case "top-right":
-      return [-width - r, m + r];
+      return [-width - r, m / 2 + r];
     case "right":
       return [-m / 2 - width - r, height / 2];
     case "bottom-left":
-      return [r, -m - r];
+      return [r, -m / 2 - r];
     case "bottom":
       return [-width / 2, -m / 2 - r];
     case "bottom-right":
-      return [-width - r, -m - r];
+      return [-width - r, -m / 2 - r];
     case "left":
       return [r + m / 2, height / 2];
   }
@@ -302,19 +303,19 @@ function getPath(anchor, m, r, width, height) {
     case "middle":
       return `M${-w / 2},${-h / 2}h${w}v${h}h${-w}z`;
     case "top-left":
-      return `M0,0l${m},${m}h${w - m}v${h}h${-w}z`;
+      return `M0,0l${m / 2},${m / 2}h${w - m / 2}v${h}h${-w}z`;
     case "top":
       return `M0,0l${m / 2},${m / 2}h${(w - m) / 2}v${h}h${-w}v${-h}h${(w - m) / 2}z`;
     case "top-right":
-      return `M0,0l${-m},${m}h${m - w}v${h}h${w}z`;
+      return `M0,0l${-m / 2},${m / 2}h${m / 2 - w}v${h}h${w}z`;
     case "right":
       return `M0,0l${-m / 2},${-m / 2}v${m / 2 - h / 2}h${-w}v${h}h${w}v${m / 2 - h / 2}z`;
     case "bottom-left":
-      return `M0,0l${m},${-m}h${w - m}v${-h}h${-w}z`;
+      return `M0,0l${m / 2},${-m / 2}h${w - m / 2}v${-h}h${-w}z`;
     case "bottom":
       return `M0,0l${m / 2},${-m / 2}h${(w - m) / 2}v${-h}h${-w}v${h}h${(w - m) / 2}z`;
     case "bottom-right":
-      return `M0,0l${-m},${-m}h${m - w}v${-h}h${w}z`;
+      return `M0,0l${-m / 2},${-m / 2}h${m / 2 - w}v${-h}h${w}z`;
     case "left":
       return `M0,0l${m / 2},${-m / 2}v${m / 2 - h / 2}h${w}v${h}h${-w}v${m / 2 - h / 2}z`;
   }

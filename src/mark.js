@@ -26,6 +26,7 @@ export class Mark {
       clip = defaults?.clip,
       channels: extraChannels,
       tip,
+      pool = defaults?.pool,
       render
     } = options;
     this.data = data;
@@ -72,6 +73,7 @@ export class Mark {
     this.marginLeft = +marginLeft;
     this.clip = maybeClip(clip);
     this.tip = maybeTip(tip);
+    this.pool = !!pool;
     this.className = string(className);
     // Super-faceting currently disallow position channels; in the future, we
     // could allow position to be specified in fx and fy in addition to (or
