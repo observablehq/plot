@@ -1,3 +1,4 @@
+import type {DimensionOptions} from "./dimensions.js";
 import type {InsetOptions} from "./inset.js";
 import type {NiceInterval, RangeInterval} from "./interval.js";
 import type {LegendOptions} from "./legends.js";
@@ -673,5 +674,5 @@ export interface Scale extends ScaleOptions {
  * const color = Plot.scale({color: {type: "linear"}});
  * ```
  */
-export function scale(options?: {[name in ScaleName]?: ScaleOptions}): Scale;
-export function scale(options: {projection: ProjectionOptions & {width?: number; height?: number}}): Projection;
+export function scale(options: {[name in ScaleName]?: ScaleOptions}): Scale;
+export function scale(options: {projection: ProjectionOptions & DimensionOptions}): Projection;
