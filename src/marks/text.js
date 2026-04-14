@@ -121,7 +121,7 @@ export class Text extends Mark {
 
 export function maybeTextOverflow(textOverflow) {
   return textOverflow == null
-    ? null
+    ? textOverflow
     : keyword(textOverflow, "textOverflow", [
         "clip", // shorthand for clip-end
         "ellipsis", // … ellipsis-end

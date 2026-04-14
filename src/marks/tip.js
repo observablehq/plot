@@ -46,7 +46,7 @@ export class Tip extends Mark {
       frameAnchor,
       format,
       textAnchor = "start",
-      textOverflow = "ellipsis",
+      textOverflow,
       textPadding = 8,
       title,
       pointerSize = 12,
@@ -91,7 +91,8 @@ export class Tip extends Mark {
     const mark = this;
     const {x, y, fx, fy} = scales;
     const {ownerSVGElement: svg, document} = context;
-    const {anchor, monospace, lineHeight, lineWidth, textOverflow} = this;
+    const {anchor, monospace, lineHeight, lineWidth} = this;
+    let {textOverflow} = this;
     const {textPadding: r, pointerSize: m, pathFilter} = this;
     const {marginTop, marginLeft} = dimensions;
 
@@ -126,6 +127,7 @@ export class Tip extends Mark {
     } else {
       sources = getSourceChannels.call(this, values.channels, scales);
       format = formatChannels;
+      if (textOverflow === undefined) textOverflow = "ellipsis-end";
     }
 
     // Format the tip text, skipping any nulls.

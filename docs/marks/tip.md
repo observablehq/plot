@@ -97,7 +97,7 @@ Plot.plot({
 ```
 :::
 
-If no **title** channel is supplied, the tip mark displays all channel values. You can supply additional name-value pairs by registering extra channels using the **channels** mark option. In the scatterplot of Olympic athletes below, you can hover to see the *name* and *sport* of each athlete. This is helpful for noticing patterns — tall basketball players, giant weightlifters and judoka, diminutive gymnasts — and for seeing individuals.
+If no **title** channel is supplied, the tip mark displays all channel values as name-value pairs, clipping long values with an ellipsis. Set **textOverflow** to *null* to disable clipping, or use another [text overflow](../marks/text.md) mode such as *ellipsis-middle*. You can supply additional name-value pairs by registering extra channels using the **channels** mark option. In the scatterplot of Olympic athletes below, you can hover to see the *name* and *sport* of each athlete. This is helpful for noticing patterns — tall basketball players, giant weightlifters and judoka, diminutive gymnasts — and for seeing individuals.
 
 :::plot defer https://observablehq.com/@observablehq/plot-tips-additional-channels
 ```js
@@ -253,7 +253,7 @@ These [standard text options](./text.md#text-options) control the display of tex
 - **textAnchor** - the [text anchor](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/text-anchor) for horizontal position; *start*, *end*, or *middle*
 - **lineHeight** - the line height in ems; defaults to 1
 - **lineWidth** - the line width in ems, for wrapping; defaults to 20
-- **textOverflow** - how to wrap or clip lines longer than the specified line width; defaults to *ellipsis* <VersionBadge pr="2322" />
+- **textOverflow** - how to wrap or clip lines longer than the specified line width; defaults to *ellipsis* for name-value tips <VersionBadge pr="2322" />
 
 ## tip(*data*, *options*) {#tip}
 
