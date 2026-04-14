@@ -38,7 +38,7 @@ export function createProjection(
   dimensions
 ) {
   if (projection == null) return;
-  if (typeof projection.stream === "function") return exposeProjection(projection); // projection implementation
+  if (typeof projection.stream === "function") return prepareProjection(projection); // projection implementation
   let options;
   let domain;
   let clip = "frame";
@@ -114,7 +114,7 @@ export function createProjection(
   };
 }
 
-function exposeProjection(projection) {
+function prepareProjection(projection) {
   return typeof projection === "function"
     ? {
         stream: (s) => projection.stream(s),
