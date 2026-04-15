@@ -1,7 +1,7 @@
-import {blur2, contours, geoPath, max, min, nice, range, ticks, thresholdSturges, scaleUtc} from "d3";
+import {blur2, contours, geoPath, max, min, nice, range, ticks, thresholdSturges, utcTickInterval} from "d3";
 import {createChannels} from "../channel.js";
 import {create} from "../context.js";
-import {labelof, identity, arrayify, map, isTemporal} from "../options.js";
+import {labelof, identity, arrayify, map, isTemporal, coerceNumbers} from "../options.js";
 import {applyPosition} from "../projection.js";
 import {applyChannelStyles, applyDirectStyles, applyIndirectStyles, applyTransform, styles} from "../style.js";
 import {initializer} from "../transforms/basic.js";
@@ -116,7 +116,7 @@ function contourGeometry({thresholds, interval, ...options}) {
     const kx = w / dx;
     const ky = h / dy;
     const temporal = isTemporal(channels.value.value);
-    const V = temporal && this.blur > 0 ? Float64Array.from(channels.value.value) : channels.value.value;
+    const V = this.blur > 0 ? coerceNumbers(channels.value.value) : channels.value.value;
     const VV = []; // V per facet
 
     // Interpolate the raster grid, as needed.
@@ -192,7 +192,10 @@ function maybeTicks(thresholds, V, min, max, temporal) {
   if (typeof thresholds?.range === "function") return thresholds.range(thresholds.floor(min), max);
   if (typeof thresholds === "function") thresholds = thresholds(V, min, max);
   if (typeof thresholds !== "number") return arrayify(thresholds);
-  if (temporal) return scaleUtc().domain([min, max]).nice(thresholds).ticks(thresholds);
+  if (temporal) {
+    thresholds = utcTickInterval(min, max, thresholds);
+    return thresholds.range(thresholds.floor(min), max);
+  }
   const tz = ticks(...nice(min, max, thresholds), thresholds);
   while (tz[tz.length - 1] >= max) tz.pop();
   while (tz[1] < min) tz.shift();
