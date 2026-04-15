@@ -1,36 +1,64 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 import {feature, mesh} from "topojson-client";
+import {test} from "test/plot";
 
-export async function tipAreaBand() {
+test(async function tipAnchors() {
+  const plot = Plot.plot({
+    style: "overflow: visible;",
+    height: 160,
+    marks: [
+      Plot.frame({strokeOpacity: 0.2}),
+      (
+        [
+          "top",
+          "right",
+          "bottom",
+          "left", // sides
+          "top-left",
+          "top-right",
+          "bottom-right",
+          "bottom-left", // corners
+          "middle"
+        ] as const
+      ).map((anchor) => [
+        Plot.dot({length: 1}, {frameAnchor: anchor, fill: "blue"}),
+        Plot.tip([anchor], {frameAnchor: anchor, anchor})
+      ])
+    ]
+  });
+  return Object.assign(plot, {ready: new Promise((resolve) => setTimeout(resolve, 100))}); // postrender
+});
+
+test(async function tipAreaBand() {
   const aapl = await d3.csv<any>("data/aapl.csv", d3.autoType);
   return Plot.areaY(aapl, {x: "Date", y1: "Low", y2: "High", tip: true, curve: "step", stroke: "currentColor"}).plot();
-}
+});
 
-export async function tipAreaStack() {
+test(async function tipAreaStack() {
   const industries = await d3.csv<any>("data/bls-industry-unemployment.csv", d3.autoType);
   return Plot.areaY(industries, {x: "date", y: "unemployed", fill: "industry", tip: true}).plot({marginLeft: 50});
-}
+});
 
-export async function tipBar() {
+test(async function tipBar() {
   const olympians = await d3.csv<any>("data/athletes.csv", d3.autoType);
   return Plot.plot({
     marginLeft: 100,
     marks: [Plot.barX(olympians, Plot.groupY({x: "count"}, {y: "sport", sort: {y: "x"}, tip: true}))]
   });
-}
+});
 
-export async function tipBin() {
+test(async function tipBin() {
   const olympians = await d3.csv<any>("data/athletes.csv", d3.autoType);
   return Plot.rectY(olympians, Plot.binX({y: "count"}, {x: "weight", tip: true})).plot();
-}
+});
 
-export async function tipBinStack() {
+test(async function tipBinStack() {
   const olympians = await d3.csv<any>("data/athletes.csv", d3.autoType);
   return Plot.rectY(olympians, Plot.binX({y: "count", sort: "z"}, {x: "weight", fill: "sex", tip: true})).plot();
-}
+});
 
-export async function tipCell() {
+test(async function tipCell() {
   const olympians = await d3.csv<any>("data/athletes.csv", d3.autoType);
   return Plot.plot({
     height: 400,
@@ -38,9 +66,9 @@ export async function tipCell() {
     color: {scheme: "blues"},
     marks: [Plot.cell(olympians, Plot.group({fill: "count"}, {x: "sex", y: "sport", tip: "y"}))]
   });
-}
+});
 
-export async function tipCellFacet() {
+test(async function tipCellFacet() {
   const olympians = await d3.csv<any>("data/athletes.csv", d3.autoType);
   return Plot.plot({
     height: 400,
@@ -48,23 +76,23 @@ export async function tipCellFacet() {
     color: {scheme: "blues"},
     marks: [Plot.cell(olympians, Plot.groupY({fill: "count"}, {fx: "sex", y: "sport", tip: "y"}))]
   });
-}
+});
 
-export async function tipDodge() {
+test(async function tipDodge() {
   const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
   return Plot.dot(penguins, Plot.dodgeY({x: "culmen_length_mm", r: "body_mass_g", tip: true})).plot({height: 160});
-}
+});
 
-export async function tipDot() {
+test(async function tipDot() {
   const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
   return Plot.dot(penguins, {x: "culmen_length_mm", y: "culmen_depth_mm", stroke: "sex", tip: true}).plot();
-}
+});
 
-export async function tipDotX() {
+test(async function tipDotX() {
   return Plot.dotX(d3.range(10), {tip: true}).plot();
-}
+});
 
-export async function tipDotFacets() {
+test(async function tipDotFacets() {
   const athletes = await d3.csv<any>("data/athletes.csv", d3.autoType);
   return Plot.plot({
     grid: true,
@@ -92,9 +120,9 @@ export async function tipDotFacets() {
       })
     ]
   });
-}
+});
 
-export async function tipDotFilter() {
+test(async function tipDotFilter() {
   const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
   const xy = {x: "culmen_length_mm", y: "culmen_depth_mm", stroke: "sex"};
   return Plot.plot({
@@ -103,27 +131,27 @@ export async function tipDotFilter() {
       Plot.dot(penguins, {...xy, filter: (d) => d.sex === "FEMALE", tip: true})
     ]
   });
-}
+});
 
-export async function tipGeoNoProjection() {
+test(async function tipGeoNoProjection() {
   const counties = await d3.json<any>("data/us-counties-10m.json").then((us) => feature(us, us.objects.counties));
   counties.features = counties.features.filter((d) => {
     const [x, y] = d3.geoCentroid(d);
     return x > -126 && x < -68 && y > 25 && y < 49;
   });
   return Plot.geo(counties, Plot.centroid({title: (d) => d.properties.name, tip: true})).plot();
-}
+});
 
-export async function tipGeoProjection() {
+test(async function tipGeoProjection() {
   const counties = await d3.json<any>("data/us-counties-10m.json").then((us) => feature(us, us.objects.counties));
   counties.features = counties.features.filter((d) => {
     const [x, y] = d3.geoCentroid(d);
     return x > -126 && x < -68 && y > 25 && y < 49;
   });
   return Plot.geo(counties, Plot.centroid({title: (d) => d.properties.name, tip: true})).plot({projection: "albers"});
-}
+});
 
-export async function tipGeoCentroid() {
+test(async function tipGeoCentroid() {
   const [[counties, countymesh]] = await Promise.all([
     d3
       .json<any>("data/us-counties-10m.json")
@@ -143,25 +171,25 @@ export async function tipGeoCentroid() {
       Plot.tip(counties.features, {...pointer, channels: {name: (d) => d.properties.name}})
     ]
   });
-}
+});
 
-export async function tipGroupPrimitives() {
+test(async function tipGroupPrimitives() {
   return Plot.plot({
     height: 80,
     x: {type: "band"},
     marks: [Plot.barY("de156a2fc8", Plot.groupX({y: "count"}, {x: (d) => d, tip: true}))]
   });
-}
+});
 
-export async function tipHexbin() {
+test(async function tipHexbin() {
   const olympians = await d3.csv<any>("data/athletes.csv", d3.autoType);
   return Plot.hexagon(olympians, Plot.hexbin({r: "count"}, {x: "weight", y: "height", tip: true})).plot();
-}
+});
 
 // Normally you would slap a tip: true on the hexagon, as above, but here we
 // want to test that the hexbin transform isn’t applying an erroneous stroke:
 // none to the tip options (which would change the tip appearance).
-export async function tipHexbinExplicit() {
+test(async function tipHexbinExplicit() {
   const olympians = await d3.csv<any>("data/athletes.csv", d3.autoType);
   return Plot.plot({
     marks: [
@@ -169,23 +197,68 @@ export async function tipHexbinExplicit() {
       Plot.tip(olympians, Plot.pointer(Plot.hexbin({fill: "count"}, {x: "weight", y: "height"})))
     ]
   });
-}
+});
 
-export async function tipLineX() {
+test(async function tipLineX() {
   const aapl = await d3.csv<any>("data/aapl.csv", d3.autoType);
   return Plot.lineX(aapl, {y: "Date", x: "Close", tip: true}).plot();
-}
+});
 
-export async function tipLineY() {
+test(async function tipLineY() {
   const aapl = await d3.csv<any>("data/aapl.csv", d3.autoType);
   return Plot.lineY(aapl, {x: "Date", y: "Close", tip: true}).plot();
-}
+});
 
-export async function tipLongText() {
+test(async function tipPool() {
+  const cars = await d3.csv<any>("data/cars.csv", d3.autoType);
+  return Plot.plot({
+    marks: [
+      Plot.hexagon(cars, Plot.hexbin({fill: "count"}, {x: "power (hp)", y: "economy (mpg)", tip: true})),
+      Plot.dot(cars, {x: "power (hp)", y: "economy (mpg)", tip: true})
+    ]
+  });
+});
+
+test(async function tipCrosshair() {
+  const aapl = await d3.csv<any>("data/aapl.csv", d3.autoType);
+  return Plot.plot({
+    y: {grid: true},
+    marks: [Plot.lineY(aapl, {x: "Date", y: "Close", tip: true}), Plot.crosshairX(aapl, {x: "Date", y: "Close"})]
+  });
+});
+
+test(async function tipCrosshairFacet() {
+  const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
+  return Plot.plot({
+    grid: true,
+    marks: [
+      Plot.dot(penguins, {x: "culmen_length_mm", y: "culmen_depth_mm", fy: "species"}),
+      Plot.crosshair(penguins, {x: "culmen_length_mm", y: "culmen_depth_mm", fy: "species"})
+    ]
+  });
+});
+
+test(async function tipPoolFacet() {
+  const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
+  return Plot.plot({
+    grid: true,
+    marks: [
+      Plot.dot(penguins, Plot.hexbin({}, {x: "culmen_length_mm", y: "culmen_depth_mm", fy: "species", tip: true})),
+      Plot.dot(penguins, {x: "culmen_length_mm", y: "culmen_depth_mm", fy: "species", fill: "sex", tip: true})
+    ]
+  });
+});
+
+test(async function tipBoxX() {
+  const morley = await d3.csv<any>("data/morley.csv", d3.autoType);
+  return Plot.boxX(morley, {x: "Speed", y: "Expt", tip: true}).plot();
+});
+
+test(async function tipLongText() {
   return Plot.tip([{x: "Long sentence that gets cropped after a certain length"}], {x: "x"}).plot();
-}
+});
 
-export async function tipNewLines() {
+test(async function tipNewLines() {
   return Plot.plot({
     height: 40,
     style: "overflow: visible;",
@@ -209,9 +282,9 @@ export async function tipNewLines() {
       })
     ]
   });
-}
+});
 
-export async function tipRaster() {
+test(async function tipRaster() {
   const ca55 = await d3.csv<any>("data/ca55-south.csv", d3.autoType);
   const domain = {type: "MultiPoint", coordinates: ca55.map((d) => [d.GRID_EAST, d.GRID_NORTH])} as const;
   return Plot.plot({
@@ -221,14 +294,14 @@ export async function tipRaster() {
     color: {type: "diverging"},
     marks: [Plot.raster(ca55, {x: "GRID_EAST", y: "GRID_NORTH", fill: "MAG_IGRF90", interpolate: "nearest", tip: true})]
   });
-}
+});
 
-export async function tipRule() {
+test(async function tipRule() {
   const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
   return Plot.ruleX(penguins, {x: "body_mass_g", tip: true}).plot();
-}
+});
 
-export async function tipRuleAnchored() {
+test(async function tipRuleAnchored() {
   const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
   return Plot.plot({
     x: {insetLeft: 110},
@@ -237,17 +310,17 @@ export async function tipRuleAnchored() {
       Plot.tip(penguins, Plot.pointer({px: "body_mass_g", frameAnchor: "left", anchor: "middle", dx: 42}))
     ]
   });
-}
+});
 
-export async function tipTransform() {
+test(async function tipTransform() {
   return Plot.plot({
     width: 245,
     color: {percent: true, legend: true},
     marks: [Plot.dotX([0, 0.1, 0.3, 1], {fill: Plot.identity, r: 10, frameAnchor: "middle", tip: true})]
   });
-}
+});
 
-export async function tipFacetX() {
+test(async function tipFacetX() {
   const data = d3.range(100).map((i) => ({f: i > 60 || i % 2 ? "b" : "a", x: i, y: i / 10}));
   return Plot.plot({
     inset: 10,
@@ -264,9 +337,9 @@ export async function tipFacetX() {
       )
     ]
   });
-}
+});
 
-export async function tipColorLiteral() {
+test(async function tipColorLiteral() {
   const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
   return Plot.plot({
     grid: true,
@@ -279,4 +352,48 @@ export async function tipColorLiteral() {
       })
     ]
   });
-}
+});
+
+test(async function tipDispatch() {
+  const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
+  const plot = Plot.plot({
+    marks: [
+      Plot.dot(penguins, {
+        x: "culmen_length_mm",
+        y: "culmen_depth_mm",
+        title: "island",
+        tip: true
+      })
+    ]
+  });
+  plot.dispatchEvent(
+    new PointerEvent("pointermove", {
+      pointerType: "mouse",
+      clientX: 200,
+      clientY: 200
+    })
+  );
+  return Object.assign(plot, {ready: new Promise((resolve) => setTimeout(resolve, 100))}); // postrender
+});
+
+test(async function tipNull() {
+  const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
+  const plot = Plot.plot({
+    marks: [
+      Plot.dot(penguins, {
+        x: "culmen_length_mm",
+        y: "culmen_depth_mm",
+        title: (d) => (d.island === "Torgersen" ? null : d.island),
+        tip: true
+      })
+    ]
+  });
+  plot.dispatchEvent(
+    new PointerEvent("pointermove", {
+      pointerType: "mouse",
+      clientX: 200,
+      clientY: 200
+    })
+  );
+  return plot;
+});

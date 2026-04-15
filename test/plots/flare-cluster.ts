@@ -1,7 +1,8 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
+import {test} from "test/plot";
 
-export async function flareCluster() {
+test(async function flareCluster() {
   const flare = await d3.csv<any>("data/flare.csv", d3.autoType);
   return Plot.plot({
     axis: null,
@@ -11,4 +12,4 @@ export async function flareCluster() {
     height: 2400,
     marks: Plot.cluster(flare, {path: "name", delimiter: "."})
   });
-}
+});

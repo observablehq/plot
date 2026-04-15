@@ -1,7 +1,8 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
+import {test} from "test/plot";
 
-export async function sfCovidDeaths() {
+test(async function sfCovidDeaths() {
   const cases = await d3.csv<any>("data/sf-covid.csv", d3.autoType);
   return Plot.plot({
     marks: [
@@ -26,4 +27,4 @@ export async function sfCovidDeaths() {
       Plot.ruleY([0])
     ]
   });
-}
+});

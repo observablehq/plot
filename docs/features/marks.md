@@ -492,6 +492,7 @@ All marks support the following style options:
 * **pointerEvents** - the [pointer events](https://developer.mozilla.org/en-US/docs/Web/CSS/pointer-events) (*e.g.*, *none*)
 * **clip** - whether and how to clip the mark
 * **tip** - whether to generate an implicit [pointer](../interactions/pointer.md) [tip](../marks/tip.md) <VersionBadge version="0.6.7" />
+* **pool** - whether the [pointer transform](../interactions/pointer.md) is exclusive <VersionBadge pr="2382" />
 
 If the **clip** option<a id="clip" href="#clip" aria-label="Permalink to &quot;clip&quot;"></a> is *frame* (or equivalently true), the mark is clipped to the frame’s dimensions. If the **clip** option is null (or equivalently false), the mark is not clipped. If the **clip** option is *sphere*, the mark will be clipped to the projected sphere (_e.g._, the front hemisphere when using the orthographic projection); a [geographic projection](./projections.md) is required in this case. Lastly if the **clip** option is a GeoJSON object <VersionBadge version="0.6.17" pr="2243" />, the mark will be clipped to the projected geometry.
 

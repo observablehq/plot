@@ -2,23 +2,24 @@ import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 import * as Arrow from "apache-arrow";
 import {html} from "htl";
+import {test} from "test/plot";
 
 /**
  * An arrow table dataset supports direct (getChild) accessors.
  */
-export async function arrowTest() {
+test(async function arrowTest() {
   const data = Arrow.tableFromArrays({
     id: [1, 2, 3],
     name: ["Alice", "Bob", "Charlie"],
     age: [35, 25, 45]
   });
   return Plot.barY(data, {x: "name", y: "age"}).plot();
-}
+});
 
 /**
  * An arrow table dataset supports function accessors.
  */
-export async function arrowTestAccessor() {
+test(async function arrowTestAccessor() {
   const data = Arrow.tableFromArrays({
     id: [1, 2, 3],
     name: ["Alice", "Bob", "Charlie"],
@@ -26,12 +27,12 @@ export async function arrowTestAccessor() {
   });
 
   return Plot.barY(data, {x: "name", y: "age", fill: (d) => d.name}).plot();
-}
+});
 
 /**
  * An arrow table dataset supports binning.
  */
-export async function arrowTestBin() {
+test(async function arrowTestBin() {
   const seed = d3.randomLcg(42);
   const vector = Uint8Array.from({length: 1e5}, d3.randomExponential.source(seed)(1));
   const category = Array.from({length: 1e5}, d3.randomInt.source(seed)(4)).map((i) => `a${i}`);
@@ -39,35 +40,35 @@ export async function arrowTestBin() {
   return Plot.rectY(data, Plot.binX({y: "count"}, {x: "vector", fill: "category", thresholds: 10})).plot({
     marginLeft: 60
   });
-}
+});
 
 /**
  * An arrow table dataset supports grouping.
  */
-export async function arrowTestGroup() {
+test(async function arrowTestGroup() {
   const seed = d3.randomLcg(42);
   const vector = Uint8Array.from({length: 1e5}, d3.randomExponential.source(seed)(1));
   const category = Array.from({length: 1e5}, d3.randomInt.source(seed)(4)).map((i) => `a${i}`);
   const data = Arrow.tableFromArrays({category, vector});
   return Plot.barY(data, Plot.groupX({y: "count"}, {x: "vector", fill: "category"})).plot({marginLeft: 60});
-}
+});
 
 /**
  * An arrow table dataset supports sorting with a comparator.
  */
-export async function arrowTestSort() {
+test(async function arrowTestSort() {
   const data = Arrow.tableFromArrays({
     id: [1, 2, 3],
     name: ["Alice", "Bob", "Charlie"],
     age: [35, 25, 45]
   });
   return Plot.barX(data, {x: "age", fill: "name", sort: (a: {age: number}, b: {age: number}) => b.age - a.age}).plot();
-}
+});
 
 /**
  * An arrow table dataset supports accessing the node's datum.
  */
-export async function arrowTestTree() {
+test(async function arrowTestTree() {
   const gods = Arrow.tableFromArrays({
     branch: `Chaos Gaia Mountains
 Chaos Gaia Pontus
@@ -86,12 +87,12 @@ Chaos Tartarus`
     insetRight: 120,
     marks: [Plot.tree(gods, {path: "branch", fill: (d) => d?.branch})]
   });
-}
+});
 
 /**
  * An arrow table dataset supports Plot.find.
  */
-export async function arrowTestDifferenceY() {
+test(async function arrowTestDifferenceY() {
   const stocks = Arrow.tableFromJSON(await readStocks());
   return Plot.plot({
     marks: [
@@ -106,7 +107,7 @@ export async function arrowTestDifferenceY() {
       )
     ]
   });
-}
+});
 
 async function readStocks(start = 0, end = Infinity) {
   return (
@@ -123,7 +124,7 @@ async function readStocks(start = 0, end = Infinity) {
 /**
  * An arrow table dataset supports stack custom order.
  */
-export async function arrowTestCustomOrder() {
+test(async function arrowTestCustomOrder() {
   const riaa = Arrow.tableFromJSON(await d3.csv<any>("data/riaa-us-revenue.csv", d3.autoType));
   return Plot.plot({
     y: {
@@ -147,12 +148,12 @@ export async function arrowTestCustomOrder() {
       Plot.ruleY([0])
     ]
   });
-}
+});
 
 /**
  * An arrow table dataset works with the pointer.
  */
-export async function arrowTestPointer() {
+test(async function arrowTestPointer() {
   const penguins = Arrow.tableFromJSON(await d3.csv<any>("data/penguins.csv", d3.autoType));
   const plot = Plot.dot(penguins, {x: "culmen_length_mm", y: "culmen_depth_mm", tip: true}).plot();
   const textarea = html`<textarea rows=10 style="width: 640px; resize: none;">`;
@@ -160,4 +161,4 @@ export async function arrowTestPointer() {
   oninput(); // initialize the textarea to the initial value
   plot.oninput = oninput; // update during interaction
   return html`<figure>${plot}${textarea}</figure>`;
-}
+});

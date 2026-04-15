@@ -3,6 +3,10 @@
   <meta charset="utf-8" />
 </head>
 <style>
+  :root {
+    color-scheme: light dark;
+  }
+
   body {
     max-width: 960px;
     margin: 1em auto;
@@ -31,7 +35,8 @@
   }
 </style>
 <script type="module">
-  import * as tests from "./index.ts";
+  import "./index.js";
+  import {tests} from "../plot.js";
 
   if (location.pathname !== "/") {
     location = `/${location.search}${location.hash}`;
@@ -68,12 +73,14 @@
   };
 
   select.append(
-    ...Object.keys(tests).map((key) => {
-      const option = document.createElement("option");
-      option.value = key;
-      option.textContent = key;
-      return option;
-    })
+    ...Object.keys(tests)
+      .sort()
+      .map((key) => {
+        const option = document.createElement("option");
+        option.value = key;
+        option.textContent = key;
+        return option;
+      })
   );
 
   addEventListener("popstate", (event) => {

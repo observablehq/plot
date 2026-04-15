@@ -1,6 +1,7 @@
 import * as Plot from "@observablehq/plot";
+import {test} from "test/plot";
 
-export async function treeDelimiter() {
+test(async function treeDelimiter() {
   return Plot.plot({
     axis: null,
     height: 150,
@@ -24,9 +25,9 @@ export async function treeDelimiter() {
       )
     ]
   });
-}
+});
 
-export async function treeDelimiter2() {
+test(async function treeDelimiter2() {
   return Plot.plot({
     axis: null,
     height: 150,
@@ -47,4 +48,4 @@ export async function treeDelimiter2() {
       ])
     ]
   });
-}
+});

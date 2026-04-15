@@ -1,7 +1,8 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
+import {test} from "test/plot";
 
-export async function lineHalo() {
+test(async function lineHalo() {
   const gdp = await d3.csv<any>("data/us-gdp.csv", d3.autoType);
   const recession = ["1980-04-01", "1990-10-01", "2001-04-01", "2008-01-01", "2020-01-01"].map(d3.isoParse);
   const quarters = 16;
@@ -73,18 +74,18 @@ export async function lineHalo() {
       )
     ]
   });
-}
+});
 
-export async function lineHaloSingle() {
+test(async function lineHaloSingle() {
   const aapl = await d3.csv<any>("data/aapl.csv", d3.autoType);
   return Plot.plot({
     x: {nice: 100},
     y: {nice: true},
     marks: [Plot.gridX({ticks: 100}), Plot.gridY({tickSpacing: 5}), Plot.lineY(aapl, {x: "Date", y: "Close", halo: 4})]
   });
-}
+});
 
-export async function lineHaloStyles() {
+test(async function lineHaloStyles() {
   const gdp = await d3.csv<any>("data/us-gdp.csv", d3.autoType);
   const recession = ["1980-04-01", "1990-10-01", "2001-04-01", "2008-01-01", "2020-01-01"].map(d3.isoParse);
   const quarters = 16;
@@ -112,4 +113,4 @@ export async function lineHaloStyles() {
     ],
     color: {range: d3.schemeBlues[6].slice(-4).concat("red")}
   });
-}
+});
