@@ -3,6 +3,33 @@ import * as d3 from "d3";
 import {feature, mesh} from "topojson-client";
 import {test} from "test/plot";
 
+test(async function tipAnchors() {
+  const plot = Plot.plot({
+    style: "overflow: visible;",
+    height: 160,
+    marks: [
+      Plot.frame({strokeOpacity: 0.2}),
+      (
+        [
+          "top",
+          "right",
+          "bottom",
+          "left", // sides
+          "top-left",
+          "top-right",
+          "bottom-right",
+          "bottom-left", // corners
+          "middle"
+        ] as const
+      ).map((anchor) => [
+        Plot.dot({length: 1}, {frameAnchor: anchor, fill: "blue"}),
+        Plot.tip([anchor], {frameAnchor: anchor, anchor})
+      ])
+    ]
+  });
+  return Object.assign(plot, {ready: new Promise((resolve) => setTimeout(resolve, 100))}); // postrender
+});
+
 test(async function tipAreaBand() {
   const aapl = await d3.csv<any>("data/aapl.csv", d3.autoType);
   return Plot.areaY(aapl, {x: "Date", y1: "Low", y2: "High", tip: true, curve: "step", stroke: "currentColor"}).plot();
