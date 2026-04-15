@@ -53,38 +53,34 @@ export function createScaleQ(
   key,
   scale,
   channels,
-  {
-    type,
-    nice,
-    clamp,
-    zero,
-    domain = inferAutoDomain(key, channels),
-    unknown,
-    round,
-    scheme,
-    interval,
-    range = registry.get(key) === radius
-      ? inferRadialRange(channels, domain)
-      : registry.get(key) === length
-      ? inferLengthRange(channels, domain)
-      : registry.get(key) === opacity
-      ? unit
-      : undefined,
-    interpolate = registry.get(key) === color
-      ? scheme == null && range !== undefined
-        ? interpolateRgb
-        : quantitativeScheme(scheme !== undefined ? scheme : type === "cyclical" ? "rainbow" : "turbo")
-      : round
-      ? interpolateRound
-      : interpolateNumber,
-    reverse
-  }
+  {type, nice, clamp, zero, domain, unknown, round, scheme, interval, range, interpolate, reverse}
 ) {
-  domain = maybeRepeat(domain);
+  domain = maybeRepeat(deriveDomain(key, channels, domain, zero, type));
   interval = maybeRangeInterval(interval, type);
-  if (type === "cyclical" || type === "sequential") type = "linear"; // shorthand for color schemes
+  if (interpolate === undefined) {
+    interpolate =
+      registry.get(key) === color
+        ? scheme == null && range !== undefined
+          ? interpolateRgb
+          : quantitativeScheme(scheme !== undefined ? scheme : type === "cyclical" ? "rainbow" : "turbo")
+        : round
+        ? interpolateRound
+        : interpolateNumber;
+  }
   if (typeof interpolate !== "function") interpolate = maybeInterpolator(interpolate); // named interpolator
+  if (type === "cyclical" || type === "sequential") type = "linear"; // shorthand for color schemes
   reverse = !!reverse;
+  if (range === undefined) {
+    const s = registry.get(key);
+    range =
+      s === radius
+        ? inferRadialRange(channels, domain)
+        : s === length
+        ? inferLengthRange(channels, domain)
+        : s === opacity
+        ? unit
+        : undefined;
+  }
 
   // If an explicit range is specified, and it has a different length than the
   // domain, then redistribute the range using a piecewise interpolator.
@@ -113,21 +109,6 @@ export function createScaleQ(
     scale.interpolate((range === unit ? constant : interpolatePiecewise)(interpolate));
   } else {
     scale.interpolate(interpolate);
-  }
-
-  // If a zero option is specified, we assume that the domain is numeric, and we
-  // want to ensure that the domain crosses zero. However, note that the domain
-  // may be reversed (descending) so we shouldn’t assume that the first value is
-  // smaller than the last; and also it’s possible that the domain has more than
-  // two values for a “poly” scale. And lastly be careful not to mutate input!
-  if (zero) {
-    const [min, max] = extent(domain);
-    if (min > 0 || max < 0) {
-      domain = slice(domain);
-      const o = orderof(domain) || 1; // treat degenerate as ascending
-      if (o === Math.sign(min)) domain[0] = 0; // [1, 2] or [-1, -2]
-      else domain[domain.length - 1] = 0; // [2, 1] or [-2, -1]
-    }
   }
 
   if (reverse) domain = reverseof(domain);
@@ -202,12 +183,13 @@ export function createScaleQuantize(
     range,
     n = range === undefined ? 5 : (range = [...range]).length,
     scheme = "rdylbu",
-    domain = inferAutoDomain(key, channels),
+    domain,
     unknown,
     interpolate,
     reverse
   }
 ) {
+  domain = deriveDomain(key, channels, domain);
   const [min, max] = extent(domain);
   let thresholds;
   if (range === undefined) {
@@ -282,13 +264,31 @@ export function inferDomain(channels, f = finite) {
     : [0, 1];
 }
 
-function inferAutoDomain(key, channels) {
-  const type = registry.get(key);
-  return (type === radius || type === opacity || type === length ? inferZeroDomain : inferDomain)(channels);
-}
-
-function inferZeroDomain(channels) {
-  return [0, channels.length ? max(channels, ({value}) => (value === undefined ? value : max(value, finite))) : 1];
+// Infer the domain from channels if not explicitly provided, then extend it
+// to cross zero if requested, or implicitly for radius, opacity, and length
+// scales, and for linear scales when the origin is within 7% of the spread.
+// The domain may be reversed (descending) or have more than two values (poly).
+function deriveDomain(key, channels, domain, zero, type) {
+  const isInferredDomain = domain === undefined;
+  if (isInferredDomain) domain = inferDomain(channels);
+  if (zero || (zero === undefined && isInferredDomain)) {
+    const s = registry.get(key);
+    const [min, max] = extent(domain);
+    if (
+      (min > 0 || max < 0) &&
+      (zero ||
+        s === radius ||
+        s === opacity ||
+        s === length ||
+        (type === "linear" && (min > 0 ? min < 0.07 * (max - min) : max > 0.07 * (min - max))))
+    ) {
+      domain = slice(domain); // don't mutate input!
+      const o = orderof(domain) || 1; // treat degenerate as ascending
+      if (o === Math.sign(min)) domain[0] = 0; // [1, 2] or [-1, -2]
+      else domain[domain.length - 1] = 0; // [2, 1] or [-2, -1]
+    }
+  }
+  return domain;
 }
 
 // We don’t want the upper bound of the radial domain to be zero, as this would

@@ -46,32 +46,32 @@
     <text transform="translate(620,90)">culmen_length_mm →</text>
   </g>
   <g aria-label="bar">
-    <rect x="41" width="40.429" y="23" height="20" fill="rgb(71, 55, 155)"></rect>
-    <rect x="82.429" width="40.429" y="23" height="20" fill="rgb(119, 254, 98)"></rect>
+    <rect x="41" width="40.429" y="23" height="20" fill="rgb(75, 71, 193)"></rect>
+    <rect x="82.429" width="40.429" y="23" height="20" fill="rgb(129, 253, 91)"></rect>
     <rect x="123.857" width="40.429" y="23" height="20" fill="rgb(144, 12, 0)"></rect>
     <rect x="165.286" width="40.429" y="23" height="20" fill="rgb(157, 16, 0)"></rect>
-    <rect x="206.714" width="40.429" y="23" height="20" fill="rgb(236, 81, 21)"></rect>
-    <rect x="248.143" width="40.429" y="23" height="20" fill="rgb(40, 218, 191)"></rect>
-    <rect x="289.571" width="40.429" y="23" height="20" fill="rgb(75, 72, 195)"></rect>
-    <rect x="331" width="40.429" y="23" height="20" fill="rgb(35, 23, 27)"></rect>
-    <rect x="206.714" width="40.429" y="45" height="20" fill="rgb(35, 23, 27)"></rect>
-    <rect x="248.143" width="40.429" y="45" height="20" fill="rgb(73, 90, 223)"></rect>
-    <rect x="289.571" width="40.429" y="45" height="20" fill="rgb(53, 143, 248)"></rect>
-    <rect x="331" width="40.429" y="45" height="20" fill="rgb(40, 218, 191)"></rect>
-    <rect x="372.429" width="40.429" y="45" height="20" fill="rgb(40, 177, 234)"></rect>
-    <rect x="413.857" width="40.429" y="45" height="20" fill="rgb(159, 249, 76)"></rect>
-    <rect x="455.286" width="40.429" y="45" height="20" fill="rgb(61, 126, 248)"></rect>
-    <rect x="496.714" width="40.429" y="45" height="20" fill="rgb(58, 38, 100)"></rect>
-    <rect x="579.571" width="40.429" y="45" height="20" fill="rgb(35, 23, 27)"></rect>
-    <rect x="206.714" width="40.429" y="67" height="20" fill="rgb(58, 38, 100)"></rect>
-    <rect x="248.143" width="40.429" y="67" height="20" fill="rgb(40, 218, 191)"></rect>
-    <rect x="289.571" width="40.429" y="67" height="20" fill="rgb(231, 214, 47)"></rect>
-    <rect x="331" width="40.429" y="67" height="20" fill="rgb(255, 135, 30)"></rect>
-    <rect x="372.429" width="40.429" y="67" height="20" fill="rgb(254, 185, 39)"></rect>
-    <rect x="413.857" width="40.429" y="67" height="20" fill="rgb(100, 253, 111)"></rect>
-    <rect x="455.286" width="40.429" y="67" height="20" fill="rgb(75, 72, 195)"></rect>
-    <rect x="496.714" width="40.429" y="67" height="20" fill="rgb(71, 55, 155)"></rect>
-    <rect x="579.571" width="40.429" y="67" height="20" fill="rgb(35, 23, 27)"></rect>
+    <rect x="206.714" width="40.429" y="23" height="20" fill="rgb(234, 78, 20)"></rect>
+    <rect x="248.143" width="40.429" y="23" height="20" fill="rgb(44, 226, 180)"></rect>
+    <rect x="289.571" width="40.429" y="23" height="20" fill="rgb(74, 88, 221)"></rect>
+    <rect x="331" width="40.429" y="23" height="20" fill="rgb(58, 38, 98)"></rect>
+    <rect x="206.714" width="40.429" y="45" height="20" fill="rgb(58, 38, 98)"></rect>
+    <rect x="248.143" width="40.429" y="45" height="20" fill="rgb(69, 105, 238)"></rect>
+    <rect x="289.571" width="40.429" y="45" height="20" fill="rgb(47, 157, 245)"></rect>
+    <rect x="331" width="40.429" y="45" height="20" fill="rgb(44, 226, 180)"></rect>
+    <rect x="372.429" width="40.429" y="45" height="20" fill="rgb(38, 188, 225)"></rect>
+    <rect x="413.857" width="40.429" y="45" height="20" fill="rgb(168, 246, 71)"></rect>
+    <rect x="455.286" width="40.429" y="45" height="20" fill="rgb(54, 140, 249)"></rect>
+    <rect x="496.714" width="40.429" y="45" height="20" fill="rgb(70, 54, 153)"></rect>
+    <rect x="579.571" width="40.429" y="45" height="20" fill="rgb(58, 38, 98)"></rect>
+    <rect x="206.714" width="40.429" y="67" height="20" fill="rgb(70, 54, 153)"></rect>
+    <rect x="248.143" width="40.429" y="67" height="20" fill="rgb(44, 226, 180)"></rect>
+    <rect x="289.571" width="40.429" y="67" height="20" fill="rgb(236, 209, 46)"></rect>
+    <rect x="331" width="40.429" y="67" height="20" fill="rgb(255, 130, 29)"></rect>
+    <rect x="372.429" width="40.429" y="67" height="20" fill="rgb(255, 180, 38)"></rect>
+    <rect x="413.857" width="40.429" y="67" height="20" fill="rgb(110, 254, 104)"></rect>
+    <rect x="455.286" width="40.429" y="67" height="20" fill="rgb(74, 88, 221)"></rect>
+    <rect x="496.714" width="40.429" y="67" height="20" fill="rgb(75, 71, 193)"></rect>
+    <rect x="579.571" width="40.429" y="67" height="20" fill="rgb(58, 38, 98)"></rect>
   </g>
   <g aria-label="tip" fill="var(--plot-background)" stroke="currentColor" pointer-events="none" text-anchor="start" transform="translate(0.5,10.5)"></g>
 </svg>
