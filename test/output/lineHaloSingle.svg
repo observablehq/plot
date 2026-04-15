@@ -199,8 +199,8 @@
     <line x1="40" x2="620" y1="24.375" y2="24.375"></line>
     <line x1="40" x2="620" y1="20" y2="20"></line>
   </g>
-  <g aria-label="line" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" transform="translate(0.5,0.5)" filter="url(#plot-halo-1)">
-    <filter id="plot-halo-1">
+  <g aria-label="line" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" transform="translate(0.5,0.5)" filter="url(#plot-filter-1)">
+    <filter id="plot-filter-1">
       <feMorphology in="SourceAlpha" result="dilated" operator="dilate" radius="4"></feMorphology>
       <feFlood style="flood-color: var(--plot-background);"></feFlood>
       <feComposite in2="dilated" operator="in"></feComposite>

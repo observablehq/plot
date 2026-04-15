@@ -6,7 +6,7 @@ const defaultRadius = 2;
 let nextHaloId = 0;
 
 function getHaloId() {
-  return `plot-halo-${++nextHaloId}`;
+  return `plot-filter-${++nextHaloId}`;
 }
 
 export function applyHalo(selection, {halo}) {
