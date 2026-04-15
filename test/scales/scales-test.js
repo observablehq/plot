@@ -1069,6 +1069,17 @@ it("plot(…).scale('color') can promote a quantized scale to a threshold scale 
   });
 });
 
+it("plot(…).scale('color') quantize ignores non-finite values", () => {
+  const plot = Plot.dot([1, 2, 3, Infinity, NaN], {x: Plot.identity, fill: Plot.identity}).plot({
+    color: {type: "quantize"}
+  });
+  scaleEqual(plot.scale("color"), {
+    type: "threshold",
+    domain: [1.5, 2, 2.5],
+    range: d3.schemeRdYlBu[4]
+  });
+});
+
 it("plot(…).scale('color') can promote a reversed quantized scale to a threshold scale", async () => {
   const penguins = await d3.csv("data/penguins.csv", d3.autoType);
   const plot = Plot.dot(penguins, {x: "body_mass_g", fill: "body_mass_g"}).plot({
