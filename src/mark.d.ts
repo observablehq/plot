@@ -293,6 +293,13 @@ export interface MarkOptions {
   tip?: boolean | TipPointer | (TipOptions & PointerOptions & {pointer?: TipPointer});
 
   /**
+   * Whether this mark participates in the pointer pool, which ensures that
+   * only the closest point is shown when multiple pointer marks are present;
+   * defaults to true for the tip mark.
+   */
+  pool?: boolean;
+
+  /**
    * How to clip the mark; one of:
    *
    * - *frame* or true - clip to the plot’s frame (inner area)

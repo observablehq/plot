@@ -39,3 +39,16 @@ test(async function rasterFacet() {
     ]
   });
 });
+
+test(async function rasterMixedOpacity() {
+  return Plot.plot({
+    marks: [
+      Plot.raster({
+        width: 4,
+        height: 10,
+        imageRendering: "pixelated",
+        fill: (x: number, y: number) => (x < 2 ? d3.schemeObservable10[y | 0] : `rgba(128, 128, 128, ${y / 10})`)
+      })
+    ]
+  });
+});

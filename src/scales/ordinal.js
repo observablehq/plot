@@ -3,7 +3,7 @@ import {scaleBand, scaleOrdinal, scalePoint, scaleImplicit} from "d3";
 import {ascendingDefined} from "../defined.js";
 import {isNoneish, map, maybeRangeInterval} from "../options.js";
 import {maybeSymbol} from "../symbol.js";
-import {registry, color, position, symbol} from "./index.js";
+import {registry, color, opacity, position, symbol} from "./index.js";
 import {maybeBooleanRange, ordinalScheme, quantitativeScheme} from "./schemes.js";
 
 // This denotes an implicitly ordinal color scale: the scale type was not set,
@@ -44,12 +44,16 @@ export function createScaleOrdinal(key, channels, {type, interval, domain, range
     if (scheme !== undefined) {
       if (range !== undefined) {
         const interpolate = quantitativeScheme(scheme);
-        const t0 = range[0],
-          d = range[1] - range[0];
-        range = ({length: n}) => quantize((t) => interpolate(t0 + d * t), n);
+        const t0 = range[0];
+        const dt = range[1] - range[0];
+        range = ({length: n}) => quantize((t) => interpolate(t0 + dt * t), n);
       } else {
         range = ordinalScheme(scheme);
       }
+    }
+  } else if (registry.get(key) === opacity) {
+    if (range === undefined) {
+      range = ({length: n}) => quantize((t) => t, n);
     }
   }
   if (unknown === scaleImplicit) {
@@ -96,6 +100,7 @@ function inferDomain(channels, interval, key) {
     if (value === undefined) continue;
     for (const v of value) values.add(v);
   }
+  if (key === "opacity") values.add(0); // akin to inferZeroDomain
   if (interval !== undefined) {
     const [min, max] = extent(values).map(interval.floor, interval);
     return interval.range(min, interval.offset(max));
