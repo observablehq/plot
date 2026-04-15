@@ -157,6 +157,7 @@ import "./letter-frequency-wheel.js";
 import "./libor-projections.js";
 import "./light-dark.js";
 import "./likert-survey.js";
+import "./line-halo.js";
 import "./linear-regression-cars.js";
 import "./linear-regression-mtcars.js";
 import "./linear-regression-penguins.js";
