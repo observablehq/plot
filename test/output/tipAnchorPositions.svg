@@ -1,0 +1,65 @@
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="200" viewBox="0 0 640 200" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style>
+    :where(.plot) {
+      --plot-background: white;
+      display: block;
+      height: auto;
+      height: intrinsic;
+      max-width: 100%;
+    }
+
+    :where(.plot text),
+    :where(.plot tspan) {
+      white-space: pre;
+    }
+  </style>
+  <g aria-label="dot" transform="translate(0.5,0.5)">
+    <circle cx="20" cy="179" r="5"></circle>
+    <circle cx="20" cy="99.5" r="5"></circle>
+    <circle cx="20" cy="20" r="5"></circle>
+    <circle cx="319.5" cy="179" r="5"></circle>
+    <circle cx="319.5" cy="99.5" r="5"></circle>
+    <circle cx="319.5" cy="20" r="5"></circle>
+    <circle cx="619" cy="179" r="5"></circle>
+    <circle cx="619" cy="99.5" r="5"></circle>
+    <circle cx="619" cy="20" r="5"></circle>
+  </g>
+  <g aria-label="tip" fill="var(--plot-background)" stroke="currentColor" text-anchor="start" transform="translate(0.5,0.5)">
+    <g transform="translate(20,179)">
+      <path filter="drop-shadow(0 3px 4px rgba(0,0,0,0.2))" d="M0,0l6,-6h10v-16h-16z"></path>
+      <text fill="currentColor" fill-opacity="1" stroke="none" y="-2.29em" transform="translate(8,-14)"><tspan x="0" dy="1em">​A tip that is wide enough to test anchor</tspan><tspan x="0" dy="1em">​fitting behavior across positions</tspan></text>
+    </g>
+    <g transform="translate(20,100)">
+      <path filter="drop-shadow(0 3px 4px rgba(0,0,0,0.2))" d="M0,0l6,-6v-2h16v16h-16v-2z"></path>
+      <text fill="currentColor" fill-opacity="1" stroke="none" y="-2.29em" transform="translate(14,0)"><tspan x="0" dy="1em">​A tip that is wide enough to test anchor</tspan><tspan x="0" dy="1em">​fitting behavior across positions</tspan></text>
+    </g>
+    <g transform="translate(20,20)">
+      <path filter="drop-shadow(0 3px 4px rgba(0,0,0,0.2))" d="M0,0l6,6h10v16h-16z"></path>
+      <text fill="currentColor" fill-opacity="1" stroke="none" y="-0.06em" transform="translate(8,14)"><tspan x="0" dy="1em">​A tip that is wide enough to test anchor</tspan><tspan x="0" dy="1em">​fitting behavior across positions</tspan></text>
+    </g>
+    <g transform="translate(320,179)">
+      <path filter="drop-shadow(0 3px 4px rgba(0,0,0,0.2))" d="M0,0l6,-6h2v-16h-16v16h2z"></path>
+      <text fill="currentColor" fill-opacity="1" stroke="none" y="-2.29em" transform="translate(0,-14)"><tspan x="0" dy="1em">​A tip that is wide enough to test anchor</tspan><tspan x="0" dy="1em">​fitting behavior across positions</tspan></text>
+    </g>
+    <g transform="translate(320,100)">
+      <path filter="drop-shadow(0 3px 4px rgba(0,0,0,0.2))" d="M0,0l6,-6h2v-16h-16v16h2z"></path>
+      <text fill="currentColor" fill-opacity="1" stroke="none" y="-2.29em" transform="translate(0,-14)"><tspan x="0" dy="1em">​A tip that is wide enough to test anchor</tspan><tspan x="0" dy="1em">​fitting behavior across positions</tspan></text>
+    </g>
+    <g transform="translate(320,20)">
+      <path filter="drop-shadow(0 3px 4px rgba(0,0,0,0.2))" d="M0,0l6,6h2v16h-16v-16h2z"></path>
+      <text fill="currentColor" fill-opacity="1" stroke="none" y="-0.06em" transform="translate(0,14)"><tspan x="0" dy="1em">​A tip that is wide enough to test anchor</tspan><tspan x="0" dy="1em">​fitting behavior across positions</tspan></text>
+    </g>
+    <g transform="translate(619,179)">
+      <path filter="drop-shadow(0 3px 4px rgba(0,0,0,0.2))" d="M0,0l-6,-6h-10v-16h16z"></path>
+      <text fill="currentColor" fill-opacity="1" stroke="none" y="-2.29em" transform="translate(-8,-14)"><tspan x="0" dy="1em">​A tip that is wide enough to test anchor</tspan><tspan x="0" dy="1em">​fitting behavior across positions</tspan></text>
+    </g>
+    <g transform="translate(619,100)">
+      <path filter="drop-shadow(0 3px 4px rgba(0,0,0,0.2))" d="M0,0l-6,-6v-2h-16v16h16v-2z"></path>
+      <text fill="currentColor" fill-opacity="1" stroke="none" y="-2.29em" transform="translate(-14,0)"><tspan x="0" dy="1em">​A tip that is wide enough to test anchor</tspan><tspan x="0" dy="1em">​fitting behavior across positions</tspan></text>
+    </g>
+    <g transform="translate(619,20)">
+      <path filter="drop-shadow(0 3px 4px rgba(0,0,0,0.2))" d="M0,0l-6,6h-10v16h16z"></path>
+      <text fill="currentColor" fill-opacity="1" stroke="none" y="-0.06em" transform="translate(-8,14)"><tspan x="0" dy="1em">​A tip that is wide enough to test anchor</tspan><tspan x="0" dy="1em">​fitting behavior across positions</tspan></text>
+    </g>
+  </g>
+</svg>

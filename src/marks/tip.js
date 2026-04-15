@@ -240,6 +240,10 @@ export class Tip extends Mark {
               ? "left"
               : fitRight
               ? "right"
+              : fitTop
+              ? "top"
+              : fitBottom
+              ? "bottom"
               : mark.preferredAnchor;
         }
         const path = this.firstChild; // note: assumes exactly two children!

@@ -318,7 +318,7 @@ import "./text-overflow.js";
 import "./this-is-just-to-say.js";
 import "./tick-format.js";
 import "./time-axis.js";
-import "./tip-anchor-overflow.js";
+import "./tip-anchor.js";
 import "./tip-format.js";
 import "./tip.js";
 import "./title.js";
