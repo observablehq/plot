@@ -1,8 +1,9 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 import {feature} from "topojson-client";
+import {test} from "test/plot";
 
-export async function countryCentroids() {
+test(async function countryCentroids() {
   const world = await d3.json<any>("data/countries-110m.json");
   const land = feature(world, world.objects.land);
   const countries = feature(world, world.objects.countries);
@@ -17,9 +18,9 @@ export async function countryCentroids() {
       Plot.frame()
     ]
   });
-}
+});
 
-export async function countryPois() {
+test(async function countryPois() {
   const world = await d3.json<any>("data/countries-110m.json");
   const land = feature(world, world.objects.land);
   const countries = feature(world, world.objects.countries);
@@ -34,4 +35,4 @@ export async function countryPois() {
       Plot.frame()
     ]
   });
-}
+});

@@ -1,7 +1,8 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
+import {test} from "test/plot";
 
-export async function faithfulDensity1d() {
+test(async function faithfulDensity1d() {
   const faithful = await d3.tsv<any>("data/faithful.tsv", d3.autoType);
   return Plot.plot({
     height: 100,
@@ -12,4 +13,4 @@ export async function faithfulDensity1d() {
       Plot.dot(faithful, {x: "waiting", fill: "currentColor", r: 1.5})
     ]
   });
-}
+});

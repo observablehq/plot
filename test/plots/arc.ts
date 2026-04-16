@@ -1,6 +1,7 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 import {svg} from "htl";
+import {test} from "test/plot";
 
 function* collatz(n) {
   yield n;
@@ -10,7 +11,7 @@ function* collatz(n) {
   }
 }
 
-export async function arcCollatz() {
+test(async function arcCollatz() {
   return Plot.plot({
     height: 520,
     axis: null,
@@ -30,9 +31,9 @@ export async function arcCollatz() {
       Plot.dot(collatz(12), {x: Plot.identity, r: 10})
     ]
   });
-}
+});
 
-export async function arcCollatzUp() {
+test(async function arcCollatzUp() {
   return Plot.plot({
     height: 260,
     x: {ticks: 20, tickSize: 0},
@@ -52,18 +53,18 @@ export async function arcCollatzUp() {
       () =>
         svg`<defs>
         <linearGradient id="gradient0" x1="0%" y1="0%" x2="100%" y2="0%">
-          <stop offset="5%" stop-opacity="0.3"></stop>
-          <stop offset="95%" stop-opacity="1"></stop>
+          <stop offset="5%" stop-color="currentColor" stop-opacity="0.3"></stop>
+          <stop offset="95%" stop-color="currentColor" stop-opacity="1"></stop>
         </linearGradient>
         <linearGradient id="gradient1" x1="0%" y1="0%" x2="100%" y2="0%">
-          <stop offset="5%" stop-opacity="1"></stop>
-          <stop offset="95%" stop-opacity="0.3"></stop>
+          <stop offset="5%" stop-color="currentColor" stop-opacity="1"></stop>
+          <stop offset="95%" stop-color="currentColor" stop-opacity="0.3"></stop>
         </linearGradient>`
     ]
   });
-}
+});
 
-export async function arcMiserables() {
+test(async function arcMiserables() {
   const {nodes, links} = await d3.json<any>("data/miserables.json");
   const darker = (options) =>
     Plot.initializer(options, (data, facets, {fill: {value: F}}, {color}) => ({
@@ -122,4 +123,4 @@ export async function arcMiserables() {
       )
     ]
   });
-}
+});

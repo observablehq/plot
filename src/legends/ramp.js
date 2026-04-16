@@ -3,7 +3,7 @@ import {inferFontVariant} from "../axes.js";
 import {createContext, create} from "../context.js";
 import {map, maybeNumberChannel} from "../options.js";
 import {interpolatePiecewise} from "../scales/quantitative.js";
-import {applyInlineStyles, impliedString, maybeClassName} from "../style.js";
+import {applyInlineStyles, impliedString, maybeClassName, offset} from "../style.js";
 
 export function legendRamp(color, options) {
   let {
@@ -90,9 +90,10 @@ export function legendRamp(color, options) {
     const canvas = context.document.createElement("canvas");
     canvas.width = n;
     canvas.height = 1;
-    const context2 = canvas.getContext("2d");
+    const context2 = canvas.getContext("2d", {colorSpace: "display-p3"}); // allow wide gamut
+    const fillStyle = color.key === "opacity" ? "globalAlpha" : "fillStyle";
     for (let i = 0, j = n - 1; i < n; ++i) {
-      context2.fillStyle = interpolator(i / j);
+      context2[fillStyle] = interpolator(i / j);
       context2.fillRect(i, 0, 1, 1);
     }
 
@@ -120,6 +121,7 @@ export function legendRamp(color, options) {
 
     svg
       .append("g")
+      .attr("fill", color.key === "opacity" ? color.color : null)
       .attr("fill-opacity", opacity)
       .selectAll()
       .data(range)
@@ -129,7 +131,7 @@ export function legendRamp(color, options) {
       .attr("y", marginTop)
       .attr("width", (d, i) => x(i) - x(i - 1))
       .attr("height", height - marginTop - marginBottom)
-      .attr("fill", (d) => d);
+      .attr(color.key === "opacity" ? "fill-opacity" : "fill", (d) => d);
 
     ticks = map(thresholds, (_, i) => i);
     tickFormat = (i) => thresholdFormat(thresholds[i], i);
@@ -141,6 +143,7 @@ export function legendRamp(color, options) {
 
     svg
       .append("g")
+      .attr("fill", color.key === "opacity" ? color.color : null)
       .attr("fill-opacity", opacity)
       .selectAll()
       .data(domain)
@@ -150,7 +153,7 @@ export function legendRamp(color, options) {
       .attr("y", marginTop)
       .attr("width", Math.max(0, x.bandwidth() - 1))
       .attr("height", height - marginTop - marginBottom)
-      .attr("fill", scale);
+      .attr(color.key === "opacity" ? "fill-opacity" : "fill", scale);
 
     tickAdjust = () => {};
   }
@@ -164,6 +167,7 @@ export function legendRamp(color, options) {
         .tickFormat(typeof tickFormat === "function" ? tickFormat : undefined)
         .tickSize(tickSize)
         .tickValues(Array.isArray(ticks) ? ticks : null)
+        .offset(offset)
     )
     .attr("font-size", null)
     .attr("font-family", null)

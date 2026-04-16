@@ -1,8 +1,9 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 import {mesh} from "topojson-client";
+import {test} from "test/plot";
 
-export async function projectionHeightAlbers() {
+test(async function projectionHeightAlbers() {
   const [conus, countymesh] = await d3
     .json<any>("data/us-counties-10m.json")
     .then((us) => [mesh(us, us.objects.states, (a, b) => a === b), mesh(us, us.objects.counties, (a, b) => a !== b)]);
@@ -16,4 +17,4 @@ export async function projectionHeightAlbers() {
       Plot.frame({stroke: "red", strokeDasharray: 4})
     ]
   });
-}
+});

@@ -1,7 +1,8 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
+import {test} from "test/plot";
 
-export async function uniformRandomDifference() {
+test(async function uniformRandomDifference() {
   const random = d3.randomLcg(42);
   return Plot.plot({
     x: {
@@ -14,4 +15,4 @@ export async function uniformRandomDifference() {
     },
     marks: [Plot.rectY({length: 10000}, Plot.binX({y: "proportion"}, {x: () => random() - random()})), Plot.ruleY([0])]
   });
-}
+});

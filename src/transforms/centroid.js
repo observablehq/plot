@@ -10,20 +10,17 @@ export function centroid({geometry = identity, ...options} = {}) {
     // Suppress defaults for x and y since they will be computed by the initializer.
     // Propagate the (memoized) geometry channel in case it’s still needed.
     {...options, x: null, y: null, geometry: {transform: getG}},
-    (data, facets, channels, scales, dimensions, {projection}) => {
+    (data, facets, channels, scales, dimensions, context) => {
       const G = getG(data);
       const n = G.length;
       const X = new Float64Array(n);
       const Y = new Float64Array(n);
-      const path = geoPath(projection);
-      for (let i = 0; i < n; ++i) [X[i], Y[i]] = path.centroid(G[i]);
+      const {centroid} = context.path();
+      for (let i = 0; i < n; ++i) [X[i], Y[i]] = centroid(G[i]);
       return {
         data,
         facets,
-        channels: {
-          x: {value: X, scale: projection == null ? "x" : null, source: null},
-          y: {value: Y, scale: projection == null ? "y" : null, source: null}
-        }
+        channels: {x: {value: X, scale: null, source: null}, y: {value: Y, scale: null, source: null}}
       };
     }
   );

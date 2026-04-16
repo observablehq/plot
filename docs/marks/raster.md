@@ -286,11 +286,12 @@ If **width** is specified, **x1** defaults to 0 and **x2** defaults to **width**
 
 The following raster-specific constant options are supported:
 
+* **colorSpace** - the [color space](https://developer.mozilla.org/en-US/docs/Web/API/ImageData/colorSpace) <VersionBadge pr="2143" />
 * **interpolate** - the [spatial interpolation method](#spatial-interpolators)
 * **imageRendering** - the [image-rendering attribute](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/image-rendering); defaults to *auto* (bilinear)
 * **blur** - a non-negative pixel radius for smoothing; defaults to 0
 
-The **imageRendering** option may be set to *pixelated* for a sharper image. The **interpolate** option is ignored when **fill** or **fillOpacity** is a function of *x* and *y*.
+The **colorSpace** may be set to *display-p3* for the Display P3 color space. The **imageRendering** option may be set to *pixelated* for a sharper image. The **interpolate** option is ignored when **fill** or **fillOpacity** is a function of *x* and *y*.
 
 ## raster(*data*, *options*) {#raster}
 
@@ -302,7 +303,7 @@ Returns a new raster mark with the given (optional) *data* and *options*.
 
 ## Spatial interpolators
 
-The [raster](#raster-mark) and [contour](./contour.md) marks use **spatial interpolators** to populate a raster grid from a discrete set of (often ungridded) spatial samples. The **interpolate** option controls how these marks compute the raster grid. The following built-in methods are provided:
+The [raster](#raster-mark) and [contour](./contour.md) marks use **spatial interpolators** to populate a raster grid from a discrete set of (often gridless) spatial samples. The **interpolate** option controls how these marks compute the raster grid. The following built-in methods are provided:
 
 * *none* (or null) - assign each sample to the containing pixel
 * *nearest* - assign each pixel to the closest sample’s value (Voronoi diagram)

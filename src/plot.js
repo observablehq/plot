@@ -139,7 +139,7 @@ export function plot(options = {}) {
     stateByMark.set(mark, {data, facets, channels});
   }
 
-  // Initalize the scales and dimensions.
+  // Initialize the scales and dimensions.
   const scaleDescriptors = createScales(addScaleChannels(channelsByScale, stateByMark, options), options);
   const dimensions = createDimensions(scaleDescriptors, marks, options);
 
@@ -158,6 +158,11 @@ export function plot(options = {}) {
   context.ownerSVGElement = svg;
   context.className = className;
   context.projection = createProjection(options, subdimensions);
+
+  // A path generator for marks that want to draw GeoJSON.
+  context.path = function () {
+    return geoPath(this.projection ?? xyProjection(scales));
+  };
 
   // Allows e.g. the axis mark to determine faceting lazily.
   context.filterFacets = (data, channels) => {
@@ -235,11 +240,6 @@ export function plot(options = {}) {
     facets = recreateFacets(facets, facetDomains);
     facetTranslate = facetTranslator(fx, fy, dimensions);
   }
-
-  // A path generator for marks that want to draw GeoJSON.
-  context.path = function () {
-    return geoPath(this.projection ?? xyProjection(scales));
-  };
 
   // Compute value objects, applying scales and projection as needed.
   for (const [mark, state] of stateByMark) {
@@ -340,7 +340,7 @@ export function plot(options = {}) {
     if ("value" in svg) (figure.value = svg.value), delete svg.value;
   }
 
-  figure.scale = exposeScales(scales.scales);
+  figure.scale = exposeScales(scales.scales, context);
   figure.legend = exposeLegends(scaleDescriptors, context, options);
 
   const w = consumeWarnings();
