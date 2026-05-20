@@ -10,6 +10,8 @@ import {
   coerceDates
 } from "./options.js";
 import {orderof} from "./order.js";
+import {createDimensions} from "./dimensions.js";
+import {createProjection} from "./projection.js";
 import {registry, color, position, radius, opacity, symbol, length} from "./scales/index.js";
 import {
   createScaleLinear,
@@ -526,10 +528,17 @@ export function scale(options = {}) {
     if (!registry.has(key)) continue; // ignore unknown properties
     if (!isScaleOptions(options[key])) continue; // e.g., ignore {color: "red"}
     if (scale !== undefined) throw new Error("ambiguous scale definition; multiple scales found");
-    scale = exposeScale(normalizeScale(key, options[key]));
+    scale = key === "projection" ? exposeProjection(options[key]) : exposeScale(normalizeScale(key, options[key]));
   }
   if (scale === undefined) throw new Error("invalid scale definition; no scale found");
   return scale;
+}
+
+function exposeProjection({width, height, margin, marginTop, marginRight, marginBottom, marginLeft, ...projection}) {
+  const dimensions = createDimensions({}, [], {projection, width, height, margin, marginTop, marginRight, marginBottom, marginLeft}); // prettier-ignore
+  const p = createProjection({projection}, dimensions);
+  if (p === undefined) throw new Error("invalid scale definition; unknown projection");
+  return p;
 }
 
 export function exposeScales(scales, context) {
