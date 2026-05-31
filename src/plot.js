@@ -483,7 +483,9 @@ function maybeMarkFacet(mark, topFacetState, options) {
   // here with maybeTopFacet that we could reduce.
   const {fx, fy} = mark;
   if (fx != null || fy != null) {
-    const data = dataify(mark.data ?? fx ?? fy);
+    const value = mark.data ?? fx ?? fy;
+    const data = dataify(value);
+    if (mark.data === value && value?.[Symbol.iterator]?.() === value) mark.data = data;
     if (data === undefined) throw new Error(`missing facet data in ${mark.ariaLabel}`);
     if (data === null) return; // ignore channel definitions if no data is provided TODO this right?
     const channels = {};

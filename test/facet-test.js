@@ -36,3 +36,18 @@ it("detects missing facet data", async () => {
   assert.throws(() => Plot.barY([], {x: "x", y: "y"}).plot({facet: {x: "fx"}}), /missing facet data/);
   assert.throws(() => Plot.barY([], {x: "x", y: "y"}).plot({facet: {data: null, x: "fx"}}), /missing facet data/);
 });
+it("supports mark-level faceting with iterator data", () => {
+  assert.deepStrictEqual(Plot.dot(["ab"], {fy: "1"}).plot().scale("y").domain, ["b"]);
+  assert.deepStrictEqual(
+    Plot.dot(new Set(["ab"]), {fy: "1"})
+      .plot()
+      .scale("y").domain,
+    ["b"]
+  );
+  assert.deepStrictEqual(
+    Plot.dot(new Set(["ab"]).values(), {fy: "1"})
+      .plot()
+      .scale("y").domain,
+    ["b"]
+  );
+});
