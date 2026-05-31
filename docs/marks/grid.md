@@ -61,7 +61,24 @@ See the [axis mark](./axis.md) for more details and examples.
 
 ## Grid options
 
-The optional *data* is an array of tick values — it defaults to the scale’s ticks. The grid mark draws a line for each tick value, across the whole frame.
+The optional *data* is an array of tick values; if omitted, the mark computes its own ticks from the corresponding scale. To use the scale’s **ticks** option, use an implicit grid by setting the scale’s **grid** option, or pass the tick values directly to an explicit grid mark.
+
+For example, to align a grid with explicit tick values, pass the values to both the axis and grid marks:
+
+:::plot
+```js
+Plot.plot({
+  x: {
+    domain: [new Date(2026, 2, 9), new Date(2026, 2, 11)]
+  },
+  marks: [
+    ((ticks) => [Plot.gridX(ticks), Plot.axisX(ticks)])(
+      ["2026-03-09", "2026-03-10", "2026-03-11"].map((d) => new Date(d))
+    )
+  ]
+})
+```
+:::
 
 The following options are supported:
 
