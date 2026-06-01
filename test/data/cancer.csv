@@ -1,0 +1,97 @@
+name,year,survival
+Prostate,5 Year,99
+Thyroid,5 Year,96
+Testis,5 Year,95
+Melanomas,5 Year,89
+Breast,5 Year,86
+Hodgkin’s disease,5 Year,85
+"Corpus uteri, uterus",5 Year,84
+"Urinary, bladder",5 Year,82
+"Cervix, uteri",5 Year,71
+Larynx,5 Year,69
+Rectum,5 Year,63
+"Kidney, renal pelvis",5 Year,62
+Colon,5 Year,62
+Non-Hodgkin’s,5 Year,58
+"Oral cavity, pharynx",5 Year,57
+Ovary,5 Year,55
+Leukemia,5 Year,43
+"Brain, nervous system",5 Year,32
+Multiple myeloma,5 Year,30
+Stomach,5 Year,24
+Lung and bronchus,5 Year,15
+Esophagus,5 Year,14
+"Liver, bile duct",5 Year,8
+Pancreas,5 Year,4
+Prostate,10 Year,95
+Thyroid,10 Year,96
+Testis,10 Year,94
+Melanomas,10 Year,87
+Breast,10 Year,78
+Hodgkin’s disease,10 Year,80
+"Corpus uteri, uterus",10 Year,83
+"Urinary, bladder",10 Year,76
+"Cervix, uteri",10 Year,64
+Larynx,10 Year,57
+Rectum,10 Year,55
+"Kidney, renal pelvis",10 Year,54
+Colon,10 Year,55
+Non-Hodgkin’s,10 Year,46
+"Oral cavity, pharynx",10 Year,44
+Ovary,10 Year,49
+Leukemia,10 Year,32
+"Brain, nervous system",10 Year,29
+Multiple myeloma,10 Year,13
+Stomach,10 Year,19
+Lung and bronchus,10 Year,11
+Esophagus,10 Year,8
+"Liver, bile duct",10 Year,6
+Pancreas,10 Year,3
+Prostate,15 Year,87
+Thyroid,15 Year,94
+Testis,15 Year,91
+Melanomas,15 Year,84
+Breast,15 Year,71
+Hodgkin’s disease,15 Year,74
+"Corpus uteri, uterus",15 Year,81
+"Urinary, bladder",15 Year,70
+"Cervix, uteri",15 Year,63
+Larynx,15 Year,46
+Rectum,15 Year,52
+"Kidney, renal pelvis",15 Year,50
+Colon,15 Year,54
+Non-Hodgkin’s,15 Year,38
+"Oral cavity, pharynx",15 Year,38
+Ovary,15 Year,50
+Leukemia,15 Year,30
+"Brain, nervous system",15 Year,28
+Multiple myeloma,15 Year,7
+Stomach,15 Year,19
+Lung and bronchus,15 Year,8
+Esophagus,15 Year,8
+"Liver, bile duct",15 Year,6
+Pancreas,15 Year,3
+Prostate,20 Year,81
+Thyroid,20 Year,95
+Testis,20 Year,88
+Melanomas,20 Year,83
+Breast,20 Year,65
+Hodgkin’s disease,20 Year,67
+"Corpus uteri, uterus",20 Year,79
+"Urinary, bladder",20 Year,68
+"Cervix, uteri",20 Year,60
+Larynx,20 Year,38
+Rectum,20 Year,49
+"Kidney, renal pelvis",20 Year,47
+Colon,20 Year,52
+Non-Hodgkin’s,20 Year,34
+"Oral cavity, pharynx",20 Year,33
+Ovary,20 Year,50
+Leukemia,20 Year,26
+"Brain, nervous system",20 Year,26
+Multiple myeloma,20 Year,5
+Stomach,20 Year,15
+Lung and bronchus,20 Year,6
+Esophagus,20 Year,5
+"Liver, bile duct",20 Year,8
+Pancreas,20 Year,3
