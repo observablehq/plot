@@ -17,6 +17,9 @@ importers:
       isoformat:
         specifier: ^0.2.0
         version: 0.2.1
+      polylabel:
+        specifier: ^2.0.0
+        version: 2.0.1
     devDependencies:
       '@eslint/eslintrc':
         specifier: ^3.2.0
@@ -2317,6 +2320,9 @@ packages:
     resolution: {integrity: sha512-5gTmgEY/sqK6gFXLIsQNH19lWb4ebPDLA4SdLP7dsWkIXHWlG66oPuVvXSGFPppYZz8ZDZq0dYYrbHfBCVUb1Q==}
     engines: {node: '>=12'}
 
+  polylabel@2.0.1:
+    resolution: {integrity: sha512-B6Yu+Bdl/8SGtjVhyUfZzD3DwciCS9SPVtHiNdt8idHHatvTHp5Ss8XGDRmQFtfF1ZQnfK+Cj5dXdpkUXBbXgA==}
+
   postcss@8.5.8:
     resolution: {integrity: sha512-OW/rX8O/jXnm82Ey1k44pObPtdblfiuWnrd8X7GJ7emImCOstunGbXUpp7HdBrFQX6rJzn3sPT397Wp5aCwCHg==}
     engines: {node: ^10 || ^12 || >=14}
@@ -2555,6 +2561,9 @@ packages:
   tinyglobby@0.2.15:
     resolution: {integrity: sha512-j2Zq4NyQYG5XMST4cbs02Ak8iJUdxRM0XI5QyxXuZOzKOINmWurp3smXu3y5wDcJrptwpSjgXHzIQxR0omXljQ==}
     engines: {node: '>=12.0.0'}
+
+  tinyqueue@3.0.0:
+    resolution: {integrity: sha512-gRa9gwYU3ECmQYv3lslts5hxuIa90veaEcxDYuu3QGOIAEM2mOZkVHp48ANJuu1CURtRdHKUBY5Lm1tHV+sD4g==}
 
   tinyrainbow@3.0.3:
     resolution: {integrity: sha512-PSkbLUoxOFRzJYjjxHJt9xro7D+iilgMX/C9lawzVuYiIdcihh9DXmVibBe8lmcFrRi/VzlPjBxbN7rH24q8/Q==}
@@ -4986,6 +4995,10 @@ snapshots:
 
   picomatch@4.0.3: {}
 
+  polylabel@2.0.1:
+    dependencies:
+      tinyqueue: 3.0.0
+
   postcss@8.5.8:
     dependencies:
       nanoid: 3.3.11
@@ -5252,6 +5265,8 @@ snapshots:
     dependencies:
       fdir: 6.5.0(picomatch@4.0.3)
       picomatch: 4.0.3
+
+  tinyqueue@3.0.0: {}
 
   tinyrainbow@3.0.3: {}
 
