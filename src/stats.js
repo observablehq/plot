@@ -20,7 +20,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-export function ibetainv(p, a, b) {
+function ibetainv(p, a, b) {
   var EPS = 1e-8;
   var a1 = a - 1;
   var b1 = b - 1;
@@ -60,7 +60,7 @@ export function ibetainv(p, a, b) {
   return x;
 }
 
-export function ibeta(x, a, b) {
+function ibeta(x, a, b) {
   // Factors in front of the continued fraction.
   var bt =
     x === 0 || x === 1 ? 0 : Math.exp(gammaln(a + b) - gammaln(a) - gammaln(b) + a * Math.log(x) + b * Math.log(1 - x));
@@ -72,7 +72,7 @@ export function ibeta(x, a, b) {
   return 1 - (bt * betacf(1 - x, b, a)) / b;
 }
 
-export function betacf(x, a, b) {
+function betacf(x, a, b) {
   var fpmin = 1e-30;
   var m = 1;
   var qab = a + b;
@@ -112,7 +112,7 @@ export function betacf(x, a, b) {
   return h;
 }
 
-export function gammaln(x) {
+function gammaln(x) {
   var j = 0;
   var cof = [
     76.18009172947146, -86.5053203294167, 24.01409824083091, -1.231739572450155, 0.1208650973866179e-2,
