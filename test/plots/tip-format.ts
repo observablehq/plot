@@ -1,4 +1,5 @@
 import * as Plot from "@observablehq/plot";
+import {svg} from "htl";
 import {test} from "test/plot";
 
 function tip(
@@ -119,4 +120,21 @@ test(async function tipFormatTitleFormatShorthand() {
 
 test(async function tipFormatTitlePrimitive() {
   return tip(["hello\nworld"], {x: 0});
+});
+
+test(async function tipFormatTitleMarkup() {
+  return tip(
+    {length: 1},
+    {
+      title: ["Plot"],
+      format: {title: (d) => svg`<tspan><tspan font-weight="bold">${d}</tspan> <a fill="blue" href="https://observablehq.com/plot/">docs</a></tspan>`} // prettier-ignore
+    }
+  );
+});
+
+test(async function tipFormatChannelMarkup() {
+  return tip([{value: 1}], {
+    channels: {Name: ["Bob"]},
+    format: {Name: (d) => svg`<tspan fill="red">${d}</tspan>`}
+  });
 });
