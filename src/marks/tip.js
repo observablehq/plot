@@ -157,10 +157,10 @@ export class Tip extends Mark {
               this.setAttribute("stroke", "none");
               // iteratively render each channel value
               const lines = T[i];
-              if (isNode(lines)) {
+              if (lines?.ownerDocument) {
                 // A format function may return a DOM node (e.g., an SVG tspan
                 // or anchor) to display styled or hyperlinked rich text.
-                renderLine(that, {value: lines});
+                renderNodeLine(that, {value: lines});
               } else if (typeof lines === "string") {
                 for (const line of mark.splitLines(lines)) {
                   renderLine(that, {value: mark.clipLine(line)});
@@ -184,21 +184,9 @@ export class Tip extends Mark {
     // exact text metrics and translate the text as needed once we know the
     // tip’s orientation (anchor).
     function renderLine(selection, {label, value, color, opacity}) {
+      if (value?.ownerDocument) return renderNodeLine(selection, {label, value, color, opacity});
       (label ??= ""), (value ??= "");
       const swatch = color != null || opacity != null;
-
-      // If the value is a DOM node — such as an SVG tspan or anchor returned by
-      // a custom format function — append it directly rather than wrapping it
-      // in a text node. This allows styled and hyperlinked rich text in the
-      // tip. Such values are appended as-is and hence are not measured, so the
-      // lineWidth and textOverflow options do not apply.
-      if (isNode(value)) {
-        const line = selection.append("tspan").attr("x", 0).attr("dy", `${lineHeight}em`).text("\u200b"); // zwsp for double-click
-        if (label) line.append("tspan").attr("font-weight", "bold").text(label);
-        line.append(() => value);
-        if (swatch) line.append("tspan").text(" ■").attr("fill", color).attr("fill-opacity", opacity).style("user-select", "none"); // prettier-ignore
-        return;
-      }
 
       let title;
       let w = lineWidth * 100;
@@ -222,6 +210,22 @@ export class Tip extends Mark {
       if (value) line.append(() => document.createTextNode(value));
       if (swatch) line.append("tspan").text(" ■").attr("fill", color).attr("fill-opacity", opacity).style("user-select", "none"); // prettier-ignore
       if (title) line.append("title").text(title);
+    }
+
+    // Renders a single line whose value is a DOM node, such as an SVG tspan or
+    // anchor returned by a custom format function. The node is appended
+    // directly rather than wrapped in a text node, allowing styled and
+    // hyperlinked rich text. Such values are appended as-is and hence are not
+    // measured, so the lineWidth and textOverflow options are ignored.
+    function renderNodeLine(selection, {label, value, color, opacity}) {
+      const swatch = color != null || opacity != null;
+      const line = selection.append("tspan").attr("x", 0).attr("dy", `${lineHeight}em`).text("\u200b"); // zwsp for double-click
+      if (label) {
+        line.append("tspan").attr("font-weight", "bold").text(label);
+        line.append(() => document.createTextNode(" "));
+      }
+      line.append(() => value);
+      if (swatch) line.append("tspan").text(" ■").attr("fill", color).attr("fill-opacity", opacity).style("user-select", "none"); // prettier-ignore
     }
 
     // Only after the plot is attached to the page can we compute the exact text
@@ -284,12 +288,6 @@ export class Tip extends Mark {
 export function tip(data, {x, y, ...options} = {}) {
   if (options.frameAnchor === undefined) [x, y] = maybeTuple(x, y);
   return new Tip(data, {...options, x, y});
-}
-
-// Returns true if the given value is a DOM node, such as an SVG element
-// returned by a custom format function for rich-text tip content.
-function isNode(value) {
-  return value != null && typeof value === "object" && typeof value.nodeType === "number";
 }
 
 function getLineOffset(anchor, length, lineHeight) {
