@@ -1,5 +1,5 @@
 import {assert, it} from "vitest";
-import {identity, isNumericString, valueof} from "../src/options.js";
+import {identity, isNumericString, valueof, isTimeInterval} from "../src/options.js";
 import {isYearInteger, isYearIntegers} from "../src/options.js";
 
 it("isYearInteger returns true for integers in [1500, 2500]", () => {
@@ -72,6 +72,12 @@ it("isNumericString ignores whitespace strings", () => {
 it("isNumericString only checks the first present value", () => {
   assert.strictEqual(isNumericString(["42", "notstring"]), true);
   assert.strictEqual(isNumericString(["notstring", "42"]), false);
+});
+
+it("isTimeInterval returns true for interval-like objects with a date floor", () => {
+  assert.strictEqual(isTimeInterval({range: () => [new Date()], floor: () => new Date()}), true);
+  assert.strictEqual(isTimeInterval({range: () => [0], floor: () => 0}), false);
+  assert.strictEqual(isTimeInterval({range: () => [0]}), false);
 });
 
 it("valueof returns nullish value", () => {
