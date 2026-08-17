@@ -50,7 +50,8 @@ export class Tip extends Mark {
       textPadding = 8,
       title,
       pointerSize = 12,
-      pathFilter = "drop-shadow(0 3px 4px rgba(0,0,0,0.2))"
+	  pathFilter = "drop-shadow(0 3px 4px rgba(0,0,0,0.2))",
+	  radius,
     } = options;
     super(
       data,
@@ -86,13 +87,14 @@ export class Tip extends Mark {
     this.splitLines = splitter(this);
     this.clipLine = clipper(this);
     this.format = typeof format === "string" || typeof format === "function" ? {title: format} : {...format}; // defensive copy before mutate; also promote nullish to empty
+	this.radius = number(radius);  
   }
   render(index, scales, values, dimensions, context) {
     const mark = this;
     const {x, y, fx, fy} = scales;
     const {ownerSVGElement: svg, document} = context;
     const {anchor, monospace, lineHeight, lineWidth} = this;
-    const {textPadding: r, pointerSize: m, pathFilter} = this;
+    const {textPadding: r, pointerSize: m, pathFilter, radius: rad} = this;
     const {marginTop, marginLeft} = dimensions;
 
     // The anchor position is the middle of x1 & y1 and x2 & y2, if available,
@@ -238,7 +240,7 @@ export class Tip extends Mark {
         }
         const path = this.firstChild; // note: assumes exactly two children!
         const text = this.lastChild; // note: assumes exactly two children!
-        path.setAttribute("d", getPath(a, m, r, w, h));
+          path.setAttribute("d", getPath(a, m, r, w, h, radius));
         if (tx) for (const t of text.childNodes) t.setAttribute("x", -tx);
         text.setAttribute("y", `${+getLineOffset(a, text.childNodes.length, lineHeight).toFixed(6)}em`);
         text.setAttribute("transform", `translate(${getTextTranslate(a, m, r, w, h)})`);
@@ -299,7 +301,7 @@ function getTextTranslate(anchor, m, r, width, height) {
   }
 }
 
-function getPath(anchor, m, r, width, height) {
+/*function getPath(anchor, m, r, width, height) {
   const w = width + r * 2;
   const h = height + r * 2;
   switch (anchor) {
@@ -321,6 +323,39 @@ function getPath(anchor, m, r, width, height) {
       return `M0,0l${-m / 2},${-m / 2}h${m / 2 - w}v${-h}h${w}z`;
     case "left":
       return `M0,0l${m / 2},${-m / 2}v${m / 2 - h / 2}h${w}v${h}h${-w}v${m / 2 - h / 2}z`;
+  }
+}*/
+function getPath(anchor, m, r, width, height, borderRadius) {
+  
+	var w = width + r * 2, h = height + r * 2,tlc='',trc='',brc='',blc='';
+	if(borderRadius){
+		const br = Math.min(borderRadius,w,h);
+		w = w - br - br;
+		h = h - br - br;
+		trc = `q ${br} 0 ${br} ${br}`;//top right corner
+		brc = `q 0 ${br} ${-br} ${br}`;
+		tlc = `q 0 ${-br} ${br} ${-br}`;
+		blc = `q ${-br} 0 ${-br} ${-br}`; //bottom left corner
+	}
+  switch (anchor) {
+    case "middle":
+	  return `M${-w / 2},${-h / 2 - br} h${w} ${trc} v${h} ${brc} h${-w} ${blc} v ${-h} ${tlc} z`;
+    case "top-left":
+      return `M0,0l${m / 2},${m / 2} h${w - m / 2} ${trc} v${h} ${brc}  h${-w}  ${blc} z`;
+    case "top":
+      return `M0,0l${m / 2},${m / 2} h${(w - m) / 2} ${trc} v${h} ${brc} h${-w} ${blc} v${-h} ${tlc} h${(w - m) / 2} z`;
+    case "top-right":
+      return `M0,0l${-m / 2},${m / 2} h${m / 2 - w} ${tlc} v${h} ${blc} h${w} ${brc} z`;
+    case "right":
+      return `M0,0l${-m / 2},${-m / 2} v${m / 2 - h / 2} ${trc} h${-w} ${tlc} v${h} ${blc} h${w} ${brc} v${m / 2 - h / 2} z`;
+    case "bottom-left":
+      return `M0,0l${m / 2},${-m / 2} h${w - m / 2} ${brc}  v${-h} ${trc} h${-w} ${tlc} z`;
+    case "bottom":
+      return `M0,0l${m / 2},${-m / 2} h${(w - m) / 2}  ${brc}  v${-h} ${trc} h${-w} ${tlc}  v${h}  ${blc} h${(w - m) / 2} z`;
+    case "bottom-right":
+      return `M0,0l${-m / 2},${-m / 2} h${m / 2 - w} ${blc} v${-h} ${tlc} h${w} ${trc} z`;
+    case "left":
+      return `M0,0l${m / 2},${-m / 2} v${m / 2 - h / 2} h${w} v${h} h${-w} v${m / 2 - h / 2} z`;
   }
 }
 
