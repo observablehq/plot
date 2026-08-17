@@ -399,7 +399,7 @@
   </g>
   <g aria-label="tip" fill="var(--plot-background)" stroke="currentColor" pointer-events="none" text-anchor="start" transform="translate(0.5,0.5)">
     <g transform="translate(198,199)">
-      <path filter="drop-shadow(0 3px 4px rgba(0,0,0,0.2))" d="M0,0l6,-6h2v-16h-16v16h2z"></path>
+      <path filter="drop-shadow(0 3px 4px rgba(0,0,0,0.2))" d="M0,0l-6,-6h-2v-16h16v16h-2z"></path>
       <text fill="currentColor" fill-opacity="1" stroke="none" y="-1.29em" transform="translate(0,-14)"><tspan x="0" dy="1em">​Torgersen</tspan></text>
     </g>
   </g>

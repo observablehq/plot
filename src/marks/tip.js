@@ -87,8 +87,8 @@ export class Tip extends Mark {
     this.splitLines = splitter(this);
     this.clipLine = clipper(this);
     this.format = typeof format === "string" || typeof format === "function" ? {title: format} : {...format}; // defensive copy before mutate; also promote nullish to empty
-	this.radius = number(radius);  
-  }
+	this.radius = number(radius);
+  }	 
   render(index, scales, values, dimensions, context) {
     const mark = this;
     const {x, y, fx, fy} = scales;
@@ -240,7 +240,7 @@ export class Tip extends Mark {
         }
         const path = this.firstChild; // note: assumes exactly two children!
         const text = this.lastChild; // note: assumes exactly two children!
-          path.setAttribute("d", getPath(a, m, r, w, h, radius));
+	    path.setAttribute("d", getPath(a, m, r, w, h, rad));
         if (tx) for (const t of text.childNodes) t.setAttribute("x", -tx);
         text.setAttribute("y", `${+getLineOffset(a, text.childNodes.length, lineHeight).toFixed(6)}em`);
         text.setAttribute("transform", `translate(${getTextTranslate(a, m, r, w, h)})`);
@@ -300,62 +300,38 @@ function getTextTranslate(anchor, m, r, width, height) {
       return [r + m / 2, height / 2];
   }
 }
-
-/*function getPath(anchor, m, r, width, height) {
-  const w = width + r * 2;
-  const h = height + r * 2;
-  switch (anchor) {
-    case "middle":
-      return `M${-w / 2},${-h / 2}h${w}v${h}h${-w}z`;
-    case "top-left":
-      return `M0,0l${m / 2},${m / 2}h${w - m / 2}v${h}h${-w}z`;
-    case "top":
-      return `M0,0l${m / 2},${m / 2}h${(w - m) / 2}v${h}h${-w}v${-h}h${(w - m) / 2}z`;
-    case "top-right":
-      return `M0,0l${-m / 2},${m / 2}h${m / 2 - w}v${h}h${w}z`;
-    case "right":
-      return `M0,0l${-m / 2},${-m / 2}v${m / 2 - h / 2}h${-w}v${h}h${w}v${m / 2 - h / 2}z`;
-    case "bottom-left":
-      return `M0,0l${m / 2},${-m / 2}h${w - m / 2}v${-h}h${-w}z`;
-    case "bottom":
-      return `M0,0l${m / 2},${-m / 2}h${(w - m) / 2}v${-h}h${-w}v${h}h${(w - m) / 2}z`;
-    case "bottom-right":
-      return `M0,0l${-m / 2},${-m / 2}h${m / 2 - w}v${-h}h${w}z`;
-    case "left":
-      return `M0,0l${m / 2},${-m / 2}v${m / 2 - h / 2}h${w}v${h}h${-w}v${m / 2 - h / 2}z`;
-  }
-}*/
 function getPath(anchor, m, r, width, height, borderRadius) {
   
-	var w = width + r * 2, h = height + r * 2,tlc='',trc='',brc='',blc='';
+	let w = width + r * 2, h = height + r * 2, halfM = m / 2, br = 0, tlc = '', trc = '', brc = '', blc = '';
 	if(borderRadius){
-		const br = Math.min(borderRadius,w,h);
+		br = Math.min(borderRadius,w/2,h/2);
 		w = w - br - br;
 		h = h - br - br;
-		trc = `q ${br} 0 ${br} ${br}`;//top right corner
-		brc = `q 0 ${br} ${-br} ${br}`;
-		tlc = `q 0 ${-br} ${br} ${-br}`;
-		blc = `q ${-br} 0 ${-br} ${-br}`; //bottom left corner
+		trc = ` q ${br} 0 ${br} ${br} `;//top right corner
+		brc = ` q 0 ${br} ${-br} ${br} `;
+		tlc = ` q 0 ${-br} ${br} ${-br} `;
+		blc = ` q ${-br} 0 ${-br} ${-br} `; //bottom left corner
 	}
-  switch (anchor) {
+	switch (anchor) {
+		//all paths must go clockwise to use the rounded corners defined above
     case "middle":
-	  return `M${-w / 2},${-h / 2 - br} h${w} ${trc} v${h} ${brc} h${-w} ${blc} v ${-h} ${tlc} z`;
+		return `M${-w / 2},${-h / 2 - br}h${w}${trc}v${h}${brc}h${-w}${blc}v${-h}${tlc}z`;
     case "top-left":
-      return `M0,0l${m / 2},${m / 2} h${w - m / 2} ${trc} v${h} ${brc}  h${-w}  ${blc} z`;
+      return `M0,0l${halfM},${halfM}h${w - halfM + br}${trc}v${h}${brc}h${-w}${blc}z`;
     case "top":
-      return `M0,0l${m / 2},${m / 2} h${(w - m) / 2} ${trc} v${h} ${brc} h${-w} ${blc} v${-h} ${tlc} h${(w - m) / 2} z`;
+      return `M0,0l${halfM},${halfM}h${(w - m) / 2}${trc}v${h}${brc}h${-w}${blc}v${-h}${tlc}h${(w - m) / 2}z`;
     case "top-right":
-      return `M0,0l${-m / 2},${m / 2} h${m / 2 - w} ${tlc} v${h} ${blc} h${w} ${brc} z`;
+	  return `M0,0v${h + halfM + br}${brc}h${-w}${blc}v${-h}${tlc}h${w - halfM + br}z`;
     case "right":
-      return `M0,0l${-m / 2},${-m / 2} v${m / 2 - h / 2} ${trc} h${-w} ${tlc} v${h} ${blc} h${w} ${brc} v${m / 2 - h / 2} z`;
+      return `M0,0l${-halfM},${halfM}v${h / 2 - halfM}${brc}h${-w}${blc}v${-h}${tlc}h${w}${trc}v${h / 2 - halfM}z`;
     case "bottom-left":
-      return `M0,0l${m / 2},${-m / 2} h${w - m / 2} ${brc}  v${-h} ${trc} h${-w} ${tlc} z`;
+      return `M0,0v${-h - halfM - br}${tlc}h${w}${trc}v${h}${brc}h${-w + halfM - br }z`;
     case "bottom":
-      return `M0,0l${m / 2},${-m / 2} h${(w - m) / 2}  ${brc}  v${-h} ${trc} h${-w} ${tlc}  v${h}  ${blc} h${(w - m) / 2} z`;
+		return `M0,0l${-halfM},${-halfM}h${(m - w) / 2}${blc}v${-h}${tlc}h${w}${trc}v${h}${brc}h${(m - w) / 2}z`;
     case "bottom-right":
-      return `M0,0l${-m / 2},${-m / 2} h${m / 2 - w} ${blc} v${-h} ${tlc} h${w} ${trc} z`;
+      return `M0,0l${-halfM},${-halfM}h${halfM - w - br}${blc}v${-h}${tlc}h${w}${trc}z`;
     case "left":
-      return `M0,0l${m / 2},${-m / 2} v${m / 2 - h / 2} h${w} v${h} h${-w} v${m / 2 - h / 2} z`;
+      return `M0,0l${halfM},${-halfM}v${halfM - h / 2}${tlc}h${w}${trc}v${h}${brc}h${-w}${blc}v${halfM - h / 2}z`;
   }
 }
 
