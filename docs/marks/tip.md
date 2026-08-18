@@ -229,6 +229,7 @@ These tip-specific options control the tip appearance:
 - **pointerSize** - the size of the tip’s pointer in pixels; defaults to 12
 - **pathFilter** - the image filter for the tip’s box; defaults to a drop shadow
 - **textPadding** - the padding around the text in pixels; defaults to 8
+- **radius** - round the corners of the tip - like a CSS border-radius; defaults to null which means square corners
 
 The tip mark does not support the [standard style channels](../features/marks.md#mark-options) such as varying **fill** or **stroke**; channels are used exclusively to control the displayed values rather than the tip’s appearance. You can however use the these options for a constant **fill**, **fillOpacity**, **stroke**, **strokeOpacity**, or **strokeWidth** on the path element surrounding the tip text.
 
