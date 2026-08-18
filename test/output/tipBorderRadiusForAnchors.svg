@@ -82,7 +82,7 @@
   </g>
   <g aria-label="tip" fill="var(--plot-background)" stroke="currentColor" text-anchor="start" transform="translate(0.5,0.5)">
     <g transform="translate(0,159)">
-      <path filter="drop-shadow(0 3px 4px rgba(0,0,0,0.2))" d="M0,0v-19 q 0 -3 3 -3 h10 q 3 0 3 3 v10 q 0 3 -3 3 h-4z"></path>
+      <path filter="drop-shadow(0 3px 4px rgba(0,0,0,0.2))" d="M0,0v-19 q 0 -3 3 -3 h10 q 3 0 3 3 v10 q 0 3 -3 3 h-7z"></path>
       <text fill="currentColor" fill-opacity="1" stroke="none" y="-1.29em" transform="translate(8,-14)"><tspan x="0" dy="1em">​bottom-left</tspan></text>
     </g>
   </g>
