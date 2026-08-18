@@ -48,7 +48,7 @@ test(async function tipBorderRadiusForAnchors() {
           "bottom-left", // corners
           "middle"
         ] as const
-      ).map((anchor, ind ) => [
+      ).map((anchor) => [
         Plot.dot({length: 1}, {frameAnchor: anchor, fill: "blue"}),
         Plot.tip([anchor], { frameAnchor: anchor, anchor, radius: 3})
       ])
