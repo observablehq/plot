@@ -246,6 +246,7 @@ Plot.tip(["Danger! This tip is red."], {
 These [standard text options](./text.md#text-options) control the display of text within the tip:
 
 - **monospace** - if true, changes the default **fontFamily** and metrics to monospace
+- **fontColor** - usa color hex to set the font color; defaults to currentColor 
 - **fontFamily** - the font name; defaults to [*system-ui*](https://drafts.csswg.org/css-fonts-4/#valdef-font-family-system-ui)
 - **fontSize** - the font size in pixels; defaults to 10
 - **fontStyle** - the [font style](https://developer.mozilla.org/en-US/docs/Web/CSS/font-style); defaults to *normal*
