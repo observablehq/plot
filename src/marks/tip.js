@@ -35,7 +35,8 @@ export class Tip extends Mark {
       y2,
       anchor,
       preferredAnchor = "bottom",
-      monospace,
+	  monospace,
+	  fontColor = "currentColor",	
       fontFamily = monospace ? "ui-monospace, monospace" : undefined,
       fontSize,
       fontStyle,
@@ -78,6 +79,7 @@ export class Tip extends Mark {
     this.lineWidth = +lineWidth;
     this.textOverflow = maybeTextOverflow(textOverflow);
     this.monospace = !!monospace;
+	this.fontColor = string(fontColor);
     this.fontFamily = string(fontFamily);
     this.fontSize = number(fontSize);
     this.fontStyle = string(fontStyle);
@@ -94,7 +96,7 @@ export class Tip extends Mark {
     const {x, y, fx, fy} = scales;
     const {ownerSVGElement: svg, document} = context;
     const {anchor, monospace, lineHeight, lineWidth} = this;
-    const {textPadding: r, pointerSize: m, pathFilter, radius: rad} = this;
+      const {textPadding: r, pointerSize: m, pathFilter, radius: rad, fontColor:color} = this;
     const {marginTop, marginLeft} = dimensions;
 
     // The anchor position is the middle of x1 & y1 and x2 & y2, if available,
@@ -154,7 +156,7 @@ export class Tip extends Mark {
             g.append("text").each(function (i) {
               const that = select(this);
               // prevent style inheritance (from path)
-              this.setAttribute("fill", "currentColor");
+              this.setAttribute("fill", color);
               this.setAttribute("fill-opacity", 1);
               this.setAttribute("stroke", "none");
               // iteratively render each channel value
