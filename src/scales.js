@@ -70,21 +70,16 @@ export function createScales(
     });
     if (scale) {
       // populate generic scale options (percent, transform, insets)
-      let {
+      const {
         label = key === "fx" || key === "fy" ? facetLabel : globalLabel,
-        percent,
-        transform,
         inset,
         insetTop = inset !== undefined ? inset : key === "y" ? globalInsetTop : 0, // not fy
         insetRight = inset !== undefined ? inset : key === "x" ? globalInsetRight : 0, // not fx
         insetBottom = inset !== undefined ? inset : key === "y" ? globalInsetBottom : 0, // not fy
         insetLeft = inset !== undefined ? inset : key === "x" ? globalInsetLeft : 0 // not fx
       } = scaleOptions || {};
-      if (transform == null) transform = undefined;
-      else if (typeof transform !== "function") throw new Error("invalid scale transform; not a function");
-      scale.percent = !!percent;
+      applyScaleOptions(scale, scaleOptions);
       scale.label = label === undefined ? inferScaleLabel(channels, scale) : label;
-      scale.transform = transform;
       if (key === "x" || key === "fx") {
         scale.insetLeft = +insetLeft;
         scale.insetRight = +insetRight;
@@ -96,6 +91,17 @@ export function createScales(
     }
   }
   return scales;
+}
+
+// Applies the generic scale options (percent, transform) that createScale
+// doesn't handle, and that both plot scales and standalone scales expose.
+// Mutates scale!
+function applyScaleOptions(scale, {percent, transform} = {}) {
+  if (transform == null) transform = undefined;
+  else if (typeof transform !== "function") throw new Error("invalid scale transform; not a function");
+  scale.percent = !!percent;
+  scale.transform = transform;
+  return scale;
 }
 
 export function createScaleFunctions(descriptors) {
@@ -524,9 +530,10 @@ export function scale(options = {}) {
   let scale;
   for (const key in options) {
     if (!registry.has(key)) continue; // ignore unknown properties
-    if (!isScaleOptions(options[key])) continue; // e.g., ignore {color: "red"}
+    const scaleOptions = options[key];
+    if (!isScaleOptions(scaleOptions)) continue; // e.g., ignore {color: "red"}
     if (scale !== undefined) throw new Error("ambiguous scale definition; multiple scales found");
-    scale = exposeScale(normalizeScale(key, options[key]));
+    scale = exposeScale(applyScaleOptions(normalizeScale(key, scaleOptions), scaleOptions));
   }
   if (scale === undefined) throw new Error("invalid scale definition; no scale found");
   return scale;

@@ -76,6 +76,34 @@ it("Plot.scale({color: {}}) throws an error", () => {
   assert.throws(() => Plot.scale({color: {}}), /invalid scale definition/);
 });
 
+it("Plot.scale(description) reflects the given transform", () => {
+  const transform = (d) => 1 / d;
+  scaleEqual(Plot.scale({x: {type: "linear", domain: [2700, 6300], range: [20, 620], transform}}), {
+    type: "linear",
+    domain: [2700, 6300],
+    range: [20, 620],
+    interpolate: d3.interpolateNumber,
+    clamp: false,
+    transform
+  });
+});
+
+it("Plot.scale(description) reflects the percent option", () => {
+  assert.strictEqual(Plot.scale({x: {type: "linear", domain: [0, 1], percent: true}}).percent, true);
+  assert.strictEqual(Plot.scale({x: {type: "linear", domain: [0, 1]}}).percent, undefined);
+});
+
+it("Plot.scale(description) throws an error if the transform is not a function", () => {
+  assert.throws(() => Plot.scale({x: {type: "linear", transform: 42}}), /invalid scale transform/);
+});
+
+it("Plot.scale(description) returns a scale that a plot can reuse, applying the transform", () => {
+  const options = {type: "linear", domain: [0, 20], transform: (d) => d * 2};
+  const expected = Plot.dotX([1, 2, 3]).plot({x: options});
+  const actual = Plot.dotX([1, 2, 3]).plot({x: Plot.scale({x: options})});
+  assert.strictEqual(actual.outerHTML, expected.outerHTML);
+});
+
 it("plot(…).scale(name) returns undefined for an unused scale", () => {
   const plot = Plot.dot([1, 2], {x: (d) => d, y: (d) => d}).plot();
   assert.deepStrictEqual(plot.scale("r"), undefined);
