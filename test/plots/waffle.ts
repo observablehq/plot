@@ -431,3 +431,10 @@ test(function waffleShapes() {
     ]
   });
 });
+
+test(function waffleAutoUnit() {
+  return Plot.plot({
+    marginLeft: 60,
+    marks: [Plot.waffleY([1e6, 2e6, 3e6], {x: ["a", "b", "c"], fill: ["a", "b", "c"]}), Plot.ruleY([0])]
+  });
+});

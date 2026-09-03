@@ -1,0 +1,79 @@
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="400" viewBox="0 0 640 400" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style>
+    :where(.plot) {
+      --plot-background: white;
+      display: block;
+      height: auto;
+      height: intrinsic;
+      max-width: 100%;
+    }
+
+    :where(.plot text),
+    :where(.plot tspan) {
+      white-space: pre;
+    }
+  </style>
+  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+    <path transform="translate(60,370)" d="M0,0L-6,0"></path>
+    <path transform="translate(60,346.667)" d="M0,0L-6,0"></path>
+    <path transform="translate(60,323.333)" d="M0,0L-6,0"></path>
+    <path transform="translate(60,300)" d="M0,0L-6,0"></path>
+    <path transform="translate(60,276.667)" d="M0,0L-6,0"></path>
+    <path transform="translate(60,253.333)" d="M0,0L-6,0"></path>
+    <path transform="translate(60,230)" d="M0,0L-6,0"></path>
+    <path transform="translate(60,206.667)" d="M0,0L-6,0"></path>
+    <path transform="translate(60,183.333)" d="M0,0L-6,0"></path>
+    <path transform="translate(60,160)" d="M0,0L-6,0"></path>
+    <path transform="translate(60,136.667)" d="M0,0L-6,0"></path>
+    <path transform="translate(60,113.333)" d="M0,0L-6,0"></path>
+    <path transform="translate(60,90)" d="M0,0L-6,0"></path>
+    <path transform="translate(60,66.667)" d="M0,0L-6,0"></path>
+    <path transform="translate(60,43.333)" d="M0,0L-6,0"></path>
+    <path transform="translate(60,20)" d="M0,0L-6,0"></path>
+  </g>
+  <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
+    <text y="0.32em" transform="translate(60,370)">0</text>
+    <text y="0.32em" transform="translate(60,346.667)">200,000</text>
+    <text y="0.32em" transform="translate(60,323.333)">400,000</text>
+    <text y="0.32em" transform="translate(60,300)">600,000</text>
+    <text y="0.32em" transform="translate(60,276.667)">800,000</text>
+    <text y="0.32em" transform="translate(60,253.333)">1,000,000</text>
+    <text y="0.32em" transform="translate(60,230)">1,200,000</text>
+    <text y="0.32em" transform="translate(60,206.667)">1,400,000</text>
+    <text y="0.32em" transform="translate(60,183.333)">1,600,000</text>
+    <text y="0.32em" transform="translate(60,160)">1,800,000</text>
+    <text y="0.32em" transform="translate(60,136.667)">2,000,000</text>
+    <text y="0.32em" transform="translate(60,113.333)">2,200,000</text>
+    <text y="0.32em" transform="translate(60,90)">2,400,000</text>
+    <text y="0.32em" transform="translate(60,66.667)">2,600,000</text>
+    <text y="0.32em" transform="translate(60,43.333)">2,800,000</text>
+    <text y="0.32em" transform="translate(60,20)">3,000,000</text>
+  </g>
+  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(81.5,0)">
+    <path transform="translate(79,370)" d="M0,0L0,6"></path>
+    <path transform="translate(259,370)" d="M0,0L0,6"></path>
+    <path transform="translate(439,370)" d="M0,0L0,6"></path>
+  </g>
+  <g aria-label="x-axis tick label" transform="translate(81.5,9.5)">
+    <text y="0.71em" transform="translate(79,370)">a</text>
+    <text y="0.71em" transform="translate(259,370)">b</text>
+    <text y="0.71em" transform="translate(439,370)">c</text>
+  </g>
+  <g aria-label="waffle">
+    <pattern width="4.317" height="4.317" patternUnits="userSpaceOnUse" id="plot-pattern-1">
+      <rect x="0.5" y="0.5" width="3.317" height="3.317" fill="#4269d0"></rect>
+    </pattern>
+    <pattern width="4.317" height="4.317" patternUnits="userSpaceOnUse" id="plot-pattern-2">
+      <rect x="0.5" y="0.5" width="3.317" height="3.317" fill="#efb118"></rect>
+    </pattern>
+    <pattern width="4.317" height="4.317" patternUnits="userSpaceOnUse" id="plot-pattern-3">
+      <rect x="0.5" y="0.5" width="3.317" height="3.317" fill="#ff725c"></rect>
+    </pattern>
+    <path transform="translate(80.142,370)" d="M0,0L0,0L0,0L0,0L0,0L159.717,0L159.717,-116.55L4.317,-116.55L4.317,-116.55L4.317,-116.55L4.317,-120.867L0,-120.867Z" fill="url(#plot-pattern-1)"></path>
+    <path transform="translate(260.142,370)" d="M0,0L0,0L0,0L0,0L0,0L159.717,0L159.717,-233.1L8.633,-233.1L8.633,-233.1L8.633,-233.1L8.633,-237.417L0,-237.417Z" fill="url(#plot-pattern-2)"></path>
+    <path transform="translate(440.142,370)" d="M0,0L0,0L0,0L0,0L0,0L159.717,0L159.717,-349.65L12.95,-349.65L12.95,-349.65L12.95,-349.65L12.95,-353.967L0,-353.967Z" fill="url(#plot-pattern-3)"></path>
+  </g>
+  <g aria-label="rule" stroke="currentColor" transform="translate(0,0.5)">
+    <line x1="60" x2="620" y1="370" y2="370"></line>
+  </g>
+</svg>
