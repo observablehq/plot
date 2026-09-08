@@ -19,7 +19,7 @@
   </g>
   <g aria-label="tip" fill="var(--plot-background)" stroke="currentColor" text-anchor="start" transform="translate(0.5,0.5)">
     <g transform="translate(320,0)">
-      <path filter="drop-shadow(0 3px 4px rgba(0,0,0,0.2))" d="M0,0l6,6h2v16h-16v-16h2z"></path>
+      <path filter="drop-shadow(0 3px 4px rgba(0,0,0,0.2))" d="M0,0l6,6h-1 q 3 0 3 3 v10 q 0 3 -3 3 h-10 q -3 0 -3 -3 v-10 q 0 -3 3 -3 h-1z"></path>
       <text fill="currentColor" fill-opacity="1" stroke="none" y="-0.06em" transform="translate(0,14)"><tspan x="0" dy="1em">​top</tspan></text>
     </g>
   </g>
@@ -28,7 +28,7 @@
   </g>
   <g aria-label="tip" fill="var(--plot-background)" stroke="currentColor" text-anchor="start" transform="translate(0.5,0.5)">
     <g transform="translate(639,80)">
-      <path filter="drop-shadow(0 3px 4px rgba(0,0,0,0.2))" d="M0,0l-6,6v2h-16v-16h16v2z"></path>
+      <path filter="drop-shadow(0 3px 4px rgba(0,0,0,0.2))" d="M0,0l-6,6v-1 q 0 3 -3 3 h-10 q -3 0 -3 -3 v-10 q 0 -3 3 -3 h10 q 3 0 3 3 v-1z"></path>
       <text fill="currentColor" fill-opacity="1" stroke="none" y="-1.29em" transform="translate(-14,0)"><tspan x="0" dy="1em">​right</tspan></text>
     </g>
   </g>
@@ -37,7 +37,7 @@
   </g>
   <g aria-label="tip" fill="var(--plot-background)" stroke="currentColor" text-anchor="start" transform="translate(0.5,0.5)">
     <g transform="translate(320,159)">
-      <path filter="drop-shadow(0 3px 4px rgba(0,0,0,0.2))" d="M0,0l-6,-6h-2v-16h16v16h-2z"></path>
+      <path filter="drop-shadow(0 3px 4px rgba(0,0,0,0.2))" d="M0,0l-6,-6h1 q -3 0 -3 -3 v-10 q 0 -3 3 -3 h10 q 3 0 3 3 v10 q 0 3 -3 3 h1z"></path>
       <text fill="currentColor" fill-opacity="1" stroke="none" y="-1.29em" transform="translate(0,-14)"><tspan x="0" dy="1em">​bottom</tspan></text>
     </g>
   </g>
@@ -46,7 +46,7 @@
   </g>
   <g aria-label="tip" fill="var(--plot-background)" stroke="currentColor" text-anchor="start" transform="translate(0.5,0.5)">
     <g transform="translate(0,80)">
-      <path filter="drop-shadow(0 3px 4px rgba(0,0,0,0.2))" d="M0,0l6,-6v-2h16v16h-16v-2z"></path>
+      <path filter="drop-shadow(0 3px 4px rgba(0,0,0,0.2))" d="M0,0l6,-6v1 q 0 -3 3 -3 h10 q 3 0 3 3 v10 q 0 3 -3 3 h-10 q -3 0 -3 -3 v1z"></path>
       <text fill="currentColor" fill-opacity="1" stroke="none" y="-1.29em" transform="translate(14,0)"><tspan x="0" dy="1em">​left</tspan></text>
     </g>
   </g>
@@ -55,7 +55,7 @@
   </g>
   <g aria-label="tip" fill="var(--plot-background)" stroke="currentColor" text-anchor="start" transform="translate(0.5,0.5)">
     <g transform="translate(0,0)">
-      <path filter="drop-shadow(0 3px 4px rgba(0,0,0,0.2))" d="M0,0l6,6h10v16h-16z"></path>
+      <path filter="drop-shadow(0 3px 4px rgba(0,0,0,0.2))" d="M0,0l6,6h7 q 3 0 3 3 v10 q 0 3 -3 3 h-10 q -3 0 -3 -3 z"></path>
       <text fill="currentColor" fill-opacity="1" stroke="none" y="-0.06em" transform="translate(8,14)"><tspan x="0" dy="1em">​top-left</tspan></text>
     </g>
   </g>
@@ -64,7 +64,7 @@
   </g>
   <g aria-label="tip" fill="var(--plot-background)" stroke="currentColor" text-anchor="start" transform="translate(0.5,0.5)">
     <g transform="translate(639,0)">
-      <path filter="drop-shadow(0 3px 4px rgba(0,0,0,0.2))" d="M0,0v22h-16v-16h10z"></path>
+      <path filter="drop-shadow(0 3px 4px rgba(0,0,0,0.2))" d="M0,0v19 q 0 3 -3 3 h-10 q -3 0 -3 -3 v-10 q 0 -3 3 -3 h7z"></path>
       <text fill="currentColor" fill-opacity="1" stroke="none" y="-0.06em" transform="translate(-8,14)"><tspan x="0" dy="1em">​top-right</tspan></text>
     </g>
   </g>
@@ -73,7 +73,7 @@
   </g>
   <g aria-label="tip" fill="var(--plot-background)" stroke="currentColor" text-anchor="start" transform="translate(0.5,0.5)">
     <g transform="translate(639,159)">
-      <path filter="drop-shadow(0 3px 4px rgba(0,0,0,0.2))" d="M0,0l-6,-6h-10v-16h16z"></path>
+      <path filter="drop-shadow(0 3px 4px rgba(0,0,0,0.2))" d="M0,0l-6,-6h-7 q -3 0 -3 -3 v-10 q 0 -3 3 -3 h10 q 3 0 3 3 z"></path>
       <text fill="currentColor" fill-opacity="1" stroke="none" y="-1.29em" transform="translate(-8,-14)"><tspan x="0" dy="1em">​bottom-right</tspan></text>
     </g>
   </g>
@@ -82,7 +82,7 @@
   </g>
   <g aria-label="tip" fill="var(--plot-background)" stroke="currentColor" text-anchor="start" transform="translate(0.5,0.5)">
     <g transform="translate(0,159)">
-      <path filter="drop-shadow(0 3px 4px rgba(0,0,0,0.2))" d="M0,0v-22h16v16h-10z"></path>
+      <path filter="drop-shadow(0 3px 4px rgba(0,0,0,0.2))" d="M0,0v-19 q 0 -3 3 -3 h10 q 3 0 3 3 v10 q 0 3 -3 3 h-7z"></path>
       <text fill="currentColor" fill-opacity="1" stroke="none" y="-1.29em" transform="translate(8,-14)"><tspan x="0" dy="1em">​bottom-left</tspan></text>
     </g>
   </g>
@@ -91,7 +91,7 @@
   </g>
   <g aria-label="tip" fill="var(--plot-background)" stroke="currentColor" text-anchor="start" transform="translate(0.5,0.5)">
     <g transform="translate(320,80)">
-      <path filter="drop-shadow(0 3px 4px rgba(0,0,0,0.2))" d="M-8,-8h16v16h-16v-16z"></path>
+      <path filter="drop-shadow(0 3px 4px rgba(0,0,0,0.2))" d="M-5,-8h10 q 3 0 3 3 v10 q 0 3 -3 3 h-10 q -3 0 -3 -3 v-10 q 0 -3 3 -3 z"></path>
       <text fill="currentColor" fill-opacity="1" stroke="none" y="-1.29em" transform="translate(0,0)"><tspan x="0" dy="1em">​middle</tspan></text>
     </g>
   </g>

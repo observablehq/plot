@@ -229,6 +229,7 @@ These tip-specific options control the tip appearance:
 - **pointerSize** - the size of the tip’s pointer in pixels; defaults to 12
 - **pathFilter** - the image filter for the tip’s box; defaults to a drop shadow
 - **textPadding** - the padding around the text in pixels; defaults to 8
+- **radius** - round the corners of the tip - like a CSS border-radius; defaults to null which means square corners
 
 The tip mark does not support the [standard style channels](../features/marks.md#mark-options) such as varying **fill** or **stroke**; channels are used exclusively to control the displayed values rather than the tip’s appearance. You can however use the these options for a constant **fill**, **fillOpacity**, **stroke**, **strokeOpacity**, or **strokeWidth** on the path element surrounding the tip text.
 
@@ -245,6 +246,7 @@ Plot.tip(["Danger! This tip is red."], {
 These [standard text options](./text.md#text-options) control the display of text within the tip:
 
 - **monospace** - if true, changes the default **fontFamily** and metrics to monospace
+- **fontColor** - usa color hex to set the font color; defaults to currentColor 
 - **fontFamily** - the font name; defaults to [*system-ui*](https://drafts.csswg.org/css-fonts-4/#valdef-font-family-system-ui)
 - **fontSize** - the font size in pixels; defaults to 10
 - **fontStyle** - the [font style](https://developer.mozilla.org/en-US/docs/Web/CSS/font-style); defaults to *normal*
