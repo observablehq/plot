@@ -435,9 +435,10 @@ export interface ScaleOptions extends ScaleDefaults {
    * y: {transform: (y) => (y) / 1000}
    * ```
    *
-   * See also the **percent** and **interval** shorthand options.
+   * See also the **percent** and **interval** shorthand options. If null,
+   * disables the implicit transform associated with those options.
    */
-  transform?: (t: any) => any;
+  transform?: ((t: any) => any) | null;
 
   /**
    * Enforces uniformity for data at regular intervals, such as integer values
@@ -449,7 +450,8 @@ export interface ScaleOptions extends ScaleDefaults {
    *
    * This option sets the default **transform** to the given interval’s
    * *interval*.floor function. In addition, the default **domain** will align
-   * with interval boundaries.
+   * with interval boundaries. Set **transform** to null to disable the implicit
+   * transform while still using the interval to align the domain.
    */
   interval?: RangeInterval;
 

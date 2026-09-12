@@ -2098,6 +2098,21 @@ it("plot(…).scale(name) reflects the given transform", async () => {
   });
 });
 
+it("plot(…).scale(name) transform: null disables the implicit interval transform", () => {
+  const data = [1.2, 3.8];
+  const implicit = Plot.dotX(data, {x: (d) => d}).plot({x: {interval: 1}});
+  const disabled = Plot.dotX(data, {x: (d) => d}).plot({x: {interval: 1, transform: null}});
+  assert.deepStrictEqual(implicit.scale("x").domain, [1, 3]);
+  scaleEqual(disabled.scale("x"), {
+    type: "linear",
+    domain: [1.2, 3.8],
+    range: [20, 620],
+    clamp: false,
+    interpolate: d3.interpolateNumber,
+    interval: ["floor", "offset", "range"]
+  });
+});
+
 it("plot(…).scale(name) can return an identity scale, ignoring all other options", () => {
   const plot = Plot.dot([1, 2], {x: (d) => d, fill: (d) => d}).plot({x: {type: "identity"}, color: {type: "identity"}});
   scaleEqual(plot.scale("x"), {type: "identity"});
