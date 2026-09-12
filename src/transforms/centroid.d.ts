@@ -21,6 +21,21 @@ export interface CentroidOptions {
 export function centroid<T>(options?: T & CentroidOptions): Initialized<T>;
 
 /**
+ * Given a **geometry** input channel of GeoJSON geometry, derives **x** and
+ * **y** output channels representing the point that gives the largest possible
+ * ellipse of horizontal to vertical ratio 2 inscribed in Polygon or
+ * MultiPolygon geometries, and the classic centroid for point and line
+ * geometries. Usually a good place to anchor a label, an interactive tip, or a
+ * representative dot for a voronoi mesh. The pois are computed in screen
+ * coordinates according to the plot’s associated **projection** (or *x* and *y*
+ * scales), if any.
+ *
+ * For classic centroids, see Plot.centroid; for centroids of spherical
+ * geometry, see Plot.geoCentroid.
+ */
+export function poi<T>(options?: T & CentroidOptions): Initialized<T>;
+
+/**
  * Given a **geometry** input channel of spherical GeoJSON geometry, derives
  * **x** and **y** output channels representing the spherical centroids of the
  * geometry.
