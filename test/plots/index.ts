@@ -265,6 +265,7 @@ import "./raster-vapor.js";
 import "./raster-walmart.js";
 import "./rect-band.js";
 import "./reducer-scale-override.js";
+import "./repel.js";
 import "./rounded-rect.js";
 import "./seattle-precipitation-density.js";
 import "./seattle-precipitation-rule.js";
