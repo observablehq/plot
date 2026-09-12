@@ -1,11 +1,12 @@
 import type {ChannelValue} from "./channel.js";
+import type {DimensionOptions} from "./dimensions.js";
 import type {ColorLegendOptions, LegendOptions, OpacityLegendOptions, SymbolLegendOptions} from "./legends.js";
 import type {Data, MarkOptions, Markish} from "./mark.js";
 import type {ProjectionFactory, ProjectionImplementation, ProjectionName, ProjectionOptions} from "./projection.js";
 import type {Projection} from "./projection.js";
 import type {Scale, ScaleDefaults, ScaleName, ScaleOptions} from "./scales.js";
 
-export interface PlotOptions extends ScaleDefaults {
+export interface PlotOptions extends ScaleDefaults, DimensionOptions {
   // dimensions
 
   /**
