@@ -3,7 +3,7 @@ import type {Data, FrameAnchor, MarkOptions, RenderableMark} from "../mark.js";
 import type {TextStyles} from "./text.js";
 
 /** Options for the tip mark. */
-export interface TipOptions extends MarkOptions, TextStyles {
+export interface TipOptions extends Omit<MarkOptions, "tip">, TextStyles {
   /**
    * The horizontal position channel specifying the tip’s anchor, typically
    * bound to the *x* scale.
