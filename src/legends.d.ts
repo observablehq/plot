@@ -57,46 +57,8 @@ export interface RampLegendOptions {
   round?: ScaleOptions["round"];
 }
 
-export interface OpacityLegendOptions extends RampLegendOptions {
-  /** The constant color the ramp; defaults to black. */
-  color?: string;
-}
-
-export interface ColorLegendOptions extends SwatchesLegendOptions, RampLegendOptions {
-  /** The desired opacity of the color swatches or ramp; defaults to 1. */
-  opacity?: number;
-}
-
-export interface SymbolLegendOptions extends SwatchesLegendOptions {
-  /** The desired fill color of symbols; use *color* for a redundant encoding. */
-  fill?: string;
-  /** The desired fill opacity of symbols; defaults to 1. */
-  fillOpacity?: number;
-  /** The desired stroke color of symbols; use *color* for a redundant encoding. */
-  stroke?: string;
-  /** The desired stroke opacity of symbols; defaults to 1. */
-  strokeOpacity?: number;
-  /** The desired stroke width of symbols; defaults to 1.5. */
-  strokeWidth?: number;
-  /** The desired radius of symbols in pixels; defaults to 4.5. */
-  r?: number;
-}
-
-/** Options for generating a scale legend. */
-export interface LegendOptions extends ColorLegendOptions, SymbolLegendOptions, OpacityLegendOptions {
-  /**
-   * The desired legend type; one of:
-   *
-   * - *ramp* - place labels underneath with a connecting line, and no wrapping
-   * - *swatches* - place labels to the right, and allow wrapping
-   *
-   * The legend type can currently only be configured for a discrete *color*
-   * scale of type *ordinal*, *quantile*, *quantize*, or *threshold*; for other
-   * *color* scale types, or for *opacity* or *symbol* scales, the legend type
-   * cannot be changed.
-   */
-  legend?: "ramp" | "swatches";
-
+/** Options common to all legend types. */
+export interface BaseLegendOptions {
   /** A textual label to place above the legend. */
   label?: string | null;
 
@@ -126,9 +88,50 @@ export interface LegendOptions extends ColorLegendOptions, SymbolLegendOptions, 
 
   /**
    * The generated element’s class name used for Plot’s default stylesheet; by
-   * default, a random string prefixed with “plot-”.
+   * default, a random string prefixed with "plot-".
    */
   className?: string | null;
+}
+
+export interface OpacityLegendOptions extends BaseLegendOptions, RampLegendOptions {
+  /** The constant color the ramp; defaults to black. */
+  color?: string;
+}
+
+export interface ColorLegendOptions extends BaseLegendOptions, SwatchesLegendOptions, RampLegendOptions {
+  /** The desired opacity of the color swatches or ramp; defaults to 1. */
+  opacity?: number;
+}
+
+export interface SymbolLegendOptions extends BaseLegendOptions, SwatchesLegendOptions {
+  /** The desired fill color of symbols; use *color* for a redundant encoding. */
+  fill?: string;
+  /** The desired fill opacity of symbols; defaults to 1. */
+  fillOpacity?: number;
+  /** The desired stroke color of symbols; use *color* for a redundant encoding. */
+  stroke?: string;
+  /** The desired stroke opacity of symbols; defaults to 1. */
+  strokeOpacity?: number;
+  /** The desired stroke width of symbols; defaults to 1.5. */
+  strokeWidth?: number;
+  /** The desired radius of symbols in pixels; defaults to 4.5. */
+  r?: number;
+}
+
+/** Options for generating a scale legend. */
+export interface LegendOptions extends ColorLegendOptions, SymbolLegendOptions, OpacityLegendOptions {
+  /**
+   * The desired legend type; one of:
+   *
+   * - *ramp* - place labels underneath with a connecting line, and no wrapping
+   * - *swatches* - place labels to the right, and allow wrapping
+   *
+   * The legend type can currently only be configured for a discrete *color*
+   * scale of type *ordinal*, *quantile*, *quantize*, or *threshold*; for other
+   * *color* scale types, or for *opacity* or *symbol* scales, the legend type
+   * cannot be changed.
+   */
+  legend?: "ramp" | "swatches";
 }
 
 /** Scale definitions and options for a standalone legend. */
