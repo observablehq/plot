@@ -6,7 +6,7 @@ We request that you abide by our [code of conduct](https://observablehq.com/@obs
 
 ## Development
 
-To contribute to Observable Plot, you’ll need a local development environment to make and test changes to Plot’s source code. To get started, follow GitHub’s tutorial on [forking (and cloning) a repository](https://docs.github.com/en/get-started/quickstart/fork-a-repo). Once you’ve cloned your fork of the Plot repository, open a terminal and `cd` in your forked repository. Then run Yarn to install dependencies:
+To contribute to Observable Plot, you’ll need a local development environment to make and test changes to Plot’s source code. To get started, follow GitHub’s tutorial on [forking (and cloning) a repository](https://docs.github.com/en/get-started/quickstart/fork-a-repo). Once you’ve cloned your fork of the Plot repository, open a terminal and `cd` in your forked repository. Then run pnpm to install dependencies:
 
 ```bash
 pnpm install
