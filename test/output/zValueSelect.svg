@@ -1,0 +1,70 @@
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="400" viewBox="0 0 640 400" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style>
+    :where(.plot) {
+      --plot-background: white;
+      display: block;
+      height: auto;
+      height: intrinsic;
+      max-width: 100%;
+    }
+
+    :where(.plot text),
+    :where(.plot tspan) {
+      white-space: pre;
+    }
+  </style>
+  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+    <path transform="translate(40,322.168)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,271.748)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,221.327)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,170.907)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,120.487)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,70.067)" d="M0,0L-6,0"></path>
+  </g>
+  <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
+    <text y="0.32em" transform="translate(40,322.168)">0.5</text>
+    <text y="0.32em" transform="translate(40,271.748)">1.0</text>
+    <text y="0.32em" transform="translate(40,221.327)">1.5</text>
+    <text y="0.32em" transform="translate(40,170.907)">2.0</text>
+    <text y="0.32em" transform="translate(40,120.487)">2.5</text>
+    <text y="0.32em" transform="translate(40,70.067)">3.0</text>
+  </g>
+  <g aria-label="y-axis label" text-anchor="start" transform="translate(-36.5,-16.5)">
+    <text y="0.71em" transform="translate(40,20)">↑ y</text>
+  </g>
+  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+    <path transform="translate(40,370)" d="M0,0L0,6"></path>
+    <path transform="translate(140,370)" d="M0,0L0,6"></path>
+    <path transform="translate(240,370)" d="M0,0L0,6"></path>
+    <path transform="translate(340,370)" d="M0,0L0,6"></path>
+    <path transform="translate(440,370)" d="M0,0L0,6"></path>
+    <path transform="translate(540,370)" d="M0,0L0,6"></path>
+  </g>
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+    <text y="0.71em" transform="translate(40,370)">0</text>
+    <text y="0.71em" transform="translate(140,370)">5</text>
+    <text y="0.71em" transform="translate(240,370)">10</text>
+    <text y="0.71em" transform="translate(340,370)">15</text>
+    <text y="0.71em" transform="translate(440,370)">20</text>
+    <text y="0.71em" transform="translate(540,370)">25</text>
+  </g>
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(17.5,27.5)">
+    <text transform="translate(620,370)">x →</text>
+  </g>
+  <g aria-label="line" fill="none" stroke-width="1.5" stroke-opacity="0.5" stroke-linejoin="round" stroke-linecap="round" transform="translate(0.5,0.5)">
+    <path stroke="#d53e4f" d="M40,347.141L60,363.701L80,314.375L100,350.145L120,334.706L140,370L160,327.484L180,360.642L200,284.472L220,272.289L240,286.551L260,322.2L280,307.848L300,285.718L320,312.44L340,363.437L360,358.449L380,276.781L400,279.355L420,282.894L440,317.074L460,354.385L480,317.117L500,346.474L520,277.483L540,289.747L560,356.928L580,288.951L600,325.503L620,366.466"></path>
+    <path stroke="#fc8d59" d="M40,319.903L60,267.987L80,238.474L100,236.924L120,253.504L140,283.772L160,263.11L180,251.943L200,250.433L220,249.702L240,222.307L260,276.814L280,312.293L300,302.847L320,277.054L340,309.361L360,244.645L380,262.297L400,241.027L420,282.899L440,300.41L460,294.733L480,320.243L500,294.137L520,288.49L540,233.139L560,225.777L580,302.736L600,234.305L620,263.446"></path>
+    <path stroke="#fee08b" d="M40,237.796L60,240.051L80,258.703L100,172.927L120,261.364L140,178.822L160,190.497L180,228.088L200,200.145L220,240.823L240,259.789L260,220.396L280,259.911L300,247.19L320,210.83L340,201.379L360,222.267L380,250.604L400,248.826L420,201.736L440,182.824L460,189.365L480,201.445L500,187.094L520,231.246L540,256.303L560,259.012L580,217.313L600,206.033L620,172.135"></path>
+    <path stroke="#e6f598" d="M40,178.373L60,145.996L80,177.939L100,216.735L120,213.537L140,138.061L160,122.632L180,140.685L200,204.32L220,182.343L240,192.772L260,171.927L280,136.524L300,129.183L320,201.403L340,189.459L360,167.878L380,194.696L400,180.602L420,220.074L440,155.985L460,184.351L480,173.488L500,195.63L520,161.48L540,150.665L560,165.584L580,160.464L600,197.946L620,183.025"></path>
+    <path stroke="#99d594" d="M40,128.723L60,76.521L80,147.168L100,78.05L120,75.114L140,113.291L160,77.645L180,168.35L200,145.172L220,116.347L240,120.264L260,74.882L280,72.092L300,99.551L320,88.612L340,139.767L360,114.03L380,101.787L400,165.896L420,136.696L440,124.57L460,93.628L480,72.857L500,167.047L520,112.856L540,140.329L560,105.857L580,103.551L600,123.737L620,145.215"></path>
+    <path stroke="#3288bd" d="M40,47.769L60,69.454L80,117.031L100,35.33L120,46.73L140,29.316L160,46.005L180,66.343L200,20L220,21.381L240,57.864L260,41.342L280,114.983L300,65.67L320,58.384L340,95.325L360,45.136L380,118.06L400,25.647L420,75.303L440,84.926L460,62.474L480,62.924L500,117.398L520,79.394L540,61.033L560,113.473L580,106.316L600,109.603L620,94.631"></path>
+  </g>
+  <g aria-label="dot" stroke="white" stroke-width="1.5" transform="translate(0.5,0.5)">
+    <circle cx="220" cy="272.289" r="4" fill="#d53e4f"></circle>
+    <circle cx="240" cy="222.307" r="4" fill="#fc8d59"></circle>
+    <circle cx="620" cy="172.135" r="4" fill="#fee08b"></circle>
+    <circle cx="160" cy="122.632" r="4" fill="#e6f598"></circle>
+    <circle cx="280" cy="72.092" r="4" fill="#99d594"></circle>
+    <circle cx="200" cy="20" r="4" fill="#3288bd"></circle>
+  </g>
+</svg>

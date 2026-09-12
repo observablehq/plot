@@ -280,6 +280,7 @@ export function maybeTuple(x, y) {
 export function maybeZ({z, fill, stroke} = {}) {
   if (z === undefined) [z] = maybeColorChannel(fill);
   if (z === undefined) [z] = maybeColorChannel(stroke);
+  if (isOptions(z)) z = z.value;
   return z;
 }
 
