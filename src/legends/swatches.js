@@ -13,6 +13,12 @@ function maybeScale(scale, key) {
   return s;
 }
 
+function checkDomainMatch(scale, symbol) {
+  for (const d of symbol.domain) {
+    if (scale.scale(d) === undefined) throw new Error("the color and symbol scale domains must match");
+  }
+}
+
 export function legendSwatches(color, {opacity, ...options} = {}) {
   if (!isOrdinalScale(color) && !isThresholdScale(color))
     throw new Error(`swatches legend requires ordinal or threshold color scale (not ${color.type})`);
@@ -49,6 +55,8 @@ export function legendSymbols(
   const [vs, cs] = maybeColorChannel(stroke);
   const sf = maybeScale(scale, vf);
   const ss = maybeScale(scale, vs);
+  if (vf === "color") checkDomainMatch(sf, symbol);
+  if (vs === "color") checkDomainMatch(ss, symbol);
   const size = r * r * Math.PI;
   fillOpacity = maybeNumberChannel(fillOpacity)[1];
   strokeOpacity = maybeNumberChannel(strokeOpacity)[1];
