@@ -435,9 +435,11 @@ export interface ScaleOptions extends ScaleDefaults {
    * y: {transform: (y) => (y) / 1000}
    * ```
    *
-   * See also the **percent** and **interval** shorthand options.
+   * See also the **percent** and **interval** shorthand options. If null, no
+   * transform is applied, including the default transform implied by the
+   * **percent** or **interval** option.
    */
-  transform?: (t: any) => any;
+  transform?: ((t: any) => any) | null;
 
   /**
    * Enforces uniformity for data at regular intervals, such as integer values
