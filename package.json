@@ -1,7 +1,7 @@
 {
   "name": "@observablehq/plot",
   "description": "A JavaScript library for exploratory data visualization.",
-  "version": "0.6.17",
+  "version": "0.6.18-alpha.1",
   "author": {
     "name": "Observable, Inc.",
     "url": "https://observablehq.com"
@@ -83,6 +83,7 @@
     "node": ">=12"
   },
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "tag": "next"
   }
 }
