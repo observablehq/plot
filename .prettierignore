@@ -1,5 +1,8 @@
 test/output
 test/data
 .rollup.cache
-dist
+dist/
+docs/
 *.md
+*.yaml
+*.json
