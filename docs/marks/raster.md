@@ -286,7 +286,7 @@ If **width** is specified, **x1** defaults to 0 and **x2** defaults to **width**
 
 The following raster-specific constant options are supported:
 
-* **colorSpace** - the [color space](https://developer.mozilla.org/en-US/docs/Web/API/ImageData/colorSpace) <VersionBadge pr="2143" />
+* **colorSpace** - the [color space](https://developer.mozilla.org/en-US/docs/Web/API/ImageData/colorSpace) <VersionBadge version="0.6.18" pr="2143" />
 * **interpolate** - the [spatial interpolation method](#spatial-interpolators)
 * **imageRendering** - the [image-rendering attribute](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/image-rendering); defaults to *auto* (bilinear)
 * **blur** - a non-negative pixel radius for smoothing; defaults to 0
