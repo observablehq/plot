@@ -79,7 +79,6 @@
     "node": ">=12"
   },
   "publishConfig": {
-    "access": "public",
-    "tag": "next"
+    "access": "public"
   }
 }
