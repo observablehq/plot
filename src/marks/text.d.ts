@@ -44,6 +44,10 @@ export interface TextStyles {
    * - *ellipsis-start* - replace characters from the start with an ellipsis (…)
    * - *ellipsis-middle* - replace characters from the middle with an ellipsis (…)
    *
+   * For the tip mark, the default is *ellipsis-end* when the tip displays
+   * name-value pairs (that is, when there is no **title** channel); set
+   * **textOverflow** to null to disable clipping.
+   *
    * If no **title** was specified, if text requires truncation, a title
    * containing the non-truncated text will be implicitly added.
    */
