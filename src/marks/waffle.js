@@ -313,9 +313,7 @@ function waffleTip(tip) {
 }
 
 function maybeUnit(unit = "auto") {
-  if (typeof unit === "number") {
-    if (unit <= 0 || !isFinite(unit)) throw new Error(`invalid unit: ${unit}`);
-    return unit;
-  }
-  return keyword(unit, "unit", ["auto"]);
+  if (typeof unit === "string" && isNaN(unit)) return keyword(unit, "unit", ["auto"]);
+  if (!((unit = +unit) > 0) || !isFinite(unit)) throw new Error(`invalid unit: ${unit}`);
+  return unit;
 }
