@@ -23,7 +23,11 @@ const points = (() => {
 
 # Repel transform <VersionBadge pr="1957" />
 
-Given a position dimension (either **x** or **y**), the **repel** transform rearranges the values along that dimension in such a way that the distance between nodes is greater than or equal to the minimum distance, and their visual order preserved. The [repelX transform](#repelX) rearranges the **x** (horizontal) position of each series of nodes sharing a common **y** (vertical) position; likewise the [repelY transform](#repelY) rearranges nodes vertically.
+Given a position dimension (either **x** or **y**), the **repel** transform moves nodes apart along that dimension so that adjacent nodes are at least **minDistance** pixels apart, keeping their order. Nodes that are too close are spread evenly around the middle of their group. The [repelX transform](#repelX) adjusts the **x** (horizontal) position of nodes that share a **y** (vertical) position; likewise the [repelY transform](#repelY) adjusts the **y** position of nodes that share an **x** position.
+
+:::tip
+The repel transform is not the [dodge transform](./dodge.md). Dodge computes a position that the data does not have: given **x**, dodgeY computes **y** from an anchor, packing dots into a beeswarm. Repel adjusts a position that the data has: given **y**, repelY moves nodes only as much as needed to keep them **minDistance** apart, in the same order, and leaves **x** unchanged.
+:::
 
 The repel transform is commonly used to prevent superposition of labels on line charts. The example below, per [Edward Tufte](https://www.edwardtufte.com/bboard/q-and-a-fetch-msg?msg_id=0003nk), represents estimates of survival rates per type of cancer after 5, 10, 15 and 20 years. Each data point is labelled with its actual value (rounded to the unit). Labels in the last column indicate the type.
 
@@ -70,6 +74,7 @@ Plot.plot({
   caption: "Estimates of survival rate (%), per type of cancer"
 })
 ```
+:::
 
 Without this transform, some of these labels would otherwise be masking each other. (Note the use of the [group](group.md) transform so that, when several labels share an identical position and text contents, only the first one is retained—and the others filtered out; for example, value 62 in the first column.)
 
@@ -108,8 +113,6 @@ Plot.plot({
 })
 ```
 :::
-
-The repel transform differs from the [dodge transform](./dodge.md) in that it only adjusts the nodes’ existing positions.
 
 The repel transform can be used with any mark that supports **x** and **y** position.
 

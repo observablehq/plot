@@ -13,8 +13,8 @@ export interface RepelOptions {
 /** Options for the repelX transform. */
 export interface RepelXOptions extends RepelOptions {
   /**
-   * The vertical position. Nodes sharing the same vertical position will be
-   * rearranged horizontally together.
+   * The vertical position. Nodes that share a vertical position form a series;
+   * each series is repelled separately.
    */
   y?: ChannelValueSpec;
 }
@@ -22,17 +22,16 @@ export interface RepelXOptions extends RepelOptions {
 /** Options for the repelY transform. */
 export interface RepelYOptions extends RepelOptions {
   /**
-   * The horizontal position. Nodes sharing the same horizontal position will be
-   * rearranged vertically together.
+   * The horizontal position. Nodes that share a horizontal position form a
+   * series; each series is repelled separately.
    */
   x?: ChannelValueSpec;
 }
 
 /**
- * Given an **x** position channel, rearranges the values in such a way that the
- * horizontal distance between nodes is greater than or equal to the minimum
- * distance, and their visual order preserved. Nodes that share the same
- * position and text are fused together.
+ * Given an **x** position channel, moves nodes apart horizontally so that
+ * adjacent nodes are at least **minDistance** pixels apart, keeping their
+ * order. The **y** position, if any, is not changed.
  *
  * If *repelOptions* is a number, it is shorthand for the repel
  * **minDistance**.
@@ -41,13 +40,12 @@ export function repelX<T>(options?: T & RepelXOptions): Initialized<T>;
 export function repelX<T>(repelOptions?: RepelXOptions | RepelXOptions["minDistance"], options?: T): Initialized<T>;
 
 /**
- * Given a **y** position channel, rearranges the values in such a way that the
- * vertical distance between nodes is greater than or equal to the minimum
- * distance, and their visual order preserved. Nodes that share the same
- * position and text are fused together.
+ * Given a **y** position channel, moves nodes apart vertically so that adjacent
+ * nodes are at least **minDistance** pixels apart, keeping their order. The
+ * **x** position, if any, is not changed.
  *
  * If *repelOptions* is a number, it is shorthand for the repel
  * **minDistance**.
  */
 export function repelY<T>(options?: T & RepelYOptions): Initialized<T>;
-export function repelY<T>(dodgeOptions?: RepelYOptions | RepelYOptions["minDistance"], options?: T): Initialized<T>;
+export function repelY<T>(repelOptions?: RepelYOptions | RepelYOptions["minDistance"], options?: T): Initialized<T>;
