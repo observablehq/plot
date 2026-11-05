@@ -436,8 +436,7 @@ export interface ScaleOptions extends ScaleDefaults {
    * ```
    *
    * See also the **percent** and **interval** shorthand options. If null, no
-   * transform is applied, including the default transform implied by the
-   * **percent** or **interval** option.
+   * transform is applied.
    */
   transform?: ((t: any) => any) | null;
 
