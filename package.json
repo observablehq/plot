@@ -8,11 +8,12 @@
   },
   "license": "ISC",
   "type": "module",
-  "main": "src/index.js",
-  "module": "src/index.js",
+  "main": "dist/plot.js",
+  "module": "dist/plot.js",
   "jsdelivr": "dist/plot.umd.min.js",
   "unpkg": "dist/plot.umd.min.js",
   "exports": {
+    "types": "./src/index.d.ts",
     "umd": "./dist/plot.umd.min.js",
     "default": "./dist/plot.js"
   },
