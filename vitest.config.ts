@@ -4,6 +4,7 @@ import {defineConfig} from "vitest/config";
 export default defineConfig({
   resolve: {
     alias: {
+      "@observablehq/plot": resolve(__dirname, "./src/index.js"),
       "test/plot": resolve(__dirname, "./test/plot-snapshot.js")
     }
   },
