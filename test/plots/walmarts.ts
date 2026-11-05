@@ -1,6 +1,6 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
-import {mesh} from "topojson-client";
+import {feature, mesh} from "topojson-client";
 import {test} from "test/plot";
 
 test(async function walmarts() {
@@ -34,6 +34,37 @@ test(async function walmarts() {
           {x: "longitude", y: "latitude", fill: "date", stroke: "white", title: "date"}
         )
       )
+    ]
+  });
+});
+
+test(async function walmartsDateContours() {
+  const [walmarts, [statemesh, nation]] = await Promise.all([
+    d3.tsv<any>("data/walmarts.tsv", d3.autoType),
+    d3.json<any>("data/us-counties-10m.json").then((us) => [
+      mesh(us, {
+        type: "GeometryCollection",
+        geometries: us.objects.states.geometries.filter((d) => d.id !== "02" && d.id !== "15")
+      }),
+      feature(us, us.objects.nation)
+    ])
+  ]);
+  return Plot.plot({
+    width: 960,
+    height: 600,
+    projection: "albers",
+    color: {legend: true, label: "Mean opening date"},
+    clip: nation,
+    marks: [
+      Plot.contour(walmarts, {
+        x: "longitude",
+        y: "latitude",
+        fill: "date",
+        interpolate: "random-walk",
+        blur: 5
+      }),
+      Plot.geo(statemesh, {strokeOpacity: 0.25}),
+      Plot.geo(nation, {strokeWidth: 1.5})
     ]
   });
 });
