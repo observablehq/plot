@@ -17,7 +17,7 @@ Observable Plot supports a variety of environments.
 
 ## Try Plot online
 
-The fastest way to get started (and get help) with Observable Plot is on [Observable](https://observablehq.com)! Observable is free for public use, and Plot is available by default in notebooks as part of Observable’s standard library. To use Plot, simply return the generated plot from a cell like so:
+The fastest way to get started (and get help) with Observable Plot is on [Observable](https://observablehq.com)! Observable is free for public use, and Plot is available by default in notebooks as part of Observable’s standard library. For example:
 
 :::plot https://observablehq.com/@observablehq/plot-normal-histogram
 ```js
