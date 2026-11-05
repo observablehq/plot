@@ -86,6 +86,8 @@ Plot.barX(alphabet, {x: "frequency", y: "letter", fill: "light-dark(steelblue, o
 
 The [mark classes](https://observablehq.com/plot/features/marks) (`Plot.Rect`, `Plot.Dot`, `Plot.Line`, *etc.*) now declare their constructors in the TypeScript definitions, and **render** is declared as a method, so that TypeScript code can extend a built-in mark and call `super.render()`. For example, this subclass of the rect mark rotates each rectangle:
 
+[<img src="./img/rect-rotate.png" width="330" alt="ten rounded squares in different colors, each rotated 10° more than the previous one, with an arrow showing the rotation">](https://observablehq.com/@observablehq/plot-extend-mark)
+
 ```ts
 class RotatedRect extends Plot.Rect {
   render(...args: Parameters<Plot.Rect["render"]>) {
