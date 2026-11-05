@@ -89,4 +89,6 @@ export function contour(data?: Data, options?: ContourOptions): Contour;
 export function contour(options?: ContourOptions): Contour;
 
 /** The contour mark. */
-export class Contour extends RenderableMark {}
+export class Contour extends RenderableMark {
+  constructor(data?: Data, options?: ContourOptions);
+}
