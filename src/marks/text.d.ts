@@ -24,7 +24,8 @@ export interface TextStyles {
 
   /**
    * The line width in ems (e.g., 10 for about 20 characters); defaults to
-   * infinity, disabling wrapping and clipping.
+   * infinity, disabling wrapping and clipping. For the tip mark, defaults to
+   * 20.
    *
    * If **textOverflow** is null, lines will be wrapped at the specified length.
    * If a line is split at a soft hyphen (\xad), a hyphen (-) will be displayed
