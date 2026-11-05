@@ -103,6 +103,8 @@ class RotatedRect extends Plot.Rect {
 }
 ```
 
+Plot is now published to npm as a bundled ES module (`dist/plot.js`, and minified as `dist/plot.min.js`) instead of unbundled source files. The package now declares `sideEffects: false`, which lets bundlers remove unused code and lets [esm.sh](https://esm.sh) bundle Plot more efficiently. The UMD bundle (`dist/plot.umd.min.js`) is unchanged.
+
 This release includes several more bug fixes and improvements:
 
 The [tick format](https://observablehq.com/plot/features/scales) now defaults to a comma-less format when tick values are likely year integers.
