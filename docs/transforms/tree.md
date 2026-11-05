@@ -96,7 +96,7 @@ In addition, if any option value is specified as an object with a **node** metho
 
 ## treeLink(*options*) {#treeLink}
 
-Populates **x1**, **y1**, **x2**, and **y2** with the positions for each link in the tree, where **x1** & **y1** represents the position of the parent node and **x2** & **y2** the position of the child node. The default **curve** is *bump-x*, the default **stroke** is #555, the default **strokeWidth** is 1.5, and the default **strokeOpacity** is 0.5. This transform is often used with the [link](../marks/link.md) or [arrow](../marks/arrow.md) mark.
+Populates **x1**, **y1**, **x2**, and **y2** with the positions for each link in the tree, where **x1** & **y1** represents the position of the parent node and **x2** & **y2** the position of the child node. The default **curve** is *bump-x*, the default **stroke** is `light-dark(#777, #aaa)`, the default **strokeWidth** is 1.5, and the default **strokeOpacity** is 0.5. This transform is often used with the [link](../marks/link.md) or [arrow](../marks/arrow.md) mark.
 
 The treeLink transform will likewise derive output columns for any *options* that have one of the following named link values:
 
