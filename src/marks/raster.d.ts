@@ -259,4 +259,6 @@ export function interpolatorRandomWalk(options?: {
 }): RasterInterpolateFunction;
 
 /** The raster mark. */
-export class Raster extends RenderableMark {}
+export class Raster extends RenderableMark {
+  constructor(data?: Data, options?: RasterOptions);
+}

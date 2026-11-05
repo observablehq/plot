@@ -291,7 +291,7 @@ test(function wafflePointerFractional() {
                 x: values.x[i],
                 y: values.y1[i]
               }}>${format(y2[i] - y1[i])}</text>`
-          )}</g>`;
+          )}</g>` as SVGElement;
         }
       })
     ]

@@ -59,7 +59,7 @@ test(async function arcCollatzUp() {
         <linearGradient id="gradient1" x1="0%" y1="0%" x2="100%" y2="0%">
           <stop offset="5%" stop-color="currentColor" stop-opacity="1"></stop>
           <stop offset="95%" stop-color="currentColor" stop-opacity="0.3"></stop>
-        </linearGradient>`
+        </linearGradient>` as SVGElement
     ]
   });
 });
