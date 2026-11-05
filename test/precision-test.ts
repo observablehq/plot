@@ -1,16 +1,16 @@
 import {assert, describe, it} from "vitest";
 import {scale as createScale} from "../src/index.js";
 import {pixelRound} from "../src/precision.js";
-import type {MaterializedScale} from "../src/precision.js";
+import type {InternalScale} from "../src/precision.js";
 
 // pixelRound expects a d3-like scale; Plot.scale() returns plain arrays
 // and a separate apply function.
-function scale(options: any): MaterializedScale {
+function scale(options: any): InternalScale {
   const {type, domain, range, apply, invert} = createScale({x: {range: [0, 600], ...options}}) as any;
   return Object.assign(apply, {type, domain: () => domain, range: () => range, invert});
 }
 
-function assertDistinct(s: MaterializedScale, label = "") {
+function assertDistinct(s: InternalScale, label = "") {
   const round = pixelRound(s);
   const [r0, r1] = s.range();
   const lo = Math.min(r0, r1);

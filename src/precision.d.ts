@@ -1,7 +1,7 @@
 import type {ScaleType} from "./scales.js";
 
 /** Internal d3 scale with type, as produced by createScaleFunctions. */
-export interface MaterializedScale {
+export interface InternalScale {
   (value: any): number;
   type: ScaleType;
   domain(): any[];
@@ -16,4 +16,4 @@ export interface MaterializedScale {
  * uses a uniform step; for non-linear scales (where the data density varies),
  * computes the step locally.
  */
-export function pixelRound(scale: MaterializedScale): (value: any) => any;
+export function pixelRound(scale: InternalScale): (value: any) => any;
