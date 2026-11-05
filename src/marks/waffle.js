@@ -227,7 +227,7 @@ function waffleCentroid(i1, i2, columns) {
     ? // Single row
       waffleRowCentroid(i1, i2, columns)
     : r === 1
-    ? // Two incomplete rows; use the midpoint of their overlap if any, otherwise the larger row
+    ? // Two incomplete rows; use the midpoint of their overlap if any; otherwise, the larger row
       Math.floor(i2 % columns) > Math.ceil(i1 % columns)
       ? [(Math.floor(i2 % columns) + Math.ceil(i1 % columns)) / 2, Math.floor(i2 / columns)]
       : i2 % columns > columns - (i1 % columns)
@@ -243,7 +243,7 @@ function waffleRowCentroid(i1, i2, columns) {
     ? // Single cell
       [Math.floor(i1 % columns) + 0.5, Math.floor(i1 / columns) + (((i1 + i2) / 2) % 1)]
     : c === 1
-    ? // Two incomplete cells; use the overlap if large enough, otherwise use the largest
+    ? // Two incomplete cells; use the overlap if large enough; otherwise, use the largest
       (i2 % 1) - (i1 % 1) > 0.5
       ? [Math.ceil(i1 % columns), Math.floor(i2 / columns) + ((i1 % 1) + (i2 % 1)) / 2]
       : i2 % 1 > 1 - (i1 % 1)

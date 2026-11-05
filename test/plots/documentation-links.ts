@@ -1,7 +1,8 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
+import {test} from "test/plot";
 
-export async function documentationLinks() {
+test(async function documentationLinks() {
   const data = await d3.json<any>("data/plot-documentation.json").then((d) => d.listings);
   return Plot.plot({
     marginLeft: 140,
@@ -31,4 +32,4 @@ export async function documentationLinks() {
       Plot.ruleX([0])
     ]
   });
-}
+});

@@ -1,7 +1,8 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
+import {test} from "test/plot";
 
-export async function penguinFacetDodgeIdentity() {
+test(async function penguinFacetDodgeIdentity() {
   const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
   return Plot.plot({
     height: 300,
@@ -17,4 +18,4 @@ export async function penguinFacetDodgeIdentity() {
     },
     marks: [Plot.dot(penguins, Plot.dodgeY("middle", {x: "body_mass_g", r: (d) => (d.sex ? 2.5 : 4)}))]
   });
-}
+});

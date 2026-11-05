@@ -1,7 +1,8 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
+import {test} from "test/plot";
 
-async function plotCa55(mark) {
+async function plotCa55(mark: (data: any[]) => Plot.Markish) {
   const ca55 = await d3.csv<any>("data/ca55-south.csv", d3.autoType);
   const domain = {type: "MultiPoint", coordinates: ca55.map((d) => [d.GRID_EAST, d.GRID_NORTH])} as const;
   return Plot.plot({
@@ -13,27 +14,27 @@ async function plotCa55(mark) {
   });
 }
 
-async function rasterCa55(options) {
+async function rasterCa55(options: Plot.RasterOptions) {
   return plotCa55((ca55) => Plot.raster(ca55, {x: "GRID_EAST", y: "GRID_NORTH", fill: "MAG_IGRF90", ...options}));
 }
 
-export async function rasterCa55None() {
+test(async function rasterCa55None() {
   return rasterCa55({pixelSize: 3, imageRendering: "pixelated"});
-}
+});
 
-export async function rasterCa55Barycentric() {
+test(async function rasterCa55Barycentric() {
   return rasterCa55({interpolate: "barycentric"});
-}
+});
 
-export async function rasterCa55RandomWalk() {
+test(async function rasterCa55RandomWalk() {
   return rasterCa55({interpolate: "random-walk"});
-}
+});
 
-export async function rasterCa55Nearest() {
+test(async function rasterCa55Nearest() {
   return rasterCa55({interpolate: "nearest"});
-}
+});
 
-export async function rasterCa55Color() {
+test(async function rasterCa55Color() {
   const ca55 = await d3.csv<any>("data/ca55-south.csv", d3.autoType);
   const domain = {type: "MultiPoint", coordinates: ca55.map((d) => [d.GRID_EAST, d.GRID_NORTH])} as const;
   return Plot.plot({
@@ -49,9 +50,9 @@ export async function rasterCa55Color() {
       })
     ]
   });
-}
+});
 
-export async function contourCa55() {
+test(async function contourCa55() {
   return plotCa55((ca55) =>
     Plot.contour(ca55, {
       x: "GRID_EAST",
@@ -61,4 +62,4 @@ export async function contourCa55() {
       blur: 3
     })
   );
-}
+});

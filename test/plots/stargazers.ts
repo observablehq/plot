@@ -1,7 +1,8 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
+import {test} from "test/plot";
 
-export async function stargazers() {
+test(async function stargazers() {
   const stargazers = await d3.csv<any>("data/stargazers.csv", d3.autoType);
   return Plot.plot({
     marginRight: 40,
@@ -15,4 +16,4 @@ export async function stargazers() {
       Plot.text(stargazers, Plot.selectLast({x: "date", y: (_, i) => i, textAnchor: "start", dx: 3}))
     ]
   });
-}
+});

@@ -153,23 +153,23 @@
   <g aria-label="x-axis tick" aria-hidden="true" transform="translate(0.5,0)">
     <g fill="none" stroke="currentColor" transform="translate(0,989)">
       <path transform="translate(300,40)" d="M0,0L0,6"></path>
-      <path transform="translate(393.1581043409,40)" d="M0,0L0,6"></path>
-      <path transform="translate(486.18876941457586,40)" d="M0,0L0,6"></path>
-      <path transform="translate(579.3468737554759,40)" d="M0,0L0,6"></path>
-      <path transform="translate(672.3775388291517,40)" d="M0,0L0,6"></path>
-      <path transform="translate(765.5356431700518,40)" d="M0,0L0,6"></path>
-      <path transform="translate(858.5663082437277,40)" d="M0,0L0,6"></path>
+      <path transform="translate(393.158,40)" d="M0,0L0,6"></path>
+      <path transform="translate(486.189,40)" d="M0,0L0,6"></path>
+      <path transform="translate(579.347,40)" d="M0,0L0,6"></path>
+      <path transform="translate(672.378,40)" d="M0,0L0,6"></path>
+      <path transform="translate(765.536,40)" d="M0,0L0,6"></path>
+      <path transform="translate(858.566,40)" d="M0,0L0,6"></path>
     </g>
   </g>
   <g aria-label="x-axis tick label" transform="translate(0.5,9.5)">
     <g font-variant="tabular-nums" transform="translate(0,989)">
       <text y="0.71em" transform="translate(300,40)">2000</text>
-      <text y="0.71em" transform="translate(393.1581043409,40)">2002</text>
-      <text y="0.71em" transform="translate(486.18876941457586,40)">2004</text>
-      <text y="0.71em" transform="translate(579.3468737554759,40)">2006</text>
-      <text y="0.71em" transform="translate(672.3775388291517,40)">2008</text>
-      <text y="0.71em" transform="translate(765.5356431700518,40)">2010</text>
-      <text y="0.71em" transform="translate(858.5663082437277,40)">2012</text>
+      <text y="0.71em" transform="translate(393.158,40)">2002</text>
+      <text y="0.71em" transform="translate(486.189,40)">2004</text>
+      <text y="0.71em" transform="translate(579.347,40)">2006</text>
+      <text y="0.71em" transform="translate(672.378,40)">2008</text>
+      <text y="0.71em" transform="translate(765.536,40)">2010</text>
+      <text y="0.71em" transform="translate(858.566,40)">2012</text>
     </g>
   </g>
   <g aria-label="area">

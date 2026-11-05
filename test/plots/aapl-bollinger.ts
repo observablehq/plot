@@ -1,7 +1,8 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
+import {test} from "test/plot";
 
-export async function aaplBollinger() {
+test(async function aaplBollinger() {
   const aapl = await d3.csv<any>("data/aapl.csv", d3.autoType);
   return Plot.plot({
     y: {
@@ -12,9 +13,9 @@ export async function aaplBollinger() {
       Plot.line(aapl, {x: "Date", y: "Close", strokeWidth: 1})
     ]
   });
-}
+});
 
-export async function aaplBollingerGridInterval() {
+test(async function aaplBollingerGridInterval() {
   const aapl = await d3.csv<any>("data/aapl.csv", d3.autoType);
   return Plot.plot({
     marks: [
@@ -29,9 +30,9 @@ export async function aaplBollingerGridInterval() {
       Plot.line(aapl, {x: "Date", y: "Close", strokeWidth: 1})
     ]
   });
-}
+});
 
-export async function aaplBollingerGridSpacing() {
+test(async function aaplBollingerGridSpacing() {
   const aapl = await d3.csv<any>("data/aapl.csv", d3.autoType);
   return Plot.plot({
     marks: [
@@ -46,9 +47,9 @@ export async function aaplBollingerGridSpacing() {
       Plot.line(aapl, {x: "Date", y: "Close", strokeWidth: 1})
     ]
   });
-}
+});
 
-export async function aaplBollingerCandlestick() {
+test(async function aaplBollingerCandlestick() {
   const aapl = await d3.csv<any>("data/aapl.csv", d3.autoType);
   return Plot.plot({
     x: {domain: [new Date("2014-01-01"), new Date("2014-06-01")]},
@@ -67,4 +68,4 @@ export async function aaplBollingerCandlestick() {
       })
     ]
   });
-}
+});

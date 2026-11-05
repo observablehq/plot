@@ -1,7 +1,8 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
+import {test} from "test/plot";
 
-export async function functionContour() {
+test(async function functionContour() {
   return Plot.plot({
     color: {
       type: "diverging"
@@ -18,9 +19,9 @@ export async function functionContour() {
       })
     ]
   });
-}
+});
 
-export async function functionContourFaceted() {
+test(async function functionContourFaceted() {
   function lin(x) {
     return x / (4 * Math.PI);
   }
@@ -43,9 +44,9 @@ export async function functionContourFaceted() {
       Plot.frame()
     ]
   });
-}
+});
 
-export async function functionContourFaceted2() {
+test(async function functionContourFaceted2() {
   function lin(x) {
     return x / (4 * Math.PI);
   }
@@ -68,4 +69,4 @@ export async function functionContourFaceted2() {
       Plot.frame()
     ]
   });
-}
+});

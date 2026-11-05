@@ -1,7 +1,8 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
+import {test} from "test/plot";
 
-export async function mobyDickFaceted() {
+test(async function mobyDickFaceted() {
   const mobydick = await d3.text("data/moby-dick-chapter-1.txt");
   const letters = [...mobydick].filter((d) => /\w/.test(d));
   const uppers = letters.map((d) => d.toUpperCase());
@@ -18,4 +19,4 @@ export async function mobyDickFaceted() {
     },
     marks: [Plot.barY(letters, Plot.groupX({y: "count"}, {x: uppers})), Plot.ruleY([0])]
   });
-}
+});

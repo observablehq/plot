@@ -1,7 +1,8 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
+import {test} from "test/plot";
 
-export async function travelersYearOverYear() {
+test(async function travelersYearOverYear() {
   const data = await d3.csv<any>("data/travelers.csv", d3.autoType);
   return Plot.plot({
     y: {
@@ -36,4 +37,4 @@ export async function travelersYearOverYear() {
       })
     ]
   });
-}
+});

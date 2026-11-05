@@ -1,7 +1,8 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
+import {test} from "test/plot";
 
-export async function crimeanWarLine() {
+test(async function crimeanWarLine() {
   const crimea = await d3.csv<any>("data/crimean-war.csv", d3.autoType);
   const causes = crimea.columns.slice(2);
   const data = causes.flatMap((cause) => crimea.map(({date, [cause]: deaths}) => ({date, cause, deaths})));
@@ -12,4 +13,4 @@ export async function crimeanWarLine() {
     },
     marks: [Plot.ruleY([0]), Plot.lineY(data, {x: "date", y: "deaths", stroke: "cause", marker: "circle"})]
   });
-}
+});

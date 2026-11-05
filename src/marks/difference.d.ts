@@ -71,7 +71,7 @@ export interface DifferenceOptions extends MarkOptions, CurveOptions {
 }
 
 /**
- * Returns a new horizontal difference mark for the given the specified *data*
+ * Returns a new horizontal difference mark for the given specified *data*
  * and *options*, as in a time-series chart where time goes down↓ (or up↑).
  *
  * The mark is a composite of a positive area, negative area, and line. The
@@ -84,7 +84,7 @@ export interface DifferenceOptions extends MarkOptions, CurveOptions {
 export function differenceX(data?: Data, options?: DifferenceOptions): Difference;
 
 /**
- * Returns a new vertical difference mark for the given the specified *data* and
+ * Returns a new vertical difference mark for the given specified *data* and
  * *options*, as in a time-series chart where time goes right→ (or ←left).
  *
  * The mark is a composite of a positive area, negative area, and line. The
@@ -97,4 +97,6 @@ export function differenceX(data?: Data, options?: DifferenceOptions): Differenc
 export function differenceY(data?: Data, options?: DifferenceOptions): Difference;
 
 /** The difference mark. */
-export class Difference extends RenderableMark {}
+export class Difference extends RenderableMark {
+  constructor(data?: Data, options?: DifferenceOptions);
+}

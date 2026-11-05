@@ -1,19 +1,28 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
+import {test} from "test/plot";
 
-export async function aaplClose() {
+test(async function aaplClose() {
+  const aapl = await d3.csv<any>("data/aapl.csv", d3.autoType);
+  return Plot.plot({
+    y: {grid: true},
+    marks: [Plot.areaY(aapl, {x: "Date", y: "Close", line: true}), Plot.ruleY([0])]
+  });
+});
+
+test(async function aaplCloseVaryingColor() {
   const aapl = await d3.csv<any>("data/aapl.csv", d3.autoType);
   return Plot.plot({
     y: {grid: true},
     marks: [
-      Plot.areaY(aapl, {x: "Date", y: "Close", fillOpacity: 0.1}),
-      Plot.lineY(aapl, {x: "Date", y: "Close"}),
+      Plot.areaY(aapl, {x: "Date", y: "Close", fill: "Close", fillOpacity: 0.2}),
+      Plot.lineY(aapl, {x: "Date", y: "Close", stroke: "Close"}),
       Plot.ruleY([0])
     ]
   });
-}
+});
 
-export async function aaplCloseClip() {
+test(async function aaplCloseClip() {
   const aapl = await d3.csv<any>("data/aapl.csv", d3.autoType);
   return Plot.plot({
     clip: true,
@@ -25,44 +34,44 @@ export async function aaplCloseClip() {
       Plot.ruleY([0], {clip: false})
     ]
   });
-}
+});
 
-export async function aaplCloseDataTicks() {
+test(async function aaplCloseDataTicks() {
   const aapl = await d3.csv<any>("data/aapl.csv", d3.autoType);
   return Plot.plot({
     marks: [Plot.axisY(d3.ticks(0, 200, 10), {anchor: "left"}), Plot.lineY(aapl, {x: "Date", y: "Close"})]
   });
-}
+});
 
-export async function aaplCloseImplicitGrid() {
+test(async function aaplCloseImplicitGrid() {
   const aapl = await d3.csv<any>("data/aapl.csv", d3.autoType);
   return Plot.plot({
     y: {grid: true}, // appears even though there’s an explicit axis
     marks: [Plot.axisY({anchor: "left"}), Plot.lineY(aapl, {x: "Date", y: "Close"})]
   });
-}
+});
 
-export async function aaplCloseGridColor() {
+test(async function aaplCloseGridColor() {
   const aapl = await d3.csv<any>("data/aapl.csv", d3.autoType);
   return Plot.lineY(aapl, {x: "Date", y: "Close"}).plot({y: {grid: "red"}});
-}
+});
 
-export async function aaplCloseGridInterval() {
+test(async function aaplCloseGridInterval() {
   const aapl = await d3.csv<any>("data/aapl.csv", d3.autoType);
   return Plot.lineY(aapl, {x: "Date", y: "Close"}).plot({x: {grid: "3 months"}});
-}
+});
 
-export async function aaplCloseGridIntervalName() {
+test(async function aaplCloseGridIntervalName() {
   const aapl = await d3.csv<any>("data/aapl.csv", d3.autoType);
   return Plot.lineY(aapl, {x: "Date", y: "Close"}).plot({x: {grid: "month"}});
-}
+});
 
-export async function aaplCloseGridIterable() {
+test(async function aaplCloseGridIterable() {
   const aapl = await d3.csv<any>("data/aapl.csv", d3.autoType);
   return Plot.lineY(aapl, {x: "Date", y: "Close"}).plot({y: {grid: [100, 120, 140]}});
-}
+});
 
-export async function aaplCloseNormalize() {
+test(async function aaplCloseNormalize() {
   const aapl = await d3.csv<any>("data/aapl.csv", d3.autoType);
   const x = new Date("2014-01-01");
   const X = Plot.valueof(aapl, "Date");
@@ -76,4 +85,4 @@ export async function aaplCloseNormalize() {
       )
     ]
   });
-}
+});

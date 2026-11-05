@@ -1,0 +1,64 @@
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="400" viewBox="0 0 640 400" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style>
+    :where(.plot) {
+      --plot-background: white;
+      display: block;
+      height: auto;
+      height: intrinsic;
+      max-width: 100%;
+    }
+
+    :where(.plot text),
+    :where(.plot tspan) {
+      white-space: pre;
+    }
+  </style>
+  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+    <path transform="translate(40,370)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,339.565)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,309.13)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,278.696)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,248.261)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,217.826)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,187.391)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,156.957)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,126.522)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,96.087)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,65.652)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,35.217)" d="M0,0L-6,0"></path>
+  </g>
+  <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
+    <text y="0.32em" transform="translate(40,370)">0</text>
+    <text y="0.32em" transform="translate(40,339.565)">2</text>
+    <text y="0.32em" transform="translate(40,309.13)">4</text>
+    <text y="0.32em" transform="translate(40,278.696)">6</text>
+    <text y="0.32em" transform="translate(40,248.261)">8</text>
+    <text y="0.32em" transform="translate(40,217.826)">10</text>
+    <text y="0.32em" transform="translate(40,187.391)">12</text>
+    <text y="0.32em" transform="translate(40,156.957)">14</text>
+    <text y="0.32em" transform="translate(40,126.522)">16</text>
+    <text y="0.32em" transform="translate(40,96.087)">18</text>
+    <text y="0.32em" transform="translate(40,65.652)">20</text>
+    <text y="0.32em" transform="translate(40,35.217)">22</text>
+  </g>
+  <g aria-label="y-axis label" text-anchor="start" transform="translate(-36.5,-16.5)">
+    <text y="0.71em" transform="translate(40,20)">↑ Frequency</text>
+  </g>
+  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+    <path transform="translate(112.897,370)" d="M0,0L0,6"></path>
+    <path transform="translate(228.834,370)" d="M0,0L0,6"></path>
+    <path transform="translate(344.77,370)" d="M0,0L0,6"></path>
+    <path transform="translate(461.024,370)" d="M0,0L0,6"></path>
+    <path transform="translate(576.961,370)" d="M0,0L0,6"></path>
+  </g>
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+    <text y="0.71em" transform="translate(112.897,370)">2014</text>
+    <text y="0.71em" transform="translate(228.834,370)">2015</text>
+    <text y="0.71em" transform="translate(344.77,370)">2016</text>
+    <text y="0.71em" transform="translate(461.024,370)">2017</text>
+    <text y="0.71em" transform="translate(576.961,370)">2018</text>
+  </g>
+  <g aria-label="area">
+    <path d="M40,156.957L49.688,65.652L59.376,35.217L69.222,35.217L78.91,65.652L88.598,20L98.286,65.652L107.974,50.435L117.82,50.435L127.191,80.87L136.561,50.435L146.249,50.435L155.936,50.435L165.624,50.435L175.312,35.217L185.159,50.435L194.847,50.435L204.535,20L214.222,80.87L223.91,35.217L233.757,65.652L243.127,80.87L252.497,35.217L262.185,50.435L271.873,65.652L281.561,35.217L291.249,35.217L301.095,50.435L310.783,50.435L320.471,35.217L330.159,65.652L339.847,35.217L349.693,80.87L359.222,65.652L368.751,35.217L378.439,50.435L388.127,50.435L397.815,35.217L407.503,65.652L417.349,20L427.037,50.435L436.725,50.435L446.413,50.435L456.101,50.435L465.947,65.652L475.318,80.87L484.688,20L494.376,80.87L504.064,35.217L513.751,35.217L523.439,65.652L533.286,20L542.974,65.652L552.662,35.217L562.349,50.435L572.037,65.652L581.884,50.435L591.254,80.87L600.624,50.435L610.312,50.435L620,233.043L620,370L610.312,370L600.624,370L591.254,370L581.884,370L572.037,370L562.349,370L552.662,370L542.974,370L533.286,370L523.439,370L513.751,370L504.064,370L494.376,370L484.688,370L475.318,370L465.947,370L456.101,370L446.413,370L436.725,370L427.037,370L417.349,370L407.503,370L397.815,370L388.127,370L378.439,370L368.751,370L359.222,370L349.693,370L339.847,370L330.159,370L320.471,370L310.783,370L301.095,370L291.249,370L281.561,370L271.873,370L262.185,370L252.497,370L243.127,370L233.757,370L223.91,370L214.222,370L204.535,370L194.847,370L185.159,370L175.312,370L165.624,370L155.936,370L146.249,370L136.561,370L127.191,370L117.82,370L107.974,370L98.286,370L88.598,370L78.91,370L69.222,370L59.376,370L49.688,370L40,370Z"></path>
+  </g>
+</svg>

@@ -1,7 +1,8 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
+import {test} from "test/plot";
 
-export async function industryUnemploymentTrack() {
+test(async function industryUnemploymentTrack() {
   const data = await d3.csv<any>("data/bls-industry-unemployment.csv", d3.autoType);
   return Plot.plot({
     facet: {data, y: "industry"},
@@ -51,4 +52,4 @@ export async function industryUnemploymentTrack() {
     ],
     color: {scheme: "plasma", reverse: true}
   });
-}
+});

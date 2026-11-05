@@ -1,7 +1,8 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
+import {test} from "test/plot";
 
-export async function figcaption() {
+test(async function figcaption() {
   const alphabet = await d3.csv<any>("data/alphabet.csv", d3.autoType);
   return Plot.plot({
     caption: "The relative frequency of letters in the English language. Data: Robert Edward Lewand",
@@ -15,4 +16,4 @@ export async function figcaption() {
     },
     marks: [Plot.barY(alphabet, {x: "letter", y: "frequency"}), Plot.ruleY([0])]
   });
-}
+});

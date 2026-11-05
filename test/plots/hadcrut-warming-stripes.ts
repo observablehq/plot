@@ -1,7 +1,8 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
+import {test} from "test/plot";
 
-export async function hadcrutWarmingStripes() {
+test(async function hadcrutWarmingStripes() {
   const hadcrut = (await d3.text("data/hadcrut-annual.txt"))
     .trim() // trim trailing newline
     .split(/\n/g) // split into lines
@@ -27,4 +28,4 @@ export async function hadcrutWarmingStripes() {
       })
     ]
   });
-}
+});

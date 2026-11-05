@@ -1,7 +1,8 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
+import {test} from "test/plot";
 
-export async function anscombeQuartet() {
+test(async function anscombeQuartet() {
   const anscombe = await d3.csv<any>("data/anscombe.csv", d3.autoType);
   return Plot.plot({
     grid: true,
@@ -14,4 +15,4 @@ export async function anscombeQuartet() {
     },
     marks: [Plot.frame(), Plot.dot(anscombe, {x: "x", y: "y"})]
   });
-}
+});

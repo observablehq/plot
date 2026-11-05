@@ -2,8 +2,9 @@ import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 import {geoChamberlinAfrica} from "d3-geo-projection";
 import {feature} from "topojson-client";
+import {test} from "test/plot";
 
-export async function boundingBoxes() {
+test(async function boundingBoxes() {
   const world = await d3.json<any>("data/countries-110m.json");
   const land = feature(world, world.objects.land);
   const countries = feature(world, world.objects.countries).features;
@@ -37,4 +38,4 @@ export async function boundingBoxes() {
       Plot.sphere()
     ]
   });
-}
+});

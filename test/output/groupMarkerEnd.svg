@@ -1,4 +1,4 @@
-<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="640.5189532673676" viewBox="0 0 640 640.5189532673676" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="640.519" viewBox="0 0 640 640.519" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <style>
     :where(.plot) {
       --plot-background: white;
@@ -112,7 +112,7 @@
     <path stroke="#4269d0" stroke-width="4.75" d="M34.13,322.393L31.988,307.598"></path>
     <path stroke="#4269d0" stroke-width="4.8" d="M31.988,307.598L30.605,292.562"></path>
     <path stroke="#4269d0" stroke-width="4.85" d="M30.605,292.562L30,277.324"></path>
-    <marker viewBox="-5 -5 10 10" markerWidth="6.67" markerHeight="6.67" orient="auto" fill="none" stroke="#4269d0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" id="plot-marker-1">
+    <marker viewBox="-5 -5 10 10" markerWidth="6.67" markerHeight="6.67" orient="auto" fill="none" stroke="#4269d0" stroke-dasharray="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" id="plot-marker-1">
       <path d="M-1.5,-3l3,3l-3,3"></path>
     </marker>
     <path stroke="#4269d0" stroke-width="4.9" marker-end="url(#plot-marker-1)" d="M30,277.324L30.19,261.926"></path>
@@ -215,7 +215,7 @@
     <path stroke="#efb118" stroke-width="4.76" d="M248.217,51.889L261.721,45.407"></path>
     <path stroke="#efb118" stroke-width="4.81" d="M261.721,45.407L275.683,39.578"></path>
     <path stroke="#efb118" stroke-width="4.86" d="M275.683,39.578L290.07,34.433"></path>
-    <marker viewBox="-5 -5 10 10" markerWidth="6.67" markerHeight="6.67" orient="auto" fill="none" stroke="#efb118" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" id="plot-marker-2">
+    <marker viewBox="-5 -5 10 10" markerWidth="6.67" markerHeight="6.67" orient="auto" fill="none" stroke="#efb118" stroke-dasharray="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" id="plot-marker-2">
       <path d="M-1.5,-3l3,3l-3,3"></path>
     </marker>
     <path stroke="#efb118" stroke-width="4.91" marker-end="url(#plot-marker-2)" d="M290.07,34.433L304.849,30"></path>
@@ -318,7 +318,7 @@
     <path stroke="#ff725c" stroke-width="4.77" d="M571.099,175.396L581.344,186.365"></path>
     <path stroke="#ff725c" stroke-width="4.82" d="M581.344,186.365L591.101,197.967"></path>
     <path stroke="#ff725c" stroke-width="4.87" d="M591.101,197.967L600.332,210.181"></path>
-    <marker viewBox="-5 -5 10 10" markerWidth="6.67" markerHeight="6.67" orient="auto" fill="none" stroke="#ff725c" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" id="plot-marker-3">
+    <marker viewBox="-5 -5 10 10" markerWidth="6.67" markerHeight="6.67" orient="auto" fill="none" stroke="#ff725c" stroke-dasharray="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" id="plot-marker-3">
       <path d="M-1.5,-3l3,3l-3,3"></path>
     </marker>
     <path stroke="#ff725c" stroke-width="4.92" marker-end="url(#plot-marker-3)" d="M600.332,210.181L609,222.982"></path>
@@ -421,7 +421,7 @@
     <path stroke="#6cc5b0" stroke-width="4.78" d="M549.917,521.171L542.499,534.254"></path>
     <path stroke="#6cc5b0" stroke-width="4.83" d="M542.499,534.254L534.33,547.06"></path>
     <path stroke="#6cc5b0" stroke-width="4.88" d="M534.33,547.06L525.419,559.545"></path>
-    <marker viewBox="-5 -5 10 10" markerWidth="6.67" markerHeight="6.67" orient="auto" fill="none" stroke="#6cc5b0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" id="plot-marker-4">
+    <marker viewBox="-5 -5 10 10" markerWidth="6.67" markerHeight="6.67" orient="auto" fill="none" stroke="#6cc5b0" stroke-dasharray="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" id="plot-marker-4">
       <path d="M-1.5,-3l3,3l-3,3"></path>
     </marker>
     <path stroke="#6cc5b0" stroke-width="4.93" marker-end="url(#plot-marker-4)" d="M525.419,559.545L515.778,571.669"></path>
@@ -524,7 +524,7 @@
     <path stroke="#3ca951" stroke-width="4.79" d="M212.965,604.691L198.233,601.519"></path>
     <path stroke="#3ca951" stroke-width="4.84" d="M198.233,601.519L183.541,597.547"></path>
     <path stroke="#3ca951" stroke-width="4.89" d="M183.541,597.547L168.932,592.769"></path>
-    <marker viewBox="-5 -5 10 10" markerWidth="6.67" markerHeight="6.67" orient="auto" fill="none" stroke="#3ca951" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" id="plot-marker-5">
+    <marker viewBox="-5 -5 10 10" markerWidth="6.67" markerHeight="6.67" orient="auto" fill="none" stroke="#3ca951" stroke-dasharray="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" id="plot-marker-5">
       <path d="M-1.5,-3l3,3l-3,3"></path>
     </marker>
     <path stroke="#3ca951" stroke-width="4.94" marker-end="url(#plot-marker-5)" d="M168.932,592.769L154.452,587.185"></path>

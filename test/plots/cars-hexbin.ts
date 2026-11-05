@@ -1,7 +1,8 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
+import {test} from "test/plot";
 
-export async function carsHexbin() {
+test(async function carsHexbin() {
   const cars = await d3.csv<any>("data/cars.csv", d3.autoType);
   return Plot.plot({
     color: {
@@ -16,4 +17,4 @@ export async function carsHexbin() {
       )
     ]
   });
-}
+});

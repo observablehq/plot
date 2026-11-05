@@ -1,7 +1,8 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
+import {test} from "test/plot";
 
-export async function aaplCandlestick() {
+test(async function aaplCandlestick() {
   const AAPL = (await d3.csv<any>("data/aapl.csv", d3.autoType)).slice(-120);
   return Plot.plot({
     width: 960,
@@ -30,4 +31,4 @@ export async function aaplCandlestick() {
       })
     ]
   });
-}
+});

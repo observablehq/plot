@@ -1,7 +1,8 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
+import {test} from "test/plot";
 
-export async function ballotStatusRace() {
+test(async function ballotStatusRace() {
   let votes: any = await d3.csv<any>("data/nc-absentee-votes.csv", d3.autoType);
 
   // Filter for mail ballots.
@@ -88,4 +89,4 @@ export async function ballotStatusRace() {
       Plot.ruleX([0])
     ]
   });
-}
+});

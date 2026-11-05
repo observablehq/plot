@@ -194,7 +194,7 @@ export type BinOutputs = ChannelReducers<BinReducer> | (GroupOutputOptions<BinRe
  * If **x** is not in *options*, it defaults to identity. If **x** is not in
  * *outputs*, by default produces **x1** and **x2** output channels representing
  * the extent of each bin and an **x** output channel representing the bin
- * midpoint, say for for labels. If **y** is not in outputs, **y1** and **y2**
+ * midpoint, say for labels. If **y** is not in outputs, **y1** and **y2**
  * will be dropped from the returned *options*. The **insetLeft** and
  * **insetRight** options default to 0.5.
  */
@@ -226,7 +226,7 @@ export function binX<T>(outputs?: BinOutputs, options?: BinXInputs<T>): Transfor
  * If **y** is not in *options*, it defaults to identity. If **y** is not in
  * *outputs*, by default produces **y1** and **y2** output channels representing
  * the extent of each bin and a **y** output channel representing the bin
- * midpoint, say for for labels. If **x** is not in outputs, **x1** and **x2**
+ * midpoint, say for labels. If **x** is not in outputs, **x1** and **x2**
  * will be dropped from the returned *options*. The **insetTop** and
  * **insetBottom** options default to 0.5.
  */

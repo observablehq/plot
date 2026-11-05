@@ -1,7 +1,8 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
+import {test} from "test/plot";
 
-export async function aaplVolumeRect() {
+test(async function aaplVolumeRect() {
   const AAPL = (await d3.csv<any>("data/aapl.csv", d3.autoType)).slice(-40);
   return Plot.plot({
     y: {
@@ -15,4 +16,4 @@ export async function aaplVolumeRect() {
       Plot.ruleY([0])
     ]
   });
-}
+});

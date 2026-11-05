@@ -1,5 +1,6 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
+import {test} from "test/plot";
 
 // Country code to continent; coverage limited to sport=boxing.
 const continents = new Map(
@@ -13,7 +14,7 @@ const continents = new Map(
   ].flatMap(([continent, codes]: [string, string[]]) => codes.map((code) => [code, continent]))
 );
 
-export async function athletesBoxingHeight() {
+test(async function athletesBoxingHeight() {
   const athletes = (await d3.csv<any>("data/athletes.csv", d3.autoType)).filter(
     (d) => d.sport === "boxing" && d.height
   );
@@ -28,4 +29,4 @@ export async function athletesBoxingHeight() {
       Plot.dot(athletes, Plot.dodgeX({y: "height", title: "nationality", fill: "currentColor", anchor: "middle"}))
     ]
   });
-}
+});

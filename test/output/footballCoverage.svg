@@ -49,8 +49,8 @@
       <line x1="40" x2="116" y1="210" y2="210"></line>
       <line x1="40" x2="116" y1="172" y2="172"></line>
       <line x1="40" x2="116" y1="134" y2="134"></line>
-      <line x1="40" x2="116" y1="95.99999999999999" y2="95.99999999999999"></line>
-      <line x1="40" x2="116" y1="57.99999999999999" y2="57.99999999999999"></line>
+      <line x1="40" x2="116" y1="96" y2="96"></line>
+      <line x1="40" x2="116" y1="58" y2="58"></line>
       <line x1="40" x2="116" y1="20" y2="20"></line>
     </g>
     <g stroke="currentColor" stroke-opacity="0.1" transform="translate(84,0)">
@@ -62,8 +62,8 @@
       <line x1="40" x2="116" y1="210" y2="210"></line>
       <line x1="40" x2="116" y1="172" y2="172"></line>
       <line x1="40" x2="116" y1="134" y2="134"></line>
-      <line x1="40" x2="116" y1="95.99999999999999" y2="95.99999999999999"></line>
-      <line x1="40" x2="116" y1="57.99999999999999" y2="57.99999999999999"></line>
+      <line x1="40" x2="116" y1="96" y2="96"></line>
+      <line x1="40" x2="116" y1="58" y2="58"></line>
       <line x1="40" x2="116" y1="20" y2="20"></line>
     </g>
     <g stroke="currentColor" stroke-opacity="0.1" transform="translate(168,0)">
@@ -75,8 +75,8 @@
       <line x1="40" x2="116" y1="210" y2="210"></line>
       <line x1="40" x2="116" y1="172" y2="172"></line>
       <line x1="40" x2="116" y1="134" y2="134"></line>
-      <line x1="40" x2="116" y1="95.99999999999999" y2="95.99999999999999"></line>
-      <line x1="40" x2="116" y1="57.99999999999999" y2="57.99999999999999"></line>
+      <line x1="40" x2="116" y1="96" y2="96"></line>
+      <line x1="40" x2="116" y1="58" y2="58"></line>
       <line x1="40" x2="116" y1="20" y2="20"></line>
     </g>
     <g stroke="currentColor" stroke-opacity="0.1" transform="translate(252,0)">
@@ -88,8 +88,8 @@
       <line x1="40" x2="116" y1="210" y2="210"></line>
       <line x1="40" x2="116" y1="172" y2="172"></line>
       <line x1="40" x2="116" y1="134" y2="134"></line>
-      <line x1="40" x2="116" y1="95.99999999999999" y2="95.99999999999999"></line>
-      <line x1="40" x2="116" y1="57.99999999999999" y2="57.99999999999999"></line>
+      <line x1="40" x2="116" y1="96" y2="96"></line>
+      <line x1="40" x2="116" y1="58" y2="58"></line>
       <line x1="40" x2="116" y1="20" y2="20"></line>
     </g>
     <g stroke="currentColor" stroke-opacity="0.1" transform="translate(336,0)">
@@ -101,8 +101,8 @@
       <line x1="40" x2="116" y1="210" y2="210"></line>
       <line x1="40" x2="116" y1="172" y2="172"></line>
       <line x1="40" x2="116" y1="134" y2="134"></line>
-      <line x1="40" x2="116" y1="95.99999999999999" y2="95.99999999999999"></line>
-      <line x1="40" x2="116" y1="57.99999999999999" y2="57.99999999999999"></line>
+      <line x1="40" x2="116" y1="96" y2="96"></line>
+      <line x1="40" x2="116" y1="58" y2="58"></line>
       <line x1="40" x2="116" y1="20" y2="20"></line>
     </g>
     <g stroke="currentColor" stroke-opacity="0.1" transform="translate(420,0)">
@@ -114,8 +114,8 @@
       <line x1="40" x2="116" y1="210" y2="210"></line>
       <line x1="40" x2="116" y1="172" y2="172"></line>
       <line x1="40" x2="116" y1="134" y2="134"></line>
-      <line x1="40" x2="116" y1="95.99999999999999" y2="95.99999999999999"></line>
-      <line x1="40" x2="116" y1="57.99999999999999" y2="57.99999999999999"></line>
+      <line x1="40" x2="116" y1="96" y2="96"></line>
+      <line x1="40" x2="116" y1="58" y2="58"></line>
       <line x1="40" x2="116" y1="20" y2="20"></line>
     </g>
     <g stroke="currentColor" stroke-opacity="0.1" transform="translate(504,0)">
@@ -127,8 +127,8 @@
       <line x1="40" x2="116" y1="210" y2="210"></line>
       <line x1="40" x2="116" y1="172" y2="172"></line>
       <line x1="40" x2="116" y1="134" y2="134"></line>
-      <line x1="40" x2="116" y1="95.99999999999999" y2="95.99999999999999"></line>
-      <line x1="40" x2="116" y1="57.99999999999999" y2="57.99999999999999"></line>
+      <line x1="40" x2="116" y1="96" y2="96"></line>
+      <line x1="40" x2="116" y1="58" y2="58"></line>
       <line x1="40" x2="116" y1="20" y2="20"></line>
     </g>
   </g>
@@ -142,8 +142,8 @@
       <path transform="translate(40,210)" d="M0,0L-6,0"></path>
       <path transform="translate(40,172)" d="M0,0L-6,0"></path>
       <path transform="translate(40,134)" d="M0,0L-6,0"></path>
-      <path transform="translate(40,95.99999999999999)" d="M0,0L-6,0"></path>
-      <path transform="translate(40,57.99999999999999)" d="M0,0L-6,0"></path>
+      <path transform="translate(40,96)" d="M0,0L-6,0"></path>
+      <path transform="translate(40,58)" d="M0,0L-6,0"></path>
       <path transform="translate(40,20)" d="M0,0L-6,0"></path>
     </g>
   </g>
@@ -157,8 +157,8 @@
       <text y="0.32em" transform="translate(40,210)">25%</text>
       <text y="0.32em" transform="translate(40,172)">30%</text>
       <text y="0.32em" transform="translate(40,134)">35%</text>
-      <text y="0.32em" transform="translate(40,95.99999999999999)">40%</text>
-      <text y="0.32em" transform="translate(40,57.99999999999999)">45%</text>
+      <text y="0.32em" transform="translate(40,96)">40%</text>
+      <text y="0.32em" transform="translate(40,58)">45%</text>
       <text y="0.32em" transform="translate(40,20)">50%</text>
     </g>
   </g>
@@ -241,22 +241,22 @@
       <circle cx="116" cy="134" r="3"></circle>
     </g>
     <g fill="black" transform="translate(168,0)">
-      <circle cx="63.75" cy="240.40000000000003" r="3"></circle>
+      <circle cx="63.75" cy="240.4" r="3"></circle>
       <circle cx="63.75" cy="278.4" r="3"></circle>
       <circle cx="63.75" cy="248" r="3"></circle>
       <circle cx="73.25" cy="248" r="3"></circle>
       <circle cx="68.5" cy="225.2" r="3"></circle>
       <circle cx="73.25" cy="217.6" r="3"></circle>
       <circle cx="82.75" cy="217.6" r="3"></circle>
-      <circle cx="73.25" cy="240.40000000000003" r="3"></circle>
+      <circle cx="73.25" cy="240.4" r="3"></circle>
       <circle cx="73.25" cy="278.4" r="3"></circle>
       <circle cx="78" cy="225.2" r="3"></circle>
       <circle cx="82.75" cy="248" r="3"></circle>
-      <circle cx="82.75" cy="240.40000000000003" r="3"></circle>
+      <circle cx="82.75" cy="240.4" r="3"></circle>
       <circle cx="82.75" cy="278.4" r="3"></circle>
       <circle cx="54.25" cy="255.6" r="3"></circle>
-      <circle cx="68.5" cy="232.80000000000004" r="3"></circle>
-      <circle cx="73.25" cy="270.79999999999995" r="3"></circle>
+      <circle cx="68.5" cy="232.8" r="3"></circle>
+      <circle cx="73.25" cy="270.8" r="3"></circle>
       <circle cx="63.75" cy="255.6" r="3"></circle>
       <circle cx="68.5" cy="263.2" r="3"></circle>
       <circle cx="87.5" cy="225.2" r="3"></circle>
@@ -264,11 +264,11 @@
       <circle cx="73.25" cy="255.6" r="3"></circle>
       <circle cx="82.75" cy="255.6" r="3"></circle>
       <circle cx="87.5" cy="263.2" r="3"></circle>
-      <circle cx="92.25" cy="240.40000000000003" r="3"></circle>
-      <circle cx="82.75" cy="270.79999999999995" r="3"></circle>
+      <circle cx="92.25" cy="240.4" r="3"></circle>
+      <circle cx="82.75" cy="270.8" r="3"></circle>
       <circle cx="78" cy="286" r="3"></circle>
-      <circle cx="78" cy="232.80000000000004" r="3"></circle>
-      <circle cx="87.5" cy="232.80000000000004" r="3"></circle>
+      <circle cx="78" cy="232.8" r="3"></circle>
+      <circle cx="87.5" cy="232.8" r="3"></circle>
       <circle cx="92.25" cy="255.6" r="3"></circle>
       <circle cx="101.75" cy="255.6" r="3"></circle>
       <circle cx="92.25" cy="278.4" r="3"></circle>
@@ -278,32 +278,32 @@
       <circle cx="54.25" cy="248" r="3"></circle>
       <circle cx="59" cy="225.2" r="3"></circle>
       <circle cx="63.75" cy="248" r="3"></circle>
-      <circle cx="73.25" cy="240.40000000000003" r="3"></circle>
+      <circle cx="73.25" cy="240.4" r="3"></circle>
       <circle cx="49.5" cy="217.6" r="3"></circle>
       <circle cx="73.25" cy="248" r="3"></circle>
       <circle cx="68.5" cy="255.6" r="3"></circle>
       <circle cx="82.75" cy="248" r="3"></circle>
       <circle cx="78" cy="286" r="3"></circle>
       <circle cx="78" cy="210" r="3"></circle>
-      <circle cx="73.25" cy="270.79999999999995" r="3"></circle>
+      <circle cx="73.25" cy="270.8" r="3"></circle>
       <circle cx="68.5" cy="225.2" r="3"></circle>
       <circle cx="78" cy="255.6" r="3"></circle>
-      <circle cx="68.5" cy="232.80000000000004" r="3"></circle>
-      <circle cx="78" cy="232.80000000000004" r="3"></circle>
+      <circle cx="68.5" cy="232.8" r="3"></circle>
+      <circle cx="78" cy="232.8" r="3"></circle>
       <circle cx="92.25" cy="248" r="3"></circle>
       <circle cx="101.75" cy="248" r="3"></circle>
       <circle cx="59" cy="217.6" r="3"></circle>
       <circle cx="68.5" cy="217.6" r="3"></circle>
       <circle cx="78" cy="194.8" r="3"></circle>
-      <circle cx="82.75" cy="240.40000000000003" r="3"></circle>
+      <circle cx="82.75" cy="240.4" r="3"></circle>
       <circle cx="78" cy="225.2" r="3"></circle>
       <circle cx="78" cy="217.6" r="3"></circle>
-      <circle cx="82.75" cy="270.79999999999995" r="3"></circle>
+      <circle cx="82.75" cy="270.8" r="3"></circle>
       <circle cx="87.5" cy="225.2" r="3"></circle>
       <circle cx="97" cy="225.2" r="3"></circle>
       <circle cx="87.5" cy="217.6" r="3"></circle>
       <circle cx="97" cy="217.6" r="3"></circle>
-      <circle cx="87.5" cy="232.80000000000004" r="3"></circle>
+      <circle cx="87.5" cy="232.8" r="3"></circle>
       <circle cx="106.5" cy="217.6" r="3"></circle>
       <circle cx="87.5" cy="255.6" r="3"></circle>
       <circle cx="78" cy="202.4" r="3"></circle>
@@ -313,7 +313,7 @@
       <circle cx="59" cy="141.6" r="3"></circle>
       <circle cx="49.5" cy="134" r="3"></circle>
       <circle cx="59" cy="134" r="3"></circle>
-      <circle cx="78" cy="179.60000000000002" r="3"></circle>
+      <circle cx="78" cy="179.6" r="3"></circle>
       <circle cx="49.5" cy="156.8" r="3"></circle>
       <circle cx="68.5" cy="134" r="3"></circle>
       <circle cx="68.5" cy="141.6" r="3"></circle>
@@ -324,7 +324,7 @@
       <circle cx="78" cy="156.8" r="3"></circle>
       <circle cx="78" cy="164.4" r="3"></circle>
       <circle cx="73.25" cy="149.2" r="3"></circle>
-      <circle cx="78" cy="187.19999999999996" r="3"></circle>
+      <circle cx="78" cy="187.2" r="3"></circle>
       <circle cx="78" cy="134" r="3"></circle>
       <circle cx="87.5" cy="134" r="3"></circle>
       <circle cx="78" cy="172" r="3"></circle>
@@ -360,8 +360,8 @@
       <circle cx="87.5" cy="286" r="3"></circle>
       <circle cx="54.25" cy="278.4" r="3"></circle>
       <circle cx="63.75" cy="278.4" r="3"></circle>
-      <circle cx="73.25" cy="270.79999999999995" r="3"></circle>
-      <circle cx="82.75" cy="270.79999999999995" r="3"></circle>
+      <circle cx="73.25" cy="270.8" r="3"></circle>
+      <circle cx="82.75" cy="270.8" r="3"></circle>
       <circle cx="78" cy="308.8" r="3"></circle>
       <circle cx="97" cy="286" r="3"></circle>
       <circle cx="73.25" cy="278.4" r="3"></circle>
@@ -374,41 +374,41 @@
       <circle cx="97" cy="293.6" r="3"></circle>
       <circle cx="101.75" cy="278.4" r="3"></circle>
       <circle cx="111.25" cy="278.4" r="3"></circle>
-      <circle cx="78" cy="240.40000000000003" r="3"></circle>
+      <circle cx="78" cy="240.4" r="3"></circle>
     </g>
     <g fill="black" transform="translate(504,0)">
       <circle cx="59" cy="164.4" r="3"></circle>
       <circle cx="68.5" cy="164.4" r="3"></circle>
-      <circle cx="73.25" cy="179.60000000000002" r="3"></circle>
+      <circle cx="73.25" cy="179.6" r="3"></circle>
       <circle cx="59" cy="156.8" r="3"></circle>
       <circle cx="78" cy="164.4" r="3"></circle>
       <circle cx="54.25" cy="172" r="3"></circle>
       <circle cx="59" cy="149.2" r="3"></circle>
       <circle cx="68.5" cy="141.6" r="3"></circle>
-      <circle cx="63.75" cy="187.19999999999996" r="3"></circle>
+      <circle cx="63.75" cy="187.2" r="3"></circle>
       <circle cx="68.5" cy="156.8" r="3"></circle>
       <circle cx="63.75" cy="172" r="3"></circle>
       <circle cx="73.25" cy="172" r="3"></circle>
       <circle cx="78" cy="141.6" r="3"></circle>
       <circle cx="82.75" cy="172" r="3"></circle>
       <circle cx="78" cy="202.4" r="3"></circle>
-      <circle cx="73.25" cy="187.19999999999996" r="3"></circle>
+      <circle cx="73.25" cy="187.2" r="3"></circle>
       <circle cx="68.5" cy="149.2" r="3"></circle>
       <circle cx="78" cy="149.2" r="3"></circle>
       <circle cx="87.5" cy="141.6" r="3"></circle>
-      <circle cx="82.75" cy="187.19999999999996" r="3"></circle>
+      <circle cx="82.75" cy="187.2" r="3"></circle>
       <circle cx="87.5" cy="164.4" r="3"></circle>
       <circle cx="78" cy="156.8" r="3"></circle>
       <circle cx="92.25" cy="172" r="3"></circle>
       <circle cx="87.5" cy="149.2" r="3"></circle>
-      <circle cx="92.25" cy="187.19999999999996" r="3"></circle>
+      <circle cx="92.25" cy="187.2" r="3"></circle>
       <circle cx="101.75" cy="172" r="3"></circle>
       <circle cx="97" cy="164.4" r="3"></circle>
       <circle cx="87.5" cy="156.8" r="3"></circle>
       <circle cx="97" cy="149.2" r="3"></circle>
       <circle cx="97" cy="156.8" r="3"></circle>
       <circle cx="78" cy="194.8" r="3"></circle>
-      <circle cx="82.75" cy="179.60000000000002" r="3"></circle>
+      <circle cx="82.75" cy="179.6" r="3"></circle>
     </g>
   </g>
 </svg>

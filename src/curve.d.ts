@@ -42,7 +42,7 @@ export interface CurveOptions extends CurveAutoOptions {
    * * *bundle* - a straightened cubic basis spline (suitable for lines only, not areas)
    * * *cardinal* - a cubic cardinal spline (with one-sided differences at the ends)
    * * *cardinal-open* - an open cubic cardinal spline
-   * * *cardinal-closed* - an closed cubic cardinal spline
+   * * *cardinal-closed* - a closed cubic cardinal spline
    * * *catmull-rom* - a cubic Catmull–Rom spline (with one-sided differences at the ends)
    * * *catmull-rom-open* - an open cubic Catmull–Rom spline
    * * *catmull-rom-closed* - a closed cubic Catmull–Rom spline
@@ -76,7 +76,7 @@ export interface CurveAutoOptions {
    * * *bundle* - a straightened cubic basis spline (suitable for lines only, not areas)
    * * *cardinal* - a cubic cardinal spline (with one-sided differences at the ends)
    * * *cardinal-open* - an open cubic cardinal spline
-   * * *cardinal-closed* - an closed cubic cardinal spline
+   * * *cardinal-closed* - a closed cubic cardinal spline
    * * *catmull-rom* - a cubic Catmull–Rom spline (with one-sided differences at the ends)
    * * *catmull-rom-open* - an open cubic Catmull–Rom spline
    * * *catmull-rom-closed* - a closed cubic Catmull–Rom spline

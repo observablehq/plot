@@ -25,7 +25,7 @@ const defaultRadius = 3.5;
 // The size of the arrowhead is proportional to its length, but we still allow
 // the relative size of the head to be controlled via the mark’s width option;
 // doubling the default radius will produce an arrowhead that is twice as big.
-// That said, we’ll probably want a arrow with a fixed head size, too.
+// That said, we’ll probably want an arrow with a fixed head size, too.
 const wingRatio = defaultRadius * 5;
 
 const shapeArrow = {

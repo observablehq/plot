@@ -73,7 +73,7 @@ Plot.plot({
 ```
 :::
 
-Since the filter transform only affects the mark’s index and not the channel values, it does not affect the default scale domains. Below, the *x* scale contains every English letter, even though the only the bars for the vowels are shown.
+Since the filter transform only affects the mark’s index and not the channel values, it does not affect the default scale domains. Below, the *x* scale contains every English letter, even though only the bars for the vowels are shown.
 
 :::plot https://observablehq.com/@observablehq/plot-filtered-bars
 ```js

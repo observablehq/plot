@@ -1,6 +1,7 @@
 import * as Plot from "@observablehq/plot";
+import {test} from "test/plot";
 
-export async function integerInterval() {
+test(async function integerInterval() {
   const requests = [
     [2, 9],
     [3, 17],
@@ -12,9 +13,9 @@ export async function integerInterval() {
     y: {zero: true},
     marks: [Plot.line(requests)]
   });
-}
+});
 
-export async function integerIntervalArea() {
+test(async function integerIntervalArea() {
   const series = [
     {x: 0, y: 5, type: "a"},
     {x: 5, y: 7, type: "a"},
@@ -36,9 +37,9 @@ export async function integerIntervalArea() {
       })
     ]
   });
-}
+});
 
-export async function integerIntervalAreaZ() {
+test(async function integerIntervalAreaZ() {
   const series = [
     {x: 0, y: 5, type: "a", category: "P"},
     {x: 1, y: 7, type: "a", category: "P"},
@@ -64,4 +65,4 @@ export async function integerIntervalAreaZ() {
       })
     ]
   });
-}
+});

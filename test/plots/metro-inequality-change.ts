@@ -1,7 +1,8 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
+import {test} from "test/plot";
 
-export async function metroInequalityChange() {
+test(async function metroInequalityChange() {
   const data = await d3.csv<any>("data/metros.csv", d3.autoType);
   return Plot.plot({
     grid: true,
@@ -37,4 +38,4 @@ export async function metroInequalityChange() {
       })
     ]
   });
-}
+});

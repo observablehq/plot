@@ -1,12 +1,12 @@
-import path from "path";
+import {resolve} from "node:path";
 import {defineConfig} from "vite";
 
 export default defineConfig({
   root: "./test/plots",
-  publicDir: path.resolve("./test"),
+  publicDir: resolve("./test"),
   resolve: {
     alias: {
-      "@observablehq/plot": path.resolve("./src/index.js")
+      "test/plot": resolve("./test/plot")
     }
   },
   server: {

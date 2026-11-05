@@ -1,7 +1,8 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
+import {test} from "test/plot";
 
-export async function stargazersHourlyGroup() {
+test(async function stargazersHourlyGroup() {
   const stargazers = await d3.csv<any>("data/stargazers.csv", d3.autoType);
   return Plot.plot({
     x: {
@@ -25,4 +26,4 @@ export async function stargazersHourlyGroup() {
       Plot.ruleY([0])
     ]
   });
-}
+});

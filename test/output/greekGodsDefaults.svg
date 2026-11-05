@@ -1,0 +1,43 @@
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="400" viewBox="0 0 640 400" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style>
+    :where(.plot) {
+      --plot-background: white;
+      display: block;
+      height: auto;
+      height: intrinsic;
+      max-width: 100%;
+    }
+
+    :where(.plot text),
+    :where(.plot tspan) {
+      white-space: pre;
+    }
+  </style>
+  <g aria-label="link" fill="none" stroke="light-dark(#777, #aaa)" stroke-width="1.5" stroke-opacity="0.5" stroke-miterlimit="1" transform="translate(0.5,0.5)">
+    <path d="M35,154.625C156,154.625,156,20,277,20"></path>
+    <path d="M35,154.625C156,154.625,156,109.75,277,109.75"></path>
+    <path d="M35,154.625C156,154.625,156,199.5,277,199.5"></path>
+    <path d="M35,154.625C156,154.625,156,289.25,277,289.25"></path>
+    <path d="M277,289.25C398,289.25,398,199.5,519,199.5"></path>
+    <path d="M277,289.25C398,289.25,398,289.25,519,289.25"></path>
+    <path d="M277,289.25C398,289.25,398,379,519,379"></path>
+  </g>
+  <g aria-label="dot" fill="none" stroke="currentColor" stroke-width="1.5" transform="translate(0.5,0.5)">
+    <circle cx="35" cy="154.625" r="3"></circle>
+    <circle cx="277" cy="20" r="3"></circle>
+    <circle cx="277" cy="109.75" r="3"></circle>
+    <circle cx="277" cy="199.5" r="3"></circle>
+    <circle cx="277" cy="289.25" r="3"></circle>
+    <circle cx="519" cy="199.5" r="3"></circle>
+    <circle cx="519" cy="289.25" r="3"></circle>
+    <circle cx="519" cy="379" r="3"></circle>
+  </g>
+  <g aria-label="text" text-anchor="start" transform="translate(0.5,0.5)">
+    <text y="0.32em" transform="translate(277,20)">Chaos/Eros</text>
+    <text y="0.32em" transform="translate(277,109.75)">Chaos/Erebus</text>
+    <text y="0.32em" transform="translate(277,199.5)">Chaos/Tartarus</text>
+    <text y="0.32em" transform="translate(519,199.5)">Chaos/Gaia/Mountains</text>
+    <text y="0.32em" transform="translate(519,289.25)">Chaos/Gaia/Pontus</text>
+    <text y="0.32em" transform="translate(519,379)">Chaos/Gaia/Uranus</text>
+  </g>
+</svg>

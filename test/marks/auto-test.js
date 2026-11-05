@@ -1,5 +1,5 @@
+import {assert, it} from "vitest";
 import * as Plot from "@observablehq/plot";
-import assert from "assert";
 
 it("Plot.autoSpec makes a histogram from a quantitative dimension", () => {
   const data = [{value: 1}, {value: 1}, {value: 38}];

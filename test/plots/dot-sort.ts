@@ -1,7 +1,8 @@
 import * as Plot from "@observablehq/plot";
 import {html} from "htl";
+import {test} from "test/plot";
 
-export async function dotSort() {
+test(async function dotSort() {
   const x = [..."ABDCEFGH"];
   const r = [30, 60, 20, 20, 35, 22, 20, 28];
   const options = {x, r, stroke: "black", fill: x, fillOpacity: 0.8};
@@ -24,4 +25,4 @@ export async function dotSort() {
     <br />
     ${Plot.dot(x, Plot.shuffle({...options, seed: 42})).plot({...p, caption: "shuffle"})}
   `;
-}
+});

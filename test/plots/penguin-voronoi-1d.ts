@@ -1,7 +1,8 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
+import {test} from "test/plot";
 
-export async function penguinVoronoi1D() {
+test(async function penguinVoronoi1D() {
   const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
   return Plot.plot({
     inset: 10,
@@ -26,4 +27,4 @@ export async function penguinVoronoi1D() {
       })
     ]
   });
-}
+});

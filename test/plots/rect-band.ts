@@ -1,7 +1,8 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
+import {test} from "test/plot";
 
-export async function rectBand() {
+test(async function rectBand() {
   return Plot.plot({
     y: {
       type: "band",
@@ -14,19 +15,19 @@ export async function rectBand() {
       Plot.rectX({length: 1}, {x1: [0], x2: [1], fill: "magenta", mixBlendMode: "multiply"})
     ]
   });
-}
+});
 
-export async function rectBandX() {
+test(async function rectBandX() {
   const alphabet = await d3.csv<any>("data/alphabet.csv", d3.autoType);
   return Plot.rectY(alphabet, {x: "letter", y: "frequency"}).plot();
-}
+});
 
-export async function rectBandY() {
+test(async function rectBandY() {
   const alphabet = await d3.csv<any>("data/alphabet.csv", d3.autoType);
   return Plot.rectX(alphabet, {y: "letter", x: "frequency"}).plot();
-}
+});
 
-export async function rectBandX1() {
+test(async function rectBandX1() {
   return Plot.plot({
     round: true,
     x: {type: "band", domain: "ABCDE"},
@@ -48,9 +49,9 @@ export async function rectBandX1() {
       )
     ]
   });
-}
+});
 
-export async function rectPointX1() {
+test(async function rectPointX1() {
   return Plot.plot({
     round: true,
     x: {type: "point", domain: "ABCDE"},
@@ -72,4 +73,4 @@ export async function rectPointX1() {
       )
     ]
   });
-}
+});

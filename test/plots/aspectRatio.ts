@@ -1,6 +1,7 @@
 import * as Plot from "@observablehq/plot";
+import {test} from "test/plot";
 
-export async function aspectRatioLinear() {
+test(async function aspectRatioLinear() {
   return Plot.plot({
     grid: true,
     inset: 6,
@@ -9,9 +10,9 @@ export async function aspectRatioLinear() {
     aspectRatio: 1,
     marks: [Plot.frame()]
   });
-}
+});
 
-export async function aspectRatioSqrt() {
+test(async function aspectRatioSqrt() {
   return Plot.plot({
     grid: true,
     inset: 6,
@@ -20,9 +21,9 @@ export async function aspectRatioSqrt() {
     aspectRatio: 1,
     marks: [Plot.frame()]
   });
-}
+});
 
-export async function aspectRatioLog() {
+test(async function aspectRatioLog() {
   return Plot.plot({
     grid: true,
     inset: 6,
@@ -31,9 +32,9 @@ export async function aspectRatioLog() {
     aspectRatio: 1,
     marks: [Plot.frame()]
   });
-}
+});
 
-export async function aspectRatioPoint() {
+test(async function aspectRatioPoint() {
   return Plot.plot({
     grid: true,
     inset: 6,
@@ -42,9 +43,9 @@ export async function aspectRatioPoint() {
     aspectRatio: 1,
     marks: [Plot.frame()]
   });
-}
+});
 
-export async function aspectRatioBand() {
+test(async function aspectRatioBand() {
   return Plot.plot({
     grid: true,
     inset: 6,
@@ -53,4 +54,4 @@ export async function aspectRatioBand() {
     aspectRatio: 1,
     marks: [Plot.frame()]
   });
-}
+});

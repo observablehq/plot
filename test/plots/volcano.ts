@@ -1,14 +1,15 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
+import {test} from "test/plot";
 
-export async function volcano() {
+test(async function volcano() {
   const volcano = await d3.json<any>("data/volcano.json");
   return Plot.plot({
     marks: [Plot.raster(volcano.values, {width: volcano.width, height: volcano.height}), Plot.frame()]
   });
-}
+});
 
-export async function volcanoTerrain() {
+test(async function volcanoTerrain() {
   const volcano = await d3.json<any>("data/volcano.json");
   return Plot.plot({
     color: {
@@ -24,9 +25,9 @@ export async function volcanoTerrain() {
       Plot.frame()
     ]
   });
-}
+});
 
-export async function volcanoContour() {
+test(async function volcanoContour() {
   const volcano = await d3.json<any>("data/volcano.json");
   return Plot.plot({
     marks: [
@@ -39,4 +40,4 @@ export async function volcanoContour() {
       Plot.frame()
     ]
   });
-}
+});

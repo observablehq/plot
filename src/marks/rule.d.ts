@@ -137,7 +137,11 @@ export function ruleX(data?: Data, options?: RuleXOptions): RuleX;
 export function ruleY(data?: Data, options?: RuleYOptions): RuleY;
 
 /** The ruleX mark. */
-export class RuleX extends RenderableMark {}
+export class RuleX extends RenderableMark {
+  constructor(data?: Data, options?: RuleXOptions);
+}
 
 /** The ruleY mark. */
-export class RuleY extends RenderableMark {}
+export class RuleY extends RenderableMark {
+  constructor(data?: Data, options?: RuleYOptions);
+}

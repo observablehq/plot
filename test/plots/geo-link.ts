@@ -1,6 +1,7 @@
 import * as Plot from "@observablehq/plot";
+import {test} from "test/plot";
 
-export async function geoLink() {
+test(async function geoLink() {
   const xy = {x1: [-122.4194], y1: [37.7749], x2: [2.3522], y2: [48.8566]};
   return Plot.plot({
     projection: "equal-earth",
@@ -11,4 +12,4 @@ export async function geoLink() {
       Plot.link({length: 1}, {markerEnd: "arrow", ...xy})
     ]
   });
-}
+});

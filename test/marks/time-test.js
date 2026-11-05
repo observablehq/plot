@@ -1,4 +1,4 @@
-import assert from "assert";
+import {assert, it} from "vitest";
 import * as d3 from "d3";
 import {timeInterval, utcInterval} from "../../src/time.js";
 

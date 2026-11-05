@@ -1,7 +1,8 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
+import {test} from "test/plot";
 
-export async function penguinCulmenDelaunayMesh() {
+test(async function penguinCulmenDelaunayMesh() {
   const data = await d3.csv<any>("data/penguins.csv", d3.autoType);
   return Plot.plot({
     marks: [
@@ -9,4 +10,4 @@ export async function penguinCulmenDelaunayMesh() {
       Plot.dot(data, {x: "culmen_depth_mm", y: "culmen_length_mm"})
     ]
   });
-}
+});

@@ -1,7 +1,8 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
+import {test} from "test/plot";
 
-export async function mobyDickLetterPairs() {
+test(async function mobyDickLetterPairs() {
   const mobydick = await d3.text("data/moby-dick-chapter-1.txt");
   const letters = [...mobydick].map((d) => (/\w/.test(d) ? d.toUpperCase() : "*"));
   const pairs = d3.pairs(letters).map(([letter, next]) => ({letter, next}));
@@ -32,4 +33,4 @@ export async function mobyDickLetterPairs() {
       )
     ]
   });
-}
+});

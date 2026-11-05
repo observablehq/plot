@@ -1,7 +1,8 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
+import {test} from "test/plot";
 
-export async function shorthandCell() {
+test(async function shorthandCell() {
   const matrix = [
     ["Jacob", "Olivia"],
     ["Mia", "Noah"],
@@ -18,8 +19,8 @@ export async function shorthandCell() {
     ["Emma", "Jacob"]
   ];
   return Plot.cell(matrix).plot();
-}
+});
 
-export async function shorthandCellCategorical() {
+test(async function shorthandCellCategorical() {
   return Plot.cellX(d3.range(10)).plot({color: {scheme: "Tableau10"}});
-}
+});

@@ -1,7 +1,8 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
+import {test} from "test/plot";
 
-export async function caltrain() {
+test(async function caltrain() {
   const caltrain = await d3.csv<any>("data/caltrain.csv");
   return Plot.plot({
     width: 240,
@@ -53,4 +54,4 @@ export async function caltrain() {
       Plot.ruleX([-0.5, 0.5])
     ]
   });
-}
+});

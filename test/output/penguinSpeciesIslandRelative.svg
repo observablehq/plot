@@ -48,8 +48,8 @@
       <path transform="translate(40,210)" d="M0,0L-6,0"></path>
       <path transform="translate(40,172)" d="M0,0L-6,0"></path>
       <path transform="translate(40,134)" d="M0,0L-6,0"></path>
-      <path transform="translate(40,95.99999999999999)" d="M0,0L-6,0"></path>
-      <path transform="translate(40,57.99999999999999)" d="M0,0L-6,0"></path>
+      <path transform="translate(40,96)" d="M0,0L-6,0"></path>
+      <path transform="translate(40,58)" d="M0,0L-6,0"></path>
       <path transform="translate(40,20)" d="M0,0L-6,0"></path>
     </g>
   </g>
@@ -63,8 +63,8 @@
       <text y="0.32em" transform="translate(40,210)">50</text>
       <text y="0.32em" transform="translate(40,172)">60</text>
       <text y="0.32em" transform="translate(40,134)">70</text>
-      <text y="0.32em" transform="translate(40,95.99999999999999)">80</text>
-      <text y="0.32em" transform="translate(40,57.99999999999999)">90</text>
+      <text y="0.32em" transform="translate(40,96)">80</text>
+      <text y="0.32em" transform="translate(40,58)">90</text>
       <text y="0.32em" transform="translate(40,20)">100</text>
     </g>
   </g>
@@ -74,8 +74,8 @@
   <g aria-label="bar">
     <g transform="translate(0,0)">
       <rect x="40" width="180" y="290" height="110" fill="#4269d0"></rect>
-      <rect x="40" width="180" y="149.99999999999997" height="140.00000000000003" fill="#efb118"></rect>
-      <rect x="40" width="180" y="20" height="129.99999999999997" fill="#ff725c"></rect>
+      <rect x="40" width="180" y="150" height="140" fill="#efb118"></rect>
+      <rect x="40" width="180" y="20" height="130" fill="#ff725c"></rect>
     </g>
     <g transform="translate(200,0)">
       <rect x="40" width="180" y="20" height="380" fill="#efb118"></rect>

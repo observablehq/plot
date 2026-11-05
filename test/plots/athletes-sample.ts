@@ -1,7 +1,8 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
+import {test} from "test/plot";
 
-export async function athletesSample() {
+test(async function athletesSample() {
   const athletes = await d3.csv<any>("data/athletes.csv", d3.autoType);
   return Plot.plot({
     marginLeft: 100,
@@ -20,9 +21,9 @@ export async function athletesSample() {
       )
     ]
   });
-}
+});
 
-export async function athletesSampleFacet() {
+test(async function athletesSampleFacet() {
   const athletes = await d3.csv<any>("data/athletes.csv", d3.autoType);
   return Plot.plot({
     x: {grid: true},
@@ -41,4 +42,4 @@ export async function athletesSampleFacet() {
       )
     ]
   });
-}
+});

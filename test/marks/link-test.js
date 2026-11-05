@@ -1,5 +1,5 @@
+import {assert, it} from "vitest";
 import * as Plot from "@observablehq/plot";
-import assert from "assert";
 
 it("link(data, options) has the expected defaults", () => {
   const link = Plot.link(undefined, {x1: "0", y1: "1", x2: "2", y2: "3"});

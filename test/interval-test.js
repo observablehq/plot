@@ -1,4 +1,4 @@
-import assert from "assert";
+import {assert, describe, it} from "vitest";
 import {numberInterval} from "../src/options.js";
 
 describe("numberInterval(interval)", () => {

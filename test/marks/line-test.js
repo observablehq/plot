@@ -1,7 +1,7 @@
+import {assert, it} from "vitest";
 import * as Plot from "@observablehq/plot";
 import {curveStep} from "d3";
 import {curveAuto} from "../../src/curve.js";
-import assert from "assert";
 
 it("line() has the expected defaults", () => {
   const line = Plot.line();
@@ -117,8 +117,8 @@ it("line(data, {curve}) specifies a named curve or function", () => {
 });
 
 it("line(data, {curve}) rejects an invalid curve", () => {
-  assert.throws(() => Plot.lineY([], {y: 1, curve: "neo"}), /^Error: unknown curve: neo$/);
-  assert.throws(() => Plot.lineY([], {y: 1, curve: 42}), /^Error: unknown curve: 42$/);
+  assert.throws(() => Plot.lineY([], {y: 1, curve: "neo"}), /unknown curve: neo$/);
+  assert.throws(() => Plot.lineY([], {y: 1, curve: 42}), /unknown curve: 42$/);
 });
 
 it("line(data, {curve}) accepts the explicit auto curve", () => {

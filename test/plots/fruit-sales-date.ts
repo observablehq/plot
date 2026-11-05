@@ -1,7 +1,8 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
+import {test} from "test/plot";
 
-export async function fruitSalesDate() {
+test(async function fruitSalesDate() {
   const sales = await d3.csv<any>("data/fruit-sales.csv", d3.autoType);
   return Plot.plot({
     x: {
@@ -12,9 +13,9 @@ export async function fruitSalesDate() {
       Plot.text(sales, Plot.stackY({x: "date", y: "units", text: "fruit"}))
     ]
   });
-}
+});
 
-export async function fruitSalesSingleDate() {
+test(async function fruitSalesSingleDate() {
   const sales = (await d3.csv<any>("data/fruit-sales.csv", d3.autoType)).slice(0, 3);
   return Plot.plot({
     x: {
@@ -25,4 +26,4 @@ export async function fruitSalesSingleDate() {
       Plot.text(sales, Plot.stackY({x: "date", y: "units", text: "fruit"}))
     ]
   });
-}
+});

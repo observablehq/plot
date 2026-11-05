@@ -375,7 +375,7 @@ The following named reducers are supported:
 In addition, a reducer may be specified as:
 
 * a function to be passed the array of values for each group and the extent of the group
-* an object with a **reduceIndex** method, an optionally a **scope**
+* an object with a **reduceIndex** method, and optionally a **scope**
 
 In the last case, the **reduceIndex** method is repeatedly passed three arguments: the index for each group (an array of integers), the input channel’s array of values, and the extent of the group (an object {data, x, y}); it must then return the corresponding aggregate value for the group.
 

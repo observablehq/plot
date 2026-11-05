@@ -1,4 +1,4 @@
-import assert from "assert";
+import {assert} from "vitest";
 
 function warns(run, expected = /warning/i) {
   const actual = [];
@@ -58,10 +58,25 @@ async function doesNotWarnAsync(run) {
   return result;
 }
 
+function allCloseTo(actual, expected, delta = 1e-6) {
+  delta = Number(delta);
+  actual = [...actual].map(Number);
+  expected = [...expected].map(Number);
+  assert(
+    actual.length === expected.length && actual.every((a, i) => Math.abs(expected[i] - a) <= delta),
+    `expected ${formatNumbers(actual)} to be close to ${formatNumbers(expected)} ±${delta}`
+  );
+}
+
+function formatNumbers(numbers) {
+  return `[${numbers.map((n) => n.toFixed(6)).join(", ")}]`;
+}
+
 export default {
   ...assert,
   warns,
   warnsAsync,
   doesNotWarn,
-  doesNotWarnAsync
+  doesNotWarnAsync,
+  allCloseTo
 };

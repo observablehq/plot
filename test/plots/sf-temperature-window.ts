@@ -1,7 +1,8 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
+import {test} from "test/plot";
 
-export async function sfTemperatureWindow() {
+test(async function sfTemperatureWindow() {
   const sftemp = await d3.csv<any>("data/sf-temperatures.csv", d3.autoType);
   return Plot.plot({
     y: {
@@ -15,4 +16,4 @@ export async function sfTemperatureWindow() {
       Plot.lineY(sftemp, Plot.windowY({k: 28, reduce: "median"}, {x: "date", y: "low"}))
     ]
   });
-}
+});

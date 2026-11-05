@@ -1,7 +1,8 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
+import {test} from "test/plot";
 
-export async function seattlePrecipitationSum() {
+test(async function seattlePrecipitationSum() {
   const weather = (await d3.csv<any>("data/seattle-weather.csv", d3.autoType)).slice(-28);
   const y = Plot.window({k: 7, strict: true, reduce: "sum", anchor: "end"});
   const text = Plot.window({k: 7, strict: true, reduce: (V) => Math.round(d3.sum(V)), anchor: "end"});
@@ -17,4 +18,4 @@ export async function seattlePrecipitationSum() {
       Plot.ruleY([0])
     ]
   });
-}
+});

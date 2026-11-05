@@ -78,7 +78,7 @@ function dodge(y, x, anchor, padding, r, options) {
     const radius = R ? (i) => R[i] : () => cr;
     for (let I of facets) {
       const tree = IntervalTree();
-      I = I.filter(R ? (i) => finite(X[i]) && positive(R[i]) : (i) => finite(X[i]));
+      I = I.filter(R ? (i) => finite(X[i]) && positive(R[i]) : cr > 0 ? (i) => finite(X[i]) : () => false);
       const intervals = new Float64Array(2 * I.length + 2);
       for (const i of I) {
         const ri = radius(i);

@@ -120,7 +120,7 @@ Changes the default categorical color scheme to *Observable10*.
 
 The group transform now preserves the input order of groups by default, making it easier to sort groups by using the **sort** option. The group and bin transforms now support the *z* reducer.
 
-Improves the accessibility of axes by hidding tick marks and grid lines from the accessibility tree.
+Improves the accessibility of axes by hiding tick marks and grid lines from the accessibility tree.
 
 Upgrades D3 to 7.9.0.
 

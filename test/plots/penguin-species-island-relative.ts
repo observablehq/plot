@@ -1,7 +1,8 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
+import {test} from "test/plot";
 
-export async function penguinSpeciesIslandRelative() {
+test(async function penguinSpeciesIslandRelative() {
   const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
   return Plot.plot({
     y: {
@@ -16,4 +17,4 @@ export async function penguinSpeciesIslandRelative() {
     },
     marks: [Plot.barY(penguins, Plot.groupZ({y: "proportion-facet", sort: "z"}, {fill: "island"})), Plot.ruleY([0])]
   });
-}
+});

@@ -1,7 +1,8 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
+import {test} from "test/plot";
 
-export async function penguinFacetDodgeSymbol() {
+test(async function penguinFacetDodgeSymbol() {
   const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
   return Plot.plot({
     grid: true,
@@ -11,4 +12,4 @@ export async function penguinFacetDodgeSymbol() {
     },
     marks: [Plot.dot(penguins, Plot.dodgeX("left", {y: "body_mass_g", symbol: "species", stroke: "species"}))]
   });
-}
+});

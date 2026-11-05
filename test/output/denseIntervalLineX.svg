@@ -1,0 +1,64 @@
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="200" height="400" viewBox="0 0 200 400" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style>
+    :where(.plot) {
+      --plot-background: white;
+      display: block;
+      height: auto;
+      height: intrinsic;
+      max-width: 100%;
+    }
+
+    :where(.plot text),
+    :where(.plot tspan) {
+      white-space: pre;
+    }
+  </style>
+  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+    <path transform="translate(40,357.5)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,332.5)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,307.5)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,282.5)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,257.5)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,232.5)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,207.5)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,182.5)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,157.5)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,132.5)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,107.5)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,82.5)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,57.5)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,32.5)" d="M0,0L-6,0"></path>
+  </g>
+  <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
+    <text y="0.32em" transform="translate(40,357.5)">−3.5</text>
+    <text y="0.32em" transform="translate(40,332.5)">−3.0</text>
+    <text y="0.32em" transform="translate(40,307.5)">−2.5</text>
+    <text y="0.32em" transform="translate(40,282.5)">−2.0</text>
+    <text y="0.32em" transform="translate(40,257.5)">−1.5</text>
+    <text y="0.32em" transform="translate(40,232.5)">−1.0</text>
+    <text y="0.32em" transform="translate(40,207.5)">−0.5</text>
+    <text y="0.32em" transform="translate(40,182.5)">0.0</text>
+    <text y="0.32em" transform="translate(40,157.5)">0.5</text>
+    <text y="0.32em" transform="translate(40,132.5)">1.0</text>
+    <text y="0.32em" transform="translate(40,107.5)">1.5</text>
+    <text y="0.32em" transform="translate(40,82.5)">2.0</text>
+    <text y="0.32em" transform="translate(40,57.5)">2.5</text>
+    <text y="0.32em" transform="translate(40,32.5)">3.0</text>
+  </g>
+  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+    <path transform="translate(40,370)" d="M0,0L0,6"></path>
+    <path transform="translate(108.966,370)" d="M0,0L0,6"></path>
+    <path transform="translate(177.931,370)" d="M0,0L0,6"></path>
+  </g>
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+    <text y="0.71em" transform="translate(40,370)">0</text>
+    <text y="0.71em" transform="translate(108.966,370)">100</text>
+    <text y="0.71em" transform="translate(177.931,370)">200</text>
+  </g>
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(17.5,27.5)">
+    <text transform="translate(180,370)">Frequency →</text>
+  </g>
+  <g aria-label="line" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" transform="translate(0.5,0.5)">
+    <path d="M41.379,370L41.149,365.833C40.92,361.667,40.46,353.333,40.805,345C41.149,336.667,42.299,328.333,44.828,320C47.356,311.667,51.264,303.333,55.977,295C60.69,286.667,66.207,278.333,74.828,270C83.448,261.667,95.172,253.333,105.057,245C114.943,236.667,122.989,228.333,135.172,220C147.356,211.667,163.678,203.333,169.195,195C174.713,186.667,169.425,178.333,162.529,170C155.632,161.667,147.126,153.333,137.241,145C127.356,136.667,116.092,128.333,105.632,120C95.172,111.667,85.517,103.333,76.437,95C67.356,86.667,58.851,78.333,53.793,70C48.736,61.667,47.126,53.333,45.517,45C43.908,36.667,42.299,28.333,41.494,24.167L40.69,20"></path>
+  </g>
+</svg>

@@ -31,7 +31,7 @@
     <path transform="translate(40,130)" d="M0,0L0,6"></path>
     <path transform="translate(140,130)" d="M0,0L0,6"></path>
     <path transform="translate(240,130)" d="M0,0L0,6"></path>
-    <path transform="translate(340.00000000000006,130)" d="M0,0L0,6"></path>
+    <path transform="translate(340,130)" d="M0,0L0,6"></path>
     <path transform="translate(440,130)" d="M0,0L0,6"></path>
     <path transform="translate(540,130)" d="M0,0L0,6"></path>
   </g>
@@ -39,7 +39,7 @@
     <text y="0.71em" transform="translate(40,130)">0</text>
     <text y="0.71em" transform="translate(140,130)">5</text>
     <text y="0.71em" transform="translate(240,130)">10</text>
-    <text y="0.71em" transform="translate(340.00000000000006,130)">15</text>
+    <text y="0.71em" transform="translate(340,130)">15</text>
     <text y="0.71em" transform="translate(440,130)">20</text>
     <text y="0.71em" transform="translate(540,130)">25</text>
   </g>

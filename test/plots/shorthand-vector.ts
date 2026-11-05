@@ -1,6 +1,7 @@
 import * as Plot from "@observablehq/plot";
+import {test} from "test/plot";
 
-export async function shorthandVector() {
+test(async function shorthandVector() {
   const timeSeries = [
     [new Date("2018-01-02"), 170.160004],
     [new Date("2018-01-03"), 172.529999],
@@ -44,4 +45,4 @@ export async function shorthandVector() {
     [new Date("2018-02-28"), 179.259995]
   ];
   return Plot.vector(timeSeries).plot();
-}
+});

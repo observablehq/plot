@@ -1,15 +1,16 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
+import {test} from "test/plot";
 
-export async function bandClip() {
+test(async function bandClip() {
   return Plot.plot({
     y: {type: "band"},
     clip: true,
     marks: [Plot.frame(), Plot.text(["A", "B", "C"], {x: (d) => d, y: (d) => d, fontSize: 50})]
   });
-}
+});
 
-export async function bandClip2() {
+test(async function bandClip2() {
   const data = [
     {Date: new Date("2022-12-01"), Count: 10},
     {Date: new Date("2022-12-02"), Count: 1},
@@ -27,4 +28,4 @@ export async function bandClip2() {
       Plot.barY(data, Plot.groupX({y: "sum"}, {x: "Date", y: "Count", rx: 6, insetBottom: -6, clip: "frame"}))
     ]
   });
-}
+});

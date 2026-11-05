@@ -1,7 +1,8 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
+import {test} from "test/plot";
 
-export async function hexbinText() {
+test(async function hexbinText() {
   const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
   const xy = {fx: "sex", x: "culmen_depth_mm", y: "culmen_length_mm"};
   return Plot.plot({
@@ -16,4 +17,4 @@ export async function hexbinText() {
       Plot.text(penguins, Plot.hexbin({text: "count"}, xy))
     ]
   });
-}
+});
