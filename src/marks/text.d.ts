@@ -24,7 +24,8 @@ export interface TextStyles {
 
   /**
    * The line width in ems (e.g., 10 for about 20 characters); defaults to
-   * infinity, disabling wrapping and clipping.
+   * infinity, disabling wrapping and clipping. For the tip mark, defaults to
+   * 20.
    *
    * If **textOverflow** is null, lines will be wrapped at the specified length.
    * If a line is split at a soft hyphen (\xad), a hyphen (-) will be displayed
@@ -43,6 +44,10 @@ export interface TextStyles {
    * - *ellipsis* or *ellipsis-end* - replace characters from the end with an ellipsis (…)
    * - *ellipsis-start* - replace characters from the start with an ellipsis (…)
    * - *ellipsis-middle* - replace characters from the middle with an ellipsis (…)
+   *
+   * For the tip mark, the default is *ellipsis-end* when the tip displays
+   * name-value pairs (that is, when there is no **title** channel); set
+   * **textOverflow** to null to disable clipping.
    *
    * If no **title** was specified, if text requires truncation, a title
    * containing the non-truncated text will be implicitly added.

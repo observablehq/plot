@@ -92,6 +92,7 @@ export class Tip extends Mark {
     const {x, y, fx, fy} = scales;
     const {ownerSVGElement: svg, document} = context;
     const {anchor, monospace, lineHeight, lineWidth} = this;
+    let {textOverflow} = this;
     const {textPadding: r, pointerSize: m, pathFilter} = this;
     const {marginTop, marginLeft} = dimensions;
 
@@ -126,6 +127,7 @@ export class Tip extends Mark {
     } else {
       sources = getSourceChannels.call(this, values.channels, scales);
       format = formatChannels;
+      if (textOverflow === undefined) textOverflow = "ellipsis-end";
     }
 
     // Format the tip text, skipping any nulls.
@@ -191,13 +193,10 @@ export class Tip extends Mark {
         title = value.trim();
         value = "";
       } else {
-        if (label || (!value && !swatch)) value = " " + value;
-        const [k] = cut(value, w - widthof(label), widthof, ee);
-        if (k >= 0) {
-          // value is truncated
-          title = value.trim();
-          value = value.slice(0, k).trimEnd() + ellipsis;
-        }
+        const space = label || (!value && !swatch) ? " " : "";
+        const clipped = clipper({monospace, lineWidth: lineWidth - widthof(label + space) / 100, textOverflow})(value);
+        if (clipped !== value) title = value.trim(); // show untruncated value in title
+        value = space + clipped;
       }
       const line = selection.append("tspan").attr("x", 0).attr("dy", `${lineHeight}em`).text("\u200b"); // zwsp for double-click
       if (label) line.append("tspan").attr("font-weight", "bold").text(label);
