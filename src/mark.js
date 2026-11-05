@@ -3,6 +3,7 @@ import {defined} from "./defined.js";
 import {maybeFacetAnchor} from "./facet.js";
 import {maybeClip, maybeNamed, maybeValue} from "./options.js";
 import {dataify, isDomainSort, isObject, isOptions, keyword, range, singleton, string} from "./options.js";
+import {plot} from "./plot.js";
 import {project} from "./projection.js";
 import {styles} from "./style.js";
 import {basic, initializer} from "./transforms/basic.js";
@@ -131,6 +132,9 @@ export class Mark {
     const values = valueObject(channels, scales);
     if (context.projection) this.project(channels, values, context);
     return values;
+  }
+  plot({marks = [], ...options} = {}) {
+    return plot({...options, marks: [...marks, this]});
   }
 }
 

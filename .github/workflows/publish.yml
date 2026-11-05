@@ -5,21 +5,25 @@ on:
   release:
     types: [published]
 
+permissions:
+  id-token: write
+  contents: read
+
 jobs:
   publish:
     runs-on: ubuntu-latest
-    permissions:
-      id-token: write
-      contents: read
     steps:
-      - uses: actions/checkout@v6
-      - uses: pnpm/action-setup@v5
+      - uses: actions/checkout@v7
+      - uses: pnpm/action-setup@v6
         with:
           version: 10
-      - uses: actions/setup-node@v6
+      - uses: actions/setup-node@v7
         with:
           node-version: 24
           cache: pnpm
       - run: pnpm install
       - run: pnpm run test
+      - run: pnpm run lint
+      - run: pnpm run tsc
+      - run: pnpm run prettier
       - run: npm publish

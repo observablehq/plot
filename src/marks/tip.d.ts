@@ -110,4 +110,6 @@ export type TipFormat = string | ((d: any, i: number) => string);
 export function tip(data?: Data, options?: TipOptions): Tip;
 
 /** The tip mark. */
-export class Tip extends RenderableMark {}
+export class Tip extends RenderableMark {
+  constructor(data?: Data, options?: TipOptions);
+}
