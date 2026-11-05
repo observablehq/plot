@@ -84,6 +84,9 @@ export interface TipOptions extends MarkOptions, TextStyles {
 
   /** The padding around the text in pixels; defaults to 8. */
   textPadding?: number;
+
+  /** The "border-radius" equivalent, in pixels; defaults to null for square corners. */
+  radius?: number;
 }
 
 /**
