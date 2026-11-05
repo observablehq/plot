@@ -6,7 +6,7 @@ Year: [Current](./CHANGELOG.md) · **2025** · [2024](./CHANGELOG-2024.md) · [2
 
 [Released February 14, 2025.](https://github.com/observablehq/plot/releases/tag/v0.6.17)
 
-The [**clip** mark option](https://observablehq.com/plot/features/marks#clip) now supports GeoJSON objects 🌎 in addition to the named *frame* and *sphere* clipping methods, allowing the visual extent of marks to be limited to arbitrary polygons. For instance, this Voronoi mesh of world airports is clipped to land boundaries:
+The [**clip** mark option](https://observablehq.github.io/plot/features/marks#clip) now supports GeoJSON objects 🌎 in addition to the named *frame* and *sphere* clipping methods, allowing the visual extent of marks to be limited to arbitrary polygons. For instance, this Voronoi mesh of world airports is clipped to land boundaries:
 
 [<img src="./img/airports-clip-land.png" width="708" alt="a map of world airports with a Voronoi mesh clipped to land">](https://observablehq.com/@observablehq/plot-world-airports)
 
@@ -22,7 +22,7 @@ Plot.plot({
 })
 ```
 
-The GeoJSON object passed to the **clip** option is rendered as a [`clipPath` element](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/clipPath) using the same path data that a [geo mark](https://observablehq.com/plot/marks/geo) would produce, respecting the plot’s top-level **projection** option, if any. For performance, `clipPath` elements are shared by marks clipped with the same GeoJSON object. For example, the [raster mark](https://observablehq.com/plot/marks/raster) and [contour mark](https://observablehq.com/plot/marks/contour) below show atmospheric water vapor measurements across the United States from [NASA Earth Observations](https://neo.gsfc.nasa.gov/view.php?datasetId=MYDAL2_M_SKY_WV); both marks are clipped to the nation’s boundary, censoring the (absurd) values that would otherwise be interpolated between Alaska, Southern California, and Hawai’i.
+The GeoJSON object passed to the **clip** option is rendered as a [`clipPath` element](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/clipPath) using the same path data that a [geo mark](https://observablehq.github.io/plot/marks/geo) would produce, respecting the plot’s top-level **projection** option, if any. For performance, `clipPath` elements are shared by marks clipped with the same GeoJSON object. For example, the [raster mark](https://observablehq.github.io/plot/marks/raster) and [contour mark](https://observablehq.github.io/plot/marks/contour) below show atmospheric water vapor measurements across the United States from [NASA Earth Observations](https://neo.gsfc.nasa.gov/view.php?datasetId=MYDAL2_M_SKY_WV); both marks are clipped to the nation’s boundary, censoring the (absurd) values that would otherwise be interpolated between Alaska, Southern California, and Hawai’i.
 
 [<img src="./img/vapor-clip-us.png" width="708" alt="a map of water vapor measurements in the United States">](https://observablehq.com/@observablehq/plot-us-water-vapor)
 
@@ -57,7 +57,7 @@ Plot.raster({
 }).plot({width: 300, aspectRatio: 1})
 ```
 
-The interactive **tip** associated with a [waffle mark](https://observablehq.com/plot/marks/waffle) is now anchored to the “center” of the visual representation of the associated datum. That center depends on the shape that is referenced. For fun, here’s a chart from our unit tests showing these anchoring points for various amounts of waffling. Baffling!
+The interactive **tip** associated with a [waffle mark](https://observablehq.github.io/plot/marks/waffle) is now anchored to the “center” of the visual representation of the associated datum. That center depends on the shape that is referenced. For fun, here’s a chart from our unit tests showing these anchoring points for various amounts of waffling. Baffling!
 
 <img src="./img/waffle-pointer-fractional.png" width="672" alt="waffle mark with the anchor position of each datum marked with its value">
 

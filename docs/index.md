@@ -33,7 +33,7 @@ head:
       content: article
   - - meta
     - property: og:url
-      content: https://observablehq.com/plot/
+      content: https://observablehq.github.io/plot/
 
 hero:
   name: "Observable Plot"

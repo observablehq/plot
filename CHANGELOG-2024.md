@@ -6,9 +6,9 @@ Year: [Current](./CHANGELOG.md) · [2025](./CHANGELOG-2025.md) · **2024** · [2
 
 [Released August 6, 2024.](https://github.com/observablehq/plot/releases/tag/v0.6.16)
 
-The new [waffle mark](https://observablehq.com/plot/marks/waffle) 🧇 displays a quantity (or quantitative extent) for a given category; unlike a [bar](https://observablehq.com/plot/marks/bar), a waffle is subdivided into cells that allow easier counting, making waffles useful for reading and comparing exact quantities. Plot’s waffle mark is highly configurable: it supports stacking, positive and negative values, rounded corners, partial cells for fractional counts, automatic row or column size determination (with optional override), and more!
+The new [waffle mark](https://observablehq.github.io/plot/marks/waffle) 🧇 displays a quantity (or quantitative extent) for a given category; unlike a [bar](https://observablehq.github.io/plot/marks/bar), a waffle is subdivided into cells that allow easier counting, making waffles useful for reading and comparing exact quantities. Plot’s waffle mark is highly configurable: it supports stacking, positive and negative values, rounded corners, partial cells for fractional counts, automatic row or column size determination (with optional override), and more!
 
-[<img src="./img/waffle.png" width="708" alt="a waffle chart of Olympic athletes by weight">](https://observablehq.com/plot/marks/waffle)
+[<img src="./img/waffle.png" width="708" alt="a waffle chart of Olympic athletes by weight">](https://observablehq.github.io/plot/marks/waffle)
 
 ```js
 Plot.plot({
@@ -18,9 +18,9 @@ Plot.plot({
 })
 ```
 
-All marks now support GeoJSON data and GeoJSON property shorthand, making it easier to work with GeoJSON. For example, below the data `counties` is a GeoJSON FeatureCollection, and `unemployment` refers to a property on each feature; the **fill** option is thus shorthand for `(d) => d.properties.unemployment`. The [geo mark](https://observablehq.com/plot/marks/geo) now also supports the **tip** option (via an implicit [centroid transform](https://observablehq.com/plot/transforms/centroid)), making it easier to use Plot’s [interactive tooltips](https://observablehq.com/plot/interactions/pointer).
+All marks now support GeoJSON data and GeoJSON property shorthand, making it easier to work with GeoJSON. For example, below the data `counties` is a GeoJSON FeatureCollection, and `unemployment` refers to a property on each feature; the **fill** option is thus shorthand for `(d) => d.properties.unemployment`. The [geo mark](https://observablehq.github.io/plot/marks/geo) now also supports the **tip** option (via an implicit [centroid transform](https://observablehq.github.io/plot/transforms/centroid)), making it easier to use Plot’s [interactive tooltips](https://observablehq.github.io/plot/interactions/pointer).
 
-[<img src="./img/geo-tip.png" width="708" alt="a choropleth map of unemployment by U.S. county">](https://observablehq.com/plot/marks/geo)
+[<img src="./img/geo-tip.png" width="708" alt="a choropleth map of unemployment by U.S. county">](https://observablehq.github.io/plot/marks/geo)
 
 ```js
 Plot.plot({
@@ -48,9 +48,9 @@ All marks now also support column name channel shorthand when using Apache Arrow
 Plot.dot(gistemp, {x: "Date", y: "Anomaly"}).plot() // gistemp is an Arrow Table!
 ```
 
-The rect-like marks ([rect](https://observablehq.com/plot/marks/rect), [bar](https://observablehq.com/plot/marks/bar), [cell](https://observablehq.com/plot/marks/cell), and [frame](https://observablehq.com/plot/marks/frame)) now support individual rounding options for each side (**rx1**, **ry1**, *etc.*) and corner (**rx1y1**, **rx2y1**, *etc.*). This allows you to round just the top side of rects. You can even use a negative corner radius on the bottom side for seamless stacking, as in the histogram of Olympic athletes below.
+The rect-like marks ([rect](https://observablehq.github.io/plot/marks/rect), [bar](https://observablehq.github.io/plot/marks/bar), [cell](https://observablehq.github.io/plot/marks/cell), and [frame](https://observablehq.github.io/plot/marks/frame)) now support individual rounding options for each side (**rx1**, **ry1**, *etc.*) and corner (**rx1y1**, **rx2y1**, *etc.*). This allows you to round just the top side of rects. You can even use a negative corner radius on the bottom side for seamless stacking, as in the histogram of Olympic athletes below.
 
-[<img src="./img/rect-rounded.png" width="708" alt="a histogram of Olympic athletes by weight">](https://observablehq.com/plot/marks/rect)
+[<img src="./img/rect-rounded.png" width="708" alt="a histogram of Olympic athletes by weight">](https://observablehq.github.io/plot/marks/rect)
 
 ```js
 Plot.plot({
@@ -81,7 +81,7 @@ Plot.plot({
 })
 ```
 
-The [marker options](https://observablehq.com/plot/features/markers) now render as intended on marks with varying aesthetics, such as the spiraling arrows of varying thickness and color below.
+The [marker options](https://observablehq.github.io/plot/features/markers) now render as intended on marks with varying aesthetics, such as the spiraling arrows of varying thickness and color below.
 
 <img src="./img/group-marker.png" width="659" alt="several spiraling lines emanate from the center of the image, with rainbow color and increasing thickness, each capped with a pointed arrow at the end">
 
@@ -104,9 +104,9 @@ Plot.plot({
 
 This release includes a few more new features, bug fixes, and improvements:
 
-The new **className** [mark option](https://observablehq.com/plot/features/marks#mark-options) specifies an optional `class` attribute for rendered marks, allowing styling of marks via external stylesheets or easier selection via JavaScript; thanks, @RLesser! Plot now reuses `clipPath` elements, when possible, when the **clip** mark option is set to *frame* or *projection*.
+The new **className** [mark option](https://observablehq.github.io/plot/features/marks#mark-options) specifies an optional `class` attribute for rendered marks, allowing styling of marks via external stylesheets or easier selection via JavaScript; thanks, @RLesser! Plot now reuses `clipPath` elements, when possible, when the **clip** mark option is set to *frame* or *projection*.
 
-The [difference mark](https://observablehq.com/plot/marks/difference) now supports a horizontal orientation via [differenceX](https://observablehq.com/plot/marks/difference#differenceX), and the [shift transform](https://observablehq.com/plot/transforms/shift) now likewise supports [shiftY](https://observablehq.com/plot/transforms/shift#shiftY). The [Voronoi mark](https://observablehq.com/plot/marks/delaunay) is now compatible with the pointer transform: only the pointed Voronoi cell is rendered; the Voronoi mark now also renders as intended with non-exclusive facets (as when using the *exclude* facet mode). The [tip mark](https://observablehq.com/plot/marks/tip) no longer displays channels containing literal color values by default.
+The [difference mark](https://observablehq.github.io/plot/marks/difference) now supports a horizontal orientation via [differenceX](https://observablehq.github.io/plot/marks/difference#differenceX), and the [shift transform](https://observablehq.github.io/plot/transforms/shift) now likewise supports [shiftY](https://observablehq.github.io/plot/transforms/shift#shiftY). The [Voronoi mark](https://observablehq.github.io/plot/marks/delaunay) is now compatible with the pointer transform: only the pointed Voronoi cell is rendered; the Voronoi mark now also renders as intended with non-exclusive facets (as when using the *exclude* facet mode). The [tip mark](https://observablehq.github.io/plot/marks/tip) no longer displays channels containing literal color values by default.
 
 ## 0.6.15
 

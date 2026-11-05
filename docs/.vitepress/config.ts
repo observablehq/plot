@@ -45,7 +45,7 @@ export default defineConfig({
     ["script", {async: "", defer: "", src: "https://static.observablehq.com/assets/components/observable-made-by.js"}],
   ],
   sitemap: {
-    hostname: "https://observablehq.com/plot/"
+    hostname: "https://observablehq.github.io/plot/"
   },
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config

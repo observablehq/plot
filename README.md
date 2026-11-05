@@ -1,8 +1,8 @@
 # Observable Plot
 
-[<img src="./docs/public/plot.svg" width="320" alt="The Observable Plot logo, spelling out the letters P-L-O-T in pastel shapes.">](https://observablehq.com/plot/)
+[<img src="./docs/public/plot.svg" width="320" alt="The Observable Plot logo, spelling out the letters P-L-O-T in pastel shapes.">](https://observablehq.github.io/plot/)
 
-[**Observable Plot**](https://observablehq.com/plot/) is a free, [open-source](./LICENSE), JavaScript library for visualizing tabular data, focused on accelerating exploratory data analysis. It has a concise, memorable, yet expressive API, featuring [scales](https://observablehq.com/plot/features/scales) and [layered marks](https://observablehq.com/plot/features/marks) in the *grammar of graphics* style.
+[**Observable Plot**](https://observablehq.github.io/plot/) is a free, [open-source](./LICENSE), JavaScript library for visualizing tabular data, focused on accelerating exploratory data analysis. It has a concise, memorable, yet expressive API, featuring [scales](https://observablehq.github.io/plot/features/scales) and [layered marks](https://observablehq.github.io/plot/features/marks) in the *grammar of graphics* style.
 
 <a href="https://observablehq.observablehq.cloud/oss-analytics/@observablehq/plot">
   <picture>
@@ -15,7 +15,7 @@
 
 ## Documentation 📚
 
-https://observablehq.com/plot/
+https://observablehq.github.io/plot/
 
 ## Examples 🖼️
 
@@ -27,7 +27,7 @@ See our [CHANGELOG](https://github.com/observablehq/plot/blob/main/CHANGELOG.md)
 
 ## Getting help 🏠
 
-See our [community guide](https://observablehq.com/plot/community).
+See our [community guide](https://observablehq.github.io/plot/community).
 
 ## Contributing 🙏
 
