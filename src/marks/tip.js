@@ -1,4 +1,4 @@
-import {select, format as numberFormat, utcFormat} from "d3";
+import {least, select, format as numberFormat, utcFormat} from "d3";
 import {getSource} from "../channel.js";
 import {create} from "../context.js";
 import {defined} from "../defined.js";
@@ -217,34 +217,7 @@ export class Tip extends Mark {
         if (a === undefined) {
           const x = px(i) + ox;
           const y = py(i) + oy;
-          const fitLeft = x + w + m + r * 2 < width;
-          const fitRight = x - w - m - r * 2 > 0;
-          const fitTop = y + h + m + r * 2 < height;
-          const fitBottom = y - h - m - r * 2 > 0;
-          a =
-            fitLeft && fitRight
-              ? fitTop && fitBottom
-                ? mark.preferredAnchor
-                : fitBottom
-                ? "bottom"
-                : "top"
-              : fitTop && fitBottom
-              ? fitLeft
-                ? "left"
-                : fitRight
-                ? "right"
-                : "bottom"
-              : (fitLeft || fitRight) && (fitTop || fitBottom)
-              ? `${fitBottom ? "bottom" : "top"}-${fitLeft ? "left" : "right"}`
-              : fitLeft
-              ? "left"
-              : fitRight
-              ? "right"
-              : fitTop
-              ? "top"
-              : fitBottom
-              ? "bottom"
-              : mark.preferredAnchor;
+          a = fitAnchor(mark.preferredAnchor, x, y, width, height, m, r, w, h);
         }
         const path = this.firstChild; // note: assumes exactly two children!
         const text = this.lastChild; // note: assumes exactly two children!
@@ -306,6 +279,54 @@ function getTextTranslate(anchor, m, r, width, height) {
       return [-width - r, -m / 2 - r];
     case "left":
       return [r + m / 2, height / 2];
+  }
+}
+
+// Returns the anchor for a tip of the given text size (w, h) pointing at (x,
+// y), such that the tip fits within [0, width] × [0, height]: the preferred
+// anchor if it fits, else the first candidate that fits, else the candidate
+// that overflows the least.
+export function fitAnchor(preferred, x, y, width, height, m, r, w, h) {
+  return least(anchorCandidates(preferred), (a) => {
+    const [x0, x1, y0, y1] = getExtent(a, m, r, w, h);
+    return Math.max(0, -x - x0) + Math.max(0, x + x1 - width) + Math.max(0, -y - y0) + Math.max(0, y + y1 - height);
+  });
+}
+
+const oppositeSides = {top: "bottom", bottom: "top", left: "right", right: "left"};
+
+function anchorCandidates(preferred) {
+  const candidates = ["bottom", "top", "left", "right", "bottom-left", "bottom-right", "top-left", "top-right"];
+  if (preferred == null) return candidates;
+  const opposite = preferred.replace(/top|bottom|left|right/g, (side) => oppositeSides[side]);
+  return new Set([preferred, opposite, ...candidates]);
+}
+
+// Returns the extent [x0, x1, y0, y1] of the tip relative to its anchor point,
+// as drawn by getPath.
+function getExtent(anchor, m, r, width, height) {
+  const w = width + r * 2;
+  const h = height + r * 2;
+  const p = m / 2;
+  switch (anchor) {
+    case "middle":
+      return [-w / 2, w / 2, -h / 2, h / 2];
+    case "top-left":
+      return [0, w, 0, p + h];
+    case "top":
+      return [-w / 2, w / 2, 0, p + h];
+    case "top-right":
+      return [-w, 0, 0, p + h];
+    case "right":
+      return [-p - w, 0, -h / 2, h / 2];
+    case "bottom-left":
+      return [0, w, -p - h, 0];
+    case "bottom":
+      return [-w / 2, w / 2, -p - h, 0];
+    case "bottom-right":
+      return [-w, 0, -p - h, 0];
+    case "left":
+      return [0, p + w, -h / 2, h / 2];
   }
 }
 
