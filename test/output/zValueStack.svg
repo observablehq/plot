@@ -1,0 +1,84 @@
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="400" viewBox="0 0 640 400" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style>
+    :where(.plot) {
+      --plot-background: white;
+      display: block;
+      height: auto;
+      height: intrinsic;
+      max-width: 100%;
+    }
+
+    :where(.plot text),
+    :where(.plot tspan) {
+      white-space: pre;
+    }
+  </style>
+  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+    <path transform="translate(40,370)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,346.667)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,323.333)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,300)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,276.667)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,253.333)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,230)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,206.667)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,183.333)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,160)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,136.667)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,113.333)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,90)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,66.667)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,43.333)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,20)" d="M0,0L-6,0"></path>
+  </g>
+  <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
+    <text y="0.32em" transform="translate(40,370)">0</text>
+    <text y="0.32em" transform="translate(40,346.667)">2</text>
+    <text y="0.32em" transform="translate(40,323.333)">4</text>
+    <text y="0.32em" transform="translate(40,300)">6</text>
+    <text y="0.32em" transform="translate(40,276.667)">8</text>
+    <text y="0.32em" transform="translate(40,253.333)">10</text>
+    <text y="0.32em" transform="translate(40,230)">12</text>
+    <text y="0.32em" transform="translate(40,206.667)">14</text>
+    <text y="0.32em" transform="translate(40,183.333)">16</text>
+    <text y="0.32em" transform="translate(40,160)">18</text>
+    <text y="0.32em" transform="translate(40,136.667)">20</text>
+    <text y="0.32em" transform="translate(40,113.333)">22</text>
+    <text y="0.32em" transform="translate(40,90)">24</text>
+    <text y="0.32em" transform="translate(40,66.667)">26</text>
+    <text y="0.32em" transform="translate(40,43.333)">28</text>
+    <text y="0.32em" transform="translate(40,20)">30</text>
+  </g>
+  <g aria-label="y-axis label" text-anchor="start" transform="translate(-36.5,-16.5)">
+    <text y="0.71em" transform="translate(40,20)">↑ value</text>
+  </g>
+  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(64,0)">
+    <path transform="translate(55,370)" d="M0,0L0,6"></path>
+    <path transform="translate(196,370)" d="M0,0L0,6"></path>
+    <path transform="translate(337,370)" d="M0,0L0,6"></path>
+    <path transform="translate(478,370)" d="M0,0L0,6"></path>
+  </g>
+  <g aria-label="x-axis tick label" transform="translate(64,9.5)">
+    <text y="0.71em" transform="translate(55,370)">Apr</text>
+    <text y="0.71em" transform="translate(196,370)">Feb</text>
+    <text y="0.71em" transform="translate(337,370)">Jan</text>
+    <text y="0.71em" transform="translate(478,370)">Mar</text>
+  </g>
+  <g aria-label="x-axis label" transform="translate(0.5,27.5)">
+    <text transform="translate(330,370)">month</text>
+  </g>
+  <g aria-label="bar">
+    <rect x="337" width="127" y="136.667" height="116.667" fill="#ff725c"></rect>
+    <rect x="337" width="127" y="335" height="35" fill="#4269d0"></rect>
+    <rect x="337" width="127" y="253.333" height="81.667" fill="#efb118"></rect>
+    <rect x="196" width="127" y="90" height="140" fill="#ff725c"></rect>
+    <rect x="196" width="127" y="323.333" height="46.667" fill="#4269d0"></rect>
+    <rect x="196" width="127" y="230" height="93.333" fill="#efb118"></rect>
+    <rect x="478" width="127" y="20" height="175" fill="#ff725c"></rect>
+    <rect x="478" width="127" y="311.667" height="58.333" fill="#4269d0"></rect>
+    <rect x="478" width="127" y="195" height="116.667" fill="#efb118"></rect>
+    <rect x="55" width="127" y="113.333" height="128.333" fill="#ff725c"></rect>
+    <rect x="55" width="127" y="300" height="70" fill="#4269d0"></rect>
+    <rect x="55" width="127" y="241.667" height="58.333" fill="#efb118"></rect>
+  </g>
+</svg>
