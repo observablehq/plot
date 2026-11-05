@@ -5,8 +5,13 @@ import type {BarXOptions, BarYOptions} from "./bar.js";
 interface WaffleOptions {
   /** The number of cells per row or column; defaults to undefined for automatic. */
   multiple?: number;
-  /** The quantity each cell represents; defaults to 1. */
-  unit?: number;
+  /**
+   * The quantity each cell represents; defaults to *auto*: 1, unless cells
+   * would then be smaller than 5 or larger than 50,000 square pixels, in which
+   * case the power of 1,000 that makes each cell between 10 and 10,000 square
+   * pixels.
+   */
+  unit?: number | "auto";
   /** The gap in pixels between cells; defaults to 1. */
   gap?: number;
   /** If true, round to integers to avoid partial cells. */

@@ -3,6 +3,7 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 import {ref, shallowRef, onMounted} from "vue";
+import statepop from "../data/us-state-population-2010-2019.ts";
 
 const apples = ref(512);
 const unit = ref(10);
@@ -47,7 +48,7 @@ Plot.waffleY(olympians, Plot.groupX({y: "count"}, {x: "sex"})).plot({x: {label: 
 Waffles are rendered using SVG patterns, making them more performant than alternatives such as the [dot mark](./dot.md) for rendering many points.
 :::
 
-The **unit** option determines the quantity each waffle cell represents; it defaults to one. The unit may be set to a value greater than one for large quantities, or less than one (but greater than zero) for small fractional quantities. Try changing the unit below to see its effect.
+The **unit** option determines the quantity each waffle cell represents. The unit may be set to a value greater than one for large quantities, or less than one (but greater than zero) for small fractional quantities. Try changing the unit below to see its effect.
 
 <p>
   <span class="label-input">
@@ -70,6 +71,14 @@ Plot.waffleY(olympians, Plot.groupZ({y: "count"}, {fx: "date_of_birth", unit})).
 
 :::tip
 Use [faceting](../features/facets.md) as an alternative to supplying an ordinal channel (_i.e._, *fx* instead of *x* for a vertical waffleY). The facet scale’s **interval** option then allows grouping by a quantitative or temporal variable, such as the athlete’s year of birth in the chart below.
+:::
+
+The **unit** defaults to *auto* <VersionBadge pr="2428" />: one, unless cells would then be smaller than 5 square pixels or larger than 50,000 square pixels. In that case, the unit is the power of 1,000 (such as 0.001, 1,000, or 1,000,000) that makes each cell between 10 and 10,000 square pixels. In the chart below of the ten most populous U.S. states in 2019, each cell represents a million people.
+
+:::plot
+```js
+Plot.waffleX(statepop, {y: "State", x: "2019", sort: {y: "-x", limit: 10}}).plot({marginLeft: 100, x: {label: "Population (2019)", tickFormat: "s"}})
+```
 :::
 
 While waffles typically represent integer quantities, say to count people or days, they can also encode fractional values with a partial first or last cell. Set the **round** option to true to disable partial cells, or to Math.ceil or Math.floor to round up or down.
@@ -133,7 +142,7 @@ For required channels, see the [bar mark](./bar.md). The waffle mark supports th
 
 The waffle mark supports a few additional options to control the rendering of cells:
 
-* **unit** - the quantity each cell represents; defaults to 1
+* **unit** - the quantity each cell represents; defaults to *auto* <VersionBadge pr="2428" />
 * **multiple** - the number of cells per row (or column); defaults to undefined
 * **gap** - the separation between adjacent cells, in pixels; defaults to 1
 * **round** - whether to round values to avoid partial cells; defaults to false
