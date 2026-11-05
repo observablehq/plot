@@ -4,7 +4,7 @@ Year: **Current** · [2025](./CHANGELOG-2025.md) · [2024](./CHANGELOG-2024.md) 
 
 ## 0.6.18
 
-[Released TK, 2026.](https://github.com/observablehq/plot/releases/tag/v0.6.18)
+[Released November 3, 2026.](https://github.com/observablehq/plot/releases/tag/v0.6.18)
 
 The [area mark](https://observablehq.com/plot/marks/area) now supports a **line** option: when set to true, a stroked line is drawn on top of the filled area, removing the need for a separate line mark; when line is true, the the fill opacity defaults to 0.3 and the stroke options (`strokeWidth`, etc.) apply only to that line.
 
