@@ -27,7 +27,7 @@ Plot.rectY({length: 10000}, Plot.binX({y: "count"}, {x: d3.randomNormal()})).plo
 
 ## Plot in vanilla HTML
 
-In vanilla HTML, you can load Plot from a CDN such as jsDelivr or you can download it locally. We recommend using the CDN-hosted ES module bundle as it automatically loads Plot’s dependency on [D3](https://d3js.org). But for those who need it, we also provide a UMD bundle that exports the `Plot` global when loaded as a plain script.
+In vanilla HTML, you can load Plot from a CDN such as esm.sh or jsDelivr, or you can download it locally. We recommend using the CDN-hosted ES module bundle as it automatically loads Plot’s dependency on [D3](https://d3js.org). But for those who need it, we also provide a UMD bundle that exports the `Plot` global when loaded as a plain script.
 
 :::code-group
 ```html [ESM + CDN]
@@ -35,7 +35,7 @@ In vanilla HTML, you can load Plot from a CDN such as jsDelivr or you can downlo
 <div id="myplot"></div>
 <script type="module">
 
-import * as Plot from "https://cdn.jsdelivr.net/npm/@observablehq/plot@0.6/+esm";
+import * as Plot from "https://esm.sh/@observablehq/plot@0.6";
 
 const plot = Plot.rectY({length: 10000}, Plot.binX({y: "count"}, {x: Math.random})).plot();
 const div = document.querySelector("#myplot");
