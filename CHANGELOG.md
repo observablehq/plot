@@ -27,7 +27,7 @@ Plot.plot({
 })
 ```
 
-The [raster mark](https://observablehq.com/plot/marks/raster) now supports a **colorSpace** option, allowing interpolation in wide-gamut color spaces such as *display-p3*. For example, the raster plot of penguin body mass vs. flipper length below encodes the *island* channel with vivid P3 colors:
+The [raster mark](https://observablehq.com/plot/marks/raster) now supports a **colorSpace** option, allowing interpolation in wide-gamut color spaces such as *display-p3*. For example, the raster plot of penguin body mass _vs._ flipper length below encodes the *island* channel with vivid P3 colors:
 
 <img src="./img/raster-p3.png" width="640" alt="three clusters of penguins rendered as blurred color fields in vivid lime, orange, and violet">
 
