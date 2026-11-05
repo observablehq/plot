@@ -275,7 +275,7 @@ The following projection clipping methods are supported for **clip**:
 
 Whereas the **clip** [mark option](./marks.md#mark-options) is implemented using SVG clipping, the **clip** projection option affects the generated geometry and typically produces smaller SVG output.
 
-## Materialized projection
+## Materialized projection <VersionBadge version="0.6.18" pr="2397" />
 
 After rendering, you can retrieve the materialized projection from a plot using [*plot*.scale](./plots.md#plot_scale):
 
