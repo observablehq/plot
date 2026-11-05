@@ -1,4 +1,4 @@
-import assert from "assert";
+import {assert, describe, it} from "vitest";
 import {scale as createScale} from "../src/index.js";
 import {pixelRound} from "../src/precision.js";
 import type {MaterializedScale} from "../src/precision.js";
