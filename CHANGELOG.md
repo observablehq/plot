@@ -49,6 +49,10 @@ Plot.plot({
 
 [Pointer tips](https://observablehq.com/plot/interactions/pointer) are now exclusive by default: when multiple pointer-driven marks overlap, only the point closest to the pointer is shown. This prevents overlapping tips by default. Pointer exclusivity is controlled by the new **pool** [mark option](https://observablehq.com/plot/features/marks#mark-options), which defaults to true for tip marks; set **pool** to false to restore the previous (non-exclusive) behavior.
 
+The [tick format](https://observablehq.com/plot/features/scales) now defaults to a comma-less format when tick values are likely year integers.
+
+<img src="./img/axisYears.png" width="640" alt="before and after comparison of year tick labels, showing commas removed">
+
 The new top-level [**legend** plot option](https://observablehq.com/plot/features/legends) provides a convenient shorthand for requesting a legend for all scales that support them (such as *color* and *symbol*).
 
 ```js
@@ -94,15 +98,11 @@ Plot is now published to npm as a bundled ES module (`dist/plot.js`, and minifie
 
 This release includes several more bug fixes and improvements:
 
-The [tick format](https://observablehq.com/plot/features/scales) now defaults to a comma-less format when tick values are likely year integers.
-
-<img src="./img/axisYears.png" width="640" alt="before and after comparison of year tick labels, showing commas removed">
-
 The [stack transform](https://observablehq.com/plot/transforms/stack) now preserves NaN values instead of coercing them to zero. The [dodge transform](https://observablehq.com/plot/transforms/dodge) no longer crashes when the radius is negative. The [area mark](https://observablehq.com/plot/marks/area) now respects the **reduce** option when using the [interval transform](https://observablehq.com/plot/transforms/interval).
 
-For line and area marks, the *z* channel now defaults to null when the color channel is redundant with the position channel (*e.g.*, `lineY(data, {y: "value", stroke: "value"})`), preventing the line from being split into single-point series. The default offset in windowless environments (*e.g.* server-side rendering) is now zero, prioritizing high-density displays. The default colors for the [box mark](https://observablehq.com/plot/marks/box) and [tree transform](https://observablehq.com/plot/transforms/tree) now support dark mode.
+For line and area marks, the *z* channel now defaults to null when the color channel is redundant with the position channel (*e.g.*, `lineY(data, {y: "value", stroke: "value"})`), preventing the line from being split into single-point series. The default offset in windowless environments (as when server-side rendering) is now zero, prioritizing high-density displays. The default colors for the [box mark](https://observablehq.com/plot/marks/box) and [tree transform](https://observablehq.com/plot/transforms/tree) now support dark mode.
 
-The [tip mark](https://observablehq.com/plot/marks/tip) no longer crashes when the title channel contains null; it now ignores the contours channel and literal symbols; and the tip arrow is smaller when using a corner anchor. [Markers](https://observablehq.com/plot/features/markers) no longer inherit `strokeDasharray`. The [pointer transform](https://observablehq.com/plot/interactions/pointer) now allows `pointerdown` event propagation.
+The [tip mark](https://observablehq.com/plot/marks/tip) no longer crashes when the *title* channel contains a null value. It also now ignores the *contours* channel and literal symbols, and the tip arrow is smaller when using a corner anchor. [Markers](https://observablehq.com/plot/features/markers) no longer inherit `strokeDasharray`. The [pointer transform](https://observablehq.com/plot/interactions/pointer) now allows *pointerdown* event propagation.
 
 The type definitions of the [mark classes](https://observablehq.com/plot/features/marks) (`Plot.Rect`, `Plot.Dot`, `Plot.Line`, *etc.*) now declare constructors and the **render** method method, avoiding a type error when extending a built-in mark and calling `super.render()`. For example, this subclass of the rect mark rotates each rectangle:
 
