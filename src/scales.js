@@ -252,7 +252,7 @@ function piecewiseRange(scale) {
 }
 
 export function normalizeScale(key, scale, hint) {
-  return createScale(key, hint === undefined ? undefined : [{hint}], {...scale});
+  return applyScaleOptions(createScale(key, hint === undefined ? undefined : [{hint}], {...scale}), scale);
 }
 
 function createScale(key, channels = [], options = {}) {
@@ -530,10 +530,9 @@ export function scale(options = {}) {
   let scale;
   for (const key in options) {
     if (!registry.has(key)) continue; // ignore unknown properties
-    const scaleOptions = options[key];
-    if (!isScaleOptions(scaleOptions)) continue; // e.g., ignore {color: "red"}
+    if (!isScaleOptions(options[key])) continue; // e.g., ignore {color: "red"}
     if (scale !== undefined) throw new Error("ambiguous scale definition; multiple scales found");
-    scale = exposeScale(applyScaleOptions(normalizeScale(key, scaleOptions), scaleOptions));
+    scale = exposeScale(normalizeScale(key, options[key]));
   }
   if (scale === undefined) throw new Error("invalid scale definition; no scale found");
   return scale;
