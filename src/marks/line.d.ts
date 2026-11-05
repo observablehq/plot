@@ -154,4 +154,6 @@ export function lineX(data?: Data, options?: LineXOptions): Line;
 export function lineY(data?: Data, options?: LineYOptions): Line;
 
 /** The line mark. */
-export class Line extends RenderableMark {}
+export class Line extends RenderableMark {
+  constructor(data?: Data, options?: LineOptions);
+}

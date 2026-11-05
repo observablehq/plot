@@ -1,55 +1,25 @@
-import typescriptEslint from "@typescript-eslint/eslint-plugin";
-import globals from "globals";
-import tsParser from "@typescript-eslint/parser";
-import path from "node:path";
-import {fileURLToPath} from "node:url";
 import js from "@eslint/js";
-import {FlatCompat} from "@eslint/eslintrc";
+import ts from "typescript-eslint";
+import globals from "globals";
+import {defineConfig} from "eslint/config";
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-const compat = new FlatCompat({
-  baseDirectory: __dirname,
-  recommendedConfig: js.configs.recommended,
-  allConfig: js.configs.all
-});
-
-export default [
-  ...compat.extends("eslint:recommended", "plugin:@typescript-eslint/recommended", "prettier"),
+export default defineConfig([
+  {ignores: ["dist/", "docs/"]},
+  {files: ["**/*.{js,ts}"], extends: [js.configs.recommended, ts.configs.recommended]},
+  {files: ["src/**/*.{js,ts}"], languageOptions: {globals: globals.browser}},
   {
-    plugins: {
-      "@typescript-eslint": typescriptEslint
-    },
-    languageOptions: {
-      globals: {
-        ...globals.node,
-        ...globals.browser
-      },
-      parser: tsParser
-    },
     rules: {
       "no-cond-assign": 0,
       "no-constant-condition": 0,
       "no-sparse-arrays": 0,
       "no-unexpected-multiline": 0,
+      "no-useless-assignment": 0,
       "@typescript-eslint/no-empty-function": 0,
       "@typescript-eslint/no-explicit-any": 0,
       "@typescript-eslint/no-this-alias": 0,
       "@typescript-eslint/no-unused-expressions": 0,
-      "@typescript-eslint/no-unused-vars": [
-        "error",
-        {
-          ignoreRestSiblings: true
-        }
-      ]
+      "@typescript-eslint/no-unused-vars": ["error", {ignoreRestSiblings: true}]
     }
   },
-  {
-    files: ["test/**/*.js"],
-    languageOptions: {
-      globals: {
-        ...globals.mocha
-      }
-    }
-  }
-];
+  {files: ["test/**/*.js"], languageOptions: {globals: {...globals.node, ...globals.mocha}}}
+]);
