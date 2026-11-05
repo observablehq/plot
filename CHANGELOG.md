@@ -84,6 +84,23 @@ Plot now supports the `light-dark(…)` CSS color syntax, making it easier to de
 Plot.barX(alphabet, {x: "frequency", y: "letter", fill: "light-dark(steelblue, orange)"})
 ```
 
+The [mark classes](https://observablehq.com/plot/features/marks) (`Plot.Rect`, `Plot.Dot`, `Plot.Line`, *etc.*) now declare their constructors in the TypeScript definitions, and **render** is declared as a method, so that TypeScript code can extend a built-in mark and call `super.render()`. For example, this subclass of the rect mark rotates each rectangle:
+
+```ts
+class RotatedRect extends Plot.Rect {
+  render(...args: Parameters<Plot.Rect["render"]>) {
+    const g = super.render(...args);
+    let i = 0;
+    for (const rect of g?.querySelectorAll("rect") ?? []) {
+      const x = +rect.getAttribute("x")! + +rect.getAttribute("width")! / 2;
+      const y = +rect.getAttribute("y")! + +rect.getAttribute("height")! / 2;
+      rect.setAttribute("transform", `rotate(${i++ * 10}, ${x}, ${y})`);
+    }
+    return g;
+  }
+}
+```
+
 This release includes several more bug fixes and improvements:
 
 The [tick format](https://observablehq.com/plot/features/scales) now defaults to a comma-less format when tick values are likely year integers.
