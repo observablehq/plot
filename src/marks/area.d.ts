@@ -205,4 +205,6 @@ export function areaX(data?: Data, options?: AreaXOptions & AreaLineOptions): Ar
 export function areaY(data?: Data, options?: AreaYOptions & AreaLineOptions): Area;
 
 /** The area mark. */
-export class Area extends RenderableMark {}
+export class Area extends RenderableMark {
+  constructor(data?: Data, options?: AreaOptions);
+}
