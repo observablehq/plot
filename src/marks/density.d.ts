@@ -51,4 +51,6 @@ export interface DensityOptions extends MarkOptions {
 export function density(data?: Data, options?: DensityOptions): Density;
 
 /** The density mark. */
-export class Density extends RenderableMark {}
+export class Density extends RenderableMark {
+  constructor(data?: Data, options?: DensityOptions);
+}
