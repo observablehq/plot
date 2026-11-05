@@ -116,7 +116,7 @@ The box mark is a [composite mark](../features/marks.md#marks) consisting of fou
 
 The given *options* are passed through to these underlying marks, with the exception of the following options:
 
-* **fill** - the fill color of the bar; defaults to #ccc
+* **fill** - the fill color of the bar; defaults to `light-dark(#ccc, #555)`
 * **fillOpacity** - the fill opacity of the bar; defaults to 1
 * **stroke** - the stroke color of the rule, tick, and dot; defaults to *currentColor*
 * **strokeOpacity** - the stroke opacity of the rule, tick, and dot; defaults to 1
