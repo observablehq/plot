@@ -236,7 +236,7 @@ The **textOverflow** option can be used to truncate lines of text longer than th
 
 The **fontSize** and **rotate** options can be specified as either channels or constants. When fontSize or rotate is specified as a number, it is interpreted as a constant; otherwise it is interpreted as a channel.
 
-If the **frameAnchor** option is not specified, then **textAnchor** and **lineAnchor** default to middle. Otherwise, **textAnchor** defaults to start if **frameAnchor** is on the left, end if **frameAnchor** is on the right, and otherwise middle. Similarly, **lineAnchor** defaults to top if **frameAnchor** is on the top, bottom if **frameAnchor** is on the bottom, and otherwise middle.
+The **frameAnchor** option can be *middle* (default), *top-left*, *top*, *top-right*, *right*, *bottom-right*, *bottom*, *bottom-left*, or *left*. If the **frameAnchor** option is not specified, then **textAnchor** and **lineAnchor** default to *middle*. Otherwise, **textAnchor** defaults to *start* if **frameAnchor** is on the left, end if **frameAnchor** is on the right, and otherwise *middle*. Similarly, **lineAnchor** defaults to *top* if **frameAnchor** is on the top, *bottom* if **frameAnchor** is on the bottom, and otherwise *middle*.
 
 The **paintOrder** option defaults to *stroke* and the **strokeWidth** option defaults to 3. By setting **fill** to the foreground color and **stroke** to the background color (such as *black* and *white*, respectively), you can surround text with a “halo” which may improve legibility against a busy background.
 
