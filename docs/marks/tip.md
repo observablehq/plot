@@ -135,6 +135,19 @@ Plot.rectY(olympians, Plot.binX({y: "sum"}, {x: "weight", y: (d) => d.sex === "m
 
 The order and formatting of channels in the tip can be customized with the **format** option <VersionBadge version="0.6.11" pr="1823" />, which accepts a key-value object mapping channel names to formats. Each [format](../features/formats.md) can be a string (for number or time formats), a function that receives the value as input and returns a string, true to use the default format, and null or false to suppress. The order of channels in the tip follows their order in the format object followed by any additional channels. When using the **title** channel, the **format** option may be specified as a string or a function; the given format will then apply to the **title** channel. <VersionBadge version="0.6.15" pr="2074" />
 
+A format function may also return a DOM node, such as an SVG tspan or anchor element (say generated with [Hypertext Literal](https://github.com/observablehq/htl)); the returned node is appended directly to the tip, allowing styled and hyperlinked rich text. <VersionBadge pr="2444" /> For example, to render the **title** channel in bold followed by a link:
+
+```js
+Plot.tip(data, {
+  title: "name",
+  format: {
+    title: (name) => htl.svg`<tspan><tspan font-weight="bold">${name}</tspan> <a fill="blue" href="/details/${name}">details</a></tspan>`
+  }
+})
+```
+
+When returning nodes, the **lineWidth** and **textOverflow** options are ignored.
+
 A channel’s label can be specified alongside its value as a {value, label} object; if a channel label is not specified, the associated scale’s label is used, if any; if there is no associated scale, or if the scale has no label, the channel name is used instead.
 
 :::plot defer https://observablehq.com/@observablehq/plot-tip-format

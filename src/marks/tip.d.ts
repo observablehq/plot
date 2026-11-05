@@ -93,10 +93,15 @@ export interface TipOptions extends MarkOptions, TextStyles {
  * - a [d3-time-format][2] string for temporal scales
  * - a function passed a channel *value* and *index*, returning a string
  *
+ * A format function may also return a DOM node (such as an SVG tspan or anchor
+ * element, say generated with Hypertext Literal); the returned node is appended
+ * directly to the tip, allowing styled and hyperlinked rich text. Nodes are not
+ * measured, so the **lineWidth** and **textOverflow** options do not apply.
+ *
  * [1]: https://d3js.org/d3-time
  * [2]: https://d3js.org/d3-time-format
  */
-export type TipFormat = string | ((d: any, i: number) => string);
+export type TipFormat = string | ((d: any, i: number) => string | Node);
 
 /**
  * Returns a new tip mark for the given *data* and *options*.
