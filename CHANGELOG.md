@@ -6,7 +6,7 @@ Year: **Current** · [2025](./CHANGELOG-2025.md) · [2024](./CHANGELOG-2024.md) 
 
 [Released November 3, 2026.](https://github.com/observablehq/plot/releases/tag/v0.6.18)
 
-The [area mark](https://observablehq.com/plot/marks/area) now supports a **line** option: when set to true, a stroked line is drawn on top of the filled area, removing the need for a separate line mark; when line is true, the the fill opacity defaults to 0.3 and the stroke options (`strokeWidth`, etc.) apply only to that line.
+The [area mark](https://observablehq.com/plot/marks/area) now supports a **line** option: when set to true, a stroked line is drawn on top of the filled area, removing the need for a separate line mark; when line is true, the fill opacity defaults to 0.3 and the stroke options (`strokeWidth`, etc.) apply only to that line.
 
 <img src="./img/ridgeline.png" width="928" alt="a ridgeline plot of traffic patterns by location, with stroked lines on top of filled areas">
 
@@ -47,7 +47,7 @@ Plot.plot({
 })
 ```
 
-[Pointer tips](https://observablehq.com/plot/interactions/pointer) are now exclusive by default: when multiple pointer-driven marks overlap, only the closest point is shown. This avoids the common issue of multiple marks creating overlapping tips. This behavior is controlled by the new **pool** [mark option](https://observablehq.com/plot/features/marks#mark-options), which defaults to tru for tip marks; set `pool: false` to restore the previous behavior.
+[Pointer tips](https://observablehq.com/plot/interactions/pointer) are now exclusive by default: when multiple pointer-driven marks overlap, only the closest point is shown. This avoids the common issue of multiple marks creating overlapping tips. This behavior is controlled by the new **pool** [mark option](https://observablehq.com/plot/features/marks#mark-options), which defaults to true for tip marks; set `pool: false` to restore the previous behavior.
 
 The new top-level [**legend** plot option](https://observablehq.com/plot/features/legends) provides a convenient shorthand for requesting a legend, replacing the more verbose `color: {legend: true}` pattern.
 
