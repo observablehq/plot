@@ -1,3 +1,21 @@
+/** Options for specifying the dimensions of a plot or standalone projection. */
+export interface DimensionOptions {
+  /** The outer width in pixels, including margins. Defaults to 640. */
+  width?: number;
+  /** The outer height in pixels, including margins. */
+  height?: number;
+  /** Shorthand for setting the four margins. */
+  margin?: number;
+  /** The top margin in pixels. */
+  marginTop?: number;
+  /** The right margin in pixels. */
+  marginRight?: number;
+  /** The bottom margin in pixels. */
+  marginBottom?: number;
+  /** The left margin in pixels. */
+  marginLeft?: number;
+}
+
 /** The realized screen dimensions, in pixels, of a plot. */
 export interface Dimensions {
   /** The outer width of the plot in pixels, including margins. */

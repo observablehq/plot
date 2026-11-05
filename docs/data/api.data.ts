@@ -48,6 +48,8 @@ function getHref(name: string, path: string): string {
     case "features/plot":
     case "features/projection":
       return `${path}s`;
+    case "features/dimensions":
+      return "features/scales";
     case "features/options":
       return "features/transforms";
     case "marks/axis": {
