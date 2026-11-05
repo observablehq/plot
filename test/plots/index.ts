@@ -192,6 +192,7 @@ import "./npm-versions.js";
 import "./offset.js";
 import "./opacity.js";
 import "./ordinal-bar.js";
+import "./ordinal-opacity.js";
 import "./overlapping-area.js";
 import "./pairs.js";
 import "./penguin-annotated.js";

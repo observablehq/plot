@@ -3,6 +3,33 @@ import * as d3 from "d3";
 import {feature, mesh} from "topojson-client";
 import {test} from "test/plot";
 
+test(async function tipAnchors() {
+  const plot = Plot.plot({
+    style: "overflow: visible;",
+    height: 160,
+    marks: [
+      Plot.frame({strokeOpacity: 0.2}),
+      (
+        [
+          "top",
+          "right",
+          "bottom",
+          "left", // sides
+          "top-left",
+          "top-right",
+          "bottom-right",
+          "bottom-left", // corners
+          "middle"
+        ] as const
+      ).map((anchor) => [
+        Plot.dot({length: 1}, {frameAnchor: anchor, fill: "blue"}),
+        Plot.tip([anchor], {frameAnchor: anchor, anchor})
+      ])
+    ]
+  });
+  return Object.assign(plot, {ready: new Promise((resolve) => setTimeout(resolve, 100))}); // postrender
+});
+
 test(async function tipAreaBand() {
   const aapl = await d3.csv<any>("data/aapl.csv", d3.autoType);
   return Plot.areaY(aapl, {x: "Date", y1: "Low", y2: "High", tip: true, curve: "step", stroke: "currentColor"}).plot();
@@ -180,6 +207,51 @@ test(async function tipLineX() {
 test(async function tipLineY() {
   const aapl = await d3.csv<any>("data/aapl.csv", d3.autoType);
   return Plot.lineY(aapl, {x: "Date", y: "Close", tip: true}).plot();
+});
+
+test(async function tipPool() {
+  const cars = await d3.csv<any>("data/cars.csv", d3.autoType);
+  return Plot.plot({
+    marks: [
+      Plot.hexagon(cars, Plot.hexbin({fill: "count"}, {x: "power (hp)", y: "economy (mpg)", tip: true})),
+      Plot.dot(cars, {x: "power (hp)", y: "economy (mpg)", tip: true})
+    ]
+  });
+});
+
+test(async function tipCrosshair() {
+  const aapl = await d3.csv<any>("data/aapl.csv", d3.autoType);
+  return Plot.plot({
+    y: {grid: true},
+    marks: [Plot.lineY(aapl, {x: "Date", y: "Close", tip: true}), Plot.crosshairX(aapl, {x: "Date", y: "Close"})]
+  });
+});
+
+test(async function tipCrosshairFacet() {
+  const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
+  return Plot.plot({
+    grid: true,
+    marks: [
+      Plot.dot(penguins, {x: "culmen_length_mm", y: "culmen_depth_mm", fy: "species"}),
+      Plot.crosshair(penguins, {x: "culmen_length_mm", y: "culmen_depth_mm", fy: "species"})
+    ]
+  });
+});
+
+test(async function tipPoolFacet() {
+  const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
+  return Plot.plot({
+    grid: true,
+    marks: [
+      Plot.dot(penguins, Plot.hexbin({}, {x: "culmen_length_mm", y: "culmen_depth_mm", fy: "species", tip: true})),
+      Plot.dot(penguins, {x: "culmen_length_mm", y: "culmen_depth_mm", fy: "species", fill: "sex", tip: true})
+    ]
+  });
+});
+
+test(async function tipBoxX() {
+  const morley = await d3.csv<any>("data/morley.csv", d3.autoType);
+  return Plot.boxX(morley, {x: "Speed", y: "Expt", tip: true}).plot();
 });
 
 test(async function tipLongText() {

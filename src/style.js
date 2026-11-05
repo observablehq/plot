@@ -13,10 +13,15 @@ export function setOffset(o) {
 }
 
 let nextClipId = 0;
+let nextFilterId = 0;
 let nextPatternId = 0;
 
 export function getClipId() {
   return `plot-clip-${++nextClipId}`;
+}
+
+export function getFilterId() {
+  return `plot-filter-${++nextFilterId}`;
 }
 
 export function getPatternId() {

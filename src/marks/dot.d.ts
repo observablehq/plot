@@ -144,4 +144,6 @@ export function circle(data?: Data, options?: Omit<DotOptions, "symbol">): Dot;
 export function hexagon(data?: Data, options?: Omit<DotOptions, "symbol">): Dot;
 
 /** The dot mark. */
-export class Dot extends RenderableMark {}
+export class Dot extends RenderableMark {
+  constructor(data?: Data, options?: DotOptions);
+}

@@ -71,4 +71,6 @@ export function cellX(data?: Data, options?: CellOptions): Cell;
 export function cellY(data?: Data, options?: CellOptions): Cell;
 
 /** The cell mark. */
-export class Cell extends RenderableMark {}
+export class Cell extends RenderableMark {
+  constructor(data?: Data, options?: CellOptions);
+}

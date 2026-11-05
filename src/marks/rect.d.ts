@@ -270,4 +270,6 @@ export function rectX(data?: Data, options?: RectXOptions): Rect;
 export function rectY(data?: Data, options?: RectYOptions): Rect;
 
 /** The rect mark. */
-export class Rect extends RenderableMark {}
+export class Rect extends RenderableMark {
+  constructor(data?: Data, options?: RectOptions);
+}
