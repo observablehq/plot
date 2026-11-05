@@ -1,9 +1,9 @@
-import {area as shapeArea, line as shapeLine} from "d3";
+import {max, area as shapeArea, line as shapeLine} from "d3";
 import {create} from "../context.js";
 import {maybeCurve} from "../curve.js";
 import {Mark} from "../mark.js";
 import {applyGroupedMarkers, markers} from "../marker.js";
-import {first, maybeZ, second} from "../options.js";
+import {first, identity, indexOf, map, maybeZ, second, valueof} from "../options.js";
 import {applyDirectStyles, applyIndirectStyles, applyTransform, applyGroupedChannelStyles} from "../style.js";
 import {groupIndex, offset} from "../style.js";
 import {maybeDenseIntervalX, maybeDenseIntervalY} from "../transforms/bin.js";
@@ -142,4 +142,30 @@ export function areaX(data, options) {
 export function areaY(data, options) {
   const {x, y, line, color, stroke = color, fill = color, z = y === fill || y === stroke ? null : undefined, ...rest} = maybeDenseIntervalX(options); // prettier-ignore
   return new (line ? AreaLine : Area)(data, maybeStackY({...rest, x1: x, x2: undefined, y, z, stroke, fill}));
+}
+
+export function horizonY(data, {bands = 7, x = indexOf, y = identity, ...options} = {}) {
+  let Y, step;
+  return Array.from({length: bands}, (_, i) =>
+    areaY(data, {
+      x,
+      y: {
+        transform(data) {
+          if (Y === undefined) (Y = valueof(data, y)), (step = max(Y) / bands);
+          return map(Y, (y) => y - i * step);
+        },
+        hint: {
+          min: 0,
+          max: {
+            valueOf() {
+              return step;
+            }
+          }
+        }
+      },
+      fill: i,
+      clip: true,
+      ...options // TODO ignore fill, clip
+    })
+  );
 }
