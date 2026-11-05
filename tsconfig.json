@@ -6,7 +6,7 @@
     "module": "Node16",
     "baseUrl": "./src",
     "paths": {
-      "@observablehq/plot": ["index"],
+      "@observablehq/plot": ["./index.d.ts"],
       "test/plot": ["../test/plot.js"]
     },
     "types": [

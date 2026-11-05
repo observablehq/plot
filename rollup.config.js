@@ -1,8 +1,8 @@
-import fs from "fs";
-import commonjs from "@rollup/plugin-commonjs";
-import json from "@rollup/plugin-json";
-import node from "@rollup/plugin-node-resolve";
-import terser from "@rollup/plugin-terser";
+import fs from "node:fs";
+import RollupCommonJs from "@rollup/plugin-commonjs";
+import RollupJson from "@rollup/plugin-json";
+import RollupNode from "@rollup/plugin-node-resolve";
+import RollupTerser from "@rollup/plugin-terser";
 import meta from "./package.json" with {type: "json"};
 
 const filename = meta.name.split("/").pop();
@@ -19,17 +19,36 @@ const copyrights = fs
   .filter((line) => /^copyright\s+/i.test(line))
   .map((line) => line.replace(/^copyright\s+/i, ""));
 
+const banner = `// ${meta.name} v${meta.version} Copyright ${copyrights.join(", ")}`;
+const terser = RollupTerser({output: {preamble: banner}});
+
 const config = {
   input: "bundle.js",
   external: ["d3"],
-  output: {
-    indent: false,
-    banner: `// ${meta.name} v${meta.version} Copyright ${copyrights.join(", ")}`
-  },
-  plugins: [commonjs(), json(), node()]
+  output: {indent: false, banner},
+  plugins: [RollupCommonJs(), RollupJson(), RollupNode()],
+  onwarn(message, warn) {
+    if (message.code === "CIRCULAR_DEPENDENCY") return;
+    warn(message);
+  }
 };
 
 export default [
+  {
+    ...config,
+    output: {
+      ...config.output,
+      file: `dist/${filename}.js`
+    }
+  },
+  {
+    ...config,
+    output: {
+      ...config.output,
+      file: `dist/${filename}.min.js`
+    },
+    plugins: [...config.plugins, terser]
+  },
   {
     ...config,
     output: {
@@ -53,13 +72,6 @@ export default [
       globals: {d3: "d3"},
       paths: {d3: d3Path}
     },
-    plugins: [
-      ...config.plugins,
-      terser({
-        output: {
-          preamble: config.output.banner
-        }
-      })
-    ]
+    plugins: [...config.plugins, terser]
   }
 ];

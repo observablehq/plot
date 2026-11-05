@@ -10,19 +10,19 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
-      - uses: pnpm/action-setup@v5
+      - uses: actions/checkout@v7
+      - uses: pnpm/action-setup@v6
         with:
           version: 10
-      - uses: actions/setup-node@v6
+      - uses: actions/setup-node@v7
         with:
           node-version: 24
           cache: pnpm
       - run: pnpm install
-      - run: pnpm run test:vitest
-      - run: pnpm run test:tsc
-      - run: pnpm run test:lint
-      - run: pnpm run test:prettier
+      - run: pnpm run test
+      - run: pnpm run lint
+      - run: pnpm run tsc
+      - run: pnpm run prettier
       - run: pnpm run prepublishOnly
       - run: pnpm run docs:build
       - uses: actions/upload-artifact@v7
