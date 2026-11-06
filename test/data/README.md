@@ -30,6 +30,10 @@ https://www.bls.gov/
 Great Britain aeromagnetic survey
 https://www.bgs.ac.uk/datasets/gb-aeromagnetic-survey/
 
+## cancer.csv
+Edward Tufte, Beautiful Evidence
+https://www.edwardtufte.com/bboard/q-and-a-fetch-msg?msg_id=0003nk
+
 ## cars.csv
 1983 ASA Data Exposition
 http://lib.stat.cmu.edu/datasets/
