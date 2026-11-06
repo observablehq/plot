@@ -97,7 +97,7 @@ export interface CurveAutoOptions {
    *
    * [1]: https://d3js.org/d3-shape/curve#custom-curves
    */
-  curve?: Curve | "auto";
+  curve?: Curve | "auto" | undefined;
 
   /**
    * The tension option only has an effect on bundle, cardinal and Catmull–Rom
