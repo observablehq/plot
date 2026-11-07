@@ -142,3 +142,55 @@ describe("pointer pool", () => {
     assert.strictEqual(visibleTips(svg), 0);
   });
 });
+
+describe("pointer value", () => {
+  let pointer, flushAnimationFrame;
+
+  beforeEach(() => ({pointer, flushAnimationFrame} = setup()));
+  afterEach(teardown);
+
+  it("falls back to another active pointer when one pointer clears", () => {
+    // A pointerY with an infinite radius stays active anywhere in the frame,
+    // while the dot’s tip is only active near the dot.
+    const svg = Plot.plot({
+      marks: [
+        Plot.frame(),
+        Plot.rect(["foo"], Plot.pointerY({y: (d) => d, maxRadius: Infinity, fill: "orange"})),
+        Plot.dot([{y: "foo"}], {y: "y", tip: true})
+      ]
+    });
+    pointer(svg, "pointerenter", 50, 40);
+    pointer(svg, "pointermove", 50, 40);
+    flushAnimationFrame();
+    assert.strictEqual(svg.value, "foo");
+    pointer(svg, "pointermove", 340, 40);
+    flushAnimationFrame();
+    assert.deepStrictEqual(svg.value, {y: "foo"});
+    pointer(svg, "pointermove", 50, 40);
+    flushAnimationFrame();
+    assert.strictEqual(svg.value, "foo");
+    pointer(svg, "pointerleave", 0, 0);
+    flushAnimationFrame();
+    assert.strictEqual(svg.value, null);
+  });
+
+  it("keeps the pooled winner’s value when the other pooled tips clear", () => {
+    const svg = Plot.plot({
+      marks: [
+        Plot.dot([{x: 0, y: "foo"}], {x: "x", y: "y", tip: {maxRadius: 1000}}),
+        Plot.dot([{x: 1, y: "foo"}], {x: "x", y: "y", tip: {maxRadius: 1000}})
+      ]
+    });
+    pointer(svg, "pointerenter", 50, 40);
+    pointer(svg, "pointermove", 50, 40);
+    flushAnimationFrame();
+    assert.deepStrictEqual(svg.value, {x: 0, y: "foo"});
+    pointer(svg, "pointermove", 620, 40);
+    flushAnimationFrame();
+    assert.deepStrictEqual(svg.value, {x: 1, y: "foo"});
+    pointer(svg, "pointermove", 50, 40);
+    flushAnimationFrame();
+    assert.deepStrictEqual(svg.value, {x: 0, y: "foo"});
+    assert.strictEqual(visibleTips(svg), 1);
+  });
+});

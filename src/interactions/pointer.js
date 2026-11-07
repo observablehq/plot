@@ -33,7 +33,7 @@ function pointerK(kx, ky, {x, y, px, py, maxRadius = 40, channels, render, ...op
       // the pointer (e.g., tips); only the closest point is shown.
       let state = states.get(svg);
       if (!state) {
-        state = {sticky: false, roots: [], renders: [], pool: this.pool ? {map: new Map()} : null};
+        state = {sticky: false, roots: [], renders: [], focus: new Map(), pool: this.pool ? {map: new Map()} : null};
         states.set(svg, state);
       }
 
@@ -122,10 +122,20 @@ function pointerK(kx, ky, {x, y, px, py, maxRadius = 40, channels, render, ...op
         }
         state.roots[renderIndex] = g = r;
 
+        // Record the focused datum of this rendered mark, if any. The plot’s
+        // value is that of the most recently focused pointer that is still
+        // active, so that clearing one pointer (e.g., a tip losing focus, or a
+        // pooled tip losing to a closer one) falls back to another pointer
+        // that is still focused rather than resetting the value to null.
+        const {focus} = state;
+        focus.delete(renderIndex);
+        if (i != null) focus.set(renderIndex, isArray(data) ? data[i] : data.get(i));
+
         // Dispatch the value. When simultaneously exiting this facet and
         // entering a new one, prioritize the entering facet.
         if (!(i == null && facetPool?.map.size > 1)) {
-          const value = i == null ? null : isArray(data) ? data[i] : data.get(i);
+          let value = null;
+          for (const v of focus.values()) value = v;
           context.dispatchValue(value);
         }
 
