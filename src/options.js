@@ -426,7 +426,7 @@ export function maybeNiceInterval(interval, type) {
 }
 
 export function isTimeInterval(t) {
-  return isInterval(t) && typeof t?.floor === "function" && t.floor() instanceof Date;
+  return isInterval(t) && typeof t?.floor === "function";
 }
 
 export function isInterval(t) {
