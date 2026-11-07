@@ -150,7 +150,7 @@ The following options are supported:
 * **dot** - if true, whether to render a dot; defaults to false if no link marker
 * **title** - the text and dot title; defaults to *node:path*
 * **text** - the text label; defaults to *node:name*
-* **textStroke** - the text stroke; defaults to *white*
+* **textStroke** - the text stroke; defaults to `var(--plot-background)`
 * **textLayout** - the text anchoring layout
 * **dx** - the text horizontal offset; defaults to 6
 * **dy** - the text vertical offset; defaults to 0

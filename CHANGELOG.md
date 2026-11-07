@@ -1,66 +1,130 @@
 # Observable Plot - Changelog
 
-Year: **Current (2025)** · [2024](./CHANGELOG-2024.md) · [2023](./CHANGELOG-2023.md) · [2022](./CHANGELOG-2022.md) · [2021](./CHANGELOG-2021.md)
+Year: **Current** · [2025](./CHANGELOG-2025.md) · [2024](./CHANGELOG-2024.md) · [2023](./CHANGELOG-2023.md) · [2022](./CHANGELOG-2022.md) · [2021](./CHANGELOG-2021.md)
 
-## 0.6.17
+## 0.6.18
 
-[Released February 14, 2025.](https://github.com/observablehq/plot/releases/tag/v0.6.17)
+[Released November 3, 2026.](https://github.com/observablehq/plot/releases/tag/v0.6.18)
 
-The [**clip** mark option](https://observablehq.com/plot/features/marks#clip) now supports GeoJSON objects 🌎 in addition to the named *frame* and *sphere* clipping methods, allowing the visual extent of marks to be limited to arbitrary polygons. For instance, this Voronoi mesh of world airports is clipped to land boundaries:
+The [area mark](https://observablehq.github.io/plot/marks/area) now supports a **line** option: when true, a stroked line is drawn on top of the filled area, removing the need for a separate line mark and allowing lines and areas to interleave as in the ridgeline plot below; when **line** is true, **fillOpacity** defaults to 0.3 and stroke options (**strokeWidth**, *etc.*) apply only to the line.
 
-[<img src="./img/airports-clip-land.png" width="708" alt="a map of world airports with a Voronoi mesh clipped to land">](https://observablehq.com/@observablehq/plot-world-airports)
+<img src="./img/ridgeline.png" width="928" alt="a ridgeline plot of traffic patterns by location, with stroked lines on top of filled areas">
 
 ```js
 Plot.plot({
-  projection: {type: "orthographic", rotate: [110, -50]},
+  height: 300,
   marks: [
-    Plot.dot(airports, {x: "longitude", y: "latitude", fill: "red", r: 1}),
-    Plot.voronoiMesh(airports, {x: "longitude", y: "latitude", clip: land}),
-    Plot.sphere(),
-    Plot.geo(land)
+    Plot.areaY(traffic, {
+      x: "date",
+      y: "vehicles",
+      fy: "location",
+      fill: "#eee",
+      line: true,
+      fillOpacity: 1,
+      curve: "basis"
+    })
   ]
 })
 ```
 
-The GeoJSON object passed to the **clip** option is rendered as a [`clipPath` element](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/clipPath) using the same path data that a [geo mark](https://observablehq.com/plot/marks/geo) would produce, respecting the plot’s top-level **projection** option, if any. For performance, `clipPath` elements are shared by marks clipped with the same GeoJSON object. For example, the [raster mark](https://observablehq.com/plot/marks/raster) and [contour mark](https://observablehq.com/plot/marks/contour) below show atmospheric water vapor measurements across the United States from [NASA Earth Observations](https://neo.gsfc.nasa.gov/view.php?datasetId=MYDAL2_M_SKY_WV); both marks are clipped to the nation’s boundary, censoring the (absurd) values that would otherwise be interpolated between Alaska, Southern California, and Hawai’i.
+The [raster mark](https://observablehq.github.io/plot/marks/raster) now supports a **colorSpace** option, allowing interpolation in wide-gamut color spaces such as *display-p3*. For example, the raster plot of penguin body mass _vs._ flipper length below encodes the *island* channel with vivid P3 colors:
 
-[<img src="./img/vapor-clip-us.png" width="708" alt="a map of water vapor measurements in the United States">](https://observablehq.com/@observablehq/plot-us-water-vapor)
+<img src="./img/raster-p3.png" width="640" alt="three clusters of penguins rendered as blurred color fields in vivid lime, orange, and violet">
 
 ```js
-Plot.raster(vapor, {
-  fill: Plot.identity,
-  width: 360,
-  height: 180,
-  x1: -180, y1: 90, x2: 180, y2: -90,
-  interpolate: "barycentric",
-  blur: 10,
-  clip: nation
-}).plot()
+Plot.plot({
+  color: {range: ["oklch(90% 0.4 135)", "oklch(75% 0.3 55)", "oklch(65% 0.35 305)"]},
+  marks: [
+    Plot.raster(penguins, {
+      x: "body_mass_g",
+      y: "flipper_length_mm",
+      fill: "island",
+      interpolate: "random-walk",
+      blur: 8,
+      colorSpace: "display-p3"
+    })
+  ]
+})
 ```
 
-[The code for the map above is too long to reproduce here in its entirety; click the image above for the complete code.]
+[Pointer tips](https://observablehq.github.io/plot/interactions/pointer) are now exclusive by default: when multiple pointer-driven marks overlap, only the point closest to the pointer is shown. This prevents overlapping tips by default. Pointer exclusivity is controlled by the new **pool** [mark option](https://observablehq.github.io/plot/features/marks#mark-options), which defaults to true for tip marks; set **pool** to false to restore the previous (non-exclusive) behavior.
 
-The **clip** mark option can also be used to clip against arbitrary polygons, not just geographic boundaries. For example, to show the value of [Math.atan2](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/atan2) over the unit circle:
+The [tick format](https://observablehq.github.io/plot/features/scales) now defaults to a comma-less format when tick values are likely year integers.
 
-[<img src="./img/unit-circle-atan2.png" width="332" alt="the value of atan2 across the unit disc, encoded as color">](https://observablehq.com/@observablehq/plot-color-angle)
+<img src="./img/axisYears.png" width="640" alt="before and after comparison of year tick labels, showing commas removed">
+
+The new top-level [**legend** plot option](https://observablehq.github.io/plot/features/legends) provides a convenient shorthand for requesting a legend for all scales that support them (such as *color* and *symbol*).
 
 ```js
-Plot.raster({
-  x1: -1, x2: 1, y1: -1, y2: 1,
-  fill: (x, y) => Math.atan2(y, x),
-  clip: {
-    type: "Polygon",
-    coordinates: [
-      d3.range(0, 2 * Math.PI, 0.1).map((angle) => [Math.cos(angle), Math.sin(angle)])
-    ]
+Plot.plot({
+  legend: true,
+  color: {type: "ordinal", domain: "ABCDEFGHIJ"},
+  marks: [Plot.cellX("ABCDEFGHIJ")]
+})
+```
+
+The [*plot*.scale method](https://observablehq.github.io/plot/features/plots#plot_scale) can now be passed *projection* to return the plot’s [materialized projection](https://observablehq.github.io/plot/features/projections#materialized-projection), allowing advanced uses. The returned object supports *apply* and *invert* for converting between geographic and pixel coordinates, and can be passed as the **projection** option of another plot.
+
+```js
+const plot1 = Plot.plot({projection: "mercator", marks: [Plot.graticule()]});
+const projection = plot1.scale("projection");
+const plot2 = Plot.plot({projection, marks: [Plot.geo(countries)]}));
+display(projection.apply([-1.55, 47.22])); // [316.7, 224.2]
+```
+
+The [*opacity* scale](https://observablehq.github.io/plot/features/scales) and associated legend now support *ordinal* and *threshold* types.
+
+```js
+Plot.plot({
+  opacity: {
+    type: "threshold", 
+    legend: true, 
+    domain: [2, 5, 8], 
+    range: [0.2, 0.4, 0.6, 0.8]
+  },
+  marks: [
+    Plot.cellX(d3.range(10), {fill: "red", opacity: Plot.identity})
+  ]
+})
+```
+
+Plot now supports the [`light-dark(…)` CSS color syntax](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/color_value/light-dark) for defining colors that adapt to the user’s preferred color scheme. Color and opacity legends also render correctly with `light-dark(…)`, `currentColor`, and P3 colors.
+
+```js
+Plot.barX(alphabet, {x: "frequency", y: "letter", fill: "light-dark(steelblue, orange)"})
+```
+
+Plot is now published to npm as a bundled ES module (`dist/plot.js`, and minified as `dist/plot.min.js`) instead of unbundled source files. The package now declares `sideEffects: false`, which lets bundlers remove unused code and lets [esm.sh](https://esm.sh) bundle Plot more efficiently. The UMD bundle (`dist/plot.umd.min.js`) is unchanged.
+
+This release includes several more bug fixes and improvements:
+
+The [stack transform](https://observablehq.github.io/plot/transforms/stack) now preserves NaN values instead of coercing them to zero. The [dodge transform](https://observablehq.github.io/plot/transforms/dodge) no longer crashes when the radius is negative. The [area mark](https://observablehq.github.io/plot/marks/area) now respects the **reduce** option when using the [interval transform](https://observablehq.github.io/plot/transforms/interval).
+
+For line and area marks, the *z* channel now defaults to null when the color channel is redundant with the position channel (*e.g.*, `lineY(data, {y: "value", stroke: "value"})`), preventing the line from being split into single-point series. The default offset in windowless environments (as when server-side rendering) is now zero, prioritizing high-density displays. The default colors for the [box mark](https://observablehq.github.io/plot/marks/box) and [tree transform](https://observablehq.github.io/plot/transforms/tree) now support dark mode.
+
+The [tip mark](https://observablehq.github.io/plot/marks/tip) no longer crashes when the *title* channel contains a null value. It also now ignores the *contours* channel and literal symbols, and the tip arrow is smaller when using a corner anchor. [Markers](https://observablehq.github.io/plot/features/markers) no longer inherit `strokeDasharray`. The [pointer transform](https://observablehq.github.io/plot/interactions/pointer) now allows *pointerdown* event propagation.
+
+The type definitions of the [mark classes](https://observablehq.github.io/plot/features/marks) (`Plot.Rect`, `Plot.Dot`, `Plot.Line`, *etc.*) now declare constructors and the **render** method method, avoiding a type error when extending a built-in mark and calling `super.render()`. For example, this subclass of the rect mark rotates each rectangle:
+
+[<img src="./img/rect-rotate.png" width="330" alt="ten rounded squares in different colors, each rotated 10° more than the previous one, with an arrow showing the rotation">](https://observablehq.com/@observablehq/plot-extend-mark)
+
+```ts
+class RotatedRect extends Plot.Rect {
+  render(...args: Parameters<Plot.Rect["render"]>) {
+    const g = super.render(...args);
+    let i = 0;
+    for (const rect of g?.querySelectorAll("rect") ?? []) {
+      const x = +rect.getAttribute("x")! + +rect.getAttribute("width")! / 2;
+      const y = +rect.getAttribute("y")! + +rect.getAttribute("height")! / 2;
+      rect.setAttribute("transform", `rotate(${i++ * 10}, ${x}, ${y})`);
+    }
+    return g;
   }
-}).plot({width: 300, aspectRatio: 1})
+}
 ```
 
-The interactive **tip** associated with a [waffle mark](https://observablehq.com/plot/marks/waffle) is now anchored to the “center” of the visual representation of the associated datum. That center depends on the shape that is referenced. For fun, here’s a chart from our unit tests showing these anchoring points for various amounts of waffling. Baffling!
-
-<img src="./img/waffle-pointer-fractional.png" width="672" alt="waffle mark with the anchor position of each datum marked with its value">
+Various type fixes and documentation improvements; thanks @gka and @jsoref!
 
 ---
 
-For earlier changes, continue to the [2024 CHANGELOG](./CHANGELOG-2024.md).
+For earlier changes, continue to the [2025 CHANGELOG](./CHANGELOG-2025.md).

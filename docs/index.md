@@ -4,9 +4,6 @@ layout: home
 titleTemplate: "The JavaScript library for exploratory data visualization"
 
 head:
-  - - link
-    - rel: canonical
-      href: https://observablehq.com/plot/
   - - meta
     - name: title
       content: Observable Plot
@@ -36,7 +33,7 @@ head:
       content: article
   - - meta
     - property: og:url
-      content: https://observablehq.com/plot/
+      content: https://observablehq.github.io/plot/
 
 hero:
   name: "Observable Plot"

@@ -22,7 +22,7 @@
           <div class="mb2 fw6 f14">Observable</div>
           <ul>
             <li class="mb2"><a target="_blank" href="https://observablehq.com/product">Product</a></li>
-            <li class="mb2"><a target="_blank" href="https://observablehq.com/plot">Plot</a></li>
+            <li class="mb2"><a target="_blank" href="https://observablehq.github.io/plot/">Plot</a></li>
             <li class="mb2"><a target="_blank" href="https://observablehq.com/data-integrations">Integrations</a></li>
             <li class="mb2"><a target="_blank" href="https://observablehq.com/pricing">Pricing</a></li>
           </ul>

@@ -17,7 +17,7 @@ Observable Plot supports a variety of environments.
 
 ## Try Plot online
 
-The fastest way to get started (and get help) with Observable Plot is on [Observable](https://observablehq.com)! Plot is available by default in notebooks as part of Observable’s standard library. To use Plot, simply return the generated plot from a cell like so:
+The fastest way to get started (and get help) with Observable Plot is on [Observable](https://observablehq.com)! Observable is free for public use, and Plot is available by default in notebooks as part of Observable’s standard library. For example:
 
 :::plot https://observablehq.com/@observablehq/plot-normal-histogram
 ```js
@@ -25,20 +25,9 @@ Plot.rectY({length: 10000}, Plot.binX({y: "count"}, {x: d3.randomNormal()})).plo
 ```
 :::
 
-Observable includes a variety of Plot snippets when you click **+** to add a cell, as well as convenient [sample datasets](https://observablehq.com/@observablehq/sample-datasets) to try out Plot features. Or upload a CSV or JSON file to start playing with your data. You can even use [Observable’s chart cell](https://observablehq.com/@observablehq/chart-cell), which uses Plot’s [auto mark](./marks/auto.md) under the hood, to create quick charts without writing code! You can then eject to JavaScript by clicking **+** to see the equivalent Plot code.
-
-<figure>
-  <video autoplay loop muted playsinline style="width: 688px; max-width: 100%; aspect-ratio: 688 / 488; border: solid 1px var(--vp-c-text-3); display: inline;">
-    <source src="https://videos.ctfassets.net/uklh5xrq1p2j/14CmTWsGQifvA5jZ8s0Usw/6efc7defa063038f8eb65bb269cb3823/Chart_Cell_Demo_Take_2_shorter.mp4" type="video/mp4">
-  </video>
-  <figcaption>Observable’s chart cell lets you quickly create charts and then eject to Plot code.</figcaption>
-</figure>
-
-Observable is free for public use. Sign up for a [Pro account](https://observablehq.com/pricing) to connect to private databases, collaborate on private notebooks, and more.
-
 ## Plot in vanilla HTML
 
-In vanilla HTML, you can load Plot from a CDN such as jsDelivr or you can download it locally. We recommend using the CDN-hosted ES module bundle as it automatically loads Plot’s dependency on [D3](https://d3js.org). But for those who need it, we also provide a UMD bundle that exports the `Plot` global when loaded as a plain script.
+In vanilla HTML, you can load Plot from a CDN such as esm.sh or jsDelivr, or you can download it locally. We recommend using the CDN-hosted ES module bundle as it automatically loads Plot’s dependency on [D3](https://d3js.org). But for those who need it, we also provide a UMD bundle that exports the `Plot` global when loaded as a plain script.
 
 :::code-group
 ```html [ESM + CDN]
@@ -46,7 +35,7 @@ In vanilla HTML, you can load Plot from a CDN such as jsDelivr or you can downlo
 <div id="myplot"></div>
 <script type="module">
 
-import * as Plot from "https://cdn.jsdelivr.net/npm/@observablehq/plot@0.6/+esm";
+import * as Plot from "https://esm.sh/@observablehq/plot@0.6";
 
 const plot = Plot.rectY({length: 10000}, Plot.binX({y: "count"}, {x: Math.random})).plot();
 const div = document.querySelector("#myplot");
