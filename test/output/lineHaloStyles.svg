@@ -1,0 +1,148 @@
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="600" height="350" viewBox="0 0 600 350" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style>
+    :where(.plot) {
+      --plot-background: white;
+      display: block;
+      height: auto;
+      height: intrinsic;
+      max-width: 100%;
+    }
+
+    :where(.plot text),
+    :where(.plot tspan) {
+      white-space: pre;
+    }
+  </style>
+  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+    <path transform="translate(40,318.292)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,290.818)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,263.345)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,235.871)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,208.397)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,180.923)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,153.45)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,125.976)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,98.502)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,71.028)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,43.555)" d="M0,0L-6,0"></path>
+  </g>
+  <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
+    <text y="0.32em" transform="translate(40,318.292)">0.90</text>
+    <text y="0.32em" transform="translate(40,290.818)">0.92</text>
+    <text y="0.32em" transform="translate(40,263.345)">0.94</text>
+    <text y="0.32em" transform="translate(40,235.871)">0.96</text>
+    <text y="0.32em" transform="translate(40,208.397)">0.98</text>
+    <text y="0.32em" transform="translate(40,180.923)">1.00</text>
+    <text y="0.32em" transform="translate(40,153.45)">1.02</text>
+    <text y="0.32em" transform="translate(40,125.976)">1.04</text>
+    <text y="0.32em" transform="translate(40,98.502)">1.06</text>
+    <text y="0.32em" transform="translate(40,71.028)">1.08</text>
+    <text y="0.32em" transform="translate(40,43.555)">1.10</text>
+  </g>
+  <g aria-label="y-axis label" text-anchor="start" transform="translate(-36.5,-16.5)">
+    <text y="0.71em" transform="translate(40,20)">↑ gdpc1</text>
+  </g>
+  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+    <path transform="translate(40,320)" d="M0,0L0,6"></path>
+    <path transform="translate(107.5,320)" d="M0,0L0,6"></path>
+    <path transform="translate(175,320)" d="M0,0L0,6"></path>
+    <path transform="translate(242.5,320)" d="M0,0L0,6"></path>
+    <path transform="translate(310,320)" d="M0,0L0,6"></path>
+    <path transform="translate(377.5,320)" d="M0,0L0,6"></path>
+    <path transform="translate(445,320)" d="M0,0L0,6"></path>
+    <path transform="translate(512.5,320)" d="M0,0L0,6"></path>
+    <path transform="translate(580,320)" d="M0,0L0,6"></path>
+  </g>
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+    <text y="0.71em" transform="translate(40,320)">0</text>
+    <text y="0.71em" transform="translate(107.5,320)">2</text>
+    <text y="0.71em" transform="translate(175,320)">4</text>
+    <text y="0.71em" transform="translate(242.5,320)">6</text>
+    <text y="0.71em" transform="translate(310,320)">8</text>
+    <text y="0.71em" transform="translate(377.5,320)">10</text>
+    <text y="0.71em" transform="translate(445,320)">12</text>
+    <text y="0.71em" transform="translate(512.5,320)">14</text>
+    <text y="0.71em" transform="translate(580,320)">16</text>
+  </g>
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(17.5,27.5)">
+    <text transform="translate(580,320)">quarters →</text>
+  </g>
+  <g aria-label="line" fill="none" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" transform="translate(0.5,0.5)">
+    <filter id="plot-filter-1">
+      <feMorphology in="SourceAlpha" result="dilated" operator="dilate" radius="2"></feMorphology>
+      <feFlood style="flood-color: lightblue;"></feFlood>
+      <feComposite in2="dilated" operator="in"></feComposite>
+      <feMerge>
+        <feMergeNode></feMergeNode>
+        <feMergeNode in="SourceGraphic"></feMergeNode>
+      </feMerge>
+    </filter>
+    <g filter="url(#plot-filter-1)">
+      <path stroke="#9ecae1" d="M40,180.923L73.75,209.228L107.5,210.827L141.25,185.766L175,158.945L208.75,169.287L242.5,152.698L276.25,167.973L310,189.515L343.75,183.287L377.5,188.53L411.25,187.984L445,169.974L478.75,138.465L512.5,110.155L546.25,80.021L580,51.196"></path>
+    </g>
+    <g filter="url(#plot-filter-1)">
+      <path stroke="#6baed6" d="M40,180.923L73.75,193.429L107.5,199.798L141.25,189.234L175,182.334L208.75,177.551L242.5,161.066L276.25,145.955L310,132.036L343.75,117.2L377.5,114.8L411.25,106.419L445,99.509L478.75,79.718L512.5,65.407L546.25,45.227L580,36.404"></path>
+    </g>
+    <g filter="url(#plot-filter-1)">
+      <path stroke="#3182bd" d="M40,180.923L73.75,172.387L107.5,177.921L141.25,174.103L175,162.67L208.75,154.102L242.5,148.451L276.25,146.613L310,139.338L343.75,126.694L377.5,102.892L411.25,86.139L445,77.726L478.75,66.225L512.5,52.215L546.25,36.86L580,20"></path>
+    </g>
+    <g filter="url(#plot-filter-1)">
+      <path stroke="#08519c" d="M40,180.923L73.75,186.52L107.5,178.691L141.25,185.94L175,215.82L208.75,231.426L242.5,233.666L276.25,228.885L310,214.726L343.75,208.026L377.5,194.995L411.25,184.484L445,177.364L478.75,180.682L512.5,171.367L546.25,171.903L580,156.393"></path>
+    </g>
+    <g filter="url(#plot-filter-1)">
+      <path stroke="red" d="M40,180.923L73.75,198.83L107.5,320L141.25,226.817L175,212.009L208.75,191.415L242.5,169.048L276.25,161.137L310,137.716L343.75,142.752"></path>
+    </g>
+  </g>
+  <g aria-label="line" fill="none" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" transform="translate(0.5,0.5)">
+    <filter id="plot-filter-2">
+      <feMorphology in="SourceAlpha" result="dilated" operator="dilate" radius="7"></feMorphology>
+      <feFlood style="flood-color: var(--plot-background);"></feFlood>
+      <feComposite in2="dilated" operator="in"></feComposite>
+      <feMerge>
+        <feMergeNode></feMergeNode>
+        <feMergeNode in="SourceGraphic"></feMergeNode>
+      </feMerge>
+    </filter>
+    <g filter="url(#plot-filter-2)">
+      <path stroke="#9ecae1" d="M40,180.923L73.75,209.228L107.5,210.827L141.25,185.766L175,158.945L208.75,169.287L242.5,152.698L276.25,167.973L310,189.515L343.75,183.287L377.5,188.53L411.25,187.984L445,169.974L478.75,138.465L512.5,110.155L546.25,80.021L580,51.196"></path>
+    </g>
+    <g filter="url(#plot-filter-2)">
+      <path stroke="#6baed6" d="M40,180.923L73.75,193.429L107.5,199.798L141.25,189.234L175,182.334L208.75,177.551L242.5,161.066L276.25,145.955L310,132.036L343.75,117.2L377.5,114.8L411.25,106.419L445,99.509L478.75,79.718L512.5,65.407L546.25,45.227L580,36.404"></path>
+    </g>
+    <g filter="url(#plot-filter-2)">
+      <path stroke="#3182bd" d="M40,180.923L73.75,172.387L107.5,177.921L141.25,174.103L175,162.67L208.75,154.102L242.5,148.451L276.25,146.613L310,139.338L343.75,126.694L377.5,102.892L411.25,86.139L445,77.726L478.75,66.225L512.5,52.215L546.25,36.86L580,20"></path>
+    </g>
+    <g filter="url(#plot-filter-2)">
+      <path stroke="#08519c" d="M40,180.923L73.75,186.52L107.5,178.691L141.25,185.94L175,215.82L208.75,231.426L242.5,233.666L276.25,228.885L310,214.726L343.75,208.026L377.5,194.995L411.25,184.484L445,177.364L478.75,180.682L512.5,171.367L546.25,171.903L580,156.393"></path>
+    </g>
+    <g filter="url(#plot-filter-2)">
+      <path stroke="red" d="M40,180.923L73.75,198.83L107.5,320L141.25,226.817L175,212.009L208.75,191.415L242.5,169.048L276.25,161.137L310,137.716L343.75,142.752"></path>
+    </g>
+  </g>
+  <g aria-label="line" fill="none" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" transform="translate(0.5,0.5)">
+    <filter id="plot-filter-3">
+      <feMorphology in="SourceAlpha" result="dilated" operator="dilate" radius="1"></feMorphology>
+      <feFlood style="flood-color: pink;"></feFlood>
+      <feComposite in2="dilated" operator="in"></feComposite>
+      <feMerge>
+        <feMergeNode></feMergeNode>
+        <feMergeNode in="SourceGraphic"></feMergeNode>
+      </feMerge>
+    </filter>
+    <g filter="url(#plot-filter-3)">
+      <path stroke="#9ecae1" d="M40,180.923L73.75,209.228L107.5,210.827L141.25,185.766L175,158.945L208.75,169.287L242.5,152.698L276.25,167.973L310,189.515L343.75,183.287L377.5,188.53L411.25,187.984L445,169.974L478.75,138.465L512.5,110.155L546.25,80.021L580,51.196"></path>
+    </g>
+    <g filter="url(#plot-filter-3)">
+      <path stroke="#6baed6" d="M40,180.923L73.75,193.429L107.5,199.798L141.25,189.234L175,182.334L208.75,177.551L242.5,161.066L276.25,145.955L310,132.036L343.75,117.2L377.5,114.8L411.25,106.419L445,99.509L478.75,79.718L512.5,65.407L546.25,45.227L580,36.404"></path>
+    </g>
+    <g filter="url(#plot-filter-3)">
+      <path stroke="#3182bd" d="M40,180.923L73.75,172.387L107.5,177.921L141.25,174.103L175,162.67L208.75,154.102L242.5,148.451L276.25,146.613L310,139.338L343.75,126.694L377.5,102.892L411.25,86.139L445,77.726L478.75,66.225L512.5,52.215L546.25,36.86L580,20"></path>
+    </g>
+    <g filter="url(#plot-filter-3)">
+      <path stroke="#08519c" d="M40,180.923L73.75,186.52L107.5,178.691L141.25,185.94L175,215.82L208.75,231.426L242.5,233.666L276.25,228.885L310,214.726L343.75,208.026L377.5,194.995L411.25,184.484L445,177.364L478.75,180.682L512.5,171.367L546.25,171.903L580,156.393"></path>
+    </g>
+    <g filter="url(#plot-filter-3)">
+      <path stroke="red" d="M40,180.923L73.75,198.83L107.5,320L141.25,226.817L175,212.009L208.75,191.415L242.5,169.048L276.25,161.137L310,137.716L343.75,142.752"></path>
+    </g>
+  </g>
+</svg>

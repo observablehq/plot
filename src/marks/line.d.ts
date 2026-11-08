@@ -22,6 +22,23 @@ export interface LineOptions extends MarkOptions, MarkerOptions, CurveAutoOption
    * **fill** if a channel, or **stroke** if a channel.
    */
   z?: ChannelValue;
+
+  /**
+   * Draw a halo around the line to help separate overlapping lines. If true,
+   * draws a halo with the plot background color and a 2px radius. If a color,
+   * uses that color. If a number, uses that radius.
+   */
+  halo?: boolean | string | number;
+
+  /**
+   * The halo’s color; defaults to background color.
+   */
+  haloColor?: string;
+
+  /**
+   * The halo’s radius in pixels; defaults to 2.
+   */
+  haloRadius?: number;
 }
 
 /** Options for the lineX mark. */
