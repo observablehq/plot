@@ -186,7 +186,7 @@ Plot.plot({
 ```
 :::
 
-If you don’t specify an explicit **anchor**, the tip mark will choose one automatically, using the **preferredAnchor** <VersionBadge version="0.6.12" pr="1872" /> if it fits. The preferred anchor defaults to *bottom*, except when using the **tip** option and the [pointerY pointing mode](../interactions/pointer.md), in which case it defaults to *left*. In some cases, it may not be possible to fit the tip within the plot’s frame; consider setting the plot’s **style** to `overflow: visible;` to prevent the tip from being truncated.
+If you don’t specify an explicit **anchor**, the tip mark will choose one automatically, using the **preferredAnchor** <VersionBadge version="0.6.12" pr="1872" /> if it fits. The preferred anchor defaults to *bottom*, except when using the **tip** option and the [pointerY pointing mode](../interactions/pointer.md), in which case it defaults to *left*. If the preferred anchor does not fit, the tip mark tries the opposite anchor, then the sides (*bottom*, *top*, *left*, *right*), then the corners, and uses the first that fits. In some cases, it may not be possible to fit the tip within the plot’s frame; the tip mark then uses the anchor that overflows the least. Consider setting the plot’s **style** to `overflow: visible;` to prevent the tip from being truncated.
 
 The tip mark is compatible with transforms that derive **x** and **y** dynamically from data, such as the [centroid transform](../transforms/centroid.md) which computes polygon centroids. Below, a map of the United States shows state names. We reduce the size of the tips by setting the **textPadding** option to 3 pixels instead of the default 8.
 
