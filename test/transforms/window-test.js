@@ -208,7 +208,7 @@ it(`windowX({reduce: "difference", k, strict: true}) produces invalid values if 
     NaN,
     NaN,
     NaN,
-    ,
+    NaN,
     ,
   ]);
 });
@@ -250,7 +250,7 @@ it(`windowX({reduce: "ratio", k, strict: true}) produces invalid values if the c
     NaN,
     NaN,
     NaN,
-    ,
+    NaN,
     ,
   ]);
 });
@@ -279,7 +279,7 @@ it(`windowX({reduce: "ratio", k}) returns the expected values`, () => {
 it(`windowX({reduce: "first", k, strict: true}) produces NaN if the current window starts with NaN`, () => {
   const data = [1, 2, 4, NaN, 8, 16, 32, 64, 128, NaN, NaN, NaN, NaN, 256];
   const m3 = applyTransform(Plot.windowX({reduce: "first", k: 3, strict: true, x: (d) => d}), data);
-  assert.deepStrictEqual(m3.x.transform(), [, 1, 2, 4, NaN, 8, 16, 32, 64, 128, NaN, NaN, , ,]);
+  assert.deepStrictEqual(m3.x.transform(), [, 1, 2, 4, NaN, 8, 16, 32, 64, 128, NaN, NaN, NaN, ,]);
 });
 
 it(`windowX({reduce: "first", k}) returns the expected values`, () => {
@@ -297,7 +297,7 @@ it(`windowX({reduce: "first", k}) does not coerce to numbers`, () => {
 it(`windowX({reduce: "last", k, strict: true}) produces NaN if the current window ends with NaN`, () => {
   const data = [1, 2, 4, NaN, 8, 16, 32, 64, 128, NaN, NaN, NaN, NaN, 256];
   const m3 = applyTransform(Plot.windowX({reduce: "last", k: 3, strict: true, x: (d) => d}), data);
-  assert.deepStrictEqual(m3.x.transform(), [, 4, NaN, 8, 16, 32, 64, 128, NaN, NaN, NaN, NaN, , ,]);
+  assert.deepStrictEqual(m3.x.transform(), [, 4, NaN, 8, 16, 32, 64, 128, NaN, NaN, NaN, NaN, NaN, ,]);
 });
 
 it(`windowX({reduce: "last", k}) returns the expected values`, () => {
@@ -311,3 +311,27 @@ it(`windowX({reduce: "last", k}) does not coerce to numbers`, () => {
   const m3 = applyTransform(Plot.windowX({reduce: "last", k: 3, x: (d) => d}), data);
   assert.deepStrictEqual(m3.x.transform(), ["B", "A", "A", "C", "C", "A", "B", "B", "B", "B"]);
 });
+
+for (const reduce of ["difference", "ratio", "first", "last"]) {
+  for (const anchor of ["start", "middle", "end"]) {
+    for (const strict of [false, true]) {
+      it(`windowY({reduce: "${reduce}", anchor: "${anchor}", strict: ${strict}}) includes every window`, () => {
+        const data = [2, 4, 8, 16];
+        for (const k of [1, 2, 3, 4, 5]) {
+          const s = anchor === "start" ? 0 : anchor === "end" ? k - 1 : (k - 1) >> 1;
+          const expected = new Array(data.length);
+          for (let j = 0; j < data.length; ++j) {
+            const start = j - s;
+            if (strict && (start < 0 || start + k > data.length)) continue;
+            const values = data.slice(Math.max(0, start), Math.min(data.length, start + k));
+            const first = values[0];
+            const last = values[values.length - 1];
+            expected[j] = {difference: last - first, ratio: last / first, first, last}[reduce];
+          }
+          const m = applyTransform(Plot.windowY({k, reduce, anchor, strict}, {y: (d) => d}), data);
+          assert.deepStrictEqual(m.y.transform(), expected, `k = ${k}`);
+        }
+      });
+    }
+  }
+}

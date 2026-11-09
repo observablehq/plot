@@ -244,7 +244,7 @@ function reduceDifference(k, s, strict) {
   return strict
     ? {
         mapIndex(I, S, T) {
-          for (let i = 0, n = I.length - k; i < n; ++i) {
+          for (let i = 0, n = I.length - k + 1; i < n; ++i) {
             const a = S[I[i]];
             const b = S[I[i + k - 1]];
             T[I[i + s]] = a === null || b === null ? NaN : b - a;
@@ -253,8 +253,8 @@ function reduceDifference(k, s, strict) {
       }
     : {
         mapIndex(I, S, T) {
-          for (let i = -s, n = I.length - k + s + 1; i < n; ++i) {
-            T[I[i + s]] = lastNumber(S, I, i, k) - firstNumber(S, I, i, k);
+          for (let i = -s, n = I.length - s; i < n; ++i) {
+            T[I[i + s]] = lastNumber(S, I, i, Math.min(k, I.length - i)) - firstNumber(S, I, i, Math.min(k, I.length - i));
           }
         }
       };
@@ -264,7 +264,7 @@ function reduceRatio(k, s, strict) {
   return strict
     ? {
         mapIndex(I, S, T) {
-          for (let i = 0, n = I.length - k; i < n; ++i) {
+          for (let i = 0, n = I.length - k + 1; i < n; ++i) {
             const a = S[I[i]];
             const b = S[I[i + k - 1]];
             T[I[i + s]] = a === null || b === null ? NaN : b / a;
@@ -273,8 +273,8 @@ function reduceRatio(k, s, strict) {
       }
     : {
         mapIndex(I, S, T) {
-          for (let i = -s, n = I.length - k + s + 1; i < n; ++i) {
-            T[I[i + s]] = lastNumber(S, I, i, k) / firstNumber(S, I, i, k);
+          for (let i = -s, n = I.length - s; i < n; ++i) {
+            T[I[i + s]] = lastNumber(S, I, i, Math.min(k, I.length - i)) / firstNumber(S, I, i, Math.min(k, I.length - i));
           }
         }
       };
@@ -284,15 +284,15 @@ function reduceFirst(k, s, strict) {
   return strict
     ? {
         mapIndex(I, S, T) {
-          for (let i = 0, n = I.length - k; i < n; ++i) {
+          for (let i = 0, n = I.length - k + 1; i < n; ++i) {
             T[I[i + s]] = S[I[i]];
           }
         }
       }
     : {
         mapIndex(I, S, T) {
-          for (let i = -s, n = I.length - k + s + 1; i < n; ++i) {
-            T[I[i + s]] = firstDefined(S, I, i, k);
+          for (let i = -s, n = I.length - s; i < n; ++i) {
+            T[I[i + s]] = firstDefined(S, I, i, Math.min(k, I.length - i));
           }
         }
       };
@@ -302,15 +302,15 @@ function reduceLast(k, s, strict) {
   return strict
     ? {
         mapIndex(I, S, T) {
-          for (let i = 0, n = I.length - k; i < n; ++i) {
+          for (let i = 0, n = I.length - k + 1; i < n; ++i) {
             T[I[i + s]] = S[I[i + k - 1]];
           }
         }
       }
     : {
         mapIndex(I, S, T) {
-          for (let i = -s, n = I.length - k + s + 1; i < n; ++i) {
-            T[I[i + s]] = lastDefined(S, I, i, k);
+          for (let i = -s, n = I.length - s; i < n; ++i) {
+            T[I[i + s]] = lastDefined(S, I, i, Math.min(k, I.length - i));
           }
         }
       };
