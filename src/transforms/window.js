@@ -254,7 +254,7 @@ function reduceDifference(k, s, strict) {
     : {
         mapIndex(I, S, T) {
           for (let i = -s, n = I.length - s; i < n; ++i) {
-            T[I[i + s]] = lastNumber(S, I, i, Math.min(k, I.length - i)) - firstNumber(S, I, i, Math.min(k, I.length - i));
+            T[I[i + s]] = lastNumber(S, I, i, k) - firstNumber(S, I, i, k);
           }
         }
       };
@@ -274,7 +274,7 @@ function reduceRatio(k, s, strict) {
     : {
         mapIndex(I, S, T) {
           for (let i = -s, n = I.length - s; i < n; ++i) {
-            T[I[i + s]] = lastNumber(S, I, i, Math.min(k, I.length - i)) / firstNumber(S, I, i, Math.min(k, I.length - i));
+            T[I[i + s]] = lastNumber(S, I, i, k) / firstNumber(S, I, i, k);
           }
         }
       };
@@ -292,7 +292,7 @@ function reduceFirst(k, s, strict) {
     : {
         mapIndex(I, S, T) {
           for (let i = -s, n = I.length - s; i < n; ++i) {
-            T[I[i + s]] = firstDefined(S, I, i, Math.min(k, I.length - i));
+            T[I[i + s]] = firstDefined(S, I, i, k);
           }
         }
       };
@@ -310,7 +310,7 @@ function reduceLast(k, s, strict) {
     : {
         mapIndex(I, S, T) {
           for (let i = -s, n = I.length - s; i < n; ++i) {
-            T[I[i + s]] = lastDefined(S, I, i, Math.min(k, I.length - i));
+            T[I[i + s]] = lastDefined(S, I, i, k);
           }
         }
       };

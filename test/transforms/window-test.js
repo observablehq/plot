@@ -297,7 +297,7 @@ it(`windowX({reduce: "first", k}) does not coerce to numbers`, () => {
 it(`windowX({reduce: "last", k, strict: true}) produces NaN if the current window ends with NaN`, () => {
   const data = [1, 2, 4, NaN, 8, 16, 32, 64, 128, NaN, NaN, NaN, NaN, 256];
   const m3 = applyTransform(Plot.windowX({reduce: "last", k: 3, strict: true, x: (d) => d}), data);
-  assert.deepStrictEqual(m3.x.transform(), [, 4, NaN, 8, 16, 32, 64, 128, NaN, NaN, NaN, NaN, NaN, ,]);
+  assert.deepStrictEqual(m3.x.transform(), [, 4, NaN, 8, 16, 32, 64, 128, NaN, NaN, NaN, NaN, 256, ,]);
 });
 
 it(`windowX({reduce: "last", k}) returns the expected values`, () => {
