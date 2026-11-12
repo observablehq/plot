@@ -244,7 +244,7 @@ function reduceDifference(k, s, strict) {
   return strict
     ? {
         mapIndex(I, S, T) {
-          for (let i = 0, n = I.length - k; i < n; ++i) {
+          for (let i = 0, n = I.length - k + 1; i < n; ++i) {
             const a = S[I[i]];
             const b = S[I[i + k - 1]];
             T[I[i + s]] = a === null || b === null ? NaN : b - a;
@@ -253,7 +253,7 @@ function reduceDifference(k, s, strict) {
       }
     : {
         mapIndex(I, S, T) {
-          for (let i = -s, n = I.length - k + s + 1; i < n; ++i) {
+          for (let i = -s, n = I.length - s; i < n; ++i) {
             T[I[i + s]] = lastNumber(S, I, i, k) - firstNumber(S, I, i, k);
           }
         }
@@ -264,7 +264,7 @@ function reduceRatio(k, s, strict) {
   return strict
     ? {
         mapIndex(I, S, T) {
-          for (let i = 0, n = I.length - k; i < n; ++i) {
+          for (let i = 0, n = I.length - k + 1; i < n; ++i) {
             const a = S[I[i]];
             const b = S[I[i + k - 1]];
             T[I[i + s]] = a === null || b === null ? NaN : b / a;
@@ -273,7 +273,7 @@ function reduceRatio(k, s, strict) {
       }
     : {
         mapIndex(I, S, T) {
-          for (let i = -s, n = I.length - k + s + 1; i < n; ++i) {
+          for (let i = -s, n = I.length - s; i < n; ++i) {
             T[I[i + s]] = lastNumber(S, I, i, k) / firstNumber(S, I, i, k);
           }
         }
@@ -284,14 +284,14 @@ function reduceFirst(k, s, strict) {
   return strict
     ? {
         mapIndex(I, S, T) {
-          for (let i = 0, n = I.length - k; i < n; ++i) {
+          for (let i = 0, n = I.length - k + 1; i < n; ++i) {
             T[I[i + s]] = S[I[i]];
           }
         }
       }
     : {
         mapIndex(I, S, T) {
-          for (let i = -s, n = I.length - k + s + 1; i < n; ++i) {
+          for (let i = -s, n = I.length - s; i < n; ++i) {
             T[I[i + s]] = firstDefined(S, I, i, k);
           }
         }
@@ -302,14 +302,14 @@ function reduceLast(k, s, strict) {
   return strict
     ? {
         mapIndex(I, S, T) {
-          for (let i = 0, n = I.length - k; i < n; ++i) {
+          for (let i = 0, n = I.length - k + 1; i < n; ++i) {
             T[I[i + s]] = S[I[i + k - 1]];
           }
         }
       }
     : {
         mapIndex(I, S, T) {
-          for (let i = -s, n = I.length - k + s + 1; i < n; ++i) {
+          for (let i = -s, n = I.length - s; i < n; ++i) {
             T[I[i + s]] = lastDefined(S, I, i, k);
           }
         }
