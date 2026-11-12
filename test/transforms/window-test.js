@@ -208,7 +208,7 @@ it(`windowX({reduce: "difference", k, strict: true}) produces invalid values if 
     NaN,
     NaN,
     NaN,
-    ,
+    NaN,
     ,
   ]);
 });
@@ -250,7 +250,7 @@ it(`windowX({reduce: "ratio", k, strict: true}) produces invalid values if the c
     NaN,
     NaN,
     NaN,
-    ,
+    NaN,
     ,
   ]);
 });
@@ -279,7 +279,7 @@ it(`windowX({reduce: "ratio", k}) returns the expected values`, () => {
 it(`windowX({reduce: "first", k, strict: true}) produces NaN if the current window starts with NaN`, () => {
   const data = [1, 2, 4, NaN, 8, 16, 32, 64, 128, NaN, NaN, NaN, NaN, 256];
   const m3 = applyTransform(Plot.windowX({reduce: "first", k: 3, strict: true, x: (d) => d}), data);
-  assert.deepStrictEqual(m3.x.transform(), [, 1, 2, 4, NaN, 8, 16, 32, 64, 128, NaN, NaN, , ,]);
+  assert.deepStrictEqual(m3.x.transform(), [, 1, 2, 4, NaN, 8, 16, 32, 64, 128, NaN, NaN, NaN, ,]);
 });
 
 it(`windowX({reduce: "first", k}) returns the expected values`, () => {
@@ -297,7 +297,7 @@ it(`windowX({reduce: "first", k}) does not coerce to numbers`, () => {
 it(`windowX({reduce: "last", k, strict: true}) produces NaN if the current window ends with NaN`, () => {
   const data = [1, 2, 4, NaN, 8, 16, 32, 64, 128, NaN, NaN, NaN, NaN, 256];
   const m3 = applyTransform(Plot.windowX({reduce: "last", k: 3, strict: true, x: (d) => d}), data);
-  assert.deepStrictEqual(m3.x.transform(), [, 4, NaN, 8, 16, 32, 64, 128, NaN, NaN, NaN, NaN, , ,]);
+  assert.deepStrictEqual(m3.x.transform(), [, 4, NaN, 8, 16, 32, 64, 128, NaN, NaN, NaN, NaN, 256, ,]);
 });
 
 it(`windowX({reduce: "last", k}) returns the expected values`, () => {
@@ -310,4 +310,17 @@ it(`windowX({reduce: "last", k}) does not coerce to numbers`, () => {
   const data = ["A", "B", "A", null, "C", "C", "A", "B", "B", NaN];
   const m3 = applyTransform(Plot.windowX({reduce: "last", k: 3, x: (d) => d}), data);
   assert.deepStrictEqual(m3.x.transform(), ["B", "A", "A", "C", "C", "A", "B", "B", "B", "B"]);
+});
+
+it(`windowX({reduce: "difference" | "ratio" | "first" | "last", k}) fills the last windows`, () => {
+  const data = [2, 4, 8, 16];
+  const t = (options) => applyTransform(Plot.windowX({...options, x: (d) => d}), data).x.transform();
+  assert.deepStrictEqual(t({reduce: "difference", k: 2, strict: true, anchor: "end"}), [, 2, 4, 8]);
+  assert.deepStrictEqual(t({reduce: "ratio", k: 2, strict: true, anchor: "end"}), [, 2, 2, 2]);
+  assert.deepStrictEqual(t({reduce: "first", k: 1, strict: true}), [2, 4, 8, 16]);
+  assert.deepStrictEqual(t({reduce: "last", k: 1, strict: true}), [2, 4, 8, 16]);
+  assert.deepStrictEqual(t({reduce: "first", k: 3, anchor: "start"}), [2, 4, 8, 16]);
+  assert.deepStrictEqual(t({reduce: "last", k: 3, anchor: "start"}), [8, 16, 16, 16]);
+  assert.deepStrictEqual(t({reduce: "difference", k: 3, anchor: "start"}), [6, 12, 8, 0]);
+  assert.deepStrictEqual(t({reduce: "ratio", k: 3, anchor: "start"}), [4, 4, 2, 1]);
 });
