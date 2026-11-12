@@ -311,3 +311,15 @@ it(`windowX({reduce: "last", k}) does not coerce to numbers`, () => {
   const m3 = applyTransform(Plot.windowX({reduce: "last", k: 3, x: (d) => d}), data);
   assert.deepStrictEqual(m3.x.transform(), ["B", "A", "A", "C", "C", "A", "B", "B", "B", "B"]);
 });
+
+it(`windowX({reduce: "median", k, strict: true}) finds missing values in each series`, () => {
+  const data = [1, 10, 2, null, 3, 30, 4, 40];
+  const t = (reduce) =>
+    applyTransform(
+      Plot.windowX({reduce, k: 2, strict: true, anchor: "end", x: (d) => d, z: (d, i) => i % 2}),
+      data
+    ).x.transform();
+  assert.deepStrictEqual(t("median"), [, , 1.5, NaN, 2.5, NaN, 3.5, 35]);
+  assert.deepStrictEqual(t("p50"), [, , 1.5, NaN, 2.5, NaN, 3.5, 35]);
+  assert.deepStrictEqual(t("variance"), [, , 0.5, NaN, 0.5, NaN, 0.5, 50]);
+});

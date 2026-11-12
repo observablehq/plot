@@ -94,11 +94,11 @@ function reduceAccessor(f) {
           mapIndex(I, S, T) {
             const v = (i) => (S[i] == null ? NaN : +S[i]);
             let nans = 0;
-            for (let i = 0; i < k - 1; ++i) if (isNaN(v(i))) ++nans;
+            for (let i = 0; i < k - 1; ++i) if (isNaN(v(I[i]))) ++nans;
             for (let i = 0, n = I.length - k + 1; i < n; ++i) {
-              if (isNaN(v(i + k - 1))) ++nans;
+              if (isNaN(v(I[i + k - 1]))) ++nans;
               T[I[i + s]] = nans === 0 ? f(subarray(I, i, i + k), v) : NaN;
-              if (isNaN(v(i))) --nans;
+              if (isNaN(v(I[i]))) --nans;
             }
           }
         }
