@@ -79,6 +79,39 @@ describe("pointer pool", () => {
     assert.strictEqual(visibleTips(svg), 1);
   });
 
+  it("shows the tip in range when another tip has a smaller radius and no point in range", () => {
+    const svg = Plot.plot({
+      x: {domain: [0, 10]},
+      y: {domain: [0, 10]},
+      marks: [
+        Plot.dot([{x: 2, y: 2, id: "near"}], {x: "x", y: "y", title: "id", tip: true}),
+        Plot.dot([{x: 9, y: 9, id: "far"}], {x: "x", y: "y", title: "id", tip: {maxRadius: 1}})
+      ]
+    });
+    pointer(svg, "pointermove", svg.scale("x").apply(2) + 10, svg.scale("y").apply(2));
+    flushAnimationFrame();
+    assert.strictEqual(visibleTips(svg), 1);
+    assert.include(svg.querySelector("[aria-label=tip] text").textContent, "near");
+  });
+
+  for (const tipFirst of [true, false]) {
+    it(`pools only participating marks when the tip is ${tipFirst ? "first" : "last"}`, () => {
+      const data = [{x: 2, y: 2, id: "near"}];
+      const first = Plot.tip(data, Plot.pointer({x: "x", y: "y", title: "id"}));
+      const second = Plot.tip([{x: 2.2, y: 2, id: "farther"}], Plot.pointer({x: "x", y: "y", title: "id"}));
+      const ring = Plot.dot([{x: 2.4, y: 2}], Plot.pointer({x: "x", y: "y", pool: false}));
+      const svg = Plot.plot({
+        x: {domain: [0, 10]},
+        y: {domain: [0, 10]},
+        marks: tipFirst ? [first, second, ring] : [ring, first, second]
+      });
+      pointer(svg, "pointermove", svg.scale("x").apply(2), svg.scale("y").apply(2));
+      flushAnimationFrame();
+      assert.strictEqual(visibleTips(svg), 1);
+      assert.isNotNull(svg.querySelector("[aria-label=dot] circle"));
+    });
+  }
+
   it("crosshair renders all sub-marks (does not pool)", () => {
     const svg = Plot.plot({
       marks: [Plot.crosshair([{x: 1, y: 1}, {x: 2, y: 2}], {x: "x", y: "y"})] // prettier-ignore

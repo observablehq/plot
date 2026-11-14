@@ -33,7 +33,7 @@ function pointerK(kx, ky, {x, y, px, py, maxRadius = 40, channels, render, ...op
       // the pointer (e.g., tips); only the closest point is shown.
       let state = states.get(svg);
       if (!state) {
-        state = {sticky: false, roots: [], renders: [], pool: this.pool ? {map: new Map()} : null};
+        state = {sticky: false, roots: [], renders: []};
         states.set(svg, state);
       }
 
@@ -82,7 +82,7 @@ function pointerK(kx, ky, {x, y, px, py, maxRadius = 40, channels, render, ...op
       // only show the closest. We defer rendering using an animation frame to
       // allow all pointer events to be received before deciding which mark to
       // render; although when hiding, we render immediately.
-      const pool = state.pool ?? facetPool;
+      const pool = this.pool ? (state.pool ??= {map: new Map()}) : facetPool;
       function update(ii, ri) {
         if (!pool) return void render(ii);
         if (ii == null) render(ii);
@@ -91,7 +91,7 @@ function pointerK(kx, ky, {x, y, px, py, maxRadius = 40, channels, render, ...op
         pool.frame = requestAnimationFrame(() => {
           pool.frame = undefined;
           let best = null;
-          for (const c of pool.map.values()) if (!best || c.ri < best.ri) best = c;
+          for (const c of pool.map.values()) if (c.ii != null && (!best || c.ri < best.ri)) best = c;
           for (const c of pool.map.values()) c.render(c === best ? c.ii : null);
         });
       }
