@@ -65,7 +65,8 @@ export interface MarkerOptions {
    * The marker for any middle (interior) points of a line segment. If the line
    * segment only has a start and end point, this option has no effect. One of:
    *
-   * - a marker name such as *arrow* or *circle*
+   * - a marker name such as *arrow* or *circle* (but not *arrow-reverse*,
+   *   which only differs from *arrow* when used as **markerStart**)
    * * *none* (default) - no marker
    * * true - alias for *circle-fill*
    * * false or null - alias for *none*
@@ -75,12 +76,13 @@ export interface MarkerOptions {
    * *context* including the current document; they must return an SVG marker
    * element.
    */
-  markerMid?: Marker | "none" | boolean | null;
+  markerMid?: Exclude<Marker, "arrow-reverse"> | "none" | boolean | null;
 
   /**
    * The marker for the ending point of a line segment; one of:
    *
-   * - a marker name such as *arrow* or *circle*
+   * - a marker name such as *arrow* or *circle* (but not *arrow-reverse*,
+   *   which only differs from *arrow* when used as **markerStart**)
    * * *none* (default) - no marker
    * * true - alias for *circle-fill*
    * * false or null - alias for *none*
@@ -90,5 +92,5 @@ export interface MarkerOptions {
    * *context* including the current document; they must return an SVG marker
    * element.
    */
-  markerEnd?: Marker | "none" | boolean | null;
+  markerEnd?: Exclude<Marker, "arrow-reverse"> | "none" | boolean | null;
 }
