@@ -41,11 +41,27 @@ it("Plot.normalize deviation doesn’t crash on equal values", () => {
   testNormalize([1, 1], "deviation", [0, 0]);
 });
 
-function testNormalize(data, basis, r) {
-  const mark = Plot.dot(data, Plot.normalizeY(basis, {y: data}));
+for (const axis of ["x", "y"]) {
+  it(`Plot.normalize${axis.toUpperCase()} deviation preserves missing values`, () => {
+    testNormalize([2, 2, NaN, undefined, null], "deviation", [0, 0, NaN, NaN, NaN], axis);
+    testNormalize([NaN, undefined, null], "deviation", [NaN, NaN, NaN], axis);
+    testNormalize([NaN, 2, undefined, null], "deviation", [NaN, 0, NaN, NaN], axis);
+    testNormalize([2, 4, NaN, undefined, null], "deviation", [-1 / Math.SQRT2, 1 / Math.SQRT2, NaN, NaN, NaN], axis);
+  });
+
+  it(`Plot.normalize${axis.toUpperCase()} deviation preserves missing values in grouped constant series`, () => {
+    testNormalize([2, NaN, 10, undefined, 2, 10, null], "deviation", [0, NaN, 0, NaN, 0, 0, NaN], axis, {
+      z: ["a", "a", "b", "b", "a", "b", "b"]
+    });
+  });
+}
+
+function testNormalize(data, basis, r, axis = "y", options = {}) {
+  const normalize = axis === "x" ? Plot.normalizeX : Plot.normalizeY;
+  const mark = Plot.dot(data, normalize(basis, {...options, [axis]: data}));
   const {
     channels: {
-      y: {value: Y}
+      [axis]: {value: Y}
     }
   } = mark.initialize();
   assert.deepStrictEqual(Y, r);

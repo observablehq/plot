@@ -84,7 +84,7 @@ const normalizeDeviation = {
     const m = mean(I, (i) => S[i]);
     const d = deviation(I, (i) => S[i]);
     for (const i of I) {
-      T[i] = S[i] === null ? NaN : d ? (S[i] - m) / d : 0;
+      T[i] = !defined(S[i]) ? NaN : d ? (S[i] - m) / d : 0;
     }
   }
 };
