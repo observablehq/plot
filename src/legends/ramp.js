@@ -1,6 +1,7 @@
 import {quantize, interpolateNumber, piecewise, format, scaleBand, scaleLinear, axisBottom} from "d3";
 import {inferFontVariant} from "../axes.js";
 import {createContext, create} from "../context.js";
+import {formatDefault} from "../format.js";
 import {map, maybeNumberChannel} from "../options.js";
 import {interpolatePiecewise} from "../scales/quantitative.js";
 import {applyInlineStyles, impliedString, maybeClassName, offset} from "../style.js";
@@ -113,7 +114,7 @@ export function legendRamp(color, options) {
     const thresholds = domain;
 
     const thresholdFormat =
-      tickFormat === undefined ? (d) => d : typeof tickFormat === "string" ? format(tickFormat) : tickFormat;
+      tickFormat === undefined ? formatDefault : typeof tickFormat === "string" ? format(tickFormat) : tickFormat;
 
     // Construct a linear scale with evenly-spaced ticks for each of the
     // thresholds; the domain extends one beyond the threshold extent.
