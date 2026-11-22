@@ -2,6 +2,10 @@
 
 Year: **Current** · [2025](./CHANGELOG-2025.md) · [2024](./CHANGELOG-2024.md) · [2023](./CHANGELOG-2023.md) · [2022](./CHANGELOG-2022.md) · [2021](./CHANGELOG-2021.md)
 
+## Unreleased
+
+- Fixes the interpretation of fixed-duration time intervals whose period doesn’t divide the parent unit, such as **“11 hours”** or **“65 minutes”**. These now anchor to the Unix epoch and recur exactly every *n* units, as [d3’s millisecond.every](https://d3js.org/d3-time#interval_every) does, instead of restarting at (UTC) midnight each day — so, for example, binning hourly events into 11-hour bins now produces equal-width bins. Multiples that divide the parent unit (say, “3 hours”) are unaffected in whole-hour time zones; calendar units (days, weeks, months, years) keep their current behavior. [#2452](https://github.com/observablehq/plot/issues/2452)
+
 ## 0.6.18
 
 [Released November 3, 2026.](https://github.com/observablehq/plot/releases/tag/v0.6.18)
