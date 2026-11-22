@@ -75,7 +75,26 @@ it("timeInterval('n seconds') returns the expected time interval", () => {
   const end = new Date("2012-01-01T12:14:08");
   assert.deepStrictEqual(timeInterval("5 seconds").range(start, end), d3.timeSecond.every(5).range(start, end));
   assert.deepStrictEqual(timeInterval("15 seconds").range(start, end), d3.timeSecond.every(15).range(start, end));
-  assert.deepStrictEqual(timeInterval("45 seconds").range(start, end), d3.timeSecond.every(45).range(start, end));
+  // 45 does not divide a minute, so unlike d3’s timeSecond.every(45), which
+  // restarts at the top of each minute, the interval recurs every 45 seconds.
+  assert.deepStrictEqual(timeInterval("45 seconds").range(start, end), durationRange(45e3, start, end));
+});
+
+it("timeInterval('n hours') recurs every n hours when n does not divide the day", () => {
+  const start = new Date("2026-07-31T19:30:00");
+  const end = new Date("2026-08-02T12:00:00");
+  const range = timeInterval("11 hours").range(start, end);
+  assert.deepStrictEqual(range, durationRange(11 * 36e5, start, end));
+});
+
+it("timeInterval('n minutes') floors and ceils exactly n minutes apart", () => {
+  const date = new Date("2026-08-01T12:33:00");
+  const interval = timeInterval("65 minutes");
+  assert.deepStrictEqual(
+    interval.range(date, new Date("2026-08-01T17:00:00")),
+    durationRange(65 * 6e4, date, new Date("2026-08-01T17:00:00"))
+  );
+  assert.strictEqual((interval.ceil(date) - interval.floor(date)) / 6e4, 65);
 });
 
 it("utcInterval('period') returns the expected UTC interval", () => {
@@ -151,5 +170,22 @@ it("utcInterval('n seconds') returns the expected UTC interval", () => {
   const end = new Date("2012-01-01T12:14:08");
   assert.deepStrictEqual(utcInterval("5 seconds").range(start, end), d3.utcSecond.every(5).range(start, end));
   assert.deepStrictEqual(utcInterval("15 seconds").range(start, end), d3.utcSecond.every(15).range(start, end));
-  assert.deepStrictEqual(utcInterval("45 seconds").range(start, end), d3.utcSecond.every(45).range(start, end));
+  assert.deepStrictEqual(utcInterval("45 seconds").range(start, end), durationRange(45e3, start, end));
 });
+
+it("utcInterval('n hours') recurs every n hours when n does not divide the day", () => {
+  const start = new Date("2026-07-31T19:30:00");
+  const end = new Date("2026-08-02T12:00:00");
+  const range = utcInterval("11 hours").range(start, end);
+  assert.deepStrictEqual(range, durationRange(11 * 36e5, start, end));
+  // A fixed-duration interval is anchored to the Unix epoch, so the local and
+  // UTC flavors produce the same boundaries.
+  assert.deepStrictEqual(range, timeInterval("11 hours").range(start, end));
+});
+
+// The boundaries of a fixed-duration interval: every step milliseconds since
+// the Unix epoch, starting at the first boundary at or after start.
+function durationRange(step, start, end) {
+  const t0 = Math.ceil(+start / step) * step;
+  return Array.from({length: Math.max(0, Math.ceil((+end - t0) / step))}, (_, i) => new Date(t0 + i * step));
+}

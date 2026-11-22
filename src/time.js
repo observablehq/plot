@@ -1,4 +1,4 @@
-import {bisector, max, pairs, timeFormat, utcFormat} from "d3";
+import {bisector, max, pairs, timeFormat, utcFormat, timeInterval as d3TimeInterval} from "d3";
 import {utcSecond, utcMinute, utcHour, unixDay, utcWeek, utcMonth, utcYear} from "d3";
 import {utcMonday, utcTuesday, utcWednesday, utcThursday, utcFriday, utcSaturday, utcSunday} from "d3";
 import {timeSecond, timeMinute, timeHour, timeDay, timeWeek, timeMonth, timeYear} from "d3";
@@ -191,11 +191,31 @@ export function utcInterval(input) {
   return asInterval(parseTimeInterval(input), "utc");
 }
 
+// Units whose duration is an exact number of milliseconds. Unlike calendar
+// units such as days and months, a multiple of one of these units (say, “11
+// hours") means a fixed span of time and is anchored to the Unix epoch below.
+const durationUnits = new Set(["second", "minute", "hour"]);
+
+// d3’s interval.every returns a filtered interval that only keeps the
+// boundaries whose clock field (say, getHours) is a multiple of the period,
+// so a multiple that doesn’t divide the parent unit (say, “11 hours” within a
+// 24-hour day) restarts at midnight each day rather than recurring every 11
+// hours. For units with an exact duration, anchor the boundaries to the Unix
+// epoch instead, the same way d3 implements millisecond.every.
+function durationInterval(duration) {
+  return d3TimeInterval(
+    (date) => date.setTime(Math.floor(+date / duration) * duration),
+    (date, step) => date.setTime(+date + step * duration),
+    (start, end) => (end - start) / duration
+  );
+}
+
 function asInterval([name, period], type) {
   let interval = (type === "time" ? timeIntervals : utcIntervals).get(name);
   if (period > 1) {
-    interval = interval.every(period);
-    interval[intervalDuration] = durations.get(name) * period;
+    const duration = durations.get(name);
+    interval = durationUnits.has(name) ? durationInterval(duration * period) : interval.every(period);
+    interval[intervalDuration] = duration * period;
     interval[intervalType] = type;
   }
   return interval;
