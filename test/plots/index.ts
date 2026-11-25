@@ -129,6 +129,7 @@ import "./hexbin-z-null.js";
 import "./hexbin-z.js";
 import "./hexbin.js";
 import "./high-cardinality-ordinal.js";
+import "./horizon.js";
 import "./href-fill.js";
 import "./ibm-trading.js";
 import "./identity-scale.js";

@@ -81,7 +81,7 @@ function stack(x, y = one, kx, ky, {offset, order, reverse}, options) {
   const [X, setX] = maybeColumn(x);
   const [Y1, setY1] = column(y);
   const [Y2, setY2] = column(y);
-  Y1.hint = Y2.hint = lengthy;
+  Y1.hint = Y2.hint = {...lengthy, ...y.hint};
   offset = maybeOffset(offset);
   order = maybeOrder(order, offset, ky);
   return [

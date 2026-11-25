@@ -276,8 +276,8 @@ export function createScaleIdentity(key) {
 export function inferDomain(channels, f = finite) {
   return channels.length
     ? [
-        min(channels, ({value}) => (value === undefined ? value : min(value, f))),
-        max(channels, ({value}) => (value === undefined ? value : max(value, f)))
+        min(channels, ({hint, value}) => (hint?.min !== undefined ? hint.min : value === undefined ? value : min(value, f))),
+        max(channels, ({hint, value}) => (hint?.max !== undefined ? hint.max : value === undefined ? value : max(value, f)))
       ]
     : [0, 1];
 }
