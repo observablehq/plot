@@ -1069,6 +1069,17 @@ it("plot(…).scale('color') can promote a quantized scale to a threshold scale 
   });
 });
 
+it("plot(…).scale('color') quantize ignores non-finite values", () => {
+  const plot = Plot.dot([1, 2, 3, Infinity, NaN], {x: Plot.identity, fill: Plot.identity}).plot({
+    color: {type: "quantize"}
+  });
+  scaleEqual(plot.scale("color"), {
+    type: "threshold",
+    domain: [1.5, 2, 2.5],
+    range: d3.schemeRdYlBu[4]
+  });
+});
+
 it("plot(…).scale('color') can promote a reversed quantized scale to a threshold scale", async () => {
   const penguins = await d3.csv("data/penguins.csv", d3.autoType);
   const plot = Plot.dot(penguins, {x: "body_mass_g", fill: "body_mass_g"}).plot({
@@ -2136,7 +2147,7 @@ it("Plot.plot passes render functions scale descriptors", async () => {
         assert.strictEqual(color(1), "rgb(144, 12, 0)");
         scaleEqual(scales.color, {
           type: "linear",
-          domain: [0.0003394410014152527, 0.999856373295188],
+          domain: [0, 0.999856373295188],
           range: [0, 1],
           clamp: false,
           interpolate: d3.interpolateTurbo
@@ -2167,11 +2178,11 @@ it("Plot.plot passes render functions re-initialized scale descriptors and funct
         assert.ok(Math.abs(x(1) - 426) < 1);
         assert.ok(Math.abs(y(0) - 196) < 1);
         assert.ok(Math.abs(y(1) - 148) < 1);
-        assert.strictEqual(color(1), "rgb(35, 23, 27)");
-        assert.strictEqual(color(10), "rgb(72, 58, 164)");
+        assert.strictEqual(color(1), "rgb(41, 27, 47)");
+        assert.strictEqual(color(10), "rgb(73, 62, 174)");
         scaleEqual(scales.color, {
           type: "linear",
-          domain: [1, 161],
+          domain: [0, 161],
           range: [0, 1],
           clamp: false,
           interpolate: d3.interpolateTurbo

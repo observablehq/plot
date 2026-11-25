@@ -14,38 +14,38 @@
     }
   </style>
   <g aria-label="text" font-variant="tabular-nums" transform="translate(0.5,0.5)">
-    <text y="0.32em" transform="translate(463.933,259.5)">12</text>
-    <text y="0.32em" transform="translate(216.333,259.5)">6</text>
-    <text y="0.32em" transform="translate(92.533,259.5)">3</text>
-    <text y="0.32em" transform="translate(381.4,259.5)">10</text>
-    <text y="0.32em" transform="translate(175.067,259.5)">5</text>
+    <text y="0.32em" transform="translate(474.25,259.5)">12</text>
+    <text y="0.32em" transform="translate(242.125,259.5)">6</text>
+    <text y="0.32em" transform="translate(126.063,259.5)">3</text>
+    <text y="0.32em" transform="translate(396.875,259.5)">10</text>
+    <text y="0.32em" transform="translate(203.438,259.5)">5</text>
     <text y="0.32em" transform="translate(629,259.5)">16</text>
-    <text y="0.32em" transform="translate(298.867,259.5)">8</text>
-    <text y="0.32em" transform="translate(133.8,259.5)">4</text>
-    <text y="0.32em" transform="translate(51.267,259.5)">2</text>
-    <text y="0.32em" transform="translate(10,259.5)">1</text>
+    <text y="0.32em" transform="translate(319.5,259.5)">8</text>
+    <text y="0.32em" transform="translate(164.75,259.5)">4</text>
+    <text y="0.32em" transform="translate(87.375,259.5)">2</text>
+    <text y="0.32em" transform="translate(48.688,259.5)">1</text>
   </g>
   <g aria-label="arrow" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-miterlimit="1" transform="translate(0.5,0.5)">
-    <path d="M463.142,273.478A123.8,123.8 0,0,1 217.642,277.452M216.165,281.17L217.642,277.452L220.123,280.59"></path>
-    <path d="M214.75,273.41A61.9,61.9 0,0,1 95.15,277.309M94.232,281.202L95.15,277.309L98.063,280.051"></path>
-    <path d="M93.212,245.516A144.433,144.433 0,0,1 380.278,241.535M381.832,237.849L380.278,241.535L377.863,238.347"></path>
-    <path d="M380.45,273.468A103.167,103.167 0,0,1 176.637,277.431M175.269,281.19L176.637,277.431L179.209,280.495"></path>
-    <path d="M175.498,245.507A226.967,226.967 0,0,1 628.286,241.514M630.005,237.902L628.286,241.514L626.018,238.219"></path>
-    <path d="M628.406,273.487A165.067,165.067 0,0,1 299.848,277.473M298.237,281.134L299.848,277.473L302.213,280.699"></path>
-    <path d="M297.679,273.45A82.533,82.533 0,0,1 135.763,277.393M134.561,281.208L135.763,277.393L138.466,280.341"></path>
-    <path d="M131.425,273.297A41.267,41.267 0,0,1 55.192,277.067M54.857,281.053L55.192,277.067L58.477,279.35"></path>
-    <path d="M46.517,272.67A20.633,20.633 0,0,1 17.851,275.697M19.332,279.413L17.851,275.697L21.81,276.273"></path>
+    <path d="M473.406,273.475A116.063,116.063 0,0,1 243.521,277.446M242.08,281.177L243.521,277.446L246.032,280.559"></path>
+    <path d="M240.436,273.398A58.031,58.031 0,0,1 128.854,277.282M128.012,281.193L128.854,277.282L131.819,279.967"></path>
+    <path d="M126.786,245.519A135.406,135.406 0,0,1 395.679,241.54M397.201,237.841L395.679,241.54L393.237,238.372"></path>
+    <path d="M395.862,273.463A96.719,96.719 0,0,1 205.112,277.422M203.789,281.197L205.112,277.422L207.72,280.455"></path>
+    <path d="M203.898,245.508A212.781,212.781 0,0,1 628.239,241.516M629.939,237.895L628.239,241.516L625.953,238.233"></path>
+    <path d="M628.367,273.486A154.75,154.75 0,0,1 320.547,277.47M318.963,281.142L320.547,277.47L322.936,280.678"></path>
+    <path d="M318.233,273.443A77.375,77.375 0,0,1 166.844,277.378M165.698,281.21L166.844,277.378L169.59,280.286"></path>
+    <path d="M162.217,273.269A38.688,38.688 0,0,1 91.562,277.006M91.346,281L91.562,277.006L94.913,279.19"></path>
+    <path d="M82.309,272.551A19.344,19.344 0,0,1 57.062,275.433M58.782,279.045L57.062,275.433L61.05,275.75"></path>
   </g>
   <g aria-label="dot" fill="none" stroke="currentColor" stroke-width="1.5" transform="translate(0.5,0.5)">
-    <circle cx="463.933" cy="259.5" r="10"></circle>
-    <circle cx="216.333" cy="259.5" r="10"></circle>
-    <circle cx="92.533" cy="259.5" r="10"></circle>
-    <circle cx="381.4" cy="259.5" r="10"></circle>
-    <circle cx="175.067" cy="259.5" r="10"></circle>
+    <circle cx="474.25" cy="259.5" r="10"></circle>
+    <circle cx="242.125" cy="259.5" r="10"></circle>
+    <circle cx="126.063" cy="259.5" r="10"></circle>
+    <circle cx="396.875" cy="259.5" r="10"></circle>
+    <circle cx="203.438" cy="259.5" r="10"></circle>
     <circle cx="629" cy="259.5" r="10"></circle>
-    <circle cx="298.867" cy="259.5" r="10"></circle>
-    <circle cx="133.8" cy="259.5" r="10"></circle>
-    <circle cx="51.267" cy="259.5" r="10"></circle>
-    <circle cx="10" cy="259.5" r="10"></circle>
+    <circle cx="319.5" cy="259.5" r="10"></circle>
+    <circle cx="164.75" cy="259.5" r="10"></circle>
+    <circle cx="87.375" cy="259.5" r="10"></circle>
+    <circle cx="48.688" cy="259.5" r="10"></circle>
   </g>
 </svg>
