@@ -153,7 +153,7 @@ As the above chart shows, a plot can have multiple pointer transforms. Each poin
 
 The pointer transform supports “click-to-stick”: clicking on the chart locks the currently-focused point until you click again. By locking the pointer, you can select text from the tip for copy and paste. If a plot has multiple pointer transforms, clicking will lock all pointer transforms.
 
-The pointer transform emits an [*input* event](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/input_event) whenever the focused points changes, and sets the value of the plot element to the focused data. This allows you to use a plot as an [Observable view](https://observablehq.com/@observablehq/views) (viewof), or to register an *input* event listener to react to pointing.
+The pointer transform emits an [*input* event](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/input_event) whenever the focused points changes, and sets the value of the plot element to the focused data. This allows you to use a plot as a view by registering an *input* event listener to react to pointing. Observable Framework offers a convenient [view](https://observablehq.com/framework/reactivity#inputs) helper to do so; in Observable notebooks, use the [viewof](https://observablehq.com/@observablehq/views) keyword.
 
 ```js
 const plot = Plot.plot(options);
